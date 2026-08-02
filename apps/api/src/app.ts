@@ -14,6 +14,8 @@ import { createSearchRoutes } from './routes/search.js';
 import { createSectionsRoutes } from './routes/sections.js';
 import { createTagsRoutes } from './routes/tags.js';
 
+//app
+
 export type AppEnv = {
   Variables: {
     db: Database;
