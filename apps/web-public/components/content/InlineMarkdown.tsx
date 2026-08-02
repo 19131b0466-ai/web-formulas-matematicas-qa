@@ -3,6 +3,16 @@ import { Katex } from './Katex';
 
 /** Renders markdown-ish text with inline \(...\) / $...$ math and light emphasis. */
 export function InlineMarkdown({ text }: { text: string }) {
+  const trimmed = text.trim();
+  // Bare TeX cell/title (no delimiters), e.g. legacy stripped table cells.
+  if (isBareLatex(trimmed)) {
+    return (
+      <span className="whitespace-pre-wrap [overflow-wrap:anywhere]">
+        <Katex latex={trimmed} />
+      </span>
+    );
+  }
+
   const nodes = tokenize(text);
   return (
     <span className="whitespace-pre-wrap [overflow-wrap:anywhere]">
@@ -11,6 +21,14 @@ export function InlineMarkdown({ text }: { text: string }) {
       ))}
     </span>
   );
+}
+
+function isBareLatex(text: string): boolean {
+  if (!text || /\\\(|\\\[|\$\$|\$/.test(text)) return false;
+  if (!/\\[a-zA-Z]/.test(text)) return false;
+  // Avoid treating normal prose that mentions a command as whole-cell TeX.
+  if (/\s{2,}|\.\s|[áéíóúñ¿¡]/i.test(text) && text.length > 48) return false;
+  return text.length <= 120;
 }
 
 function tokenize(input: string): ReactNode[] {

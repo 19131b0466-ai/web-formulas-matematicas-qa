@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { SectionSummary } from '@repo/shared-types';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { sectionHref } from '@/lib/api';
 
 type SidebarNavProps = {
@@ -39,7 +40,9 @@ export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
                 <span className="mr-2 shrink-0 tabular-nums text-[var(--sidebar-muted)]">
                   {section.number || '·'}
                 </span>
-                <span className="line-clamp-2">{section.title}</span>
+                <span className="line-clamp-2">
+                  <InlineMarkdown text={section.title} />
+                </span>
               </NavLink>
               {section.children && section.children.length > 0 ? (
                 <ul className="mb-2 ml-3 mt-0.5 space-y-0.5 border-l border-white/10 pl-2">
@@ -57,7 +60,7 @@ export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
                               {child.number}
                             </span>
                           ) : null}
-                          {child.title}
+                          <InlineMarkdown text={child.title} />
                         </span>
                       </NavLink>
                     </li>

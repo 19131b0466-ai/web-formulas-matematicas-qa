@@ -42,6 +42,14 @@ Proviene de la regla del producto:
 - Logarítmicas
 - Algebraicas
 
+## 7. Sustitución trigonométrica
+
+### 7.1 Tabla de sustituciones
+
+| Radical | Sustitución |
+|---|---|
+| \\(\\sqrt{a^2-x^2}\\) | \\(x=a\\operatorname{sen}\\theta\\) |
+
 ## 17. Guía para elegir un método
 
 | Señal en el integrando | Método que conviene intentar |
@@ -107,6 +115,15 @@ describe('parseFormulasMarkdown (fixture)', () => {
       signal: expect.stringContaining('Composición'),
       method: expect.stringContaining('Sustitución'),
     });
+  });
+
+  it('keeps math delimiters in table cells for display', () => {
+    const section = result.sections.find((s) => s.number === '7.1');
+    const table = section?.blocks.find((b) => b.blockType === 'table');
+    expect(table).toBeDefined();
+    const content = table!.content as { rows: string[][] };
+    expect(content.rows[0]?.[0]).toContain('\\(');
+    expect(content.rows[0]?.[0]).toContain('\\sqrt');
   });
 
   it('parses notes, lists and checklist', () => {

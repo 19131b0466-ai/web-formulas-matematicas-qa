@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 
 export type Crumb = { label: string; href?: string };
 
@@ -11,10 +12,12 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
             {i > 0 ? <span aria-hidden>/</span> : null}
             {item.href ? (
               <Link href={item.href} className="hover:text-[var(--accent-strong)]">
-                {item.label}
+                <InlineMarkdown text={item.label} />
               </Link>
             ) : (
-              <span className="text-[var(--fg)]">{item.label}</span>
+              <span className="text-[var(--fg)]">
+                <InlineMarkdown text={item.label} />
+              </span>
             )}
           </li>
         ))}

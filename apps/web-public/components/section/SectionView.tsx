@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { SectionDetailResponse } from '@repo/shared-types';
 import { ContentBlocks } from '@/components/content/ContentBlocks';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { sectionHref } from '@/lib/api';
 
@@ -27,10 +28,12 @@ export function SectionView({ detail, parent = null }: SectionViewProps) {
           {section.number ? `Sección ${section.number}` : 'Contenido'}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {section.title}
+          <InlineMarkdown text={section.title} />
         </h1>
         {section.description ? (
-          <p className="mt-3 text-lg text-[var(--fg-muted)]">{section.description}</p>
+          <p className="mt-3 text-lg text-[var(--fg-muted)]">
+            <InlineMarkdown text={section.description} />
+          </p>
         ) : null}
       </header>
 
@@ -50,7 +53,7 @@ export function SectionView({ detail, parent = null }: SectionViewProps) {
                   className="inline-flex min-h-10 items-center text-sm text-[var(--accent-strong)] underline-offset-2 hover:underline"
                 >
                   {sub.number ? `${sub.number} ` : ''}
-                  {sub.title}
+                  <InlineMarkdown text={sub.title} />
                 </Link>
               </li>
             ))}

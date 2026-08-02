@@ -38,7 +38,9 @@ export function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
             {block.title ? (
               <h3 className="font-display mb-3 text-xl font-semibold tracking-tight text-[var(--fg)]">
                 <a href={`#${anchor}`} className="group inline-flex items-baseline gap-2">
-                  <span>{block.title}</span>
+                  <span>
+                    <InlineMarkdown text={block.title} />
+                  </span>
                   <span className="text-sm font-normal text-[var(--fg-muted)] opacity-0 transition group-hover:opacity-100">
                     #
                   </span>
@@ -111,7 +113,7 @@ function BlockBody({ block }: { block: ContentBlockDto }) {
         <div className="overflow-x-auto rounded-xl border border-[var(--border)] bg-[var(--formula-bg)]">
           {content.caption ? (
             <p className="border-b border-[var(--border)] px-4 py-2 text-sm text-[var(--fg-muted)]">
-              {content.caption}
+              <InlineMarkdown text={content.caption} />
             </p>
           ) : null}
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">

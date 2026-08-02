@@ -25,10 +25,19 @@ const APPENDIX_RE = /^Ap[eé]ndice\s+([AB])\s*:\s*(.+)$/i;
 /** Matches `1. Title`, `1.1 Title`, `10.2.3 Title` (period after whole number optional for subsections). */
 const NUMBERED_SECTION_RE = /^(\d+(?:\.\d+)*)\.?\s+(.+)$/;
 
+/** Strip markup/delimiters for search indexing only — never mutate display content. */
 function stripInlineNoise(text: string): string {
   return text
     .replace(/\\\((.+?)\\\)/g, '$1')
     .replace(/\$([^$]+)\$/g, '$1')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .trim();
+}
+
+/** Keep math delimiters; only unwrap light markdown wrappers for pending titles. */
+function stripMarkupKeepMath(text: string): string {
+  return text
     .replace(/\*\*(.+?)\*\*/g, '$1')
     .replace(/`([^`]+)`/g, '$1')
     .trim();
@@ -142,7 +151,7 @@ function flushParagraph(
     !markdown.includes('\\[') &&
     (/^\*\*.+\*\*$/.test(markdown) || /^[A-ZÁÉÍÓÚ].+:$/.test(markdown))
   ) {
-    return stripInlineNoise(markdown);
+    return stripMarkupKeepMath(markdown);
   }
 
   const content: TextContent = { markdown };
@@ -342,21 +351,21 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
         for (const row of table.rows) {
           if (row.length < 2) continue;
           const strategy: StrategyContent = {
-            signal: stripInlineNoise(row[0] ?? ''),
-            method: stripInlineNoise(row[1] ?? ''),
+            signal: (row[0] ?? '').trim(),
+            method: (row[1] ?? '').trim(),
           };
           pushBlock(
             currentSection,
             'strategy',
             strategy,
-            [strategy.signal, strategy.method],
+            [stripInlineNoise(strategy.signal), stripInlineNoise(strategy.method)],
             pendingTitle,
           );
         }
       } else {
         const content: TableContent = {
-          headers: table.headers.map(stripInlineNoise),
-          rows: table.rows.map((r) => r.map(stripInlineNoise)),
+          headers: table.headers.map((h) => h.trim()),
+          rows: table.rows.map((r) => r.map((cell) => cell.trim())),
         };
         pushBlock(
           currentSection,
@@ -364,8 +373,8 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
           content,
           [
             pendingTitle ?? '',
-            content.headers.join(' '),
-            content.rows.map((r) => r.join(' ')).join(' '),
+            content.headers.map(stripInlineNoise).join(' '),
+            content.rows.map((r) => r.map(stripInlineNoise).join(' ')).join(' '),
           ],
           pendingTitle,
         );

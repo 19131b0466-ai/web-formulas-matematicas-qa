@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { fetchSections, sectionHref } from '@/lib/api';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from '@/lib/site';
 
@@ -77,7 +78,9 @@ export default async function HomePage() {
                     <span className="w-8 shrink-0 tabular-nums text-[var(--fg-muted)]">
                       {section.number}
                     </span>
-                    <span className="font-medium">{section.title}</span>
+                    <span className="font-medium">
+                      <InlineMarkdown text={section.title} />
+                    </span>
                   </span>
                   <span className="shrink-0 text-sm text-[var(--fg-muted)] opacity-0 transition group-hover:opacity-100">
                     Ver →
@@ -99,7 +102,7 @@ export default async function HomePage() {
                   href={sectionHref(section.slug)}
                   className="inline-flex min-h-11 items-center text-[var(--accent-strong)] underline-offset-2 hover:underline"
                 >
-                  {section.title}
+                  <InlineMarkdown text={section.title} />
                 </Link>
               </li>
             ))}

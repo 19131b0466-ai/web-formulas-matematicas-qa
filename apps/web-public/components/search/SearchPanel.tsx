@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { sectionHref } from '@/lib/api';
 
 type SearchPanelProps = {
@@ -107,11 +108,13 @@ export function SearchPanel({
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
                 {r.sectionNumber ? `${r.sectionNumber} · ` : ''}
-                {r.sectionTitle}
+                <InlineMarkdown text={r.sectionTitle} />
                 <span className="ml-2 font-normal normal-case">({r.blockType})</span>
               </p>
               {r.title ? (
-                <p className="mt-1 font-display text-lg font-semibold">{r.title}</p>
+                <p className="mt-1 font-display text-lg font-semibold">
+                  <InlineMarkdown text={r.title} />
+                </p>
               ) : null}
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--fg-muted)]">
                 {highlight(r.excerpt, initialQuery)}
