@@ -3,7 +3,7 @@ import { z } from 'zod';
 import type { TrackVisitResponse } from '@repo/shared-types';
 import type { Database } from '../db/client.js';
 import { extractIp } from '../lib/request-meta.js';
-import { recordVisit } from '../services/analytics.js';
+import { recordVisit, type TrackVisitInput } from '../services/analytics.js';
 
 const FORBIDDEN_IP_KEYS = new Set([
   'ip',
@@ -72,13 +72,15 @@ export function createAnalyticsRoutes(getDb: () => Database) {
       return c.json({ error: 'Invalid body', details: parsed.error.flatten() }, 400);
     }
 
-    const headers = c.req.raw.headers;
+    const headers: Headers = c.req.raw.headers;
     const ip = extractIp(headers);
     if (!allowRate(ip)) {
       return c.json({ error: 'Too many requests' }, 429);
     }
 
-    const result = await recordVisit(getDb(), parsed.data, headers);
+    // Assertion: Vercel's per-file TS check weakens Zod inference after safeParse.
+    const input = parsed.data as TrackVisitInput;
+    const result = await recordVisit(getDb(), input, headers);
 
     const response: TrackVisitResponse = {
       ok: true,
