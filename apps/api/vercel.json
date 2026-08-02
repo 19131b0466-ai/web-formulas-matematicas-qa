@@ -4,6 +4,7 @@
   "framework": null,
   "installCommand": "cd ../.. && pnpm install",
   "buildCommand": "cd ../.. && pnpm --filter @repo/api... build",
+  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/(.*)",
