@@ -37,12 +37,13 @@ export function createApp(dbProvider: () => Database = getDb) {
     }),
   );
 
+  // Health must stay DB-free so cold starts / bad DATABASE_URL don't 504 the probe.
+  app.route('/health', healthRoutes);
+
   app.use('*', async (c, next) => {
     c.set('db', dbProvider());
     await next();
   });
-
-  app.route('/health', healthRoutes);
   app.route('/cron', createCronRoutes(dbProvider));
   app.route('/auth', createAuthRoutes(dbProvider));
   app.route('/sections', createSectionsRoutes(dbProvider));
