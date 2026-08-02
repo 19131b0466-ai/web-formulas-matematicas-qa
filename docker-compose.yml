@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: formulas-postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: formulas
+      POSTGRES_PASSWORD: formulas_dev
+      POSTGRES_DB: formulas_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/migrate/init-local.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U formulas -d formulas_db']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

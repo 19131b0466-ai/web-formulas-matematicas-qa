@@ -1,0 +1,40 @@
+{
+  "name": "@repo/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "lint": "eslint src/ --ignore-pattern 'src/**/*.test.ts' --ignore-pattern 'src/test/**'",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx src/seed/import-markdown.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.4",
+    "@repo/content-parser": "workspace:*",
+    "@repo/shared-types": "workspace:*",
+    "drizzle-orm": "^0.44.2",
+    "hono": "^4.7.11",
+    "jose": "^6.2.7",
+    "postgres": "^3.4.7",
+    "ua-parser-js": "^2.0.10",
+    "zod": "^3.25.51"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.2",
+    "@repo/eslint-config": "workspace:*",
+    "@types/node": "^22.15.29",
+    "@types/ua-parser-js": "^0.7.39",
+    "drizzle-kit": "^0.31.1",
+    "eslint": "^9.28.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.1"
+  }
+}

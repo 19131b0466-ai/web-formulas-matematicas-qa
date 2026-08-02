@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --bg: #eef5f3;
+  --bg-elevated: #f7fbf9;
+  --fg: #12221f;
+  --fg-muted: #4d635d;
+  --accent: #0f6e56;
+  --accent-soft: #d7efe6;
+  --accent-strong: #0a4f3d;
+  --border: #c7d8d2;
+  --danger: #9b3b2e;
+  --warning: #8a5a12;
+  --info: #1f4f6d;
+  --sidebar: #0d2a24;
+  --sidebar-fg: #e7f3ef;
+  --sidebar-muted: #9fb8b0;
+  --formula-bg: #ffffff;
+  --shadow: 0 18px 40px rgba(13, 42, 36, 0.08);
+  --grid: rgba(15, 110, 86, 0.06);
+}
+
+.dark {
+  --bg: #0b1614;
+  --bg-elevated: #12221f;
+  --fg: #e8f2ee;
+  --fg-muted: #9fb8b0;
+  --accent: #3dba95;
+  --accent-soft: #16362e;
+  --accent-strong: #7ee0c0;
+  --border: #2a433c;
+  --danger: #f0a39a;
+  --warning: #e2c07a;
+  --info: #8ec5e0;
+  --sidebar: #071411;
+  --sidebar-fg: #e8f2ee;
+  --sidebar-muted: #7f9a92;
+  --formula-bg: #10201c;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --grid: rgba(61, 186, 149, 0.07);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-strong: var(--accent-strong);
+  --color-border: var(--border);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-fg: var(--sidebar-fg);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-formula: var(--formula-bg);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(15, 110, 86, 0.14), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(31, 79, 109, 0.1), transparent 50%),
+    linear-gradient(180deg, var(--bg), var(--bg-elevated));
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 85%);
+  z-index: 0;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.prose-math .katex-display {
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.prose-math .katex {
+  font-size: 1.05em;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--border) 55%, transparent),
+    color-mix(in oklab, var(--accent-soft) 80%, transparent),
+    color-mix(in oklab, var(--border) 55%, transparent)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.45s ease-out both;
+}

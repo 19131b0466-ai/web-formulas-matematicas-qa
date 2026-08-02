@@ -1,0 +1,8 @@
+node_modules
+.next
+dist
+.turbo
+pnpm-lock.yaml
+coverage
+content/formulas-calculo-ii.md
+apps/api/drizzle

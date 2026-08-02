@@ -1,0 +1,86 @@
+import {
+  boolean,
+  char,
+  decimal,
+  index,
+  inet,
+  integer,
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from 'drizzle-orm/pg-core';
+
+export const sections = pgTable('sections', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  slug: text('slug').notNull().unique(),
+  number: text('number').notNull(),
+  title: text('title').notNull(),
+  description: text('description'),
+  sortOrder: integer('sort_order').notNull(),
+  parentId: uuid('parent_id'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+});
+
+export const contentBlocks = pgTable(
+  'content_blocks',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    sectionId: uuid('section_id')
+      .notNull()
+      .references(() => sections.id, { onDelete: 'cascade' }),
+    blockType: text('block_type').notNull(),
+    sortOrder: integer('sort_order').notNull(),
+    title: text('title'),
+    content: jsonb('content').notNull(),
+    searchText: text('search_text'),
+    tags: text('tags').array().default([]),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  },
+  (table) => [index('idx_content_blocks_section').on(table.sectionId, table.sortOrder)],
+);
+
+export const visitLogs = pgTable(
+  'visit_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    sessionId: uuid('session_id').notNull(),
+    visitedAt: timestamp('visited_at', { withTimezone: true }).defaultNow(),
+    ipAddress: inet('ip_address').notNull(),
+    userAgent: text('user_agent'),
+    referer: text('referer'),
+    path: text('path').notNull(),
+    queryString: text('query_string'),
+    countryCode: char('country_code', { length: 2 }),
+    countryName: text('country_name'),
+    region: text('region'),
+    city: text('city'),
+    latitude: decimal('latitude', { precision: 9, scale: 6 }),
+    longitude: decimal('longitude', { precision: 9, scale: 6 }),
+    timezone: text('timezone'),
+    acceptLanguage: text('accept_language'),
+    primaryLanguage: char('primary_language', { length: 5 }),
+    screenWidth: integer('screen_width'),
+    screenHeight: integer('screen_height'),
+    deviceType: text('device_type'),
+    browser: text('browser'),
+    os: text('os'),
+    sectionSlug: text('section_slug'),
+    searchQuery: text('search_query'),
+    isUniqueDay: boolean('is_unique_day').default(false),
+  },
+  (table) => [
+    index('idx_visit_logs_date').on(table.visitedAt),
+    index('idx_visit_logs_country').on(table.countryCode),
+    index('idx_visit_logs_path').on(table.path),
+    index('idx_visit_logs_session').on(table.sessionId),
+  ],
+);
+
+export const adminUsers = pgTable('admin_users', {
+  id: uuid('id').primaryKey(),
+  email: text('email').notNull().unique(),
+  role: text('role').default('superadmin'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+});
