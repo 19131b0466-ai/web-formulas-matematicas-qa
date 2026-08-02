@@ -1,7 +1,7 @@
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createApp } from '../app.js';
+import { createApp } from '../create-app.js';
 import { seedFromMarkdown } from '../seed/import-markdown.js';
 import { createTestDb, type TestDatabase } from './setup-db.js';
 
