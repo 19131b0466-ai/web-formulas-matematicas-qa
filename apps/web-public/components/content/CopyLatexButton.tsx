@@ -1,8 +1,10 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 export function CopyLatexButton({ latex }: { latex: string }) {
+  const t = useTranslations('content');
   const [copied, setCopied] = useState(false);
 
   async function onCopy() {
@@ -21,7 +23,7 @@ export function CopyLatexButton({ latex }: { latex: string }) {
       onClick={onCopy}
       className="inline-flex h-9 items-center rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-2.5 text-xs font-medium text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
     >
-      {copied ? 'Copiado' : 'Copiar LaTeX'}
+      {copied ? t('copied') : t('copyLatex')}
     </button>
   );
 }

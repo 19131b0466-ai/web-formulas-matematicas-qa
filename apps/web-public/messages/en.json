@@ -1,0 +1,101 @@
+{
+  "site": {
+    "name": "Calculus II Formula Sheet",
+    "tagline": "Integral Calculus — formulas, methods, and applications",
+    "description": "Online Calculus II formula sheet: antiderivatives, integration techniques, series, applications, and a method guide.",
+    "shortName": "Calculus II",
+    "about": "Integral Calculus",
+    "manifestDescription": "Online Integral Calculus formula sheet"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "guide": "Method guide",
+    "sections": "Sections",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "close": "Close",
+    "brandEyebrow": "Integral Calculus",
+    "brandTitle": "Formula Sheet II",
+    "sectionsIndex": "Section index",
+    "searchPlaceholder": "Search formulas…",
+    "language": "Language"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "home": {
+    "title": "Calculus II Formula Sheet",
+    "intro": "Browse antiderivatives, integration techniques, series, and applications. All content is served by the API — no hardcoded formulas in the frontend.",
+    "ctaSearch": "Search formulas",
+    "ctaGuide": "Method guide",
+    "index": "Index",
+    "indexSummarySimple": "{main} main sections",
+    "andAppendices": " and {count} appendices",
+    "empty": "No sections available. Start the API and run pnpm db:seed.",
+    "view": "View →",
+    "appendices": "Appendices"
+  },
+  "footer": {
+    "line": "Calculus II Formula Sheet · content served by API ·",
+    "guideLink": "Method guide"
+  },
+  "search": {
+    "title": "Search",
+    "description": "Search formulas, techniques, and concepts in the Calculus II formula sheet.",
+    "ogTitle": "Search · Calculus II Formula Sheet",
+    "subtitle": "Find formulas by text or filter by technique tags.",
+    "label": "Search the formula sheet",
+    "placeholder": "e.g. by parts, Taylor, partial fractions…",
+    "submit": "Search",
+    "all": "All",
+    "results": "{count, plural, =1 {# result} other {# results}}",
+    "forQuery": "for “{query}”",
+    "loading": "Searching…"
+  },
+  "guide": {
+    "title": "Guide to choosing a method",
+    "description": "Practical guide to choosing the right integration technique from the form of the integrand.",
+    "ogTitle": "Method guide · Calculus II Formula Sheet",
+    "sectionLabel": "Section 17",
+    "intro": "Use the signal in the integrand to decide which technique to try first.",
+    "fullSection": "View the full section in the index →",
+    "signalMethod": "Signal → method",
+    "signal": "Signal",
+    "method": "Method",
+    "empty": "No strategies available. Check the API and seed.",
+    "checklist": "Checklist"
+  },
+  "section": {
+    "label": "Section {number}",
+    "content": "Content",
+    "subsections": "Subsections",
+    "inThisSection": "In this section",
+    "notFound": "Section not found",
+    "metaDescription": "Formulas and concepts for {title} in the Calculus II formula sheet.",
+    "jsonDescription": "Section {number}: {title}",
+    "loading": "Loading section…"
+  },
+  "appendix": {
+    "notFound": "Appendix not found",
+    "metaDescription": "Appendix of the Calculus II formula sheet: {title}."
+  },
+  "content": {
+    "formula": "Formula",
+    "copyLatex": "Copy LaTeX",
+    "copied": "Copied",
+    "signal": "Signal",
+    "method": "Method"
+  },
+  "breadcrumbs": {
+    "label": "Breadcrumbs"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "That section does not exist or has not been imported into the API yet.",
+    "back": "Back to home"
+  }
+}

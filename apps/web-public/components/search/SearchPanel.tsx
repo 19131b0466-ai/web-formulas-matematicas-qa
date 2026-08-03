@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
+import { Link, useRouter } from '@/i18n/navigation';
 import { sectionHref } from '@/lib/api';
 
 type SearchPanelProps = {
@@ -22,6 +22,7 @@ export function SearchPanel({
   total = 0,
   tagOptions = [],
 }: SearchPanelProps) {
+  const t = useTranslations('search');
   const router = useRouter();
   const [q, setQ] = useState(initialQuery);
   const [tag, setTag] = useState(initialTag);
@@ -38,7 +39,7 @@ export function SearchPanel({
     <div className="space-y-8">
       <form onSubmit={onSubmit} className="space-y-3" role="search">
         <label htmlFor="search-q" className="block text-sm font-medium text-[var(--fg-muted)]">
-          Buscar en el formulario
+          {t('label')}
         </label>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input
@@ -46,14 +47,14 @@ export function SearchPanel({
             name="q"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Ej. por partes, Taylor, fracciones parciales…"
+            placeholder={t('placeholder')}
             className="min-h-12 flex-1 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] px-4 text-base outline-none ring-[var(--accent)] transition focus:ring-2"
           />
           <button
             type="submit"
             className="min-h-12 rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
           >
-            Buscar
+            {t('submit')}
           </button>
         </div>
         {tagOptions.length > 0 ? (
@@ -67,20 +68,20 @@ export function SearchPanel({
                   : 'border-[var(--border)] text-[var(--fg-muted)]'
               }`}
             >
-              Todos
+              {t('all')}
             </button>
-            {tagOptions.slice(0, 16).map((t) => (
+            {tagOptions.slice(0, 16).map((item) => (
               <button
-                key={t.tag}
+                key={item.tag}
                 type="button"
-                onClick={() => setTag(t.tag === tag ? '' : t.tag)}
+                onClick={() => setTag(item.tag === tag ? '' : item.tag)}
                 className={`min-h-11 rounded-lg border px-3 text-xs font-medium ${
-                  tag === t.tag
+                  tag === item.tag
                     ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent-strong)]'
                     : 'border-[var(--border)] text-[var(--fg-muted)]'
                 }`}
               >
-                {t.tag} ({t.count})
+                {item.tag} ({item.count})
               </button>
             ))}
           </div>
@@ -89,11 +90,11 @@ export function SearchPanel({
 
       {initialQuery || initialTag ? (
         <p className="text-sm text-[var(--fg-muted)]">
-          {total} resultado{total === 1 ? '' : 's'}
+          {t('results', { count: total })}
           {initialQuery ? (
             <>
               {' '}
-              para <span className="font-medium text-[var(--fg)]">“{initialQuery}”</span>
+              {t('forQuery', { query: initialQuery })}
             </>
           ) : null}
         </p>
@@ -103,7 +104,7 @@ export function SearchPanel({
         {results.map((r) => (
           <li key={r.blockId}>
             <Link
-              href={sectionHref(r.sectionSlug)}
+              href={sectionHref(r.sectionSlug) as '/'}
               className="block rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4 transition hover:border-[var(--accent)]"
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">

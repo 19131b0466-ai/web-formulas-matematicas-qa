@@ -1,0 +1,101 @@
+{
+  "site": {
+    "name": "Formelsammlung Analysis II",
+    "tagline": "Integralrechnung — Formeln, Methoden und Anwendungen",
+    "description": "Online-Formelsammlung Analysis II: Stammfunktionen, Integrationstechniken, Reihen, Anwendungen und Methodenleitfaden.",
+    "shortName": "Analysis II",
+    "about": "Integralrechnung",
+    "manifestDescription": "Online-Formelsammlung zur Integralrechnung"
+  },
+  "nav": {
+    "home": "Start",
+    "search": "Suche",
+    "guide": "Methodenleitfaden",
+    "sections": "Abschnitte",
+    "menu": "Menü",
+    "closeMenu": "Menü schließen",
+    "close": "Schließen",
+    "brandEyebrow": "Integralrechnung",
+    "brandTitle": "Formelsammlung II",
+    "sectionsIndex": "Abschnittsverzeichnis",
+    "searchPlaceholder": "Formeln suchen…",
+    "language": "Sprache"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "toLight": "Zum hellen Modus wechseln",
+    "toDark": "Zum dunklen Modus wechseln"
+  },
+  "home": {
+    "title": "Formelsammlung Analysis II",
+    "intro": "Stammfunktionen, Integrationstechniken, Reihen und Anwendungen nachschlagen. Alle Inhalte kommen von der API — keine fest eingebauten Formeln im Frontend.",
+    "ctaSearch": "Formeln suchen",
+    "ctaGuide": "Methodenleitfaden",
+    "index": "Inhalt",
+    "indexSummarySimple": "{main} Hauptabschnitte",
+    "andAppendices": " und {count} Anhänge",
+    "empty": "Keine Abschnitte verfügbar. Starte die API und führe pnpm db:seed aus.",
+    "view": "Ansehen →",
+    "appendices": "Anhänge"
+  },
+  "footer": {
+    "line": "Formelsammlung Analysis II · Inhalte über API ·",
+    "guideLink": "Methodenleitfaden"
+  },
+  "search": {
+    "title": "Suche",
+    "description": "Suche Formeln, Techniken und Begriffe in der Formelsammlung Analysis II.",
+    "ogTitle": "Suche · Formelsammlung Analysis II",
+    "subtitle": "Finde Formeln per Text oder filtere nach Technik-Tags.",
+    "label": "In der Formelsammlung suchen",
+    "placeholder": "z. B. partiell, Taylor, Partialbrüche…",
+    "submit": "Suchen",
+    "all": "Alle",
+    "results": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",
+    "forQuery": "für „{query}“",
+    "loading": "Suche läuft…"
+  },
+  "guide": {
+    "title": "Leitfaden zur Methodenwahl",
+    "description": "Praktischer Leitfaden zur Wahl der passenden Integrationstechnik anhand des Integranden.",
+    "ogTitle": "Methodenleitfaden · Formelsammlung Analysis II",
+    "sectionLabel": "Abschnitt 17",
+    "intro": "Nutze das Signal im Integranden, um zu entscheiden, welche Technik zuerst sinnvoll ist.",
+    "fullSection": "Vollständigen Abschnitt im Verzeichnis ansehen →",
+    "signalMethod": "Signal → Methode",
+    "signal": "Signal",
+    "method": "Methode",
+    "empty": "Keine Strategien verfügbar. Prüfe API und Seed.",
+    "checklist": "Checkliste"
+  },
+  "section": {
+    "label": "Abschnitt {number}",
+    "content": "Inhalt",
+    "subsections": "Unterabschnitte",
+    "inThisSection": "In diesem Abschnitt",
+    "notFound": "Abschnitt nicht gefunden",
+    "metaDescription": "Formeln und Konzepte zu {title} in der Formelsammlung Analysis II.",
+    "jsonDescription": "Abschnitt {number}: {title}",
+    "loading": "Abschnitt wird geladen…"
+  },
+  "appendix": {
+    "notFound": "Anhang nicht gefunden",
+    "metaDescription": "Anhang der Formelsammlung Analysis II: {title}."
+  },
+  "content": {
+    "formula": "Formel",
+    "copyLatex": "LaTeX kopieren",
+    "copied": "Kopiert",
+    "signal": "Signal",
+    "method": "Methode"
+  },
+  "breadcrumbs": {
+    "label": "Brotkrumen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "body": "Dieser Abschnitt existiert nicht oder wurde noch nicht in die API importiert.",
+    "back": "Zur Startseite"
+  }
+}

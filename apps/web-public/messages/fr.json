@@ -1,0 +1,101 @@
+{
+  "site": {
+    "name": "Formulaire de Calcul II",
+    "tagline": "Calcul intégral — formules, méthodes et applications",
+    "description": "Formulaire en ligne de Calcul II : primitives, techniques d'intégration, séries, applications et guide des méthodes.",
+    "shortName": "Calcul II",
+    "about": "Calcul intégral",
+    "manifestDescription": "Formulaire en ligne de calcul intégral"
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Rechercher",
+    "guide": "Guide des méthodes",
+    "sections": "Sections",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "close": "Fermer",
+    "brandEyebrow": "Calcul intégral",
+    "brandTitle": "Formulaire II",
+    "sectionsIndex": "Index des sections",
+    "searchPlaceholder": "Rechercher des formules…",
+    "language": "Langue"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "toLight": "Passer en mode clair",
+    "toDark": "Passer en mode sombre"
+  },
+  "home": {
+    "title": "Formulaire de Calcul II",
+    "intro": "Consultez primitives, techniques d'intégration, séries et applications. Tout le contenu vient de l'API — aucune formule codée en dur dans le frontend.",
+    "ctaSearch": "Rechercher des formules",
+    "ctaGuide": "Guide des méthodes",
+    "index": "Index",
+    "indexSummarySimple": "{main} sections principales",
+    "andAppendices": " et {count} annexes",
+    "empty": "Aucune section disponible. Démarrez l'API et exécutez pnpm db:seed.",
+    "view": "Voir →",
+    "appendices": "Annexes"
+  },
+  "footer": {
+    "line": "Formulaire de Calcul II · contenu servi par l'API ·",
+    "guideLink": "Guide des méthodes"
+  },
+  "search": {
+    "title": "Rechercher",
+    "description": "Recherchez formules, techniques et concepts dans le formulaire de Calcul II.",
+    "ogTitle": "Rechercher · Formulaire de Calcul II",
+    "subtitle": "Trouvez des formules par texte ou filtrez par étiquettes de technique.",
+    "label": "Rechercher dans le formulaire",
+    "placeholder": "ex. par parties, Taylor, fractions partielles…",
+    "submit": "Rechercher",
+    "all": "Tous",
+    "results": "{count, plural, =1 {# résultat} other {# résultats}}",
+    "forQuery": "pour « {query} »",
+    "loading": "Recherche…"
+  },
+  "guide": {
+    "title": "Guide pour choisir une méthode",
+    "description": "Guide pratique pour choisir la technique d'intégration adaptée selon la forme de l'intégrande.",
+    "ogTitle": "Guide des méthodes · Formulaire de Calcul II",
+    "sectionLabel": "Section 17",
+    "intro": "Utilisez le signal de l'intégrande pour décider quelle technique essayer en premier.",
+    "fullSection": "Voir la section complète dans l'index →",
+    "signalMethod": "Signal → méthode",
+    "signal": "Signal",
+    "method": "Méthode",
+    "empty": "Aucune stratégie disponible. Vérifiez l'API et le seed.",
+    "checklist": "Liste de contrôle"
+  },
+  "section": {
+    "label": "Section {number}",
+    "content": "Contenu",
+    "subsections": "Sous-sections",
+    "inThisSection": "Dans cette section",
+    "notFound": "Section introuvable",
+    "metaDescription": "Formules et concepts de {title} dans le formulaire de Calcul II.",
+    "jsonDescription": "Section {number} : {title}",
+    "loading": "Chargement de la section…"
+  },
+  "appendix": {
+    "notFound": "Annexe introuvable",
+    "metaDescription": "Annexe du formulaire de Calcul II : {title}."
+  },
+  "content": {
+    "formula": "Formule",
+    "copyLatex": "Copier le LaTeX",
+    "copied": "Copié",
+    "signal": "Signal",
+    "method": "Méthode"
+  },
+  "breadcrumbs": {
+    "label": "Fil d'Ariane"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Cette section n'existe pas ou n'a pas encore été importée dans l'API.",
+    "back": "Retour à l'accueil"
+  }
+}

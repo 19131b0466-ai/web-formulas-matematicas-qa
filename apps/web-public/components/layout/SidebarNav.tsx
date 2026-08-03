@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import type { SectionSummary } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
+import { Link, usePathname } from '@/i18n/navigation';
 import { sectionHref } from '@/lib/api';
 
 type SidebarNavProps = {
@@ -12,22 +12,23 @@ type SidebarNavProps = {
 };
 
 export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
+  const t = useTranslations('nav');
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Índice de secciones" className="space-y-1">
+    <nav aria-label={t('sectionsIndex')} className="space-y-1">
       <NavLink href="/" active={pathname === '/'} onNavigate={onNavigate}>
-        Inicio
+        {t('home')}
       </NavLink>
       <NavLink href="/buscar" active={pathname.startsWith('/buscar')} onNavigate={onNavigate}>
-        Buscar
+        {t('search')}
       </NavLink>
       <NavLink href="/guia" active={pathname.startsWith('/guia')} onNavigate={onNavigate}>
-        Guía de métodos
+        {t('guide')}
       </NavLink>
 
       <p className="px-3 pb-1 pt-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--sidebar-muted)]">
-        Secciones
+        {t('sections')}
       </p>
 
       <ul className="space-y-0.5">
@@ -90,7 +91,7 @@ function NavLink({
 }) {
   return (
     <Link
-      href={href}
+      href={href as '/'}
       onClick={onNavigate}
       className={`flex min-h-11 items-start rounded-lg px-3 py-2 text-sm transition ${
         compact ? 'min-h-9 py-1.5 text-[13px]' : ''

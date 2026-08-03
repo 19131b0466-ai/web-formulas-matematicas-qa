@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import type {
   ContentBlockDto,
   FormulaContent,
@@ -17,7 +18,9 @@ type ContentBlocksProps = {
   sectionNumber: string;
 };
 
-export function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
+export async function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
+  const t = await getTranslations('content');
+
   return (
     <div className="prose-math space-y-5">
       {blocks.map((block, index) => {
@@ -47,7 +50,7 @@ export function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
                 </a>
               </h3>
             ) : null}
-            <BlockBody block={block} />
+            <BlockBody block={block} labels={{ formula: t('formula'), signal: t('signal'), method: t('method') }} />
           </section>
         );
       })}
@@ -55,7 +58,13 @@ export function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
   );
 }
 
-function BlockBody({ block }: { block: ContentBlockDto }) {
+function BlockBody({
+  block,
+  labels,
+}: {
+  block: ContentBlockDto;
+  labels: { formula: string; signal: string; method: string };
+}) {
   switch (block.type) {
     case 'formula': {
       const content = block.content as FormulaContent;
@@ -63,7 +72,7 @@ function BlockBody({ block }: { block: ContentBlockDto }) {
         <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] shadow-[var(--shadow)]">
           <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-2">
             <span className="text-xs font-medium uppercase tracking-wider text-[var(--fg-muted)]">
-              Fórmula
+              {labels.formula}
             </span>
             <CopyLatexButton latex={content.latex} />
           </div>
@@ -164,7 +173,7 @@ function BlockBody({ block }: { block: ContentBlockDto }) {
         <div className="grid gap-2 rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4 sm:grid-cols-[1.1fr_1fr]">
           <div>
             <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-              Señal
+              {labels.signal}
             </p>
             <p>
               <InlineMarkdown text={content.signal} />
@@ -172,7 +181,7 @@ function BlockBody({ block }: { block: ContentBlockDto }) {
           </div>
           <div>
             <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-              Método
+              {labels.method}
             </p>
             <p className="font-medium text-[var(--accent-strong)]">
               <InlineMarkdown text={content.method} />

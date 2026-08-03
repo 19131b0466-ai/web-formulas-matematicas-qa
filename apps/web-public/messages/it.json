@@ -1,0 +1,101 @@
+{
+  "site": {
+    "name": "Formulario di Calcolo II",
+    "tagline": "Calcolo integrale — formule, metodi e applicazioni",
+    "description": "Formulario online di Calcolo II: primitive, tecniche di integrazione, serie, applicazioni e guida ai metodi.",
+    "shortName": "Calcolo II",
+    "about": "Calcolo integrale",
+    "manifestDescription": "Formulario online di calcolo integrale"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Cerca",
+    "guide": "Guida ai metodi",
+    "sections": "Sezioni",
+    "menu": "Menu",
+    "closeMenu": "Chiudi menu",
+    "close": "Chiudi",
+    "brandEyebrow": "Calcolo integrale",
+    "brandTitle": "Formulario II",
+    "sectionsIndex": "Indice delle sezioni",
+    "searchPlaceholder": "Cerca formule…",
+    "language": "Lingua"
+  },
+  "theme": {
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "toLight": "Passa alla modalità chiara",
+    "toDark": "Passa alla modalità scura"
+  },
+  "home": {
+    "title": "Formulario di Calcolo II",
+    "intro": "Consulta primitive, tecniche di integrazione, serie e applicazioni. Tutti i contenuti arrivano dall'API — nessuna formula hardcoded nel frontend.",
+    "ctaSearch": "Cerca formule",
+    "ctaGuide": "Guida ai metodi",
+    "index": "Indice",
+    "indexSummarySimple": "{main} sezioni principali",
+    "andAppendices": " e {count} appendici",
+    "empty": "Nessuna sezione disponibile. Avvia l'API ed esegui pnpm db:seed.",
+    "view": "Vedi →",
+    "appendices": "Appendici"
+  },
+  "footer": {
+    "line": "Formulario di Calcolo II · contenuti serviti dall'API ·",
+    "guideLink": "Guida ai metodi"
+  },
+  "search": {
+    "title": "Cerca",
+    "description": "Cerca formule, tecniche e concetti nel formulario di Calcolo II.",
+    "ogTitle": "Cerca · Formulario di Calcolo II",
+    "subtitle": "Trova formule per testo o filtra per etichette di tecnica.",
+    "label": "Cerca nel formulario",
+    "placeholder": "es. per parti, Taylor, frazioni parziali…",
+    "submit": "Cerca",
+    "all": "Tutti",
+    "results": "{count, plural, =1 {# risultato} other {# risultati}}",
+    "forQuery": "per “{query}”",
+    "loading": "Ricerca…"
+  },
+  "guide": {
+    "title": "Guida per scegliere un metodo",
+    "description": "Guida pratica per scegliere la tecnica di integrazione adatta in base alla forma dell'integrando.",
+    "ogTitle": "Guida ai metodi · Formulario di Calcolo II",
+    "sectionLabel": "Sezione 17",
+    "intro": "Usa il segnale dell'integrando per decidere quale tecnica provare per prima.",
+    "fullSection": "Vedi la sezione completa nell'indice →",
+    "signalMethod": "Segnale → metodo",
+    "signal": "Segnale",
+    "method": "Metodo",
+    "empty": "Nessuna strategia disponibile. Verifica l'API e il seed.",
+    "checklist": "Lista di controllo"
+  },
+  "section": {
+    "label": "Sezione {number}",
+    "content": "Contenuto",
+    "subsections": "Sottosezioni",
+    "inThisSection": "In questa sezione",
+    "notFound": "Sezione non trovata",
+    "metaDescription": "Formule e concetti di {title} nel formulario di Calcolo II.",
+    "jsonDescription": "Sezione {number}: {title}",
+    "loading": "Caricamento sezione…"
+  },
+  "appendix": {
+    "notFound": "Appendice non trovata",
+    "metaDescription": "Appendice del formulario di Calcolo II: {title}."
+  },
+  "content": {
+    "formula": "Formula",
+    "copyLatex": "Copia LaTeX",
+    "copied": "Copiato",
+    "signal": "Segnale",
+    "method": "Metodo"
+  },
+  "breadcrumbs": {
+    "label": "Percorso di navigazione"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "body": "Questa sezione non esiste o non è ancora stata importata nell'API.",
+    "back": "Torna alla home"
+  }
+}

@@ -1,9 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useState, type ReactNode } from 'react';
 import type { SectionSummary } from '@repo/shared-types';
+import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { Link } from '@/i18n/navigation';
 import { SidebarNav } from './SidebarNav';
 
 type AppShellProps = {
@@ -12,11 +14,12 @@ type AppShellProps = {
 };
 
 export function AppShell({ sections, children }: AppShellProps) {
+  const t = useTranslations('nav');
+  const tf = useTranslations('footer');
   const [open, setOpen] = useState(false);
 
   return (
     <div className="relative z-10 flex min-h-screen">
-      {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col bg-[var(--sidebar)] text-[var(--sidebar-fg)] lg:flex">
         <Brand />
         <div className="flex-1 overflow-y-auto px-3 pb-8">
@@ -24,12 +27,11 @@ export function AppShell({ sections, children }: AppShellProps) {
         </div>
       </aside>
 
-      {/* Mobile drawer */}
       {open ? (
         <div className="fixed inset-0 z-40 lg:hidden">
           <button
             type="button"
-            aria-label="Cerrar menú"
+            aria-label={t('closeMenu')}
             className="absolute inset-0 bg-black/45"
             onClick={() => setOpen(false)}
           />
@@ -55,16 +57,19 @@ export function AppShell({ sections, children }: AppShellProps) {
               aria-expanded={open}
               aria-controls="mobile-nav"
             >
-              Menú
+              {t('menu')}
             </button>
             <Link
               href="/buscar"
               className="hidden min-h-11 items-center rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] px-4 text-sm text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)] sm:inline-flex"
             >
-              Buscar fórmulas…
+              {t('searchPlaceholder')}
             </Link>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <LocaleSwitcher />
+            <ThemeToggle />
+          </div>
         </header>
 
         <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
@@ -73,12 +78,12 @@ export function AppShell({ sections, children }: AppShellProps) {
 
         <footer className="border-t border-[var(--border)] px-4 py-6 text-center text-sm text-[var(--fg-muted)] sm:px-6">
           <p>
-            Formulario de Cálculo II · contenido servido por API ·{' '}
+            {tf('line')}{' '}
             <Link
               href="/guia"
               className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
             >
-              Guía de métodos
+              {tf('guideLink')}
             </Link>
           </p>
         </footer>
@@ -88,20 +93,22 @@ export function AppShell({ sections, children }: AppShellProps) {
 }
 
 function Brand({ onClose }: { onClose?: () => void }) {
+  const t = useTranslations('nav');
+
   return (
     <div className="flex items-start justify-between gap-2 px-5 pb-4 pt-6">
       <Link href="/" onClick={onClose} className="block">
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--sidebar-muted)]">
-          Cálculo Integral
+          {t('brandEyebrow')}
         </p>
-        <p className="font-display mt-1 text-2xl leading-tight text-white">Formulario II</p>
+        <p className="font-display mt-1 text-2xl leading-tight text-white">{t('brandTitle')}</p>
       </Link>
       {onClose ? (
         <button
           type="button"
           onClick={onClose}
           className="mt-1 inline-flex h-11 min-w-11 items-center justify-center rounded-lg border border-white/15 text-sm"
-          aria-label="Cerrar"
+          aria-label={t('close')}
         >
           ✕
         </button>
