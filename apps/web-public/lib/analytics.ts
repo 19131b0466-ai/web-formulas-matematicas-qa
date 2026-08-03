@@ -68,6 +68,9 @@ export type TrackVisitOptions = {
 
 /**
  * Envía evento de visita al backend. Nunca lee ni transmite IP.
+ *
+ * Nota: no usamos sendBeacon con application/json en cross-origin — el preflight
+ * CORS suele fallar en silencio y sendBeacon igual retorna true.
  */
 export function trackVisit(options: TrackVisitOptions): void {
   if (typeof window === 'undefined') return;
@@ -95,21 +98,12 @@ export function trackVisit(options: TrackVisitOptions): void {
   const url = `${apiBase()}/analytics/visit`;
   const body = JSON.stringify(payload);
 
-  try {
-    if (navigator.sendBeacon) {
-      const blob = new Blob([body], { type: 'application/json' });
-      const queued = navigator.sendBeacon(url, blob);
-      if (queued) return;
-    }
-  } catch {
-    // fallback to fetch
-  }
-
   void fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body,
     keepalive: true,
+    mode: 'cors',
   })
     .then(async (res) => {
       if (!res.ok) return;
