@@ -13,6 +13,7 @@ import {
 import { numericToAlpha2 } from 'i18n-iso-countries';
 import type { GeoCityCount, GeoCountryCount } from '@repo/shared-types';
 import countriesTopology from '@/data/countries-110m.json';
+import { countryDisplayName } from '@/lib/country-names';
 import {
   CountryDetailModal,
   type CountryFeature,
@@ -122,7 +123,7 @@ export function WorldChoroplethMap({ countries, cities = [] }: WorldChoroplethMa
   const openCountry = useCallback(
     (code: string, feature: CountryFeature) => {
       const count = byCode.get(code) ?? 0;
-      const name = nameByCode.get(code) ?? code;
+      const name = countryDisplayName(code, nameByCode.get(code), feature.properties);
       setSelection({
         code,
         name,
@@ -136,6 +137,10 @@ export function WorldChoroplethMap({ countries, cities = [] }: WorldChoroplethMa
     },
     [byCode, citiesByCountry, nameByCode, ranked, totalVisits],
   );
+
+  const closeModal = useCallback(() => {
+    setSelection(null);
+  }, []);
 
   return (
     <div className="relative">
@@ -165,7 +170,7 @@ export function WorldChoroplethMap({ countries, cities = [] }: WorldChoroplethMa
                       if (!code) return;
                       setHover({
                         code,
-                        name: nameByCode.get(code) ?? code,
+                        name: countryDisplayName(code, nameByCode.get(code), geo.properties),
                         count,
                       });
                     }}
@@ -227,9 +232,7 @@ export function WorldChoroplethMap({ countries, cities = [] }: WorldChoroplethMa
         )}
       </div>
 
-      {selection ? (
-        <CountryDetailModal selection={selection} onClose={() => setSelection(null)} />
-      ) : null}
+      {selection ? <CountryDetailModal selection={selection} onClose={closeModal} /> : null}
     </div>
   );
 }

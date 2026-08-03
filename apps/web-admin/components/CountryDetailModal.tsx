@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useMemo } from 'react';
+import { useEffect, useId, useMemo, useRef } from 'react';
 import { geoMercator, geoPath, type GeoPermissibleObjects } from 'd3-geo';
 import type { GeoCityCount } from '@repo/shared-types';
 
@@ -73,6 +73,7 @@ function CountrySilhouette({ feature }: { feature: CountryFeature }) {
 
 export function CountryDetailModal({ selection, onClose }: CountryDetailModalProps) {
   const titleId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
   const share =
     selection.totalVisits > 0
       ? Math.round((selection.count / selection.totalVisits) * 1000) / 10
@@ -81,31 +82,38 @@ export function CountryDetailModal({ selection, onClose }: CountryDetailModalPro
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    closeRef.current?.focus();
+
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        onClose();
+      }
     };
-    window.addEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey, true);
     return () => {
       document.body.style.overflow = prev;
-      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('keydown', onKey, true);
     };
   }, [onClose]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      role="presentation"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
-      <div className="absolute inset-0 bg-[rgba(2,6,11,0.78)] backdrop-blur-sm" aria-hidden />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="presentation">
+      <button
+        type="button"
+        aria-label="Cerrar modal"
+        className="absolute inset-0 cursor-default bg-[rgba(2,6,11,0.78)] backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         className="hud-panel relative z-10 w-full max-w-lg overflow-hidden p-0 shadow-[var(--glow)]"
+        onClick={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3 border-b border-[var(--border)] px-4 py-3">
           <div>
@@ -118,6 +126,7 @@ export function CountryDetailModal({ selection, onClose }: CountryDetailModalPro
             </h2>
           </div>
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
             className="inline-flex h-10 min-w-10 items-center justify-center border border-[var(--border)] bg-[var(--metal-3)] text-sm text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
@@ -140,8 +149,12 @@ export function CountryDetailModal({ selection, onClose }: CountryDetailModalPro
               <Stat label="Share" value={`${String(share)}%`} />
               <Stat
                 label="Ranking"
-                value={`#${String(selection.rank)}`}
-                hint={`de ${String(selection.totalCountries)}`}
+                value={selection.count > 0 ? `#${String(selection.rank)}` : '—'}
+                hint={
+                  selection.count > 0
+                    ? `de ${String(selection.totalCountries)}`
+                    : 'sin visitas'
+                }
               />
               <Stat label="ISO" value={selection.code} />
             </div>
