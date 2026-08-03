@@ -45,7 +45,7 @@ export default function GeoPage() {
         {countries.length === 0 ? (
           <p className="text-sm text-[var(--fg-muted)]">Sin datos geográficos aún.</p>
         ) : (
-          <WorldChoroplethMap countries={countries} />
+          <WorldChoroplethMap countries={countries} cities={cities} />
         )}
       </Card>
 

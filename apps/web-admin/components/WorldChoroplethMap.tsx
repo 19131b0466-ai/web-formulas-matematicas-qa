@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   ComposableMap,
   Geographies,
@@ -11,8 +11,13 @@ import {
   createLongitude,
 } from '@vnedyalk0v/react19-simple-maps';
 import { numericToAlpha2 } from 'i18n-iso-countries';
-import type { GeoCountryCount } from '@repo/shared-types';
+import type { GeoCityCount, GeoCountryCount } from '@repo/shared-types';
 import countriesTopology from '@/data/countries-110m.json';
+import {
+  CountryDetailModal,
+  type CountryFeature,
+  type CountrySelection,
+} from './CountryDetailModal';
 
 const MAP_CENTER = [createLongitude(0), createLatitude(8)] as const;
 
@@ -25,6 +30,7 @@ const LIME = { r: 184, g: 255, b: 60 };
 
 type WorldChoroplethMapProps = {
   countries: GeoCountryCount[];
+  cities?: GeoCityCount[];
 };
 
 function lerpColor(t: number): string {
@@ -36,7 +42,14 @@ function lerpColor(t: number): string {
   return `rgba(${String(r)}, ${String(g)}, ${String(b)}, ${String(alpha)})`;
 }
 
-function resolveIso2(geo: { id?: string | number; properties?: Record<string, unknown> }): string | null {
+type MapGeography = {
+  rsmKey?: string;
+  id?: string | number;
+  properties?: Record<string, unknown> | null;
+  geometry?: GeoJSON.Geometry;
+};
+
+function resolveIso2(geo: MapGeography): string | null {
   const props = geo.properties ?? {};
   const fromProps = props.ISO_A2 ?? props.iso_a2 ?? props['ISO3166-1-Alpha-2'];
   if (typeof fromProps === 'string' && fromProps.length === 2 && fromProps !== '-99') {
@@ -49,22 +62,80 @@ function resolveIso2(geo: { id?: string | number; properties?: Record<string, un
   return null;
 }
 
-export function WorldChoroplethMap({ countries }: WorldChoroplethMapProps) {
-  const [hover, setHover] = useState<{ code: string; name: string; count: number } | null>(null);
+function toCountryFeature(geo: MapGeography): CountryFeature | null {
+  if (!geo.geometry) return null;
+  return {
+    type: 'Feature',
+    id: geo.id,
+    properties: geo.properties ?? null,
+    geometry: geo.geometry,
+  };
+}
 
-  const { byCode, max, nameByCode } = useMemo(() => {
+export function WorldChoroplethMap({ countries, cities = [] }: WorldChoroplethMapProps) {
+  const [hover, setHover] = useState<{ code: string; name: string; count: number } | null>(null);
+  const [selection, setSelection] = useState<CountrySelection | null>(null);
+
+  const { byCode, max, nameByCode, ranked, totalVisits } = useMemo(() => {
     const counts = new Map<string, number>();
     const names = new Map<string, string>();
     let peak = 1;
+    let visits = 0;
     for (const row of countries) {
       const code = row.countryCode?.toUpperCase();
       if (!code || code.length !== 2) continue;
       counts.set(code, row.count);
+      visits += row.count;
       if (row.countryName) names.set(code, row.countryName);
       if (row.count > peak) peak = row.count;
     }
-    return { byCode: counts, max: peak, nameByCode: names };
+    const ordered = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    const rankMap = new Map<string, number>();
+    ordered.forEach(([code], index) => {
+      rankMap.set(code, index + 1);
+    });
+    return {
+      byCode: counts,
+      max: peak,
+      nameByCode: names,
+      ranked: rankMap,
+      totalVisits: visits,
+    };
   }, [countries]);
+
+  const citiesByCountry = useMemo(() => {
+    const map = new Map<string, GeoCityCount[]>();
+    for (const city of cities) {
+      const code = city.countryCode?.toUpperCase();
+      if (!code) continue;
+      const list = map.get(code) ?? [];
+      list.push(city);
+      map.set(code, list);
+    }
+    for (const [code, list] of map) {
+      list.sort((a, b) => b.count - a.count);
+      map.set(code, list);
+    }
+    return map;
+  }, [cities]);
+
+  const openCountry = useCallback(
+    (code: string, feature: CountryFeature) => {
+      const count = byCode.get(code) ?? 0;
+      const name = nameByCode.get(code) ?? code;
+      setSelection({
+        code,
+        name,
+        count,
+        rank: ranked.get(code) ?? ranked.size + 1,
+        totalCountries: Math.max(ranked.size, 1),
+        totalVisits,
+        feature,
+        cities: citiesByCountry.get(code) ?? [],
+      });
+    },
+    [byCode, citiesByCountry, nameByCode, ranked, totalVisits],
+  );
 
   return (
     <div className="relative">
@@ -76,19 +147,20 @@ export function WorldChoroplethMap({ countries }: WorldChoroplethMapProps) {
         >
           <Sphere id="hud-sphere" fill="transparent" stroke="rgba(0, 240, 255, 0.12)" strokeWidth={0.4} />
           <Graticule stroke="rgba(0, 240, 255, 0.06)" strokeWidth={0.3} />
-          {/* Pass topology object directly — URL fetch rejects relative paths (HTTPS-only). */}
           <Geographies geography={countriesTopology}>
             {({ geographies }) =>
-              geographies.map((geo) => {
+              geographies.map((rawGeo, index) => {
+                const geo = rawGeo as unknown as MapGeography;
                 const code = resolveIso2(geo);
                 const count = code ? (byCode.get(code) ?? 0) : 0;
                 const filled = count > 0;
                 const fill = filled ? lerpColor(count / max) : LAND_EMPTY;
+                const selected = selection?.code === code;
 
                 return (
                   <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
+                    key={geo.rsmKey ?? String(geo.id ?? code ?? index)}
+                    geography={rawGeo}
                     onMouseEnter={() => {
                       if (!code) return;
                       setHover({
@@ -98,19 +170,26 @@ export function WorldChoroplethMap({ countries }: WorldChoroplethMapProps) {
                       });
                     }}
                     onMouseLeave={() => setHover(null)}
+                    onClick={() => {
+                      if (!code) return;
+                      const feature = toCountryFeature(geo);
+                      if (!feature) return;
+                      openCountry(code, feature);
+                    }}
                     style={{
                       default: {
-                        fill: filled ? fill : LAND,
-                        stroke: STROKE,
-                        strokeWidth: 0.35,
+                        fill: selected ? lerpColor(1) : filled ? fill : LAND,
+                        stroke: selected ? STROKE_HOVER : STROKE,
+                        strokeWidth: selected ? 0.9 : 0.35,
                         outline: 'none',
+                        cursor: code ? 'pointer' : 'default',
                       },
                       hover: {
-                        fill: filled ? lerpColor(Math.min(1, count / max + 0.15)) : '#1a2636',
+                        fill: filled || selected ? lerpColor(Math.min(1, count / max + 0.15)) : '#1a2636',
                         stroke: STROKE_HOVER,
                         strokeWidth: 0.7,
                         outline: 'none',
-                        cursor: 'pointer',
+                        cursor: code ? 'pointer' : 'default',
                       },
                       pressed: {
                         fill: filled ? lerpColor(1) : LAND,
@@ -140,12 +219,17 @@ export function WorldChoroplethMap({ countries }: WorldChoroplethMapProps) {
         </div>
         {hover ? (
           <p className="font-mono text-[var(--accent-strong)]">
-            {hover.code} · {hover.name} · {hover.count} visita{hover.count === 1 ? '' : 's'}
+            {hover.code} · {hover.name} · {hover.count} visita{hover.count === 1 ? '' : 's'} · clic
+            para detalle
           </p>
         ) : (
-          <p>Pasa el cursor sobre un país</p>
+          <p>Pasa el cursor o haz clic en un país</p>
         )}
       </div>
+
+      {selection ? (
+        <CountryDetailModal selection={selection} onClose={() => setSelection(null)} />
+      ) : null}
     </div>
   );
 }
