@@ -22,7 +22,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@repo/shared-types'],
+  transpilePackages: ['@repo/shared-types', '@vnedyalk0v/react19-simple-maps'],
   poweredByHeader: false,
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { GeoCityCount, GeoCountryCount } from '@repo/shared-types';
 import { HorizontalBars } from '@/components/charts';
+import { WorldChoroplethMap } from '@/components/WorldChoroplethMap';
 import { Card, ErrorBox, PageHeader } from '@/components/ui';
 import { defaultRange, fetchGeo } from '@/lib/api';
 
@@ -40,8 +41,16 @@ export default function GeoPage() {
       />
       {error ? <ErrorBox message={error} /> : null}
 
+      <Card title="Mapa mundi por visitas" className="mb-6">
+        {countries.length === 0 ? (
+          <p className="text-sm text-[var(--fg-muted)]">Sin datos geográficos aún.</p>
+        ) : (
+          <WorldChoroplethMap countries={countries} />
+        )}
+      </Card>
+
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card title="Mapa de intensidad por país">
+        <Card title="Intensidad por país">
           <div className="space-y-2">
             {countries.slice(0, 12).map((c) => {
               const label = c.countryName ?? c.countryCode ?? 'N/D';

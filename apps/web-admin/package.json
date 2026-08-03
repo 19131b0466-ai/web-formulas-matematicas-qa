@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@repo/shared-types": "workspace:*",
+    "@vnedyalk0v/react19-simple-maps": "^2.0.10",
+    "i18n-iso-countries": "^7.14.0",
     "next": "15.5.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
