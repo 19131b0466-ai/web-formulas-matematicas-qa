@@ -81,10 +81,6 @@ export function AppShell({ sections, children }: AppShellProps) {
               Guía de métodos
             </Link>
           </p>
-          <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed">
-            Registramos visitas de uso (país, idioma y páginas vistas) para mejorar el servicio. La
-            dirección IP se procesa solo en el servidor y no se muestra ni se exporta.
-          </p>
         </footer>
       </div>
     </div>
