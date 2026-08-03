@@ -43,30 +43,28 @@ export default function LogsPage() {
 
       <Card>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[56rem] text-left text-sm">
-            <thead className="border-b border-[var(--border)] text-[var(--fg-muted)]">
+          <table className="hud-table min-w-[56rem]">
+            <thead>
               <tr>
-                <th className="px-3 py-3">Fecha</th>
-                <th className="px-3 py-3">País</th>
-                <th className="px-3 py-3">Ciudad</th>
-                <th className="px-3 py-3">Path</th>
-                <th className="px-3 py-3">Dispositivo</th>
-                <th className="px-3 py-3">Browser</th>
-                <th className="px-3 py-3">Idioma</th>
+                <th>Fecha</th>
+                <th>País</th>
+                <th>Ciudad</th>
+                <th>Path</th>
+                <th>Dispositivo</th>
+                <th>Browser</th>
+                <th>Idioma</th>
               </tr>
             </thead>
             <tbody>
               {slice.map((v) => (
-                <tr key={v.id} className="border-b border-[var(--border)]">
-                  <td className="px-3 py-3 whitespace-nowrap">
-                    {new Date(v.visitedAt).toLocaleString()}
-                  </td>
-                  <td className="px-3 py-3">{v.countryCode ?? '—'}</td>
-                  <td className="px-3 py-3">{v.city ?? '—'}</td>
-                  <td className="px-3 py-3 font-mono text-xs">{v.path}</td>
-                  <td className="px-3 py-3">{v.deviceType ?? '—'}</td>
-                  <td className="px-3 py-3">{v.browser ?? '—'}</td>
-                  <td className="px-3 py-3">{v.primaryLanguage ?? '—'}</td>
+                <tr key={v.id}>
+                  <td className="whitespace-nowrap">{new Date(v.visitedAt).toLocaleString()}</td>
+                  <td>{v.countryCode ?? '—'}</td>
+                  <td>{v.city ?? '—'}</td>
+                  <td className="font-mono text-xs text-[var(--accent-strong)]">{v.path}</td>
+                  <td>{v.deviceType ?? '—'}</td>
+                  <td>{v.browser ?? '—'}</td>
+                  <td>{v.primaryLanguage ?? '—'}</td>
                 </tr>
               ))}
             </tbody>
@@ -74,7 +72,7 @@ export default function LogsPage() {
         </div>
 
         <div className="mt-4 flex items-center justify-between gap-3">
-          <p className="text-sm text-[var(--fg-muted)]">
+          <p className="text-xs tracking-[0.1em] text-[var(--fg-muted)] uppercase">
             Página {page + 1} de {totalPages} · {visits.length} registros
           </p>
           <div className="flex gap-2">
@@ -82,7 +80,7 @@ export default function LogsPage() {
               type="button"
               disabled={page === 0}
               onClick={() => setPage((p) => Math.max(0, p - 1))}
-              className="min-h-11 rounded-lg border border-[var(--border)] px-3 text-sm disabled:opacity-40"
+              className="hud-btn px-3 text-xs disabled:opacity-40"
             >
               Anterior
             </button>
@@ -90,7 +88,7 @@ export default function LogsPage() {
               type="button"
               disabled={page >= totalPages - 1}
               onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-              className="min-h-11 rounded-lg border border-[var(--border)] px-3 text-sm disabled:opacity-40"
+              className="hud-btn px-3 text-xs disabled:opacity-40"
             >
               Siguiente
             </button>

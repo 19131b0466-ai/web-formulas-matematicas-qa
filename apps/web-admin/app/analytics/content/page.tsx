@@ -24,21 +24,21 @@ export default function ContentPage() {
       <Card title="Top páginas">
         <HorizontalBars data={pages} />
       </Card>
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--card)]">
-        <table className="w-full text-left text-sm">
-          <thead className="border-b border-[var(--border)] text-[var(--fg-muted)]">
+      <div className="hud-panel mt-6 overflow-x-auto p-2">
+        <table className="hud-table">
+          <thead>
             <tr>
-              <th className="px-4 py-3">#</th>
-              <th className="px-4 py-3">Página / sección</th>
-              <th className="px-4 py-3">Visitas</th>
+              <th>#</th>
+              <th>Página / sección</th>
+              <th>Visitas</th>
             </tr>
           </thead>
           <tbody>
             {pages.map((p, i) => (
-              <tr key={p.name} className="border-b border-[var(--border)]">
-                <td className="px-4 py-3 text-[var(--fg-muted)]">{i + 1}</td>
-                <td className="px-4 py-3">{p.name}</td>
-                <td className="px-4 py-3">{p.count}</td>
+              <tr key={p.name}>
+                <td className="text-[var(--fg-muted)]">{i + 1}</td>
+                <td>{p.name}</td>
+                <td>{p.count}</td>
               </tr>
             ))}
           </tbody>

@@ -35,8 +35,8 @@ export default function DashboardPage() {
   return (
     <div>
       <PageHeader
-        title="Dashboard"
-        subtitle="Resumen de uso del sitio público (sin exponer IPs)."
+        title="Command Overview"
+        subtitle="Telemetría de uso del sitio público (sin exponer IPs)."
       />
       {error ? <ErrorBox message={error} /> : null}
 

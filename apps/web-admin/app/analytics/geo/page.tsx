@@ -55,9 +55,9 @@ export default function GeoPage() {
                     </span>
                     <span>{c.count}</span>
                   </div>
-                  <div className="h-3 rounded-full bg-[var(--bg)]">
+                  <div className="h-2 bg-[rgba(34,230,255,0.08)]">
                     <div
-                      className="h-3 rounded-full bg-gradient-to-r from-[var(--accent)] to-[#3dba95]"
+                      className="h-2 bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)] shadow-[var(--glow)]"
                       style={{ width: `${String(width)}%` }}
                     />
                   </div>
@@ -75,24 +75,21 @@ export default function GeoPage() {
         </Card>
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--card)]">
-        <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead className="border-b border-[var(--border)] text-[var(--fg-muted)]">
+      <div className="hud-panel mt-6 overflow-x-auto p-2">
+        <table className="hud-table min-w-[32rem]">
+          <thead>
             <tr>
-              <th className="px-4 py-3">País</th>
-              <th className="px-4 py-3">Ciudad</th>
-              <th className="px-4 py-3">Visitas</th>
+              <th>País</th>
+              <th>Ciudad</th>
+              <th>Visitas</th>
             </tr>
           </thead>
           <tbody>
             {cities.map((row, i) => (
-              <tr
-                key={`${row.city ?? 'x'}-${String(i)}`}
-                className="border-b border-[var(--border)]"
-              >
-                <td className="px-4 py-3">{row.countryCode ?? '—'}</td>
-                <td className="px-4 py-3">{row.city ?? '—'}</td>
-                <td className="px-4 py-3">{row.count}</td>
+              <tr key={`${row.city ?? 'x'}-${String(i)}`}>
+                <td>{row.countryCode ?? '—'}</td>
+                <td>{row.city ?? '—'}</td>
+                <td>{row.count}</td>
               </tr>
             ))}
           </tbody>

@@ -32,31 +32,26 @@ export default function ExportPage() {
 
       <Card title="Rango de fechas">
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="block text-sm text-[var(--fg-muted)]">
+          <label className="hud-label block">
             Desde
             <input
               type="date"
               value={from}
               onChange={(e) => setFrom(e.target.value)}
-              className="mt-1 min-h-12 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 text-white"
+              className="hud-input mt-2"
             />
           </label>
-          <label className="block text-sm text-[var(--fg-muted)]">
+          <label className="hud-label block">
             Hasta
             <input
               type="date"
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              className="mt-1 min-h-12 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 text-white"
+              className="hud-input mt-2"
             />
           </label>
         </div>
-        <button
-          type="button"
-          onClick={onExport}
-          disabled={loading}
-          className="mt-6 min-h-12 rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-[#1a1406] disabled:opacity-60"
-        >
+        <button type="button" onClick={onExport} disabled={loading} className="hud-btn mt-6 px-5 text-sm">
           {loading ? 'Generando…' : 'Descargar CSV'}
         </button>
         <p className="mt-3 text-xs text-[var(--fg-muted)]">

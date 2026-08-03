@@ -1,27 +1,29 @@
 import type { Metadata } from 'next';
-import { Figtree, Fraunces } from 'next/font/google';
+import { IBM_Plex_Mono, Orbitron } from 'next/font/google';
 import { AdminShell } from '@/components/AdminShell';
 import { AuthProvider } from '@/components/AuthProvider';
 import './globals.css';
 
-const body = Figtree({
+const body = IBM_Plex_Mono({
   variable: '--font-body',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
-const display = Fraunces({
+const display = Orbitron({
   variable: '--font-display',
   subsets: ['latin'],
+  weight: ['500', '600', '700'],
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Superadmin — Cálculo II',
-    template: '%s · Admin',
+    default: 'Ops Console — Cálculo II',
+    template: '%s · Ops',
   },
-  description: 'Dashboard de administración del formulario de Cálculo II',
+  description: 'Consola de operaciones y analytics del formulario de Cálculo II',
   robots: { index: false, follow: false },
 };
 
