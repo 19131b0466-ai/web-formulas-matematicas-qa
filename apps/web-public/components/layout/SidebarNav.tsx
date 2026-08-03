@@ -46,7 +46,7 @@ export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
                 </span>
               </NavLink>
               {section.children && section.children.length > 0 ? (
-                <ul className="mb-2 ml-3 mt-0.5 space-y-0.5 border-l border-white/10 pl-2">
+                <ul className="mb-2 ml-3 mt-0.5 space-y-0.5 border-l border-[var(--sidebar-border)] pl-2">
                   {section.children.map((child) => (
                     <li key={child.slug}>
                       <NavLink
@@ -97,8 +97,8 @@ function NavLink({
         compact ? 'min-h-9 py-1.5 text-[13px]' : ''
       } ${
         active
-          ? 'bg-white/10 font-medium text-white'
-          : 'text-[var(--sidebar-fg)]/90 hover:bg-white/5 hover:text-white'
+          ? 'bg-[var(--sidebar-active)] font-medium text-[var(--accent-strong)]'
+          : 'text-[var(--sidebar-fg)]/90 hover:bg-[var(--sidebar-hover)] hover:text-[var(--accent-strong)]'
       }`}
     >
       {children}

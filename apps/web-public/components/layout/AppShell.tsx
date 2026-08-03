@@ -20,7 +20,7 @@ export function AppShell({ sections, children }: AppShellProps) {
 
   return (
     <div className="relative z-10 flex min-h-screen">
-      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col bg-[var(--sidebar)] text-[var(--sidebar-fg)] lg:flex">
+      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] lg:flex">
         <Brand />
         <div className="flex-1 overflow-y-auto px-3 pb-8">
           <SidebarNav sections={sections} />
@@ -32,12 +32,12 @@ export function AppShell({ sections, children }: AppShellProps) {
           <button
             type="button"
             aria-label={t('closeMenu')}
-            className="absolute inset-0 bg-black/45"
+            className="absolute inset-0 bg-[color-mix(in_oklab,var(--fg)_35%,transparent)]"
             onClick={() => setOpen(false)}
           />
           <aside
             id="mobile-nav"
-            className="absolute inset-y-0 left-0 flex w-[min(20rem,88vw)] flex-col bg-[var(--sidebar)] text-[var(--sidebar-fg)] shadow-2xl"
+            className="absolute inset-y-0 left-0 flex w-[min(20rem,88vw)] flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] shadow-2xl"
           >
             <Brand onClose={() => setOpen(false)} />
             <div className="flex-1 overflow-y-auto px-3 pb-8">
@@ -101,13 +101,15 @@ function Brand({ onClose }: { onClose?: () => void }) {
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--sidebar-muted)]">
           {t('brandEyebrow')}
         </p>
-        <p className="font-display mt-1 text-2xl leading-tight text-white">{t('brandTitle')}</p>
+        <p className="font-display mt-1 text-2xl leading-tight text-[var(--accent-strong)]">
+          {t('brandTitle')}
+        </p>
       </Link>
       {onClose ? (
         <button
           type="button"
           onClick={onClose}
-          className="mt-1 inline-flex h-11 min-w-11 items-center justify-center rounded-lg border border-white/15 text-sm"
+          className="mt-1 inline-flex h-11 min-w-11 items-center justify-center rounded-lg border border-[var(--border)] text-sm text-[var(--sidebar-fg)]"
           aria-label={t('close')}
         >
           ✕

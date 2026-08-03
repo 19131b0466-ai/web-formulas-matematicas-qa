@@ -2,23 +2,28 @@
 @import 'katex/dist/katex.min.css';
 
 :root {
-  --bg: #eef5f3;
-  --bg-elevated: #f7fbf9;
-  --fg: #12221f;
-  --fg-muted: #4d635d;
-  --accent: #0f6e56;
-  --accent-soft: #d7efe6;
+  --bg: #f3f6f4;
+  --bg-elevated: #ffffff;
+  --fg: #1a2e28;
+  --fg-muted: #5a6f67;
+  --accent: #0d6b52;
+  --accent-soft: #e2f1eb;
   --accent-strong: #0a4f3d;
-  --border: #c7d8d2;
+  --border: #d4e2db;
   --danger: #9b3b2e;
   --warning: #8a5a12;
   --info: #1f4f6d;
-  --sidebar: #0d2a24;
-  --sidebar-fg: #e7f3ef;
-  --sidebar-muted: #9fb8b0;
+  --sidebar: #eef4f1;
+  --sidebar-fg: #1a2e28;
+  --sidebar-muted: #6a8078;
+  --sidebar-border: #d4e2db;
+  --sidebar-active: #d5ebe3;
+  --sidebar-hover: rgba(13, 107, 82, 0.07);
   --formula-bg: #ffffff;
-  --shadow: 0 18px 40px rgba(13, 42, 36, 0.08);
-  --grid: rgba(15, 110, 86, 0.06);
+  --shadow: 0 14px 36px rgba(26, 46, 40, 0.07);
+  --grid: rgba(13, 107, 82, 0.04);
+  --glow-a: rgba(13, 107, 82, 0.1);
+  --glow-b: rgba(31, 79, 109, 0.07);
 }
 
 .dark {
@@ -36,9 +41,14 @@
   --sidebar: #071411;
   --sidebar-fg: #e8f2ee;
   --sidebar-muted: #7f9a92;
+  --sidebar-border: #1a302a;
+  --sidebar-active: rgba(255, 255, 255, 0.1);
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
   --formula-bg: #10201c;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   --grid: rgba(61, 186, 149, 0.07);
+  --glow-a: rgba(61, 186, 149, 0.12);
+  --glow-b: rgba(126, 224, 192, 0.06);
 }
 
 @theme inline {
@@ -64,9 +74,9 @@ html {
 
 body {
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(15, 110, 86, 0.14), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(31, 79, 109, 0.1), transparent 50%),
-    linear-gradient(180deg, var(--bg), var(--bg-elevated));
+    radial-gradient(1100px 520px at 8% -8%, var(--glow-a), transparent 58%),
+    radial-gradient(800px 420px at 100% 0%, var(--glow-b), transparent 52%),
+    linear-gradient(180deg, var(--bg), color-mix(in oklab, var(--bg) 70%, var(--bg-elevated)));
   background-attachment: fixed;
   color: var(--fg);
   font-family: var(--font-body), system-ui, sans-serif;
@@ -81,8 +91,8 @@ body::before {
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 85%);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 80%);
   z-index: 0;
 }
 

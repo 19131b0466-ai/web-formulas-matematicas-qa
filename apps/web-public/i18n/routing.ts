@@ -25,4 +25,6 @@ export const routing = defineRouting({
   locales,
   defaultLocale: 'es',
   localePrefix: 'as-needed',
+  /** Negotiate from Accept-Language / cookie; falls back to Spanish. */
+  localeDetection: true,
 });

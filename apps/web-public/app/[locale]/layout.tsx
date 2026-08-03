@@ -35,7 +35,7 @@ const mono = IBM_Plex_Mono({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#eef5f3' },
+    { media: '(prefers-color-scheme: light)', color: '#f3f6f4' },
     { media: '(prefers-color-scheme: dark)', color: '#0b1614' },
   ],
   width: 'device-width',
