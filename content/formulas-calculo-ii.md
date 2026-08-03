@@ -1928,7 +1928,3 @@ Antes de aceptar una solución:
 5. En áreas y volúmenes, usar distancias y áreas no negativas.
 6. En series, comprobar primero que \(a_n\to0\), pero no confundir esta condición necesaria con un criterio suficiente.
 7. Derivar la antiderivada obtenida siempre que sea posible.
-
----
-
-*Documento reconstruido a partir de `FORMULAS.md` y ampliado para cubrir los contenidos habituales de Cálculo II.*
