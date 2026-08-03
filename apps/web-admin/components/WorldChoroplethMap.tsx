@@ -12,8 +12,8 @@ import {
 } from '@vnedyalk0v/react19-simple-maps';
 import { numericToAlpha2 } from 'i18n-iso-countries';
 import type { GeoCountryCount } from '@repo/shared-types';
+import countriesTopology from '@/data/countries-110m.json';
 
-const GEO_URL = '/countries-110m.json';
 const MAP_CENTER = [createLongitude(0), createLatitude(8)] as const;
 
 const LAND = '#121821';
@@ -76,7 +76,8 @@ export function WorldChoroplethMap({ countries }: WorldChoroplethMapProps) {
         >
           <Sphere id="hud-sphere" fill="transparent" stroke="rgba(0, 240, 255, 0.12)" strokeWidth={0.4} />
           <Graticule stroke="rgba(0, 240, 255, 0.06)" strokeWidth={0.3} />
-          <Geographies geography={GEO_URL}>
+          {/* Pass topology object directly — URL fetch rejects relative paths (HTTPS-only). */}
+          <Geographies geography={countriesTopology}>
             {({ geographies }) =>
               geographies.map((geo) => {
                 const code = resolveIso2(geo);
