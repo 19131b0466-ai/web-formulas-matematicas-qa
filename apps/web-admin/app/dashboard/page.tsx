@@ -40,7 +40,7 @@ export default function DashboardPage() {
       />
       {error ? <ErrorBox message={error} /> : null}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <Kpi label="Visitas hoy" value={overview?.visitsToday ?? '—'} />
         <Kpi label="Únicos 7d" value={overview?.uniqueSessionsWeek ?? '—'} />
         <Kpi
@@ -55,7 +55,7 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-5">
+      <div className="mt-4 grid gap-3 lg:grid-cols-5">
         <Card title="Visitas últimos 30 días" className="lg:col-span-3">
           <VisitsLineChart data={points} />
         </Card>
@@ -64,7 +64,7 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-4">
         <Card title="Top 10 secciones / páginas">
           <HorizontalBars data={pages} />
         </Card>

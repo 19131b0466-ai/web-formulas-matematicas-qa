@@ -32,11 +32,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-[var(--border)] bg-[rgba(4,10,18,0.92)] backdrop-blur-md lg:flex">
-        <div className="border-b border-[var(--border)] px-5 py-6">
+      <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-[var(--border)] bg-[linear-gradient(180deg,#121821_0%,#0a1018_40%,#05080d_100%)] lg:flex">
+        <div className="border-b border-[var(--border)] px-4 py-5">
           <p className="hud-label">Ops console</p>
-          <p className="font-display mt-2 text-xl text-[var(--accent-strong)]">Cálculo II</p>
-          <p className="mt-1 text-[11px] tracking-[0.12em] text-[var(--fg-muted)] uppercase">
+          <p className="font-display mt-2 text-lg text-[var(--accent-strong)] drop-shadow-[0_0_12px_rgba(0,240,255,0.4)]">
+            Cálculo II
+          </p>
+          <p className="mt-1 text-[10px] tracking-[0.14em] text-[var(--fg-muted)] uppercase">
             Analytics · Control
           </p>
         </div>
@@ -71,7 +73,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between gap-3 border-b border-[var(--border)] bg-[rgba(4,10,18,0.72)] px-4 py-3 backdrop-blur-md lg:px-8">
+        <header className="flex items-center justify-between gap-3 border-b border-[var(--border)] bg-[linear-gradient(180deg,rgba(18,24,33,0.92),rgba(8,12,18,0.88))] px-4 py-2.5 lg:px-8">
           <div className="flex min-w-0 flex-wrap gap-2 lg:hidden">
             {NAV.map((item) => {
               const active = pathname === item.href;
@@ -98,7 +100,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <span className="text-[var(--fg)]">{user.email}</span>
           </div>
         </header>
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 lg:px-8">{children}</main>
+        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 lg:px-8">{children}</main>
       </div>
     </div>
   );

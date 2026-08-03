@@ -55,9 +55,9 @@ export default function GeoPage() {
                     </span>
                     <span>{c.count}</span>
                   </div>
-                  <div className="h-2 bg-[rgba(34,230,255,0.08)]">
+                  <div className="h-1.5 bg-[rgba(120,150,180,0.12)]">
                     <div
-                      className="h-2 bg-gradient-to-r from-[var(--accent)] to-[var(--secondary)] shadow-[var(--glow)]"
+                      className="h-1.5 bg-gradient-to-r from-[var(--accent)] via-[var(--lime)] to-[var(--secondary)] shadow-[var(--glow)]"
                       style={{ width: `${String(width)}%` }}
                     />
                   </div>
