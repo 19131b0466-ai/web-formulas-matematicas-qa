@@ -2,8 +2,15 @@ export type BlockType = 'formula' | 'text' | 'table' | 'list' | 'note' | 'strate
 
 export interface FormulaContent {
   latex: string;
+  /** Optional label for the primary latex form (e.g. "Constructiva"). */
+  latexLabel?: string | null;
   /** Extra display-math blocks from the same formula entry (physics). */
   additionalLatex?: string[];
+  /**
+   * Optional labels for each `additionalLatex` entry (same length).
+   * Used for case/form intros like "Caso paralelo" / "En una dimensión".
+   */
+  additionalLatexLabels?: Array<string | null>;
   displayMode?: boolean;
   constraints?: string[];
   /** Stable formula code, e.g. VEC-001 (physics). */

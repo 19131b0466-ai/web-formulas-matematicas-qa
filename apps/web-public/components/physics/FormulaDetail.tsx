@@ -28,7 +28,13 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
     { label: title ?? t('primary') },
   ];
 
-  const allLatex = [content.latex, ...(content.additionalLatex ?? [])];
+  const latexForms: Array<{ latex: string; label: string | null }> = [
+    { latex: content.latex, label: content.latexLabel ?? null },
+    ...(content.additionalLatex ?? []).map((latex, i) => ({
+      latex,
+      label: content.additionalLatexLabels?.[i] ?? null,
+    })),
+  ];
 
   return (
     <article>
@@ -54,20 +60,32 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
       </header>
 
       <div className="space-y-5">
-        {allLatex.map((latex, i) => (
+        {latexForms.map((form, i) => (
           <div
             key={`${formulaId}-${String(i)}`}
             className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] shadow-[var(--shadow)] animate-rise"
             style={{ animationDelay: `${i * 40}ms` }}
           >
             <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-[var(--fg-muted)]">
-                {i === 0 ? t('primary') : t('variant')}
+              <span
+                className={
+                  form.label
+                    ? 'text-sm font-medium text-[var(--fg-muted)]'
+                    : 'text-xs font-medium uppercase tracking-wider text-[var(--fg-muted)]'
+                }
+              >
+                {form.label ? (
+                  <InlineMarkdown text={form.label} />
+                ) : i === 0 ? (
+                  t('primary')
+                ) : (
+                  t('variant')
+                )}
               </span>
-              <CopyLatexButton latex={latex} />
+              <CopyLatexButton latex={form.latex} />
             </div>
             <div className="overflow-x-auto px-4 py-5">
-              <Katex latex={latex} displayMode />
+              <Katex latex={form.latex} displayMode />
             </div>
           </div>
         ))}

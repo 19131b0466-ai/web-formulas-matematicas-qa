@@ -68,7 +68,13 @@ function BlockBody({
   switch (block.type) {
     case 'formula': {
       const content = block.content as FormulaContent;
-      const latexBlocks = [content.latex, ...(content.additionalLatex ?? [])];
+      const latexForms: Array<{ latex: string; label: string | null }> = [
+        { latex: content.latex, label: content.latexLabel ?? null },
+        ...(content.additionalLatex ?? []).map((latex, i) => ({
+          latex,
+          label: content.additionalLatexLabels?.[i] ?? null,
+        })),
+      ];
       return (
         <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] shadow-[var(--shadow)]">
           <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-2">
@@ -77,12 +83,19 @@ function BlockBody({
             </span>
             <CopyLatexButton latex={content.latex} />
           </div>
-          {latexBlocks.map((latex, i) => (
+          {latexForms.map((form, i) => (
             <div
               key={`${block.id}-latex-${String(i)}`}
-              className={`overflow-x-auto px-4 py-5 ${i > 0 ? 'border-t border-[var(--border)]' : ''}`}
+              className={i > 0 ? 'border-t border-[var(--border)]' : undefined}
             >
-              <Katex latex={latex} displayMode={content.displayMode ?? true} />
+              {form.label ? (
+                <p className="px-4 pt-3 text-sm font-medium text-[var(--fg-muted)]">
+                  <InlineMarkdown text={form.label} />
+                </p>
+              ) : null}
+              <div className={`overflow-x-auto px-4 ${form.label ? 'pb-5 pt-2' : 'py-5'}`}>
+                <Katex latex={form.latex} displayMode={content.displayMode ?? true} />
+              </div>
             </div>
           ))}
           {content.detail ? (

@@ -33,6 +33,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
           const id = content.formulaId;
           if (!id) return null;
           const href = formulaHref(subject, id);
+          const extras = content.additionalLatex ?? [];
           return (
             <li
               key={block.id}
@@ -50,9 +51,39 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                 <CopyLatexButton latex={content.latex} />
               </div>
 
-              <Link href={href as '/'} prefetch className="block overflow-x-auto px-4 py-5">
+              {content.latexLabel ? (
+                <p className="border-t border-[var(--border)] px-4 pt-3 text-sm font-medium text-[var(--fg-muted)]">
+                  <InlineMarkdown text={content.latexLabel} />
+                </p>
+              ) : null}
+
+              <Link
+                href={href as '/'}
+                prefetch
+                className={`block overflow-x-auto px-4 ${content.latexLabel ? 'pb-5 pt-2' : 'py-5'}`}
+              >
                 <Katex latex={content.latex} displayMode />
               </Link>
+
+              {extras.map((latex, i) => {
+                const label = content.additionalLatexLabels?.[i] ?? null;
+                return (
+                  <div key={`${block.id}-extra-${String(i)}`} className="border-t border-[var(--border)]">
+                    {label ? (
+                      <p className="px-4 pt-3 text-sm font-medium text-[var(--fg-muted)]">
+                        <InlineMarkdown text={label} />
+                      </p>
+                    ) : (
+                      <p className="px-4 pt-3 text-xs font-medium uppercase tracking-wider text-[var(--fg-muted)]">
+                        {t('variant')}
+                      </p>
+                    )}
+                    <div className="overflow-x-auto px-4 py-4">
+                      <Katex latex={latex} displayMode />
+                    </div>
+                  </div>
+                );
+              })}
 
               {content.detail ? (
                 <p className="border-t border-[var(--border)] px-4 py-3 text-sm leading-relaxed text-[var(--fg-muted)]">

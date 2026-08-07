@@ -160,6 +160,10 @@ type FormulaDraft = {
   title: string;
   formulaId: string | null;
   latex: string[];
+  /** Parallel to `latex`; label that introduces that math block (usually null for the primary). */
+  latexLabels: Array<string | null>;
+  /** Short intro waiting to attach to the next display-math block. */
+  pendingLabel: string | null;
   detail: string | null;
   variables: string | null;
   constraints: string[];
@@ -167,14 +171,71 @@ type FormulaDraft = {
   notes: string[];
 };
 
+function createFormulaDraft(title: string): FormulaDraft {
+  return {
+    title,
+    formulaId: null,
+    latex: [],
+    latexLabels: [],
+    pendingLabel: null,
+    detail: null,
+    variables: null,
+    constraints: [],
+    relatedIds: [],
+    notes: [],
+  };
+}
+
+/** Prose that introduces an alternate form, not a pedagogical "Detalle". */
+function isVariantIntro(text: string): boolean {
+  const t = text.trim();
+  if (!t || t.startsWith('**')) return false;
+  if (/^(o|y|con)$/i.test(t)) return true;
+  if (/^(también|además|equivalentemente|por tanto)\.?$/i.test(t)) return true;
+  // "Caso paralelo:", "En una dimensión:", "Magnitud:", …
+  if (t.endsWith(':') && t.length <= 120) return true;
+  return false;
+}
+
+function normalizeVariantLabel(text: string): string {
+  return text.trim().replace(/:+\s*$/, '');
+}
+
+function absorbProseIntoDraft(draft: FormulaDraft, text: string): void {
+  if (!text) return;
+  // Case/form intros may precede the first or a later math block
+  // ("Constructiva:", "Caso paralelo:", "Para propagación hacia (+x):").
+  if (isVariantIntro(text)) {
+    draft.pendingLabel = normalizeVariantLabel(text);
+    return;
+  }
+  if (!draft.detail && text.length < 400) {
+    draft.detail = text;
+  } else {
+    draft.notes.push(text);
+  }
+}
+
 function flushFormula(section: ParsedSection, draft: FormulaDraft | null): void {
   if (!draft || draft.latex.length === 0) return;
+
+  // Orphan intro without following math → keep as detail/note instead of dropping.
+  if (draft.pendingLabel) {
+    if (!draft.detail) draft.detail = draft.pendingLabel;
+    else draft.notes.push(draft.pendingLabel);
+    draft.pendingLabel = null;
+  }
 
   const content: FormulaContent = {
     latex: draft.latex[0]!,
     displayMode: true,
   };
-  if (draft.latex.length > 1) content.additionalLatex = draft.latex.slice(1);
+  if (draft.latexLabels[0]) content.latexLabel = draft.latexLabels[0];
+  if (draft.latex.length > 1) {
+    content.additionalLatex = draft.latex.slice(1);
+    const labels = draft.latexLabels.slice(1);
+    if (labels.some((l) => l)) content.additionalLatexLabels = labels;
+  }
   if (draft.formulaId) content.formulaId = draft.formulaId;
   if (draft.detail) content.detail = draft.detail;
   if (draft.variables) content.variables = draft.variables;
@@ -192,6 +253,7 @@ function flushFormula(section: ParsedSection, draft: FormulaDraft | null): void 
       draft.variables ?? '',
       ...draft.constraints,
       ...draft.relatedIds,
+      ...draft.latexLabels.filter(Boolean).map(String),
       ...draft.latex.map(latexToSearch),
       ...draft.notes.map(stripInlineNoise),
     ],
@@ -225,12 +287,7 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
     paragraph = [];
     if (!text) return;
     if (draft) {
-      // Prefer absorbing prose into detail if empty; else notes
-      if (!draft.detail && text.length < 400) {
-        draft.detail = text;
-      } else {
-        draft.notes.push(text);
-      }
+      absorbProseIntoDraft(draft, text);
       return;
     }
     if (!currentSection) return;
@@ -310,28 +367,10 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
       const raw = h2[1]!.trim();
       const formulaHeading = raw.match(FORMULA_HEADING_RE);
       if (formulaHeading) {
-        draft = {
-          title: formulaHeading[2]!.trim(),
-          formulaId: null,
-          latex: [],
-          detail: null,
-          variables: null,
-          constraints: [],
-          relatedIds: [],
-          notes: [],
-        };
+        draft = createFormulaDraft(formulaHeading[2]!.trim());
       } else {
         // Unnumbered ## under chapter (e.g. rare) — treat as text title pending
-        draft = {
-          title: raw,
-          formulaId: null,
-          latex: [],
-          detail: null,
-          variables: null,
-          constraints: [],
-          relatedIds: [],
-          notes: [],
-        };
+        draft = createFormulaDraft(raw);
       }
       continue;
     }
@@ -388,9 +427,12 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
 
     const math = parseDisplayMath(lines, i);
     if (math) {
+      // Flush pending prose first so variant intros attach to this math block.
       flushParagraphIntoDraftOrSection();
       if (draft) {
         draft.latex.push(math.latex);
+        draft.latexLabels.push(draft.pendingLabel);
+        draft.pendingLabel = null;
       } else {
         const content: FormulaContent = { latex: math.latex, displayMode: true };
         pushBlock(currentSection, 'formula', content, [latexToSearch(math.latex)], null);

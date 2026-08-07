@@ -57,6 +57,23 @@ Introducción.
 
 ---
 
+## 1.3 Trabajo de una fuerza constante
+**ID:** \`ENE-001\`
+
+\\[
+W=\\\\vec F\\\\cdot\\\\vec d=Fd\\\\cos\\\\theta
+\\]
+
+Caso paralelo:
+
+\\[
+W=Fd
+\\]
+
+**Relacionadas:** \`VEC-002\`.
+
+---
+
 # 17. Constantes físicas
 
 | Constante | Símbolo | Valor | Unidad |
@@ -93,13 +110,23 @@ describe('parsePhysicsMarkdown (fixture)', () => {
   it('parses formula IDs, detail, variables and related', () => {
     const vec = result.sections.find((s) => s.slug === 'vectores');
     const formulas = vec!.blocks.filter((b) => b.blockType === 'formula');
-    expect(formulas.length).toBe(2);
+    expect(formulas.length).toBe(3);
     expect(formulas[0]?.formulaCode).toBe('VEC-001');
     const content = formulas[0]!.content as FormulaContent;
     expect(content.formulaId).toBe('VEC-001');
     expect(content.detail).toMatch(/módulo/);
     expect(content.variables).toContain('A_x');
     expect(content.relatedIds).toEqual(['VEC-002', 'VEC-003']);
+  });
+
+  it('attaches case intros to additional latex instead of detail', () => {
+    const vec = result.sections.find((s) => s.slug === 'vectores');
+    const work = vec!.blocks.find((b) => b.formulaCode === 'ENE-001');
+    const content = work!.content as FormulaContent;
+    expect(content.detail).toBeUndefined();
+    expect(content.latexLabel).toBeUndefined();
+    expect(content.additionalLatex).toEqual(['W=Fd']);
+    expect(content.additionalLatexLabels).toEqual(['Caso paralelo']);
   });
 
   it('parses conditions as constraints', () => {
@@ -154,4 +181,28 @@ describe('parsePhysicsMarkdown (full document)', () => {
       }
     }
   });
+
+  it('does not store variant intros like "Caso paralelo" as detail', () => {
+    const formulas = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula'),
+    );
+    const ene001 = formulas.find((b) => b.formulaCode === 'ENE-001');
+    const content = ene001!.content as FormulaContent;
+    expect(content.detail).toBeUndefined();
+    expect(content.additionalLatexLabels?.[0]).toBe('Caso paralelo');
+
+    const misleadingDetails = formulas.filter((b) => {
+      const c = b.content as FormulaContent;
+      if (!c.additionalLatex?.length || !c.detail) return false;
+      return isVariantIntroLike(c.detail);
+    });
+    expect(misleadingDetails.map((b) => b.formulaCode)).toEqual([]);
+  });
 });
+
+function isVariantIntroLike(text: string): boolean {
+  const t = text.trim();
+  if (/^(o|y|con)$/i.test(t)) return true;
+  if (/^(también|además|equivalentemente|por tanto)\.?$/i.test(t)) return true;
+  return t.endsWith(':') && t.length <= 120;
+}
