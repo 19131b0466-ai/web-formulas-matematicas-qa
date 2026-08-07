@@ -41,7 +41,7 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
 
   const t = await getTranslations('search');
   const tn = await getTranslations('nav');
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const sp = await searchParams;
   const q = sp.q?.trim() ?? '';

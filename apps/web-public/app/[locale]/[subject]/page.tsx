@@ -19,10 +19,11 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale, subject: subjectRaw } = await params;
+  const { locale: raw, subject: subjectRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) return {};
+  const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'subjectHome' });
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const meta = subjects.find((s) => s.slug === subjectRaw);
   const title = meta?.title ?? subjectRaw;
   return {
@@ -45,7 +46,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
   setRequestLocale(locale);
 
   const t = await getTranslations('subjectHome');
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const meta = subjects.find((s) => s.slug === subject);
   const sections = await localizeContent(await fetchSections(subject), locale);
   const main = sections.filter(

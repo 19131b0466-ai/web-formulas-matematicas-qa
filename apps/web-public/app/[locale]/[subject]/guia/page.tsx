@@ -44,7 +44,7 @@ export default async function GuidePage({ params }: PageProps) {
 
   const t = await getTranslations('guide');
   const tn = await getTranslations('nav');
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const guide = await localizeContent(await fetchMethodGuide(), locale);
   const section = await fetchSection('guia-metodos', subject);

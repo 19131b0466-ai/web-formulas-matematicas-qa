@@ -62,7 +62,7 @@ export default async function SectionPage({ params }: PageProps) {
 
   const t = await getTranslations('section');
   const ts = await getTranslations('site');
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
 
   if (isAppendixSlug(slug)) {

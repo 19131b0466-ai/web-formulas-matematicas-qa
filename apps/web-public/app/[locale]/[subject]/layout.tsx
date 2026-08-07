@@ -20,7 +20,7 @@ export default async function SubjectLayout({ children, params }: LayoutProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const meta = subjects.find((s) => s.slug === subject);
   const sections = await localizeContent(await fetchSections(subject), locale);
 

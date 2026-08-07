@@ -4,6 +4,7 @@ import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Link } from '@/i18n/navigation';
 import { fetchSubjects } from '@/lib/api';
+import { localizeContent } from '@/lib/localize-content';
 import type { AppLocale } from '@/i18n/routing';
 
 type PageProps = {
@@ -38,7 +39,7 @@ export default async function HubPage({ params }: PageProps) {
 
   const t = await getTranslations('hub');
   const ts = await getTranslations('site');
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
 
   return (
     <div className="relative z-10 min-h-screen">

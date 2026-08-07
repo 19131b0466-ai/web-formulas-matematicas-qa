@@ -44,7 +44,7 @@ export default async function FormulaPage({ params }: PageProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
-  const subjects = await fetchSubjects();
+  const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const detail = await localizeContent(await fetchFormula(subject, id), locale);
   if (!detail) notFound();
