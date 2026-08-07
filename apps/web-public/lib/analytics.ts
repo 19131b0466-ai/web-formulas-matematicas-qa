@@ -4,11 +4,27 @@ const SESSION_KEY = 'formulas_session_id';
 const DEDUPE_KEY = 'formulas_visit_dedupe';
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const DEDUPE_WINDOW_MS = 30 * 60 * 1000;
+const PRODUCTION_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
 
 type DedupeMap = Record<string, number>;
 
 function apiBase(): string {
-  return process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/v1';
+  const configured = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (configured) {
+    const normalized = configured.replace(/\/+$/, '');
+    const isLocal = /localhost|127\.0\.0\.1/.test(normalized);
+    const onVercelHost =
+      typeof window !== 'undefined' && window.location.hostname.endsWith('.vercel.app');
+    if (isLocal && (process.env.VERCEL || onVercelHost)) {
+      return PRODUCTION_API;
+    }
+    return normalized;
+  }
+  if (process.env.VERCEL) return PRODUCTION_API;
+  if (typeof window !== 'undefined' && window.location.hostname.endsWith('.vercel.app')) {
+    return PRODUCTION_API;
+  }
+  return 'http://localhost:3001/v1';
 }
 
 function uuid(): string {

@@ -10,10 +10,26 @@ import type {
 import type { SubjectSlug } from './subjects';
 import { sectionHref as subjectSectionHref } from './subjects';
 
-const DEFAULT_API = 'http://localhost:3001/v1';
+const LOCAL_API = 'http://localhost:3001/v1';
+/** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
+const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
+
+function normalizeApiBase(url: string): string {
+  return url.replace(/\/+$/, '');
+}
 
 export function getApiBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_API_URL ?? DEFAULT_API;
+  const configured = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (configured) {
+    const normalized = normalizeApiBase(configured);
+    // Guard against a leftover local URL on Vercel builds/SSR.
+    if (process.env.VERCEL && /localhost|127\.0\.0\.1/.test(normalized)) {
+      return VERCEL_API;
+    }
+    return normalized;
+  }
+  if (process.env.VERCEL) return VERCEL_API;
+  return LOCAL_API;
 }
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
@@ -24,7 +40,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
       Accept: 'application/json',
       ...init?.headers,
     },
-    next: { revalidate: 86400 },
+    next: init?.cache === 'no-store' ? undefined : (init?.next ?? { revalidate: 300 }),
   });
 
   if (!res.ok) {
@@ -36,9 +52,12 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 
 export async function fetchSubjects(): Promise<SubjectSummary[]> {
   try {
-    const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects');
+    const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
+      cache: 'no-store',
+    });
     return data.subjects;
-  } catch {
+  } catch (err) {
+    console.error('[fetchSubjects]', getApiBaseUrl(), err);
     return [];
   }
 }

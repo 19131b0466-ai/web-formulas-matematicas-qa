@@ -125,6 +125,14 @@ https://tudominio.com,https://admin.tudominio.com
 
 Tras el primer deploy de la API, actualiza `CORS_ORIGINS` y `NEXT_PUBLIC_*` con las URLs reales (incl. `.vercel.app` temporales si aún no hay dominio custom).
 
+Para este monorepo, el valor esperado de `NEXT_PUBLIC_API_URL` en **web-public** / **web-admin** es:
+
+```text
+https://web-formulas-matematicas-api.vercel.app/v1
+```
+
+Si queda en `http://localhost:3001/v1`, el hub de materias se renderiza vacío en Vercel. El frontend también tiene un fallback a esa URL de API cuando detecta host Vercel.
+
 ---
 
 ## 4. Dominios custom + HTTPS

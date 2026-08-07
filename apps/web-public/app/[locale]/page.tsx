@@ -23,7 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export const revalidate = 86400;
+/** Always hit the API so a failed build-time fetch cannot stick for 24h. */
+export const dynamic = 'force-dynamic';
 
 const SUBJECT_COPY: Record<string, { accent: string }> = {
   'calculo-ii': { accent: 'from-[var(--accent)]/25 via-transparent to-transparent' },
