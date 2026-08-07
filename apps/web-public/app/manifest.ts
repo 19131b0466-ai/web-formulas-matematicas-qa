@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Formulario universitario',
-    short_name: 'Formulario',
-    description: 'Formulario en línea de Cálculo II y Física Básica',
+    name: 'Fórmulas matemáticas',
+    short_name: 'Fórmulas',
+    description: 'Fórmulas matemáticas en línea: Cálculo II y Física Básica',
     start_url: '/',
     display: 'standalone',
     background_color: '#f3f6f4',

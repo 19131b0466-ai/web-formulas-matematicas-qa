@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Universitäre Formelsammlung",
+    "name": "Mathematische Formeln",
     "tagline": "Analysis II und Grundlagen der Physik",
-    "description": "Mehrfach-Fach Formelsammlung online: Integralrechnung und universitäre Grundlagenphysik.",
+    "description": "Mathematische Formeln online, mehrfach-fach: Integralrechnung und universitäre Grundlagenphysik.",
     "shortName": "Formeln",
     "about": "Integralrechnung und Grundlagenphysik",
-    "manifestDescription": "Universitäre Formelsammlung online"
+    "manifestDescription": "Mathematische Formeln online"
   },
   "nav": {
     "home": "Start",
@@ -15,8 +15,8 @@
     "menu": "Menü",
     "closeMenu": "Menü schließen",
     "close": "Schließen",
-    "brandEyebrow": "Universitäre Formeln",
-    "brandTitle": "Formelsammlung II",
+    "brandEyebrow": "Mathematische Formeln",
+    "brandTitle": "Formeln",
     "sectionsIndex": "Abschnittsverzeichnis",
     "searchPlaceholder": "Formeln suchen…",
     "language": "Sprache",
@@ -41,17 +41,17 @@
     "appendices": "Anhänge"
   },
   "footer": {
-    "line": "Universitäre Formelsammlung · Inhalt per API ·",
+    "line": "Mathematische Formeln · Inhalt per API ·",
     "guideLink": "Methodenleitfaden",
     "hubLink": "Fächer"
   },
   "search": {
     "title": "Suche",
-    "description": "Suche Formeln und Konzepte in der universitären Formelsammlung.",
-    "ogTitle": "Suche · Universitäre Formelsammlung",
+    "description": "Suche Formeln und Konzepte in Mathematische Formeln.",
+    "ogTitle": "Suche · Mathematische Formeln",
     "subtitle": "Finde Formeln nach Text, Code oder Tags.",
-    "label": "In der Formelsammlung suchen",
-    "placeholder": "Z. B. VEC-001, partielle Integration, Bernoulli…",
+    "label": "Formeln suchen",
+    "placeholder": "Z. B. INT-001, VEC-001, partielle Integration…",
     "submit": "Suchen",
     "all": "Alle",
     "results": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",

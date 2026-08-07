@@ -7,7 +7,7 @@ export interface ParsedBlock {
   searchText: string;
   tags: string[];
   sortOrder: number;
-  /** Stable formula code when present (physics). */
+  /** Stable formula code when present (physics / calculus catalog). */
   formulaCode?: string | null;
 }
 

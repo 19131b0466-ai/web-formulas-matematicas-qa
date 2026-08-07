@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { ContentBlockDto, FormulaContent } from '@repo/shared-types';
-import { ContentBlocks } from '@/components/content/ContentBlocks';
+import { ContentBlockItem, ContentBlocks } from '@/components/content/ContentBlocks';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
@@ -15,27 +15,49 @@ type FormulaCatalogProps = {
 
 export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
   const t = await getTranslations('formula');
-  const formulas = blocks.filter((b) => b.type === 'formula');
-  const other = blocks.filter((b) => b.type !== 'formula');
-  const hasIds = formulas.some((b) => (b.content as FormulaContent).formulaId);
+  const tContent = await getTranslations('content');
+  const hasIds = blocks.some(
+    (b) => b.type === 'formula' && Boolean((b.content as FormulaContent).formulaId),
+  );
 
   if (!hasIds) {
     return <ContentBlocks blocks={blocks} sectionNumber="" />;
   }
 
-  return (
-    <div className="space-y-6">
-      {other.length > 0 ? <ContentBlocks blocks={other} sectionNumber="" /> : null}
+  const labels = {
+    formula: tContent('formula'),
+    signal: tContent('signal'),
+    method: tContent('method'),
+  };
 
-      <ul className="space-y-4">
-        {formulas.map((block, index) => {
+  return (
+    <div className="prose-math space-y-5">
+      {blocks.map((block, index) => {
+        if (block.type === 'formula') {
           const content = block.content as FormulaContent;
           const id = content.formulaId;
-          if (!id) return null;
+          if (!id) {
+            return (
+              <ContentBlockItem
+                key={block.id}
+                block={block}
+                index={index}
+                sectionNumber=""
+                labels={labels}
+              />
+            );
+          }
+
           const href = formulaHref(subject, id);
           const extras = content.additionalLatex ?? [];
+          const heading = block.title ? (
+            <InlineMarkdown text={block.title} />
+          ) : (
+            <span className="font-mono text-base tracking-normal">{id}</span>
+          );
+
           return (
-            <li
+            <article
               key={block.id}
               className="animate-rise overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] shadow-[var(--shadow)]"
               style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
@@ -46,7 +68,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                   prefetch
                   className="font-display min-w-0 flex-1 text-lg font-semibold text-[var(--fg)] transition hover:text-[var(--accent-strong)]"
                 >
-                  {block.title ? <InlineMarkdown text={block.title} /> : t('primary')}
+                  {heading}
                 </Link>
                 <CopyLatexButton latex={content.latex} />
               </div>
@@ -100,10 +122,20 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                   {t('viewDetail')} →
                 </Link>
               </div>
-            </li>
+            </article>
           );
-        })}
-      </ul>
+        }
+
+        return (
+          <ContentBlockItem
+            key={block.id}
+            block={block}
+            index={index}
+            sectionNumber=""
+            labels={labels}
+          />
+        );
+      })}
     </div>
   );
 }

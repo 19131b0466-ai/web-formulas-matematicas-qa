@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulario universitario",
+    "name": "Fórmulas matemáticas",
     "tagline": "Cálculo II y Física Básica",
-    "description": "Formulario en línea multi-materia: Cálculo Integral y Física Básica universitaria, con búsqueda y renderizado LaTeX.",
-    "shortName": "Formulario",
+    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Integral y Física Básica universitaria, con búsqueda y renderizado LaTeX.",
+    "shortName": "Fórmulas",
     "about": "Cálculo Integral y Física Básica",
-    "manifestDescription": "Formulario universitario en línea"
+    "manifestDescription": "Fórmulas matemáticas en línea"
   },
   "nav": {
     "hub": "Materias",
@@ -16,8 +16,8 @@
     "menu": "Menú",
     "closeMenu": "Cerrar menú",
     "close": "Cerrar",
-    "brandEyebrow": "Formulario universitario",
-    "brandTitle": "Formulario",
+    "brandEyebrow": "Fórmulas matemáticas",
+    "brandTitle": "Fórmulas",
     "sectionsIndex": "Índice de secciones",
     "searchPlaceholder": "Buscar fórmulas…",
     "language": "Idioma"
@@ -44,20 +44,20 @@
     "empty": "No hay secciones disponibles. Arranca la API y ejecuta pnpm db:seed.",
     "view": "Ver →",
     "appendices": "Apéndices",
-    "fallbackDescription": "Formulario de {title}."
+    "fallbackDescription": "Fórmulas de {title}."
   },
   "footer": {
-    "line": "Formulario universitario · contenido servido por API ·",
+    "line": "Fórmulas matemáticas · contenido servido por API ·",
     "guideLink": "Guía de métodos",
     "hubLink": "Materias"
   },
   "search": {
     "title": "Buscar",
-    "description": "Busca fórmulas y conceptos en el formulario universitario.",
-    "ogTitle": "Buscar · Formulario universitario",
+    "description": "Busca fórmulas y conceptos en Fórmulas matemáticas.",
+    "ogTitle": "Buscar · Fórmulas matemáticas",
     "subtitle": "Encuentra fórmulas por texto, código o etiquetas.",
-    "label": "Buscar en el formulario",
-    "placeholder": "Ej. VEC-001, por partes, Bernoulli…",
+    "label": "Buscar fórmulas",
+    "placeholder": "Ej. INT-001, VEC-001, por partes…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",
@@ -89,7 +89,7 @@
   },
   "appendix": {
     "notFound": "Apéndice no encontrado",
-    "metaDescription": "Apéndice del formulario: {title}."
+    "metaDescription": "Apéndice de fórmulas: {title}."
   },
   "formula": {
     "viewDetail": "Ver detalle",

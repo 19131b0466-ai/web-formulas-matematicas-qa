@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulario universitario",
+    "name": "Formule matematiche",
     "tagline": "Calcolo II e Fisica di base",
-    "description": "Formulario online multi-materia: calcolo integrale e fisica di base universitaria.",
-    "shortName": "Formulario",
+    "description": "Formule matematiche online multi-materia: calcolo integrale e fisica di base universitaria.",
+    "shortName": "Formule",
     "about": "Calcolo integrale e Fisica di base",
-    "manifestDescription": "Formulario universitario online"
+    "manifestDescription": "Formule matematiche online"
   },
   "nav": {
     "home": "Home",
@@ -15,8 +15,8 @@
     "menu": "Menu",
     "closeMenu": "Chiudi menu",
     "close": "Chiudi",
-    "brandEyebrow": "Formulario universitario",
-    "brandTitle": "Formulario II",
+    "brandEyebrow": "Formule matematiche",
+    "brandTitle": "Formule",
     "sectionsIndex": "Indice delle sezioni",
     "searchPlaceholder": "Cerca formule…",
     "language": "Lingua",
@@ -41,17 +41,17 @@
     "appendices": "Appendici"
   },
   "footer": {
-    "line": "Formulario universitario · contenuto via API ·",
+    "line": "Formule matematiche · contenuto via API ·",
     "guideLink": "Guida ai metodi",
     "hubLink": "Materie"
   },
   "search": {
     "title": "Cerca",
-    "description": "Cerca formule e concetti nel formulario universitario.",
-    "ogTitle": "Cerca · Formulario universitario",
+    "description": "Cerca formule e concetti in Formule matematiche.",
+    "ogTitle": "Cerca · Formule matematiche",
     "subtitle": "Trova formule per testo, codice o tag.",
-    "label": "Cerca nel formulario",
-    "placeholder": "Es. VEC-001, per parti, Bernoulli…",
+    "label": "Cerca formule",
+    "placeholder": "Es. INT-001, VEC-001, per parti…",
     "submit": "Cerca",
     "all": "Tutti",
     "results": "{count, plural, =1 {# risultato} other {# risultati}}",

@@ -143,6 +143,70 @@ describe('parseFormulasMarkdown (fixture)', () => {
     expect(formula?.tags).toContain('integracion-por-partes');
     expect(formula?.tags).toContain('por-partes');
   });
+
+  it('assigns stable INT-### formula codes in document order', () => {
+    const formulas = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula'),
+    );
+    expect(formulas[0]?.formulaCode).toBe('INT-001');
+    expect(formulas.every((f) => f.formulaCode)).toBe(true);
+    const codes = formulas.map((f) => f.formulaCode);
+    expect(new Set(codes).size).toBe(codes.length);
+  });
+});
+
+describe('parseFormulasMarkdown (formula metadata)', () => {
+  const markdown = `# Test
+
+## 2. Integral indefinida
+
+### 2.1 Propiedades
+
+\\[
+F'(x)=f(x)
+\\]
+
+\\[
+\\int f(x)\\,dx = F(x)+C
+\\]
+
+### 2.2 Con override
+
+**ID:** \`INT-900\`
+\\[
+\\int 0\\,dx = C
+\\]
+**Detalle:** constante pura.
+**Relacionadas:** \`INT-001\`
+`;
+
+  const result = parseFormulasMarkdown(markdown);
+
+  it('links structural relatedIds within the same leaf section', () => {
+    const sub = result.sections.find((s) => s.number === '2.1');
+    const formulas = sub!.blocks.filter((b) => b.blockType === 'formula');
+    expect(formulas).toHaveLength(2);
+    const a = formulas[0]!.content as { formulaId?: string; relatedIds?: string[] };
+    const b = formulas[1]!.content as { formulaId?: string; relatedIds?: string[] };
+    expect(a.formulaId).toBe('INT-001');
+    expect(b.formulaId).toBe('INT-002');
+    expect(a.relatedIds).toEqual(['INT-002']);
+    expect(b.relatedIds).toEqual(['INT-001']);
+  });
+
+  it('honors explicit ID, detail and relatedIds over structural links', () => {
+    const sub = result.sections.find((s) => s.number === '2.2');
+    const formula = sub!.blocks.find((b) => b.blockType === 'formula');
+    expect(formula?.formulaCode).toBe('INT-900');
+    const content = formula!.content as {
+      formulaId?: string;
+      detail?: string;
+      relatedIds?: string[];
+    };
+    expect(content.formulaId).toBe('INT-900');
+    expect(content.detail).toBe('constante pura.');
+    expect(content.relatedIds).toEqual(['INT-001']);
+  });
 });
 
 describe('parseFormulasMarkdown (full document)', () => {
@@ -166,5 +230,14 @@ describe('parseFormulasMarkdown (full document)', () => {
   it('keeps unique section slugs', () => {
     const slugs = result.sections.map((s) => s.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it('assigns unique formula codes to every formula', () => {
+    const codes = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula').map((b) => b.formulaCode),
+    );
+    expect(codes.every(Boolean)).toBe(true);
+    expect(new Set(codes).size).toBe(codes.length);
+    expect(codes[0]).toBe('INT-001');
   });
 });

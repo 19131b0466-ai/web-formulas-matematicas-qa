@@ -24,6 +24,109 @@ const CHECKLIST_TITLE_RE = /^Lista final de comprobaci[oó]n/i;
 const APPENDIX_RE = /^Ap[eé]ndice\s+([AB])\s*:\s*(.+)$/i;
 /** Matches `1. Title`, `1.1 Title`, `10.2.3 Title` (period after whole number optional for subsections). */
 const NUMBERED_SECTION_RE = /^(\d+(?:\.\d+)*)\.?\s+(.+)$/;
+const ID_RE = /^\*\*ID:\*\*\s*`([^`]+)`\s*$/i;
+const DETAIL_RE = /^\*\*Detalle:\*\*\s*(.*)$/i;
+const VARIABLES_RE = /^\*\*Variables:\*\*\s*(.*)$/i;
+const CONDITION_RE = /^\*\*Condici[oó]n(?:es)?:\*\*\s*(.*)$/i;
+const RELATED_RE = /^\*\*Relacionadas:\*\*\s*(.*)$/i;
+const RELATED_ID_RE = /`([A-Z]{2,5}-\d{3})`/g;
+const MAX_STRUCTURAL_RELATED = 8;
+
+type FormulaMeta = {
+  formulaId: string | null;
+  detail: string | null;
+  variables: string | null;
+  constraints: string[];
+  relatedIds: string[] | null;
+  explicitRelated: boolean;
+};
+
+function emptyFormulaMeta(): FormulaMeta {
+  return {
+    formulaId: null,
+    detail: null,
+    variables: null,
+    constraints: [],
+    relatedIds: null,
+    explicitRelated: false,
+  };
+}
+
+function parseRelatedIds(raw: string): string[] {
+  const ids: string[] = [];
+  RELATED_ID_RE.lastIndex = 0;
+  let m: RegExpExecArray | null;
+  while ((m = RELATED_ID_RE.exec(raw)) !== null) {
+    ids.push(m[1]!);
+  }
+  return ids;
+}
+
+/** Apply a single metadata line into meta. Returns false if the line is not metadata. */
+function absorbMetaLine(meta: FormulaMeta, trimmed: string): boolean {
+  const idMatch = trimmed.match(ID_RE);
+  if (idMatch) {
+    meta.formulaId = idMatch[1]!.trim();
+    return true;
+  }
+  const detailMatch = trimmed.match(DETAIL_RE);
+  if (detailMatch) {
+    meta.detail = detailMatch[1]!.trim() || null;
+    return true;
+  }
+  const varsMatch = trimmed.match(VARIABLES_RE);
+  if (varsMatch) {
+    meta.variables = varsMatch[1]!.trim() || null;
+    return true;
+  }
+  const condMatch = trimmed.match(CONDITION_RE);
+  if (condMatch) {
+    const value = condMatch[1]!.trim();
+    if (value) meta.constraints.push(value);
+    return true;
+  }
+  const relatedMatch = trimmed.match(RELATED_RE);
+  if (relatedMatch) {
+    meta.relatedIds = parseRelatedIds(relatedMatch[1]!);
+    meta.explicitRelated = true;
+    return true;
+  }
+  return false;
+}
+
+function formatFormulaCode(n: number): string {
+  return `INT-${String(n).padStart(3, '0')}`;
+}
+
+function nearbyCodes(codes: string[], index: number, max: number): string[] {
+  const out: string[] = [];
+  let d = 1;
+  while (out.length < max && (index - d >= 0 || index + d < codes.length)) {
+    if (index - d >= 0) out.push(codes[index - d]!);
+    if (out.length >= max) break;
+    if (index + d < codes.length) out.push(codes[index + d]!);
+    d += 1;
+  }
+  return out;
+}
+
+/** Structural see-also: other formulas in the same leaf section (never invents cross-topic links). */
+function applyStructuralRelated(sections: ParsedSection[]): void {
+  for (const section of sections) {
+    const formulas = section.blocks.filter(
+      (b) => b.blockType === 'formula' && Boolean(b.formulaCode),
+    );
+    if (formulas.length < 2) continue;
+    const codes = formulas.map((b) => b.formulaCode!);
+    for (let i = 0; i < formulas.length; i += 1) {
+      const block = formulas[i]!;
+      const content = block.content as FormulaContent;
+      if (content.relatedIds && content.relatedIds.length > 0) continue;
+      const related = nearbyCodes(codes, i, MAX_STRUCTURAL_RELATED);
+      if (related.length > 0) content.relatedIds = related;
+    }
+  }
+}
 
 /** Strip markup/delimiters for search indexing only — never mutate display content. */
 function stripInlineNoise(text: string): string {
@@ -120,6 +223,7 @@ function pushBlock(
   content: ParsedBlock['content'],
   searchParts: string[],
   title: string | null = null,
+  formulaCode: string | null = null,
 ): void {
   const searchText = searchParts.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
   const tags = inferTags(section.slug, `${title ?? ''} ${searchText}`, blockType);
@@ -130,6 +234,7 @@ function pushBlock(
     searchText,
     tags,
     sortOrder: section.blocks.length,
+    formulaCode,
   });
 }
 
@@ -250,10 +355,16 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
   let pendingTitle: string | null = null;
   let paragraph: string[] = [];
   let inIndex = false;
+  let formulaCounter = 0;
+  let pendingMeta = emptyFormulaMeta();
 
   const flush = () => {
     pendingTitle = flushParagraph(currentSection, paragraph, pendingTitle);
     paragraph = [];
+  };
+
+  const resetMeta = () => {
+    pendingMeta = emptyFormulaMeta();
   };
 
   for (let i = 0; i < lines.length; i += 1) {
@@ -265,6 +376,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
 
     if (INDEX_TITLE_RE.test(trimmed)) {
       flush();
+      resetMeta();
       inIndex = true;
       continue;
     }
@@ -280,12 +392,14 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
 
     if (HR_RE.test(trimmed)) {
       flush();
+      resetMeta();
       continue;
     }
 
     const heading = trimmed.match(HEADING_RE);
     if (heading) {
       flush();
+      resetMeta();
       const level = heading[1]!.length;
       const rawTitle = heading[2]!.trim();
 
@@ -326,20 +440,64 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
       continue;
     }
 
+    // Formula metadata lines (before or between formulas)
+    if (absorbMetaLine(pendingMeta, trimmed)) {
+      flush();
+      continue;
+    }
+
     // Display math
     const math = parseDisplayMath(lines, i);
     if (math) {
       flush();
-      const content: FormulaContent = { latex: math.latex, displayMode: true };
+      // Trailing metadata immediately after the closing \]
+      let end = math.end;
+      for (let j = math.end + 1; j < lines.length; j += 1) {
+        const next = lines[j]!.trim();
+        if (next === '') {
+          end = j;
+          continue;
+        }
+        if (absorbMetaLine(pendingMeta, next)) {
+          end = j;
+          continue;
+        }
+        break;
+      }
+
+      formulaCounter += 1;
+      const formulaId = pendingMeta.formulaId ?? formatFormulaCode(formulaCounter);
+      const content: FormulaContent = {
+        latex: math.latex,
+        displayMode: true,
+        formulaId,
+      };
+      if (pendingMeta.detail) content.detail = pendingMeta.detail;
+      if (pendingMeta.variables) content.variables = pendingMeta.variables;
+      if (pendingMeta.constraints.length) content.constraints = [...pendingMeta.constraints];
+      if (pendingMeta.explicitRelated && pendingMeta.relatedIds) {
+        content.relatedIds = pendingMeta.relatedIds;
+      }
+
       pushBlock(
         currentSection,
         'formula',
         content,
-        [pendingTitle ?? '', latexToSearch(math.latex)],
+        [
+          pendingTitle ?? '',
+          formulaId,
+          pendingMeta.detail ?? '',
+          pendingMeta.variables ?? '',
+          ...pendingMeta.constraints,
+          ...(pendingMeta.relatedIds ?? []),
+          latexToSearch(math.latex),
+        ],
         pendingTitle,
+        formulaId,
       );
       pendingTitle = null;
-      i = math.end;
+      resetMeta();
+      i = end;
       continue;
     }
 
@@ -347,6 +505,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
     const table = parseTable(lines, i);
     if (table) {
       flush();
+      resetMeta();
       if (isStrategyTable(table.headers) || currentSection.slug === 'guia-metodos') {
         for (const row of table.rows) {
           if (row.length < 2) continue;
@@ -388,6 +547,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
     const quote = parseBlockquote(lines, i);
     if (quote) {
       flush();
+      resetMeta();
       const variant: NoteContent['variant'] = /dominio|condici[oó]n|regla de uso|nota/i.test(
         quote.markdown,
       )
@@ -412,6 +572,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
     const list = parseList(lines, i);
     if (list) {
       flush();
+      resetMeta();
       // Nested bullet under "En expresiones reales:" already handled as list
       const content: ListContent = { items: list.items, ordered: list.ordered };
       pushBlock(
@@ -435,6 +596,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
   }
 
   flush();
+  applyStructuralRelated(sections);
 
   const blockCount = sections.reduce((n, s) => n + s.blocks.length, 0);
   const formulaCount = sections.reduce(

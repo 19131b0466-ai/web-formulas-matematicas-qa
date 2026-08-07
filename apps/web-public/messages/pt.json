@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulário universitário",
+    "name": "Fórmulas matemáticas",
     "tagline": "Cálculo II e Física Básica",
-    "description": "Formulário online multi-matéria: Cálculo Integral e Física Básica universitária.",
-    "shortName": "Formulário",
+    "description": "Fórmulas matemáticas online multi-matéria: Cálculo Integral e Física Básica universitária.",
+    "shortName": "Fórmulas",
     "about": "Cálculo Integral e Física Básica",
-    "manifestDescription": "Formulário universitário online"
+    "manifestDescription": "Fórmulas matemáticas online"
   },
   "nav": {
     "home": "Início",
@@ -15,8 +15,8 @@
     "menu": "Menu",
     "closeMenu": "Fechar menu",
     "close": "Fechar",
-    "brandEyebrow": "Formulário universitário",
-    "brandTitle": "Formulário II",
+    "brandEyebrow": "Fórmulas matemáticas",
+    "brandTitle": "Fórmulas",
     "sectionsIndex": "Índice de seções",
     "searchPlaceholder": "Buscar fórmulas…",
     "language": "Idioma",
@@ -41,17 +41,17 @@
     "appendices": "Apêndices"
   },
   "footer": {
-    "line": "Formulário universitário · conteúdo via API ·",
+    "line": "Fórmulas matemáticas · conteúdo via API ·",
     "guideLink": "Guia de métodos",
     "hubLink": "Matérias"
   },
   "search": {
     "title": "Buscar",
-    "description": "Busque fórmulas e conceitos no formulário universitário.",
-    "ogTitle": "Buscar · Formulário universitário",
+    "description": "Busque fórmulas e conceitos em Fórmulas matemáticas.",
+    "ogTitle": "Buscar · Fórmulas matemáticas",
     "subtitle": "Encontre fórmulas por texto, código ou etiquetas.",
-    "label": "Buscar no formulário",
-    "placeholder": "Ex. VEC-001, por partes, Bernoulli…",
+    "label": "Buscar fórmulas",
+    "placeholder": "Ex. INT-001, VEC-001, por partes…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",

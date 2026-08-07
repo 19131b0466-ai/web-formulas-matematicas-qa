@@ -18,43 +18,69 @@ type ContentBlocksProps = {
   sectionNumber: string;
 };
 
+export type ContentBlockLabels = { formula: string; signal: string; method: string };
+
 export async function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
   const t = await getTranslations('content');
+  const labels: ContentBlockLabels = {
+    formula: t('formula'),
+    signal: t('signal'),
+    method: t('method'),
+  };
 
   return (
     <div className="prose-math space-y-5">
-      {blocks.map((block, index) => {
-        const anchor = blockAnchorId({
-          sectionNumber,
-          title: block.title,
-          blockId: block.id,
-          index,
-        });
-
-        return (
-          <section
-            key={block.id}
-            id={anchor}
-            className="scroll-mt-24 animate-rise"
-            style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
-          >
-            {block.title ? (
-              <h3 className="font-display mb-3 text-xl font-semibold tracking-tight text-[var(--fg)]">
-                <a href={`#${anchor}`} className="group inline-flex items-baseline gap-2">
-                  <span>
-                    <InlineMarkdown text={block.title} />
-                  </span>
-                  <span className="text-sm font-normal text-[var(--fg-muted)] opacity-0 transition group-hover:opacity-100">
-                    #
-                  </span>
-                </a>
-              </h3>
-            ) : null}
-            <BlockBody block={block} labels={{ formula: t('formula'), signal: t('signal'), method: t('method') }} />
-          </section>
-        );
-      })}
+      {blocks.map((block, index) => (
+        <ContentBlockItem
+          key={block.id}
+          block={block}
+          index={index}
+          sectionNumber={sectionNumber}
+          labels={labels}
+        />
+      ))}
     </div>
+  );
+}
+
+export function ContentBlockItem({
+  block,
+  index,
+  sectionNumber,
+  labels,
+}: {
+  block: ContentBlockDto;
+  index: number;
+  sectionNumber: string;
+  labels: ContentBlockLabels;
+}) {
+  const anchor = blockAnchorId({
+    sectionNumber,
+    title: block.title,
+    blockId: block.id,
+    index,
+  });
+
+  return (
+    <section
+      id={anchor}
+      className="scroll-mt-24 animate-rise"
+      style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
+    >
+      {block.title ? (
+        <h3 className="font-display mb-3 text-xl font-semibold tracking-tight text-[var(--fg)]">
+          <a href={`#${anchor}`} className="group inline-flex items-baseline gap-2">
+            <span>
+              <InlineMarkdown text={block.title} />
+            </span>
+            <span className="text-sm font-normal text-[var(--fg-muted)] opacity-0 transition group-hover:opacity-100">
+              #
+            </span>
+          </a>
+        </h3>
+      ) : null}
+      <BlockBody block={block} labels={labels} />
+    </section>
   );
 }
 
@@ -63,7 +89,7 @@ function BlockBody({
   labels,
 }: {
   block: ContentBlockDto;
-  labels: { formula: string; signal: string; method: string };
+  labels: ContentBlockLabels;
 }) {
   switch (block.type) {
     case 'formula': {

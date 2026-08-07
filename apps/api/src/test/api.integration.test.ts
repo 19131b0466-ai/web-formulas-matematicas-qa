@@ -91,6 +91,33 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.related.length).toBeGreaterThan(0);
   });
 
+  it('GET /v1/subjects/calculo-ii/formulas/INT-001 returns detail + related', async () => {
+    const res = await app.request('/v1/subjects/calculo-ii/formulas/INT-001');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      formulaId: string;
+      content: { latex: string; formulaId?: string; relatedIds?: string[] };
+      related: Array<{ formulaId: string }>;
+      section: { slug: string };
+    };
+    expect(body.formulaId).toBe('INT-001');
+    expect(body.content.formulaId).toBe('INT-001');
+    expect(body.content.latex.length).toBeGreaterThan(0);
+    expect(body.related.length).toBeGreaterThan(0);
+    expect(body.related.every((r) => r.formulaId.startsWith('INT-'))).toBe(true);
+  });
+
+  it('GET calculo search finds by formula code', async () => {
+    const res = await app.request('/v1/subjects/calculo-ii/search?q=INT-002&limit=5');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      total: number;
+      results: Array<{ formulaCode?: string | null }>;
+    };
+    expect(body.total).toBeGreaterThan(0);
+    expect(body.results.some((r) => r.formulaCode === 'INT-002')).toBe(true);
+  });
+
   it('GET formula returns 404 for unknown id', async () => {
     const res = await app.request('/v1/subjects/fisica-basica/formulas/ZZZ-999');
     expect(res.status).toBe(404);

@@ -33,5 +33,5 @@ export function subjectHasGuide(subject: SubjectSlug): boolean {
 }
 
 export function subjectUsesFormulaCatalog(subject: SubjectSlug): boolean {
-  return subject === 'fisica-basica';
+  return subject === 'fisica-basica' || subject === 'calculo-ii';
 }

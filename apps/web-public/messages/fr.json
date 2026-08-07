@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulaire universitaire",
+    "name": "Formules mathématiques",
     "tagline": "Calcul II et Physique de base",
-    "description": "Formulaire en ligne multi-matières : calcul intégral et physique de base universitaire.",
-    "shortName": "Formulaire",
+    "description": "Formules mathématiques en ligne multi-matières : calcul intégral et physique de base universitaire.",
+    "shortName": "Formules",
     "about": "Calcul intégral et Physique de base",
-    "manifestDescription": "Formulaire universitaire en ligne"
+    "manifestDescription": "Formules mathématiques en ligne"
   },
   "nav": {
     "home": "Accueil",
@@ -15,8 +15,8 @@
     "menu": "Menu",
     "closeMenu": "Fermer le menu",
     "close": "Fermer",
-    "brandEyebrow": "Formulaire universitaire",
-    "brandTitle": "Formulaire II",
+    "brandEyebrow": "Formules mathématiques",
+    "brandTitle": "Formules",
     "sectionsIndex": "Index des sections",
     "searchPlaceholder": "Rechercher des formules…",
     "language": "Langue",
@@ -41,17 +41,17 @@
     "appendices": "Annexes"
   },
   "footer": {
-    "line": "Formulaire universitaire · contenu via API ·",
+    "line": "Formules mathématiques · contenu via API ·",
     "guideLink": "Guide des méthodes",
     "hubLink": "Matières"
   },
   "search": {
     "title": "Rechercher",
-    "description": "Recherchez des formules et concepts dans le formulaire universitaire.",
-    "ogTitle": "Rechercher · Formulaire universitaire",
+    "description": "Recherchez des formules et concepts dans Formules mathématiques.",
+    "ogTitle": "Rechercher · Formules mathématiques",
     "subtitle": "Trouvez des formules par texte, code ou étiquettes.",
-    "label": "Rechercher dans le formulaire",
-    "placeholder": "Ex. VEC-001, intégration par parties, Bernoulli…",
+    "label": "Rechercher des formules",
+    "placeholder": "Ex. INT-001, VEC-001, intégration par parties…",
     "submit": "Rechercher",
     "all": "Tous",
     "results": "{count, plural, =1 {# résultat} other {# résultats}}",

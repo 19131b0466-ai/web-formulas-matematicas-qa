@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "University formula sheet",
+    "name": "Mathematical formulas",
     "tagline": "Calculus II and Basic Physics",
-    "description": "Multi-subject online formula sheet: Integral Calculus and university Basic Physics, with search and LaTeX rendering.",
+    "description": "Multi-subject online mathematical formulas: Integral Calculus and university Basic Physics, with search and LaTeX rendering.",
     "shortName": "Formulas",
     "about": "Integral Calculus and Basic Physics",
-    "manifestDescription": "Online university formula sheet"
+    "manifestDescription": "Online mathematical formulas"
   },
   "nav": {
     "home": "Home",
@@ -15,8 +15,8 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "close": "Close",
-    "brandEyebrow": "University formulas",
-    "brandTitle": "Formula Sheet II",
+    "brandEyebrow": "Mathematical formulas",
+    "brandTitle": "Formulas",
     "sectionsIndex": "Section index",
     "searchPlaceholder": "Search formulas…",
     "language": "Language",
@@ -41,17 +41,17 @@
     "appendices": "Appendices"
   },
   "footer": {
-    "line": "University formula sheet · API-served content ·",
+    "line": "Mathematical formulas · API-served content ·",
     "guideLink": "Method guide",
     "hubLink": "Subjects"
   },
   "search": {
     "title": "Search",
-    "description": "Search formulas and concepts in the university formula sheet.",
-    "ogTitle": "Search · University formula sheet",
+    "description": "Search formulas and concepts in Mathematical formulas.",
+    "ogTitle": "Search · Mathematical formulas",
     "subtitle": "Find formulas by text, code, or tags.",
-    "label": "Search the formula sheet",
-    "placeholder": "E.g. VEC-001, integration by parts, Bernoulli…",
+    "label": "Search formulas",
+    "placeholder": "E.g. INT-001, VEC-001, integration by parts…",
     "submit": "Search",
     "all": "All",
     "results": "{count, plural, =1 {# result} other {# results}}",
