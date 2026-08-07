@@ -2512,8 +2512,6 @@ e\sigma A(T^4-T_{\text{amb}}^4)
 
 # 16. Electricidad básica
 
-> Esta sección contiene electricidad fundamental de Física General. Los circuitos avanzados, RC/RL/RLC, corriente alterna, semiconductores, diodos, transistores, amplificadores y electrónica analógica/digital pueden reservarse para la app de **Física Electrónica**.
-
 ## 16.1 Cuantización de la carga
 **ID:** `ELE-001`
 
