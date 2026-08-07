@@ -26,7 +26,7 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
     <div className="relative z-10 flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] lg:flex">
         <Brand subject={subject} subjectTitle={subjectTitle} />
-        <div className="flex-1 overflow-y-auto px-3 pb-8">
+        <div className="sidebar-scroll flex-1 overflow-y-auto px-3 pb-8">
           <SidebarNav subject={subject} sections={sections} />
         </div>
       </aside>
@@ -44,7 +44,7 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
             className="absolute inset-y-0 left-0 flex w-[min(20rem,88vw)] flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] shadow-2xl"
           >
             <Brand subject={subject} subjectTitle={subjectTitle} onClose={() => setOpen(false)} />
-            <div className="flex-1 overflow-y-auto px-3 pb-8">
+            <div className="sidebar-scroll flex-1 overflow-y-auto px-3 pb-8">
               <SidebarNav subject={subject} sections={sections} onNavigate={() => setOpen(false)} />
             </div>
           </aside>
