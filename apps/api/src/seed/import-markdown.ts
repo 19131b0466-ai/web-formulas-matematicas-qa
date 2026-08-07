@@ -85,7 +85,9 @@ export async function seedSubjectFromMarkdown(
   const parsed =
     parser === 'fisica' ? parsePhysicsMarkdown(markdown) : parseFormulasMarkdown(markdown);
 
-  // Replace only this subject's content (analytics untouched)
+  // SAFETY: only wipe this subject's sections/blocks.
+  // NEVER delete/truncate visit_logs, admin_users, or other subjects here.
+  // Analytics history must survive content re-seeds.
   await db.delete(sections).where(eq(sections.subjectId, subjectId));
 
   const sectionIdBySlug = new Map<string, string>();

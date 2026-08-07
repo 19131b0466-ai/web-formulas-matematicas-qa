@@ -13,6 +13,23 @@ import { sectionHref as subjectSectionHref } from './subjects';
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
+const FETCH_TIMEOUT_MS = 8_000;
+
+/** Always-available catalog so the hub never renders empty if the API flakes. */
+const FALLBACK_SUBJECTS: SubjectSummary[] = [
+  {
+    slug: 'calculo-ii',
+    title: 'Cálculo II',
+    description: 'Cálculo Integral — fórmulas, métodos y aplicaciones',
+    sortOrder: 1,
+  },
+  {
+    slug: 'fisica-basica',
+    title: 'Física Básica',
+    description: 'Fórmulas de Física General universitaria',
+    sortOrder: 2,
+  },
+];
 
 function normalizeApiBase(url: string): string {
   return url.replace(/\/+$/, '');
@@ -34,31 +51,39 @@ export function getApiBaseUrl(): string {
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${getApiBaseUrl()}${path}`;
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      Accept: 'application/json',
-      ...init?.headers,
-    },
-    next: init?.cache === 'no-store' ? undefined : (init?.next ?? { revalidate: 300 }),
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-  if (!res.ok) {
-    throw new Error(`API ${path} failed with ${String(res.status)}`);
+  try {
+    const res = await fetch(url, {
+      ...init,
+      signal: controller.signal,
+      headers: {
+        Accept: 'application/json',
+        ...init?.headers,
+      },
+      next: init?.next ?? { revalidate: 60 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`API ${path} failed with ${String(res.status)}`);
+    }
+
+    return (await res.json()) as T;
+  } finally {
+    clearTimeout(timer);
   }
-
-  return res.json() as Promise<T>;
 }
 
 export async function fetchSubjects(): Promise<SubjectSummary[]> {
   try {
     const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     });
-    return data.subjects;
+    return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
   } catch (err) {
     console.error('[fetchSubjects]', getApiBaseUrl(), err);
-    return [];
+    return FALLBACK_SUBJECTS;
   }
 }
 
@@ -66,7 +91,7 @@ export async function fetchSections(subject: SubjectSlug = 'calculo-ii'): Promis
   try {
     const data = await apiFetch<{ sections: SectionSummary[] }>(
       `/subjects/${encodeURIComponent(subject)}/sections`,
-      { cache: 'no-store' },
+      { next: { revalidate: 60 } },
     );
     return data.sections;
   } catch (err) {
@@ -82,6 +107,7 @@ export async function fetchSection(
   try {
     return await apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
+      { next: { revalidate: 300 } },
     );
   } catch {
     return null;
@@ -95,6 +121,7 @@ export async function fetchFormula(
   try {
     return await apiFetch<FormulaDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
+      { next: { revalidate: 300 } },
     );
   } catch {
     return null;
@@ -113,19 +140,28 @@ export async function fetchSearch(params: {
   if (params.tags) sp.set('tags', params.tags);
   if (params.limit) sp.set('limit', String(params.limit));
   const url = `${getApiBaseUrl()}/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`;
-  const res = await fetch(url, {
-    headers: { Accept: 'application/json' },
-    cache: 'no-store',
-  });
-  if (!res.ok) {
-    throw new Error(`API /search failed with ${String(res.status)}`);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      throw new Error(`API /search failed with ${String(res.status)}`);
+    }
+    return res.json() as Promise<SearchResponse>;
+  } finally {
+    clearTimeout(timer);
   }
-  return res.json() as Promise<SearchResponse>;
 }
 
 export async function fetchTags(subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> {
   try {
-    return await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`);
+    return await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
+      next: { revalidate: 300 },
+    });
   } catch {
     return { tags: [] };
   }
@@ -133,7 +169,9 @@ export async function fetchTags(subject: SubjectSlug = 'calculo-ii'): Promise<Ta
 
 export async function fetchMethodGuide(): Promise<MethodGuideResponse> {
   try {
-    return await apiFetch<MethodGuideResponse>('/guide/method-selection');
+    return await apiFetch<MethodGuideResponse>('/guide/method-selection', {
+      next: { revalidate: 300 },
+    });
   } catch {
     return { strategies: [], checklist: [] };
   }

@@ -48,7 +48,15 @@ El seed importa **ambas** materias (`calculo-ii` y `fisica-basica`) y es idempot
 
 ```bash
 # Solo una materia (opcional)
-pnpm --filter @repo/api db:seed -- content/formulas-fisica-basica.md
+pnpm --filter @repo/api exec tsx src/seed/import-markdown.ts ../../content/formulas-fisica-basica.md
+```
+
+**Importante — analytics:** el seed **solo** borra `sections` / `content_blocks` de la materia importada. **Nunca** toca `visit_logs` ni `admin_users`. No ejecutes `TRUNCATE`/`DROP` sobre `visit_logs` al redeployar contenido.
+
+Si migraste a multi-materia y quieres etiquetar visitas antiguas:
+
+```bash
+pnpm --filter @repo/api exec tsx src/scripts/backfill-visit-subjects.ts
 ```
 
 > **Nota:** el cliente Drizzle usa `prepare: false` y `max: 1`, requerido por el pooler en transaction mode bajo serverless.

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export default async function SubjectHomePage({ params }: PageProps) {
   const { locale: raw, subject: subjectRaw } = await params;

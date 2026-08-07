@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-/** Always hit the API so a failed build-time fetch cannot stick for 24h. */
-export const dynamic = 'force-dynamic';
+/** Short ISR window: avoids hung SSR if the API is slow, without sticking empty forever. */
+export const revalidate = 60;
 
 const SUBJECT_COPY: Record<string, { accent: string }> = {
   'calculo-ii': { accent: 'from-[var(--accent)]/25 via-transparent to-transparent' },
