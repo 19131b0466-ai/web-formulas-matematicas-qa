@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
+import { extractConstraintsFromLatex } from './enrich-calculo.js';
 import { parseFormulasMarkdown } from './parse-markdown.js';
 import { SECTION_SLUG_OVERRIDES } from './tags.js';
 import { slugify } from './slugify.js';
@@ -190,8 +191,8 @@ F'(x)=f(x)
     const b = formulas[1]!.content as { formulaId?: string; relatedIds?: string[] };
     expect(a.formulaId).toBe('INT-001');
     expect(b.formulaId).toBe('INT-002');
-    expect(a.relatedIds).toEqual(['INT-002']);
-    expect(b.relatedIds).toEqual(['INT-001']);
+    expect(a.relatedIds).toContain('INT-002');
+    expect(b.relatedIds).toContain('INT-001');
   });
 
   it('honors explicit ID, detail and relatedIds over structural links', () => {
@@ -239,5 +240,43 @@ describe('parseFormulasMarkdown (full document)', () => {
     expect(codes.every(Boolean)).toBe(true);
     expect(new Set(codes).size).toBe(codes.length);
     expect(codes[0]).toBe('INT-001');
+  });
+
+  it('enriches formulas with variables, constraints and relatedIds like the native app', () => {
+    const formulas = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula'),
+    );
+    const withVars = formulas.filter((f) => Boolean((f.content as { variables?: string }).variables));
+    const withConstraints = formulas.filter((f) =>
+      Boolean((f.content as { constraints?: string[] }).constraints?.length),
+    );
+    const withRelated = formulas.filter((f) =>
+      Boolean((f.content as { relatedIds?: string[] }).relatedIds?.length),
+    );
+    expect(withVars.length).toBeGreaterThan(100);
+    expect(withConstraints.length).toBeGreaterThan(20);
+    expect(withRelated.length).toBeGreaterThan(100);
+
+    const power = formulas.find((f) =>
+      /\\int\s*x\^n|\\intx\^n/.test((f.content as { latex: string }).latex.replace(/\s+/g, '')),
+    );
+    expect(power).toBeDefined();
+    const content = power!.content as {
+      variables?: string;
+      constraints?: string[];
+      relatedIds?: string[];
+    };
+    expect(content.variables).toMatch(/Constante real de integración/);
+    expect(content.constraints?.some((c) => /n\\neq-1|n\\neq -1|n≠-1/.test(c.replace(/\s+/g, '')))).toBe(
+      true,
+    );
+  });
+});
+
+describe('extractConstraintsFromLatex', () => {
+  it('pulls qquad conditions from power rule latex', () => {
+    const cs = extractConstraintsFromLatex('\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}+C,\\qquad n\\neq-1');
+    expect(cs.length).toBeGreaterThanOrEqual(1);
+    expect(cs[0]).toContain('n\\neq-1');
   });
 });

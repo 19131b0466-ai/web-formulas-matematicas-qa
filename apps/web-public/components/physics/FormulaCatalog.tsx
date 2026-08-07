@@ -109,6 +109,16 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                 </p>
               ) : null}
 
+              {content.constraints?.length ? (
+                <ul className="space-y-1 border-t border-[var(--border)] px-4 py-3 text-sm text-[var(--fg-muted)]">
+                  {content.constraints.slice(0, 3).map((c) => (
+                    <li key={c}>
+                      <InlineMarkdown text={c} />
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
               <div className="border-t border-[var(--border)] px-4 py-3">
                 <Link
                   href={href as '/'}

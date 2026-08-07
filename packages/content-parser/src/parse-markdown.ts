@@ -6,6 +6,7 @@ import type {
   TextContent,
   FormulaContent,
 } from '@repo/shared-types';
+import { enrichCalculoFormulas } from './enrich-calculo.js';
 import { slugify } from './slugify.js';
 import { SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
@@ -30,7 +31,6 @@ const VARIABLES_RE = /^\*\*Variables:\*\*\s*(.*)$/i;
 const CONDITION_RE = /^\*\*Condici[oó]n(?:es)?:\*\*\s*(.*)$/i;
 const RELATED_RE = /^\*\*Relacionadas:\*\*\s*(.*)$/i;
 const RELATED_ID_RE = /`([A-Z]{2,5}-\d{3})`/g;
-const MAX_STRUCTURAL_RELATED = 8;
 
 type FormulaMeta = {
   formulaId: string | null;
@@ -96,36 +96,6 @@ function absorbMetaLine(meta: FormulaMeta, trimmed: string): boolean {
 
 function formatFormulaCode(n: number): string {
   return `INT-${String(n).padStart(3, '0')}`;
-}
-
-function nearbyCodes(codes: string[], index: number, max: number): string[] {
-  const out: string[] = [];
-  let d = 1;
-  while (out.length < max && (index - d >= 0 || index + d < codes.length)) {
-    if (index - d >= 0) out.push(codes[index - d]!);
-    if (out.length >= max) break;
-    if (index + d < codes.length) out.push(codes[index + d]!);
-    d += 1;
-  }
-  return out;
-}
-
-/** Structural see-also: other formulas in the same leaf section (never invents cross-topic links). */
-function applyStructuralRelated(sections: ParsedSection[]): void {
-  for (const section of sections) {
-    const formulas = section.blocks.filter(
-      (b) => b.blockType === 'formula' && Boolean(b.formulaCode),
-    );
-    if (formulas.length < 2) continue;
-    const codes = formulas.map((b) => b.formulaCode!);
-    for (let i = 0; i < formulas.length; i += 1) {
-      const block = formulas[i]!;
-      const content = block.content as FormulaContent;
-      if (content.relatedIds && content.relatedIds.length > 0) continue;
-      const related = nearbyCodes(codes, i, MAX_STRUCTURAL_RELATED);
-      if (related.length > 0) content.relatedIds = related;
-    }
-  }
 }
 
 /** Strip markup/delimiters for search indexing only — never mutate display content. */
@@ -596,7 +566,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
   }
 
   flush();
-  applyStructuralRelated(sections);
+  enrichCalculoFormulas(sections);
 
   const blockCount = sections.reduce((n, s) => n + s.blocks.length, 0);
   const formulaCount = sections.reduce(

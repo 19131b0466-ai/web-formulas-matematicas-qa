@@ -1,5 +1,6 @@
 export { parseFormulasMarkdown } from './parse-markdown.js';
 export { parsePhysicsMarkdown } from './parse-physics-markdown.js';
+export { enrichCalculoFormulas, extractConstraintsFromLatex } from './enrich-calculo.js';
 export { slugify } from './slugify.js';
 export {
   inferTags,
