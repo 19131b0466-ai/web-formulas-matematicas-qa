@@ -66,9 +66,11 @@ export async function fetchSections(subject: SubjectSlug = 'calculo-ii'): Promis
   try {
     const data = await apiFetch<{ sections: SectionSummary[] }>(
       `/subjects/${encodeURIComponent(subject)}/sections`,
+      { cache: 'no-store' },
     );
     return data.sections;
-  } catch {
+  } catch (err) {
+    console.error('[fetchSections]', subject, getApiBaseUrl(), err);
     return [];
   }
 }
@@ -150,7 +152,7 @@ export function isAppendixSlug(slug: string): boolean {
   return slug.startsWith('apendice-');
 }
 
-/** @deprecated Prefer sectionHref(subject, slug) from subjects.ts */
-export function sectionHref(slug: string, subject: SubjectSlug = 'calculo-ii'): string {
+/** Subject-first href helper (same signature as `@/lib/subjects`). */
+export function sectionHref(subject: SubjectSlug, slug: string): string {
   return subjectSectionHref(subject, slug);
 }

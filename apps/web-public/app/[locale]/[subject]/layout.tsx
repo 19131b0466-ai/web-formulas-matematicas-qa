@@ -6,6 +6,8 @@ import { localizeContent } from '@/lib/localize-content';
 import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
 
+export const dynamic = 'force-dynamic';
+
 type LayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string; subject: string }>;

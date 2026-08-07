@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
   async redirects() {
+    // IMPORTANT: never use a bare `/:locale/...` matcher — subject slugs like
+    // `calculo-ii` would be captured as the locale and produce
+    // `/calculo-ii/calculo-ii/seccion/...` 404s.
+    const locales = 'es|en|de|pt|fr|it';
     return [
       {
         source: '/seccion/:slug',
@@ -53,22 +57,22 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale/seccion/:slug',
+        source: `/:locale(${locales})/seccion/:slug`,
         destination: '/:locale/calculo-ii/seccion/:slug',
         permanent: true,
       },
       {
-        source: '/:locale/apendice/:slug',
+        source: `/:locale(${locales})/apendice/:slug`,
         destination: '/:locale/calculo-ii/apendice/:slug',
         permanent: true,
       },
       {
-        source: '/:locale/buscar',
+        source: `/:locale(${locales})/buscar`,
         destination: '/:locale/calculo-ii/buscar',
         permanent: true,
       },
       {
-        source: '/:locale/guia',
+        source: `/:locale(${locales})/guia`,
         destination: '/:locale/calculo-ii/guia',
         permanent: true,
       },

@@ -203,7 +203,7 @@ export async function seedAllSubjects(db: Database): Promise<SeedStats[]> {
 
 async function main() {
   const db = createDb(getDatabaseUrl());
-  const pathArg = process.argv[2];
+  const pathArg = process.argv.slice(2).find((arg) => arg !== '--');
   if (pathArg) {
     const stats = await seedFromMarkdown(db, resolve(pathArg));
     console.log(
