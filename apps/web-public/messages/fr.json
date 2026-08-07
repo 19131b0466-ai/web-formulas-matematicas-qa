@@ -10,7 +10,7 @@
   "nav": {
     "home": "Accueil",
     "search": "Rechercher",
-    "guide": "Guide des méthodes",
+    "guide": "Guide",
     "sections": "Sections",
     "menu": "Menu",
     "closeMenu": "Fermer le menu",
@@ -32,7 +32,7 @@
     "title": "Formulaire de Calcul II",
     "intro": "Consultez primitives, techniques d'intégration, séries et applications. Tout le contenu vient de l'API — aucune formule codée en dur dans le frontend.",
     "ctaSearch": "Rechercher des formules",
-    "ctaGuide": "Guide des méthodes",
+    "ctaGuide": "Guide",
     "index": "Index",
     "indexSummarySimple": "{main} sections principales",
     "andAppendices": " et {count} annexes",
@@ -42,7 +42,7 @@
   },
   "footer": {
     "line": "Formules mathématiques · contenu via API ·",
-    "guideLink": "Guide des méthodes",
+    "guideLink": "Guide",
     "hubLink": "Matières"
   },
   "search": {
@@ -69,7 +69,14 @@
     "signal": "Signal",
     "method": "Méthode",
     "empty": "Aucune stratégie disponible. Vérifiez l'API et le seed.",
-    "checklist": "Liste de contrôle"
+    "checklist": "Liste de contrôle",
+    "titlePhysics": "Guide pour cadrer un problème",
+    "descriptionPhysics": "Guide pratique pour choisir le bon bloc de formules de Physique de base selon l’énoncé.",
+    "ogTitlePhysics": "Guide d’approche · Physique de base",
+    "sectionLabelPhysics": "Section 18",
+    "introPhysics": "Utilisez l’indice de l’énoncé pour décider quelle section du catalogue ouvrir en premier.",
+    "signalMethodPhysics": "Indice → approche",
+    "methodPhysics": "Approche"
   },
   "section": {
     "label": "Section {number}",
@@ -108,7 +115,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Rechercher des formules",
-    "ctaGuide": "Guide des méthodes",
+    "ctaGuide": "Guide",
     "ctaHub": "Toutes les matières",
     "index": "Index",
     "indexSummarySimple": "{main} sections principales",

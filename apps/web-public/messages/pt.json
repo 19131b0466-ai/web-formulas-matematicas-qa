@@ -10,7 +10,7 @@
   "nav": {
     "home": "Início",
     "search": "Buscar",
-    "guide": "Guia de métodos",
+    "guide": "Guia",
     "sections": "Seções",
     "menu": "Menu",
     "closeMenu": "Fechar menu",
@@ -32,7 +32,7 @@
     "title": "Formulário de Cálculo II",
     "intro": "Consulte antiderivadas, técnicas de integração, séries e aplicações. Todo o conteúdo vem da API — sem fórmulas fixas no frontend.",
     "ctaSearch": "Buscar fórmulas",
-    "ctaGuide": "Guia de métodos",
+    "ctaGuide": "Guia",
     "index": "Índice",
     "indexSummarySimple": "{main} seções principais",
     "andAppendices": " e {count} apêndices",
@@ -42,7 +42,7 @@
   },
   "footer": {
     "line": "Fórmulas matemáticas · conteúdo via API ·",
-    "guideLink": "Guia de métodos",
+    "guideLink": "Guia",
     "hubLink": "Matérias"
   },
   "search": {
@@ -69,7 +69,14 @@
     "signal": "Sinal",
     "method": "Método",
     "empty": "Nenhuma estratégia disponível. Verifique a API e o seed.",
-    "checklist": "Lista de verificação"
+    "checklist": "Lista de verificação",
+    "titlePhysics": "Guia para enfocar um problema",
+    "descriptionPhysics": "Guia prática para escolher o bloco certo de fórmulas de Física Básica conforme o enunciado.",
+    "ogTitlePhysics": "Guia de enfoque · Física Básica",
+    "sectionLabelPhysics": "Seção 18",
+    "introPhysics": "Use o sinal do enunciado para decidir qual seção do catálogo abrir primeiro.",
+    "signalMethodPhysics": "Sinal → enfoque",
+    "methodPhysics": "Enfoque"
   },
   "section": {
     "label": "Seção {number}",
@@ -108,7 +115,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Buscar fórmulas",
-    "ctaGuide": "Guia de métodos",
+    "ctaGuide": "Guia",
     "ctaHub": "Todas as matérias",
     "index": "Índice",
     "indexSummarySimple": "{main} seções principais",

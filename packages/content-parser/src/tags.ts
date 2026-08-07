@@ -37,6 +37,7 @@ const SECTION_TAGS: Record<string, string[]> = {
   termodinamica: ['termodinamica', 'fisica'],
   'electricidad-basica': ['electricidad', 'fisica'],
   'constantes-fisicas': ['constantes', 'fisica'],
+  'guia-enfoque': ['guia', 'estrategia', 'fisica'],
 };
 
 const KEYWORD_TAGS: Array<[RegExp, string]> = [
@@ -124,4 +125,5 @@ export const PHYSICS_SECTION_SLUG_OVERRIDES: Record<string, string> = {
   '15': 'termodinamica',
   '16': 'electricidad-basica',
   '17': 'constantes-fisicas',
+  '18': 'guia-enfoque',
 };

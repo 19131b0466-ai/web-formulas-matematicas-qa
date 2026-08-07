@@ -31,7 +31,8 @@ El documento está organizado para soportar dos vistas en la aplicación:
 15. [Termodinámica](#15-termodinámica)
 16. [Electricidad básica](#16-electricidad-básica)
 17. [Constantes físicas](#17-constantes-físicas)
-18. [Resumen de relaciones](#18-resumen-de-relaciones)
+18. [Guía para enfocar un problema](#18-guía-para-enfocar-un-problema)
+19. [Resumen de relaciones](#19-resumen-de-relaciones)
 
 ---
 
@@ -2828,7 +2829,43 @@ U_C=\frac12CV^2
 
 ---
 
-# 18. Resumen de relaciones
+# 18. Guía para enfocar un problema
+
+Cuando el enunciado no indica la fórmula, usa la **señal** del problema para elegir el bloque de fórmulas adecuado. Luego abre esa sección del catálogo y revisa las condiciones de validez.
+
+| Señal en el enunciado | Enfoque / sección a mirar |
+|---|---|
+| Componentes, magnitud, producto punto o cruz, vector unitario | Vectores |
+| Posición, velocidad o aceleración en línea recta; caída libre 1D | Cinemática 1D |
+| Proyectil, alcance, altura máxima, tiempo de vuelo | Movimiento 2D y 3D |
+| Fuerzas, diagrama de cuerpo libre, plano inclinado, fricción, tensión | Leyes de Newton |
+| Curva, \(v=\omega r\), aceleración centrípeta, periodo de rotación | Movimiento circular |
+| Trabajo, energía cinética/potencial, potencia, conservación de energía | Trabajo, energía y potencia |
+| Choque, impulso, “antes/después”, conservación del momento | Momento, impulso y colisiones |
+| Disco, rueda, torque, momento de inercia, \(L=I\omega\) | Rotación |
+| Equilibrio estático, centro de masa, resorte (Hooke) sin oscilar | Equilibrio y elasticidad |
+| Gravedad entre masas, órbitas, satélites, velocidad de escape | Gravitación |
+| Presión, flotación, caudal, Bernoulli | Mecánica de fluidos |
+| Resorte u péndulo, periodo, frecuencia, movimiento armónico | Oscilaciones |
+| Onda viajera, longitud de onda, interferencia, intensidad | Ondas |
+| Sonido, batidos, efecto Doppler, nivel en decibelios | Sonido |
+| Calor, temperatura, gas ideal, primera ley, máquinas térmicas | Termodinámica |
+| Carga, Coulomb, campo/potencial, Ohm, circuitos R, capacitores | Electricidad básica |
+| Necesitas \(g\), \(G\), \(k_e\), \(c\) u otra constante numérica | Constantes físicas |
+
+## 18.1 Orden práctico de revisión
+
+1. Identificar el sistema y dibujar un esquema (fuerzas, trayectoria o circuito).
+2. Clasificar el tipo de problema con la tabla anterior.
+3. Elegir la magnitud pedida (posición, fuerza, energía, corriente, etc.).
+4. Escribir datos conocidos y unidades SI.
+5. Aplicar la fórmula principal y revisar sus condiciones.
+6. Si hay varias etapas (p. ej. choque + energía), encadenar fórmulas relacionadas.
+7. Comprobar signos, dimensiones y si el resultado es razonable.
+
+---
+
+# 19. Resumen de relaciones
 
 Esta sección puede utilizarse para construir la pantalla **Relacionadas** de la app.
 

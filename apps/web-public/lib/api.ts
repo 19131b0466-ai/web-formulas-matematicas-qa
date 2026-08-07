@@ -176,15 +176,18 @@ export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Prom
   }
 });
 
-export const fetchMethodGuide = cache(async (): Promise<MethodGuideResponse> => {
-  try {
-    return await apiFetch<MethodGuideResponse>('/guide/method-selection', {
-      next: { revalidate: 600 },
-    });
-  } catch {
-    return { strategies: [], checklist: [] };
-  }
-});
+export const fetchMethodGuide = cache(
+  async (subject: SubjectSlug = 'calculo-ii'): Promise<MethodGuideResponse> => {
+    try {
+      const qs = new URLSearchParams({ subject });
+      return await apiFetch<MethodGuideResponse>(`/guide/method-selection?${qs.toString()}`, {
+        next: { revalidate: 600 },
+      });
+    } catch {
+      return { strategies: [], checklist: [] };
+    }
+  },
+);
 
 export function flattenSections(sections: SectionSummary[]): SectionSummary[] {
   const out: SectionSummary[] = [];

@@ -161,7 +161,7 @@ describe('API content endpoints (PGlite)', () => {
   });
 
   it('GET /v1/guide/method-selection returns strategies', async () => {
-    const res = await app.request('/v1/guide/method-selection');
+    const res = await app.request('/v1/guide/method-selection?subject=calculo-ii');
     expect(res.status).toBe(200);
     const body = (await res.json()) as {
       strategies: Array<{ signal: string; method: string }>;
@@ -169,5 +169,19 @@ describe('API content endpoints (PGlite)', () => {
     };
     expect(body.strategies.length).toBeGreaterThanOrEqual(5);
     expect(body.checklist.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it('GET /v1/guide/method-selection?subject=fisica-basica returns physics strategies', async () => {
+    const res = await app.request('/v1/guide/method-selection?subject=fisica-basica');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      strategies: Array<{ signal: string; method: string }>;
+      checklist: string[];
+    };
+    expect(body.strategies.length).toBeGreaterThanOrEqual(10);
+    expect(body.checklist.length).toBeGreaterThanOrEqual(5);
+    expect(body.strategies.some((s) => /newton|proyectil|ohm/i.test(`${s.signal} ${s.method}`))).toBe(
+      true,
+    );
   });
 });

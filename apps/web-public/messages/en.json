@@ -10,7 +10,7 @@
   "nav": {
     "home": "Home",
     "search": "Search",
-    "guide": "Method guide",
+    "guide": "Guide",
     "sections": "Sections",
     "menu": "Menu",
     "closeMenu": "Close menu",
@@ -32,7 +32,7 @@
     "title": "Calculus II Formula Sheet",
     "intro": "Browse antiderivatives, integration techniques, series, and applications. All content is served by the API — no hardcoded formulas in the frontend.",
     "ctaSearch": "Search formulas",
-    "ctaGuide": "Method guide",
+    "ctaGuide": "Guide",
     "index": "Index",
     "indexSummarySimple": "{main} main sections",
     "andAppendices": " and {count} appendices",
@@ -42,7 +42,7 @@
   },
   "footer": {
     "line": "Mathematical formulas · API-served content ·",
-    "guideLink": "Method guide",
+    "guideLink": "Guide",
     "hubLink": "Subjects"
   },
   "search": {
@@ -69,7 +69,14 @@
     "signal": "Signal",
     "method": "Method",
     "empty": "No strategies available. Check the API and seed.",
-    "checklist": "Checklist"
+    "checklist": "Checklist",
+    "titlePhysics": "Guide to framing a problem",
+    "descriptionPhysics": "Practical guide to choose the right Basic Physics formula block from problem cues.",
+    "ogTitlePhysics": "Approach guide · Basic Physics",
+    "sectionLabelPhysics": "Section 18",
+    "introPhysics": "Use the cue in the problem statement to decide which catalog section to open first.",
+    "signalMethodPhysics": "Cue → approach",
+    "methodPhysics": "Approach"
   },
   "section": {
     "label": "Section {number}",
@@ -108,7 +115,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Search formulas",
-    "ctaGuide": "Method guide",
+    "ctaGuide": "Guide",
     "ctaHub": "All subjects",
     "index": "Index",
     "indexSummarySimple": "{main} main sections",

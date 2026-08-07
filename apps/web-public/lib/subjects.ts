@@ -29,7 +29,12 @@ export function guideHref(subject: SubjectSlug): string {
 }
 
 export function subjectHasGuide(subject: SubjectSlug): boolean {
-  return subject === 'calculo-ii';
+  return subject === 'calculo-ii' || subject === 'fisica-basica';
+}
+
+/** Section slug that backs `/guia` for each subject. */
+export function subjectGuideSectionSlug(subject: SubjectSlug): string {
+  return subject === 'fisica-basica' ? 'guia-enfoque' : 'guia-metodos';
 }
 
 export function subjectUsesFormulaCatalog(subject: SubjectSlug): boolean {

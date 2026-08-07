@@ -10,7 +10,7 @@
   "nav": {
     "home": "Start",
     "search": "Suche",
-    "guide": "Methodenleitfaden",
+    "guide": "Leitfaden",
     "sections": "Abschnitte",
     "menu": "Menü",
     "closeMenu": "Menü schließen",
@@ -32,7 +32,7 @@
     "title": "Formelsammlung Analysis II",
     "intro": "Stammfunktionen, Integrationstechniken, Reihen und Anwendungen nachschlagen. Alle Inhalte kommen von der API — keine fest eingebauten Formeln im Frontend.",
     "ctaSearch": "Formeln suchen",
-    "ctaGuide": "Methodenleitfaden",
+    "ctaGuide": "Leitfaden",
     "index": "Inhalt",
     "indexSummarySimple": "{main} Hauptabschnitte",
     "andAppendices": " und {count} Anhänge",
@@ -42,7 +42,7 @@
   },
   "footer": {
     "line": "Mathematische Formeln · Inhalt per API ·",
-    "guideLink": "Methodenleitfaden",
+    "guideLink": "Leitfaden",
     "hubLink": "Fächer"
   },
   "search": {
@@ -69,7 +69,14 @@
     "signal": "Signal",
     "method": "Methode",
     "empty": "Keine Strategien verfügbar. Prüfe API und Seed.",
-    "checklist": "Checkliste"
+    "checklist": "Checkliste",
+    "titlePhysics": "Leitfaden zur Problemausrichtung",
+    "descriptionPhysics": "Praktischer Leitfaden zur Wahl des passenden Formelblocks der Grundlagenphysik.",
+    "ogTitlePhysics": "Ansatzleitfaden · Grundlagenphysik",
+    "sectionLabelPhysics": "Abschnitt 18",
+    "introPhysics": "Nutze das Signal in der Aufgabenstellung, um zuerst den passenden Katalogabschnitt zu öffnen.",
+    "signalMethodPhysics": "Signal → Ansatz",
+    "methodPhysics": "Ansatz"
   },
   "section": {
     "label": "Abschnitt {number}",
@@ -108,7 +115,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Formeln suchen",
-    "ctaGuide": "Methodenleitfaden",
+    "ctaGuide": "Leitfaden",
     "ctaHub": "Alle Fächer",
     "index": "Index",
     "indexSummarySimple": "{main} Hauptabschnitte",

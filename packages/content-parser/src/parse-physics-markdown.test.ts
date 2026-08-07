@@ -167,6 +167,18 @@ describe('parsePhysicsMarkdown (full document)', () => {
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
+  it('imports the approach guide as strategies and checklist', () => {
+    const guide = result.sections.find((s) => s.slug === 'guia-enfoque');
+    expect(guide).toBeDefined();
+    const strategies = guide!.blocks.filter((b) => b.blockType === 'strategy');
+    expect(strategies.length).toBeGreaterThanOrEqual(15);
+    const lists = guide!.blocks.filter((b) => b.blockType === 'list');
+    expect(lists.length).toBeGreaterThanOrEqual(1);
+    const first = strategies[0]!.content as { signal: string; method: string };
+    expect(first.signal.toLowerCase()).toMatch(/vector|componente/);
+    expect(first.method.toLowerCase()).toMatch(/vector/);
+  });
+
   it('resolves related IDs against known formula codes', () => {
     const codes = new Set(
       result.sections.flatMap((s) =>

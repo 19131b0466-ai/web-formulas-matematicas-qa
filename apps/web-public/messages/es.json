@@ -11,7 +11,7 @@
     "hub": "Materias",
     "home": "Inicio",
     "search": "Buscar",
-    "guide": "Guía de métodos",
+    "guide": "Guía",
     "sections": "Secciones",
     "menu": "Menú",
     "closeMenu": "Cerrar menú",
@@ -36,7 +36,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Buscar fórmulas",
-    "ctaGuide": "Guía de métodos",
+    "ctaGuide": "Guía",
     "ctaHub": "Todas las materias",
     "index": "Índice",
     "indexSummarySimple": "{main} secciones principales",
@@ -48,7 +48,7 @@
   },
   "footer": {
     "line": "Fórmulas matemáticas · contenido servido por API ·",
-    "guideLink": "Guía de métodos",
+    "guideLink": "Guía",
     "hubLink": "Materias"
   },
   "search": {
@@ -70,10 +70,17 @@
     "ogTitle": "Guía de métodos · Cálculo II",
     "sectionLabel": "Sección 17",
     "intro": "Usa la señal del integrando para decidir qué técnica conviene intentar primero.",
+    "titlePhysics": "Guía para enfocar un problema",
+    "descriptionPhysics": "Guía práctica para elegir el bloque de fórmulas de Física Básica según la señal del enunciado.",
+    "ogTitlePhysics": "Guía de enfoque · Física Básica",
+    "sectionLabelPhysics": "Sección 18",
+    "introPhysics": "Usa la señal del enunciado para decidir qué sección del catálogo conviene abrir primero.",
     "fullSection": "Ver sección completa en el índice →",
     "signalMethod": "Señal → método",
+    "signalMethodPhysics": "Señal → enfoque",
     "signal": "Señal",
     "method": "Método",
+    "methodPhysics": "Enfoque",
     "empty": "No hay estrategias disponibles. Verifica la API y el seed.",
     "checklist": "Lista de comprobación"
   },

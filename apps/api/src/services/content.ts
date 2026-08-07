@@ -341,14 +341,23 @@ export async function listFormulaCodes(
   return rows.map((r) => r.code!).filter(Boolean);
 }
 
-export async function getMethodGuide(db: Database): Promise<MethodGuideResponse> {
-  const subjectId = await requireSubjectId(db, 'calculo-ii');
+const GUIDE_SECTION_SLUG: Record<string, string> = {
+  'calculo-ii': 'guia-metodos',
+  'fisica-basica': 'guia-enfoque',
+};
+
+export async function getMethodGuide(
+  db: Database,
+  subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<MethodGuideResponse> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
   if (!subjectId) return { strategies: [], checklist: [] };
 
+  const guideSlug = GUIDE_SECTION_SLUG[subjectSlug] ?? 'guia-metodos';
   const [guide] = await db
     .select()
     .from(sections)
-    .where(and(eq(sections.slug, 'guia-metodos'), eq(sections.subjectId, subjectId)))
+    .where(and(eq(sections.slug, guideSlug), eq(sections.subjectId, subjectId)))
     .limit(1);
 
   if (!guide) {

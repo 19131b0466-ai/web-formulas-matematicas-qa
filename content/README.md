@@ -26,6 +26,7 @@
 | 15 | Termodinámica                         | `termodinamica`              |
 | 16 | Electricidad básica                   | `electricidad-basica`        |
 | 17 | Constantes físicas                    | `constantes-fisicas`         |
+| 18 | Guía para enfocar un problema         | `guia-enfoque`               |
 
 Secciones del MD que **no** se importan como catálogo: Índice, Notación general, Resumen de relaciones (el grafo sale de `**Relacionadas:**`), Modelo recomendado, Frontera con Física Electrónica, Fuentes.
 

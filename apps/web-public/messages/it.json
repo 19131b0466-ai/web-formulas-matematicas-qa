@@ -10,7 +10,7 @@
   "nav": {
     "home": "Home",
     "search": "Cerca",
-    "guide": "Guida ai metodi",
+    "guide": "Guida",
     "sections": "Sezioni",
     "menu": "Menu",
     "closeMenu": "Chiudi menu",
@@ -32,7 +32,7 @@
     "title": "Formulario di Calcolo II",
     "intro": "Consulta primitive, tecniche di integrazione, serie e applicazioni. Tutti i contenuti arrivano dall'API — nessuna formula hardcoded nel frontend.",
     "ctaSearch": "Cerca formule",
-    "ctaGuide": "Guida ai metodi",
+    "ctaGuide": "Guida",
     "index": "Indice",
     "indexSummarySimple": "{main} sezioni principali",
     "andAppendices": " e {count} appendici",
@@ -42,7 +42,7 @@
   },
   "footer": {
     "line": "Formule matematiche · contenuto via API ·",
-    "guideLink": "Guida ai metodi",
+    "guideLink": "Guida",
     "hubLink": "Materie"
   },
   "search": {
@@ -69,7 +69,14 @@
     "signal": "Segnale",
     "method": "Metodo",
     "empty": "Nessuna strategia disponibile. Verifica l'API e il seed.",
-    "checklist": "Lista di controllo"
+    "checklist": "Lista di controllo",
+    "titlePhysics": "Guida per impostare un problema",
+    "descriptionPhysics": "Guida pratica per scegliere il blocco di formule di Fisica di base secondo il testo del problema.",
+    "ogTitlePhysics": "Guida di approccio · Fisica di base",
+    "sectionLabelPhysics": "Sezione 18",
+    "introPhysics": "Usa il segnale nel testo per decidere quale sezione del catalogo aprire per prima.",
+    "signalMethodPhysics": "Segnale → approccio",
+    "methodPhysics": "Approccio"
   },
   "section": {
     "label": "Sezione {number}",
@@ -108,7 +115,7 @@
   },
   "subjectHome": {
     "ctaSearch": "Cerca formule",
-    "ctaGuide": "Guida ai metodi",
+    "ctaGuide": "Guida",
     "ctaHub": "Tutte le materie",
     "index": "Indice",
     "indexSummarySimple": "{main} sezioni principali",

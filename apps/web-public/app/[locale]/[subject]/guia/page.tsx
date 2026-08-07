@@ -9,6 +9,7 @@ import { localizeContent } from '@/lib/localize-content';
 import {
   isSubjectSlug,
   sectionHref,
+  subjectGuideSectionSlug,
   subjectHasGuide,
   subjectHomeHref,
   type SubjectSlug,
@@ -23,12 +24,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale, subject: subjectRaw } = await params;
   if (!isSubjectSlug(subjectRaw) || !subjectHasGuide(subjectRaw)) return {};
   const t = await getTranslations({ locale, namespace: 'guide' });
+  const physics = subjectRaw === 'fisica-basica';
   return {
-    title: t('title'),
-    description: t('description'),
+    title: physics ? t('titlePhysics') : t('title'),
+    description: physics ? t('descriptionPhysics') : t('description'),
     openGraph: {
-      title: t('ogTitle'),
-      description: t('description'),
+      title: physics ? t('ogTitlePhysics') : t('ogTitle'),
+      description: physics ? t('descriptionPhysics') : t('description'),
     },
   };
 }
@@ -46,8 +48,10 @@ export default async function GuidePage({ params }: PageProps) {
   const tn = await getTranslations('nav');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
-  const guide = await localizeContent(await fetchMethodGuide(), locale);
-  const section = await fetchSection('guia-metodos', subject);
+  const guide = await localizeContent(await fetchMethodGuide(subject), locale);
+  const guideSectionSlug = subjectGuideSectionSlug(subject);
+  const section = await fetchSection(guideSectionSlug, subject);
+  const isPhysics = subject === 'fisica-basica';
 
   return (
     <div>
@@ -61,16 +65,18 @@ export default async function GuidePage({ params }: PageProps) {
 
       <header className="mb-8 animate-rise">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
-          {t('sectionLabel')}
+          {isPhysics ? t('sectionLabelPhysics') : t('sectionLabel')}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t('title')}
+          {isPhysics ? t('titlePhysics') : t('title')}
         </h1>
-        <p className="mt-3 max-w-2xl text-lg text-[var(--fg-muted)]">{t('intro')}</p>
+        <p className="mt-3 max-w-2xl text-lg text-[var(--fg-muted)]">
+          {isPhysics ? t('introPhysics') : t('intro')}
+        </p>
         {section ? (
           <p className="mt-3 text-sm">
             <Link
-              href={sectionHref(subject, 'guia-metodos') as '/'}
+              href={sectionHref(subject, guideSectionSlug) as '/'}
               className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
             >
               {t('fullSection')}
@@ -80,7 +86,9 @@ export default async function GuidePage({ params }: PageProps) {
       </header>
 
       <section className="space-y-3">
-        <h2 className="font-display text-xl font-semibold">{t('signalMethod')}</h2>
+        <h2 className="font-display text-xl font-semibold">
+          {isPhysics ? t('signalMethodPhysics') : t('signalMethod')}
+        </h2>
         {guide.strategies.length === 0 ? (
           <p className="text-sm text-[var(--fg-muted)]">{t('empty')}</p>
         ) : (
@@ -100,7 +108,7 @@ export default async function GuidePage({ params }: PageProps) {
                 </div>
                 <div>
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-                    {t('method')}
+                    {isPhysics ? t('methodPhysics') : t('method')}
                   </p>
                   <p className="font-medium text-[var(--accent-strong)]">
                     <InlineMarkdown text={row.method} />

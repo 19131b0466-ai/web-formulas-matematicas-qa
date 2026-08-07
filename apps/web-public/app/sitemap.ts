@@ -38,7 +38,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (!isSubjectSlug(subjectMeta.slug)) continue;
       const subject = subjectMeta.slug as SubjectSlug;
       const staticPaths = [`/${subject}`, `/${subject}/buscar`];
-      if (subject === 'calculo-ii') staticPaths.push(`/${subject}/guia`);
+      if (subject === 'calculo-ii' || subject === 'fisica-basica') {
+        staticPaths.push(`/${subject}/guia`);
+      }
 
       for (const path of staticPaths) {
         entries.push({

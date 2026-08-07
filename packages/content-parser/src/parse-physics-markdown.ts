@@ -2,6 +2,7 @@ import type {
   FormulaContent,
   ListContent,
   NoteContent,
+  StrategyContent,
   TableContent,
   TextContent,
 } from '@repo/shared-types';
@@ -22,8 +23,20 @@ const BLOCKQUOTE_RE = /^>\s?(.*)$/;
 const INDEX_TITLE_RE = /^Índice\b/i;
 const SKIP_H1_RE =
   /^(Notaci[oó]n general|Resumen de relaciones|Modelo recomendado|Frontera con|Fuentes de referencia)/i;
+const GUIDE_CHAPTER_RE = /^Gu[ií]a para enfocar/i;
 const NUMBERED_CHAPTER_RE = /^(\d+)\.\s+(.+)$/;
 const FORMULA_HEADING_RE = /^(\d+(?:\.\d+)+)\.?\s+(.+)$/;
+
+function isStrategyTable(headers: string[]): boolean {
+  const joined = headers.join(' ').toLowerCase();
+  return (
+    joined.includes('señal') ||
+    joined.includes('senal') ||
+    joined.includes('método') ||
+    joined.includes('metodo') ||
+    joined.includes('enfoque')
+  );
+}
 const ID_RE = /^\*\*ID:\*\*\s*`([^`]+)`\s*$/i;
 const DETAIL_RE = /^\*\*Detalle:\*\*\s*(.*)$/i;
 const VARIABLES_RE = /^\*\*Variables:\*\*\s*(.*)$/i;
@@ -279,6 +292,7 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
   let currentSection: ParsedSection | null = null;
   let sortOrder = 0;
   let inIndex = false;
+  let inGuideSection = false;
   let draft: FormulaDraft | null = null;
   let paragraph: string[] = [];
 
@@ -326,18 +340,28 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
       const numbered = raw.match(NUMBERED_CHAPTER_RE);
       if (!numbered) {
         currentSection = null;
+        inGuideSection = false;
         continue;
       }
 
-      // Cap at chapter 17 (skip 18+ meta sections even if regex misses)
       const num = numbered[1]!;
-      if (Number(num) >= 18) {
+      const title = numbered[2]!.trim();
+      // Chapter 18 = approach guide; 19+ meta (resumen, etc.) stay out of the catalog.
+      if (Number(num) >= 19) {
         currentSection = null;
+        inGuideSection = false;
+        continue;
+      }
+      if (Number(num) === 18 && !GUIDE_CHAPTER_RE.test(title)) {
+        currentSection = null;
+        inGuideSection = false;
         continue;
       }
 
       inIndex = false;
-      const section = createChapter(num, numbered[2]!.trim(), sortOrder++);
+      inGuideSection = GUIDE_CHAPTER_RE.test(title) || Number(num) === 18;
+      const section = createChapter(num, title, sortOrder++);
+      if (inGuideSection) section.slug = 'guia-enfoque';
       sections.push(section);
       currentSection = section;
       continue;
@@ -365,6 +389,14 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
       }
 
       const raw = h2[1]!.trim();
+      if (inGuideSection) {
+        // Guide subsections are prose headings, not formula entries.
+        const title = raw.replace(FORMULA_HEADING_RE, '$2').trim() || raw;
+        const content: TextContent = { markdown: `**${title}**` };
+        pushBlock(currentSection, 'text', content, [stripInlineNoise(title)], title);
+        continue;
+      }
+
       const formulaHeading = raw.match(FORMULA_HEADING_RE);
       if (formulaHeading) {
         draft = createFormulaDraft(formulaHeading[2]!.trim());
@@ -448,20 +480,38 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
         flushFormula(currentSection, draft);
         draft = null;
       }
-      const content: TableContent = {
-        headers: table.headers.map((h) => h.trim()),
-        rows: table.rows.map((r) => r.map((cell) => cell.trim())),
-      };
-      pushBlock(
-        currentSection,
-        'table',
-        content,
-        [
-          content.headers.map(stripInlineNoise).join(' '),
-          content.rows.map((r) => r.map(stripInlineNoise).join(' ')).join(' '),
-        ],
-        null,
-      );
+      const headers = table.headers.map((h) => h.trim());
+      if (inGuideSection && isStrategyTable(headers)) {
+        for (const row of table.rows) {
+          if (row.length < 2) continue;
+          const strategy: StrategyContent = {
+            signal: (row[0] ?? '').trim(),
+            method: (row[1] ?? '').trim(),
+          };
+          pushBlock(
+            currentSection,
+            'strategy',
+            strategy,
+            [stripInlineNoise(strategy.signal), stripInlineNoise(strategy.method)],
+            null,
+          );
+        }
+      } else {
+        const content: TableContent = {
+          headers,
+          rows: table.rows.map((r) => r.map((cell) => cell.trim())),
+        };
+        pushBlock(
+          currentSection,
+          'table',
+          content,
+          [
+            content.headers.map(stripInlineNoise).join(' '),
+            content.rows.map((r) => r.map(stripInlineNoise).join(' ')).join(' '),
+          ],
+          null,
+        );
+      }
       i = table.end;
       continue;
     }
