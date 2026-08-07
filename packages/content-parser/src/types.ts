@@ -7,6 +7,8 @@ export interface ParsedBlock {
   searchText: string;
   tags: string[];
   sortOrder: number;
+  /** Stable formula code when present (physics). */
+  formulaCode?: string | null;
 }
 
 export interface ParsedSection {

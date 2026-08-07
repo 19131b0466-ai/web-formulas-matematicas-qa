@@ -39,6 +39,10 @@ function walk(value: unknown, dict: ContentDict, locale: AppLocale): unknown {
     for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
       if (key === 'latex' && typeof child === 'string') {
         out[key] = localizeLatex(child, locale);
+      } else if (key === 'additionalLatex' && Array.isArray(child)) {
+        out[key] = child.map((item) =>
+          typeof item === 'string' ? localizeLatex(item, locale) : walk(item, dict, locale),
+        );
       } else {
         out[key] = walk(child, dict, locale);
       }

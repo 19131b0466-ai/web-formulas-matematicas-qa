@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulaire de Calcul II",
-    "tagline": "Calcul intégral — formules, méthodes et applications",
-    "description": "Formulaire en ligne de Calcul II : primitives, techniques d'intégration, séries, applications et guide des méthodes.",
-    "shortName": "Calcul II",
-    "about": "Calcul intégral",
-    "manifestDescription": "Formulaire en ligne de calcul intégral"
+    "name": "Formulaire universitaire",
+    "tagline": "Calcul II et Physique de base",
+    "description": "Formulaire en ligne multi-matières : calcul intégral et physique de base universitaire.",
+    "shortName": "Formulaire",
+    "about": "Calcul intégral et Physique de base",
+    "manifestDescription": "Formulaire universitaire en ligne"
   },
   "nav": {
     "home": "Accueil",
@@ -15,11 +15,12 @@
     "menu": "Menu",
     "closeMenu": "Fermer le menu",
     "close": "Fermer",
-    "brandEyebrow": "Calcul intégral",
+    "brandEyebrow": "Formulaire universitaire",
     "brandTitle": "Formulaire II",
     "sectionsIndex": "Index des sections",
     "searchPlaceholder": "Rechercher des formules…",
-    "language": "Langue"
+    "language": "Langue",
+    "hub": "Matières"
   },
   "theme": {
     "light": "Clair",
@@ -40,16 +41,17 @@
     "appendices": "Annexes"
   },
   "footer": {
-    "line": "Formulaire de Calcul II · contenu servi par l'API ·",
-    "guideLink": "Guide des méthodes"
+    "line": "Formulaire universitaire · contenu via API ·",
+    "guideLink": "Guide des méthodes",
+    "hubLink": "Matières"
   },
   "search": {
     "title": "Rechercher",
-    "description": "Recherchez formules, techniques et concepts dans le formulaire de Calcul II.",
-    "ogTitle": "Rechercher · Formulaire de Calcul II",
-    "subtitle": "Trouvez des formules par texte ou filtrez par étiquettes de technique.",
+    "description": "Recherchez des formules et concepts dans le formulaire universitaire.",
+    "ogTitle": "Rechercher · Formulaire universitaire",
+    "subtitle": "Trouvez des formules par texte, code ou étiquettes.",
     "label": "Rechercher dans le formulaire",
-    "placeholder": "ex. par parties, Taylor, fractions partielles…",
+    "placeholder": "Ex. VEC-001, intégration par parties, Bernoulli…",
     "submit": "Rechercher",
     "all": "Tous",
     "results": "{count, plural, =1 {# résultat} other {# résultats}}",
@@ -97,5 +99,35 @@
     "title": "Page introuvable",
     "body": "Cette section n'existe pas ou n'a pas encore été importée dans l'API.",
     "back": "Retour à l'accueil"
+  },
+  "hub": {
+    "intro": "Choisissez une matière pour consulter les formules avec LaTeX, recherche et navigation par sections.",
+    "subjectLabel": "Matière",
+    "open": "Ouvrir",
+    "empty": "Aucune matière disponible. Démarrez l’API et exécutez pnpm db:seed."
+  },
+  "subjectHome": {
+    "ctaSearch": "Rechercher des formules",
+    "ctaGuide": "Guide des méthodes",
+    "ctaHub": "Toutes les matières",
+    "index": "Index",
+    "indexSummarySimple": "{main} sections principales",
+    "andAppendices": " et {count} annexes",
+    "empty": "Aucune section disponible. Démarrez l’API et exécutez pnpm db:seed.",
+    "view": "Voir →",
+    "appendices": "Annexes",
+    "fallbackDescription": "Formulaire de {title}."
+  },
+  "formula": {
+    "viewDetail": "Voir le détail",
+    "primary": "Formule",
+    "variant": "Forme équivalente",
+    "detail": "Détail",
+    "variables": "Variables",
+    "conditions": "Conditions",
+    "related": "Formules liées",
+    "inSection": "Dans",
+    "notFound": "Formule introuvable",
+    "metaDescription": "Détail de la formule {id}."
   }
 }

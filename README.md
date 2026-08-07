@@ -1,6 +1,6 @@
 # web-formulas-matematicas
 
-Plataforma web para el ecosistema completo de fórmulas matemáticas — **Formulario en línea de Cálculo II (Cálculo Integral)**.
+Plataforma web multi-materia — **Formulario universitario** (Cálculo II + Física Básica).
 
 ## Monorepo
 
@@ -28,7 +28,8 @@ cp .env.example .env
 # 3. Base de datos local
 docker compose up -d
 
-# 4. Seed de fórmulas
+# 4. Migraciones + seed de ambas materias
+pnpm db:migrate
 pnpm db:seed
 
 # 5. Levantar los 3 servicios
@@ -72,6 +73,15 @@ Resumen:
 
 Ver [`PLAN_DESARROLLO.md`](./PLAN_DESARROLLO.md) para arquitectura, fases y criterios de aceptación.
 
+## Materias
+
+| Slug            | Contenido                                      |
+| --------------- | ---------------------------------------------- |
+| `calculo-ii`    | `content/formulas-calculo-ii.md`               |
+| `fisica-basica` | `content/formulas-fisica-basica.md` (~195 IDs) |
+
+Rutas públicas: `/`, `/calculo-ii/...`, `/fisica-basica/seccion/...`, `/fisica-basica/formula/VEC-001`.
+
 ## Fase actual
 
-**Fase 5 — Despliegue:** configs Vercel/Supabase, crons, docs y hardening listos en repo. Crear proyectos cloud + dominios requiere tu cuenta (pasos en `docs/DEPLOYMENT.md`).
+Multi-materia operativo en código (hub + Física con catálogo/detalle/relaciones). Despliegue cloud: `docs/DEPLOYMENT.md`.

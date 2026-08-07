@@ -19,6 +19,7 @@ Cada proyecto tiene su propio `vercel.json` con `installCommand` / `buildCommand
 1. Crea un proyecto en [Supabase](https://supabase.com).
 2. Abre **SQL Editor** y ejecuta el contenido de:
    - [`supabase/migrations/20260730120000_initial_schema.sql`](../supabase/migrations/20260730120000_initial_schema.sql)
+   - [`supabase/migrations/20260807130000_subjects_multi.sql`](../supabase/migrations/20260807130000_subjects_multi.sql)
 3. En **Project Settings → Database → Connection string**:
    - Usa el **pooler** en modo **Transaction**.
    - Puerto **`6543`** (no el directo `5432`).
@@ -43,7 +44,12 @@ cp .env.example .env
 pnpm db:seed
 ```
 
-El seed es idempotente: puedes re-ejecutarlo tras actualizar `content/formulas-calculo-ii.md`.
+El seed importa **ambas** materias (`calculo-ii` y `fisica-basica`) y es idempotente por materia: puedes re-ejecutarlo tras actualizar `content/formulas-calculo-ii.md` o `content/formulas-fisica-basica.md`.
+
+```bash
+# Solo una materia (opcional)
+pnpm --filter @repo/api db:seed -- content/formulas-fisica-basica.md
+```
 
 > **Nota:** el cliente Drizzle usa `prepare: false` y `max: 1`, requerido por el pooler en transaction mode bajo serverless.
 

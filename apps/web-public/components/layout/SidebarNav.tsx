@@ -4,28 +4,51 @@ import { useTranslations } from 'next-intl';
 import type { SectionSummary } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, usePathname } from '@/i18n/navigation';
-import { sectionHref } from '@/lib/api';
+import type { SubjectSlug } from '@/lib/subjects';
+import {
+  searchHref,
+  sectionHref,
+  subjectHasGuide,
+  subjectHomeHref,
+} from '@/lib/subjects';
 
 type SidebarNavProps = {
+  subject: SubjectSlug;
   sections: SectionSummary[];
   onNavigate?: () => void;
 };
 
-export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
+export function SidebarNav({ subject, sections, onNavigate }: SidebarNavProps) {
   const t = useTranslations('nav');
   const pathname = usePathname();
+  const home = subjectHomeHref(subject);
+  const search = searchHref(subject);
+  const guide = `/${subject}/guia`;
 
   return (
     <nav aria-label={t('sectionsIndex')} className="space-y-1">
       <NavLink href="/" active={pathname === '/'} onNavigate={onNavigate}>
+        {t('hub')}
+      </NavLink>
+      <NavLink href={home as '/'} active={pathname === home} onNavigate={onNavigate}>
         {t('home')}
       </NavLink>
-      <NavLink href="/buscar" active={pathname.startsWith('/buscar')} onNavigate={onNavigate}>
+      <NavLink
+        href={search as '/'}
+        active={pathname.startsWith(search)}
+        onNavigate={onNavigate}
+      >
         {t('search')}
       </NavLink>
-      <NavLink href="/guia" active={pathname.startsWith('/guia')} onNavigate={onNavigate}>
-        {t('guide')}
-      </NavLink>
+      {subjectHasGuide(subject) ? (
+        <NavLink
+          href={guide as '/'}
+          active={pathname.startsWith(guide)}
+          onNavigate={onNavigate}
+        >
+          {t('guide')}
+        </NavLink>
+      ) : null}
 
       <p className="px-3 pb-1 pt-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--sidebar-muted)]">
         {t('sections')}
@@ -33,11 +56,11 @@ export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
 
       <ul className="space-y-0.5">
         {sections.map((section) => {
-          const href = sectionHref(section.slug);
+          const href = sectionHref(subject, section.slug);
           const active = pathname === href || pathname.endsWith(`/${section.slug}`);
           return (
             <li key={section.slug}>
-              <NavLink href={href} active={active} onNavigate={onNavigate}>
+              <NavLink href={href as '/'} active={active} onNavigate={onNavigate}>
                 <span className="mr-2 shrink-0 tabular-nums text-[var(--sidebar-muted)]">
                   {section.number || '·'}
                 </span>
@@ -50,7 +73,7 @@ export function SidebarNav({ sections, onNavigate }: SidebarNavProps) {
                   {section.children.map((child) => (
                     <li key={child.slug}>
                       <NavLink
-                        href={sectionHref(child.slug)}
+                        href={sectionHref(subject, child.slug) as '/'}
                         active={pathname.endsWith(`/${child.slug}`)}
                         compact
                         onNavigate={onNavigate}

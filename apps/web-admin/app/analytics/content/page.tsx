@@ -4,23 +4,30 @@ import { useEffect, useState } from 'react';
 import type { NamedCount } from '@repo/shared-types';
 import { HorizontalBars } from '@/components/charts';
 import { Card, ErrorBox, PageHeader } from '@/components/ui';
-import { defaultRange, fetchPages } from '@/lib/api';
+import { defaultRange, fetchPages, fetchSubjectsAnalytics } from '@/lib/api';
 
 export default function ContentPage() {
   const [pages, setPages] = useState<NamedCount[]>([]);
+  const [subjects, setSubjects] = useState<NamedCount[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const { from, to } = defaultRange();
-    fetchPages(from, to)
-      .then((res) => setPages(res.pages))
+    Promise.all([fetchPages(from, to), fetchSubjectsAnalytics(from, to)])
+      .then(([pagesRes, subjectsRes]) => {
+        setPages(pagesRes.pages);
+        setSubjects(subjectsRes.subjects);
+      })
       .catch((err: unknown) => setError(err instanceof Error ? err.message : 'Error'));
   }, []);
 
   return (
     <div>
-      <PageHeader title="Contenido" subtitle="Secciones y rutas más consultadas." />
+      <PageHeader title="Contenido" subtitle="Materias, secciones y rutas más consultadas." />
       {error ? <ErrorBox message={error} /> : null}
+      <Card title="Top materias">
+        <HorizontalBars data={subjects} />
+      </Card>
       <Card title="Top páginas">
         <HorizontalBars data={pages} />
       </Card>

@@ -6,14 +6,18 @@ import type { SectionSummary } from '@repo/shared-types';
 import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Link } from '@/i18n/navigation';
+import type { SubjectSlug } from '@/lib/subjects';
+import { searchHref, subjectHasGuide, subjectHomeHref } from '@/lib/subjects';
 import { SidebarNav } from './SidebarNav';
 
 type AppShellProps = {
+  subject: SubjectSlug;
+  subjectTitle: string;
   sections: SectionSummary[];
   children: ReactNode;
 };
 
-export function AppShell({ sections, children }: AppShellProps) {
+export function AppShell({ subject, subjectTitle, sections, children }: AppShellProps) {
   const t = useTranslations('nav');
   const tf = useTranslations('footer');
   const [open, setOpen] = useState(false);
@@ -21,9 +25,9 @@ export function AppShell({ sections, children }: AppShellProps) {
   return (
     <div className="relative z-10 flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] lg:flex">
-        <Brand />
+        <Brand subject={subject} subjectTitle={subjectTitle} />
         <div className="flex-1 overflow-y-auto px-3 pb-8">
-          <SidebarNav sections={sections} />
+          <SidebarNav subject={subject} sections={sections} />
         </div>
       </aside>
 
@@ -39,9 +43,9 @@ export function AppShell({ sections, children }: AppShellProps) {
             id="mobile-nav"
             className="absolute inset-y-0 left-0 flex w-[min(20rem,88vw)] flex-col border-r border-[var(--sidebar-border)] bg-[var(--sidebar)] text-[var(--sidebar-fg)] shadow-2xl"
           >
-            <Brand onClose={() => setOpen(false)} />
+            <Brand subject={subject} subjectTitle={subjectTitle} onClose={() => setOpen(false)} />
             <div className="flex-1 overflow-y-auto px-3 pb-8">
-              <SidebarNav sections={sections} onNavigate={() => setOpen(false)} />
+              <SidebarNav subject={subject} sections={sections} onNavigate={() => setOpen(false)} />
             </div>
           </aside>
         </div>
@@ -60,7 +64,7 @@ export function AppShell({ sections, children }: AppShellProps) {
               {t('menu')}
             </button>
             <Link
-              href="/buscar"
+              href={searchHref(subject) as '/'}
               className="hidden min-h-11 items-center rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] px-4 text-sm text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)] sm:inline-flex"
             >
               {t('searchPlaceholder')}
@@ -79,12 +83,21 @@ export function AppShell({ sections, children }: AppShellProps) {
         <footer className="border-t border-[var(--border)] px-4 py-6 text-center text-sm text-[var(--fg-muted)] sm:px-6">
           <p>
             {tf('line')}{' '}
-            <Link
-              href="/guia"
-              className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
-            >
-              {tf('guideLink')}
-            </Link>
+            {subjectHasGuide(subject) ? (
+              <Link
+                href={`/${subject}/guia` as '/'}
+                className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
+              >
+                {tf('guideLink')}
+              </Link>
+            ) : (
+              <Link
+                href="/"
+                className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
+              >
+                {tf('hubLink')}
+              </Link>
+            )}
           </p>
         </footer>
       </div>
@@ -92,19 +105,31 @@ export function AppShell({ sections, children }: AppShellProps) {
   );
 }
 
-function Brand({ onClose }: { onClose?: () => void }) {
+function Brand({
+  subject,
+  subjectTitle,
+  onClose,
+}: {
+  subject: SubjectSlug;
+  subjectTitle: string;
+  onClose?: () => void;
+}) {
   const t = useTranslations('nav');
 
   return (
     <div className="flex items-start justify-between gap-2 px-5 pb-4 pt-6">
-      <Link href="/" onClick={onClose} className="block">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--sidebar-muted)]">
-          {t('brandEyebrow')}
-        </p>
-        <p className="font-display mt-1 text-2xl leading-tight text-[var(--accent-strong)]">
-          {t('brandTitle')}
-        </p>
-      </Link>
+      <div>
+        <Link href="/" onClick={onClose} className="block">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--sidebar-muted)]">
+            {t('brandEyebrow')}
+          </p>
+        </Link>
+        <Link href={subjectHomeHref(subject) as '/'} onClick={onClose} className="block">
+          <p className="font-display mt-1 text-2xl leading-tight text-[var(--accent-strong)]">
+            {subjectTitle}
+          </p>
+        </Link>
+      </div>
       {onClose ? (
         <button
           type="button"

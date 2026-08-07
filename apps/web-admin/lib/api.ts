@@ -135,6 +135,13 @@ export function fetchPages(from?: string, to?: string) {
   return adminFetch<{ pages: NamedCount[] }>(`/admin/analytics/pages?${sp}`);
 }
 
+export function fetchSubjectsAnalytics(from?: string, to?: string) {
+  const sp = new URLSearchParams({ limit: '20' });
+  if (from) sp.set('from', from);
+  if (to) sp.set('to', to);
+  return adminFetch<{ subjects: NamedCount[] }>(`/admin/analytics/subjects?${sp}`);
+}
+
 export function fetchReferrers(from?: string, to?: string) {
   const sp = new URLSearchParams();
   if (from) sp.set('from', from);

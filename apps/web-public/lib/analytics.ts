@@ -61,6 +61,7 @@ function shouldSkipClientDedupe(path: string): boolean {
 export type TrackVisitOptions = {
   path: string;
   sectionSlug?: string | null;
+  subjectSlug?: string | null;
   searchQuery?: string | null;
   queryString?: string | null;
   force?: boolean;
@@ -86,6 +87,7 @@ export function trackVisit(options: TrackVisitOptions): void {
       height: window.screen.height,
     },
     sectionSlug: options.sectionSlug ?? null,
+    subjectSlug: options.subjectSlug ?? null,
     searchQuery: options.searchQuery ?? null,
     queryString: options.queryString ?? null,
   };

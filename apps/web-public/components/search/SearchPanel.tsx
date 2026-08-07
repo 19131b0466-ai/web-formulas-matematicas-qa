@@ -5,9 +5,12 @@ import { useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, useRouter } from '@/i18n/navigation';
-import { sectionHref } from '@/lib/api';
+import type { SubjectSlug } from '@/lib/subjects';
+import { formulaHref, searchHref, sectionHref } from '@/lib/subjects';
 
 type SearchPanelProps = {
+  subject: SubjectSlug;
+  linkFormulas?: boolean;
   initialQuery?: string;
   initialTag?: string;
   results?: SearchResultItem[];
@@ -16,6 +19,8 @@ type SearchPanelProps = {
 };
 
 export function SearchPanel({
+  subject,
+  linkFormulas = false,
   initialQuery = '',
   initialTag = '',
   results = [],
@@ -32,7 +37,14 @@ export function SearchPanel({
     const params = new URLSearchParams();
     if (q.trim()) params.set('q', q.trim());
     if (tag) params.set('tags', tag);
-    router.push(`/buscar?${params.toString()}`);
+    router.push(`${searchHref(subject)}?${params.toString()}`);
+  }
+
+  function resultHref(r: SearchResultItem): string {
+    if (linkFormulas && r.formulaCode) {
+      return formulaHref(subject, r.formulaCode);
+    }
+    return sectionHref(subject, r.sectionSlug);
   }
 
   return (
@@ -104,10 +116,13 @@ export function SearchPanel({
         {results.map((r) => (
           <li key={r.blockId}>
             <Link
-              href={sectionHref(r.sectionSlug) as '/'}
+              href={resultHref(r) as '/'}
               className="block rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4 transition hover:border-[var(--accent)]"
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+                {r.formulaCode ? (
+                  <span className="mr-2 font-mono text-[var(--accent-strong)]">{r.formulaCode}</span>
+                ) : null}
                 {r.sectionNumber ? `${r.sectionNumber} · ` : ''}
                 <InlineMarkdown text={r.sectionTitle} />
                 <span className="ml-2 font-normal normal-case">({r.blockType})</span>

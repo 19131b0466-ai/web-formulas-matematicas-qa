@@ -1,24 +1,35 @@
 import { getTranslations } from 'next-intl/server';
 import type { SectionDetailResponse } from '@repo/shared-types';
 import { ContentBlocks } from '@/components/content/ContentBlocks';
+import { FormulaCatalog } from '@/components/physics/FormulaCatalog';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Link } from '@/i18n/navigation';
-import { sectionHref } from '@/lib/api';
+import type { SubjectSlug } from '@/lib/subjects';
+import { sectionHref, subjectHomeHref, subjectUsesFormulaCatalog } from '@/lib/subjects';
 
 type SectionViewProps = {
+  subject: SubjectSlug;
+  subjectTitle: string;
   detail: SectionDetailResponse;
   parent?: { slug: string; title: string } | null;
 };
 
-export async function SectionView({ detail, parent = null }: SectionViewProps) {
+export async function SectionView({
+  subject,
+  subjectTitle,
+  detail,
+  parent = null,
+}: SectionViewProps) {
   const t = await getTranslations('section');
   const tn = await getTranslations('nav');
   const { section, blocks, subsections } = detail;
+  const catalog = subjectUsesFormulaCatalog(subject);
 
   const crumbs = [
-    { label: tn('home'), href: '/' },
-    ...(parent ? [{ label: parent.title, href: sectionHref(parent.slug) }] : []),
+    { label: tn('hub'), href: '/' },
+    { label: subjectTitle, href: subjectHomeHref(subject) },
+    ...(parent ? [{ label: parent.title, href: sectionHref(subject, parent.slug) }] : []),
     { label: section.title },
   ];
 
@@ -52,7 +63,7 @@ export async function SectionView({ detail, parent = null }: SectionViewProps) {
             {subsections.map((sub) => (
               <li key={sub.slug}>
                 <Link
-                  href={sectionHref(sub.slug) as '/'}
+                  href={sectionHref(subject, sub.slug) as '/'}
                   className="inline-flex min-h-10 items-center text-sm text-[var(--accent-strong)] underline-offset-2 hover:underline"
                 >
                   {sub.number ? `${sub.number} ` : ''}
@@ -64,7 +75,11 @@ export async function SectionView({ detail, parent = null }: SectionViewProps) {
         </nav>
       ) : null}
 
-      <ContentBlocks blocks={blocks} sectionNumber={section.number} />
+      {catalog ? (
+        <FormulaCatalog subject={subject} blocks={blocks} />
+      ) : (
+        <ContentBlocks blocks={blocks} sectionNumber={section.number} />
+      )}
     </article>
   );
 }

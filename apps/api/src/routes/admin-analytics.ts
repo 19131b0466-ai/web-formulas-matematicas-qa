@@ -11,6 +11,7 @@ import {
   getReferrers,
   getTimeseries,
   getTopPages,
+  getTopSubjects,
   listRecentVisitsAdmin,
 } from '../services/admin-analytics.js';
 
@@ -59,6 +60,13 @@ export function createAdminAnalyticsRoutes(getDb: () => Database) {
     if (!parsed.success) return c.json({ error: 'Invalid query' }, 400);
     const data = await getTopPages(getDb(), parseRange(parsed.data), parsed.data.limit ?? 20);
     return c.json({ pages: data });
+  });
+
+  routes.get('/subjects', async (c) => {
+    const parsed = rangeSchema.safeParse(c.req.query());
+    if (!parsed.success) return c.json({ error: 'Invalid query' }, 400);
+    const data = await getTopSubjects(getDb(), parseRange(parsed.data), parsed.data.limit ?? 20);
+    return c.json({ subjects: data });
   });
 
   routes.get('/referrers', async (c) => {

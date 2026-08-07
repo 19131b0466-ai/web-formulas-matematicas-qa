@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formelsammlung Analysis II",
-    "tagline": "Integralrechnung — Formeln, Methoden und Anwendungen",
-    "description": "Online-Formelsammlung Analysis II: Stammfunktionen, Integrationstechniken, Reihen, Anwendungen und Methodenleitfaden.",
-    "shortName": "Analysis II",
-    "about": "Integralrechnung",
-    "manifestDescription": "Online-Formelsammlung zur Integralrechnung"
+    "name": "Universitäre Formelsammlung",
+    "tagline": "Analysis II und Grundlagen der Physik",
+    "description": "Mehrfach-Fach Formelsammlung online: Integralrechnung und universitäre Grundlagenphysik.",
+    "shortName": "Formeln",
+    "about": "Integralrechnung und Grundlagenphysik",
+    "manifestDescription": "Universitäre Formelsammlung online"
   },
   "nav": {
     "home": "Start",
@@ -15,11 +15,12 @@
     "menu": "Menü",
     "closeMenu": "Menü schließen",
     "close": "Schließen",
-    "brandEyebrow": "Integralrechnung",
+    "brandEyebrow": "Universitäre Formeln",
     "brandTitle": "Formelsammlung II",
     "sectionsIndex": "Abschnittsverzeichnis",
     "searchPlaceholder": "Formeln suchen…",
-    "language": "Sprache"
+    "language": "Sprache",
+    "hub": "Fächer"
   },
   "theme": {
     "light": "Hell",
@@ -40,16 +41,17 @@
     "appendices": "Anhänge"
   },
   "footer": {
-    "line": "Formelsammlung Analysis II · Inhalte über API ·",
-    "guideLink": "Methodenleitfaden"
+    "line": "Universitäre Formelsammlung · Inhalt per API ·",
+    "guideLink": "Methodenleitfaden",
+    "hubLink": "Fächer"
   },
   "search": {
     "title": "Suche",
-    "description": "Suche Formeln, Techniken und Begriffe in der Formelsammlung Analysis II.",
-    "ogTitle": "Suche · Formelsammlung Analysis II",
-    "subtitle": "Finde Formeln per Text oder filtere nach Technik-Tags.",
+    "description": "Suche Formeln und Konzepte in der universitären Formelsammlung.",
+    "ogTitle": "Suche · Universitäre Formelsammlung",
+    "subtitle": "Finde Formeln nach Text, Code oder Tags.",
     "label": "In der Formelsammlung suchen",
-    "placeholder": "z. B. partiell, Taylor, Partialbrüche…",
+    "placeholder": "Z. B. VEC-001, partielle Integration, Bernoulli…",
     "submit": "Suchen",
     "all": "Alle",
     "results": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",
@@ -97,5 +99,35 @@
     "title": "Seite nicht gefunden",
     "body": "Dieser Abschnitt existiert nicht oder wurde noch nicht in die API importiert.",
     "back": "Zur Startseite"
+  },
+  "hub": {
+    "intro": "Wähle ein Fach, um Formeln mit LaTeX, Suche und Abschnittsnavigation zu durchsuchen.",
+    "subjectLabel": "Fach",
+    "open": "Öffnen",
+    "empty": "Keine Fächer verfügbar. Starte die API und führe pnpm db:seed aus."
+  },
+  "subjectHome": {
+    "ctaSearch": "Formeln suchen",
+    "ctaGuide": "Methodenleitfaden",
+    "ctaHub": "Alle Fächer",
+    "index": "Index",
+    "indexSummarySimple": "{main} Hauptabschnitte",
+    "andAppendices": " und {count} Anhänge",
+    "empty": "Keine Abschnitte verfügbar. Starte die API und führe pnpm db:seed aus.",
+    "view": "Ansehen →",
+    "appendices": "Anhänge",
+    "fallbackDescription": "Formelsammlung für {title}."
+  },
+  "formula": {
+    "viewDetail": "Details ansehen",
+    "primary": "Formel",
+    "variant": "Äquivalente Form",
+    "detail": "Detail",
+    "variables": "Variablen",
+    "conditions": "Bedingungen",
+    "related": "Verwandte Formeln",
+    "inSection": "In",
+    "notFound": "Formel nicht gefunden",
+    "metaDescription": "Detail der Formel {id}."
   }
 }

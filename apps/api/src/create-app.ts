@@ -12,6 +12,7 @@ import { createGuideRoutes } from './routes/guide.js';
 import { healthRoutes } from './routes/health.js';
 import { createSearchRoutes } from './routes/search.js';
 import { createSectionsRoutes } from './routes/sections.js';
+import { createSubjectsRoutes } from './routes/subjects.js';
 import { createTagsRoutes } from './routes/tags.js';
 
 export type AppEnv = {
@@ -46,6 +47,7 @@ export function createApp(dbProvider: () => Database = getDb) {
   });
   app.route('/cron', createCronRoutes(dbProvider));
   app.route('/auth', createAuthRoutes(dbProvider));
+  app.route('/subjects', createSubjectsRoutes(dbProvider));
   app.route('/sections', createSectionsRoutes(dbProvider));
   app.route('/search', createSearchRoutes(dbProvider));
   app.route('/tags', createTagsRoutes(dbProvider));

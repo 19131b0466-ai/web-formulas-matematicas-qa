@@ -19,6 +19,7 @@ export type TrackVisitInput = {
   acceptLanguage?: string | null;
   screen?: { width: number; height: number } | null;
   sectionSlug?: string | null;
+  subjectSlug?: string | null;
   searchQuery?: string | null;
   queryString?: string | null;
 };
@@ -54,6 +55,7 @@ export function toVisitLogAdminDto(row: VisitRow): VisitLogAdminDto {
     browser: row.browser,
     os: row.os,
     sectionSlug: row.sectionSlug,
+    subjectSlug: row.subjectSlug,
     searchQuery: row.searchQuery,
     isUniqueDay: row.isUniqueDay,
   };
@@ -92,6 +94,7 @@ export const VISIT_CSV_COLUMNS = [
   'browser',
   'os',
   'sectionSlug',
+  'subjectSlug',
   'searchQuery',
   'isUniqueDay',
 ] as const;
@@ -176,6 +179,7 @@ export async function recordVisit(
     browser: parsed.browser,
     os: parsed.os,
     sectionSlug: input.sectionSlug ?? null,
+    subjectSlug: input.subjectSlug ?? null,
     searchQuery: input.searchQuery ?? null,
     isUniqueDay: priorToday.length === 0,
   });

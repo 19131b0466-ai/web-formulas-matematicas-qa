@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Calculus II Formula Sheet",
-    "tagline": "Integral Calculus — formulas, methods, and applications",
-    "description": "Online Calculus II formula sheet: antiderivatives, integration techniques, series, applications, and a method guide.",
-    "shortName": "Calculus II",
-    "about": "Integral Calculus",
-    "manifestDescription": "Online Integral Calculus formula sheet"
+    "name": "University formula sheet",
+    "tagline": "Calculus II and Basic Physics",
+    "description": "Multi-subject online formula sheet: Integral Calculus and university Basic Physics, with search and LaTeX rendering.",
+    "shortName": "Formulas",
+    "about": "Integral Calculus and Basic Physics",
+    "manifestDescription": "Online university formula sheet"
   },
   "nav": {
     "home": "Home",
@@ -15,11 +15,12 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "close": "Close",
-    "brandEyebrow": "Integral Calculus",
+    "brandEyebrow": "University formulas",
     "brandTitle": "Formula Sheet II",
     "sectionsIndex": "Section index",
     "searchPlaceholder": "Search formulas…",
-    "language": "Language"
+    "language": "Language",
+    "hub": "Subjects"
   },
   "theme": {
     "light": "Light",
@@ -40,16 +41,17 @@
     "appendices": "Appendices"
   },
   "footer": {
-    "line": "Calculus II Formula Sheet · content served by API ·",
-    "guideLink": "Method guide"
+    "line": "University formula sheet · API-served content ·",
+    "guideLink": "Method guide",
+    "hubLink": "Subjects"
   },
   "search": {
     "title": "Search",
-    "description": "Search formulas, techniques, and concepts in the Calculus II formula sheet.",
-    "ogTitle": "Search · Calculus II Formula Sheet",
-    "subtitle": "Find formulas by text or filter by technique tags.",
+    "description": "Search formulas and concepts in the university formula sheet.",
+    "ogTitle": "Search · University formula sheet",
+    "subtitle": "Find formulas by text, code, or tags.",
     "label": "Search the formula sheet",
-    "placeholder": "e.g. by parts, Taylor, partial fractions…",
+    "placeholder": "E.g. VEC-001, integration by parts, Bernoulli…",
     "submit": "Search",
     "all": "All",
     "results": "{count, plural, =1 {# result} other {# results}}",
@@ -97,5 +99,35 @@
     "title": "Page not found",
     "body": "That section does not exist or has not been imported into the API yet.",
     "back": "Back to home"
+  },
+  "hub": {
+    "intro": "Choose a subject to browse formulas with LaTeX rendering, search, and section navigation.",
+    "subjectLabel": "Subject",
+    "open": "Open",
+    "empty": "No subjects available. Start the API and run pnpm db:seed."
+  },
+  "subjectHome": {
+    "ctaSearch": "Search formulas",
+    "ctaGuide": "Method guide",
+    "ctaHub": "All subjects",
+    "index": "Index",
+    "indexSummarySimple": "{main} main sections",
+    "andAppendices": " and {count} appendices",
+    "empty": "No sections available. Start the API and run pnpm db:seed.",
+    "view": "View →",
+    "appendices": "Appendices",
+    "fallbackDescription": "Formula sheet for {title}."
+  },
+  "formula": {
+    "viewDetail": "View detail",
+    "primary": "Formula",
+    "variant": "Equivalent form",
+    "detail": "Detail",
+    "variables": "Variables",
+    "conditions": "Conditions",
+    "related": "Related formulas",
+    "inSection": "In",
+    "notFound": "Formula not found",
+    "metaDescription": "Detail for formula {id}."
   }
 }

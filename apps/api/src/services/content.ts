@@ -3,14 +3,20 @@ import type {
   BlockType,
   ContentBlockContent,
   ContentBlockDto,
+  FormulaContent,
+  FormulaDetailResponse,
   MethodGuideResponse,
+  RelatedFormulaRef,
   SearchResponse,
   SectionDetailResponse,
   SectionSummary,
+  SubjectSummary,
   TagsResponse,
 } from '@repo/shared-types';
 import type { Database } from '../db/client.js';
-import { contentBlocks, sections } from '../db/schema.js';
+import { contentBlocks, sections, subjects } from '../db/schema.js';
+
+const DEFAULT_SUBJECT = 'calculo-ii';
 
 function toSummary(row: typeof sections.$inferSelect, parentSlug: string | null): SectionSummary {
   return {
@@ -34,8 +40,41 @@ function toBlockDto(row: typeof contentBlocks.$inferSelect): ContentBlockDto {
   };
 }
 
-export async function listSectionsTree(db: Database): Promise<SectionSummary[]> {
-  const rows = await db.select().from(sections).orderBy(asc(sections.sortOrder));
+export async function listSubjects(db: Database): Promise<SubjectSummary[]> {
+  const rows = await db.select().from(subjects).orderBy(asc(subjects.sortOrder));
+  return rows.map((r) => ({
+    slug: r.slug,
+    title: r.title,
+    description: r.description,
+    sortOrder: r.sortOrder,
+  }));
+}
+
+export async function getSubjectBySlug(
+  db: Database,
+  slug: string,
+): Promise<(typeof subjects.$inferSelect) | null> {
+  const [row] = await db.select().from(subjects).where(eq(subjects.slug, slug)).limit(1);
+  return row ?? null;
+}
+
+async function requireSubjectId(db: Database, subjectSlug: string): Promise<string | null> {
+  const subject = await getSubjectBySlug(db, subjectSlug);
+  return subject?.id ?? null;
+}
+
+export async function listSectionsTree(
+  db: Database,
+  subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<SectionSummary[]> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return [];
+
+  const rows = await db
+    .select()
+    .from(sections)
+    .where(eq(sections.subjectId, subjectId))
+    .orderBy(asc(sections.sortOrder));
   const byId = new Map(rows.map((r) => [r.id, r]));
   const children = new Map<string | null, typeof rows>();
 
@@ -63,8 +102,16 @@ export async function listSectionsTree(db: Database): Promise<SectionSummary[]> 
 export async function getSectionBySlug(
   db: Database,
   slug: string,
+  subjectSlug: string = DEFAULT_SUBJECT,
 ): Promise<SectionDetailResponse | null> {
-  const [section] = await db.select().from(sections).where(eq(sections.slug, slug)).limit(1);
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return null;
+
+  const [section] = await db
+    .select()
+    .from(sections)
+    .where(and(eq(sections.slug, slug), eq(sections.subjectId, subjectId)))
+    .limit(1);
   if (!section) return null;
 
   const blocks = await db
@@ -96,9 +143,15 @@ export async function searchContent(
   query: string,
   tags: string[],
   limit: number,
+  subjectSlug: string = DEFAULT_SUBJECT,
 ): Promise<SearchResponse> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) {
+    return { query: query.trim(), total: 0, results: [] };
+  }
+
   const q = query.trim();
-  const conditions = [];
+  const conditions = [eq(sections.subjectId, subjectId)];
 
   if (q) {
     conditions.push(
@@ -106,7 +159,8 @@ export async function searchContent(
         ilike(contentBlocks.searchText, `%${q}%`),
         ilike(contentBlocks.title, `%${q}%`),
         ilike(sections.title, `%${q}%`),
-      ),
+        ilike(contentBlocks.formulaCode, `%${q}%`),
+      )!,
     );
   }
 
@@ -118,7 +172,7 @@ export async function searchContent(
     conditions.push(sql`${contentBlocks.tags} && ${tagArray}`);
   }
 
-  if (conditions.length === 0) {
+  if (!q && tags.length === 0) {
     return { query: q, total: 0, results: [] };
   }
 
@@ -144,18 +198,27 @@ export async function searchContent(
       title: block.title,
       excerpt,
       tags: block.tags ?? [],
+      formulaCode: block.formulaCode ?? null,
     };
   });
 
   return { query: q, total: results.length, results };
 }
 
-export async function listTags(db: Database): Promise<TagsResponse> {
+export async function listTags(
+  db: Database,
+  subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<TagsResponse> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return { tags: [] };
+
   const rows = await db
     .select({
       tag: sql<string>`unnest(${contentBlocks.tags})`.as('tag'),
     })
-    .from(contentBlocks);
+    .from(contentBlocks)
+    .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+    .where(eq(sections.subjectId, subjectId));
 
   const counts = new Map<string, number>();
   for (const row of rows) {
@@ -170,11 +233,113 @@ export async function listTags(db: Database): Promise<TagsResponse> {
   return { tags };
 }
 
+export async function getFormulaByCode(
+  db: Database,
+  subjectSlug: string,
+  formulaId: string,
+): Promise<FormulaDetailResponse | null> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return null;
+
+  const code = formulaId.trim().toUpperCase();
+  const [row] = await db
+    .select({
+      block: contentBlocks,
+      section: sections,
+    })
+    .from(contentBlocks)
+    .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+    .where(
+      and(
+        eq(sections.subjectId, subjectId),
+        eq(contentBlocks.formulaCode, code),
+        eq(contentBlocks.blockType, 'formula'),
+      ),
+    )
+    .limit(1);
+
+  if (!row) return null;
+
+  const content = row.block.content as FormulaContent;
+  const relatedIds = content.relatedIds ?? [];
+  const related: RelatedFormulaRef[] = [];
+
+  if (relatedIds.length > 0) {
+    const relatedRows = await db
+      .select({
+        block: contentBlocks,
+        section: sections,
+      })
+      .from(contentBlocks)
+      .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+      .where(
+        and(
+          eq(sections.subjectId, subjectId),
+          sql`${contentBlocks.formulaCode} = ANY(${sql`ARRAY[${sql.join(
+            relatedIds.map((id) => sql`${id}`),
+            sql`, `,
+          )}]::text[]`})`,
+        ),
+      );
+
+    const byCode = new Map(
+      relatedRows.map((r) => [r.block.formulaCode ?? '', r] as const),
+    );
+    for (const id of relatedIds) {
+      const hit = byCode.get(id);
+      if (!hit) continue;
+      related.push({
+        formulaId: id,
+        title: hit.block.title,
+        sectionSlug: hit.section.slug,
+      });
+    }
+  }
+
+  return {
+    subjectSlug,
+    formulaId: code,
+    title: row.block.title,
+    content,
+    tags: row.block.tags ?? [],
+    section: {
+      slug: row.section.slug,
+      number: row.section.number,
+      title: row.section.title,
+    },
+    related,
+  };
+}
+
+export async function listFormulaCodes(
+  db: Database,
+  subjectSlug: string,
+): Promise<string[]> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return [];
+
+  const rows = await db
+    .select({ code: contentBlocks.formulaCode })
+    .from(contentBlocks)
+    .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+    .where(
+      and(
+        eq(sections.subjectId, subjectId),
+        sql`${contentBlocks.formulaCode} IS NOT NULL`,
+      ),
+    );
+
+  return rows.map((r) => r.code!).filter(Boolean);
+}
+
 export async function getMethodGuide(db: Database): Promise<MethodGuideResponse> {
+  const subjectId = await requireSubjectId(db, 'calculo-ii');
+  if (!subjectId) return { strategies: [], checklist: [] };
+
   const [guide] = await db
     .select()
     .from(sections)
-    .where(eq(sections.slug, 'guia-metodos'))
+    .where(and(eq(sections.slug, 'guia-metodos'), eq(sections.subjectId, subjectId)))
     .limit(1);
 
   if (!guide) {
@@ -194,7 +359,7 @@ export async function getMethodGuide(db: Database): Promise<MethodGuideResponse>
   const [checklistSection] = await db
     .select()
     .from(sections)
-    .where(eq(sections.slug, 'lista-comprobacion'))
+    .where(and(eq(sections.slug, 'lista-comprobacion'), eq(sections.subjectId, subjectId)))
     .limit(1);
 
   let checklist: string[] = [];
@@ -210,7 +375,6 @@ export async function getMethodGuide(db: Database): Promise<MethodGuideResponse>
     checklist = content?.items ?? [];
   }
 
-  // Fallback: ordered list inside guide section
   if (checklist.length === 0) {
     const ordered = blocks.find((b) => b.blockType === 'list');
     const content = ordered?.content as { items?: string[]; ordered?: boolean } | undefined;
@@ -220,7 +384,15 @@ export async function getMethodGuide(db: Database): Promise<MethodGuideResponse>
   return { strategies, checklist };
 }
 
-export async function countTopLevelSections(db: Database): Promise<number> {
-  const rows = await db.select({ id: sections.id }).from(sections).where(isNull(sections.parentId));
+export async function countTopLevelSections(
+  db: Database,
+  subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<number> {
+  const subjectId = await requireSubjectId(db, subjectSlug);
+  if (!subjectId) return 0;
+  const rows = await db
+    .select({ id: sections.id })
+    .from(sections)
+    .where(and(eq(sections.subjectId, subjectId), isNull(sections.parentId)));
   return rows.length;
 }

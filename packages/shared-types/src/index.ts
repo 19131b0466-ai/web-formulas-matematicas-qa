@@ -2,8 +2,42 @@ export type BlockType = 'formula' | 'text' | 'table' | 'list' | 'note' | 'strate
 
 export interface FormulaContent {
   latex: string;
+  /** Extra display-math blocks from the same formula entry (physics). */
+  additionalLatex?: string[];
   displayMode?: boolean;
   constraints?: string[];
+  /** Stable formula code, e.g. VEC-001 (physics). */
+  formulaId?: string;
+  detail?: string;
+  variables?: string;
+  relatedIds?: string[];
+}
+
+export interface SubjectSummary {
+  slug: string;
+  title: string;
+  description: string | null;
+  sortOrder: number;
+}
+
+export interface RelatedFormulaRef {
+  formulaId: string;
+  title: string | null;
+  sectionSlug: string;
+}
+
+export interface FormulaDetailResponse {
+  subjectSlug: string;
+  formulaId: string;
+  title: string | null;
+  content: FormulaContent;
+  tags: string[];
+  section: {
+    slug: string;
+    number: string;
+    title: string;
+  };
+  related: RelatedFormulaRef[];
 }
 
 export interface TextContent {
@@ -79,6 +113,7 @@ export interface SearchResultItem {
   title: string | null;
   excerpt: string;
   tags: string[];
+  formulaCode?: string | null;
 }
 
 export interface SearchResponse {
@@ -104,6 +139,7 @@ export interface TrackVisitRequest {
   acceptLanguage?: string | null;
   screen?: { width: number; height: number } | null;
   sectionSlug?: string | null;
+  subjectSlug?: string | null;
   searchQuery?: string | null;
   queryString?: string | null;
 }
@@ -137,6 +173,7 @@ export interface VisitLogAdminDto {
   browser: string | null;
   os: string | null;
   sectionSlug: string | null;
+  subjectSlug: string | null;
   searchQuery: string | null;
   isUniqueDay: boolean | null;
 }

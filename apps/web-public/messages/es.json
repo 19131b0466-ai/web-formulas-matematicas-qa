@@ -1,13 +1,14 @@
 {
   "site": {
-    "name": "Formulario de Cálculo II",
-    "tagline": "Cálculo Integral — fórmulas, métodos y aplicaciones",
-    "description": "Formulario en línea de Cálculo II: antiderivadas, técnicas de integración, series, aplicaciones y guía de métodos.",
-    "shortName": "Cálculo II",
-    "about": "Cálculo Integral",
-    "manifestDescription": "Formulario en línea de Cálculo Integral"
+    "name": "Formulario universitario",
+    "tagline": "Cálculo II y Física Básica",
+    "description": "Formulario en línea multi-materia: Cálculo Integral y Física Básica universitaria, con búsqueda y renderizado LaTeX.",
+    "shortName": "Formulario",
+    "about": "Cálculo Integral y Física Básica",
+    "manifestDescription": "Formulario universitario en línea"
   },
   "nav": {
+    "hub": "Materias",
     "home": "Inicio",
     "search": "Buscar",
     "guide": "Guía de métodos",
@@ -15,8 +16,8 @@
     "menu": "Menú",
     "closeMenu": "Cerrar menú",
     "close": "Cerrar",
-    "brandEyebrow": "Cálculo Integral",
-    "brandTitle": "Formulario II",
+    "brandEyebrow": "Formulario universitario",
+    "brandTitle": "Formulario",
     "sectionsIndex": "Índice de secciones",
     "searchPlaceholder": "Buscar fórmulas…",
     "language": "Idioma"
@@ -27,30 +28,36 @@
     "toLight": "Cambiar a modo claro",
     "toDark": "Cambiar a modo oscuro"
   },
-  "home": {
-    "title": "Formulario de Cálculo II",
-    "intro": "Consulta antiderivadas, técnicas de integración, series y aplicaciones. Todo el contenido llega desde la API — sin fórmulas hardcodeadas en el frontend.",
+  "hub": {
+    "intro": "Elige una materia para consultar fórmulas con renderizado LaTeX, búsqueda y navegación por secciones.",
+    "subjectLabel": "Materia",
+    "open": "Abrir",
+    "empty": "No hay materias disponibles. Arranca la API y ejecuta pnpm db:seed."
+  },
+  "subjectHome": {
     "ctaSearch": "Buscar fórmulas",
     "ctaGuide": "Guía de métodos",
+    "ctaHub": "Todas las materias",
     "index": "Índice",
-    "indexSummary": "{main} secciones principales{appendices, plural, =0 {} other { y # apéndices}}.",
     "indexSummarySimple": "{main} secciones principales",
     "andAppendices": " y {count} apéndices",
     "empty": "No hay secciones disponibles. Arranca la API y ejecuta pnpm db:seed.",
     "view": "Ver →",
-    "appendices": "Apéndices"
+    "appendices": "Apéndices",
+    "fallbackDescription": "Formulario de {title}."
   },
   "footer": {
-    "line": "Formulario de Cálculo II · contenido servido por API ·",
-    "guideLink": "Guía de métodos"
+    "line": "Formulario universitario · contenido servido por API ·",
+    "guideLink": "Guía de métodos",
+    "hubLink": "Materias"
   },
   "search": {
     "title": "Buscar",
-    "description": "Busca fórmulas, técnicas y conceptos en el formulario de Cálculo II.",
-    "ogTitle": "Buscar · Formulario de Cálculo II",
-    "subtitle": "Encuentra fórmulas por texto o filtra por etiquetas de técnica.",
+    "description": "Busca fórmulas y conceptos en el formulario universitario.",
+    "ogTitle": "Buscar · Formulario universitario",
+    "subtitle": "Encuentra fórmulas por texto, código o etiquetas.",
     "label": "Buscar en el formulario",
-    "placeholder": "Ej. por partes, Taylor, fracciones parciales…",
+    "placeholder": "Ej. VEC-001, por partes, Bernoulli…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",
@@ -60,7 +67,7 @@
   "guide": {
     "title": "Guía para elegir un método",
     "description": "Guía práctica para elegir la técnica de integración adecuada según la forma del integrando.",
-    "ogTitle": "Guía de métodos · Formulario de Cálculo II",
+    "ogTitle": "Guía de métodos · Cálculo II",
     "sectionLabel": "Sección 17",
     "intro": "Usa la señal del integrando para decidir qué técnica conviene intentar primero.",
     "fullSection": "Ver sección completa en el índice →",
@@ -76,13 +83,25 @@
     "subsections": "Subsecciones",
     "inThisSection": "En esta sección",
     "notFound": "Sección no encontrada",
-    "metaDescription": "Fórmulas y conceptos de {title} en el formulario de Cálculo II.",
+    "metaDescription": "Fórmulas y conceptos de {title}.",
     "jsonDescription": "Sección {number}: {title}",
     "loading": "Cargando sección…"
   },
   "appendix": {
     "notFound": "Apéndice no encontrado",
-    "metaDescription": "Apéndice del formulario de Cálculo II: {title}."
+    "metaDescription": "Apéndice del formulario: {title}."
+  },
+  "formula": {
+    "viewDetail": "Ver detalle",
+    "primary": "Fórmula",
+    "variant": "Forma equivalente",
+    "detail": "Detalle",
+    "variables": "Variables",
+    "conditions": "Condiciones",
+    "related": "Fórmulas relacionadas",
+    "inSection": "En",
+    "notFound": "Fórmula no encontrada",
+    "metaDescription": "Detalle de la fórmula {id}."
   },
   "content": {
     "formula": "Fórmula",

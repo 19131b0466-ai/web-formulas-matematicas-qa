@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulário de Cálculo II",
-    "tagline": "Cálculo Integral — fórmulas, métodos e aplicações",
-    "description": "Formulário online de Cálculo II: antiderivadas, técnicas de integração, séries, aplicações e guia de métodos.",
-    "shortName": "Cálculo II",
-    "about": "Cálculo Integral",
-    "manifestDescription": "Formulário online de Cálculo Integral"
+    "name": "Formulário universitário",
+    "tagline": "Cálculo II e Física Básica",
+    "description": "Formulário online multi-matéria: Cálculo Integral e Física Básica universitária.",
+    "shortName": "Formulário",
+    "about": "Cálculo Integral e Física Básica",
+    "manifestDescription": "Formulário universitário online"
   },
   "nav": {
     "home": "Início",
@@ -15,11 +15,12 @@
     "menu": "Menu",
     "closeMenu": "Fechar menu",
     "close": "Fechar",
-    "brandEyebrow": "Cálculo Integral",
+    "brandEyebrow": "Formulário universitário",
     "brandTitle": "Formulário II",
     "sectionsIndex": "Índice de seções",
     "searchPlaceholder": "Buscar fórmulas…",
-    "language": "Idioma"
+    "language": "Idioma",
+    "hub": "Matérias"
   },
   "theme": {
     "light": "Claro",
@@ -40,16 +41,17 @@
     "appendices": "Apêndices"
   },
   "footer": {
-    "line": "Formulário de Cálculo II · conteúdo servido pela API ·",
-    "guideLink": "Guia de métodos"
+    "line": "Formulário universitário · conteúdo via API ·",
+    "guideLink": "Guia de métodos",
+    "hubLink": "Matérias"
   },
   "search": {
     "title": "Buscar",
-    "description": "Busque fórmulas, técnicas e conceitos no formulário de Cálculo II.",
-    "ogTitle": "Buscar · Formulário de Cálculo II",
-    "subtitle": "Encontre fórmulas por texto ou filtre por etiquetas de técnica.",
+    "description": "Busque fórmulas e conceitos no formulário universitário.",
+    "ogTitle": "Buscar · Formulário universitário",
+    "subtitle": "Encontre fórmulas por texto, código ou etiquetas.",
     "label": "Buscar no formulário",
-    "placeholder": "Ex. por partes, Taylor, frações parciais…",
+    "placeholder": "Ex. VEC-001, por partes, Bernoulli…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",
@@ -97,5 +99,35 @@
     "title": "Página não encontrada",
     "body": "Essa seção não existe ou ainda não foi importada na API.",
     "back": "Voltar ao início"
+  },
+  "hub": {
+    "intro": "Escolha uma matéria para consultar fórmulas com LaTeX, busca e navegação por seções.",
+    "subjectLabel": "Matéria",
+    "open": "Abrir",
+    "empty": "Nenhuma matéria disponível. Inicie a API e execute pnpm db:seed."
+  },
+  "subjectHome": {
+    "ctaSearch": "Buscar fórmulas",
+    "ctaGuide": "Guia de métodos",
+    "ctaHub": "Todas as matérias",
+    "index": "Índice",
+    "indexSummarySimple": "{main} seções principais",
+    "andAppendices": " e {count} apêndices",
+    "empty": "Nenhuma seção disponível. Inicie a API e execute pnpm db:seed.",
+    "view": "Ver →",
+    "appendices": "Apêndices",
+    "fallbackDescription": "Formulário de {title}."
+  },
+  "formula": {
+    "viewDetail": "Ver detalhe",
+    "primary": "Fórmula",
+    "variant": "Forma equivalente",
+    "detail": "Detalhe",
+    "variables": "Variáveis",
+    "conditions": "Condições",
+    "related": "Fórmulas relacionadas",
+    "inSection": "Em",
+    "notFound": "Fórmula não encontrada",
+    "metaDescription": "Detalhe da fórmula {id}."
   }
 }

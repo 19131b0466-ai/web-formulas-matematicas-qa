@@ -1,11 +1,11 @@
 {
   "site": {
-    "name": "Formulario di Calcolo II",
-    "tagline": "Calcolo integrale — formule, metodi e applicazioni",
-    "description": "Formulario online di Calcolo II: primitive, tecniche di integrazione, serie, applicazioni e guida ai metodi.",
-    "shortName": "Calcolo II",
-    "about": "Calcolo integrale",
-    "manifestDescription": "Formulario online di calcolo integrale"
+    "name": "Formulario universitario",
+    "tagline": "Calcolo II e Fisica di base",
+    "description": "Formulario online multi-materia: calcolo integrale e fisica di base universitaria.",
+    "shortName": "Formulario",
+    "about": "Calcolo integrale e Fisica di base",
+    "manifestDescription": "Formulario universitario online"
   },
   "nav": {
     "home": "Home",
@@ -15,11 +15,12 @@
     "menu": "Menu",
     "closeMenu": "Chiudi menu",
     "close": "Chiudi",
-    "brandEyebrow": "Calcolo integrale",
+    "brandEyebrow": "Formulario universitario",
     "brandTitle": "Formulario II",
     "sectionsIndex": "Indice delle sezioni",
     "searchPlaceholder": "Cerca formule…",
-    "language": "Lingua"
+    "language": "Lingua",
+    "hub": "Materie"
   },
   "theme": {
     "light": "Chiaro",
@@ -40,16 +41,17 @@
     "appendices": "Appendici"
   },
   "footer": {
-    "line": "Formulario di Calcolo II · contenuti serviti dall'API ·",
-    "guideLink": "Guida ai metodi"
+    "line": "Formulario universitario · contenuto via API ·",
+    "guideLink": "Guida ai metodi",
+    "hubLink": "Materie"
   },
   "search": {
     "title": "Cerca",
-    "description": "Cerca formule, tecniche e concetti nel formulario di Calcolo II.",
-    "ogTitle": "Cerca · Formulario di Calcolo II",
-    "subtitle": "Trova formule per testo o filtra per etichette di tecnica.",
+    "description": "Cerca formule e concetti nel formulario universitario.",
+    "ogTitle": "Cerca · Formulario universitario",
+    "subtitle": "Trova formule per testo, codice o tag.",
     "label": "Cerca nel formulario",
-    "placeholder": "es. per parti, Taylor, frazioni parziali…",
+    "placeholder": "Es. VEC-001, per parti, Bernoulli…",
     "submit": "Cerca",
     "all": "Tutti",
     "results": "{count, plural, =1 {# risultato} other {# risultati}}",
@@ -97,5 +99,35 @@
     "title": "Pagina non trovata",
     "body": "Questa sezione non esiste o non è ancora stata importata nell'API.",
     "back": "Torna alla home"
+  },
+  "hub": {
+    "intro": "Scegli una materia per consultare le formule con LaTeX, ricerca e navigazione per sezioni.",
+    "subjectLabel": "Materia",
+    "open": "Apri",
+    "empty": "Nessuna materia disponibile. Avvia l’API ed esegui pnpm db:seed."
+  },
+  "subjectHome": {
+    "ctaSearch": "Cerca formule",
+    "ctaGuide": "Guida ai metodi",
+    "ctaHub": "Tutte le materie",
+    "index": "Indice",
+    "indexSummarySimple": "{main} sezioni principali",
+    "andAppendices": " e {count} appendici",
+    "empty": "Nessuna sezione disponibile. Avvia l’API ed esegui pnpm db:seed.",
+    "view": "Vedi →",
+    "appendices": "Appendici",
+    "fallbackDescription": "Formulario di {title}."
+  },
+  "formula": {
+    "viewDetail": "Vedi dettaglio",
+    "primary": "Formula",
+    "variant": "Forma equivalente",
+    "detail": "Dettaglio",
+    "variables": "Variabili",
+    "conditions": "Condizioni",
+    "related": "Formule correlate",
+    "inSection": "In",
+    "notFound": "Formula non trovata",
+    "metaDescription": "Dettaglio della formula {id}."
   }
 }

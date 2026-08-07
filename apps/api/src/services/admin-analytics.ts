@@ -190,6 +190,26 @@ export async function getTopPages(
   return rows;
 }
 
+export async function getTopSubjects(
+  db: Database,
+  range?: DateRange,
+  limit = 20,
+): Promise<NamedCount[]> {
+  const rows = await db
+    .select({
+      name: sql<string>`coalesce(${visitLogs.subjectSlug}, '(sin materia)')`,
+      count: sql<number>`count(*)::int`,
+    })
+    .from(visitLogs)
+    .where(rangeFilter(range))
+    .groupBy(sql`coalesce(${visitLogs.subjectSlug}, '(sin materia)')`)
+    .orderBy(desc(sql`count(*)`))
+    .limit(limit);
+
+  assertNoIpFields(rows);
+  return rows;
+}
+
 export async function getReferrers(db: Database, range?: DateRange): Promise<NamedCount[]> {
   const rows = await db
     .select({

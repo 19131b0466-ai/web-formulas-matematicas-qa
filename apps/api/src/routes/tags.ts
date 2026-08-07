@@ -6,7 +6,8 @@ export function createTagsRoutes(getDb: () => Database) {
   const routes = new Hono();
 
   routes.get('/', async (c) => {
-    const result = await listTags(getDb());
+    const subject = c.req.query('subject') ?? 'calculo-ii';
+    const result = await listTags(getDb(), subject);
     return c.json(result);
   });
 

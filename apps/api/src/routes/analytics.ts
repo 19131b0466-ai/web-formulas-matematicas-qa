@@ -28,6 +28,7 @@ const trackVisitSchema = z
       .nullable()
       .optional(),
     sectionSlug: z.string().max(200).nullable().optional(),
+    subjectSlug: z.string().max(200).nullable().optional(),
     searchQuery: z.string().max(500).nullable().optional(),
     queryString: z.string().max(1000).nullable().optional(),
   })

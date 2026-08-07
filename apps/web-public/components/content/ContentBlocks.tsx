@@ -68,17 +68,28 @@ function BlockBody({
   switch (block.type) {
     case 'formula': {
       const content = block.content as FormulaContent;
+      const latexBlocks = [content.latex, ...(content.additionalLatex ?? [])];
       return (
         <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] shadow-[var(--shadow)]">
           <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-2">
             <span className="text-xs font-medium uppercase tracking-wider text-[var(--fg-muted)]">
-              {labels.formula}
+              {content.formulaId ? content.formulaId : labels.formula}
             </span>
             <CopyLatexButton latex={content.latex} />
           </div>
-          <div className="overflow-x-auto px-4 py-5">
-            <Katex latex={content.latex} displayMode={content.displayMode ?? true} />
-          </div>
+          {latexBlocks.map((latex, i) => (
+            <div
+              key={`${block.id}-latex-${String(i)}`}
+              className={`overflow-x-auto px-4 py-5 ${i > 0 ? 'border-t border-[var(--border)]' : ''}`}
+            >
+              <Katex latex={latex} displayMode={content.displayMode ?? true} />
+            </div>
+          ))}
+          {content.detail ? (
+            <p className="border-t border-[var(--border)] px-4 py-3 text-sm text-[var(--fg-muted)]">
+              <InlineMarkdown text={content.detail} />
+            </p>
+          ) : null}
           {content.constraints?.length ? (
             <ul className="space-y-1 border-t border-[var(--border)] px-4 py-3 text-sm text-[var(--fg-muted)]">
               {content.constraints.map((c) => (

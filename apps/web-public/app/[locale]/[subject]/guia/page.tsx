@@ -1,18 +1,27 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Link } from '@/i18n/navigation';
-import { fetchMethodGuide, fetchSection } from '@/lib/api';
+import { fetchMethodGuide, fetchSection, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
+import {
+  isSubjectSlug,
+  sectionHref,
+  subjectHasGuide,
+  subjectHomeHref,
+  type SubjectSlug,
+} from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
 
 type PageProps = {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; subject: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale, subject: subjectRaw } = await params;
+  if (!isSubjectSlug(subjectRaw) || !subjectHasGuide(subjectRaw)) return {};
   const t = await getTranslations({ locale, namespace: 'guide' });
   return {
     title: t('title'),
@@ -27,18 +36,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export const revalidate = 86400;
 
 export default async function GuidePage({ params }: PageProps) {
-  const { locale: raw } = await params;
+  const { locale: raw, subject: subjectRaw } = await params;
+  if (!isSubjectSlug(subjectRaw) || !subjectHasGuide(subjectRaw)) notFound();
+  const subject = subjectRaw as SubjectSlug;
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
   const t = await getTranslations('guide');
   const tn = await getTranslations('nav');
+  const subjects = await fetchSubjects();
+  const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const guide = await localizeContent(await fetchMethodGuide(), locale);
-  const section = await fetchSection('guia-metodos');
+  const section = await fetchSection('guia-metodos', subject);
 
   return (
     <div>
-      <Breadcrumbs items={[{ label: tn('home'), href: '/' }, { label: tn('guide') }]} />
+      <Breadcrumbs
+        items={[
+          { label: tn('hub'), href: '/' },
+          { label: subjectTitle, href: subjectHomeHref(subject) },
+          { label: tn('guide') },
+        ]}
+      />
 
       <header className="mb-8 animate-rise">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
@@ -51,7 +70,7 @@ export default async function GuidePage({ params }: PageProps) {
         {section ? (
           <p className="mt-3 text-sm">
             <Link
-              href="/seccion/guia-metodos"
+              href={sectionHref(subject, 'guia-metodos') as '/'}
               className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
             >
               {t('fullSection')}

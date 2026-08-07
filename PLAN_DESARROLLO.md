@@ -1,6 +1,8 @@
-# Plan de desarrollo — Formulario en línea de Cálculo II
+# Plan de desarrollo — Formulario universitario (multi-materia)
 
-Plataforma web de consulta de fórmulas de **Cálculo Integral (Cálculo II)**, con arquitectura backend–frontend separada, registro analítico de visitas y dashboard superadmin.
+Plataforma web de consulta de fórmulas de **Cálculo Integral (Cálculo II)** y **Física Básica universitaria**, con arquitectura backend–frontend separada, registro analítico de visitas y dashboard superadmin.
+
+> Alcance ampliado: hub multi-materia, rutas `/{subject}/…`, IDs estables de Física (`VEC-001`, …) con catálogo/detalle/relacionadas. Fuente: `content/formulas-fisica-basica.md`.
 
 ---
 

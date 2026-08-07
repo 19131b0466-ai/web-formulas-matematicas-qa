@@ -1,12 +1,7 @@
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createApp } from '../create-app.js';
-import { seedFromMarkdown } from '../seed/import-markdown.js';
+import { seedAllSubjects } from '../seed/import-markdown.js';
 import { createTestDb, type TestDatabase } from './setup-db.js';
-
-const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../');
-const MD_PATH = resolve(ROOT, 'content/formulas-calculo-ii.md');
 
 describe('API content endpoints (PGlite)', () => {
   let db: TestDatabase;
@@ -17,10 +12,13 @@ describe('API content endpoints (PGlite)', () => {
     const setup = await createTestDb();
     db = setup.db;
     client = setup.client;
-    const stats = await seedFromMarkdown(db as never, MD_PATH);
-    expect(stats.blockCount).toBeGreaterThan(200);
+    const stats = await seedAllSubjects(db as never);
+    expect(stats.reduce((n, s) => n + s.blockCount, 0)).toBeGreaterThan(200);
+    expect(stats.some((s) => s.subjectSlug === 'fisica-basica' && s.formulaCount === 195)).toBe(
+      true,
+    );
     app = createApp(() => db as never);
-  }, 60_000);
+  }, 120_000);
 
   afterAll(async () => {
     if (client) await client.close();
@@ -33,7 +31,16 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.status).toBe('ok');
   });
 
-  it('GET /v1/sections returns a tree with planned top-level slugs', async () => {
+  it('GET /v1/subjects lists both subjects', async () => {
+    const res = await app.request('/v1/subjects');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { subjects: Array<{ slug: string }> };
+    const slugs = body.subjects.map((s) => s.slug);
+    expect(slugs).toContain('calculo-ii');
+    expect(slugs).toContain('fisica-basica');
+  });
+
+  it('GET /v1/sections returns calculo-ii tree by default', async () => {
     const res = await app.request('/v1/sections');
     expect(res.status).toBe(200);
     const body = (await res.json()) as {
@@ -43,6 +50,16 @@ describe('API content endpoints (PGlite)', () => {
     expect(slugs).toContain('integracion-por-partes');
     expect(slugs).toContain('apendice-antiderivadas');
     expect(slugs).toContain('guia-metodos');
+  });
+
+  it('GET /v1/subjects/fisica-basica/sections returns physics chapters', async () => {
+    const res = await app.request('/v1/subjects/fisica-basica/sections');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { sections: Array<{ slug: string }> };
+    const slugs = body.sections.map((s) => s.slug);
+    expect(slugs).toContain('vectores');
+    expect(slugs).toContain('electricidad-basica');
+    expect(slugs).toContain('constantes-fisicas');
   });
 
   it('GET /v1/sections/:slug returns blocks and subsections', async () => {
@@ -59,6 +76,26 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.subsections.length).toBeGreaterThan(0);
   });
 
+  it('GET /v1/subjects/fisica-basica/formulas/VEC-001 returns detail + related', async () => {
+    const res = await app.request('/v1/subjects/fisica-basica/formulas/VEC-001');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      formulaId: string;
+      content: { latex: string; relatedIds?: string[] };
+      related: Array<{ formulaId: string }>;
+      section: { slug: string };
+    };
+    expect(body.formulaId).toBe('VEC-001');
+    expect(body.section.slug).toBe('vectores');
+    expect(body.content.latex.length).toBeGreaterThan(0);
+    expect(body.related.length).toBeGreaterThan(0);
+  });
+
+  it('GET formula returns 404 for unknown id', async () => {
+    const res = await app.request('/v1/subjects/fisica-basica/formulas/ZZZ-999');
+    expect(res.status).toBe(404);
+  });
+
   it('GET /v1/sections/:slug returns 404 for unknown slug', async () => {
     const res = await app.request('/v1/sections/no-existe');
     expect(res.status).toBe(404);
@@ -68,6 +105,13 @@ describe('API content endpoints (PGlite)', () => {
     const res = await app.request('/v1/search?q=por%20partes&limit=10');
     expect(res.status).toBe(200);
     const body = (await res.json()) as { total: number; results: unknown[] };
+    expect(body.total).toBeGreaterThan(0);
+  });
+
+  it('GET physics search finds by formula code', async () => {
+    const res = await app.request('/v1/subjects/fisica-basica/search?q=VEC-001&limit=5');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { total: number };
     expect(body.total).toBeGreaterThan(0);
   });
 

@@ -9,19 +9,39 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   uuid,
 } from 'drizzle-orm/pg-core';
 
-export const sections = pgTable('sections', {
+export const subjects = pgTable('subjects', {
   id: uuid('id').primaryKey().defaultRandom(),
   slug: text('slug').notNull().unique(),
-  number: text('number').notNull(),
   title: text('title').notNull(),
   description: text('description'),
   sortOrder: integer('sort_order').notNull(),
-  parentId: uuid('parent_id'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
+
+export const sections = pgTable(
+  'sections',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    subjectId: uuid('subject_id')
+      .notNull()
+      .references(() => subjects.id, { onDelete: 'cascade' }),
+    slug: text('slug').notNull(),
+    number: text('number').notNull(),
+    title: text('title').notNull(),
+    description: text('description'),
+    sortOrder: integer('sort_order').notNull(),
+    parentId: uuid('parent_id'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    unique('sections_subject_slug_unique').on(table.subjectId, table.slug),
+    index('idx_sections_subject').on(table.subjectId, table.sortOrder),
+  ],
+);
 
 export const contentBlocks = pgTable(
   'content_blocks',
@@ -36,9 +56,13 @@ export const contentBlocks = pgTable(
     content: jsonb('content').notNull(),
     searchText: text('search_text'),
     tags: text('tags').array().default([]),
+    formulaCode: text('formula_code'),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
   },
-  (table) => [index('idx_content_blocks_section').on(table.sectionId, table.sortOrder)],
+  (table) => [
+    index('idx_content_blocks_section').on(table.sectionId, table.sortOrder),
+    index('idx_content_blocks_formula_code').on(table.formulaCode),
+  ],
 );
 
 export const visitLogs = pgTable(
@@ -67,6 +91,7 @@ export const visitLogs = pgTable(
     browser: text('browser'),
     os: text('os'),
     sectionSlug: text('section_slug'),
+    subjectSlug: text('subject_slug'),
     searchQuery: text('search_query'),
     isUniqueDay: boolean('is_unique_day').default(false),
   },
@@ -75,6 +100,7 @@ export const visitLogs = pgTable(
     index('idx_visit_logs_country').on(table.countryCode),
     index('idx_visit_logs_path').on(table.path),
     index('idx_visit_logs_session').on(table.sessionId),
+    index('idx_visit_logs_subject').on(table.subjectSlug),
   ],
 );
 

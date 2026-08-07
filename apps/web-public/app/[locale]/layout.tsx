@@ -6,10 +6,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { VisitTracker } from '@/components/analytics/VisitTracker';
-import { AppShell } from '@/components/layout/AppShell';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
-import { fetchSections } from '@/lib/api';
-import { localizeContent } from '@/lib/localize-content';
 import { getSiteUrl } from '@/lib/site';
 import { localeOgTags, routing, type AppLocale } from '@/i18n/routing';
 import '../globals.css';
@@ -100,8 +97,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
-  const sections = await localizeContent(await fetchSections(), locale);
-
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${body.variable} ${display.variable} ${mono.variable} antialiased`}>
@@ -115,7 +110,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             <Suspense fallback={null}>
               <VisitTracker />
             </Suspense>
-            <AppShell sections={sections}>{children}</AppShell>
+            {children}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
