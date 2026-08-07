@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, useRouter } from '@/i18n/navigation';
@@ -30,15 +30,29 @@ export function SearchPanel({
 }: SearchPanelProps) {
   const t = useTranslations('search');
   const router = useRouter();
-  const [q, setQ] = useState(initialQuery);
-  const [tag, setTag] = useState(initialTag);
+  const [q, setQ] = useState(initialQuery || initialTag);
+
+  useEffect(() => {
+    setQ(initialQuery || initialTag);
+  }, [initialQuery, initialTag]);
+
+  const searchActive = Boolean(initialQuery || initialTag);
+
+  function navigateSearch(nextQuery: string) {
+    const params = new URLSearchParams();
+    if (nextQuery.trim()) params.set('q', nextQuery.trim());
+    const qs = params.toString();
+    router.push(qs ? `${searchHref(subject)}?${qs}` : searchHref(subject));
+  }
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (q.trim()) params.set('q', q.trim());
-    if (tag) params.set('tags', tag);
-    router.push(`${searchHref(subject)}?${params.toString()}`);
+    navigateSearch(q);
+  }
+
+  function onSuggestionClick(suggestion: string) {
+    setQ(suggestion);
+    navigateSearch(suggestion);
   }
 
   function resultHref(r: SearchResultItem): string {
@@ -81,38 +95,23 @@ export function SearchPanel({
             {t('submit')}
           </button>
         </div>
-        {tagOptions.length > 0 ? (
-          <div className="flex flex-wrap gap-2 pt-1">
-            <button
-              type="button"
-              onClick={() => setTag('')}
-              className={`min-h-11 rounded-lg border px-3 text-xs font-medium ${
-                !tag
-                  ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-                  : 'border-[var(--border)] text-[var(--fg-muted)]'
-              }`}
-            >
-              {t('all')}
-            </button>
+        {!searchActive && tagOptions.length > 0 ? (
+          <div className="flex flex-wrap gap-2 pt-1" aria-label={t('subtitle')}>
             {tagOptions.slice(0, 16).map((item) => (
               <button
                 key={item.tag}
                 type="button"
-                onClick={() => setTag(item.tag === tag ? '' : item.tag)}
-                className={`min-h-11 rounded-lg border px-3 text-xs font-medium ${
-                  tag === item.tag
-                    ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-                    : 'border-[var(--border)] text-[var(--fg-muted)]'
-                }`}
+                onClick={() => onSuggestionClick(item.tag)}
+                className="min-h-11 rounded-lg border border-[var(--border)] px-3 text-xs font-medium text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
               >
-                {item.tag} ({item.count})
+                {item.tag}
               </button>
             ))}
           </div>
         ) : null}
       </form>
 
-      {initialQuery || initialTag ? (
+      {searchActive ? (
         <p className="text-sm text-[var(--fg-muted)]">
           {t('results', { count: total })}
           {initialQuery ? (

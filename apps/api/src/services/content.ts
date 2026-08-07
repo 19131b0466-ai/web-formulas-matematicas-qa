@@ -160,6 +160,11 @@ export async function searchContent(
         ilike(contentBlocks.title, `%${q}%`),
         ilike(sections.title, `%${q}%`),
         ilike(contentBlocks.formulaCode, `%${q}%`),
+        // Suggestion chips put the tag slug into `q`; match tags too.
+        sql`EXISTS (
+          SELECT 1 FROM unnest(${contentBlocks.tags}) AS tag_name
+          WHERE tag_name ILIKE ${`%${q}%`}
+        )`,
       )!,
     );
   }
