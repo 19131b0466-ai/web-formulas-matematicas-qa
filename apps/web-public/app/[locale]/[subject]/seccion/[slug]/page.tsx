@@ -3,40 +3,22 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { SectionView } from '@/components/section/SectionView';
 import { redirect } from '@/i18n/navigation';
-import {
-  fetchSection,
-  fetchSections,
-  fetchSubjects,
-  flattenSections,
-  isAppendixSlug,
-} from '@/lib/api';
+import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { getSiteUrl } from '@/lib/site';
 import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
 import { routing, type AppLocale } from '@/i18n/routing';
 
-export const revalidate = 86400;
+export const revalidate = 300;
 export const dynamicParams = true;
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;
 };
 
-export async function generateStaticParams() {
-  const subjects: SubjectSlug[] = ['calculo-ii', 'fisica-basica'];
-  const params: Array<{ locale: string; subject: string; slug: string }> = [];
-  for (const subject of subjects) {
-    const sections = await fetchSections(subject);
-    const slugs = flattenSections(sections)
-      .filter((s) => !isAppendixSlug(s.slug) && s.slug !== 'lista-comprobacion')
-      .map((s) => s.slug);
-    for (const locale of routing.locales) {
-      for (const slug of slugs) {
-        params.push({ locale, subject, slug });
-      }
-    }
-  }
-  return params;
+/** Avoid build-time fan-out against the API (was failing Vercel deploys). */
+export function generateStaticParams() {
+  return [] as Array<{ locale: string; subject: string; slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

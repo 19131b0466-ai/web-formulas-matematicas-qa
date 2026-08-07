@@ -13,8 +13,6 @@ import { sectionHref as subjectSectionHref } from './subjects';
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const FETCH_TIMEOUT_MS = 8_000;
-
 /** Always-available catalog so the hub never renders empty if the API flakes. */
 const FALLBACK_SUBJECTS: SubjectSummary[] = [
   {
@@ -35,44 +33,40 @@ function normalizeApiBase(url: string): string {
   return url.replace(/\/+$/, '');
 }
 
+function isVercelRuntime(): boolean {
+  return Boolean(process.env.VERCEL || process.env.VERCEL_ENV || process.env.NEXT_PUBLIC_VERCEL_ENV);
+}
+
 export function getApiBaseUrl(): string {
   const configured = process.env.NEXT_PUBLIC_API_URL?.trim();
   if (configured) {
     const normalized = normalizeApiBase(configured);
     // Guard against a leftover local URL on Vercel builds/SSR.
-    if (process.env.VERCEL && /localhost|127\.0\.0\.1/.test(normalized)) {
+    if (isVercelRuntime() && /localhost|127\.0\.0\.1/.test(normalized)) {
       return VERCEL_API;
     }
     return normalized;
   }
-  if (process.env.VERCEL) return VERCEL_API;
+  if (isVercelRuntime()) return VERCEL_API;
   return LOCAL_API;
 }
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${getApiBaseUrl()}${path}`;
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  const res = await fetch(url, {
+    ...init,
+    headers: {
+      Accept: 'application/json',
+      ...init?.headers,
+    },
+    next: init?.next ?? { revalidate: 60 },
+  });
 
-  try {
-    const res = await fetch(url, {
-      ...init,
-      signal: controller.signal,
-      headers: {
-        Accept: 'application/json',
-        ...init?.headers,
-      },
-      next: init?.next ?? { revalidate: 60 },
-    });
-
-    if (!res.ok) {
-      throw new Error(`API ${path} failed with ${String(res.status)}`);
-    }
-
-    return (await res.json()) as T;
-  } finally {
-    clearTimeout(timer);
+  if (!res.ok) {
+    throw new Error(`API ${path} failed with ${String(res.status)}`);
   }
+
+  return (await res.json()) as T;
 }
 
 export async function fetchSubjects(): Promise<SubjectSummary[]> {
@@ -140,21 +134,14 @@ export async function fetchSearch(params: {
   if (params.tags) sp.set('tags', params.tags);
   if (params.limit) sp.set('limit', String(params.limit));
   const url = `${getApiBaseUrl()}/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`;
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const res = await fetch(url, {
-      headers: { Accept: 'application/json' },
-      cache: 'no-store',
-      signal: controller.signal,
-    });
-    if (!res.ok) {
-      throw new Error(`API /search failed with ${String(res.status)}`);
-    }
-    return res.json() as Promise<SearchResponse>;
-  } finally {
-    clearTimeout(timer);
+  const res = await fetch(url, {
+    headers: { Accept: 'application/json' },
+    cache: 'no-store',
+  });
+  if (!res.ok) {
+    throw new Error(`API /search failed with ${String(res.status)}`);
   }
+  return res.json() as Promise<SearchResponse>;
 }
 
 export async function fetchTags(subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> {
