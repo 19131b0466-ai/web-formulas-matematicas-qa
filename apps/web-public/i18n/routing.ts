@@ -27,4 +27,10 @@ export const routing = defineRouting({
   localePrefix: 'as-needed',
   /** Negotiate from Accept-Language / cookie; falls back to Spanish. */
   localeDetection: true,
+  /** Persist explicit language choice across navigations (not just the tab session). */
+  localeCookie: {
+    name: 'NEXT_LOCALE',
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: 'lax',
+  },
 });
