@@ -50,11 +50,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
 
           const href = formulaHref(subject, id);
           const extras = content.additionalLatex ?? [];
-          const heading = block.title ? (
-            <InlineMarkdown text={block.title} />
-          ) : (
-            <span className="font-mono text-base tracking-normal">{id}</span>
-          );
+          const heading = block.title ? <InlineMarkdown text={block.title} /> : t('primary');
 
           return (
             <article

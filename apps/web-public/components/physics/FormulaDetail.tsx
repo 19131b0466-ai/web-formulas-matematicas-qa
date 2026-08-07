@@ -45,11 +45,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           {section.number ? `${section.number}. ${section.title}` : section.title}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {title ? (
-            <InlineMarkdown text={title} />
-          ) : (
-            <span className="font-mono tracking-normal">{formulaId}</span>
-          )}
+          {title ? <InlineMarkdown text={title} /> : t('primary')}
         </h1>
         <p className="mt-2 text-sm text-[var(--fg-muted)]">
           {t('inSection')}{' '}
@@ -167,11 +163,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
                       {t('relatedItem')}
                     </p>
                     <p className="font-display mt-1 text-lg font-semibold text-[var(--fg)]">
-                      {r.title ? (
-                        <InlineMarkdown text={r.title} />
-                      ) : (
-                        <span className="font-mono tracking-normal">{r.formulaId}</span>
-                      )}
+                      {r.title ? <InlineMarkdown text={r.title} /> : t('primary')}
                     </p>
                     {r.latex ? (
                       <div className="overflow-x-auto py-3">
