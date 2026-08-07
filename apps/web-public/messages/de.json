@@ -126,8 +126,12 @@
     "variables": "Variablen",
     "conditions": "Bedingungen",
     "related": "Verwandte Formeln",
+    "relatedItem": "Verwandt",
+    "openFormula": "Formel öffnen",
+    "openInSection": "Im Abschnitt öffnen",
     "inSection": "In",
     "notFound": "Formel nicht gefunden",
-    "metaDescription": "Detail der Formel {id}."
+    "metaDescription": "Detail der Formel {title}.",
+    "loading": "Formel wird geladen…"
   }
 }

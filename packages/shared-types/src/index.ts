@@ -24,6 +24,8 @@ export interface RelatedFormulaRef {
   formulaId: string;
   title: string | null;
   sectionSlug: string;
+  /** Primary latex for related-card preview (physics detail). */
+  latex?: string | null;
 }
 
 export interface FormulaDetailResponse {

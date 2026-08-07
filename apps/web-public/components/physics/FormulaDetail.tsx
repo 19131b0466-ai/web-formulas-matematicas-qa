@@ -5,6 +5,7 @@ import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Link } from '@/i18n/navigation';
+import { parseVariableSymbols } from '@/lib/parse-variables';
 import type { SubjectSlug } from '@/lib/subjects';
 import { formulaHref, sectionHref, subjectHomeHref } from '@/lib/subjects';
 
@@ -18,12 +19,13 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const t = await getTranslations('formula');
   const tn = await getTranslations('nav');
   const { content, related, section, formulaId, title } = detail;
+  const symbols = parseVariableSymbols(content.variables);
 
   const crumbs = [
     { label: tn('hub'), href: '/' },
     { label: subjectTitle, href: subjectHomeHref(subject) },
     { label: section.title, href: sectionHref(subject, section.slug) },
-    { label: title ?? formulaId },
+    { label: title ?? t('primary') },
   ];
 
   const allLatex = [content.latex, ...(content.additionalLatex ?? [])];
@@ -33,11 +35,11 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
       <Breadcrumbs items={crumbs} />
 
       <header className="mb-8 animate-rise">
-        <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
-          {formulaId}
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
+          {section.number ? `${section.number}. ${section.title}` : section.title}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {title ? <InlineMarkdown text={title} /> : formulaId}
+          {title ? <InlineMarkdown text={title} /> : t('primary')}
         </h1>
         <p className="mt-2 text-sm text-[var(--fg-muted)]">
           {t('inSection')}{' '}
@@ -73,13 +75,34 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         {content.detail ? (
           <section className="animate-rise" style={{ animationDelay: '80ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('detail')}</h2>
-            <p className="mt-2 text-base leading-relaxed text-[var(--fg)]">
+            <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-4 py-3 text-base leading-relaxed text-[var(--fg)]">
               <InlineMarkdown text={content.detail} />
-            </p>
+            </div>
           </section>
         ) : null}
 
-        {content.variables ? (
+        {symbols.length > 0 ? (
+          <section className="animate-rise" style={{ animationDelay: '100ms' }}>
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('variables')}</h2>
+            <ul className="mt-3 space-y-2">
+              {symbols.map((entry) => (
+                <li
+                  key={`${entry.symbol}-${entry.meaning}`}
+                  className="flex items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2.5"
+                >
+                  <span className="shrink-0 rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-sm font-medium text-[var(--accent-strong)]">
+                    <InlineMarkdown text={entry.symbol} />
+                  </span>
+                  {entry.meaning ? (
+                    <span className="pt-0.5 text-base leading-relaxed text-[var(--fg)]">
+                      <InlineMarkdown text={entry.meaning} />
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : content.variables ? (
           <section className="animate-rise" style={{ animationDelay: '100ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('variables')}</h2>
             <p className="mt-2 text-base leading-relaxed text-[var(--fg)]">
@@ -91,9 +114,12 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         {content.constraints?.length ? (
           <section className="animate-rise" style={{ animationDelay: '120ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('conditions')}</h2>
-            <ul className="mt-2 list-disc space-y-1 pl-6 text-base text-[var(--fg)]">
+            <ul className="mt-3 space-y-2">
               {content.constraints.map((c) => (
-                <li key={c}>
+                <li
+                  key={c}
+                  className="rounded-xl border border-[color-mix(in_oklab,var(--warning)_35%,var(--border))] bg-[color-mix(in_oklab,var(--warning)_10%,transparent)] px-4 py-3 text-base leading-relaxed text-[var(--fg)]"
+                >
                   <InlineMarkdown text={c} />
                 </li>
               ))}
@@ -104,21 +130,45 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         {related.length > 0 ? (
           <section className="animate-rise" style={{ animationDelay: '140ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('related')}</h2>
-            <ul className="mt-3 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+            <ul className="mt-3 space-y-3">
               {related.map((r) => (
-                <li key={r.formulaId}>
+                <li
+                  key={r.formulaId}
+                  className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)]"
+                >
                   <Link
                     href={formulaHref(subject, r.formulaId) as '/'}
-                    className="flex min-h-12 items-center justify-between gap-3 py-3 transition hover:text-[var(--accent-strong)]"
+                    prefetch
+                    className="block px-4 pt-3 transition hover:bg-[color-mix(in_oklab,var(--accent-soft)_45%,transparent)]"
                   >
-                    <span>
-                      <span className="mr-2 font-mono text-xs text-[var(--fg-muted)]">
-                        {r.formulaId}
-                      </span>
-                      {r.title ? <InlineMarkdown text={r.title} /> : r.formulaId}
-                    </span>
-                    <span className="text-sm text-[var(--fg-muted)]">→</span>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[var(--accent-strong)]">
+                      {t('relatedItem')}
+                    </p>
+                    <p className="font-display mt-1 text-lg font-semibold text-[var(--fg)]">
+                      {r.title ? <InlineMarkdown text={r.title} /> : t('primary')}
+                    </p>
+                    {r.latex ? (
+                      <div className="overflow-x-auto py-3">
+                        <Katex latex={r.latex} displayMode />
+                      </div>
+                    ) : null}
                   </Link>
+                  <div className="flex flex-wrap items-center gap-4 border-t border-[var(--border)] px-4 py-2.5 text-sm">
+                    <Link
+                      href={formulaHref(subject, r.formulaId) as '/'}
+                      prefetch
+                      className="font-semibold text-[var(--accent-strong)] underline-offset-2 hover:underline"
+                    >
+                      {t('openFormula')}
+                    </Link>
+                    <Link
+                      href={sectionHref(subject, r.sectionSlug) as '/'}
+                      prefetch
+                      className="text-[var(--fg-muted)] underline-offset-2 hover:underline"
+                    >
+                      {t('openInSection')}
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>

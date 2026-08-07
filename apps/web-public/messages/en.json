@@ -126,8 +126,12 @@
     "variables": "Variables",
     "conditions": "Conditions",
     "related": "Related formulas",
+    "relatedItem": "Related",
+    "openFormula": "Open formula",
+    "openInSection": "Open in section",
     "inSection": "In",
     "notFound": "Formula not found",
-    "metaDescription": "Detail for formula {id}."
+    "metaDescription": "Detail for formula {title}.",
+    "loading": "Loading formula…"
   }
 }

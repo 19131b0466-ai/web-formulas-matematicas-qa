@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { HashScroll } from '@/components/navigation/HashScroll';
 import { SectionView } from '@/components/section/SectionView';
 import { redirect } from '@/i18n/navigation';
 import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
@@ -84,6 +85,7 @@ export default async function SectionPage({ params }: PageProps) {
 
   return (
     <>
+      <HashScroll />
       <SectionView
         subject={subject}
         subjectTitle={subjectTitle}

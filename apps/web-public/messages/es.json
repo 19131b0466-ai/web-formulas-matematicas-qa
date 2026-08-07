@@ -99,9 +99,13 @@
     "variables": "Variables",
     "conditions": "Condiciones",
     "related": "Fórmulas relacionadas",
+    "relatedItem": "Relacionada",
+    "openFormula": "Ver fórmula",
+    "openInSection": "Ver en sección",
     "inSection": "En",
     "notFound": "Fórmula no encontrada",
-    "metaDescription": "Detalle de la fórmula {id}."
+    "metaDescription": "Detalle de la fórmula {title}.",
+    "loading": "Cargando fórmula…"
   },
   "content": {
     "formula": "Fórmula",

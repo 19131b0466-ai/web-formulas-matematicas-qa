@@ -261,7 +261,9 @@ export async function getFormulaByCode(
   if (!row) return null;
 
   const content = row.block.content as FormulaContent;
-  const relatedIds = content.relatedIds ?? [];
+  const relatedIds = (content.relatedIds ?? [])
+    .map((id) => id.trim().toUpperCase())
+    .filter(Boolean);
   const related: RelatedFormulaRef[] = [];
 
   if (relatedIds.length > 0) {
@@ -288,10 +290,12 @@ export async function getFormulaByCode(
     for (const id of relatedIds) {
       const hit = byCode.get(id);
       if (!hit) continue;
+      const relatedContent = hit.block.content as FormulaContent;
       related.push({
         formulaId: id,
         title: hit.block.title,
         sectionSlug: hit.section.slug,
+        latex: relatedContent.latex ?? null,
       });
     }
   }

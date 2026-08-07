@@ -115,6 +115,7 @@ function NavLink({
   return (
     <Link
       href={href as '/'}
+      prefetch
       onClick={onNavigate}
       className={`flex min-h-11 items-start rounded-lg px-3 py-2 text-sm transition ${
         compact ? 'min-h-9 py-1.5 text-[13px]' : ''

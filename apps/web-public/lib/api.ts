@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import type {
   FormulaDetailResponse,
   MethodGuideResponse,
@@ -13,6 +14,7 @@ import { sectionHref as subjectSectionHref } from './subjects';
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
+const FETCH_TIMEOUT_MS = 10_000;
 /** Always-available catalog so the hub never renders empty if the API flakes. */
 const FALLBACK_SUBJECTS: SubjectSummary[] = [
   {
@@ -53,74 +55,87 @@ export function getApiBaseUrl(): string {
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${getApiBaseUrl()}${path}`;
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      Accept: 'application/json',
-      ...init?.headers,
-    },
-    next: init?.next ?? { revalidate: 60 },
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      ...init,
+      signal: controller.signal,
+      headers: {
+        Accept: 'application/json',
+        ...init?.headers,
+      },
+      next: init?.next ?? { revalidate: 300 },
+    });
 
-  if (!res.ok) {
-    throw new Error(`API ${path} failed with ${String(res.status)}`);
+    if (!res.ok) {
+      throw new Error(`API ${path} failed with ${String(res.status)}`);
+    }
+
+    return (await res.json()) as T;
+  } finally {
+    clearTimeout(timer);
   }
-
-  return (await res.json()) as T;
 }
 
-export async function fetchSubjects(): Promise<SubjectSummary[]> {
+export const fetchSubjects = cache(async (): Promise<SubjectSummary[]> => {
   try {
     const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
-      next: { revalidate: 60 },
+      next: { revalidate: 300 },
     });
     return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
   } catch (err) {
     console.error('[fetchSubjects]', getApiBaseUrl(), err);
     return FALLBACK_SUBJECTS;
   }
-}
+});
 
-export async function fetchSections(subject: SubjectSlug = 'calculo-ii'): Promise<SectionSummary[]> {
-  try {
-    const data = await apiFetch<{ sections: SectionSummary[] }>(
-      `/subjects/${encodeURIComponent(subject)}/sections`,
-      { next: { revalidate: 60 } },
-    );
-    return data.sections;
-  } catch (err) {
-    console.error('[fetchSections]', subject, getApiBaseUrl(), err);
-    return [];
-  }
-}
+export const fetchSections = cache(
+  async (subject: SubjectSlug = 'calculo-ii'): Promise<SectionSummary[]> => {
+    try {
+      const data = await apiFetch<{ sections: SectionSummary[] }>(
+        `/subjects/${encodeURIComponent(subject)}/sections`,
+        { next: { revalidate: 300 } },
+      );
+      return data.sections;
+    } catch (err) {
+      console.error('[fetchSections]', subject, getApiBaseUrl(), err);
+      return [];
+    }
+  },
+);
 
-export async function fetchSection(
-  slug: string,
-  subject: SubjectSlug = 'calculo-ii',
-): Promise<SectionDetailResponse | null> {
-  try {
-    return await apiFetch<SectionDetailResponse>(
-      `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-      { next: { revalidate: 300 } },
-    );
-  } catch {
-    return null;
-  }
-}
+export const fetchSection = cache(
+  async (
+    slug: string,
+    subject: SubjectSlug = 'calculo-ii',
+  ): Promise<SectionDetailResponse | null> => {
+    try {
+      return await apiFetch<SectionDetailResponse>(
+        `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
+        { next: { revalidate: 600 } },
+      );
+    } catch {
+      return null;
+    }
+  },
+);
 
-export async function fetchFormula(
-  subject: SubjectSlug,
-  formulaId: string,
-): Promise<FormulaDetailResponse | null> {
-  try {
-    return await apiFetch<FormulaDetailResponse>(
-      `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
-      { next: { revalidate: 300 } },
-    );
-  } catch {
-    return null;
-  }
-}
+export const fetchFormula = cache(
+  async (
+    subject: SubjectSlug,
+    formulaId: string,
+  ): Promise<FormulaDetailResponse | null> => {
+    try {
+      return await apiFetch<FormulaDetailResponse>(
+        `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
+        { next: { revalidate: 600 } },
+      );
+    } catch {
+      return null;
+    }
+  },
+);
 
 export async function fetchSearch(params: {
   subject?: SubjectSlug;
@@ -134,35 +149,42 @@ export async function fetchSearch(params: {
   if (params.tags) sp.set('tags', params.tags);
   if (params.limit) sp.set('limit', String(params.limit));
   const url = `${getApiBaseUrl()}/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`;
-  const res = await fetch(url, {
-    headers: { Accept: 'application/json' },
-    cache: 'no-store',
-  });
-  if (!res.ok) {
-    throw new Error(`API /search failed with ${String(res.status)}`);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      throw new Error(`API /search failed with ${String(res.status)}`);
+    }
+    return res.json() as Promise<SearchResponse>;
+  } finally {
+    clearTimeout(timer);
   }
-  return res.json() as Promise<SearchResponse>;
 }
 
-export async function fetchTags(subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> {
+export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> => {
   try {
     return await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
-      next: { revalidate: 300 },
+      next: { revalidate: 600 },
     });
   } catch {
     return { tags: [] };
   }
-}
+});
 
-export async function fetchMethodGuide(): Promise<MethodGuideResponse> {
+export const fetchMethodGuide = cache(async (): Promise<MethodGuideResponse> => {
   try {
     return await apiFetch<MethodGuideResponse>('/guide/method-selection', {
-      next: { revalidate: 300 },
+      next: { revalidate: 600 },
     });
   } catch {
     return { strategies: [], checklist: [] };
   }
-}
+});
 
 export function flattenSections(sections: SectionSummary[]): SectionSummary[] {
   const out: SectionSummary[] = [];

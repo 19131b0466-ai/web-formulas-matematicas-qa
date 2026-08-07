@@ -5,6 +5,7 @@ import { useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, useRouter } from '@/i18n/navigation';
+import { blockAnchorId } from '@/lib/anchors';
 import type { SubjectSlug } from '@/lib/subjects';
 import { formulaHref, searchHref, sectionHref } from '@/lib/subjects';
 
@@ -44,7 +45,18 @@ export function SearchPanel({
     if (linkFormulas && r.formulaCode) {
       return formulaHref(subject, r.formulaCode);
     }
-    return sectionHref(subject, r.sectionSlug);
+    const base = sectionHref(subject, r.sectionSlug);
+    // Deep-link calculus (and other non-catalog) hits to the formula block anchor.
+    if (r.title) {
+      const anchor = blockAnchorId({
+        sectionNumber: r.sectionNumber,
+        title: r.title,
+        blockId: r.blockId,
+        index: 0,
+      });
+      return `${base}#${anchor}`;
+    }
+    return base;
   }
 
   return (
@@ -117,15 +129,12 @@ export function SearchPanel({
           <li key={r.blockId}>
             <Link
               href={resultHref(r) as '/'}
+              prefetch
               className="block rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4 transition hover:border-[var(--accent)]"
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-                {r.formulaCode ? (
-                  <span className="mr-2 font-mono text-[var(--accent-strong)]">{r.formulaCode}</span>
-                ) : null}
                 {r.sectionNumber ? `${r.sectionNumber} · ` : ''}
                 <InlineMarkdown text={r.sectionTitle} />
-                <span className="ml-2 font-normal normal-case">({r.blockType})</span>
               </p>
               {r.title ? (
                 <p className="mt-1 font-display text-lg font-semibold">

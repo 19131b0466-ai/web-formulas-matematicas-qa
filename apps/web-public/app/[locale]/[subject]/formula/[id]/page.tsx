@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const detail = await localizeContent(await fetchFormula(subject, id), locale);
   if (!detail) return { title: t('notFound') };
 
-  const title = detail.title ? `${detail.formulaId} · ${detail.title}` : detail.formulaId;
-  const description = detail.content.detail ?? t('metaDescription', { id: detail.formulaId });
+  const title = detail.title ?? t('primary');
+  const description =
+    detail.content.detail ?? t('metaDescription', { title });
   const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
   const url = `${getSiteUrl()}${prefix}/${subject}/formula/${detail.formulaId}`;
 
