@@ -5,7 +5,7 @@ import { ControlsStack, ToggleRow, VizPanel } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
-export function LogicGateViz({ formulaId: _id, idea }: Props) {
+export function LogicGateViz({ idea }: Props) {
   const [A, setA] = useState(true);
   const [B, setB] = useState(false);
 
