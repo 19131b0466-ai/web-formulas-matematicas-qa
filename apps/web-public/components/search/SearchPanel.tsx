@@ -1,13 +1,15 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState, type FormEvent } from 'react';
 import type { SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, useRouter } from '@/i18n/navigation';
 import { blockAnchorId } from '@/lib/anchors';
+import type { AppLocale } from '@/i18n/routing';
 import type { SubjectSlug } from '@/lib/subjects';
 import { formulaHref, searchHref, sectionHref } from '@/lib/subjects';
+import { localizeTagLabel } from '@/lib/tag-labels';
 
 type SearchPanelProps = {
   subject: SubjectSlug;
@@ -29,30 +31,33 @@ export function SearchPanel({
   tagOptions = [],
 }: SearchPanelProps) {
   const t = useTranslations('search');
+  const locale = useLocale() as AppLocale;
   const router = useRouter();
-  const [q, setQ] = useState(initialQuery || initialTag);
+  const [q, setQ] = useState(initialQuery);
 
   useEffect(() => {
-    setQ(initialQuery || initialTag);
-  }, [initialQuery, initialTag]);
+    setQ(initialQuery);
+  }, [initialQuery]);
 
   const searchActive = Boolean(initialQuery || initialTag);
+  const activeTagLabel = initialTag ? localizeTagLabel(initialTag, locale) : '';
 
-  function navigateSearch(nextQuery: string) {
+  function navigateTextSearch(nextQuery: string) {
     const params = new URLSearchParams();
     if (nextQuery.trim()) params.set('q', nextQuery.trim());
     const qs = params.toString();
     router.push(qs ? `${searchHref(subject)}?${qs}` : searchHref(subject));
   }
 
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    navigateSearch(q);
+  function navigateTagSearch(tag: string) {
+    const params = new URLSearchParams();
+    params.set('tags', tag);
+    router.push(`${searchHref(subject)}?${params.toString()}`);
   }
 
-  function onSuggestionClick(suggestion: string) {
-    setQ(suggestion);
-    navigateSearch(suggestion);
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    navigateTextSearch(q);
   }
 
   function resultHref(r: SearchResultItem): string {
@@ -60,7 +65,6 @@ export function SearchPanel({
       return formulaHref(subject, r.formulaCode);
     }
     const base = sectionHref(subject, r.sectionSlug);
-    // Deep-link calculus (and other non-catalog) hits to the formula block anchor.
     if (r.title) {
       const anchor = blockAnchorId({
         sectionNumber: r.sectionNumber,
@@ -96,17 +100,32 @@ export function SearchPanel({
           </button>
         </div>
         {!searchActive && tagOptions.length > 0 ? (
-          <div className="flex flex-wrap gap-2 pt-1" aria-label={t('subtitle')}>
+          <div className="flex flex-wrap gap-2 pt-1" aria-label={t('suggestedTags')}>
             {tagOptions.slice(0, 16).map((item) => (
               <button
                 key={item.tag}
                 type="button"
-                onClick={() => onSuggestionClick(item.tag)}
+                onClick={() => navigateTagSearch(item.tag)}
                 className="min-h-11 rounded-lg border border-[var(--border)] px-3 text-xs font-medium text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
               >
-                {item.tag}
+                {localizeTagLabel(item.tag, locale)}
               </button>
             ))}
+          </div>
+        ) : null}
+        {initialTag ? (
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="text-xs text-[var(--fg-muted)]">{t('activeTag')}</span>
+            <span className="rounded-lg border border-[var(--accent)] bg-[var(--accent-soft)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
+              {activeTagLabel}
+            </span>
+            <button
+              type="button"
+              onClick={() => router.push(searchHref(subject))}
+              className="text-xs text-[var(--fg-muted)] underline-offset-2 hover:underline"
+            >
+              {t('clearTag')}
+            </button>
           </div>
         ) : null}
       </form>
@@ -118,6 +137,12 @@ export function SearchPanel({
             <>
               {' '}
               {t('forQuery', { query: initialQuery })}
+            </>
+          ) : null}
+          {initialTag && !initialQuery ? (
+            <>
+              {' '}
+              {t('forTag', { tag: activeTagLabel })}
             </>
           ) : null}
         </p>
@@ -141,7 +166,7 @@ export function SearchPanel({
                 </p>
               ) : null}
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--fg-muted)]">
-                {highlight(r.excerpt, initialQuery)}
+                {highlight(r.excerpt, initialQuery || activeTagLabel)}
               </p>
             </Link>
           </li>

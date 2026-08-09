@@ -56,7 +56,11 @@
     "all": "Tous",
     "results": "{count, plural, =1 {# résultat} other {# résultats}}",
     "forQuery": "pour « {query} »",
-    "loading": "Recherche…"
+    "loading": "Recherche…",
+    "suggestedTags": "Tags suggérés",
+    "activeTag": "Tag",
+    "clearTag": "Retirer le tag",
+    "forTag": "avec le tag « {tag} »"
   },
   "guide": {
     "title": "Guide pour choisir une méthode",
