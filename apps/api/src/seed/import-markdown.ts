@@ -2,7 +2,11 @@ import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseFormulasMarkdown, parsePhysicsMarkdown } from '@repo/content-parser';
+import {
+  parseAlgebraMarkdown,
+  parseFormulasMarkdown,
+  parsePhysicsMarkdown,
+} from '@repo/content-parser';
 import { eq } from 'drizzle-orm';
 import { createDb, getDatabaseUrl, type Database } from '../db/client.js';
 import { contentBlocks, sections, subjects } from '../db/schema.js';
@@ -25,6 +29,14 @@ export const SUBJECT_CATALOG = [
     sortOrder: 2,
     markdownPath: resolve(ROOT, 'content/formulas-fisica-basica.md'),
     parser: 'fisica' as const,
+  },
+  {
+    slug: 'algebra',
+    title: 'Álgebra',
+    description: 'Álgebra para Ingeniería y Ciencias de la Computación',
+    sortOrder: 3,
+    markdownPath: resolve(ROOT, 'content/formulas-algebra.md'),
+    parser: 'algebra' as const,
   },
 ] as const;
 
@@ -72,7 +84,7 @@ export async function seedSubjectFromMarkdown(
   db: Database,
   subjectSlug: string,
   markdownPath: string,
-  parser: 'calculo' | 'fisica',
+  parser: 'calculo' | 'fisica' | 'algebra',
   subjectIds?: Map<string, string>,
 ): Promise<SeedStats> {
   const idBySlug = subjectIds ?? (await ensureSubjects(db));
@@ -83,7 +95,11 @@ export async function seedSubjectFromMarkdown(
 
   const markdown = readFileSync(markdownPath, 'utf8');
   const parsed =
-    parser === 'fisica' ? parsePhysicsMarkdown(markdown) : parseFormulasMarkdown(markdown);
+    parser === 'fisica'
+      ? parsePhysicsMarkdown(markdown)
+      : parser === 'algebra'
+        ? parseAlgebraMarkdown(markdown)
+        : parseFormulasMarkdown(markdown);
 
   // SAFETY: only wipe this subject's sections/blocks.
   // NEVER delete/truncate visit_logs, admin_users, or other subjects here.

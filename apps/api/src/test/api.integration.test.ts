@@ -31,13 +31,14 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.status).toBe('ok');
   });
 
-  it('GET /v1/subjects lists both subjects', async () => {
+  it('GET /v1/subjects lists all subjects', async () => {
     const res = await app.request('/v1/subjects');
     expect(res.status).toBe(200);
     const body = (await res.json()) as { subjects: Array<{ slug: string }> };
     const slugs = body.subjects.map((s) => s.slug);
     expect(slugs).toContain('calculo-ii');
     expect(slugs).toContain('fisica-basica');
+    expect(slugs).toContain('algebra');
   });
 
   it('GET /v1/sections returns calculo-ii tree by default', async () => {
@@ -74,6 +75,27 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.blocks.length).toBeGreaterThan(0);
     expect(body.blocks.some((b) => b.type === 'formula')).toBe(true);
     expect(body.subsections.length).toBeGreaterThan(0);
+  });
+
+  it('GET /v1/subjects/algebra/formulas/ALG-FND-001 returns detail + visual + related', async () => {
+    const res = await app.request('/v1/subjects/algebra/formulas/ALG-FND-001');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      formulaId: string;
+      content: {
+        latex: string;
+        level?: string;
+        visual?: { type: string };
+        relatedIds?: string[];
+      };
+      related: Array<{ formulaId: string }>;
+      section: { slug: string };
+    };
+    expect(body.formulaId).toBe('ALG-FND-001');
+    expect(body.section.slug).toBe('numeros-propiedades');
+    expect(body.content.level).toBe('fundamental');
+    expect(body.content.visual?.type).toBe('algebra_tiles');
+    expect(body.related.length).toBeGreaterThan(0);
   });
 
   it('GET /v1/subjects/fisica-basica/formulas/VEC-001 returns detail + related', async () => {

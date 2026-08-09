@@ -30,6 +30,7 @@ export const revalidate = 60;
 const SUBJECT_COPY: Record<string, { accent: string }> = {
   'calculo-ii': { accent: 'from-[var(--accent)]/25 via-transparent to-transparent' },
   'fisica-basica': { accent: 'from-teal-600/20 via-transparent to-transparent' },
+  algebra: { accent: 'from-amber-700/20 via-transparent to-transparent' },
 };
 
 export default async function HubPage({ params }: PageProps) {

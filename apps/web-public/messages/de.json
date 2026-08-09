@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Mathematische Formeln",
-    "tagline": "Analysis II und Grundlagen der Physik",
-    "description": "Mathematische Formeln online, mehrfach-fach: Integralrechnung und universitäre Grundlagenphysik.",
+    "tagline": "Analysis II, Physik und Algebra",
+    "description": "Mathematische Formeln online: Integralrechnung, Physik und Algebra für Ingenieurwesen & Informatik.",
     "shortName": "Formeln",
-    "about": "Integralrechnung und Grundlagenphysik",
+    "about": "Integralrechnung, Physik und Algebra",
     "manifestDescription": "Mathematische Formeln online"
   },
   "nav": {
@@ -139,6 +139,11 @@
     "inSection": "In",
     "notFound": "Formel nicht gefunden",
     "metaDescription": "Detail der Formel {title}.",
-    "loading": "Formel wird geladen…"
+    "loading": "Formel wird geladen…",
+    "level": "Niveau",
+    "visualization": "Visualisierung",
+    "complexity": "Rechenkomplexität",
+    "showComplexity": "Anzeigen (CS)",
+    "hideComplexity": "Ausblenden (Basis)"
   }
 }

@@ -1,5 +1,7 @@
+import dynamic from 'next/dynamic';
 import { getTranslations } from 'next-intl/server';
 import type { FormulaDetailResponse } from '@repo/shared-types';
+import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
@@ -8,6 +10,12 @@ import { Link } from '@/i18n/navigation';
 import { parseVariableSymbols } from '@/lib/parse-variables';
 import type { SubjectSlug } from '@/lib/subjects';
 import { formulaHref, sectionHref, subjectHomeHref } from '@/lib/subjects';
+
+const FormulaVisualization = dynamic(
+  () =>
+    import('@/components/algebra/FormulaVisualization').then((m) => m.FormulaVisualization),
+  { ssr: false, loading: () => <div className="h-40 animate-pulse rounded-xl bg-[var(--accent-soft)]" /> },
+);
 
 type FormulaDetailProps = {
   subject: SubjectSlug;
@@ -47,6 +55,13 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
           {title ? <InlineMarkdown text={title} /> : t('primary')}
         </h1>
+        {content.level ? (
+          <p className="mt-3">
+            <span className="inline-flex rounded-lg bg-[var(--accent-soft)] px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--accent-strong)]">
+              {t('level')}: {content.level}
+            </span>
+          </p>
+        ) : null}
         <p className="mt-2 text-sm text-[var(--fg-muted)]">
           {t('inSection')}{' '}
           <Link
@@ -97,6 +112,23 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
               <InlineMarkdown text={content.detail} />
             </div>
           </section>
+        ) : null}
+
+        {content.visual && content.formulaId ? (
+          <FormulaVisualization
+            formulaId={content.formulaId}
+            visual={content.visual}
+            title={t('visualization')}
+          />
+        ) : null}
+
+        {content.computationalCost?.applicable ? (
+          <ComputationalCostPanel
+            cost={content.computationalCost}
+            title={t('complexity')}
+            showLabel={t('showComplexity')}
+            hideLabel={t('hideComplexity')}
+          />
         ) : null}
 
         {symbols.length > 0 ? (

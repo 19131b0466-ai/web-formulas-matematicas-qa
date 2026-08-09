@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Fórmulas matemáticas",
-    "tagline": "Cálculo II y Física Básica",
-    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Integral y Física Básica universitaria, con búsqueda y renderizado LaTeX.",
+    "tagline": "Cálculo II, Física Básica y Álgebra",
+    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Integral, Física Básica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
     "shortName": "Fórmulas",
-    "about": "Cálculo Integral y Física Básica",
+    "about": "Cálculo Integral, Física Básica y Álgebra",
     "manifestDescription": "Fórmulas matemáticas en línea"
   },
   "nav": {
@@ -112,7 +112,12 @@
     "inSection": "En",
     "notFound": "Fórmula no encontrada",
     "metaDescription": "Detalle de la fórmula {title}.",
-    "loading": "Cargando fórmula…"
+    "loading": "Cargando fórmula…",
+    "level": "Nivel",
+    "visualization": "Visualización",
+    "complexity": "Complejidad computacional",
+    "showComplexity": "Mostrar (modo CS)",
+    "hideComplexity": "Ocultar (modo básico)"
   },
   "content": {
     "formula": "Fórmula",

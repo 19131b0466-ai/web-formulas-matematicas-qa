@@ -29,6 +29,12 @@ const FALLBACK_SUBJECTS: SubjectSummary[] = [
     description: 'Fórmulas de Física General universitaria',
     sortOrder: 2,
   },
+  {
+    slug: 'algebra',
+    title: 'Álgebra',
+    description: 'Álgebra para Ingeniería y Ciencias de la Computación',
+    sortOrder: 3,
+  },
 ];
 
 function normalizeApiBase(url: string): string {

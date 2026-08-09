@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Formules mathématiques",
-    "tagline": "Calcul II et Physique de base",
-    "description": "Formules mathématiques en ligne multi-matières : calcul intégral et physique de base universitaire.",
+    "tagline": "Calcul II, Physique de base et Algèbre",
+    "description": "Formules mathématiques en ligne : calcul intégral, physique de base et algèbre pour l'ingénierie et l'informatique.",
     "shortName": "Formules",
-    "about": "Calcul intégral et Physique de base",
+    "about": "Calcul intégral, Physique de base et Algèbre",
     "manifestDescription": "Formules mathématiques en ligne"
   },
   "nav": {
@@ -139,6 +139,11 @@
     "inSection": "Dans",
     "notFound": "Formule introuvable",
     "metaDescription": "Détail de la formule {title}.",
-    "loading": "Chargement de la formule…"
+    "loading": "Chargement de la formule…",
+    "level": "Niveau",
+    "visualization": "Visualisation",
+    "complexity": "Complexité computationnelle",
+    "showComplexity": "Afficher (mode CS)",
+    "hideComplexity": "Masquer (mode basique)"
   }
 }

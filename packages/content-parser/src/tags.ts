@@ -38,6 +38,37 @@ const SECTION_TAGS: Record<string, string[]> = {
   'electricidad-basica': ['electricidad', 'fisica'],
   'constantes-fisicas': ['constantes', 'fisica'],
   'guia-enfoque': ['guia', 'estrategia', 'fisica'],
+  // Álgebra
+  'numeros-propiedades': ['algebra', 'fundamentos'],
+  'potencias-radicales': ['algebra', 'potencias'],
+  'expresiones-algebraicas': ['algebra', 'polinomios'],
+  'productos-notables': ['algebra', 'identidades'],
+  factorizacion: ['algebra', 'factorizacion'],
+  'expresiones-racionales': ['algebra', 'fracciones-parciales'],
+  ecuaciones: ['algebra', 'ecuaciones'],
+  inecuaciones: ['algebra', 'inecuaciones'],
+  'sistemas-ecuaciones': ['algebra', 'sistemas'],
+  funciones: ['algebra', 'funciones'],
+  polinomios: ['algebra', 'polinomios'],
+  'exponenciales-logaritmos': ['algebra', 'logaritmos'],
+  'numeros-complejos': ['algebra', 'complejos'],
+  'sucesiones-series-finitas': ['algebra', 'sucesiones'],
+  'vectores-algebra': ['algebra', 'vectores', 'lineal'],
+  matrices: ['algebra', 'matrices', 'lineal'],
+  'determinantes-inversas': ['algebra', 'determinantes', 'lineal'],
+  'espacios-vectoriales': ['algebra', 'espacios-vectoriales', 'lineal'],
+  'transformaciones-lineales': ['algebra', 'transformaciones', 'lineal'],
+  'valores-propios': ['algebra', 'eigen', 'lineal'],
+  'ortogonalidad-proyecciones': ['algebra', 'ortogonalidad', 'lineal'],
+  'minimos-cuadrados': ['algebra', 'minimos-cuadrados', 'lineal'],
+  'descomposiciones-matrices': ['algebra', 'descomposiciones', 'lineal'],
+  'normas-condicionamiento': ['algebra', 'normas', 'lineal'],
+  'algebra-booleana': ['algebra', 'booleana', 'cs'],
+  'aritmetica-modular': ['algebra', 'modular', 'cs'],
+  'estructuras-algebraicas': ['algebra', 'estructuras', 'cs'],
+  'codigos-lineales': ['algebra', 'codigos', 'cs'],
+  'mapas-relaciones': ['algebra', 'relaciones'],
+  'fronteras-materias': ['algebra', 'fronteras'],
 };
 
 const KEYWORD_TAGS: Array<[RegExp, string]> = [
@@ -71,6 +102,7 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
 
   if (blockType === 'formula') {
     if (tags.has('fisica')) tags.add('formula-fisica');
+    else if (tags.has('algebra')) tags.add('formula-algebra');
     else tags.add('antiderivada');
   }
   if (blockType === 'strategy') tags.add('estrategia');
@@ -126,4 +158,38 @@ export const PHYSICS_SECTION_SLUG_OVERRIDES: Record<string, string> = {
   '16': 'electricidad-basica',
   '17': 'constantes-fisicas',
   '18': 'guia-enfoque',
+};
+
+/** Canonical slug overrides for Álgebra chapters. */
+export const ALGEBRA_SECTION_SLUG_OVERRIDES: Record<string, string> = {
+  '1': 'numeros-propiedades',
+  '2': 'potencias-radicales',
+  '3': 'expresiones-algebraicas',
+  '4': 'productos-notables',
+  '5': 'factorizacion',
+  '6': 'expresiones-racionales',
+  '7': 'ecuaciones',
+  '8': 'inecuaciones',
+  '9': 'sistemas-ecuaciones',
+  '10': 'funciones',
+  '11': 'polinomios',
+  '12': 'exponenciales-logaritmos',
+  '13': 'numeros-complejos',
+  '14': 'sucesiones-series-finitas',
+  '15': 'vectores-algebra',
+  '16': 'matrices',
+  '17': 'determinantes-inversas',
+  '18': 'espacios-vectoriales',
+  '19': 'transformaciones-lineales',
+  '20': 'valores-propios',
+  '21': 'ortogonalidad-proyecciones',
+  '22': 'minimos-cuadrados',
+  '23': 'descomposiciones-matrices',
+  '24': 'normas-condicionamiento',
+  '25': 'algebra-booleana',
+  '26': 'aritmetica-modular',
+  '27': 'estructuras-algebraicas',
+  '28': 'codigos-lineales',
+  '29': 'mapas-relaciones',
+  '30': 'fronteras-materias',
 };

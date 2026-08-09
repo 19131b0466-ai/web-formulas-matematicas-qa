@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Fórmulas matemáticas",
-    "tagline": "Cálculo II e Física Básica",
-    "description": "Fórmulas matemáticas online multi-matéria: Cálculo Integral e Física Básica universitária.",
+    "tagline": "Cálculo II, Física Básica e Álgebra",
+    "description": "Fórmulas matemáticas online: Cálculo Integral, Física Básica e Álgebra para engenharia e CS.",
     "shortName": "Fórmulas",
-    "about": "Cálculo Integral e Física Básica",
+    "about": "Cálculo Integral, Física Básica e Álgebra",
     "manifestDescription": "Fórmulas matemáticas online"
   },
   "nav": {
@@ -139,6 +139,11 @@
     "inSection": "Em",
     "notFound": "Fórmula não encontrada",
     "metaDescription": "Detalhe da fórmula {title}.",
-    "loading": "Carregando fórmula…"
+    "loading": "Carregando fórmula…",
+    "level": "Nível",
+    "visualization": "Visualização",
+    "complexity": "Complexidade computacional",
+    "showComplexity": "Mostrar (modo CS)",
+    "hideComplexity": "Ocultar (modo básico)"
   }
 }

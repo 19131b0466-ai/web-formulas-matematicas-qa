@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Formule matematiche",
-    "tagline": "Calcolo II e Fisica di base",
-    "description": "Formule matematiche online multi-materia: calcolo integrale e fisica di base universitaria.",
+    "tagline": "Calcolo II, Fisica di base e Algebra",
+    "description": "Formule matematiche online: calcolo integrale, fisica di base e algebra per ingegneria e informatica.",
     "shortName": "Formule",
-    "about": "Calcolo integrale e Fisica di base",
+    "about": "Calcolo integrale, Fisica di base e Algebra",
     "manifestDescription": "Formule matematiche online"
   },
   "nav": {
@@ -139,6 +139,11 @@
     "inSection": "In",
     "notFound": "Formula non trovata",
     "metaDescription": "Dettaglio della formula {title}.",
-    "loading": "Caricamento formula…"
+    "loading": "Caricamento formula…",
+    "level": "Livello",
+    "visualization": "Visualizzazione",
+    "complexity": "Complessità computazionale",
+    "showComplexity": "Mostra (modo CS)",
+    "hideComplexity": "Nascondi (modo base)"
   }
 }

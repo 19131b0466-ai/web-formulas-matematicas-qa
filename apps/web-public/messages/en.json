@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Mathematical formulas",
-    "tagline": "Calculus II and Basic Physics",
-    "description": "Multi-subject online mathematical formulas: Integral Calculus and university Basic Physics, with search and LaTeX rendering.",
+    "tagline": "Calculus II, Basic Physics and Algebra",
+    "description": "Multi-subject online mathematical formulas: Integral Calculus, Basic Physics and Algebra for engineering & CS, with search, visualizations and LaTeX.",
     "shortName": "Formulas",
-    "about": "Integral Calculus and Basic Physics",
+    "about": "Integral Calculus, Basic Physics and Algebra",
     "manifestDescription": "Online mathematical formulas"
   },
   "nav": {
@@ -139,6 +139,11 @@
     "inSection": "In",
     "notFound": "Formula not found",
     "metaDescription": "Detail for formula {title}.",
-    "loading": "Loading formula…"
+    "loading": "Loading formula…",
+    "level": "Level",
+    "visualization": "Visualization",
+    "complexity": "Computational complexity",
+    "showComplexity": "Show (CS mode)",
+    "hideComplexity": "Hide (basic mode)"
   }
 }

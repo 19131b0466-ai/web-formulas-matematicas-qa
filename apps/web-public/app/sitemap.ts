@@ -5,7 +5,7 @@ import {
   flattenSections,
 } from '@/lib/api';
 import { getSiteUrl } from '@/lib/site';
-import { isSubjectSlug, sectionHref, type SubjectSlug } from '@/lib/subjects';
+import { isSubjectSlug, sectionHref, subjectHasGuide, type SubjectSlug } from '@/lib/subjects';
 import { routing } from '@/i18n/routing';
 
 function localePath(locale: string, path: string): string {
@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (!isSubjectSlug(subjectMeta.slug)) continue;
       const subject = subjectMeta.slug as SubjectSlug;
       const staticPaths = [`/${subject}`, `/${subject}/buscar`];
-      if (subject === 'calculo-ii' || subject === 'fisica-basica') {
+      if (subjectHasGuide(subject)) {
         staticPaths.push(`/${subject}/guia`);
       }
 

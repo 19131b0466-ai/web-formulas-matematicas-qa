@@ -66,7 +66,22 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                 >
                   {heading}
                 </Link>
-                <CopyLatexButton latex={content.latex} />
+                <div className="flex items-center gap-2">
+                  {content.level ? (
+                    <span className="rounded-md bg-[var(--accent-soft)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-strong)]">
+                      {content.level}
+                    </span>
+                  ) : null}
+                  {content.visual ? (
+                    <span
+                      className="rounded-md border border-[var(--border)] px-2 py-0.5 text-[10px] font-medium text-[var(--fg-muted)]"
+                      title={content.visual.type}
+                    >
+                      viz
+                    </span>
+                  ) : null}
+                  <CopyLatexButton latex={content.latex} />
+                </div>
               </div>
 
               {content.latexLabel ? (
