@@ -512,11 +512,11 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `square`
-- **Concepto visual:** área de un cuadrado de lado \(a+b\).
-- **Elementos:** cuadrado dividido en cuatro regiones: \(a^2\), \(ab\), \(ab\) y \(b^2\).
-- **Idea:** Cambia \(a\) y \(b\) y fíjate: el cuadrado grande es \(a^2 + 2ab + b^2\).
-- **Objetivo educativo:** Vas a ver que \((a+b)^2\) es un cuadrado partido en cuatro piezas.
-- **Interactividad sugerida:** deslizadores para \(a\) y \(b\); actualizar dimensiones y áreas manteniendo etiquetas proporcionales.
+- **Concepto visual:** el mismo cuadrado de lado \(a+b\) medido como \((a+b)^2\) y como \(a^2+ab+ab+b^2\).
+- **Elementos:** etiquetas dimensionales \(a\), \(b\) y lado \(a+b\); cuatro regiones proporcionales; agrupación explícita \(ab+ab=2ab\); identidad simbólica separada del ejemplo numérico.
+- **Idea:** Un cuadrado de lado \(a+b\) tiene área \((a+b)^2\); al partir cada lado en \(a\) y \(b\) aparecen \(a^2\), dos \(ab\) y \(b^2\).
+- **Objetivo educativo:** Vas a ver que el \(2\) de \(2ab\) sale porque hay dos rectángulos distintos de área \(ab\).
+- **Interactividad sugerida:** sliders \(a\ge0\), \(b\ge0\); pasos de construcción (cuadrado → divisiones → regiones → agrupar \(2ab\)); proporciones geométricas reales.
 
 ### Fórmulas relacionadas
 
@@ -738,11 +738,11 @@ a^2\pm2ab+b^2=(a\pm b)^2
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `square`
-- **Concepto visual:** reconocimiento de un trinomio como cuadrado perfecto.
-- **Elementos:** cuatro piezas de área: \(a^2\), dos rectángulos \(ab\) y \(b^2\), que encajan formando un cuadrado.
-- **Idea:** Ajusta \(a\) y \(b\) hasta ver el patrón \((a\pm b)^2\) en las piezas.
+- **Concepto visual:** las piezas \(a^2\), \(ab\), \(ab\) y \(b^2\) encajan en un cuadrado de lado \(a+b\).
+- **Elementos:** cuadrado proporcional con etiquetas; agrupación \(ab+ab=2ab\); lectura \(a^2+2ab+b^2=(a+b)^2\).
+- **Idea:** Ajusta \(a\) y \(b\) y mira cómo \(a^2+2ab+b^2\) es exactamente el área del cuadrado \((a+b)^2\).
 - **Objetivo educativo:** Vas a ver que un trinomio cuadrado perfecto se arma como un cuadrado completo.
-- **Interactividad sugerida:** arrastrar las piezas hasta completar el cuadrado y revelar la factorización.
+- **Interactividad sugerida:** sliders \(a\ge0\), \(b\ge0\); pasos que revelan las cuatro piezas y el factor \((a+b)^2\).
 
 ### Fórmulas relacionadas
 

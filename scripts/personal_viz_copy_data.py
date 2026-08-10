@@ -36,8 +36,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Cada término del primer polinomio se multiplica por cada término del segundo; luego se agrupan las mismas potencias de \\(x\\).',
     ),
     'ALG-IDN-001': (
-        'Vas a ver que \\((a+b)^2\\) es un cuadrado partido en cuatro piezas.',
-        'Cambia \\(a\\) y \\(b\\) y fíjate: el cuadrado grande es \\(a^2 + 2ab + b^2\\).',
+        'Vas a ver que el \\(2\\) de \\(2ab\\) sale porque hay dos rectángulos distintos de área \\(ab\\).',
+        'Un cuadrado de lado \\(a+b\\) tiene área \\((a+b)^2\\); al partir cada lado en \\(a\\) y \\(b\\) aparecen \\(a^2\\), dos \\(ab\\) y \\(b^2\\).',
     ),
     'ALG-IDN-002': (
         'Vas a ver que \\((a-b)^2\\) también es un área, con una corrección en la esquina.',
@@ -61,7 +61,7 @@ COPY_ES: dict[str, tuple[str, str]] = {
     ),
     'ALG-FAC-003': (
         'Vas a ver que un trinomio cuadrado perfecto se arma como un cuadrado completo.',
-        'Ajusta \\(a\\) y \\(b\\) hasta ver el patrón \\((a\\pm b)^2\\) en las piezas.',
+        'Ajusta \\(a\\) y \\(b\\) y mira cómo \\(a^2+2ab+b^2\\) es exactamente el área del cuadrado \\((a+b)^2\\).',
     ),
     'ALG-EQU-001': (
         'Vas a ver que una ecuación lineal es una recta: la solución es donde corta al eje \\(x\\).',
@@ -584,8 +584,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Each term of the first polynomial is multiplied by each term of the second; then like powers of \\(x\\) are grouped.',
     ),
         'ALG-IDN-001': (
-        "You'll see that \\((a+b)^2\\) is a square split into four pieces.",
-        'Change \\(a\\) and \\(b\\) and notice: the big square is \\(a^2 + 2ab + b^2\\).',
+        "You'll see that the \\(2\\) in \\(2ab\\) comes from two distinct rectangles of area \\(ab\\).",
+        'A square of side \\(a+b\\) has area \\((a+b)^2\\); splitting each side into \\(a\\) and \\(b\\) yields \\(a^2\\), two \\(ab\\) and \\(b^2\\).',
     ),
         'ALG-IDN-002': (
         "You'll see that \\((a-b)^2\\) is also an area, with a correction in the corner.",
@@ -609,7 +609,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-003': (
         "You'll see that a perfect-square trinomial builds into a complete square.",
-        'Adjust \\(a\\) and \\(b\\) until you see the pattern \\((a\\pm b)^2\\) in the pieces.',
+        'Adjust \\(a\\) and \\(b\\) and see how \\(a^2+2ab+b^2\\) is exactly the area of the square \\((a+b)^2\\).',
     ),
         'ALG-EQU-001': (
         "You'll see that a linear equation is a line: the solution is where it meets the \\(x\\)-axis.",
@@ -1130,8 +1130,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Jeder Term des ersten Polynoms wird mit jedem Term des zweiten multipliziert; danach werden gleiche Potenzen von \\(x\\) zusammengefasst.',
     ),
         'ALG-IDN-001': (
-        'Du siehst: \\((a+b)^2\\) ist ein Quadrat in vier Teilen.',
-        'Ändere \\(a\\) und \\(b\\) und schau: Das große Quadrat ist \\(a^2 + 2ab + b^2\\).',
+        'Du siehst, dass die \\(2\\) in \\(2ab\\) von zwei verschiedenen Rechtecken der Fläche \\(ab\\) kommt.',
+        'Ein Quadrat der Seite \\(a+b\\) hat Fläche \\((a+b)^2\\); teilt man jede Seite in \\(a\\) und \\(b\\), entstehen \\(a^2\\), zwei \\(ab\\) und \\(b^2\\).',
     ),
         'ALG-IDN-002': (
         'Du siehst: \\((a-b)^2\\) ist auch eine Fläche, mit einer Korrektur in der Ecke.',
@@ -1676,8 +1676,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Chaque terme du premier polynôme est multiplié par chaque terme du second ; ensuite on regroupe les mêmes puissances de \\(x\\).',
     ),
         'ALG-IDN-001': (
-        'Tu vas voir que \\((a+b)^2\\) est un carré partagé en quatre pièces.',
-        'Change \\(a\\) et \\(b\\) et regarde : le grand carré est \\(a^2 + 2ab + b^2\\).',
+        'Tu verras que le \\(2\\) de \\(2ab\\) vient de deux rectangles distincts d\'aire \\(ab\\).',
+        'Un carré de côté \\(a+b\\) a pour aire \\((a+b)^2\\) ; en partageant chaque côté en \\(a\\) et \\(b\\), apparaissent \\(a^2\\), deux \\(ab\\) et \\(b^2\\).',
     ),
         'ALG-IDN-002': (
         'Tu vas voir que \\((a-b)^2\\) est aussi une aire, avec une correction dans le coin.',
@@ -2222,8 +2222,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Ogni termine del primo polinomio si moltiplica per ogni termine del secondo; poi si raggruppano le stesse potenze di \\(x\\).',
     ),
         'ALG-IDN-001': (
-        'Vedrai che \\((a+b)^2\\) è un quadrato diviso in quattro pezzi.',
-        'Cambia \\(a\\) e \\(b\\) e nota: il quadrato grande è \\(a^2 + 2ab + b^2\\).',
+        'Vedrai che il \\(2\\) di \\(2ab\\) nasce perché ci sono due rettangoli distinti di area \\(ab\\).',
+        'Un quadrato di lato \\(a+b\\) ha area \\((a+b)^2\\); dividendo ogni lato in \\(a\\) e \\(b\\) compaiono \\(a^2\\), due \\(ab\\) e \\(b^2\\).',
     ),
         'ALG-IDN-002': (
         "Vedrai che \\((a-b)^2\\) è anche un'area, con una correzione nell'angolo.",
@@ -2768,8 +2768,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Cada termo do primeiro polinómio multiplica-se por cada termo do segundo; depois agrupam-se as mesmas potências de \\(x\\).',
     ),
         'ALG-IDN-001': (
-        'Vais ver que \\((a+b)^2\\) é um quadrado partido em quatro peças.',
-        'Muda \\(a\\) e \\(b\\) e repara: o quadrado grande é \\(a^2 + 2ab + b^2\\).',
+        'Vais ver que o \\(2\\) de \\(2ab\\) aparece porque há dois retângulos distintos de área \\(ab\\).',
+        'Um quadrado de lado \\(a+b\\) tem área \\((a+b)^2\\); ao partir cada lado em \\(a\\) e \\(b\\) aparecem \\(a^2\\), dois \\(ab\\) e \\(b^2\\).',
     ),
         'ALG-IDN-002': (
         'Vais ver que \\((a-b)^2\\) também é uma área, com uma correção no canto.',

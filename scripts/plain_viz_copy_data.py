@@ -40,8 +40,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Cada término del primer polinomio se multiplica por cada término del segundo; luego se agrupan las mismas potencias de x.",
     ),
     "ALG-IDN-001": (
-        "(a+b)² se ve como un cuadrado partido en cuatro piezas.",
-        "Cambia a y b: el cuadrado grande es a² + 2ab + b².",
+        "Vas a ver que el 2 de 2ab sale porque hay dos rectángulos distintos de área ab.",
+        "Un cuadrado de lado a+b tiene área (a+b)²; al partir cada lado en a y b aparecen a², dos ab y b².",
     ),
     "ALG-IDN-002": (
         "(a−b)² también es un área, con una corrección en la esquina.",
@@ -65,7 +65,7 @@ COPY_ES: dict[str, tuple[str, str]] = {
     ),
     "ALG-FAC-003": (
         "Un trinomio cuadrado perfecto se arma como un cuadrado completo.",
-        "Ajusta a y b hasta ver el patrón (a±b)² en las piezas.",
+        "Ajusta a y b y mira cómo a²+2ab+b² es exactamente el área del cuadrado (a+b)².",
     ),
     "ALG-EQU-001": (
         "Una ecuación lineal es una recta: la solución es donde corta al eje x.",
@@ -588,8 +588,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Each term of the first polynomial is multiplied by each term of the second; then like powers of x are grouped.",
         ),
         "ALG-IDN-001": (
-            "(a+b)² looks like a square cut into four pieces.",
-            "Change a and b: the big square is a² + 2ab + b².",
+            "You'll see that the 2 in 2ab comes from two distinct rectangles of area ab.",
+            "A square of side a+b has area (a+b)²; splitting each side into a and b yields a², two ab and b².",
         ),
         "ALG-IDN-002": (
             "(a−b)² is also an area, with a correction in the corner.",
@@ -613,7 +613,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         ),
         "ALG-FAC-003": (
             "A perfect-square trinomial builds a complete square.",
-            "Adjust a and b until you see the (a±b)² pattern in the tiles.",
+            "Adjust a and b and see how a²+2ab+b² is exactly the area of the square (a+b)².",
         ),
         "ALG-EQU-001": (
             "A linear equation is a line: the solution is where it meets the x-axis.",

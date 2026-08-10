@@ -117,9 +117,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \((a+b)^2 = a^2+2ab+b^2\) como partición de un cuadrado. |
-| **Layout** | Un cuadrado compuesto (4 regiones etiquetadas). |
-| **Veredicto** | **KEEP** descomposición en sitio (P3). |
+| **Enseña** | \((a+b)^2=a^2+2ab+b^2\): misma área como lado total y como \(a^2+ab+ab+b^2\); el 2 de \(2ab\) son dos rectángulos. |
+| **Layout** | Cuadrado exterior fijo; divisiones proporcionales \(a:(a+b)\); etiquetas dimensionales; pasos de construcción; identidad ≠ ejemplo numérico. |
+| **Interacción** | Sliders \(a,b\ge0\); Anterior/Siguiente/Ver todo. Guía embebida. |
+| **Componente** | `SquareSumViz.tsx` |
+| **Veredicto** | Demostración geométrica completa (P3). |
 
 ### `square_minus` (IDN-002)
 
