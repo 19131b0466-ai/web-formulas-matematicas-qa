@@ -902,11 +902,11 @@ ax+b=0\Rightarrow x=-\frac ba\;(a\ne0)
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** solución de una ecuación lineal como intersección con el eje x.
-- **Elementos:** plano cartesiano, recta \(y=ax+b\), eje \(x\) y punto marcado en \(x=-b/a\).
-- **Idea:** Mueve la pendiente y el intercepto y busca dónde la recta cruza el eje horizontal.
-- **Objetivo educativo:** Vas a ver que una ecuación lineal es una recta: la solución es donde corta al eje \(x\).
-- **Interactividad sugerida:** deslizadores para \(a\neq0\) y \(b\); mostrar el valor de la raíz y la intersección.
+- **Concepto visual:** para visualizar \(ax+b=0\) se dibuja \(y=ax+b\); la solución es donde \(y=0\) (cruce con el eje \(x\)).
+- **Elementos:** ecuación vs función asociada; recta \(y=ax+b\); punto solución \((-b/a,0)\); intercepto \((0,b)\); desarrollo algebraico; casos \(a=0\).
+- **Idea:** Resolver \(ax+b=0\) es encontrar el \(x\) que anula la expresión; gráficamente, donde \(y=ax+b\) cruza el eje \(x\).
+- **Objetivo educativo:** Vas a ver la diferencia entre la ecuación \(ax+b=0\) y la función \(y=ax+b\), y que la solución es la intersección con el eje \(x\).
+- **Interactividad sugerida:** sliders \(a\) y \(b\) (incluir \(a=0\)); actualizar raíz, gráfica y pasos algebraicos.
 
 ### Fórmulas relacionadas
 

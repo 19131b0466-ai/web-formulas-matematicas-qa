@@ -5,10 +5,18 @@ import { useVizLabels } from '@/lib/viz-labels';
 import type { GraphMode } from '@/lib/viz-modes';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
+import { LinearEquationViz } from './LinearEquationViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GraphViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('EQU-001')) {
+    return <LinearEquationViz />;
+  }
+  return <GraphVizInner formulaId={formulaId} mode={modeProp} />;
+}
+
+function GraphVizInner({ formulaId, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'line') as GraphMode;
   const [a, setA] = useState(1);

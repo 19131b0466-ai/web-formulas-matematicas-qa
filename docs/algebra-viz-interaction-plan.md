@@ -208,6 +208,16 @@ flowchart TD
 | **Componente** | `ConjugateRationalizeViz.tsx` |
 | **Veredicto** | Proceso completo, no solo “sale \(a^2-b\)”. |
 
+### `line` / ecuación lineal (ALG-EQU-001)
+
+| Campo | Decisión |
+|---|---|
+| **Enseña** | Resolver \(ax+b=0\) vía \(y=ax+b\): solución = cruce con el eje \(x\). |
+| **Layout** | Gráfica + desarrollo algebraico; distinguir ecuación vs función; casos \(a=0\). |
+| **Interacción** | Sliders \(a,b\) (permite \(a=0\)). Guía embebida. |
+| **Componente** | `LinearEquationViz.tsx` |
+| **Veredicto** | No decir “una ecuación lineal es una recta”. |
+
 ---
 
 ## 3. Criterios breves por tipo de viz
