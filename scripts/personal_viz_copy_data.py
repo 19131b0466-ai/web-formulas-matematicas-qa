@@ -32,8 +32,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Compara \\(a+\\sqrt{b}\\) con \\(a-\\sqrt{b}\\) y mira su producto: el resultado queda sin raíz en el medio.',
     ),
     'ALG-EXP-003': (
-        'Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.',
-        'Mira la cuadrícula \\((a+b)(c+d)\\): cada celda es un producto; juntas forman el polinomio.',
+        'Vas a ver por qué \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) y cómo \\(adx\\) y \\(bcx\\) se suman.',
+        'Cada término del primer polinomio se multiplica por cada término del segundo; luego se agrupan las mismas potencias de \\(x\\).',
     ),
     'ALG-IDN-001': (
         'Vas a ver que \\((a+b)^2\\) es un cuadrado partido en cuatro piezas.',
@@ -580,8 +580,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Compare \\(a+\\sqrt{b}\\) with \\(a-\\sqrt{b}\\) and watch their product: the result has no root in the middle.',
     ),
         'ALG-EXP-003': (
-        "You'll see that each cell of the product is a term; then you group like ones.",
-        'Look at the grid \\((a+b)(c+d)\\): each cell is a product; together they form the polynomial.',
+        "You'll see why \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) and how \\(adx\\) and \\(bcx\\) add.",
+        'Each term of the first polynomial is multiplied by each term of the second; then like powers of \\(x\\) are grouped.',
     ),
         'ALG-IDN-001': (
         "You'll see that \\((a+b)^2\\) is a square split into four pieces.",
@@ -1126,8 +1126,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Vergleiche \\(a+\\sqrt{b}\\) mit \\(a-\\sqrt{b}\\) und schau ihr Produkt: Das Ergebnis hat keine Wurzel in der Mitte.',
     ),
         'ALG-EXP-003': (
-        'Du siehst: Jede Zelle des Produkts ist ein Term; danach fasst du Gleiches zusammen.',
-        'Schau auf das Gitter \\((a+b)(c+d)\\): Jede Zelle ist ein Produkt; zusammen bilden sie das Polynom.',
+        'Du siehst, warum \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) gilt und wie \\(adx\\) und \\(bcx\\) sich addieren.',
+        'Jeder Term des ersten Polynoms wird mit jedem Term des zweiten multipliziert; danach werden gleiche Potenzen von \\(x\\) zusammengefasst.',
     ),
         'ALG-IDN-001': (
         'Du siehst: \\((a+b)^2\\) ist ein Quadrat in vier Teilen.',
@@ -1672,8 +1672,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Compare \\(a+\\sqrt{b}\\) avec \\(a-\\sqrt{b}\\) et regarde leur produit : le résultat n’a plus de racine au milieu.',
     ),
         'ALG-EXP-003': (
-        'Tu vas voir que chaque case du produit est un terme ; ensuite tu regroupes les semblables.',
-        'Regarde la grille \\((a+b)(c+d)\\) : chaque cellule est un produit ; ensemble elles forment le polynôme.',
+        'Tu verras pourquoi \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) et comment \\(adx\\) et \\(bcx\\) s\'additionnent.',
+        'Chaque terme du premier polynôme est multiplié par chaque terme du second ; ensuite on regroupe les mêmes puissances de \\(x\\).',
     ),
         'ALG-IDN-001': (
         'Tu vas voir que \\((a+b)^2\\) est un carré partagé en quatre pièces.',
@@ -2218,8 +2218,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Confronta \\(a+\\sqrt{b}\\) con \\(a-\\sqrt{b}\\) e guarda il prodotto: il risultato non ha radice in mezzo.',
     ),
         'ALG-EXP-003': (
-        'Vedrai che ogni casella del prodotto è un termine; poi raggruppi i simili.',
-        'Guarda la griglia \\((a+b)(c+d)\\): ogni cella è un prodotto; insieme formano il polinomio.',
+        'Vedrai perché \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) e come \\(adx\\) e \\(bcx\\) si sommano.',
+        'Ogni termine del primo polinomio si moltiplica per ogni termine del secondo; poi si raggruppano le stesse potenze di \\(x\\).',
     ),
         'ALG-IDN-001': (
         'Vedrai che \\((a+b)^2\\) è un quadrato diviso in quattro pezzi.',
@@ -2764,8 +2764,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Compara \\(a+\\sqrt{b}\\) com \\(a-\\sqrt{b}\\) e olha o produto: o resultado fica sem raiz no meio.',
     ),
         'ALG-EXP-003': (
-        'Vais ver que cada casa do produto é um termo; depois agrupar os semelhantes.',
-        'Olha a grelha \\((a+b)(c+d)\\): cada célula é um produto; juntas formam o polinómio.',
+        'Vais ver por que \\((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\\) e como \\(adx\\) e \\(bcx\\) se somam.',
+        'Cada termo do primeiro polinómio multiplica-se por cada termo do segundo; depois agrupam-se as mesmas potências de \\(x\\).',
     ),
         'ALG-IDN-001': (
         'Vais ver que \\((a+b)^2\\) é um quadrado partido em quatro peças.',

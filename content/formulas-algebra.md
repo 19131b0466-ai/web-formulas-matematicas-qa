@@ -473,11 +473,11 @@ P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `poly_grid`
-- **Concepto visual:** distribución completa en el producto de polinomios.
-- **Elementos:** dos polinomios en los bordes de una cuadrícula; cada celda contiene el producto de un término de la primera expresión por uno de la segunda.
-- **Idea:** Mira la cuadrícula \((a+b)(c+d)\): cada celda es un producto; juntas forman el polinomio.
-- **Objetivo educativo:** Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.
-- **Interactividad sugerida:** resaltar una celda al pasar el cursor y destacar los dos términos que la generan; botón para agrupar términos semejantes.
+- **Concepto visual:** producto de lineales \((ax+b)(cx+d)\) con cuadrícula de términos (no áreas geométricas).
+- **Elementos:** \(P(x)=ax+b\), \(Q(x)=cx+d\); cuadrícula \(2\times2\) con \(acx^2\), \(bcx\), \(adx\), \(bd\); expansión; agrupación de términos de grado 1; resultado \(acx^2+(ad+bc)x+bd\); panel opcional de convolución \([a,b]*[c,d]\).
+- **Idea:** Cada término del primer polinomio se multiplica por cada término del segundo; luego se agrupan las mismas potencias de \(x\).
+- **Objetivo educativo:** Vas a ver por qué \((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\) y cómo \(adx\) y \(bcx\) se suman.
+- **Interactividad sugerida:** sliders \(a,b,c,d\); actualizar celdas, expansión, agrupación y resultado; sección avanzada de convolución de coeficientes.
 
 ### Complejidad computacional
 

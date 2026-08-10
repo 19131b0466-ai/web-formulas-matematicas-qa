@@ -36,8 +36,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Compara a+√b con a−√b: su producto deja un resultado sin raíz en el medio.",
     ),
     "ALG-EXP-003": (
-        "Cada casilla del producto es un término; luego se agrupan los parecidos.",
-        "Mira la cuadrícula (a+b)(c+d): cada celda es un producto; juntas forman el polinomio.",
+        "Vas a ver por qué (ax+b)(cx+d)=acx^2+(ad+bc)x+bd y cómo adx y bcx se suman.",
+        "Cada término del primer polinomio se multiplica por cada término del segundo; luego se agrupan las mismas potencias de x.",
     ),
     "ALG-IDN-001": (
         "(a+b)² se ve como un cuadrado partido en cuatro piezas.",
@@ -584,8 +584,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Compare a+√b with a−√b: their product clears the root in the middle.",
         ),
         "ALG-EXP-003": (
-            "Each cell of the product is a term; then like terms are grouped.",
-            "Look at the (a+b)(c+d) grid: each cell is a product; together they make the polynomial.",
+            "You'll see why (ax+b)(cx+d)=acx^2+(ad+bc)x+bd and how adx and bcx add.",
+            "Each term of the first polynomial is multiplied by each term of the second; then like powers of x are grouped.",
         ),
         "ALG-IDN-001": (
             "(a+b)² looks like a square cut into four pieces.",
@@ -1130,8 +1130,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Vergleiche a+√b mit a−√b: Ihr Produkt beseitigt die Wurzel in der Mitte.",
         ),
         "ALG-EXP-003": (
-            "Jede Zelle des Produkts ist ein Term; dann werden ähnliche Terme zusammengefasst.",
-            "Sieh dir das Gitter (a+b)(c+d) an: Jede Zelle ist ein Produkt; zusammen bilden sie das Polynom.",
+            "Du siehst, warum (ax+b)(cx+d)=acx^2+(ad+bc)x+bd gilt und wie adx und bcx sich addieren.",
+            "Jeder Term des ersten Polynoms wird mit jedem Term des zweiten multipliziert; danach werden gleiche Potenzen von x zusammengefasst.",
         ),
         "ALG-IDN-001": (
             "(a+b)² sieht aus wie ein Quadrat, das in vier Teile geschnitten ist.",
@@ -1676,8 +1676,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Compare a+√b avec a−√b : leur produit enlève la racine au milieu.",
         ),
         "ALG-EXP-003": (
-            "Chaque case du produit est un terme ; ensuite on regroupe les semblables.",
-            "Regarde la grille (a+b)(c+d) : chaque cellule est un produit ; ensemble elles forment le polynôme.",
+            "Tu verras pourquoi (ax+b)(cx+d)=acx^2+(ad+bc)x+bd et comment adx et bcx s'additionnent.",
+            "Chaque terme du premier polynôme est multiplié par chaque terme du second ; ensuite on regroupe les mêmes puissances de x.",
         ),
         "ALG-IDN-001": (
             "(a+b)² se voit comme un carré coupé en quatre pièces.",
@@ -2222,8 +2222,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Confronta a+√b con a−√b: il loro prodotto elimina la radice in mezzo.",
         ),
         "ALG-EXP-003": (
-            "Ogni cella del prodotto è un termine; poi si raggruppano i simili.",
-            "Guarda la griglia (a+b)(c+d): ogni cella è un prodotto; insieme formano il polinomio.",
+            "Vedrai perché (ax+b)(cx+d)=acx^2+(ad+bc)x+bd e come adx e bcx si sommano.",
+            "Ogni termine del primo polinomio si moltiplica per ogni termine del secondo; poi si raggruppano le stesse potenze di x.",
         ),
         "ALG-IDN-001": (
             "(a+b)² si vede come un quadrato tagliato in quattro pezzi.",
@@ -2768,8 +2768,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Compara a+√b com a−√b: o produto deles limpa a raiz no meio.",
         ),
         "ALG-EXP-003": (
-            "Cada célula do produto é um termo; depois agrupam-se os semelhantes.",
-            "Olha a grelha (a+b)(c+d): cada célula é um produto; juntas formam o polinómio.",
+            "Vais ver por que (ax+b)(cx+d)=acx^2+(ad+bc)x+bd e como adx e bcx se somam.",
+            "Cada termo do primeiro polinómio multiplica-se por cada termo do segundo; depois agrupam-se as mesmas potências de x.",
         ),
         "ALG-IDN-001": (
             "(a+b)² vê-se como um quadrado cortado em quatro peças.",

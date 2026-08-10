@@ -5,6 +5,7 @@ import { useVizLabels } from '@/lib/viz-labels';
 import type { AlgebraTilesMode } from '@/lib/viz-modes';
 import { PowerProductViz } from './PowerProductViz';
 import { ConjugateRationalizeViz } from './ConjugateRationalizeViz';
+import { PolynomialProductViz } from './PolynomialProductViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -26,6 +27,9 @@ export function AlgebraTilesViz(props: Props) {
   }
   if (props.formulaId.includes('POT-008')) {
     return <ConjugateRationalizeViz />;
+  }
+  if (props.formulaId.includes('EXP-003')) {
+    return <PolynomialProductViz />;
   }
   return <AlgebraTilesVizInner {...props} />;
 }
@@ -92,7 +96,10 @@ function AlgebraTilesVizInner({ formulaId, mode: modeProp }: Props) {
           factored ? `(a−b)(a+b) = ${fmt((a - b) * (a + b))}` : `a²−b² = ${fmt(a * a - b * b)}`,
         );
       case 'poly_grid':
-        return joinCaption(`(a+b)(c+d) = ${fmt((a + b) * (c + d))}`);
+        return joinCaption(
+          `(ax+b)(cx+d) = acx²+(ad+bc)x+bd`,
+          `${fmt(a * c)}x²+${fmt(a * d + b * c)}x+${fmt(b * d)}`,
+        );
       case 'conjugate_rationalize':
         return joinCaption(
           `(a+√b)(a−√b) = a²−b`,

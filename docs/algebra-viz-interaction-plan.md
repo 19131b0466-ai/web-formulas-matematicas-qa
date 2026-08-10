@@ -42,7 +42,7 @@ Fuente de verdad del runtime: modos en `apps/web-public/lib/viz-modes.ts`, compo
 
 **Qué enseña:** un todo se parte en piezas etiquetadas.
 
-**Layout:** un diagrama con regiones (p. ej. \((a+b)^2\), rejilla \((a+b)(c+d)\)).
+**Layout:** un diagrama con regiones (p. ej. \((a+b)^2\), rejilla \((ax+b)(cx+d)\)).
 
 **No hacer:** duplicar el mismo diagrama “expandido” al lado si las piezas ya están en el original.
 
@@ -142,9 +142,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | Producto de binomios como rejilla de áreas. |
-| **Layout** | Una rejilla \(2\times2\). |
-| **Veredicto** | **KEEP** (P3). |
+| **Enseña** | \((ax+b)(cx+d)=acx^2+(ad+bc)x+bd\): productos parciales, semejantes y resultado. |
+| **Layout** | Cuadrícula \(2\times2\) de términos (tamaño fijo, no áreas); secuencia expansión → agrupación → simplificado; convolución opcional. |
+| **Interacción** | Sliders \(a,b,c,d\). Guía embebida. |
+| **Componente** | `PolynomialProductViz.tsx` |
+| **Veredicto** | No usar \((a+b)(c+d)\) como ejemplo principal. |
 
 ### `binomial` (IDN-008)
 
