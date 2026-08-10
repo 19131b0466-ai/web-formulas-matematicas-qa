@@ -29,21 +29,36 @@
     "toDark": "Zum dunklen Modus wechseln"
   },
   "home": {
-    "title": "Formelsammlung Analysis II",
-    "intro": "Stammfunktionen, Integrationstechniken, Reihen und Anwendungen nachschlagen. Alle Inhalte kommen von der API — keine fest eingebauten Formeln im Frontend.",
-    "ctaSearch": "Formeln suchen",
-    "ctaGuide": "Leitfaden",
-    "index": "Inhalt",
-    "indexSummarySimple": "{main} Hauptabschnitte",
-    "andAppendices": " und {count} Anhänge",
-    "empty": "Keine Abschnitte verfügbar. Starte die API und führe pnpm db:seed aus.",
-    "view": "Ansehen →",
-    "appendices": "Anhänge"
+    "headline": "Formeln klar nachschlagen — ohne Lärm.",
+    "support": "Analysis, Physik und Algebra an einem Ort: lesbares LaTeX, schnelle Suche und Visualisierungen, die die Idee zeigen.",
+    "ctaSubjects": "Fächer entdecken",
+    "ctaAbout": "Über das Projekt",
+    "subjectsTitle": "Fächer",
+    "subjectsLead": "Wähle einen Katalog, navigiere nach Abschnitten, suche Formeln und öffne Details mit Visualisierung.",
+    "features": {
+      "latex": {
+        "title": "Klares LaTeX",
+        "body": "Jede Formel ist bereit zum Lernen oder Kopieren — mit Varianten und Kontext, wenn nötig."
+      },
+      "viz": {
+        "title": "Ideen in Bewegung",
+        "body": "Visualisierungen, die das Konzept lehren — nicht nur Regler bewegen."
+      },
+      "search": {
+        "title": "Direkte Suche",
+        "body": "Finde nach Name, Code oder Tag und springe zum Detail."
+      }
+    }
   },
   "footer": {
     "line": "Mathematische Formeln · Inhalt per API ·",
     "guideLink": "Leitfaden",
-    "hubLink": "Fächer"
+    "hubLink": "Fächer",
+    "blurb": "Mehrfach-Katalog mit LaTeX, Suche und Visualisierungen für klareres Lernen.",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "about": "Über uns",
+    "contact": "Kontakt"
   },
   "search": {
     "title": "Suche",
@@ -151,5 +166,76 @@
     "hideComplexity": "Ausblenden (Basis)",
     "vizTeaches": "Die Idee",
     "vizTry": "Probier’s"
+  },
+  "siteNav": {
+    "primary": "Hauptnavigation",
+    "legal": "Rechtliche Links",
+    "home": "Start",
+    "about": "Über uns",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
+    "menu": "Menü",
+    "close": "Schließen"
+  },
+  "about": {
+    "title": "Über uns",
+    "lead": "Mathematische Formeln ist ein Mehrfach-Katalog zum sorgfältigen Lernen und Nachschlagen, in mehreren Sprachen.",
+    "missionTitle": "Wozu es gibt",
+    "missionBody": "Formeln schnell finden und verstehen: klarer Text, gutes LaTeX und — wenn sinnvoll — eine Grafik, die die Idee lehrt.",
+    "whatTitle": "Was du findest",
+    "whatBody": "Heute: Analysis II, Basisphysik und Algebra für Ingenieurwesen und Informatik — mit Abschnittsindex, Suche und Formel-Seiten.",
+    "audienceTitle": "Für wen",
+    "audienceBody": "Für Studierende und Lehrende, die eine stabile Referenz brauchen.",
+    "openTitle": "Wie es wächst",
+    "openBody": "Inhalte werden fachweise gepflegt und per API ausgeliefert. Visualisierungen und Leitfäden werden laufend verbessert."
+  },
+  "privacy": {
+    "title": "Datenschutz",
+    "lead": "Welche Daten wir beim Nutzen der Seite verarbeiten.",
+    "updated": "Zuletzt aktualisiert: August 2026",
+    "s1Title": "1. Verantwortliche",
+    "s1Body": "Die Seite wird vom Projektteam betrieben. Anfragen über die Kontaktseite.",
+    "s2Title": "2. Welche Daten",
+    "s2Body": "Kein Konto nötig. Sprache/Theme können lokal gespeichert werden. Bei E-Mail verarbeiten wir Inhalt und Adresse zur Antwort.",
+    "s3Title": "3. Nutzungsanalyse",
+    "s3Body": "Aggregierte Seitenbesuche zur Verbesserung. Keine Identifikation von Personen; die Client-Telemetrie sendet keine IP.",
+    "s4Title": "4. Zweck",
+    "s4Body": "Service bereitstellen, Präferenzen merken, Kontakt beantworten, Nutzung verstehen.",
+    "s5Title": "5. Speicherung",
+    "s5Body": "Präferenzen auf dem Gerät. Kontaktnachrichten so lange nötig. Hosting kann Infrastruktur-Anbieter einbeziehen.",
+    "s6Title": "6. Rechte",
+    "s6Body": "Zugang, Berichtigung oder Löschung der uns gesendeten personenbezogenen Daten; Cookies lokal löschen."
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen",
+    "lead": "Bedingungen für den Katalog.",
+    "updated": "Zuletzt aktualisiert: August 2026",
+    "s1Title": "1. Annahme",
+    "s1Body": "Mit der Nutzung akzeptierst du diese Bedingungen.",
+    "s2Title": "2. Erlaubte Nutzung",
+    "s2Body": "Persönlich und zum Lernen. Kein aggressives Scraping, keine Angriffe, keine unautorisierte Weitergabe als eigenes Produkt.",
+    "s3Title": "3. Bildungsinhalt",
+    "s3Body": "Hilfsmittel zum Lernen; Fehler möglich. Kein Ersatz für Fachberatung.",
+    "s4Title": "4. Geistiges Eigentum",
+    "s4Body": "Marke, UI und redaktionelle Struktur gehören dem Projekt.",
+    "s5Title": "5. Verfügbarkeit",
+    "s5Body": "„Wie besehen“. Änderungen ohne Ankündigung möglich.",
+    "s6Title": "6. Kontakt",
+    "s6Body": "Fragen über die Kontaktseite."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "lead": "Tippfehler, Visualisierungs-Ideen oder Projektfragen? Schreib uns.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "submit": "E-Mail öffnen",
+    "mailtoHint": "Du kannst auch direkt schreiben an",
+    "openedMail": "Dein E-Mail-Programm sollte sich geöffnet haben.",
+    "mailSubject": "Kontakt von Mathematische Formeln — {name}",
+    "mailFrom": "Name",
+    "mailReply": "Antwort an",
+    "anonymous": "Besucher"
   }
 }

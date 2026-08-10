@@ -29,21 +29,36 @@
     "toDark": "Mudar para modo escuro"
   },
   "home": {
-    "title": "Formulário de Cálculo II",
-    "intro": "Consulte antiderivadas, técnicas de integração, séries e aplicações. Todo o conteúdo vem da API — sem fórmulas fixas no frontend.",
-    "ctaSearch": "Buscar fórmulas",
-    "ctaGuide": "Guia",
-    "index": "Índice",
-    "indexSummarySimple": "{main} seções principais",
-    "andAppendices": " e {count} apêndices",
-    "empty": "Nenhuma seção disponível. Inicie a API e execute pnpm db:seed.",
-    "view": "Ver →",
-    "appendices": "Apêndices"
+    "headline": "Consulta fórmulas com clareza, sem ruído.",
+    "support": "Cálculo, física e álgebra num só lugar: LaTeX legível, pesquisa rápida e visualizações que ensinam a ideia.",
+    "ctaSubjects": "Explorar matérias",
+    "ctaAbout": "Sobre o projeto",
+    "subjectsTitle": "Matérias",
+    "subjectsLead": "Escolhe um catálogo para navegar por secções, pesquisar e abrir o detalhe com visualização.",
+    "features": {
+      "latex": {
+        "title": "LaTeX nítido",
+        "body": "Cada fórmula pronta para estudar ou copiar, com variantes e contexto quando preciso."
+      },
+      "viz": {
+        "title": "Ideias em movimento",
+        "body": "Visualizações para ensinar o conceito — não só para mexer em controlos."
+      },
+      "search": {
+        "title": "Pesquisa direta",
+        "body": "Encontra por nome, código ou etiqueta e salta para o detalhe."
+      }
+    }
   },
   "footer": {
     "line": "Fórmulas matemáticas · conteúdo via API ·",
     "guideLink": "Guia",
-    "hubLink": "Matérias"
+    "hubLink": "Matérias",
+    "blurb": "Catálogo multi-matéria com LaTeX, pesquisa e visualizações para estudar com clareza.",
+    "privacy": "Política de privacidade",
+    "terms": "Termos e condições",
+    "about": "Sobre",
+    "contact": "Contacto"
   },
   "search": {
     "title": "Buscar",
@@ -151,5 +166,76 @@
     "hideComplexity": "Ocultar (modo básico)",
     "vizTeaches": "A ideia",
     "vizTry": "Experimenta"
+  },
+  "siteNav": {
+    "primary": "Navegação principal",
+    "legal": "Links legais",
+    "home": "Início",
+    "about": "Sobre",
+    "privacy": "Política de privacidade",
+    "terms": "Termos e condições",
+    "contact": "Contacto",
+    "menu": "Menu",
+    "close": "Fechar"
+  },
+  "about": {
+    "title": "Sobre",
+    "lead": "Fórmulas matemáticas é um catálogo multi-matéria para estudar e consultar com rigor, em vários idiomas.",
+    "missionTitle": "Para que existe",
+    "missionBody": "Encontrar uma fórmula depressa e entendê-la: texto claro, LaTeX bem renderizado e, quando ajuda, um gráfico que ensina a ideia.",
+    "whatTitle": "O que vais encontrar",
+    "whatBody": "Hoje: Cálculo II, Física Básica e Álgebra para engenharia e ciências da computação.",
+    "audienceTitle": "Para quem",
+    "audienceBody": "Estudantes e docentes que precisam de uma referência estável.",
+    "openTitle": "Como cresce",
+    "openBody": "Conteúdo curado por matéria e servido por API. Melhoramos visualizações e guias com o uso real."
+  },
+  "privacy": {
+    "title": "Política de privacidade",
+    "lead": "Que dados tratamos ao usares o site.",
+    "updated": "Última atualização: agosto 2026",
+    "s1Title": "1. Responsável",
+    "s1Body": "Site operado pela equipa do projeto. Pedidos na página de Contacto.",
+    "s2Title": "2. Que dados",
+    "s2Body": "Sem conta obrigatória. Preferências de idioma/tema locais. Emails de contacto tratados para responder.",
+    "s3Title": "3. Analítica",
+    "s3Body": "Visitas agregadas para melhorar conteúdo. Sem identificação; sem IP na telemetria do cliente.",
+    "s4Title": "4. Finalidade",
+    "s4Body": "Prestar o serviço, lembrar preferências, responder e entender o uso.",
+    "s5Title": "5. Conservação",
+    "s5Body": "Preferências no dispositivo. Mensagens o tempo necessário. Alojamento pode envolver fornecedores.",
+    "s6Title": "6. Direitos",
+    "s6Body": "Acesso, retificação ou eliminação dos dados enviados; limpar cookies locais."
+  },
+  "terms": {
+    "title": "Termos e condições",
+    "lead": "Condições de uso do catálogo.",
+    "updated": "Última atualização: agosto 2026",
+    "s1Title": "1. Aceitação",
+    "s1Body": "Ao usar o site aceitas estes termos.",
+    "s2Title": "2. Uso permitido",
+    "s2Body": "Uso pessoal e educativo. Sem scraping agressivo nem ataques.",
+    "s3Title": "3. Conteúdo educativo",
+    "s3Body": "Ajuda de estudo; pode haver erros. Não substitui aconselhamento profissional.",
+    "s4Title": "4. Propriedade intelectual",
+    "s4Body": "Marca, interface e organização editorial pertencem ao projeto.",
+    "s5Title": "5. Disponibilidade",
+    "s5Body": "Serviço «tal como está». Alterações sem aviso prévio.",
+    "s6Title": "6. Contacto",
+    "s6Body": "Dúvidas na página de Contacto."
+  },
+  "contact": {
+    "title": "Contacto",
+    "lead": "Erros, ideias de visualização ou perguntas? Escreve-nos.",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "submit": "Abrir email",
+    "mailtoHint": "Também podes escrever para",
+    "openedMail": "O cliente de email deve ter aberto.",
+    "mailSubject": "Contacto de Fórmulas matemáticas — {name}",
+    "mailFrom": "Nome",
+    "mailReply": "Responder a",
+    "anonymous": "visitante"
   }
 }

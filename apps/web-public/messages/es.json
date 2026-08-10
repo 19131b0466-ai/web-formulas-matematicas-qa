@@ -49,7 +49,12 @@
   "footer": {
     "line": "Fórmulas matemáticas · contenido servido por API ·",
     "guideLink": "Guía",
-    "hubLink": "Materias"
+    "hubLink": "Materias",
+    "blurb": "Catálogo multi-materia con LaTeX, búsqueda y visualizaciones para estudiar con claridad.",
+    "privacy": "Política de privacidad",
+    "terms": "Términos y condiciones",
+    "about": "Acerca de",
+    "contact": "Contacto"
   },
   "search": {
     "title": "Buscar",
@@ -139,5 +144,98 @@
     "title": "Página no encontrada",
     "body": "Esa sección no existe o aún no fue importada en la API.",
     "back": "Volver al inicio"
+  },
+  "siteNav": {
+    "primary": "Navegación principal",
+    "legal": "Enlaces legales",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "privacy": "Política de privacidad",
+    "terms": "Términos y condiciones",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "home": {
+    "headline": "Consulta fórmulas con claridad, no con ruido.",
+    "support": "Cálculo, física y álgebra en un solo lugar: LaTeX legible, búsqueda rápida y visualizaciones que enseñan la idea.",
+    "ctaSubjects": "Explorar materias",
+    "ctaAbout": "Acerca del proyecto",
+    "subjectsTitle": "Materias",
+    "subjectsLead": "Elige un catálogo para navegar por secciones, buscar fórmulas y abrir el detalle con visualización.",
+    "features": {
+      "latex": {
+        "title": "LaTeX nítido",
+        "body": "Cada fórmula se muestra lista para estudiar o copiar, con variantes y contexto cuando hace falta."
+      },
+      "viz": {
+        "title": "Ideas en movimiento",
+        "body": "Visualizaciones pensadas para enseñar el concepto, no solo para mover controles."
+      },
+      "search": {
+        "title": "Búsqueda directa",
+        "body": "Encuentra por nombre, código o etiqueta y salta al detalle sin perder el hilo."
+      }
+    }
+  },
+  "about": {
+    "title": "Acerca de",
+    "lead": "Fórmulas matemáticas es un catálogo multi-materia para estudiar y consultar con rigor, en varios idiomas.",
+    "missionTitle": "Para qué existe",
+    "missionBody": "Queremos que encontrar una fórmula sea rápido y que entenderla sea posible: texto claro, LaTeX bien renderizado y, cuando aporta, un recurso gráfico que enseña la idea.",
+    "whatTitle": "Qué encontrarás",
+    "whatBody": "Hoy el sitio cubre Cálculo II, Física Básica y Álgebra para ingeniería y ciencias de la computación. Cada materia tiene índice por secciones, búsqueda y fichas de fórmula.",
+    "audienceTitle": "Para quién",
+    "audienceBody": "Está pensado para estudiantes y docentes que necesitan un referente estable: repasar, contrastar notación o recordar una identidad sin pelear con PDFs dispersos.",
+    "openTitle": "Cómo crece",
+    "openBody": "El contenido se cura por materias y se sirve por API. Seguimos mejorando las visualizaciones y la claridad de las guías según el uso real en clase y en estudio."
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "lead": "Explicamos qué datos tocamos al usar el sitio y con qué fin.",
+    "updated": "Última actualización: agosto 2026",
+    "s1Title": "1. Responsable",
+    "s1Body": "El sitio «Fórmulas matemáticas» es operado por el equipo del proyecto. Para ejercer derechos o hacer consultas sobre privacidad, usa la página de Contacto.",
+    "s2Title": "2. Qué datos tratamos",
+    "s2Body": "No exigimos crear una cuenta para consultar el catálogo. Podemos guardar preferencias locales (idioma y tema) en tu navegador mediante cookies o almacenamiento local. Si contactas por correo, trataremos el contenido del mensaje y tu dirección para responderte.",
+    "s3Title": "3. Analítica de uso",
+    "s3Body": "Registramos visitas de página de forma agregada (ruta, materia o sección cuando aplica) para mejorar el contenido. No usamos esa telemetría para identificar personas y no enviamos tu dirección IP en el payload de analítica del cliente.",
+    "s4Title": "4. Finalidad",
+    "s4Body": "Los datos se usan para prestar el servicio, recordar tu idioma/tema, responder mensajes de contacto y entender qué partes del catálogo se consultan más.",
+    "s5Title": "5. Conservación y terceros",
+    "s5Body": "Las preferencias viven en tu dispositivo hasta que las borres. Los mensajes de contacto se conservan el tiempo necesario para atenderlos. El alojamiento y la base de contenido pueden implicar proveedores de infraestructura bajo sus propias garantías.",
+    "s6Title": "6. Tus derechos",
+    "s6Body": "Puedes solicitar acceso, rectificación o eliminación de datos personales que nos hayas enviado (por ejemplo, un correo de contacto). También puedes borrar cookies y almacenamiento local desde tu navegador."
+  },
+  "terms": {
+    "title": "Términos y condiciones",
+    "lead": "Condiciones de uso del catálogo Fórmulas matemáticas.",
+    "updated": "Última actualización: agosto 2026",
+    "s1Title": "1. Aceptación",
+    "s1Body": "Al acceder o usar este sitio aceptas estos términos. Si no estás de acuerdo, no utilices el servicio.",
+    "s2Title": "2. Uso permitido",
+    "s2Body": "Puedes consultar el contenido con fines personales, educativos o de estudio. No está permitido abusar de la infraestructura (scraping agresivo, ataques, sobrecarga deliberada) ni presentar el servicio como propio sin atribución.",
+    "s3Title": "3. Contenido educativo",
+    "s3Body": "Las fórmulas y textos se ofrecen como ayuda de estudio. Pueden contener errores u omisiones; verifica siempre con tu material académico. No sustituyen asesoramiento profesional.",
+    "s4Title": "4. Propiedad intelectual",
+    "s4Body": "La marca del sitio, el diseño de la interfaz y la organización editorial del catálogo pertenecen al proyecto. El uso de extractos para estudio está permitido; la redistribución masiva del catálogo requiere permiso.",
+    "s5Title": "5. Disponibilidad",
+    "s5Body": "El servicio se ofrece «tal cual». Podemos modificar, suspender o discontinuar partes del sitio sin previo aviso. No garantizamos disponibilidad ininterrumpida.",
+    "s6Title": "6. Contacto",
+    "s6Body": "Para dudas sobre estos términos, escribe a través de la página de Contacto."
+  },
+  "contact": {
+    "title": "Contacto",
+    "lead": "¿Errores en una fórmula, ideas para una visualización o preguntas sobre el proyecto? Escríbenos.",
+    "name": "Nombre",
+    "email": "Correo",
+    "message": "Mensaje",
+    "submit": "Abrir correo",
+    "mailtoHint": "También puedes escribir directamente a",
+    "openedMail": "Se abrió tu cliente de correo. Si no ocurrió, copia la dirección e envía el mensaje a mano.",
+    "mailSubject": "Contacto desde Fórmulas matemáticas — {name}",
+    "mailFrom": "Nombre",
+    "mailReply": "Responder a",
+    "anonymous": "visitante"
   }
 }

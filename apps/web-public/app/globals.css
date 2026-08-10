@@ -145,6 +145,42 @@ body::before {
   animation: rise-in 0.45s ease-out both;
 }
 
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes hero-draw {
+  from {
+    stroke-dashoffset: 420;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-float {
+  animation: hero-float 9s ease-in-out infinite;
+}
+
+.hero-draw {
+  stroke-dasharray: 420;
+  animation: hero-draw 2.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float,
+  .hero-draw,
+  .animate-rise {
+    animation: none !important;
+  }
+}
+
 /* Quiet sidebar scrollbar: thin, low-contrast, stronger only on hover */
 .sidebar-scroll {
   scrollbar-width: thin;

@@ -29,21 +29,36 @@
     "toDark": "Switch to dark mode"
   },
   "home": {
-    "title": "Calculus II Formula Sheet",
-    "intro": "Browse antiderivatives, integration techniques, series, and applications. All content is served by the API — no hardcoded formulas in the frontend.",
-    "ctaSearch": "Search formulas",
-    "ctaGuide": "Guide",
-    "index": "Index",
-    "indexSummarySimple": "{main} main sections",
-    "andAppendices": " and {count} appendices",
-    "empty": "No sections available. Start the API and run pnpm db:seed.",
-    "view": "View →",
-    "appendices": "Appendices"
+    "headline": "Look up formulas with clarity, not clutter.",
+    "support": "Calculus, physics, and algebra in one place: readable LaTeX, fast search, and visuals that teach the idea.",
+    "ctaSubjects": "Browse subjects",
+    "ctaAbout": "About the project",
+    "subjectsTitle": "Subjects",
+    "subjectsLead": "Pick a catalog to browse by section, search formulas, and open details with visualization.",
+    "features": {
+      "latex": {
+        "title": "Sharp LaTeX",
+        "body": "Every formula is ready to study or copy, with variants and context when needed."
+      },
+      "viz": {
+        "title": "Ideas in motion",
+        "body": "Visuals built to teach the concept—not just to move controls."
+      },
+      "search": {
+        "title": "Direct search",
+        "body": "Find by name, code, or tag and jump to the detail without losing the thread."
+      }
+    }
   },
   "footer": {
     "line": "Mathematical formulas · API-served content ·",
     "guideLink": "Guide",
-    "hubLink": "Subjects"
+    "hubLink": "Subjects",
+    "blurb": "Multi-subject catalog with LaTeX, search, and visualizations for clearer study.",
+    "privacy": "Privacy policy",
+    "terms": "Terms and conditions",
+    "about": "About",
+    "contact": "Contact"
   },
   "search": {
     "title": "Search",
@@ -151,5 +166,76 @@
     "hideComplexity": "Hide (basic mode)",
     "vizTeaches": "The idea",
     "vizTry": "Try it"
+  },
+  "siteNav": {
+    "primary": "Main navigation",
+    "legal": "Legal links",
+    "home": "Home",
+    "about": "About",
+    "privacy": "Privacy policy",
+    "terms": "Terms and conditions",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "about": {
+    "title": "About",
+    "lead": "Mathematical Formulas is a multi-subject catalog for studying and looking things up carefully, in several languages.",
+    "missionTitle": "Why it exists",
+    "missionBody": "We want finding a formula to be fast and understanding it to be possible: clear copy, well-rendered LaTeX, and—when it helps—a graphic that teaches the idea.",
+    "whatTitle": "What you’ll find",
+    "whatBody": "Today the site covers Calculus II, Basic Physics, and Algebra for engineering and computer science. Each subject has a section index, search, and formula pages.",
+    "audienceTitle": "Who it’s for",
+    "audienceBody": "Built for students and teachers who need a stable reference: review, compare notation, or recall an identity without hunting through scattered PDFs.",
+    "openTitle": "How it grows",
+    "openBody": "Content is curated by subject and served by API. We keep improving visualizations and guide clarity based on real classroom and study use."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "lead": "How we handle data when you use the site.",
+    "updated": "Last updated: August 2026",
+    "s1Title": "1. Controller",
+    "s1Body": "The «Mathematical Formulas» site is operated by the project team. For privacy requests, use the Contact page.",
+    "s2Title": "2. What we process",
+    "s2Body": "No account is required to browse the catalog. We may store local preferences (language and theme) in your browser via cookies or local storage. If you email us, we process the message content and your address to reply.",
+    "s3Title": "3. Usage analytics",
+    "s3Body": "We record page visits in aggregate (path, subject or section when relevant) to improve content. That telemetry is not used to identify people, and the client analytics payload does not send your IP address.",
+    "s4Title": "4. Purpose",
+    "s4Body": "Data is used to provide the service, remember language/theme, answer contact messages, and understand which parts of the catalog are used most.",
+    "s5Title": "5. Retention and processors",
+    "s5Body": "Preferences live on your device until you clear them. Contact messages are kept as long as needed to handle them. Hosting and content storage may involve infrastructure providers under their own terms.",
+    "s6Title": "6. Your rights",
+    "s6Body": "You may request access, correction, or deletion of personal data you sent us (for example a contact email). You can also clear cookies and local storage in your browser."
+  },
+  "terms": {
+    "title": "Terms and conditions",
+    "lead": "Terms of use for the Mathematical Formulas catalog.",
+    "updated": "Last updated: August 2026",
+    "s1Title": "1. Acceptance",
+    "s1Body": "By accessing or using this site you accept these terms. If you disagree, do not use the service.",
+    "s2Title": "2. Allowed use",
+    "s2Body": "You may use the content for personal, educational, or study purposes. Aggressive scraping, attacks, deliberate overload, or presenting the service as your own without attribution are not allowed.",
+    "s3Title": "3. Educational content",
+    "s3Body": "Formulas and texts are study aids. They may contain errors or omissions; always verify with your course materials. They do not replace professional advice.",
+    "s4Title": "4. Intellectual property",
+    "s4Body": "The site brand, UI design, and editorial organization belong to the project. Study excerpts are fine; mass redistribution of the catalog requires permission.",
+    "s5Title": "5. Availability",
+    "s5Body": "The service is provided “as is”. We may change, suspend, or discontinue parts of the site without notice. Uninterrupted availability is not guaranteed.",
+    "s6Title": "6. Contact",
+    "s6Body": "Questions about these terms can be sent via the Contact page."
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Formula typos, visualization ideas, or project questions? Write to us.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Open email",
+    "mailtoHint": "You can also write directly to",
+    "openedMail": "Your email client should have opened. If not, copy the address and send the message manually.",
+    "mailSubject": "Contact from Mathematical Formulas — {name}",
+    "mailFrom": "Name",
+    "mailReply": "Reply to",
+    "anonymous": "visitor"
   }
 }

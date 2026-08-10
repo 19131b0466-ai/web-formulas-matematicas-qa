@@ -80,25 +80,38 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
           {children}
         </main>
 
-        <footer className="border-t border-[var(--border)] px-4 py-6 text-center text-sm text-[var(--fg-muted)] sm:px-6">
-          <p>
-            {tf('line')}{' '}
-            {subjectHasGuide(subject) ? (
-              <Link
-                href={`/${subject}/guia` as '/'}
-                className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
-              >
-                {tf('guideLink')}
+        <footer className="border-t border-[var(--border)] px-4 py-6 text-sm text-[var(--fg-muted)] sm:px-6">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 text-center">
+            <p>
+              {tf('line')}{' '}
+              {subjectHasGuide(subject) ? (
+                <Link
+                  href={`/${subject}/guia` as '/'}
+                  className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
+                >
+                  {tf('guideLink')}
+                </Link>
+              ) : (
+                <Link href="/" className="text-[var(--accent-strong)] underline-offset-2 hover:underline">
+                  {tf('hubLink')}
+                </Link>
+              )}
+            </p>
+            <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label={tf('about')}>
+              <Link href="/acerca" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
+                {tf('about')}
               </Link>
-            ) : (
-              <Link
-                href="/"
-                className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
-              >
-                {tf('hubLink')}
+              <Link href="/privacidad" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
+                {tf('privacy')}
               </Link>
-            )}
-          </p>
+              <Link href="/terminos" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
+                {tf('terms')}
+              </Link>
+              <Link href="/contacto" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
+                {tf('contact')}
+              </Link>
+            </nav>
+          </div>
         </footer>
       </div>
     </div>

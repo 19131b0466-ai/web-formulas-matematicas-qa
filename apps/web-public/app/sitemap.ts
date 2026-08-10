@@ -34,6 +34,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     });
 
+    for (const path of ['/acerca', '/privacidad', '/terminos', '/contacto'] as const) {
+      entries.push({
+        url: localePath(locale, path),
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.5,
+        alternates: {
+          languages: Object.fromEntries(
+            routing.locales.map((code) => [code, localePath(code, path)]),
+          ),
+        },
+      });
+    }
+
     for (const subjectMeta of subjects) {
       if (!isSubjectSlug(subjectMeta.slug)) continue;
       const subject = subjectMeta.slug as SubjectSlug;

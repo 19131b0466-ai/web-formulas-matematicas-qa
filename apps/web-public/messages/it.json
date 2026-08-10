@@ -29,21 +29,36 @@
     "toDark": "Passa alla modalità scura"
   },
   "home": {
-    "title": "Formulario di Calcolo II",
-    "intro": "Consulta primitive, tecniche di integrazione, serie e applicazioni. Tutti i contenuti arrivano dall'API — nessuna formula hardcoded nel frontend.",
-    "ctaSearch": "Cerca formule",
-    "ctaGuide": "Guida",
-    "index": "Indice",
-    "indexSummarySimple": "{main} sezioni principali",
-    "andAppendices": " e {count} appendici",
-    "empty": "Nessuna sezione disponibile. Avvia l'API ed esegui pnpm db:seed.",
-    "view": "Vedi →",
-    "appendices": "Appendici"
+    "headline": "Consulta le formule con chiarezza, senza rumore.",
+    "support": "Calcolo, fisica e algebra in un unico posto: LaTeX leggibile, ricerca rapida e visualizzazioni che insegnano l’idea.",
+    "ctaSubjects": "Esplora le materie",
+    "ctaAbout": "Sul progetto",
+    "subjectsTitle": "Materie",
+    "subjectsLead": "Scegli un catalogo per navigare per sezioni, cercare e aprire il dettaglio con visualizzazione.",
+    "features": {
+      "latex": {
+        "title": "LaTeX nitido",
+        "body": "Ogni formula è pronta da studiare o copiare, con varianti e contesto se serve."
+      },
+      "viz": {
+        "title": "Idee in movimento",
+        "body": "Visualizzazioni per insegnare il concetto, non solo per muovere controlli."
+      },
+      "search": {
+        "title": "Ricerca diretta",
+        "body": "Trova per nome, codice o etichetta e apri il dettaglio."
+      }
+    }
   },
   "footer": {
     "line": "Formule matematiche · contenuto via API ·",
     "guideLink": "Guida",
-    "hubLink": "Materie"
+    "hubLink": "Materie",
+    "blurb": "Catalogo multi-materia con LaTeX, ricerca e visualizzazioni per studiare con chiarezza.",
+    "privacy": "Privacy",
+    "terms": "Termini e condizioni",
+    "about": "Chi siamo",
+    "contact": "Contatti"
   },
   "search": {
     "title": "Cerca",
@@ -151,5 +166,76 @@
     "hideComplexity": "Nascondi (modo base)",
     "vizTeaches": "L’idea",
     "vizTry": "Prova"
+  },
+  "siteNav": {
+    "primary": "Navigazione principale",
+    "legal": "Link legali",
+    "home": "Inizio",
+    "about": "Chi siamo",
+    "privacy": "Privacy",
+    "terms": "Termini e condizioni",
+    "contact": "Contatti",
+    "menu": "Menu",
+    "close": "Chiudi"
+  },
+  "about": {
+    "title": "Chi siamo",
+    "lead": "Formule matematiche è un catalogo multi-materia per studiare e consultare con cura, in più lingue.",
+    "missionTitle": "Perché esiste",
+    "missionBody": "Trovare una formula in fretta e capirla: testo chiaro, LaTeX curato e, quando serve, un grafico che insegna l’idea.",
+    "whatTitle": "Cosa troverai",
+    "whatBody": "Oggi: Calcolo II, Fisica di base e Algebra per ingegneria e informatica.",
+    "audienceTitle": "Per chi",
+    "audienceBody": "Studenti e docenti che vogliono un riferimento stabile.",
+    "openTitle": "Come cresce",
+    "openBody": "Contenuti curati per materia e serviti via API. Visualizzazioni e guide migliorano nel tempo."
+  },
+  "privacy": {
+    "title": "Informativa sulla privacy",
+    "lead": "Dati trattati quando usi il sito.",
+    "updated": "Ultimo aggiornamento: agosto 2026",
+    "s1Title": "1. Titolare",
+    "s1Body": "Sito gestito dal team del progetto. Richieste dalla pagina Contatti.",
+    "s2Title": "2. Quali dati",
+    "s2Body": "Nessun account richiesto. Preferenze lingua/tema locali. Le email di contatto sono trattate per rispondere.",
+    "s3Title": "3. Analitica",
+    "s3Body": "Visite aggregate per migliorare i contenuti. Niente identificazione; niente IP nella telemetria client.",
+    "s4Title": "4. Finalità",
+    "s4Body": "Erogare il servizio, ricordare preferenze, rispondere e capire l’uso.",
+    "s5Title": "5. Conservazione",
+    "s5Body": "Preferenze sul dispositivo. Messaggi per il tempo necessario. Hosting tramite fornitori possibili.",
+    "s6Title": "6. Diritti",
+    "s6Body": "Accesso, rettifica o cancellazione dei dati inviati; cancellazione cookie locali."
+  },
+  "terms": {
+    "title": "Termini e condizioni",
+    "lead": "Condizioni d’uso del catalogo.",
+    "updated": "Ultimo aggiornamento: agosto 2026",
+    "s1Title": "1. Accettazione",
+    "s1Body": "Usando il sito accetti questi termini.",
+    "s2Title": "2. Uso consentito",
+    "s2Body": "Uso personale ed educativo. Vietati scraping aggressivo e attacchi.",
+    "s3Title": "3. Contenuto educativo",
+    "s3Body": "Aiuto allo studio; possibili errori. Non sostituisce consulenza professionale.",
+    "s4Title": "4. Proprietà intellettuale",
+    "s4Body": "Marchio, interfaccia e organizzazione editoriale appartengono al progetto.",
+    "s5Title": "5. Disponibilità",
+    "s5Body": "Servizio «così com’è». Modifiche possibili senza preavviso.",
+    "s6Title": "6. Contatti",
+    "s6Body": "Domande dalla pagina Contatti."
+  },
+  "contact": {
+    "title": "Contatti",
+    "lead": "Errori, idee di visualizzazione o domande sul progetto? Scrivici.",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Messaggio",
+    "submit": "Apri email",
+    "mailtoHint": "Puoi anche scrivere a",
+    "openedMail": "Il client di posta dovrebbe essersi aperto.",
+    "mailSubject": "Contatto da Formule matematiche — {name}",
+    "mailFrom": "Nome",
+    "mailReply": "Rispondi a",
+    "anonymous": "visitatore"
   }
 }
