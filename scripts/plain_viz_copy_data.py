@@ -52,8 +52,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Partimos de un cuadrado de lado a, retiramos uno de lado b y reordenamos el área restante: queda un rectángulo (a−b)(a+b).",
     ),
     "ALG-IDN-008": (
-        "Los coeficientes del binomio son la fila de Pascal.",
-        "Cambia n: ves los números de Pascal y cómo se arma (a+b)^n.",
+        "Vas a ver cómo la fila n de Pascal y los exponentes a^{n-k}b^k construyen toda la expansión.",
+        "Cada término tiene tres partes: un coeficiente binomial, una potencia de a y una potencia de b; los exponentes siempre suman n.",
     ),
     "ALG-FAC-001": (
         "Sacar factor común es reagrupar áreas que comparten un lado.",
@@ -600,8 +600,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "We start from a square of side a, remove one of side b, and rearrange the remaining area into a rectangle (a−b)(a+b).",
         ),
         "ALG-IDN-008": (
-            "Binomial coefficients are a Pascal row.",
-            "Change n: you see Pascal numbers and how (a+b)^n is built.",
+            "You'll see how Pascal row n and the exponents a^{n-k}b^k build the full expansion.",
+            "Each term has three parts: a binomial coefficient, a power of a and a power of b; the exponents always add to n.",
         ),
         "ALG-FAC-001": (
             "Factoring out a common factor regroups areas that share a side.",

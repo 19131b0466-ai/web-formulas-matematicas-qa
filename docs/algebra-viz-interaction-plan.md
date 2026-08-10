@@ -157,9 +157,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | Coeficientes de \((a+b)^n\) (fila de Pascal). |
-| **Layout** | Una fila / diagrama de coeficientes. |
-| **Veredicto** | **KEEP**. |
+| **Enseña** | \((a+b)^n=\sum C(n,k)a^{n-k}b^k\): Pascal, exponentes y términos completos. |
+| **Layout** | Triángulo + tarjetas \(T_k\) + expansión; ejemplo numérico opcional. |
+| **Interacción** | Slider \(n\); seleccionar \(k\); a,b si hay evaluación numérica. Guía embebida. |
+| **Componente** | `BinomialTheoremViz.tsx` |
+| **Veredicto** | Estructura completa del teorema, no solo la fila de Pascal. |
 
 ### `complete_square` (EQU-005)
 

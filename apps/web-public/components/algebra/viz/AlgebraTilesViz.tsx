@@ -9,6 +9,7 @@ import { PolynomialProductViz } from './PolynomialProductViz';
 import { SquareSumViz } from './SquareSumViz';
 import { SquareDifferenceViz } from './SquareDifferenceViz';
 import { DiffSquaresViz } from './DiffSquaresViz';
+import { BinomialTheoremViz } from './BinomialTheoremViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -42,6 +43,9 @@ export function AlgebraTilesViz(props: Props) {
   }
   if (props.formulaId.includes('IDN-003') || props.formulaId.includes('FAC-002')) {
     return <DiffSquaresViz formulaId={props.formulaId} />;
+  }
+  if (props.formulaId.includes('IDN-008')) {
+    return <BinomialTheoremViz />;
   }
   return <AlgebraTilesVizInner {...props} />;
 }

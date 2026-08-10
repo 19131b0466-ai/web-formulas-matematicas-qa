@@ -658,11 +658,11 @@ a^3-b^3=(a-b)(a^2+ab+b^2)
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `binomial`
-- **Concepto visual:** coeficientes del binomio desde el triángulo de Pascal.
-- **Elementos:** triángulo de Pascal, fila \(n\) resaltada y expansión de \((a+b)^n\) alineada término a término.
-- **Idea:** Cambia \(n\) y mira los números de Pascal: así se arma \((a+b)^n\).
-- **Objetivo educativo:** Vas a ver que los coeficientes del binomio son la fila de Pascal.
-- **Interactividad sugerida:** selector de \(n\) pequeño; al cambiarlo, regenerar la fila y la expansión completa.
+- **Concepto visual:** cada término une coeficiente \(C(n,k)\), potencia de \(a\) y potencia de \(b\); la fila \(n\) de Pascal da los coeficientes.
+- **Elementos:** fórmula general; triángulo de Pascal con fila \(n\) resaltada; tarjetas \(T_k\); patrón de exponentes; expansión simplificada; ejemplo numérico opcional con \(a,b\).
+- **Idea:** Cada término tiene tres partes: un coeficiente binomial, una potencia de \(a\) y una potencia de \(b\); los exponentes siempre suman \(n\).
+- **Objetivo educativo:** Vas a ver cómo la fila \(n\) de Pascal y los exponentes \(a^{n-k}b^k\) construyen toda la expansión.
+- **Interactividad sugerida:** slider \(n\in\{0,\ldots,6\}\); seleccionar \(k\); toggles de evaluación numérica e interpretación combinatoria.
 
 ### Fórmulas relacionadas
 
