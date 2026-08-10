@@ -47,6 +47,27 @@ type VizLabels = {
   areaDet: string;
   fermatDemo: string;
   errorBit: string;
+  pascalRow: string;
+  addSquare: string;
+  subtractSquare: string;
+  degreeLabel: string;
+  degreeHint: string;
+  acute: string;
+  rightAngle: string;
+  obtuse: string;
+  congruent: string;
+  notCongruent: string;
+  tableMatch: string;
+  tableMismatch: string;
+  equationOfRow: string;
+  intersection: string;
+  solutionRegion: string;
+  noIntersection: string;
+  svdRotate: string;
+  svdScale: string;
+  svdCompose: string;
+  rankLabel: string;
+  cellProduct: string;
 };
 
 const LABELS: Record<AppLocale, VizLabels> = {
@@ -94,6 +115,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'área/det',
     fermatDemo: 'demo de Fermat',
     errorBit: 'error',
+    pascalRow: 'Fila de Pascal',
+    addSquare: 'Añadir (b/2)²',
+    subtractSquare: 'Restar (b/2)²',
+    degreeLabel: 'Grado total',
+    degreeHint: 'Cada eje aporta su exponente al grado',
+    acute: 'agudo',
+    rightAngle: 'recto',
+    obtuse: 'obtuso',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'coincide con la operación',
+    tableMismatch: 'no coincide — revisa la fila',
+    equationOfRow: 'Ecuación de la fila',
+    intersection: 'intersección',
+    solutionRegion: 'región solución',
+    noIntersection: 'sin intersección (paralelas)',
+    svdRotate: 'Vᵀ: rotar',
+    svdScale: 'Σ: escalar',
+    svdCompose: 'U: recomponer',
+    rankLabel: 'rango',
+    cellProduct: 'producto fila×columna',
   },
   en: {
     swap: 'Swap',
@@ -139,6 +181,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'area/det',
     fermatDemo: 'Fermat demo',
     errorBit: 'error',
+    pascalRow: 'Pascal row',
+    addSquare: 'Add (b/2)²',
+    subtractSquare: 'Subtract (b/2)²',
+    degreeLabel: 'Total degree',
+    degreeHint: 'Each axis contributes its exponent to the degree',
+    acute: 'acute',
+    rightAngle: 'right',
+    obtuse: 'obtuse',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'matches the operation',
+    tableMismatch: 'mismatch — check the row',
+    equationOfRow: 'Equation of row',
+    intersection: 'intersection',
+    solutionRegion: 'solution region',
+    noIntersection: 'no intersection (parallel)',
+    svdRotate: 'Vᵀ: rotate',
+    svdScale: 'Σ: scale',
+    svdCompose: 'U: reassemble',
+    rankLabel: 'rank',
+    cellProduct: 'row×column product',
   },
   de: {
     swap: 'Tauschen',
@@ -184,6 +247,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'Fläche/det',
     fermatDemo: 'Fermat-Demo',
     errorBit: 'Fehler',
+    pascalRow: 'Pascal-Zeile',
+    addSquare: '(b/2)² hinzufügen',
+    subtractSquare: '(b/2)² abziehen',
+    degreeLabel: 'Gesamtgrad',
+    degreeHint: 'Jede Achse trägt ihren Exponenten zum Grad bei',
+    acute: 'spitz',
+    rightAngle: 'recht',
+    obtuse: 'stumpf',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'stimmt mit der Operation überein',
+    tableMismatch: 'stimmt nicht — Zeile prüfen',
+    equationOfRow: 'Gleichung der Zeile',
+    intersection: 'Schnittpunkt',
+    solutionRegion: 'Lösungsbereich',
+    noIntersection: 'kein Schnitt (parallel)',
+    svdRotate: 'Vᵀ: drehen',
+    svdScale: 'Σ: skalieren',
+    svdCompose: 'U: zusammensetzen',
+    rankLabel: 'Rang',
+    cellProduct: 'Zeile×Spalte-Produkt',
   },
   fr: {
     swap: 'Échanger',
@@ -229,6 +313,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'aire/det',
     fermatDemo: 'démo de Fermat',
     errorBit: 'erreur',
+    pascalRow: 'Ligne de Pascal',
+    addSquare: 'Ajouter (b/2)²',
+    subtractSquare: 'Soustraire (b/2)²',
+    degreeLabel: 'Degré total',
+    degreeHint: 'Chaque axe contribue son exposant au degré',
+    acute: 'aigu',
+    rightAngle: 'droit',
+    obtuse: 'obtus',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'correspond à l’opération',
+    tableMismatch: 'ne correspond pas — vérifier la ligne',
+    equationOfRow: 'Équation de la ligne',
+    intersection: 'intersection',
+    solutionRegion: 'région solution',
+    noIntersection: 'pas d’intersection (parallèles)',
+    svdRotate: 'Vᵀ : rotation',
+    svdScale: 'Σ : échelle',
+    svdCompose: 'U : recomposer',
+    rankLabel: 'rang',
+    cellProduct: 'produit ligne×colonne',
   },
   it: {
     swap: 'Scambia',
@@ -274,6 +379,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'area/det',
     fermatDemo: 'demo di Fermat',
     errorBit: 'errore',
+    pascalRow: 'Riga di Pascal',
+    addSquare: 'Aggiungi (b/2)²',
+    subtractSquare: 'Sottrai (b/2)²',
+    degreeLabel: 'Grado totale',
+    degreeHint: 'Ogni asse contribuisce il suo esponente al grado',
+    acute: 'acuto',
+    rightAngle: 'retto',
+    obtuse: 'ottuso',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'coincide con l’operazione',
+    tableMismatch: 'non coincide — controlla la riga',
+    equationOfRow: 'Equazione della riga',
+    intersection: 'intersezione',
+    solutionRegion: 'regione soluzione',
+    noIntersection: 'nessuna intersezione (parallele)',
+    svdRotate: 'Vᵀ: ruota',
+    svdScale: 'Σ: scala',
+    svdCompose: 'U: ricomponi',
+    rankLabel: 'rango',
+    cellProduct: 'prodotto riga×colonna',
   },
   pt: {
     swap: 'Trocar',
@@ -319,6 +445,27 @@ const LABELS: Record<AppLocale, VizLabels> = {
     areaDet: 'área/det',
     fermatDemo: 'demo de Fermat',
     errorBit: 'erro',
+    pascalRow: 'Linha de Pascal',
+    addSquare: 'Adicionar (b/2)²',
+    subtractSquare: 'Subtrair (b/2)²',
+    degreeLabel: 'Grau total',
+    degreeHint: 'Cada eixo contribui com seu expoente para o grau',
+    acute: 'agudo',
+    rightAngle: 'reto',
+    obtuse: 'obtuso',
+    congruent: 'a ≡ b (mod m)',
+    notCongruent: 'a ≢ b (mod m)',
+    tableMatch: 'coincide com a operação',
+    tableMismatch: 'não coincide — revise a linha',
+    equationOfRow: 'Equação da linha',
+    intersection: 'interseção',
+    solutionRegion: 'região solução',
+    noIntersection: 'sem interseção (paralelas)',
+    svdRotate: 'Vᵀ: rotacionar',
+    svdScale: 'Σ: escalar',
+    svdCompose: 'U: recompor',
+    rankLabel: 'posto',
+    cellProduct: 'produto linha×coluna',
   },
 };
 

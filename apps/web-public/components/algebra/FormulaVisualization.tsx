@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 import type { FormulaVisual } from '@repo/shared-types';
 import { useVizLabels } from '@/lib/viz-labels';
+import { resolveMode } from '@/lib/viz-modes';
 import {
   AlgebraTilesViz,
   ErrorCorrectionViz,
@@ -31,6 +32,7 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
   const v = useVizLabels();
   const idea = visual.idea || visual.concept;
   const type = visual.type;
+  const mode = resolveMode(formulaId, type, visual.mode);
 
   let body: ReactNode;
   switch (type) {
@@ -38,37 +40,37 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
       body = <NumberLineViz formulaId={formulaId} idea={idea} />;
       break;
     case 'algebra_tiles':
-      body = <AlgebraTilesViz formulaId={formulaId} idea={idea} />;
+      body = <AlgebraTilesViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'graph':
-      body = <GraphViz formulaId={formulaId} idea={idea} />;
+      body = <GraphViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'function_transform':
       body = <FunctionTransformViz formulaId={formulaId} idea={idea} />;
       break;
     case 'vector':
-      body = <VectorViz formulaId={formulaId} idea={idea} />;
+      body = <VectorViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'vector_space':
       body = <VectorSpaceViz formulaId={formulaId} idea={idea} />;
       break;
     case 'matrix':
-      body = <MatrixViz formulaId={formulaId} idea={idea} />;
+      body = <MatrixViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'matrix_transform':
-      body = <MatrixTransformViz formulaId={formulaId} idea={idea} />;
+      body = <MatrixTransformViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'geometry':
       body = <GeometryViz formulaId={formulaId} idea={idea} />;
       break;
     case 'truth_table':
-      body = <TruthTableViz formulaId={formulaId} idea={idea} />;
+      body = <TruthTableViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'logic_gate':
       body = <LogicGateViz formulaId={formulaId} idea={idea} />;
       break;
     case 'modular_clock':
-      body = <ModularClockViz formulaId={formulaId} idea={idea} />;
+      body = <ModularClockViz formulaId={formulaId} idea={idea} mode={mode} />;
       break;
     case 'finite_field':
       body = <FiniteFieldViz formulaId={formulaId} idea={idea} />;

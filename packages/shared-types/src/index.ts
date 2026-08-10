@@ -26,6 +26,11 @@ export interface FormulaVisual {
   idea: string;
   learningObjective: string;
   interaction?: string;
+  /**
+   * Closed lesson mode for the viz component (e.g. commute, row_ops, moivre_power).
+   * Parsed from markdown `**Modo:**`; clients may also infer from formulaId.
+   */
+  mode?: string;
 }
 
 export interface ComputationalCost {

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 
-type Props = { formulaId: string; idea?: string };
+type Props = { formulaId: string; idea?: string; mode?: string };
 
 function modPow(a: number, e: number, m: number): number {
   let r = 1;
@@ -24,7 +24,7 @@ function egcd(a: number, b: number): [number, number, number] {
   return [g, y, x - Math.floor(a / b) * y];
 }
 
-export function ModularClockViz({ formulaId, idea }: Props) {
+export function ModularClockViz({ formulaId, idea, mode }: Props) {
   const v = useVizLabels();
   const [mod, setMod] = useState(7);
   const [a, setA] = useState(3);
@@ -37,9 +37,12 @@ export function ModularClockViz({ formulaId, idea }: Props) {
   const cy = H / 2 + 10;
   const R = 100;
 
-  const sum = ((a % mod) + (b % mod) + mod * 2) % mod;
-  const prod = (((a % mod) + mod) * ((b % mod) + mod)) % mod;
-  const [g, invCand] = egcd(((a % mod) + mod) % mod, mod);
+  const aMod = ((a % mod) + mod) % mod;
+  const bMod = ((b % mod) + mod) % mod;
+  const congruent = aMod === bMod;
+  const sum = (aMod + bMod) % mod;
+  const prod = (aMod * bMod) % mod;
+  const [g, invCand] = egcd(aMod, mod);
   const inv = g === 1 ? ((invCand % mod) + mod) % mod : null;
   const pow = modPow(a, mod - 1, mod);
 
@@ -55,42 +58,61 @@ export function ModularClockViz({ formulaId, idea }: Props) {
   const crt =
     formulaId.includes('MOD-005') && Number.isInteger(a) && Number.isInteger(b)
       ? (() => {
-          // x ≡ a (mod m), x ≡ b (mod m2) naive search
           for (let x = 0; x < mod * m2; x++) {
-            if (x % mod === ((a % mod) + mod) % mod && x % m2 === ((b % m2) + m2) % m2) return x;
+            if (x % mod === aMod && x % m2 === ((b % m2) + m2) % m2) return x;
           }
           return null;
         })()
       : null;
 
+  const congruenceMode = mode === 'congruence' || formulaId.includes('MOD-001');
+  const badge = congruenceMode ? (congruent ? v.congruent : v.notCongruent) : null;
+
   return (
     <VizPanel
-      caption={`${idea ?? ''} · a+b≡${sum}, ab≡${prod}${inv !== null ? `, a⁻¹≡${inv}` : `, ${v.noInverse}`}${formulaId.includes('MOD-006') ? `, a^{p-1}≡${pow}` : ''}${crt !== null ? `, CRT x≡${crt}` : ''}`}
+      caption={`${idea ?? ''}${badge ? ` · ${badge}` : ''} · a+b≡${sum}, ab≡${prod}${
+        inv !== null ? `, a⁻¹≡${inv}` : `, ${v.noInverse}`
+      }${formulaId.includes('MOD-006') ? `, a^{p-1}≡${pow}` : ''}${crt !== null ? `, CRT x≡${crt}` : ''}`}
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <circle cx={cx} cy={cy} r={R} fill="none" stroke="currentColor" opacity={0.3} />
-        {points.map((p) => (
-          <g key={p.i}>
-            <circle
-              cx={p.x}
-              cy={p.y}
-              r={p.i === sum || p.i === prod || p.i === ((a % mod) + mod) % mod ? 8 : 5}
-              fill={
-                p.i === ((a % mod) + mod) % mod
-                  ? 'var(--accent-strong)'
-                  : p.i === sum
-                    ? 'teal'
-                    : p.i === prod
-                      ? 'orange'
-                      : 'currentColor'
-              }
-              opacity={0.85}
-            />
-            <text x={p.x} y={p.y - 12} textAnchor="middle" fontSize={11} fill="currentColor">
-              {p.i}
-            </text>
-          </g>
-        ))}
+        {points.map((p) => {
+          const isA = p.i === aMod;
+          const isB = p.i === bMod;
+          const isSum = !congruenceMode && p.i === sum;
+          const isProd = !congruenceMode && p.i === prod;
+          return (
+            <g key={p.i}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r={isA || isB || isSum || isProd ? 9 : 5}
+                fill={
+                  isA
+                    ? 'var(--accent-strong)'
+                    : isB
+                      ? congruent
+                        ? 'var(--accent-strong)'
+                        : 'teal'
+                      : isSum
+                        ? 'teal'
+                        : isProd
+                          ? 'orange'
+                          : 'currentColor'
+                }
+                opacity={0.9}
+              />
+              <text x={p.x} y={p.y - 12} textAnchor="middle" fontSize={11} fill="currentColor">
+                {p.i}
+              </text>
+            </g>
+          );
+        })}
+        {congruenceMode && congruent ? (
+          <text x={cx} y={cy} textAnchor="middle" fontSize={14} fill="currentColor">
+            ≡
+          </text>
+        ) : null}
       </svg>
       <ControlsStack>
         <SliderRow label="m" value={mod} min={3} max={12} step={1} onChange={setMod} />
@@ -102,6 +124,7 @@ export function ModularClockViz({ formulaId, idea }: Props) {
         <p className="text-xs text-[var(--fg-muted)]">
           gcd(a,m)={fmt(g)}
           {formulaId.includes('MOD-006') ? ` · ${v.fermatDemo}` : ''}
+          {badge ? ` · ${badge}` : ''}
         </p>
       </ControlsStack>
     </VizPanel>

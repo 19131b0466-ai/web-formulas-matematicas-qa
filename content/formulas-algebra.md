@@ -37,6 +37,7 @@ Cada entrada incluye un **ID estable**, nivel, fórmula, descripción, una suger
 Cada bloque `Visualización sugerida` utiliza ahora seis campos:
 
 - **Tipo:** familia del componente visual que puede usar la web.
+- **Modo:** lección concreta dentro del componente (p. ej. `commute`, `row_ops`, `moivre_power`).
 - **Concepto visual:** fenómeno algebraico concreto que debe representarse.
 - **Elementos:** objetos que deben aparecer en pantalla y qué representan.
 - **Idea:** comportamiento o comparación que la representación debe mostrar.
@@ -109,6 +110,7 @@ a+b=b+a;\quad ab=ba
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
 - **Idea:** mostrar primero los bloques en el orden \(a,b\) y luego intercambiarlos a \(b,a\); la barra total debe conservar exactamente la misma longitud.
@@ -135,6 +137,7 @@ a+b=b+a;\quad ab=ba
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `associate`
 - **Concepto visual:** cambio de agrupación sin cambiar el resultado.
 - **Elementos:** tres bloques \(a,b,c\), dos esquemas de agrupación con llaves o contenedores: \((a+b)+c\) y \(a+(b+c)\).
 - **Idea:** mantener el mismo orden de los tres bloques y cambiar únicamente qué dos se agrupan primero; el total debe permanecer idéntico.
@@ -161,6 +164,7 @@ a(b+c)=ab+ac
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `distribute`
 - **Concepto visual:** distribución de un factor sobre una suma.
 - **Elementos:** un rectángulo de altura \(a\) y ancho \(b+c\), dividido verticalmente en regiones \(ab\) y \(ac\).
 - **Idea:** mostrar el rectángulo completo como \(a(b+c)\) y después separar sus dos áreas para obtener \(ab+ac\).
@@ -274,6 +278,7 @@ a^ma^n=a^{m+n}
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `power`
 - **Concepto visual:** suma de exponentes como unión de factores iguales.
 - **Elementos:** dos grupos de factores \(a\): uno con \(m\) copias y otro con \(n\) copias, seguidos por un solo grupo con \(m+n\) copias.
 - **Idea:** animar la concatenación de ambos grupos para pasar de \(a^m a^n\) a \(a^{m+n}\).
@@ -466,6 +471,7 @@ P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `poly_grid`
 - **Concepto visual:** distribución completa en el producto de polinomios.
 - **Elementos:** dos polinomios en los bordes de una cuadrícula; cada celda contiene el producto de un término de la primera expresión por uno de la segunda.
 - **Idea:** rellenar la cuadrícula y luego agrupar diagonales o términos con el mismo grado para formar los coeficientes del producto.
@@ -504,6 +510,7 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `square`
 - **Concepto visual:** área de un cuadrado de lado \(a+b\).
 - **Elementos:** cuadrado dividido en cuatro regiones: \(a^2\), \(ab\), \(ab\) y \(b^2\).
 - **Idea:** mostrar que el área total \((a+b)^2\) es la suma de las cuatro regiones y combinar los dos rectángulos \(ab\) en \(2ab\).
@@ -556,6 +563,7 @@ a^2-b^2=(a-b)(a+b)
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `diff_sq`
 - **Concepto visual:** reorganización geométrica de una diferencia de áreas.
 - **Elementos:** cuadrado grande de lado \(a\), cuadrado retirado de lado \(b\), y piezas reordenadas como rectángulo de lados \(a-b\) y \(a+b\).
 - **Idea:** transformar el área \(a^2-b^2\) en el rectángulo \((a-b)(a+b)\).
@@ -647,6 +655,7 @@ a^3-b^3=(a-b)(a^2+ab+b^2)
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `binomial`
 - **Concepto visual:** coeficientes del binomio desde el triángulo de Pascal.
 - **Elementos:** triángulo de Pascal, fila \(n\) resaltada y expansión de \((a+b)^n\) alineada término a término.
 - **Idea:** al seleccionar un coeficiente, destacar su \(\binom nk\), la potencia \(a^{n-k}\) y la potencia \(b^k\).
@@ -929,6 +938,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 ### Visualización sugerida
 
 - **Tipo:** `graph`
+- **Modo:** `quadratic`
 - **Concepto visual:** raíces de una cuadrática como cortes de la parábola.
 - **Elementos:** parábola \(y=ax^2+bx+c\), eje \(x\), raíces marcadas y fórmula cuadrática junto a la gráfica.
 - **Idea:** mostrar cómo las soluciones calculadas coinciden con las intersecciones de la parábola con el eje \(x\).
@@ -986,6 +996,7 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `complete_square`
 - **Concepto visual:** completar un cuadrado añadiendo la pieza faltante.
 - **Elementos:** región \(x^2\), dos rectángulos de dimensiones \(x\) y \(b/2\), y un pequeño cuadrado \((b/2)^2\).
 - **Idea:** ensamblar las piezas para convertir \(x^2+bx\) en \((x+b/2)^2-b^2/4\).
@@ -1098,6 +1109,7 @@ ax^2+bx+c>0
 ### Visualización sugerida
 
 - **Tipo:** `graph`
+- **Modo:** `inequality`
 - **Concepto visual:** signo de una cuadrática mediante regiones de la parábola.
 - **Elementos:** parábola, eje \(x\), raíces y sombreado de los intervalos del eje donde la función es positiva o negativa.
 - **Idea:** sincronizar el signo de \(y\) con una tabla de signos bajo la gráfica.
@@ -1178,6 +1190,7 @@ ax^2+bx+c>0
 ### Visualización sugerida
 
 - **Tipo:** `graph`
+- **Modo:** `system`
 - **Concepto visual:** soluciones de un sistema 2×2 como intersección de rectas.
 - **Elementos:** dos rectas en el plano y estados: una intersección, paralelas distintas o coincidentes.
 - **Idea:** mostrar junto a la gráfica la clasificación: solución única, ninguna o infinitas.
@@ -1230,6 +1243,7 @@ A\mathbf x=\mathbf b
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `augmented_map`
 - **Concepto visual:** separación entre coeficientes y términos independientes.
 - **Elementos:** matriz aumentada con barra vertical, columnas de coeficientes y columna final \(\mathbf b\).
 - **Idea:** mostrar la correspondencia fila a fila entre la matriz aumentada y las ecuaciones originales.
@@ -1255,6 +1269,7 @@ R_i\leftrightarrow R_j;\;R_i\leftarrow cR_i;\;R_i\leftarrow R_i+cR_j
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `row_ops`
 - **Concepto visual:** efecto de operaciones elementales sobre un sistema equivalente.
 - **Elementos:** matriz aumentada antes y después de cada operación de fila, con fila afectada resaltada.
 - **Idea:** animar intercambio, escalamiento y suma de filas hasta alcanzar forma escalonada.
@@ -1291,6 +1306,7 @@ tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atr�
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `rank_compare`
 - **Concepto visual:** comparación visual de rangos para decidir compatibilidad.
 - **Elementos:** matriz \(A\) y matriz aumentada \([A|b]\) en forma escalonada, pivotes resaltados y contadores de rango.
 - **Idea:** comparar el número de pivotes de ambas matrices y mostrar el caso correspondiente del criterio.
@@ -1668,6 +1684,7 @@ El grado total de un polinomio no nulo es
 
 ### Visualización sugerida
 - **Tipo:** `algebra_tiles`
+- **Modo:** `degree`
 - **Concepto visual:** distinguir grado respecto de una variable y grado total.
 - **Elementos:** monomios como \(x^3y^2\), \(xy^4\) y \(x^2yz^3\), con cada exponente resaltado y una suma visible de exponentes.
 - **Idea:** al seleccionar un monomio, mostrar \(3+2=5\) o \(2+1+3=6\) como grado total, manteniendo por separado los grados en \(x\), \(y\), \(z\).
@@ -2080,6 +2097,7 @@ e^{i\theta}=\cos\theta+i\sin\theta
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `moivre_power`
 - **Concepto visual:** potencias complejas como multiplicación de ángulos.
 - **Elementos:** círculo complejo con vector inicial de ángulo \(\theta\) y vector resultante de ángulo \(n\theta\).
 - **Idea:** mostrar simultáneamente que el módulo se eleva a \(n\) y el argumento se multiplica por \(n\).
@@ -2365,6 +2383,7 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `proj`
 - **Concepto visual:** producto punto como proyección y alineación.
 - **Elementos:** vectores \(u\) y \(v\), ángulo \(\theta\), proyección de uno sobre el otro y valor del producto punto.
 - **Idea:** mostrar producto positivo para ángulo agudo, cero para 90° y negativo para obtuso.
@@ -2392,6 +2411,7 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `angle`
 - **Concepto visual:** ángulo determinado por producto punto y normas.
 - **Elementos:** dos vectores, arco del ángulo entre ellos y panel con \(u\cdot v\), \(\|u\|\), \(\|v\|\) y \(\cos\theta\).
 - **Idea:** mostrar cómo la fórmula reconstruye el ángulo a partir de datos algebraicos.
@@ -2547,6 +2567,7 @@ A=(a_{ij})_{m\times n}
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `product`
 - **Concepto visual:** regla fila por columna del producto matricial.
 - **Elementos:** matriz \(A\), matriz \(B\) y \(C=AB\); una fila de \(A\) y una columna de \(B\) resaltadas para calcular \(c_{ij}\).
 - **Idea:** mostrar cada multiplicación parcial \(a_{ik}b_{kj}\) y su suma hasta obtener una entrada de \(C\).
@@ -3677,6 +3698,7 @@ A=U\Sigma V^T
 ### Visualización sugerida
 
 - **Tipo:** `matrix_transform`
+- **Modo:** `svd`
 - **Concepto visual:** SVD como rotación/reflexión → escalamiento → rotación/reflexión.
 - **Elementos:** círculo unitario, estado tras \(V^T\), elipse tras \(\Sigma\) y orientación final tras \(U\).
 - **Idea:** animar las tres etapas y etiquetar valores singulares como longitudes de los ejes principales.
@@ -3999,6 +4021,7 @@ A+0=A;\;A1=A;\;A+1=1;\;A0=0
 ### Visualización sugerida
 
 - **Tipo:** `truth_table`
+- **Modo:** `verify`
 - **Concepto visual:** verificación de identidades mediante todas las entradas booleanas.
 - **Elementos:** tabla con columna de entrada \(A\) y columnas para \(A+0\), \(A\cdot1\), \(A+1\), \(A\cdot0\).
 - **Idea:** mostrar fila por fila que cada identidad produce la salida indicada para 0 y 1.
@@ -4232,6 +4255,7 @@ a\equiv b\pmod n\iff n\mid(a-b)
 ### Visualización sugerida
 
 - **Tipo:** `modular_clock`
+- **Modo:** `congruence`
 - **Concepto visual:** congruencia como misma posición en un reloj modular.
 - **Elementos:** círculo con residuos \(0,1,\ldots,n-1\), números como \(a\) y \(b\) cayendo sobre el mismo residuo.
 - **Idea:** mostrar vueltas completas y el resto final para ilustrar que \(n\mid(a-b)\).

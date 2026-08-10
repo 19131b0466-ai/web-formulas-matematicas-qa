@@ -29,7 +29,7 @@ const LEVEL_RE = /^\*\*Nivel:\*\*\s*`([^`]+)`\s*$/i;
 const DETAIL_RE = /^\*\*Descripci[oó]n corta:\*\*\s*(.*)$/i;
 const RELATED_ID_RE = /`(ALG-[A-Z]+-\d{3})`/g;
 const VISUAL_FIELD_RE =
-  /^\*\*(Tipo|Concepto visual|Elementos|Idea|Objetivo educativo|Interactividad sugerida):\*\*\s*(.*)$/i;
+  /^\*\*(Tipo|Modo|Concepto visual|Elementos|Idea|Objetivo educativo|Interactividad sugerida):\*\*\s*(.*)$/i;
 
 function stripInlineNoise(text: string): string {
   return text
@@ -220,6 +220,7 @@ function finalizeVisual(draft: VisualDraft | null): FormulaVisual | undefined {
     idea: draft.idea ?? '',
     learningObjective: draft.learningObjective ?? '',
     ...(draft.interaction ? { interaction: draft.interaction } : {}),
+    ...(draft.mode ? { mode: String(draft.mode).replace(/^`|`$/g, '').trim() } : {}),
   };
 }
 
@@ -299,6 +300,9 @@ function applyVisualField(draft: FormulaDraft, key: string, value: string): void
   switch (key.toLowerCase()) {
     case 'tipo':
       draft.visual.type = clean;
+      break;
+    case 'modo':
+      draft.visual.mode = clean;
       break;
     case 'concepto visual':
       draft.visual.concept = clean;

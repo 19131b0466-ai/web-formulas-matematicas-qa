@@ -1,13 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
+import type { AlgebraTilesMode } from '@/lib/viz-modes';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
 
-type Props = { formulaId: string; idea?: string };
+type Props = { formulaId: string; idea?: string; mode?: string };
 
-export function AlgebraTilesViz({ formulaId, idea }: Props) {
+function binom(n: number, k: number): number {
+  if (k < 0 || k > n) return 0;
+  let r = 1;
+  for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i;
+  return Math.round(r);
+}
+
+export function AlgebraTilesViz({ formulaId: _formulaId, idea, mode: modeProp }: Props) {
   const v = useVizLabels();
+  const mode = (modeProp ?? 'commute') as AlgebraTilesMode;
   const [a, setA] = useState(3);
   const [b, setB] = useState(2);
   const [c, setC] = useState(1.5);
@@ -15,20 +24,36 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
   const [assocRight, setAssocRight] = useState(false);
   const [factored, setFactored] = useState(false);
   const [n, setN] = useState(3);
+  const [showGap, setShowGap] = useState(true);
 
   const scale = 18;
-  const isComm = formulaId.includes('FND-001');
-  const isAssoc = formulaId.includes('FND-002');
-  const isDist = formulaId.includes('FND-003') || formulaId.includes('FAC-001');
-  const isSquare = /IDN-001|IDN-002|FAC-003|EQU-005|POL-008/.test(formulaId);
-  const isDiffSq = /IDN-003|FAC-002/.test(formulaId);
-  const isBinom = formulaId.includes('IDN-008');
-  const isPolyGrid = formulaId.includes('EXP-003');
+  const halfB = b / 2;
+  const pascal = useMemo(() => Array.from({ length: n + 1 }, (_, k) => binom(n, k)), [n]);
+
+  const caption = useMemo(() => {
+    const base = idea ?? '';
+    switch (mode) {
+      case 'commute':
+        return `${base} · a+b = b+a = ${fmt(a + b)}`;
+      case 'distribute':
+        return `${base} · a(b+c)=${fmt(a * (b + c))} = ab+ac=${fmt(a * b + a * c)}`;
+      case 'complete_square':
+        return `${base} · x²+bx = (x+b/2)² − (b/2)² · (b/2)²=${fmt(halfB * halfB)}`;
+      case 'degree':
+        return `${base} · deg(x^a y^b) = a+b = ${fmt(a + b, 0)}`;
+      case 'power':
+        return `${base} · a^n · a^m → a^{n+m} · n=${fmt(a, 0)}, m=${fmt(b, 0)}`;
+      case 'binomial':
+        return `${base} · ${v.pascalRow} ${n}: [${pascal.join(', ')}]`;
+      default:
+        return base;
+    }
+  }, [idea, mode, a, b, c, halfB, n, pascal, v.pascalRow]);
 
   return (
-    <VizPanel caption={idea}>
-      <svg viewBox="0 0 420 200" className="h-auto w-full" role="img">
-        {isComm ? (
+    <VizPanel caption={caption}>
+      <svg viewBox="0 0 420 220" className="h-auto w-full" role="img">
+        {mode === 'commute' ? (
           <>
             {(swapped ? [b, a] : [a, b]).map((len, i) => (
               <rect
@@ -48,7 +73,8 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
             <line x1={40} y1={130} x2={40 + (a + b) * scale} y2={130} stroke="currentColor" strokeWidth={4} />
           </>
         ) : null}
-        {isAssoc ? (
+
+        {mode === 'associate' ? (
           <>
             {[a, b, c].map((len, i) => (
               <rect
@@ -78,7 +104,8 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
             </text>
           </>
         ) : null}
-        {isDist ? (
+
+        {mode === 'distribute' ? (
           <>
             <rect x={40} y={40} width={(b + c) * scale} height={a * scale} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
             <line x1={40 + b * scale} y1={40} x2={40 + b * scale} y2={40 + a * scale} stroke="var(--accent-strong)" strokeWidth={2} />
@@ -93,7 +120,8 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
             </text>
           </>
         ) : null}
-        {isSquare ? (
+
+        {mode === 'square' ? (
           <>
             <rect x={60} y={30} width={a * scale} height={a * scale} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
             <rect x={60 + a * scale} y={30} width={b * scale} height={a * scale} fill="color-mix(in oklab, teal 30%, transparent)" stroke="teal" />
@@ -104,69 +132,224 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
             </text>
           </>
         ) : null}
-        {isDiffSq ? (
+
+        {mode === 'diff_sq' ? (
           <>
             <rect x={50} y={30} width={a * scale} height={a * scale} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
             {!factored ? (
-              <rect x={50 + (a - b) * scale} y={30 + (a - b) * scale} width={b * scale} height={b * scale} fill="var(--bg)" stroke="currentColor" strokeDasharray="3 2" />
+              <rect
+                x={50 + (a - b) * scale}
+                y={30 + (a - b) * scale}
+                width={Math.max(0.2, b) * scale}
+                height={Math.max(0.2, b) * scale}
+                fill="var(--bg)"
+                stroke="currentColor"
+                strokeDasharray="3 2"
+              />
             ) : (
-              <rect x={50} y={30} width={(a - b) * scale} height={(a + b) * scale} fill="color-mix(in oklab, teal 35%, transparent)" stroke="teal" />
+              <rect
+                x={50}
+                y={30}
+                width={Math.max(0.2, a - b) * scale}
+                height={(a + b) * scale}
+                fill="color-mix(in oklab, teal 35%, transparent)"
+                stroke="teal"
+              />
             )}
             <text x={50} y={22} fontSize={12} fill="currentColor">
               {factored ? `(a-b)(a+b)=${fmt((a - b) * (a + b))}` : `a²-b²=${fmt(a * a - b * b)}`}
             </text>
           </>
         ) : null}
-        {isBinom ? (
-          <text x={30} y={100} fontSize={14} fill="currentColor">
-            Fila {n} de Pascal · (a+b)^{n}
-          </text>
-        ) : null}
-        {isPolyGrid ? (
+
+        {mode === 'complete_square' ? (
           <>
-            {[0, 1].map((i) =>
-              [0, 1].map((j) => (
-                <rect
-                  key={`${i}-${j}`}
-                  x={60 + j * 80}
-                  y={40 + i * 60}
-                  width={70}
-                  height={50}
-                  fill="var(--accent-soft)"
-                  stroke="var(--accent-strong)"
-                />
-              )),
-            )}
-            <text x={60} y={30} fontSize={12} fill="currentColor">
-              {v.termProduct}
+            <rect x={50} y={40} width={a * scale} height={a * scale} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+            <rect
+              x={50 + a * scale}
+              y={40}
+              width={halfB * scale}
+              height={a * scale}
+              fill="color-mix(in oklab, teal 30%, transparent)"
+              stroke="teal"
+            />
+            <rect
+              x={50}
+              y={40 + a * scale}
+              width={a * scale}
+              height={halfB * scale}
+              fill="color-mix(in oklab, teal 30%, transparent)"
+              stroke="teal"
+            />
+            {showGap ? (
+              <rect
+                x={50 + a * scale}
+                y={40 + a * scale}
+                width={halfB * scale}
+                height={halfB * scale}
+                fill="color-mix(in oklab, orange 40%, transparent)"
+                stroke="orange"
+                strokeDasharray="4 2"
+              />
+            ) : null}
+            <text x={50} y={28} fontSize={12} fill="currentColor">
+              {showGap
+                ? `x² + bx + (b/2)² = (x+b/2)² · ${v.addSquare}`
+                : `(x+b/2)² − (b/2)² · ${v.subtractSquare}`}
             </text>
           </>
         ) : null}
-        {!isComm && !isAssoc && !isDist && !isSquare && !isDiffSq && !isBinom && !isPolyGrid ? (
+
+        {mode === 'binomial' ? (
           <>
-            <rect x={40} y={50} width={a * scale} height={40} fill="var(--accent-soft)" stroke="var(--accent-strong)" rx={6} />
-            <rect x={40 + a * scale + 8} y={50} width={b * scale} height={40} fill="color-mix(in oklab, teal 30%, transparent)" stroke="teal" rx={6} />
-            <text x={40} y={40} fontSize={13} fill="currentColor">
-              {v.algebraTiles} a={fmt(a)}, b={fmt(b)}
+            {pascal.map((coef, k) => (
+              <g key={k}>
+                <rect
+                  x={30 + k * 55}
+                  y={70}
+                  width={48}
+                  height={48}
+                  rx={6}
+                  fill="var(--accent-soft)"
+                  stroke="var(--accent-strong)"
+                />
+                <text x={54 + k * 55} y={98} textAnchor="middle" fontSize={14} fill="currentColor">
+                  {coef}
+                </text>
+                <text x={54 + k * 55} y={140} textAnchor="middle" fontSize={11} fill="currentColor" opacity={0.75}>
+                  a^{n - k}b^{k}
+                </text>
+              </g>
+            ))}
+            <text x={30} y={40} fontSize={13} fill="currentColor">
+              (a+b)^{n} · {v.pascalRow} {n}
+            </text>
+          </>
+        ) : null}
+
+        {mode === 'poly_grid' ? (
+          <>
+            {[
+              ['a·c', 'a·d'],
+              ['b·c', 'b·d'],
+            ].map((row, i) =>
+              row.map((label, j) => (
+                <g key={`${i}-${j}`}>
+                  <rect
+                    x={60 + j * 100}
+                    y={40 + i * 70}
+                    width={90}
+                    height={60}
+                    fill="var(--accent-soft)"
+                    stroke="var(--accent-strong)"
+                  />
+                  <text x={105 + j * 100} y={75 + i * 70} textAnchor="middle" fontSize={13} fill="currentColor">
+                    {label}
+                  </text>
+                </g>
+              )),
+            )}
+            <text x={60} y={28} fontSize={12} fill="currentColor">
+              (a+b)(c+d) · {v.termProduct}
+            </text>
+          </>
+        ) : null}
+
+        {mode === 'degree' ? (
+          <>
+            <rect x={60} y={50} width={a * 40} height={b * 40} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+            <text x={60} y={40} fontSize={13} fill="currentColor">
+              {v.degreeLabel}: deg(x^{fmt(a, 0)} y^{fmt(b, 0)}) = {fmt(a + b, 0)}
+            </text>
+            <text x={60} y={50 + b * 40 + 24} fontSize={12} fill="currentColor" opacity={0.8}>
+              {v.degreeHint}
+            </text>
+          </>
+        ) : null}
+
+        {mode === 'power' ? (
+          <>
+            {Array.from({ length: Math.max(1, Math.round(a)) }, (_, i) => (
+              <rect
+                key={`n-${i}`}
+                x={40 + i * 28}
+                y={60}
+                width={24}
+                height={40}
+                fill="var(--accent-soft)"
+                stroke="var(--accent-strong)"
+              />
+            ))}
+            <text x={40 + Math.round(a) * 14} y={50} textAnchor="middle" fontSize={12} fill="currentColor">
+              a^{fmt(a, 0)}
+            </text>
+            {Array.from({ length: Math.max(1, Math.round(b)) }, (_, i) => (
+              <rect
+                key={`m-${i}`}
+                x={40 + i * 28}
+                y={130}
+                width={24}
+                height={40}
+                fill="color-mix(in oklab, teal 35%, transparent)"
+                stroke="teal"
+              />
+            ))}
+            <text x={40 + Math.round(b) * 14} y={120} textAnchor="middle" fontSize={12} fill="currentColor">
+              a^{fmt(b, 0)}
+            </text>
+            <text x={40} y={200} fontSize={13} fill="currentColor">
+              a^{fmt(a, 0)} · a^{fmt(b, 0)} = a^{fmt(a + b, 0)}
             </text>
           </>
         ) : null}
       </svg>
       <ControlsStack>
-        <SliderRow label="a" value={a} min={0.5} max={5} step={0.1} onChange={setA} />
-        <SliderRow label="b" value={b} min={0.2} max={4} step={0.1} onChange={setB} />
-        {isAssoc || isDist ? <SliderRow label="c" value={c} min={0.2} max={4} step={0.1} onChange={setC} /> : null}
-        {isBinom ? <SliderRow label="n" value={n} min={1} max={6} step={1} onChange={setN} /> : null}
+        {mode === 'degree' || mode === 'power' || mode === 'complete_square' ? (
+          <>
+            <SliderRow
+              label={mode === 'complete_square' ? 'x' : mode === 'degree' ? 'α' : 'n'}
+              value={a}
+              min={mode === 'power' ? 1 : 0.5}
+              max={mode === 'power' ? 6 : 5}
+              step={mode === 'power' || mode === 'degree' ? 1 : 0.1}
+              onChange={setA}
+            />
+            <SliderRow
+              label={mode === 'complete_square' ? 'b' : mode === 'degree' ? 'β' : 'm'}
+              value={b}
+              min={mode === 'power' || mode === 'degree' ? 0 : 0.2}
+              max={mode === 'power' ? 6 : 4}
+              step={mode === 'power' || mode === 'degree' ? 1 : 0.1}
+              onChange={setB}
+            />
+          </>
+        ) : (
+          <>
+            <SliderRow label="a" value={a} min={0.5} max={5} step={0.1} onChange={setA} />
+            <SliderRow label="b" value={b} min={0.2} max={4} step={0.1} onChange={setB} />
+          </>
+        )}
+        {mode === 'associate' || mode === 'distribute' ? (
+          <SliderRow label="c" value={c} min={0.2} max={4} step={0.1} onChange={setC} />
+        ) : null}
+        {mode === 'binomial' ? <SliderRow label="n" value={n} min={1} max={6} step={1} onChange={setN} /> : null}
         <ButtonRow>
-          {isComm ? <VizButton onClick={() => setSwapped((s) => !s)}>{swapped ? v.orderAb : v.swap}</VizButton> : null}
-          {isAssoc ? (
+          {mode === 'commute' ? (
+            <VizButton onClick={() => setSwapped((s) => !s)}>{swapped ? v.orderAb : v.swap}</VizButton>
+          ) : null}
+          {mode === 'associate' ? (
             <VizButton onClick={() => setAssocRight((s) => !s)}>
               {assocRight ? v.groupLeft : v.groupRight}
             </VizButton>
           ) : null}
-          {isDiffSq ? (
+          {mode === 'diff_sq' ? (
             <VizButton onClick={() => setFactored((s) => !s)} active={factored}>
               {factored ? v.expandedForm : v.reorderFactor}
+            </VizButton>
+          ) : null}
+          {mode === 'complete_square' ? (
+            <VizButton onClick={() => setShowGap((s) => !s)} active={showGap}>
+              {showGap ? v.subtractSquare : v.addSquare}
             </VizButton>
           ) : null}
         </ButtonRow>

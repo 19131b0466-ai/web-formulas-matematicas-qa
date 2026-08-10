@@ -2,10 +2,11 @@
 
 import { useMemo, useRef, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
+import type { VectorMode } from '@/lib/viz-modes';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { add, dot, normalize, norm, project, scale, sub, type Vec2 } from './math2d';
 
-type Props = { formulaId: string; idea?: string };
+type Props = { formulaId: string; idea?: string; mode?: string };
 
 function useDrag(set: (v: Vec2) => void, scalePx: number, origin: Vec2) {
   const dragging = useRef(false);
@@ -35,8 +36,9 @@ function useDrag(set: (v: Vec2) => void, scalePx: number, origin: Vec2) {
   };
 }
 
-export function VectorViz({ formulaId, idea }: Props) {
+export function VectorViz({ formulaId, idea, mode: modeProp }: Props) {
   const vLab = useVizLabels();
+  const mode = (modeProp ?? 'basic') as VectorMode;
   const [u, setU] = useState<Vec2>({ x: 2.2, y: 1.4 });
   const [v, setV] = useState<Vec2>({ x: 0.8, y: 2.1 });
   const [theta, setTheta] = useState(0.8);
@@ -51,74 +53,102 @@ export function VectorViz({ formulaId, idea }: Props) {
   const dragU = useDrag(setU, S, { x: ox, y: oy });
   const dragV = useDrag(setV, S, { x: ox, y: oy });
 
-  const complex = /COM-/.test(formulaId);
-  const proj = /VEC-004|ORT-002/.test(formulaId);
-  const angle = formulaId.includes('VEC-005');
-  const unit = formulaId.includes('VEC-003') || formulaId.includes('COM-005');
-  const moivre = formulaId.includes('COM-006') || formulaId.includes('COM-007');
+  const dp = dot(u, v);
+  const angleKind =
+    Math.abs(dp) < 1e-6 ? vLab.rightAngle : dp > 0 ? vLab.acute : vLab.obtuse;
 
   const derived = useMemo(() => {
-    if (proj) {
+    if (mode === 'proj') {
       const p = project(u, v);
-      return { p, r: sub(u, p), label: `proj=${fmt(norm(p))}` };
+      const r = sub(u, p);
+      return {
+        p,
+        r,
+        label: `u·v=${fmt(dp)} (${angleKind}) · proj=${fmt(norm(p))}`,
+      };
     }
-    if (unit) {
+    if (mode === 'unit') {
       const uu = normalize(u);
-      return { p: uu, r: null, label: `‖û‖=${fmt(norm(uu))}` };
+      return { p: uu, r: null, label: `û · ‖û‖=${fmt(norm(uu))}` };
     }
-    if (angle) {
-      const cos = dot(u, v) / (norm(u) * norm(v) || 1);
-      return { p: null, r: null, label: `∠=${fmt((Math.acos(Math.min(1, Math.max(-1, cos))) * 180) / Math.PI)}°` };
+    if (mode === 'angle') {
+      const cos = dp / (norm(u) * norm(v) || 1);
+      const deg = (Math.acos(Math.min(1, Math.max(-1, cos))) * 180) / Math.PI;
+      return { p: null, r: null, label: `u·v=${fmt(dp)} · ∠=${fmt(deg)}° (${angleKind})` };
     }
-    if (complex) {
+    if (mode === 'moivre_power') {
+      const r = Math.max(0.4, norm(u));
+      return {
+        p: null,
+        r: null,
+        label: `r=${fmt(r)} → rⁿ=${fmt(r ** n)} · θ→nθ=${fmt((n * theta * 180) / Math.PI)}°`,
+      };
+    }
+    if (mode === 'complex' || mode === 'conjugate') {
       const r = norm(u);
       const t = Math.atan2(u.y, u.x);
       return { p: null, r: null, label: `r=${fmt(r)}, θ=${fmt((t * 180) / Math.PI)}°` };
     }
-    return { p: null, r: null, label: `‖u‖=${fmt(norm(u))}` };
-  }, [u, v, proj, unit, angle, complex]);
+    if (mode === 'combo') {
+      return { p: null, r: null, label: `0.7u+0.5v` };
+    }
+    return { p: null, r: null, label: `‖u‖=${fmt(norm(u))} · u·v=${fmt(dp)} (${angleKind})` };
+  }, [u, v, mode, dp, angleKind, n, theta]);
 
-  const polar = complex
-    ? { x: Math.cos(theta) * norm(u), y: Math.sin(theta) * norm(u) }
-    : u;
+  const polarU = { x: Math.cos(theta) * Math.max(0.4, norm(u)), y: Math.sin(theta) * Math.max(0.4, norm(u)) };
+  const displayU = mode === 'moivre_power' || (mode === 'complex' && formulaId.includes('COM-004')) ? polarU : u;
 
-  const roots = moivre
-    ? Array.from({ length: Math.max(2, Math.round(n)) }, (_, k) => {
-        const ang = (theta + 2 * Math.PI * k) / Math.max(2, Math.round(n));
-        const rr = norm(u) ** (1 / Math.max(2, Math.round(n)));
-        return { x: rr * Math.cos(ang), y: rr * Math.sin(ang) };
-      })
-    : [];
+  const powers =
+    mode === 'moivre_power'
+      ? Array.from({ length: Math.max(1, Math.round(n)) }, (_, k) => {
+          const p = k + 1;
+          const rr = Math.max(0.4, norm(u)) ** p;
+          const ang = theta * p;
+          return { x: rr * Math.cos(ang), y: rr * Math.sin(ang), p };
+        })
+      : [];
 
-  const pu = to(complex && formulaId.includes('COM-004') ? polar : u);
+  const pu = to(displayU);
   const pv = to(v);
   const pProj = derived.p ? to(derived.p) : null;
   const pRes = derived.r ? to(derived.r) : null;
+  const showV = mode !== 'moivre_power' && mode !== 'conjugate' && (mode !== 'complex' || /VEC-|ORT-/.test(formulaId));
 
   return (
     <VizPanel caption={`${idea ?? ''} · ${derived.label}`}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full touch-none" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />
-        {complex ? (
-          <circle cx={ox} cy={oy} r={norm(u) * S} fill="none" stroke="currentColor" opacity={0.25} />
+        {mode === 'complex' || mode === 'conjugate' || mode === 'moivre_power' ? (
+          <circle cx={ox} cy={oy} r={Math.max(0.4, norm(u)) * S} fill="none" stroke="currentColor" opacity={0.25} />
         ) : null}
         <line x1={ox} y1={oy} x2={pu.x} y2={pu.y} stroke="var(--accent-strong)" strokeWidth={2.5} />
         <circle cx={pu.x} cy={pu.y} r={8} fill="var(--accent-strong)" {...dragU} style={{ cursor: 'grab' }} />
-        {!complex || formulaId.includes('ORT') || /VEC-/.test(formulaId) ? (
+        {showV ? (
           <>
             <line x1={ox} y1={oy} x2={pv.x} y2={pv.y} stroke="teal" strokeWidth={2.5} />
             <circle cx={pv.x} cy={pv.y} r={8} fill="teal" {...dragV} style={{ cursor: 'grab' }} />
           </>
         ) : null}
         {pProj ? <line x1={ox} y1={oy} x2={pProj.x} y2={pProj.y} stroke="orange" strokeWidth={2} strokeDasharray="4 2" /> : null}
-        {proj && pProj ? (
+        {mode === 'proj' && pProj ? (
           <line x1={pu.x} y1={pu.y} x2={pProj.x} y2={pProj.y} stroke="currentColor" strokeDasharray="3 2" opacity={0.5} />
         ) : null}
-        {formulaId.includes('COM-002') ? (
+        {mode === 'proj' && pRes ? (
+          <line
+            x1={pProj!.x}
+            y1={pProj!.y}
+            x2={to(add(derived.p!, derived.r!)).x}
+            y2={to(add(derived.p!, derived.r!)).y}
+            stroke="orange"
+            strokeWidth={1.5}
+            opacity={0.7}
+          />
+        ) : null}
+        {mode === 'conjugate' ? (
           <line x1={ox} y1={oy} x2={to({ x: u.x, y: -u.y }).x} y2={to({ x: u.x, y: -u.y }).y} stroke="orange" strokeWidth={2} />
         ) : null}
-        {formulaId.includes('VEC-007') ? (
+        {mode === 'combo' ? (
           <line
             x1={ox}
             y1={oy}
@@ -128,15 +158,24 @@ export function VectorViz({ formulaId, idea }: Props) {
             strokeWidth={2}
           />
         ) : null}
-        {roots.map((pt, i) => {
+        {powers.map((pt) => {
           const p = to(pt);
-          return <circle key={i} cx={p.x} cy={p.y} r={5} fill="orange" />;
+          return (
+            <g key={pt.p}>
+              <line x1={ox} y1={oy} x2={p.x} y2={p.y} stroke="orange" strokeWidth={1.5} opacity={0.55 + 0.45 * (pt.p / n)} />
+              <circle cx={p.x} cy={p.y} r={5} fill="orange" />
+              <text x={p.x + 8} y={p.y - 8} fontSize={11} fill="currentColor">
+                z^{pt.p}
+              </text>
+            </g>
+          );
         })}
-        {pRes && false ? null : null}
       </svg>
       <ControlsStack>
-        {complex ? <SliderRow label="θ" value={theta} min={-Math.PI} max={Math.PI} step={0.05} onChange={setTheta} /> : null}
-        {moivre ? <SliderRow label="n" value={n} min={2} max={8} step={1} onChange={setN} /> : null}
+        {mode === 'moivre_power' || mode === 'complex' ? (
+          <SliderRow label="θ" value={theta} min={-Math.PI} max={Math.PI} step={0.05} onChange={setTheta} />
+        ) : null}
+        {mode === 'moivre_power' ? <SliderRow label="n" value={n} min={1} max={6} step={1} onChange={setN} /> : null}
         <p className="text-xs text-[var(--fg-muted)]">{vLab.dragVectors}</p>
       </ControlsStack>
     </VizPanel>
