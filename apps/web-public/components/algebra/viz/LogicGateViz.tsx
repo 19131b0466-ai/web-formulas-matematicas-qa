@@ -2,41 +2,72 @@
 
 import { useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ControlsStack, ToggleRow, VizPanel } from './controls';
+import { ControlsStack, ToggleRow, VizPanel, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
-export function LogicGateViz({ formulaId }: Props) {
+export function LogicGateViz({ formulaId: _id }: Props) {
   const v = useVizLabels();
   const [A, setA] = useState(true);
   const [B, setB] = useState(false);
 
+  // De Morgan I: ¬(A∧B) = ¬A∨¬B
   const nand = !(A && B);
+  const orOfNots = !A || !B;
+  // De Morgan II: ¬(A∨B) = ¬A∧¬B
   const nor = !(A || B);
-  const deMorganLeft = !A || !B;
-  const deMorganRight = !A && !B;
+  const andOfNots = !A && !B;
+  const ok1 = nand === orOfNots;
+  const ok2 = nor === andOfNots;
 
   return (
-    <VizPanel>
-      <svg viewBox="0 0 440 200" className="h-auto w-full" role="img">
-        <text x={20} y={30} fontSize={13} fill="currentColor">
-          De Morgan: ¬(A∧B)=¬A∨¬B · ¬(A∨B)=¬A∧¬B
+    <VizPanel caption={joinCaption(ok1 && ok2 ? v.tableMatch : v.tableMismatch)}>
+      <svg viewBox="0 0 440 220" className="h-auto w-full" role="img">
+        <text x={20} y={24} fontSize={13} fill="currentColor">
+          ¬(A∧B) = ¬A∨¬B
         </text>
-        {/* AND bubble as NAND */}
-        <rect x={40} y={60} width={120} height={70} rx={12} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
-        <text x={100} y={100} textAnchor="middle" fontSize={14} fill="currentColor">
-          NAND → {nand ? 1 : 0}
+        <rect x={24} y={40} width={150} height={56} rx={10} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+        <text x={99} y={74} textAnchor="middle" fontSize={13} fill="currentColor">
+          ¬(A∧B) → {nand ? 1 : 0}
         </text>
-        <rect x={240} y={60} width={120} height={70} rx={12} fill="color-mix(in oklab, teal 30%, transparent)" stroke="teal" />
-        <text x={300} y={100} textAnchor="middle" fontSize={14} fill="currentColor">
-          ¬A∨¬B → {deMorganLeft ? 1 : 0}
+        <rect
+          x={230}
+          y={40}
+          width={150}
+          height={56}
+          rx={10}
+          fill="color-mix(in oklab, teal 30%, transparent)"
+          stroke="teal"
+        />
+        <text x={305} y={74} textAnchor="middle" fontSize={13} fill="currentColor">
+          ¬A∨¬B → {orOfNots ? 1 : 0}
         </text>
-        <text x={20} y={170} fontSize={12} fill="currentColor">
-          NOR={nor ? 1 : 0} · ¬A∧¬B={deMorganRight ? 1 : 0}
+        <text x={200} y={74} textAnchor="middle" fontSize={16} fill="currentColor">
+          {ok1 ? '=' : '≠'}
         </text>
-        {/* signal dots */}
-        <circle cx={30} cy={80} r={6} fill={A ? 'var(--accent-strong)' : 'currentColor'} opacity={A ? 1 : 0.3} />
-        <circle cx={30} cy={110} r={6} fill={B ? 'teal' : 'currentColor'} opacity={B ? 1 : 0.3} />
+
+        <text x={20} y={128} fontSize={13} fill="currentColor">
+          ¬(A∨B) = ¬A∧¬B
+        </text>
+        <rect x={24} y={144} width={150} height={56} rx={10} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+        <text x={99} y={178} textAnchor="middle" fontSize={13} fill="currentColor">
+          ¬(A∨B) → {nor ? 1 : 0}
+        </text>
+        <rect
+          x={230}
+          y={144}
+          width={150}
+          height={56}
+          rx={10}
+          fill="color-mix(in oklab, teal 30%, transparent)"
+          stroke="teal"
+        />
+        <text x={305} y={178} textAnchor="middle" fontSize={13} fill="currentColor">
+          ¬A∧¬B → {andOfNots ? 1 : 0}
+        </text>
+        <text x={200} y={178} textAnchor="middle" fontSize={16} fill="currentColor">
+          {ok2 ? '=' : '≠'}
+        </text>
       </svg>
       <ControlsStack>
         <ToggleRow label={v.inputA} checked={A} onChange={setA} />

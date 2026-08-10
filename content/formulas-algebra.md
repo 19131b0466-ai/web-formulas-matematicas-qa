@@ -410,10 +410,11 @@ En números reales, si el índice de la raíz es par, el radicando debe ser no n
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `conjugate_rationalize`
 - **Concepto visual:** eliminación de un radical del denominador mediante el conjugado.
 - **Elementos:** fracción inicial, conjugado resaltado, producto numerador-denominador y aparición de una diferencia de cuadrados en el denominador.
-- **Idea:** Compara \(a+\sqrt{b}\) con \(a-\sqrt{b}\) y mira su producto: el resultado queda sin raíz en el medio.
-- **Objetivo educativo:** Vas a ver que el conjugado ayuda a quitar una raíz del denominador.
+- **Idea:** Mueve \(a\) y \(b\) y compara \(a+\sqrt{b}\) con \(a-\sqrt{b}\): su producto es \(a^2-b\), sin raíz.
+- **Objetivo educativo:** Vas a ver que el conjugado quita la raíz del denominador porque \((a+\sqrt{b})(a-\sqrt{b})=a^2-b\).
 - **Interactividad sugerida:** avance por pasos: elegir conjugado → multiplicar → aplicar diferencia de cuadrados → simplificar.
 
 ### Fórmulas relacionadas
@@ -710,6 +711,7 @@ a^2-b^2=(a-b)(a+b)
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `diff_sq`
 - **Concepto visual:** factorización de diferencia de cuadrados.
 - **Elementos:** misma construcción de áreas que ALG-IDN-003, pero iniciando desde \(a^2-b^2\) y terminando en los factores \((a-b)(a+b)\).
 - **Idea:** Alterna entre \(a^2-b^2\) y \((a-b)(a+b)\) y mira: representan lo mismo.
@@ -735,6 +737,7 @@ a^2\pm2ab+b^2=(a\pm b)^2
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `square`
 - **Concepto visual:** reconocimiento de un trinomio como cuadrado perfecto.
 - **Elementos:** cuatro piezas de área: \(a^2\), dos rectángulos \(ab\) y \(b^2\), que encajan formando un cuadrado.
 - **Idea:** Ajusta \(a\) y \(b\) hasta ver el patrón \((a\pm b)^2\) en las piezas.
@@ -1059,8 +1062,8 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 - **Tipo:** `number_line`
 - **Concepto visual:** soluciones simétricas de una ecuación de valor absoluto.
 - **Elementos:** recta numérica con el origen, puntos \(-a\) y \(a\) y dos segmentos de longitud \(a\).
-- **Idea:** Mueve el punto en la recta y relaciona las distancias con las soluciones.
-- **Objetivo educativo:** Vas a ver que una ecuación con valor absoluto suele tener dos soluciones simétricas.
+- **Idea:** Mueve \(a\ge 0\) y mira los dos puntos \(\pm a\): son las soluciones de \(|x|=a\).
+- **Objetivo educativo:** Vas a ver que \(|x|=a\) (con \(a\ge 0\)) da dos soluciones simétricas: \(x=a\) y \(x=-a\).
 - **Interactividad sugerida:** deslizador para \(a\ge0\); mover los dos puntos solución simétricamente.
 
 ### Fórmulas relacionadas
@@ -1753,10 +1756,11 @@ P_m(x_1,\ldots,x_n)=0.
 
 ### Visualización sugerida
 - **Tipo:** `graph`
+- **Modo:** `poly_system`
 - **Concepto visual:** soluciones como intersecciones de conjuntos definidos por polinomios.
 - **Elementos:** dos curvas implícitas en el plano, por ejemplo \(P(x,y)=0\) y \(Q(x,y)=0\), con sus puntos de intersección resaltados.
-- **Idea:** Ajusta los parámetros y busca los cruces entre las dos curvas.
-- **Objetivo educativo:** Vas a ver que un sistema polinómico se ve como curvas que se cortan en las soluciones.
+- **Idea:** Mueve los coeficientes de la parábola y de la recta: las marcas naranjas son las intersecciones.
+- **Objetivo educativo:** Vas a ver dónde se cortan dos curvas: esas \(x\) resuelven el sistema \(P=Q\).
 - **Interactividad sugerida:** permitir elegir pares de polinomios sencillos y mostrar cómo cambia el número de intersecciones reales.
 
 ### Fórmulas relacionadas
@@ -1996,6 +2000,7 @@ i^2=-1;\quad z=a+bi
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `conjugate`
 - **Concepto visual:** conjugación como reflexión respecto del eje real.
 - **Elementos:** puntos \(z=a+bi\) y \(\bar z=a-bi\), unidos por una línea vertical y reflejados respecto del eje real.
 - **Idea:** Arrastra \(z\) y mira la flecha naranja: es el conjugado (misma \(x\), \(y\) al revés).
@@ -2073,9 +2078,10 @@ e^{i\theta}=\cos\theta+i\sin\theta
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `euler`
 - **Concepto visual:** fórmula de Euler sobre el círculo unitario.
 - **Elementos:** círculo unitario, ángulo \(\theta\), punto \((\cos\theta,\sin\theta)\) y vector \(e^{i\theta}\).
-- **Idea:** Mueve \(\theta\) y fíjate: el punto \((\cos\theta,\sin\theta)\) recorre la circunferencia.
+- **Idea:** Mueve \(\theta\) y fíjate: el punto \((\cos\theta,\sin\theta)\) recorre el círculo unitario como \(e^{i\theta}\).
 - **Objetivo educativo:** Vas a ver que Euler une el ángulo con coseno y seno sobre el círculo unitario.
 - **Interactividad sugerida:** deslizador angular o animación de rotación; actualizar seno, coseno y forma exponencial.
 
@@ -2127,8 +2133,8 @@ w_k=r^{1/n}e^{i(\theta+2\pi k)/n}
 - **Tipo:** `geometry`
 - **Concepto visual:** raíces complejas distribuidas uniformemente en una circunferencia.
 - **Elementos:** círculo de radio \(r^{1/n}\) con \(n\) puntos separados por \(2\pi/n\).
-- **Idea:** Cambia \(n\) y fíjate: los puntos naranjas se distribuyen en el círculo.
-- **Objetivo educativo:** Vas a ver que las raíces \(n\)-ésimas se reparte como vértices de un polígono regular.
+- **Idea:** Mueve \(n\), \(r\) y \(\theta\): los puntos se repartirán en el círculo de radio \(r^{1/n}\).
+- **Objetivo educativo:** Vas a ver las \(n\) raíces: ángulo \((\theta+2\pi k)/n\) y módulo \(r^{1/n}\).
 - **Interactividad sugerida:** selector de \(n\) y controles de \(r,\theta\); regenerar los puntos y el polígono.
 
 ### Fórmulas relacionadas
@@ -2385,7 +2391,7 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Modo:** `proj`
+- **Modo:** `angle`
 - **Concepto visual:** producto punto como proyección y alineación.
 - **Elementos:** vectores \(u\) y \(v\), ángulo \(\theta\), proyección de uno sobre el otro y valor del producto punto.
 - **Idea:** Arrastra \(u\) y \(v\) y mira \(u\cdot v\): si el ángulo es agudo, recto u obtuso; la proyección aparece en naranja.
@@ -2439,10 +2445,11 @@ d(u,v)=\|u-v\|_2
 ### Visualización sugerida
 
 - **Tipo:** `vector`
+- **Modo:** `distance`
 - **Concepto visual:** distancia entre vectores como norma de su diferencia.
 - **Elementos:** puntos \(u\) y \(v\), vector \(v-u\) trasladado entre ellos y segmento de distancia.
-- **Idea:** Separa \(u\) y \(v\) y mira: la distancia crece con la separación.
-- **Objetivo educativo:** Vas a ver que la distancia entre puntas de vectores es la norma de la diferencia.
+- **Idea:** Mueve las puntas de \(u\) y \(v\) y mira el segmento: su largo es \(\|u-v\|\).
+- **Objetivo educativo:** Vas a ver que la distancia entre dos vectores es la norma de su diferencia.
 - **Interactividad sugerida:** arrastrar ambos puntos y actualizar vector diferencia y distancia.
 
 ### Fórmulas relacionadas
@@ -2617,10 +2624,11 @@ AI=IA=A
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `identity`
 - **Concepto visual:** identidad como transformación que no cambia un vector o matriz.
 - **Elementos:** matriz identidad con diagonal resaltada y comparación \(AI=A\), \(Ix=x\).
-- **Idea:** Compara \(A\) con el efecto de la identidad sobre la base.
-- **Objetivo educativo:** Vas a ver que la identidad deja los vectores igual: es el “1” de las matrices.
+- **Idea:** Edita \(A\) y mira \(I\times A\): el resultado sigue siendo \(A\).
+- **Objetivo educativo:** Vas a ver que la identidad \(I\) no cambia la matriz al multiplicar: \(IA=A\).
 - **Interactividad sugerida:** permitir multiplicar una matriz o vector de ejemplo por \(I\) y mostrar el resultado sin cambios.
 
 ### Fórmulas relacionadas
@@ -3603,10 +3611,11 @@ PA=LU
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
+- **Modo:** `lu`
 - **Concepto visual:** LU como secuencia compacta de eliminación gaussiana.
 - **Elementos:** matriz \(A\), factores \(L\) y \(U\), y multiplicadores de eliminación almacenados en \(L\).
-- **Idea:** Pulsa **Paso LU** y aplica operaciones de fila: te acercas a la forma de la factorización LU.
-- **Objetivo educativo:** Vas a ver que LU parte \(A\) en triangular inferior y superior para resolver sistemas más fácil.
+- **Idea:** Edita \(A\) y compara \(L\) y \(U\): su producto debe recuperar \(A\).
+- **Objetivo educativo:** Vas a ver que LU parte \(A\) en triangular inferior y superior.
 - **Interactividad sugerida:** avance fila por fila y comprobación visual de que \(LU=A\) o \(PA=LU\).
 
 ### Complejidad computacional
@@ -3675,6 +3684,7 @@ A=Q\Lambda Q^T
 ### Visualización sugerida
 
 - **Tipo:** `matrix_transform`
+- **Modo:** `eigen`
 - **Concepto visual:** descomposición espectral de una matriz simétrica.
 - **Elementos:** ejes propios ortonormales, matriz \(Q\), escalas \(\Lambda\) y una elipse o cuadrícula transformada.
 - **Idea:** Activa **Eigenvectores**: son los ejes de esa descomposición.

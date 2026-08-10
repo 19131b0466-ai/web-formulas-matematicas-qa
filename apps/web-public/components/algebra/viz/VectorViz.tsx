@@ -43,15 +43,20 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
   const [v, setV] = useState<Vec2>({ x: 0.8, y: 2.1 });
   const [theta, setTheta] = useState(0.8);
   const [n, setN] = useState(3);
+  const [alpha, setAlpha] = useState(0.7);
+  const [beta, setBeta] = useState(0.5);
 
   const W = 420;
   const H = 320;
   const ox = W / 2;
   const oy = H / 2;
-  const S = 42;
+  // For moivre_power, keep radius clamped so powers stay on screen
+  const S_base = 42;
+  const moivreR = Math.max(0.4, Math.min(1.2, norm(u)));
+  const S = mode === 'moivre_power' ? (S_base * 1.2) / moivreR : S_base;
   const to = (p: Vec2) => ({ x: ox + p.x * S, y: oy - p.y * S });
-  const dragU = useDrag(setU, S, { x: ox, y: oy });
-  const dragV = useDrag(setV, S, { x: ox, y: oy });
+  const dragU = useDrag(setU, S_base, { x: ox, y: oy });
+  const dragV = useDrag(setV, S_base, { x: ox, y: oy });
 
   const dp = dot(u, v);
   const angleKind =
@@ -77,32 +82,58 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
       return { p: null, r: null, label: `u·v=${fmt(dp)} · ∠=${fmt(deg)}° (${angleKind})` };
     }
     if (mode === 'moivre_power') {
-      const r = Math.max(0.4, norm(u));
+      const r = moivreR;
       return {
         p: null,
         r: null,
         label: `r=${fmt(r)} → rⁿ=${fmt(r ** n)} · θ→nθ=${fmt((n * theta * 180) / Math.PI)}°`,
       };
     }
-    if (mode === 'complex' || mode === 'conjugate') {
+    if (mode === 'euler') {
+      return {
+        p: null,
+        r: null,
+        label: `e^{iθ}: (cos θ, sin θ) = (${fmt(Math.cos(theta))}, ${fmt(Math.sin(theta))})`,
+      };
+    }
+    if (mode === 'distance') {
+      const diff = sub(u, v);
+      const dist = norm(diff);
+      return { p: null, r: null, label: `‖u−v‖=${fmt(dist)}` };
+    }
+    if (mode === 'complex') {
       const r = norm(u);
       const t = Math.atan2(u.y, u.x);
       return { p: null, r: null, label: `r=${fmt(r)}, θ=${fmt((t * 180) / Math.PI)}°` };
     }
+    if (mode === 'conjugate') {
+      const r = norm(u);
+      const zConj = { x: u.x, y: -u.y };
+      const zz = dot(u, zConj) + u.y * u.y; // |z|² = x²+y²
+      return {
+        p: null,
+        r: null,
+        label: `r=${fmt(r)} · |z|²=${fmt(r * r)} · z·conj=${fmt(zz)}`,
+      };
+    }
     if (mode === 'combo') {
-      return { p: null, r: null, label: `0.7u+0.5v` };
+      const combo = add(scale(u, alpha), scale(v, beta));
+      return { p: null, r: null, label: `${fmt(alpha)}u+${fmt(beta)}v · ‖‖=${fmt(norm(combo))}` };
     }
     return { p: null, r: null, label: `‖u‖=${fmt(norm(u))} · u·v=${fmt(dp)} (${angleKind})` };
-  }, [u, v, mode, dp, angleKind, n, theta]);
+  }, [u, v, mode, dp, angleKind, n, theta, moivreR, alpha, beta]);
 
-  const polarU = { x: Math.cos(theta) * Math.max(0.4, norm(u)), y: Math.sin(theta) * Math.max(0.4, norm(u)) };
-  const displayU = mode === 'moivre_power' || (mode === 'complex' && formulaId.includes('COM-004')) ? polarU : u;
+  // For polar display: moivre, euler, and COM-004 use angle θ for direction of u
+  const isPolarDisplay = mode === 'moivre_power' || mode === 'euler' || (mode === 'complex' && formulaId.includes('COM-004'));
+  const polarR = mode === 'moivre_power' ? moivreR : 1; // euler locks to unit circle
+  const polarU: Vec2 = { x: Math.cos(theta) * polarR, y: Math.sin(theta) * polarR };
+  const displayU = isPolarDisplay ? polarU : u;
 
   const powers =
     mode === 'moivre_power'
       ? Array.from({ length: Math.max(1, Math.round(n)) }, (_, k) => {
           const p = k + 1;
-          const rr = Math.max(0.4, norm(u)) ** p;
+          const rr = moivreR ** p;
           const ang = theta * p;
           return { x: rr * Math.cos(ang), y: rr * Math.sin(ang), p };
         })
@@ -112,24 +143,79 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
   const pv = to(v);
   const pProj = derived.p ? to(derived.p) : null;
   const pRes = derived.r ? to(derived.r) : null;
-  const showV = mode !== 'moivre_power' && mode !== 'conjugate' && (mode !== 'complex' || /VEC-|ORT-/.test(formulaId));
+  const showV =
+    mode !== 'moivre_power' &&
+    mode !== 'euler' &&
+    mode !== 'conjugate' &&
+    mode !== 'unit' &&
+    (mode !== 'complex' || /VEC-|ORT-/.test(formulaId));
+
+  // θ slider: only for moivre_power, euler, and COM-004 polar
+  const showThetaSlider = mode === 'moivre_power' || mode === 'euler' || (mode === 'complex' && formulaId.includes('COM-004'));
+
+  // Euler: unit circle tip point
+  const eulerTip: Vec2 = { x: Math.cos(theta), y: Math.sin(theta) };
 
   return (
     <VizPanel caption={joinCaption(derived.label)}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full touch-none" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />
+
+        {/* Unit circle for complex/moivre/euler modes */}
         {mode === 'complex' || mode === 'conjugate' || mode === 'moivre_power' ? (
           <circle cx={ox} cy={oy} r={Math.max(0.4, norm(u)) * S} fill="none" stroke="currentColor" opacity={0.25} />
         ) : null}
+        {mode === 'euler' ? (
+          <circle cx={ox} cy={oy} r={S} fill="none" stroke="currentColor" opacity={0.3} />
+        ) : null}
+
+        {/* Distance mode: show segment u−v */}
+        {mode === 'distance' ? (
+          <>
+            <line
+              x1={to(u).x}
+              y1={to(u).y}
+              x2={to(v).x}
+              y2={to(v).y}
+              stroke="orange"
+              strokeWidth={2.5}
+            />
+            {/* Vector u−v from origin */}
+            <line
+              x1={ox}
+              y1={oy}
+              x2={to(sub(u, v)).x}
+              y2={to(sub(u, v)).y}
+              stroke="orange"
+              strokeWidth={1.5}
+              strokeDasharray="4 2"
+              opacity={0.7}
+            />
+          </>
+        ) : null}
+
+        {/* Main vector u */}
         <line x1={ox} y1={oy} x2={pu.x} y2={pu.y} stroke="var(--accent-strong)" strokeWidth={2.5} />
-        <circle cx={pu.x} cy={pu.y} r={8} fill="var(--accent-strong)" {...dragU} style={{ cursor: 'grab' }} />
+        <circle cx={pu.x} cy={pu.y} r={8} fill="var(--accent-strong)" {...(isPolarDisplay ? {} : dragU)} style={{ cursor: isPolarDisplay ? 'default' : 'grab' }} />
+
+        {/* Vector v */}
         {showV ? (
           <>
             <line x1={ox} y1={oy} x2={pv.x} y2={pv.y} stroke="teal" strokeWidth={2.5} />
             <circle cx={pv.x} cy={pv.y} r={8} fill="teal" {...dragV} style={{ cursor: 'grab' }} />
           </>
         ) : null}
+
+        {/* Distance mode: also show v */}
+        {mode === 'distance' ? (
+          <>
+            <line x1={ox} y1={oy} x2={to(v).x} y2={to(v).y} stroke="teal" strokeWidth={2.5} />
+            <circle cx={to(v).x} cy={to(v).y} r={8} fill="teal" {...dragV} style={{ cursor: 'grab' }} />
+          </>
+        ) : null}
+
+        {/* Projection */}
         {pProj ? <line x1={ox} y1={oy} x2={pProj.x} y2={pProj.y} stroke="orange" strokeWidth={2} strokeDasharray="4 2" /> : null}
         {mode === 'proj' && pProj ? (
           <line x1={pu.x} y1={pu.y} x2={pProj.x} y2={pProj.y} stroke="currentColor" strokeDasharray="3 2" opacity={0.5} />
@@ -145,19 +231,44 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
             opacity={0.7}
           />
         ) : null}
+
+        {/* Conjugate: show reflection */}
         {mode === 'conjugate' ? (
           <line x1={ox} y1={oy} x2={to({ x: u.x, y: -u.y }).x} y2={to({ x: u.x, y: -u.y }).y} stroke="orange" strokeWidth={2} />
         ) : null}
+
+        {/* Combo: αu+βv and parallelogram */}
         {mode === 'combo' ? (
-          <line
-            x1={ox}
-            y1={oy}
-            x2={to(add(scale(u, 0.7), scale(v, 0.5))).x}
-            y2={to(add(scale(u, 0.7), scale(v, 0.5))).y}
-            stroke="orange"
-            strokeWidth={2}
-          />
+          <>
+            {/* Parallelogram sides */}
+            <line x1={to(u).x} y1={to(u).y} x2={to(add(u, v)).x} y2={to(add(u, v)).y} stroke="teal" strokeWidth={1} strokeDasharray="3 2" opacity={0.5} />
+            <line x1={to(v).x} y1={to(v).y} x2={to(add(u, v)).x} y2={to(add(u, v)).y} stroke="var(--accent-strong)" strokeWidth={1} strokeDasharray="3 2" opacity={0.5} />
+            {/* αu+βv vector */}
+            <line
+              x1={ox}
+              y1={oy}
+              x2={to(add(scale(u, alpha), scale(v, beta))).x}
+              y2={to(add(scale(u, alpha), scale(v, beta))).y}
+              stroke="orange"
+              strokeWidth={2.5}
+            />
+            <circle cx={to(add(scale(u, alpha), scale(v, beta))).x} cy={to(add(scale(u, alpha), scale(v, beta))).y} r={6} fill="orange" />
+          </>
         ) : null}
+
+        {/* Euler mode: label the tip */}
+        {mode === 'euler' ? (
+          <>
+            <text x={to(eulerTip).x + 10} y={to(eulerTip).y - 8} fontSize={12} fill="currentColor">
+              {'e^{iθ}'}
+            </text>
+            {/* Dashed lines to axes */}
+            <line x1={to(eulerTip).x} y1={to(eulerTip).y} x2={to(eulerTip).x} y2={oy} stroke="currentColor" strokeDasharray="3 2" opacity={0.35} />
+            <line x1={to(eulerTip).x} y1={to(eulerTip).y} x2={ox} y2={to(eulerTip).y} stroke="currentColor" strokeDasharray="3 2" opacity={0.35} />
+          </>
+        ) : null}
+
+        {/* De Moivre powers */}
         {powers.map((pt) => {
           const p = to(pt);
           return (
@@ -171,11 +282,18 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
           );
         })}
       </svg>
+
       <ControlsStack>
-        {mode === 'moivre_power' || mode === 'complex' ? (
+        {showThetaSlider ? (
           <SliderRow label="θ" value={theta} min={-Math.PI} max={Math.PI} step={0.05} onChange={setTheta} />
         ) : null}
         {mode === 'moivre_power' ? <SliderRow label="n" value={n} min={1} max={6} step={1} onChange={setN} /> : null}
+        {mode === 'combo' ? (
+          <>
+            <SliderRow label="α" value={alpha} min={-2} max={2} step={0.05} onChange={setAlpha} />
+            <SliderRow label="β" value={beta} min={-2} max={2} step={0.05} onChange={setBeta} />
+          </>
+        ) : null}
         <p className="text-xs text-[var(--fg-muted)]">{vLab.dragVectors}</p>
       </ControlsStack>
     </VizPanel>

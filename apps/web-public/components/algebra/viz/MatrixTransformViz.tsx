@@ -18,6 +18,19 @@ import {
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
+function SmallMatrixDisplay({ m, label }: { m: Mat2; label: string }) {
+  return (
+    <div className="text-center">
+      <p className="mb-1 text-xs text-[var(--fg-muted)]">{label}</p>
+      <div className="inline-grid grid-cols-2 gap-1 rounded border border-[var(--border)] p-1 font-mono text-sm">
+        {m.flat().map((v, i) => (
+          <span key={i} className="px-2 py-0.5 text-center">{fmt(v)}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'map') as MatrixTransformMode;
@@ -37,6 +50,9 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
   const eig = useMemo(() => eigen2(A), [a11, a12, a21, a22]);
   const Ainv = inv2(A);
 
+  // A·A⁻¹ ≈ I
+  const AinvProduct: Mat2 | null = Ainv ? matMul(A, Ainv) : null;
+
   const W = 420;
   const H = 320;
   const ox = W / 2;
@@ -48,15 +64,9 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
   const svdE = eigen2(AtA);
   const sigma = svdE ? svdE.values.map((val) => Math.sqrt(Math.max(0, val))) : [1, 1];
 
-  // Pedagogical SVD stages on the unit circle / basis:
-  // 0: original grid under A
-  // 1: rotate (show circle + V directions ≈ eigenvectors of AtA)
-  // 2: scale by σ (ellipse)
-  // 3/0 cycle: full A
   const displayMat: Mat2 = useMemo(() => {
     if (mode !== 'svd') return A;
     if (svdStep === 1) {
-      // approximate rotation: orthonormalize eigvecs of AtA if available
       if (!svdE) return A;
       const v0 = svdE.vectors[0]!;
       const v1 = svdE.vectors[1]!;
@@ -76,7 +86,10 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
 
   const grid = useMemo(() => {
     const lines: Array<[Vec2, Vec2]> = [];
-    const M = mode === 'low_rank' && k <= 1 ? ([[sigma[0]! * 0.8, 0], [0, 0]] as Mat2) : displayMat;
+    // low_rank: if k=1, collapse to rank-1 using only σ₁
+    const M = mode === 'low_rank' && k <= 1
+      ? ([[sigma[0]! * 0.8, 0], [0, 0]] as Mat2)
+      : displayMat;
     for (const t of linspace(-2.5, 2.5, 11)) {
       lines.push([applyMat(M, { x: t, y: -2.5 }), applyMat(M, { x: t, y: 2.5 })]);
       lines.push([applyMat(M, { x: -2.5, y: t }), applyMat(M, { x: 2.5, y: t })]);
@@ -96,10 +109,31 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
           : v.svdCompose
       : '';
 
+  const lowRankNote = mode === 'low_rank'
+    ? joinCaption(`σ₁≈${fmt(sigma[0]!)}`, `σ₂≈${fmt(sigma[1]!)}`, k <= 1 ? 'rango-1 demo' : 'rango-2')
+    : undefined;
+
   return (
     <VizPanel
-      caption={joinCaption(`det=${fmt(det)}`, `σ≈(${fmt(sigma[0]!)}, ${fmt(sigma[1]!)})`, svdLabel)}
+      caption={joinCaption(
+        `det=${fmt(det)}`,
+        mode !== 'low_rank' ? `σ≈(${fmt(sigma[0]!)}, ${fmt(sigma[1]!)})` : lowRankNote,
+        svdLabel,
+      )}
     >
+      {/* Inverse mode: show A, A⁻¹, and A·A⁻¹ ≈ I side by side */}
+      {mode === 'inverse' && Ainv ? (
+        <div className="mb-3 flex flex-wrap items-center gap-3">
+          <SmallMatrixDisplay m={A} label="A" />
+          <span className="font-mono text-lg">·</span>
+          <SmallMatrixDisplay m={Ainv} label="A⁻¹" />
+          <span className="font-mono text-lg">=</span>
+          {AinvProduct ? <SmallMatrixDisplay m={AinvProduct} label="≈ I" /> : null}
+        </div>
+      ) : null}
+      {mode === 'inverse' && !Ainv ? (
+        <p className="mb-3 text-sm text-[var(--fg-muted)]">A es singular (det = 0), no tiene inversa</p>
+      ) : null}
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />
@@ -133,12 +167,23 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
           <ellipse
             cx={ox}
             cy={oy}
-            rx={Math.abs(sigma[0]!) * S * (svdStep === 1 ? 1 : 1)}
-            ry={Math.abs(sigma[1]!) * S * (svdStep === 1 ? 1 : 1)}
+            rx={Math.abs(sigma[0]!) * S}
+            ry={Math.abs(sigma[1]!) * S}
             fill="none"
             stroke="orange"
             opacity={svdStep === 2 || mode !== 'svd' ? 0.85 : 0.35}
           />
+        ) : null}
+        {/* low_rank: σ labels on axes */}
+        {mode === 'low_rank' ? (
+          <>
+            <text x={ox + Math.abs(sigma[0]!) * S + 4} y={oy - 4} fontSize={11} fill="orange">
+              σ₁
+            </text>
+            <text x={ox + 4} y={oy - Math.abs(sigma[1]!) * S - 4} fontSize={11} fill="teal">
+              σ₂
+            </text>
+          </>
         ) : null}
       </svg>
       <ControlsStack>
@@ -153,29 +198,12 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
           <VizButton active={showEigen} onClick={() => setShowEigen((s) => !s)}>
             {v.eigenvectors}
           </VizButton>
-          {(mode === 'inverse' || mode === 'map') && Ainv ? (
-            <VizButton
-              onClick={() => {
-                setA11(Ainv[0][0]);
-                setA12(Ainv[0][1]);
-                setA21(Ainv[1][0]);
-                setA22(Ainv[1][1]);
-              }}
-            >
-              {v.applyInverse}
-            </VizButton>
-          ) : null}
           {mode === 'svd' ? (
             <VizButton onClick={() => setSvdStep((s) => (s + 1) % 3)}>
               {v.svdStep} {(svdStep % 3) + 1}/3
             </VizButton>
           ) : null}
         </ButtonRow>
-        {mode === 'low_rank' && k <= 1 ? (
-          <p className="font-mono text-xs text-[var(--fg-muted)]">
-            {v.lowRank}: σ₁≈{fmt(sigma[0]!)}, σ₂→0
-          </p>
-        ) : null}
       </ControlsStack>
     </VizPanel>
   );

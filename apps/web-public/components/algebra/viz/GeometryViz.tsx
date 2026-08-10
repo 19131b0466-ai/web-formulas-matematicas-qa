@@ -5,9 +5,9 @@ import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2, type Vec2 } from './math2d';
 
-type Props = { formulaId: string; idea?: string };
+type Props = { formulaId: string; idea?: string; mode?: string };
 
-export function GeometryViz({ formulaId }: Props) {
+export function GeometryViz({ formulaId, mode }: Props) {
   const lab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2, y: 0.3 });
   const [v, setV] = useState<Vec2>({ x: 0.5, y: 1.8 });
@@ -29,16 +29,21 @@ export function GeometryViz({ formulaId }: Props) {
   const area = det2(M);
   const singular = Math.abs(area) < 1e-3;
 
+  // nth roots of r·e^{iθ}: the k-th root has angle (θ + 2πk)/n and radius r^{1/n}
+  const rn = r ** (1 / Math.round(n));
   const roots = Array.from({ length: Math.round(n) }, (_, k) => {
-    const ang = (theta + (2 * Math.PI * k) / n);
-    return { x: r * Math.cos(ang), y: r * Math.sin(ang) };
+    const ang = (theta + 2 * Math.PI * k) / Math.round(n);
+    return { x: rn * Math.cos(ang), y: rn * Math.sin(ang) };
   });
 
-  const isRoots = formulaId.includes('COM-007');
-  const isArea = /DET-001|DET-003|DET-004|LSQ-001/.test(formulaId);
+  const isRoots = formulaId.includes('COM-007') || mode === 'roots';
+  const isArea = /DET-001|DET-003|DET-004|LSQ-001/.test(formulaId) || mode === 'area';
+
+  const rootsCaption = isRoots ? joinCaption(`r^{1/${Math.round(n)}}=${fmt(rn)}`) : undefined;
+  const areaCaption = isArea ? joinCaption(`${lab.orientedArea}=${fmt(area)}`) : undefined;
 
   return (
-    <VizPanel caption={isArea ? joinCaption(`${lab.orientedArea}=${fmt(area)}`) : undefined}>
+    <VizPanel caption={rootsCaption ?? areaCaption}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />
@@ -55,9 +60,15 @@ export function GeometryViz({ formulaId }: Props) {
         ) : null}
         {isRoots ? (
           <>
-            <circle cx={ox} cy={oy} r={r * S} fill="none" stroke="currentColor" opacity={0.35} />
+            {/* Outer circle at radius r^{1/n} where the roots lie */}
+            <circle cx={ox} cy={oy} r={rn * S} fill="none" stroke="var(--accent-strong)" opacity={0.3} strokeDasharray="4 3" />
+            {/* Reference circle at radius r (the original complex number) */}
+            <circle cx={ox} cy={oy} r={r * S} fill="none" stroke="currentColor" opacity={0.15} />
             {roots.map((p, i) => (
-              <circle key={i} cx={to(p).x} cy={to(p).y} r={6} fill="var(--accent-strong)" />
+              <g key={i}>
+                <line x1={ox} y1={oy} x2={to(p).x} y2={to(p).y} stroke="var(--accent-strong)" strokeWidth={1.2} opacity={0.45} />
+                <circle cx={to(p).x} cy={to(p).y} r={6} fill="var(--accent-strong)" />
+              </g>
             ))}
           </>
         ) : null}

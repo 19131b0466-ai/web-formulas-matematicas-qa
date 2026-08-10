@@ -18,7 +18,7 @@ function fitScale(w: number, h: number, maxW: number, maxH: number, cap = 32): n
   return Math.min(maxW / Math.max(w, 0.2), maxH / Math.max(h, 0.2), cap);
 }
 
-export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props) {
+export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'commute') as AlgebraTilesMode;
   const [a, setA] = useState(3);
@@ -34,6 +34,10 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
   const leftArea = a * (b + c);
   const rightArea = a * b + a * c;
   const areasMatch = Math.abs(leftArea - rightArea) < 1e-9;
+
+  // conjugate_rationalize: (a+√b)(a−√b) = a²−b
+  const sqrtB = Math.sqrt(Math.max(0, b));
+  const conjProduct = a * a - b;
 
   const caption = useMemo(() => {
     switch (mode) {
@@ -58,13 +62,19 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
       case 'square':
         return joinCaption(`(a+b)² = ${fmt((a + b) ** 2)}`);
       case 'square_minus':
-        return joinCaption(`(a−b)² = ${fmt((a - b) ** 2)}`);
+        return joinCaption(`(a−b)² = ${fmt((a - b) ** 2)}`, `a²−2ab+b² = ${fmt(a*a - 2*a*b + b*b)}`);
       case 'diff_sq':
         return joinCaption(
           factored ? `(a−b)(a+b) = ${fmt((a - b) * (a + b))}` : `a²−b² = ${fmt(a * a - b * b)}`,
         );
       case 'poly_grid':
         return joinCaption(`(a+b)(c+d) = ${fmt((a + b) * (c + d))}`);
+      case 'conjugate_rationalize':
+        return joinCaption(
+          `(a+√b)(a−√b) = a²−b`,
+          `= ${fmt(conjProduct)}`,
+          conjProduct > 0 ? 'racional positivo' : conjProduct === 0 ? '= 0' : 'racional negativo',
+        );
       default:
         return undefined;
     }
@@ -81,6 +91,7 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
     rightArea,
     areasMatch,
     factored,
+    conjProduct,
     v.pascalRow,
     v.sameTotal,
   ]);
@@ -90,7 +101,9 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
       ? 260
       : mode === 'poly_grid'
         ? 240
-        : 220;
+        : mode === 'conjugate_rationalize'
+          ? 240
+          : 220;
 
   return (
     <VizPanel caption={caption}>
@@ -148,6 +161,10 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
 
         {mode === 'associate' ? (
           <>
+            {/* Row 1: (a+b)+c — dashed bracket around first two */}
+            <text x={24} y={28} fontSize={13} fill="currentColor">
+              (a+b)+c = {fmt(a + b + c)}
+            </text>
             {[a, b, c].map((len, i) => (
               <rect
                 key={`t-${i}`}
@@ -156,9 +173,22 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
                 width={len * 20}
                 height={32}
                 rx={4}
-                fill="var(--accent-soft)"
-                stroke="var(--accent-strong)"
+                fill={i === 2 ? 'color-mix(in oklab, orange 30%, transparent)' : 'var(--accent-soft)'}
+                stroke={i === 2 ? 'orange' : 'var(--accent-strong)'}
               />
+            ))}
+            {/* Labels a, b, c */}
+            {[a, b, c].map((len, i) => (
+              <text
+                key={`tl-${i}`}
+                x={24 + ([0, a, a + b][i]! * 20) + (len * 20) / 2}
+                y={68}
+                textAnchor="middle"
+                fontSize={11}
+                fill="currentColor"
+              >
+                {['a', 'b', 'c'][i]}
+              </text>
             ))}
             <rect
               x={24}
@@ -171,10 +201,11 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
               strokeDasharray="4 3"
               rx={6}
             />
-            <text x={24} y={28} fontSize={13} fill="currentColor">
-              (a+b)+c = {fmt(a + b + c)}
-            </text>
 
+            {/* Row 2: a+(b+c) — dashed bracket around last two */}
+            <text x={24} y={128} fontSize={13} fill="currentColor">
+              a+(b+c) = {fmt(a + b + c)}
+            </text>
             {[a, b, c].map((len, i) => (
               <rect
                 key={`b-${i}`}
@@ -183,9 +214,22 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
                 width={len * 20}
                 height={32}
                 rx={4}
-                fill="var(--accent-soft)"
-                stroke="var(--accent-strong)"
+                fill={i === 0 ? 'color-mix(in oklab, orange 30%, transparent)' : 'var(--accent-soft)'}
+                stroke={i === 0 ? 'orange' : 'var(--accent-strong)'}
               />
+            ))}
+            {/* Labels a, b, c */}
+            {[a, b, c].map((len, i) => (
+              <text
+                key={`bl-${i}`}
+                x={24 + ([0, a, a + b][i]! * 20) + (len * 20) / 2}
+                y={168}
+                textAnchor="middle"
+                fontSize={11}
+                fill="currentColor"
+              >
+                {['a', 'b', 'c'][i]}
+              </text>
             ))}
             <rect
               x={24 + a * 20}
@@ -198,9 +242,6 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
               strokeDasharray="4 3"
               rx={6}
             />
-            <text x={24} y={128} fontSize={13} fill="currentColor">
-              a+(b+c) = {fmt(a + b + c)}
-            </text>
             <text x={24} y={220} fontSize={12} fill="currentColor" opacity={0.8}>
               {v.sameTotal}
             </text>
@@ -210,72 +251,71 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
         {mode === 'distribute' ? (
           <>
             {(() => {
+              const isFac = formulaId.includes('FAC-001');
               const s = fitScale(b + c, a, 170, 120);
-              const leftX = 24;
-              const rightX = 240;
+              const leftX = isFac ? 240 : 24;
+              const rightX = isFac ? 24 : 240;
               const y0 = 44;
               return (
                 <>
+                  {/* Left panel */}
                   <text x={leftX} y={28} fontSize={13} fill="currentColor">
-                    a(b+c) = {fmt(leftArea)}
+                    {isFac ? `ab + ac = ${fmt(rightArea)}` : `a(b+c) = ${fmt(leftArea)}`}
                   </text>
-                  <rect
-                    x={leftX}
-                    y={y0}
-                    width={(b + c) * s}
-                    height={a * s}
-                    rx={4}
-                    fill="var(--accent-soft)"
-                    stroke="var(--accent-strong)"
-                    strokeWidth={2}
-                  />
-                  <text
-                    x={leftX - 10}
-                    y={y0 + (a * s) / 2}
-                    textAnchor="middle"
-                    fontSize={12}
-                    fill="currentColor"
-                    transform={`rotate(-90 ${leftX - 10} ${y0 + (a * s) / 2})`}
-                  >
-                    a
-                  </text>
-                  <text x={leftX + ((b + c) * s) / 2} y={y0 + a * s + 18} textAnchor="middle" fontSize={12} fill="currentColor">
-                    b+c
+                  {isFac ? (
+                    <>
+                      <rect x={leftX} y={y0} width={b * s} height={a * s} rx={4} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+                      <rect x={leftX + b * s + 8} y={y0} width={c * s} height={a * s} rx={4} fill="color-mix(in oklab, teal 35%, transparent)" stroke="teal" />
+                      <text x={leftX + (b * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={12} fill="currentColor">
+                        ab
+                      </text>
+                      <text x={leftX + b * s + 8 + (c * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={12} fill="currentColor">
+                        ac
+                      </text>
+                    </>
+                  ) : (
+                    <>
+                      <rect x={leftX} y={y0} width={(b + c) * s} height={a * s} rx={4} fill="var(--accent-soft)" stroke="var(--accent-strong)" strokeWidth={2} />
+                      <text x={leftX - 10} y={y0 + (a * s) / 2} textAnchor="middle" fontSize={12} fill="currentColor" transform={`rotate(-90 ${leftX - 10} ${y0 + (a * s) / 2})`}>
+                        a
+                      </text>
+                      <text x={leftX + ((b + c) * s) / 2} y={y0 + a * s + 18} textAnchor="middle" fontSize={12} fill="currentColor">
+                        b+c
+                      </text>
+                    </>
+                  )}
+
+                  {/* Arrow in centre */}
+                  <text x={214} y={y0 + (a * s) / 2 + 6} textAnchor="middle" fontSize={18} fill="currentColor" opacity={0.6}>
+                    {isFac ? '←' : '→'}
                   </text>
 
+                  {/* Right panel */}
                   <text x={rightX} y={28} fontSize={13} fill="currentColor">
-                    ab + ac = {fmt(rightArea)}
+                    {isFac ? `a(b+c) = ${fmt(leftArea)}` : `ab + ac = ${fmt(rightArea)}`}
                   </text>
-                  <rect
-                    x={rightX}
-                    y={y0}
-                    width={b * s}
-                    height={a * s}
-                    rx={4}
-                    fill="var(--accent-soft)"
-                    stroke="var(--accent-strong)"
-                  />
-                  <rect
-                    x={rightX + b * s + 8}
-                    y={y0}
-                    width={c * s}
-                    height={a * s}
-                    rx={4}
-                    fill="color-mix(in oklab, teal 35%, transparent)"
-                    stroke="teal"
-                  />
-                  <text x={rightX + (b * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={12} fill="currentColor">
-                    ab
-                  </text>
-                  <text
-                    x={rightX + b * s + 8 + (c * s) / 2}
-                    y={y0 + (a * s) / 2 + 4}
-                    textAnchor="middle"
-                    fontSize={12}
-                    fill="currentColor"
-                  >
-                    ac
-                  </text>
+                  {isFac ? (
+                    <>
+                      <rect x={rightX} y={y0} width={(b + c) * s} height={a * s} rx={4} fill="var(--accent-soft)" stroke="var(--accent-strong)" strokeWidth={2} />
+                      <text x={rightX - 10} y={y0 + (a * s) / 2} textAnchor="middle" fontSize={12} fill="currentColor" transform={`rotate(-90 ${rightX - 10} ${y0 + (a * s) / 2})`}>
+                        a
+                      </text>
+                      <text x={rightX + ((b + c) * s) / 2} y={y0 + a * s + 18} textAnchor="middle" fontSize={12} fill="currentColor">
+                        b+c
+                      </text>
+                    </>
+                  ) : (
+                    <>
+                      <rect x={rightX} y={y0} width={b * s} height={a * s} rx={4} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+                      <rect x={rightX + b * s + 8} y={y0} width={c * s} height={a * s} rx={4} fill="color-mix(in oklab, teal 35%, transparent)" stroke="teal" />
+                      <text x={rightX + (b * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={12} fill="currentColor">
+                        ab
+                      </text>
+                      <text x={rightX + b * s + 8 + (c * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={12} fill="currentColor">
+                        ac
+                      </text>
+                    </>
+                  )}
                   <text x={24} y={230} fontSize={12} fill="currentColor" opacity={0.85}>
                     {v.compareBothSides}
                   </text>
@@ -342,66 +382,98 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
               const s = 18;
               const aa = Math.max(a, b + 0.4);
               const bb = Math.min(b, aa - 0.3);
-              const rem = aa - bb;
+              const rem = aa - bb; // side of (a-b) square
+              const leftX = 20;
+              const rightX = 230;
+              const y0 = 44;
               return (
                 <>
-                  <rect x={50} y={40} width={aa * s} height={aa * s} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
-                  {/* strips removed conceptually */}
+                  {/* Left panel: clean square of side (a-b) */}
+                  <text x={leftX} y={28} fontSize={12} fill="currentColor">
+                    (a−b)² = {fmt(rem * rem)}
+                  </text>
                   <rect
-                    x={50 + rem * s}
-                    y={40}
+                    x={leftX}
+                    y={y0}
+                    width={rem * s}
+                    height={rem * s}
+                    fill="var(--accent-soft)"
+                    stroke="var(--accent-strong)"
+                    strokeWidth={2}
+                  />
+                  <text x={leftX + (rem * s) / 2} y={y0 + (rem * s) / 2 + 4} textAnchor="middle" fontSize={11} fill="currentColor">
+                    (a−b)²
+                  </text>
+                  {/* dimension labels */}
+                  <text x={leftX + (rem * s) / 2} y={y0 - 4} textAnchor="middle" fontSize={10} fill="currentColor" opacity={0.7}>
+                    a−b
+                  </text>
+                  <text
+                    x={leftX - 8}
+                    y={y0 + (rem * s) / 2}
+                    textAnchor="middle"
+                    fontSize={10}
+                    fill="currentColor"
+                    opacity={0.7}
+                    transform={`rotate(-90 ${leftX - 8} ${y0 + (rem * s) / 2})`}
+                  >
+                    a−b
+                  </text>
+
+                  {/* Right panel: a² with expansion pieces */}
+                  <text x={rightX} y={28} fontSize={12} fill="currentColor">
+                    a²−2ab+b² = {fmt(aa * aa - 2 * aa * bb + bb * bb)}
+                  </text>
+                  {/* Big a² square */}
+                  <rect x={rightX} y={y0} width={aa * s} height={aa * s} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+                  {/* Top-right strip: b×(a-b), label -ab */}
+                  <rect
+                    x={rightX + rem * s}
+                    y={y0}
                     width={bb * s}
                     height={rem * s}
-                    fill="color-mix(in oklab, teal 28%, transparent)"
+                    fill="color-mix(in oklab, teal 30%, transparent)"
                     stroke="teal"
-                    strokeDasharray="3 2"
                   />
+                  <text x={rightX + rem * s + (bb * s) / 2} y={y0 + (rem * s) / 2 + 4} textAnchor="middle" fontSize={9} fill="currentColor">
+                    −ab
+                  </text>
+                  {/* Bottom-left strip: (a-b)×b, label -ab */}
                   <rect
-                    x={50}
-                    y={40 + rem * s}
+                    x={rightX}
+                    y={y0 + rem * s}
                     width={rem * s}
                     height={bb * s}
-                    fill="color-mix(in oklab, teal 28%, transparent)"
+                    fill="color-mix(in oklab, teal 30%, transparent)"
                     stroke="teal"
-                    strokeDasharray="3 2"
                   />
+                  <text x={rightX + (rem * s) / 2} y={y0 + rem * s + (bb * s) / 2 + 4} textAnchor="middle" fontSize={9} fill="currentColor">
+                    −ab
+                  </text>
+                  {/* Bottom-right corner: b², label +b² */}
                   <rect
-                    x={50 + rem * s}
-                    y={40 + rem * s}
+                    x={rightX + rem * s}
+                    y={y0 + rem * s}
                     width={bb * s}
                     height={bb * s}
                     fill="color-mix(in oklab, orange 35%, transparent)"
                     stroke="orange"
                   />
+                  <text x={rightX + rem * s + (bb * s) / 2} y={y0 + rem * s + (bb * s) / 2 + 4} textAnchor="middle" fontSize={9} fill="currentColor">
+                    +b²
+                  </text>
+                  {/* Label (a-b)² region */}
                   <rect
-                    x={50}
-                    y={40}
+                    x={rightX}
+                    y={y0}
                     width={rem * s}
                     height={rem * s}
                     fill="none"
                     stroke="var(--accent-strong)"
                     strokeWidth={2.5}
                   />
-                  <text x={50 + (rem * s) / 2} y={40 + (rem * s) / 2 + 4} textAnchor="middle" fontSize={11} fill="currentColor">
+                  <text x={rightX + (rem * s) / 2} y={y0 + (rem * s) / 2 + 4} textAnchor="middle" fontSize={10} fill="currentColor" fontWeight="bold">
                     (a−b)²
-                  </text>
-                  <text x={50 + rem * s + (bb * s) / 2} y={40 + (rem * s) / 2 + 4} textAnchor="middle" fontSize={10} fill="currentColor">
-                    −ab
-                  </text>
-                  <text x={50 + (rem * s) / 2} y={40 + rem * s + (bb * s) / 2 + 4} textAnchor="middle" fontSize={10} fill="currentColor">
-                    −ab
-                  </text>
-                  <text
-                    x={50 + rem * s + (bb * s) / 2}
-                    y={40 + rem * s + (bb * s) / 2 + 4}
-                    textAnchor="middle"
-                    fontSize={10}
-                    fill="currentColor"
-                  >
-                    +b²
-                  </text>
-                  <text x={50} y={26} fontSize={12} fill="currentColor">
-                    (a−b)² = a²−2ab+b² = {fmt(rem * rem)}
                   </text>
                 </>
               );
@@ -413,43 +485,103 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
           <>
             {!factored ? (
               <>
-                <rect x={50} y={40} width={a * 18} height={a * 18} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
-                <rect
-                  x={50 + (a - b) * 18}
-                  y={40 + (a - b) * 18}
-                  width={Math.max(0.25, b) * 18}
-                  height={Math.max(0.25, b) * 18}
-                  fill="var(--bg)"
-                  stroke="currentColor"
-                  strokeDasharray="3 2"
-                />
-                <text x={50} y={28} fontSize={12} fill="currentColor">
-                  a² − b² = {fmt(a * a - b * b)}
-                </text>
+                {/* Left: a² square with b² notch */}
+                {(() => {
+                  const s = 18;
+                  const leftX = 24;
+                  return (
+                    <>
+                      <text x={leftX} y={28} fontSize={12} fill="currentColor">
+                        a² − b² = {fmt(a * a - b * b)}
+                      </text>
+                      <rect x={leftX} y={40} width={a * s} height={a * s} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+                      <rect
+                        x={leftX + (a - b) * s}
+                        y={40 + (a - b) * s}
+                        width={Math.max(0.25, b) * s}
+                        height={Math.max(0.25, b) * s}
+                        fill="var(--bg)"
+                        stroke="currentColor"
+                        strokeDasharray="3 2"
+                      />
+                      <text x={leftX + (a * s) / 2} y={40 + (a * s) / 2 + 4} textAnchor="middle" fontSize={10} fill="currentColor" opacity={0.7}>
+                        a²
+                      </text>
+                      <text x={leftX + (a - b) * s + (b * s) / 2} y={40 + (a - b) * s + (b * s) / 2 + 4} textAnchor="middle" fontSize={9} fill="currentColor" opacity={0.6}>
+                        −b²
+                      </text>
+                    </>
+                  );
+                })()}
               </>
             ) : (
               <>
-                {/* rearrange into (a-b) by (a+b) rectangle */}
-                <rect
-                  x={50}
-                  y={50}
-                  width={Math.max(0.25, a - b) * 18}
-                  height={(a + b) * 14}
-                  fill="color-mix(in oklab, teal 35%, transparent)"
-                  stroke="teal"
-                />
-                <text x={50 + Math.max(0.25, a - b) * 9} y={40} textAnchor="middle" fontSize={12} fill="currentColor">
-                  (a−b)(a+b) = {fmt((a - b) * (a + b))}
-                </text>
-                <text
-                  x={50 + Math.max(0.25, a - b) * 9}
-                  y={50 + ((a + b) * 14) / 2 + 4}
-                  textAnchor="middle"
-                  fontSize={11}
-                  fill="currentColor"
-                >
-                  {v.sameArea}
-                </text>
+                {/* Factored: side-by-side. Left = L-region (a²-b²), Right = (a-b)×(a+b) rectangle */}
+                {(() => {
+                  const s = 18;
+                  const leftX = 24;
+                  const rightX = 230;
+                  const y0 = 40;
+                  return (
+                    <>
+                      {/* Left: L-region = a² - b² */}
+                      <text x={leftX} y={28} fontSize={12} fill="currentColor">
+                        a²−b² (L-region)
+                      </text>
+                      <rect x={leftX} y={y0} width={a * s} height={a * s} fill="var(--accent-soft)" stroke="var(--accent-strong)" />
+                      <rect
+                        x={leftX + (a - b) * s}
+                        y={y0 + (a - b) * s}
+                        width={b * s}
+                        height={b * s}
+                        fill="var(--bg)"
+                        stroke="currentColor"
+                        strokeDasharray="3 2"
+                      />
+                      <text x={leftX + (a * s) / 2} y={y0 + (a * s) / 2 + 4} textAnchor="middle" fontSize={10} fill="currentColor" opacity={0.7}>
+                        a²−b²
+                      </text>
+
+                      {/* Right: (a-b)×(a+b) rectangle, same scale */}
+                      <text x={rightX} y={28} fontSize={12} fill="currentColor">
+                        (a−b)×(a+b) = {fmt((a - b) * (a + b))}
+                      </text>
+                      <rect
+                        x={rightX}
+                        y={y0}
+                        width={Math.max(0.25, a - b) * s}
+                        height={(a + b) * s}
+                        fill="color-mix(in oklab, teal 35%, transparent)"
+                        stroke="teal"
+                        strokeWidth={2}
+                      />
+                      {/* dimension labels */}
+                      <text x={rightX + Math.max(0.25, a - b) * s / 2} y={y0 - 4} textAnchor="middle" fontSize={10} fill="currentColor" opacity={0.7}>
+                        a−b
+                      </text>
+                      <text
+                        x={rightX - 8}
+                        y={y0 + (a + b) * s / 2}
+                        textAnchor="middle"
+                        fontSize={10}
+                        fill="currentColor"
+                        opacity={0.7}
+                        transform={`rotate(-90 ${rightX - 8} ${y0 + (a + b) * s / 2})`}
+                      >
+                        a+b
+                      </text>
+                      <text
+                        x={rightX + Math.max(0.25, a - b) * s / 2}
+                        y={y0 + (a + b) * s / 2 + 4}
+                        textAnchor="middle"
+                        fontSize={11}
+                        fill="currentColor"
+                      >
+                        {v.sameArea}
+                      </text>
+                    </>
+                  );
+                })()}
               </>
             )}
           </>
@@ -667,6 +799,61 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
             </text>
           </>
         ) : null}
+
+        {mode === 'conjugate_rationalize' ? (
+          <>
+            {(() => {
+              const barW = 160;
+              const barH = 36;
+              const x0 = 30;
+              const y0 = 50;
+              const aVal = fmt(a, 1);
+              const sqrtBVal = fmt(sqrtB, 2);
+              return (
+                <>
+                  <text x={x0} y={28} fontSize={12} fill="currentColor">
+                    (a+√b)(a−√b) = a²−b = {fmt(conjProduct)}
+                  </text>
+                  {/* Block for (a+√b) */}
+                  <rect x={x0} y={y0} width={barW} height={barH} rx={6} fill="var(--accent-soft)" stroke="var(--accent-strong)" strokeWidth={2} />
+                  <text x={x0 + barW / 2} y={y0 + barH / 2 + 5} textAnchor="middle" fontSize={13} fill="currentColor">
+                    a+√b = {aVal}+{sqrtBVal}
+                  </text>
+                  {/* × symbol */}
+                  <text x={x0 + barW + 15} y={y0 + barH / 2 + 5} textAnchor="middle" fontSize={18} fill="currentColor" opacity={0.7}>
+                    ×
+                  </text>
+                  {/* Block for (a−√b) */}
+                  <rect x={x0} y={y0 + barH + 20} width={barW} height={barH} rx={6} fill="color-mix(in oklab, teal 35%, transparent)" stroke="teal" strokeWidth={2} />
+                  <text x={x0 + barW / 2} y={y0 + barH + 20 + barH / 2 + 5} textAnchor="middle" fontSize={13} fill="currentColor">
+                    a−√b = {aVal}−{sqrtBVal}
+                  </text>
+                  {/* = a²−b */}
+                  <text x={x0} y={y0 + 2 * barH + 56} fontSize={13} fill="currentColor">
+                    = a²−b = {fmt(a * a)}−{fmt(b)} = {fmt(conjProduct)}
+                  </text>
+                  {/* Product block */}
+                  <rect
+                    x={230}
+                    y={y0}
+                    width={Math.max(10, Math.abs(conjProduct) * 14)}
+                    height={80}
+                    rx={6}
+                    fill={conjProduct >= 0 ? 'color-mix(in oklab, orange 35%, transparent)' : 'color-mix(in oklab, red 25%, transparent)'}
+                    stroke={conjProduct >= 0 ? 'orange' : 'red'}
+                    strokeWidth={1.5}
+                  />
+                  <text x={230 + Math.max(10, Math.abs(conjProduct) * 14) / 2} y={y0 + 44} textAnchor="middle" fontSize={12} fill="currentColor">
+                    {fmt(conjProduct)}
+                  </text>
+                  <text x={230} y={y0 + 94} fontSize={11} fill="currentColor" opacity={0.75}>
+                    a²−b (rational)
+                  </text>
+                </>
+              );
+            })()}
+          </>
+        ) : null}
       </svg>
       <ControlsStack>
         {mode === 'degree' || mode === 'power' || mode === 'complete_square' ? (
@@ -698,6 +885,18 @@ export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props
               max={Math.max(0.3, a - 0.3)}
               step={0.1}
               onChange={(val) => setB(Math.min(val, a - 0.3))}
+            />
+          </>
+        ) : mode === 'conjugate_rationalize' ? (
+          <>
+            <SliderRow label="a" value={a} min={0.5} max={5} step={0.1} onChange={setA} />
+            <SliderRow
+              label="b"
+              value={b}
+              min={0}
+              max={Math.max(0.1, a * a - 0.01)}
+              step={0.1}
+              onChange={(val) => setB(Math.min(val, a * a - 0.01))}
             />
           </>
         ) : (

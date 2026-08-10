@@ -24,14 +24,22 @@ export function ErrorCorrectionViz({ formulaId }: Props) {
 
   const bits = word.padEnd(7, '0').slice(0, 7).split('');
   const received = bits.map((b, i) => (i === errorPos ? (b === '0' ? '1' : '0') : b));
-  // Toy Hamming parity checks for positions 1,2,4
+
+  // Toy Hamming(7,4) parity checks for positions p1=1, p2=2, p4=4 (1-indexed)
+  // Bit positions (0-indexed): 0=p1, 1=p2, 2=d1, 3=p4, 4=d2, 5=d3, 6=d4
   const syndrome = useMemo(() => {
     const r = received.map(Number);
-    const s1 = (r[0]! + r[2]! + r[4]! + r[6]!) % 2;
-    const s2 = (r[1]! + r[2]! + r[5]! + r[6]!) % 2;
-    const s4 = (r[3]! + r[4]! + r[5]! + r[6]!) % 2;
+    const s1 = (r[0]! ^ r[2]! ^ r[4]! ^ r[6]!);
+    const s2 = (r[1]! ^ r[2]! ^ r[5]! ^ r[6]!);
+    const s4 = (r[3]! ^ r[4]! ^ r[5]! ^ r[6]!);
     return [s1, s2, s4];
   }, [received.join('')]);
+
+  // Decode: error position (1-based) = s1*1 + s2*2 + s4*4
+  const decodedPos1 = syndrome[0]! * 1 + syndrome[1]! * 2 + syndrome[2]! * 4; // 1-based, 0 means no error
+  const decodedPos0 = decodedPos1 - 1; // 0-indexed
+  const isCorrected = decodedPos1 > 0 && decodedPos0 === errorPos;
+  const noError = decodedPos1 === 0;
 
   const dist = hamming(word.padEnd(other.length, '0').slice(0, other.length), other);
   const t = Math.floor((dmin - 1) / 2);
@@ -42,24 +50,42 @@ export function ErrorCorrectionViz({ formulaId }: Props) {
       {/COD-004/.test(formulaId) ? (
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
-            {received.map((b, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setErrorPos(i)}
-                className={`h-10 w-10 rounded-lg border font-mono ${
-                  errorPos === i
-                    ? 'border-orange-500 bg-orange-500/20'
-                    : 'border-[var(--border)] bg-[var(--bg)]'
-                }`}
-              >
-                {b}
-              </button>
-            ))}
+            {received.map((b, i) => {
+              const isErrorBit = i === errorPos;
+              const isDecodedBit = i === decodedPos0;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setErrorPos(i)}
+                  className={`relative h-10 w-10 rounded-lg border font-mono text-sm ${
+                    isErrorBit
+                      ? 'border-orange-500 bg-orange-500/20'
+                      : isDecodedBit && !noError
+                        ? 'border-teal-500 bg-teal-500/20 ring-2 ring-teal-400'
+                        : 'border-[var(--border)] bg-[var(--bg)]'
+                  }`}
+                  title={isErrorBit ? `Error at pos ${i}` : `Bit ${i}`}
+                >
+                  {b}
+                  {isDecodedBit && !noError ? (
+                    <span className="absolute -top-1.5 -right-1.5 text-xs text-teal-500">↑</span>
+                  ) : null}
+                </button>
+              );
+            })}
           </div>
           <p className="font-mono text-sm">
-            s = [{syndrome.join(', ')}] {syndrome.every((x) => x === 0) ? `(${v.valid})` : `(${v.error})`}
+            s = [{syndrome.join(', ')}]
+            {noError ? ` → (${v.valid})` : ` → pos=${decodedPos1} (${v.error} at bit ${decodedPos0})`}
           </p>
+          {!noError ? (
+            <p className={`font-mono text-sm ${isCorrected ? 'text-[var(--accent-strong)]' : 'text-red-500'}`}>
+              {isCorrected
+                ? `✓ corregido: bit ${decodedPos0} = ${received[decodedPos0]} → ${bits[decodedPos0]}`
+                : `⚠ decodificado: bit ${decodedPos0}, introducido: bit ${errorPos}`}
+            </p>
+          ) : null}
         </div>
       ) : null}
 

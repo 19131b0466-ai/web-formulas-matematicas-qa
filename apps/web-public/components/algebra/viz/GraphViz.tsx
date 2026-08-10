@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { GraphMode } from '@/lib/viz-modes';
-import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
+import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -20,6 +20,7 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   const [r, setR] = useState(0.6);
   const [base, setBase] = useState(2);
   const [terms, setTerms] = useState(12);
+  const [geq, setGeq] = useState(true);
 
   const W = 480;
   const H = 280;
@@ -28,9 +29,12 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   const S = 28;
   const to = (x: number, y: number) => ({ x: ox + x * S, y: oy - y * S });
 
+  // Prevent m=0 for line mode
+  const safeM = Math.abs(m) < 0.05 ? (m >= 0 ? 0.05 : -0.05) : m;
+
   const disc = b * b - 4 * a * c;
   const roots = useMemo(() => {
-    if (mode !== 'quadratic' && mode !== 'inequality') return [] as number[];
+    if (mode !== 'quadratic' && mode !== 'inequality' && mode !== 'poly_system') return [] as number[];
     if (Math.abs(a) < 1e-9) return [];
     if (disc < 0) return [];
     if (disc === 0) return [-b / (2 * a)];
@@ -38,12 +42,34 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     return [(-b - s) / (2 * a), (-b + s) / (2 * a)];
   }, [mode, a, b, disc]);
 
+  // x-intercept for line mode: y=mx+b → x = -b/m
+  const xIntercept = useMemo(() => {
+    if (mode !== 'line') return null;
+    return -b / safeM;
+  }, [mode, b, safeM]);
+
+  // poly_system: intersections of y=ax²+bx+c and y=m2*x+b2
+  // → ax²+(b-m2)x+(c-b2) = 0
+  const polySystemRoots = useMemo(() => {
+    if (mode !== 'poly_system') return [] as number[];
+    const A = a;
+    const B = b - m2;
+    const C = c - b2;
+    if (Math.abs(A) < 1e-9) return [];
+    const D = B * B - 4 * A * C;
+    if (D < 0) return [];
+    const sq = Math.sqrt(D);
+    return [(-B - sq) / (2 * A), (-B + sq) / (2 * A)];
+  }, [mode, a, b, c, m2, b2]);
+
   const path = useMemo(() => {
     const xs = linspace(-7, 7, 160);
     let ys: number[];
-    if (mode === 'line' || mode === 'system') {
+    if (mode === 'line') {
+      ys = xs.map((x) => safeM * x + b);
+    } else if (mode === 'system') {
       ys = xs.map((x) => m * x + b);
-    } else if (mode === 'quadratic' || mode === 'inequality') {
+    } else if (mode === 'quadratic' || mode === 'inequality' || mode === 'poly_system') {
       ys = xs.map((x) => a * x * x + b * x + c);
     } else if (mode === 'exp') {
       const k = formulaId.includes('LOG-007') ? b : Math.log(Math.max(base, 1.05));
@@ -63,28 +89,30 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
       .map((p) => to(p.x, p.y));
     if (!pts.length) return '';
     return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
-  }, [mode, formulaId, a, b, c, m, base]);
+  }, [mode, formulaId, a, b, c, m, safeM, base]);
 
+  // Shading for inequality: respect geq toggle
   const shadePath = useMemo(() => {
     if (mode !== 'inequality') return '';
     const xs = linspace(-7, 7, 80);
-    const above = a >= 0; // simple: shade where y_curve >= 0 region for ax²+bx+c ≥ 0 when a>0 outside roots
     const pts: Array<{ x: number; y: number }> = [];
     for (const x of xs) {
       const y = a * x * x + b * x + c;
-      if (y >= 0 === above || y >= 0) {
-        // shade between curve and x-axis for solution of f(x)≥0
-        if (y >= 0) pts.push({ x, y });
+      if (geq ? y >= 0 : y <= 0) {
+        pts.push({ x, y: geq ? y : y });
       }
     }
     if (pts.length < 2) return '';
-    const top = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${to(p.x, p.y).x},${to(p.x, p.y).y}`).join(' ');
-    const bottom = [...pts]
+    const sign = geq ? 1 : -1;
+    const filtered = pts.filter((p) => sign * p.y >= 0);
+    if (filtered.length < 2) return '';
+    const top = filtered.map((p, i) => `${i === 0 ? 'M' : 'L'}${to(p.x, p.y).x},${to(p.x, p.y).y}`).join(' ');
+    const bottom = [...filtered]
       .reverse()
       .map((p) => `L${to(p.x, 0).x},${to(p.x, 0).y}`)
       .join(' ');
     return `${top} ${bottom} Z`;
-  }, [mode, a, b, c]);
+  }, [mode, a, b, c, geq]);
 
   const seqPoints = useMemo(() => {
     if (mode !== 'sequence') return [] as Array<{ n: number; y: number }>;
@@ -107,19 +135,38 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     });
   }, [mode, formulaId, a, b, c, r, terms]);
 
+  // Geometric partial sums for SEC-005
+  const sumPoints = useMemo(() => {
+    if (mode !== 'sequence' || !formulaId.includes('SEC-005')) return [] as Array<{ n: number; y: number }>;
+    return Array.from({ length: terms }, (_, n) => {
+      if (Math.abs(r - 1) < 1e-9) return { n, y: a * (n + 1) };
+      return { n, y: a * (1 - r ** (n + 1)) / (1 - r) };
+    });
+  }, [mode, formulaId, a, r, terms]);
+
+  const geomLimit = useMemo(() => {
+    if (!formulaId.includes('SEC-005') || Math.abs(r) >= 1) return null;
+    return a / (1 - r);
+  }, [formulaId, a, r]);
+
+  // FUN-006: perpendicular slope
+  const perpSlope = -(1 / safeM);
+  const isFun006 = /FUN-006/.test(formulaId);
+
   const path2 = useMemo(() => {
-    if (mode !== 'inverse_pair' && mode !== 'system' && !/FUN-006/.test(formulaId)) return '';
+    if (mode !== 'inverse_pair' && mode !== 'system' && mode !== 'poly_system' && !isFun006) return '';
     const xs = linspace(-7, 7, 120);
     let ys: number[];
     if (mode === 'inverse_pair') ys = xs.map((x) => base ** x);
-    else if (/FUN-006/.test(formulaId)) ys = xs.map((x) => (-1 / (m || 1)) * x + c);
+    else if (isFun006) ys = xs.map((x) => m2 * x + c);
+    else if (mode === 'poly_system') ys = xs.map((x) => m2 * x + b2);
     else ys = xs.map((x) => m2 * x + b2);
     const pts = xs
       .map((x, i) => ({ x, y: ys[i]! }))
       .filter((p) => Number.isFinite(p.y) && Math.abs(p.y) < 10)
       .map((p) => to(p.x, p.y));
     return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
-  }, [mode, formulaId, base, m, c, m2, b2]);
+  }, [mode, formulaId, base, m, safeM, c, m2, b2, isFun006]);
 
   const intersection = useMemo(() => {
     if (mode !== 'system') return null;
@@ -129,20 +176,59 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     return { x, y };
   }, [mode, m, b, m2, b2]);
 
-  const caption =
-    mode === 'quadratic'
-      ? joinCaption(`Δ = ${fmt(disc)} (${disc > 0 ? v.roots2 : disc === 0 ? v.root1 : v.noRealRoot})`)
-      : mode === 'system'
-        ? joinCaption(
-            intersection === 'none'
-              ? v.noIntersection
-              : intersection === 'infinite'
-                ? '∞'
-                : `${v.intersection} (${fmt((intersection as { x: number }).x)}, ${fmt((intersection as { y: number }).y)})`,
-          )
-        : mode === 'inequality'
-          ? joinCaption(v.solutionRegion)
-          : undefined;
+  // FUN-006: parallel / perpendicular status
+  const lineRelation = useMemo(() => {
+    if (!isFun006) return '';
+    if (Math.abs(safeM * m2 + 1) < 0.05) return '⊥ perpendicular';
+    if (Math.abs(safeM - m2) < 0.05) return '∥ parallel';
+    return `m₁·m₂ = ${fmt(safeM * m2)}`;
+  }, [isFun006, safeM, m2]);
+
+  const caption = useMemo(() => {
+    if (mode === 'line') {
+      const xInt = xIntercept;
+      const parts: string[] = [];
+      if (xInt !== null && Number.isFinite(xInt)) parts.push(`x-int: ${fmt(xInt)}`);
+      if (isFun006) parts.push(lineRelation);
+      return joinCaption(...parts);
+    }
+    if (mode === 'quadratic')
+      return joinCaption(`Δ = ${fmt(disc)} (${disc > 0 ? v.roots2 : disc === 0 ? v.root1 : v.noRealRoot})`);
+    if (mode === 'poly_system') {
+      if (polySystemRoots.length === 0) return joinCaption(v.noRealRoot);
+      return joinCaption(polySystemRoots.map((rx) => `x≈${fmt(rx)}`).join(', '));
+    }
+    if (mode === 'system')
+      return joinCaption(
+        intersection === 'none'
+          ? v.noIntersection
+          : intersection === 'infinite'
+            ? '∞'
+            : `${v.intersection} (${fmt((intersection as { x: number }).x)}, ${fmt((intersection as { y: number }).y)})`,
+      );
+    if (mode === 'inequality')
+      return joinCaption(`${geq ? 'f(x) ≥ 0' : 'f(x) ≤ 0'} · ${v.solutionRegion}`);
+    if (mode === 'sequence' && formulaId.includes('SEC-005') && geomLimit !== null)
+      return joinCaption(`S∞ = a/(1−r) = ${fmt(geomLimit)}`);
+    return undefined;
+  }, [
+    mode,
+    xIntercept,
+    isFun006,
+    lineRelation,
+    disc,
+    polySystemRoots,
+    intersection,
+    geq,
+    formulaId,
+    geomLimit,
+    v.roots2,
+    v.root1,
+    v.noRealRoot,
+    v.noIntersection,
+    v.intersection,
+    v.solutionRegion,
+  ]);
 
   return (
     <VizPanel caption={caption}>
@@ -163,20 +249,51 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
         {shadePath ? <path d={shadePath} fill="var(--accent-soft)" opacity={0.55} stroke="none" /> : null}
         {path ? <path d={path} fill="none" stroke="var(--accent-strong)" strokeWidth={2.5} /> : null}
         {path2 ? <path d={path2} fill="none" stroke="teal" strokeWidth={2} /> : null}
-        {roots.map((rx) => {
+        {/* x-intercept for line mode */}
+        {mode === 'line' && xIntercept !== null && Number.isFinite(xIntercept) && Math.abs(xIntercept) <= 7 ? (
+          <circle cx={to(xIntercept, 0).x} cy={to(xIntercept, 0).y} r={7} fill="orange" />
+        ) : null}
+        {/* Roots for quadratic / inequality */}
+        {(mode === 'quadratic' || mode === 'inequality') && roots.map((rx) => {
           const p = to(rx, 0);
           return <circle key={rx} cx={p.x} cy={p.y} r={6} fill="orange" />;
         })}
+        {/* System intersection */}
         {intersection && typeof intersection === 'object' ? (
           <circle cx={to(intersection.x, intersection.y).x} cy={to(intersection.x, intersection.y).y} r={6} fill="orange" />
         ) : null}
+        {/* poly_system intersections */}
+        {mode === 'poly_system' && polySystemRoots.map((rx) => {
+          const ry = a * rx * rx + b * rx + c;
+          const p = to(rx, ry);
+          return <circle key={rx} cx={p.x} cy={p.y} r={6} fill="orange" />;
+        })}
+        {/* Sequence points */}
         {seqPoints.map((p) => {
           const pt = to(p.n * 0.55 - 3, p.y);
-          return <circle key={p.n} cx={pt.x} cy={pt.y} r={4} fill="var(--accent-strong)" />;
+          return <circle key={`s-${p.n}`} cx={pt.x} cy={pt.y} r={4} fill="var(--accent-strong)" />;
         })}
+        {/* Partial sums for SEC-005 */}
+        {sumPoints.map((p) => {
+          const pt = to(p.n * 0.55 - 3, p.y);
+          return <circle key={`sum-${p.n}`} cx={pt.x} cy={pt.y} r={4} fill="orange" />;
+        })}
+        {/* Limit line for geometric series */}
+        {geomLimit !== null && Math.abs(geomLimit) < 9 ? (
+          <line
+            x1={20}
+            y1={to(0, geomLimit).y}
+            x2={W - 20}
+            y2={to(0, geomLimit).y}
+            stroke="orange"
+            strokeWidth={1.5}
+            strokeDasharray="5 3"
+            opacity={0.7}
+          />
+        ) : null}
       </svg>
       <ControlsStack>
-        {mode === 'quadratic' || mode === 'inequality' || /POL-010|LOG-007/.test(formulaId) ? (
+        {mode === 'quadratic' || mode === 'inequality' || mode === 'poly_system' || /LOG-007/.test(formulaId) ? (
           <SliderRow label="a" value={a} min={-3} max={3} step={0.1} onChange={(val) => setA(val === 0 ? 0.1 : val)} />
         ) : null}
         {mode === 'line' || mode === 'system' || /FUN-006|SEC-001|SEC-007/.test(formulaId) ? (
@@ -186,7 +303,7 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
             min={-3}
             max={3}
             step={0.1}
-            onChange={/SEC-/.test(formulaId) ? setA : setM}
+            onChange={/SEC-/.test(formulaId) ? setA : (val) => setM(Math.abs(val) < 0.05 ? 0.05 : val)}
           />
         ) : null}
         <SliderRow
@@ -211,13 +328,33 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
             <SliderRow label="b₂" value={b2} min={-3} max={3} step={0.1} onChange={setB2} />
           </>
         ) : null}
-        {mode === 'quadratic' || mode === 'inequality' || /FUN-006|SEC-007/.test(formulaId) ? (
+        {mode === 'poly_system' ? (
+          <>
+            <SliderRow label="m₂" value={m2} min={-4} max={4} step={0.1} onChange={setM2} />
+            <SliderRow label="b₂" value={b2} min={-5} max={5} step={0.1} onChange={setB2} />
+          </>
+        ) : null}
+        {mode === 'quadratic' || mode === 'inequality' || mode === 'poly_system' || /FUN-006|SEC-007/.test(formulaId) ? (
           <SliderRow label="c" value={c} min={-5} max={5} step={0.1} onChange={setC} />
+        ) : null}
+        {isFun006 ? (
+          <>
+            <SliderRow label="m₂" value={m2} min={-4} max={4} step={0.1} onChange={setM2} />
+            <ButtonRow>
+              <VizButton onClick={() => setM2(Math.round(perpSlope * 100) / 100)}>make ⊥</VizButton>
+            </ButtonRow>
+          </>
         ) : null}
         {mode === 'exp' || mode === 'log' || mode === 'inverse_pair' ? (
           <SliderRow label="base" value={base} min={1.1} max={5} step={0.1} onChange={setBase} />
         ) : null}
         {mode === 'sequence' ? <SliderRow label="n" value={terms} min={4} max={24} step={1} onChange={setTerms} /> : null}
+        {mode === 'inequality' ? (
+          <ButtonRow>
+            <VizButton active={geq} onClick={() => setGeq(true)}>f(x) ≥ 0</VizButton>
+            <VizButton active={!geq} onClick={() => setGeq(false)}>f(x) ≤ 0</VizButton>
+          </ButtonRow>
+        ) : null}
       </ControlsStack>
     </VizPanel>
   );

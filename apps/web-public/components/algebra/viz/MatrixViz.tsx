@@ -60,6 +60,35 @@ function rank2(m: Mat2): number {
   return nonzero ? 1 : 0;
 }
 
+/** Compute rank of augmented [A|b] for 2×2 system. */
+function rankAug(m: Mat2, aug: [number, number]): number {
+  // [A|b] is 2×3; rank via row reduction
+  const a00 = m[0][0], a01 = m[0][1], b0 = aug[0];
+  const a10 = m[1][0], a11 = m[1][1], b1 = aug[1];
+  // Try to find rank by checking all 2×2 minors of [A|b]
+  const minors = [
+    a00 * a11 - a01 * a10, // A itself
+    a00 * b1 - b0 * a10,   // cols 0,2
+    a01 * b1 - b0 * a11,   // cols 1,2
+  ];
+  if (minors.some((x) => Math.abs(x) > 1e-9)) return 2;
+  if ([a00, a01, b0, a10, a11, b1].some((x) => Math.abs(x) > 1e-9)) return 1;
+  return 0;
+}
+
+/** Simple 2×2 LU decomposition (no pivoting). Returns [L, U] or null if pivot is 0. */
+function lu2(m: Mat2): [Mat2, Mat2] | null {
+  const a = m[0][0];
+  if (Math.abs(a) < 1e-9) return null;
+  const l21 = m[1][0] / a;
+  const u00 = a;
+  const u01 = m[0][1];
+  const u11 = m[1][1] - l21 * m[0][1];
+  const L: Mat2 = [[1, 0], [l21, 1]];
+  const U: Mat2 = [[u00, u01], [0, u11]];
+  return [L, U];
+}
+
 export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'basic') as MatrixMode;
@@ -94,6 +123,12 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
     [A[0][0], A[1][0]],
     [A[0][1], A[1][1]],
   ];
+  const I: Mat2 = [[1, 0], [0, 1]];
+  // AI = A
+  const identResult: Mat2 = [
+    [A[0][0] * 1 + A[0][1] * 0, A[0][0] * 0 + A[0][1] * 1],
+    [A[1][0] * 1 + A[1][1] * 0, A[1][0] * 0 + A[1][1] * 1],
+  ];
 
   const word = useMemo(() => {
     const w = [1, 0, 1, 1];
@@ -127,9 +162,12 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
   const showT = mode === 'transpose';
   const showCode = mode === 'code';
   const showSum = mode === 'sum';
+  const showIdentity = mode === 'identity';
+  const showLU = mode === 'lu';
 
-  const result: Mat2 = showT ? T : showScale ? scaled : showProd ? prod : showSum ? sum : A;
+  const result: Mat2 = showT ? T : showScale ? scaled : showProd ? prod : showSum ? sum : showIdentity ? identResult : A;
   const rA = rank2(A);
+  const rAug = rankAug(A, aug);
   const i = cell[0];
   const j = cell[1];
   const cellDetail =
@@ -144,14 +182,40 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
       ? `${fmt(A[selRow]![0]!)} x + ${fmt(A[selRow]![1]!)} y = ${fmt(aug[selRow]!)}`
       : null;
 
-  const caption =
-    mode === 'rank_compare'
-      ? joinCaption(`${v.rankLabel}(A)=${rA}`, Math.abs(det) < 1e-9 && 'singular')
-      : mode === 'basic' || mode === 'row_ops' || mode === 'augmented_map'
-        ? joinCaption(`det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`)
-        : undefined;
+  // Transpose: is A symmetric?
+  const isSymmetric = Math.abs(A[0][1] - A[1][0]) < 1e-9;
 
-  const showResultPanel = showT || showScale || showProd || showSum || mode === 'basic' || mode === 'code';
+  // rank_compare Rouche-Capelli classification
+  const rcClass = useMemo(() => {
+    if (mode !== 'rank_compare') return null;
+    if (rA === 2) return 'unique' as const;
+    if (rA === rAug) return 'infinite' as const;
+    return 'empty' as const;
+  }, [mode, rA, rAug]);
+
+  const luPair = useMemo(() => (showLU ? lu2(A) : null), [showLU, A]);
+
+  const caption = useMemo(() => {
+    if (mode === 'rank_compare') {
+      const classStr = rcClass === 'unique' ? '1 solución' : rcClass === 'infinite' ? '∞ soluciones' : '∅ sin solución';
+      return joinCaption(
+        `rg(A)=${rA}`,
+        `rg([A|b])=${rAug}`,
+        classStr,
+      );
+    }
+    if (mode === 'transpose') return joinCaption(`A=Aᵀ: ${isSymmetric ? 'sí' : 'no'}`, `det=${fmt(det)}`);
+    if (mode === 'identity') return joinCaption('AI = A', `det(A)=${fmt(det)}`);
+    if (mode === 'basic' || mode === 'row_ops' || mode === 'augmented_map')
+      return joinCaption(`det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`);
+    return undefined;
+  }, [mode, rA, rAug, rcClass, isSymmetric, det]);
+
+  // Only show result panel when it carries new information
+  const showResultPanel =
+    (showT || showScale || showProd || showSum || showIdentity) ||
+    (mode === 'basic' && false) || // basic: just show A is enough
+    mode === 'code';
 
   return (
     <VizPanel caption={caption}>
@@ -186,6 +250,25 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
               </div>
             </div>
           </div>
+        ) : showIdentity ? (
+          <>
+            <div>
+              <p className="mb-1 text-xs text-[var(--fg-muted)]">I</p>
+              <MatrixGrid m={I} />
+            </div>
+            <div className="flex items-center self-center text-lg font-mono">×</div>
+            <div>
+              <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
+              <MatrixGrid m={A} setM={setA} />
+            </div>
+          </>
+        ) : showLU ? (
+          <>
+            <div>
+              <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
+              <MatrixGrid m={A} setM={setA} />
+            </div>
+          </>
         ) : (
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
@@ -205,12 +288,42 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
         {showResultPanel ? (
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">
-              {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : showSum ? 'A+B' : v.result}
+              {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : showSum ? 'A+B' : showIdentity ? 'IA' : v.result}
             </p>
             <MatrixGrid m={result} highlightCell={mode === 'product' ? cell : null} />
           </div>
         ) : null}
+        {/* LU decomposition panels */}
+        {showLU && luPair ? (
+          <>
+            <div className="flex items-center self-center text-lg font-mono">=</div>
+            <div>
+              <p className="mb-1 text-xs text-[var(--fg-muted)]">L</p>
+              <MatrixGrid m={luPair[0]} />
+            </div>
+            <div className="flex items-center self-center text-lg font-mono">×</div>
+            <div>
+              <p className="mb-1 text-xs text-[var(--fg-muted)]">U</p>
+              <MatrixGrid m={luPair[1]} />
+            </div>
+          </>
+        ) : null}
+        {showLU && !luPair ? (
+          <p className="text-sm text-[var(--fg-muted)]">Pivote = 0, intercambia filas</p>
+        ) : null}
       </div>
+
+      {/* Transpose badge */}
+      {showT ? (
+        <p className="mt-2 font-mono text-sm">
+          A = Aᵀ: <span className={isSymmetric ? 'text-[var(--accent-strong)]' : 'opacity-60'}>{isSymmetric ? '✓ simétrica' : '✗ no simétrica'}</span>
+        </p>
+      ) : null}
+
+      {/* Identity result badge */}
+      {showIdentity ? (
+        <p className="mt-2 font-mono text-sm text-[var(--accent-strong)]">AI = A ✓</p>
+      ) : null}
 
       {eq ? (
         <p className="mt-3 font-mono text-sm">
@@ -246,17 +359,12 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
       ) : null}
 
       {mode === 'rank_compare' ? (
-        <p className="mt-3 font-mono text-sm">
-          {v.rankLabel}(A)={rA}
-          {rA < 2
-            ? ` · ${
-                Math.abs(A[0][0]! * aug[1]! - A[1][0]! * aug[0]!) < 1e-6 &&
-                Math.abs(A[0][1]! * aug[1]! - A[1][1]! * aug[0]!) < 1e-6
-                  ? '∞'
-                  : '∅'
-              }`
-            : ` · det≠0 → 1`}
-        </p>
+        <div className="mt-3 space-y-1 font-mono text-sm">
+          <p>rg(A) = {rA} &nbsp; rg([A|b]) = {rAug}</p>
+          <p className={rcClass === 'unique' ? 'text-[var(--accent-strong)]' : rcClass === 'infinite' ? 'text-teal-500' : 'text-red-500'}>
+            {rcClass === 'unique' ? '→ solución única (rg = n = 2)' : rcClass === 'infinite' ? '→ ∞ soluciones (rg(A) = rg([A|b]) < n)' : '→ sin solución (rg(A) < rg([A|b]))'}
+          </p>
+        </div>
       ) : null}
 
       {showCode ? (

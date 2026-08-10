@@ -14,7 +14,8 @@ export type AlgebraTilesMode =
   | 'poly_grid'
   | 'complete_square'
   | 'degree'
-  | 'power';
+  | 'power'
+  | 'conjugate_rationalize';
 
 export type MatrixMode =
   | 'basic'
@@ -25,7 +26,9 @@ export type MatrixMode =
   | 'augmented_map'
   | 'row_ops'
   | 'rank_compare'
-  | 'code';
+  | 'code'
+  | 'identity'
+  | 'lu';
 
 export type VectorMode =
   | 'basic'
@@ -35,7 +38,9 @@ export type VectorMode =
   | 'complex'
   | 'conjugate'
   | 'moivre_power'
-  | 'combo';
+  | 'combo'
+  | 'euler'
+  | 'distance';
 
 export type GraphMode =
   | 'line'
@@ -46,7 +51,8 @@ export type GraphMode =
   | 'log'
   | 'reciprocal'
   | 'sequence'
-  | 'inverse_pair';
+  | 'inverse_pair'
+  | 'poly_system';
 
 export type MatrixTransformMode = 'map' | 'eigen' | 'svd' | 'low_rank' | 'inverse';
 
@@ -56,6 +62,9 @@ export function inferAlgebraTilesMode(formulaId: string): AlgebraTilesMode {
   if (formulaId.includes('FND-003') || formulaId.includes('FAC-001')) return 'distribute';
   if (formulaId.includes('EQU-005')) return 'complete_square';
   if (formulaId.includes('POL-008')) return 'degree';
+  // POT-008 is conjugate rationalization, NOT a power law
+  if (formulaId.includes('POT-008')) return 'conjugate_rationalize';
+  // Other POT- formulas are power laws
   if (/POT-/.test(formulaId)) return 'power';
   if (formulaId.includes('IDN-002')) return 'square_minus';
   if (/IDN-001|FAC-003/.test(formulaId)) return 'square';
@@ -67,7 +76,9 @@ export function inferAlgebraTilesMode(formulaId: string): AlgebraTilesMode {
 
 export function inferMatrixMode(formulaId: string): MatrixMode {
   if (/COD-002|COD-003/.test(formulaId)) return 'code';
-  if (formulaId.includes('SIS-004') || formulaId.includes('DEC-001')) return 'row_ops';
+  if (formulaId.includes('MAT-005')) return 'identity';
+  if (formulaId.includes('DEC-001')) return 'lu';
+  if (formulaId.includes('SIS-004')) return 'row_ops';
   if (formulaId.includes('SIS-003') || formulaId.includes('SIS-005') || /DET-006|LSQ-/.test(formulaId)) {
     return formulaId.includes('SIS-005') ? 'rank_compare' : 'augmented_map';
   }
@@ -80,10 +91,13 @@ export function inferMatrixMode(formulaId: string): MatrixMode {
 
 export function inferVectorMode(formulaId: string): VectorMode {
   if (formulaId.includes('COM-006')) return 'moivre_power';
+  if (formulaId.includes('COM-005')) return 'euler';
   if (formulaId.includes('COM-002')) return 'conjugate';
-  if (/VEC-004|ORT-002/.test(formulaId)) return 'proj';
+  if (formulaId.includes('ORT-002')) return 'proj';
+  if (formulaId.includes('VEC-004')) return 'angle';
   if (formulaId.includes('VEC-005')) return 'angle';
-  if (formulaId.includes('VEC-003') || formulaId.includes('COM-005')) return 'unit';
+  if (formulaId.includes('VEC-006')) return 'distance';
+  if (formulaId.includes('VEC-003')) return 'unit';
   if (formulaId.includes('VEC-007')) return 'combo';
   if (/COM-/.test(formulaId)) return 'complex';
   return 'basic';
@@ -96,7 +110,8 @@ export function inferGraphMode(formulaId: string): GraphMode {
   if (/FUN-003|LOG-002/.test(formulaId)) return 'inverse_pair';
   if (/LOG-001|LOG-007/.test(formulaId)) return 'exp';
   if (/FUN-001/.test(formulaId)) return 'reciprocal';
-  if (/EQU-003|EQU-004|POL-010/.test(formulaId)) return 'quadratic';
+  if (/POL-010/.test(formulaId)) return 'poly_system';
+  if (/EQU-003|EQU-004/.test(formulaId)) return 'quadratic';
   if (/EQU-001|FUN-005|FUN-006/.test(formulaId)) return 'line';
   return 'line';
 }
@@ -105,7 +120,7 @@ export function inferMatrixTransformMode(formulaId: string): MatrixTransformMode
   if (/DEC-004/.test(formulaId)) return 'svd';
   if (/DEC-005|NOR-007/.test(formulaId)) return 'low_rank';
   if (/EIG-|TRA-005/.test(formulaId)) return 'eigen';
-  if (/MAT-005|TRA-004/.test(formulaId)) return 'inverse';
+  if (/TRA-004/.test(formulaId)) return 'inverse';
   return 'map';
 }
 

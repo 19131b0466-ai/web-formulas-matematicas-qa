@@ -65,7 +65,7 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
       body = <MatrixTransformViz formulaId={formulaId} mode={mode} />;
       break;
     case 'geometry':
-      body = <GeometryViz formulaId={formulaId} />;
+      body = <GeometryViz formulaId={formulaId} mode={mode} />;
       break;
     case 'truth_table':
       body = <TruthTableViz formulaId={formulaId} mode={mode} />;

@@ -22,6 +22,9 @@ export function FiniteFieldViz({ formulaId }: Props) {
     ? Array.from({ length: p }, (_, x) => x).find((x) => (sel[0] * x) % p === 1) ?? null
     : null;
 
+  // Identity: 0 for add, 1 for mul
+  const identity = mode === 'add' ? 0 : 1;
+
   // F2^3 subspace demo for COD-001
   const codeWords =
     formulaId.includes('COD-001')
@@ -58,6 +61,9 @@ export function FiniteFieldViz({ formulaId }: Props) {
         >
           {v.tableMul}
         </button>
+        <span className="self-center text-xs text-[var(--fg-muted)]">
+          identidad: {identity}
+        </span>
       </div>
       <div className="mt-2 overflow-x-auto">
         <table className="border-collapse text-center font-mono text-xs">
@@ -65,7 +71,10 @@ export function FiniteFieldViz({ formulaId }: Props) {
             <tr>
               <th className="p-1" />
               {Array.from({ length: p }, (_, j) => (
-                <th key={j} className="p-1 text-[var(--fg-muted)]">
+                <th
+                  key={j}
+                  className={`p-1 ${j === identity ? 'text-[var(--accent-strong)] font-bold' : 'text-[var(--fg-muted)]'}`}
+                >
                   {j}
                 </th>
               ))}
@@ -74,22 +83,31 @@ export function FiniteFieldViz({ formulaId }: Props) {
           <tbody>
             {table.map((row, i) => (
               <tr key={i}>
-                <th className="p-1 text-[var(--fg-muted)]">{i}</th>
-                {row.map((v, j) => (
-                  <td key={j} className="p-0">
-                    <button
-                      type="button"
-                      className={`h-8 w-8 ${
-                        sel && sel[0] === i && sel[1] === j
-                          ? 'bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-                          : 'hover:bg-[var(--accent-soft)]'
-                      }`}
-                      onClick={() => setSel([i, j])}
-                    >
-                      {v}
-                    </button>
-                  </td>
-                ))}
+                <th className={`p-1 ${i === identity ? 'text-[var(--accent-strong)] font-bold' : 'text-[var(--fg-muted)]'}`}>
+                  {i}
+                </th>
+                {row.map((val, j) => {
+                  const isIdentityRow = i === identity;
+                  const isIdentityCol = j === identity;
+                  const isSelected = sel && sel[0] === i && sel[1] === j;
+                  return (
+                    <td key={j} className="p-0">
+                      <button
+                        type="button"
+                        className={`h-8 w-8 transition ${
+                          isSelected
+                            ? 'bg-[var(--accent-soft)] text-[var(--accent-strong)] font-bold'
+                            : isIdentityRow || isIdentityCol
+                              ? 'bg-[var(--accent-soft)]/40 text-[var(--accent-strong)]'
+                              : 'hover:bg-[var(--accent-soft)]'
+                        }`}
+                        onClick={() => setSel([i, j])}
+                      >
+                        {val}
+                      </button>
+                    </td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>

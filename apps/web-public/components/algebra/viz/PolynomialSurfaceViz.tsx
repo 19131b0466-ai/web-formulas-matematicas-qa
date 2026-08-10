@@ -14,20 +14,31 @@ export function PolynomialSurfaceViz({ formulaId }: Props) {
   const [c, setC] = useState(-0.6);
   const [t, setT] = useState(1.2);
   const [d, setD] = useState(2);
-  const [showTerms, setShowTerms] = useState(true);
+  // Default showTerms=false for POL-009 so homogeneous view is shown by default
+  const [showTerms, setShowTerms] = useState(!formulaId.includes('POL-009'));
 
   const W = 420;
   const H = 300;
 
-  // Project z=P(x,y) as contour-ish heatmap strips
   const cells = useMemo(() => {
     const xs = linspace(-2, 2, 18);
     const ys = linspace(-2, 2, 14);
     return ys.flatMap((y, yi) =>
       xs.map((x, xi) => {
-        const z = showTerms
-          ? a * x * x + b * x * y + c * y * y
-          : a * (t * x) ** d + c * (t * y) ** d;
+        let z: number;
+        if (showTerms) {
+          // Standard form: ax² + bxy + cy²
+          z = a * x * x + b * x * y + c * y * y;
+        } else {
+          // Homogeneous view: P(tx, ty) = t^d * P(x, y) for degree-d homogeneous
+          // For degree-2: P(tx,ty) = a(tx)²+b(tx)(ty)+c(ty)² = t²(ax²+bxy+cy²)
+          // We show the scaled version for general d by using (tx)^d etc
+          if (d === 2) {
+            z = a * (t * x) * (t * x) + b * (t * x) * (t * y) + c * (t * y) * (t * y);
+          } else {
+            z = a * Math.pow(t * x, d) + c * Math.pow(t * y, d);
+          }
+        }
         return { xi, yi, z, x, y };
       }),
     );
@@ -41,17 +52,24 @@ export function PolynomialSurfaceViz({ formulaId }: Props) {
   const cw = W / 18;
   const ch = (H - 40) / 14;
 
-  const homogCheck = a * (t * 1) ** d + c * (t * 1) ** d;
-  const scaled = t ** d * (a + c);
+  // Homogeneity check using (x,y) = (1,1): P(t,t) vs t^d * P(1,1)
+  const P11 = a + b + c;  // P(1,1) for degree-2
+  const Pt11 = d === 2
+    ? a * t * t + b * t * t + c * t * t  // P(t*1, t*1) = t²(a+b+c)
+    : a * Math.pow(t, d) + c * Math.pow(t, d);
+  const tdP11 = Math.pow(t, d) * P11;
+
+  const caption = formulaId.includes('POL-009')
+    ? joinCaption(
+        showTerms
+          ? `P(x,y) = ${fmt(a)}x² + ${fmt(b)}xy + ${fmt(c)}y²`
+          : `P(t·x, t·y) ≈ ${fmt(Pt11)} · t^d·P(1,1) = ${fmt(tdP11)}`,
+        !showTerms && Math.abs(Pt11 - tdP11) < 0.01 ? 'homogéneo ✓' : undefined,
+      )
+    : undefined;
 
   return (
-    <VizPanel
-      caption={
-        formulaId.includes('POL-009')
-          ? joinCaption(`P(tx,ty)≈${fmt(homogCheck)}`, `t^d P≈${fmt(scaled)}`)
-          : undefined
-      }
-    >
+    <VizPanel caption={caption}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         {cells.map((cell) => {
           const g = Math.round(40 + norm(cell.z) * 180);
@@ -68,7 +86,9 @@ export function PolynomialSurfaceViz({ formulaId }: Props) {
           );
         })}
         <text x={12} y={14} fontSize={12} fill="currentColor">
-          z = {showTerms ? `${fmt(a)}x² + ${fmt(b)}xy + ${fmt(c)}y²` : `${v.homogeneousForm} ${d}`}
+          {showTerms
+            ? `z = ${fmt(a)}x² + ${fmt(b)}xy + ${fmt(c)}y²`
+            : `z = ${v.homogeneousForm} ${d} · t=${fmt(t)}`}
         </text>
       </svg>
       <ControlsStack>
