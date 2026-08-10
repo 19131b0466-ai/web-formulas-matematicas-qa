@@ -103,15 +103,24 @@ flowchart TD
 | **Técnico** | Estado `assocRight: boolean`. Caption: `1º parcial` · `2º total`. Labels: `groupLeft`, `groupRight`. |
 | **Veredicto** | Single + toggle; enfatizar cálculo parcial (no solo mover el recuadro). |
 
-### `distribute` (ALG-FND-003, ALG-FAC-001)
+### `distribute` (ALG-FND-003)
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \(a(b+c)\) y \(ab+ac\) son la misma área (expandir / factor común). |
-| **Layout** | Dual panel: rectángulo único vs dos rectángulos separados. FAC-001 invierte lados (flecha ←). |
+| **Enseña** | \(a(b+c)\) y \(ab+ac\) son la misma área (distributiva). |
+| **Layout** | Dual panel: rectángulo único vs dos rectángulos separados. |
 | **Interacción** | Sliders \(a,b,c\); ambas áreas se actualizan; caption confirma igualdad. |
-| **Técnico** | `fitScale`; `formulaId.includes('FAC-001')` para invertir paneles. |
-| **Veredicto** | **KEEP** dual — es reescritura (P2). |
+| **Veredicto** | **KEEP** dual para FND-003 (P2). |
+
+### `distribute` / factor común (ALG-FAC-001)
+
+| Campo | Decisión |
+|---|---|
+| **Enseña** | \(ab+ac\to a(b+c)\): factor común \(a\) como altura compartida. |
+| **Layout** | Empieza con dos rectángulos; Factorizar los une; Distribuir los separa. |
+| **Interacción** | Sliders \(a,b,c\ge0\). Guía embebida. |
+| **Componente** | `CommonFactorViz.tsx` |
+| **Veredicto** | Dirección principal = factorizar (tema Factorización). |
 
 ### `square` (IDN-001, FAC-003)
 

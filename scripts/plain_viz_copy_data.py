@@ -56,8 +56,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Cada término tiene tres partes: un coeficiente binomial, una potencia de a y una potencia de b; los exponentes siempre suman n.",
     ),
     "ALG-FAC-001": (
-        "Sacar factor común es reagrupar áreas que comparten un lado.",
-        "Mueve a, b y c: el rectángulo a(b+c) se ve igual que ab+ac.",
+        "Vas a ver que factorizar es juntar áreas que comparten un lado, la inversa de distribuir.",
+        "Los términos ab y ac comparten el factor a; al unir los rectángulos, los anchos b y c se suman.",
     ),
     "ALG-FAC-002": (
         "Factorizar a²−b² es rearmar el área sobrante como un rectángulo.",
@@ -604,8 +604,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Each term has three parts: a binomial coefficient, a power of a and a power of b; the exponents always add to n.",
         ),
         "ALG-FAC-001": (
-            "Factoring out a common factor regroups areas that share a side.",
-            "Move a, b, and c: rectangle a(b+c) matches ab+ac.",
+            "You'll see that factoring is joining areas that share a side — the inverse of distributing.",
+            "The terms ab and ac share the factor a; when the rectangles join, widths b and c add.",
         ),
         "ALG-FAC-002": (
             "Factoring a²−b² rebuilds the leftover area as a rectangle.",

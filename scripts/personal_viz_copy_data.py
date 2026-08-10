@@ -52,8 +52,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Cada término tiene tres partes: un coeficiente binomial, una potencia de \\(a\\) y una potencia de \\(b\\); los exponentes siempre suman \\(n\\).',
     ),
     'ALG-FAC-001': (
-        'Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.',
-        'Mueve \\(a\\), \\(b\\) y \\(c\\) y compara ambos cuadros: sacar el factor común \\(a\\) es juntar \\(ab\\) y \\(ac\\) en un solo rectángulo.',
+        'Vas a ver que factorizar es juntar áreas que comparten un lado, la inversa de distribuir.',
+        'Los términos \\(ab\\) y \\(ac\\) comparten el factor \\(a\\); al unir los rectángulos, los anchos \\(b\\) y \\(c\\) se suman.',
     ),
     'ALG-FAC-002': (
         'Vas a ver que factorizar \\(a^2-b^2\\) es rearmar el área sobrante como un rectángulo.',
@@ -600,8 +600,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Each term has three parts: a binomial coefficient, a power of \\(a\\) and a power of \\(b\\); the exponents always add to \\(n\\).',
     ),
         'ALG-FAC-001': (
-        "You'll see that factoring out a common factor is regrouping areas that share a side.",
-        'Move \\(a\\), \\(b\\), and \\(c\\) and compare both panels: factoring out \\(a\\) joins \\(ab\\) and \\(ac\\) into one rectangle.',
+        "You'll see that factoring is joining areas that share a side — the inverse of distributing.",
+        'The terms \\(ab\\) and \\(ac\\) share the factor \\(a\\); when the rectangles join, widths \\(b\\) and \\(c\\) add.',
     ),
         'ALG-FAC-002': (
         "You'll see that factoring \\(a^2-b^2\\) is rearranging the leftover area into a rectangle.",

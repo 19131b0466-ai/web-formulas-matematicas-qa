@@ -1338,7 +1338,6 @@
   "estructura fila-columna de una matriz.": "estrutura linha-coluna de uma matriz.",
   "evolución de una recurrencia de orden 2 desde condiciones iniciales.": "evolução de uma recorrência de segunda ordem a partir das condições iniciais.",
   "expansión del determinante mediante menores y cofactores.": "expansão determinante via menores e cofatores.",
-  "extracción de un factor común como distributiva inversa.": "extraindo um fator comum como distributividade reversa.",
   "figura inicial, transformación por \\(B\\), luego por \\(A\\), y factores \\(\\det B\\), \\(\\det A\\), \\(\\det(AB)\\).": "valor inicial, transformação por \\(B\\), depois por \\(A\\), e fatores \\(\\det B\\),\\(\\det A\\),\\(\\det \\(AB)\\).",
   "figura original, estado tras \\(A\\), estado final tras \\(B\\), y matriz combinada \\(BA\\).": "figura original, estado após \\(A\\), estado final após \\(B\\) e matriz combinada \\(BA\\).",
   "figura y vectores antes/después de aplicar \\(Q\\), con longitudes y ángulo medidos en ambos estados.": "figura e vetores antes/depois da aplicação \\(Q\\), com comprimentos e ângulos medidos em ambos os estados.",
@@ -1351,7 +1350,6 @@
   "gráficas de \\(y=b^x\\), \\(y=\\log_bx\\) y \\(y=x\\), con puntos correspondientes intercambiados.": "gráficos de \\(y=b^x\\),\\(y=\\log_bx\\) e \\(y=x\\), com pontos correspondentes trocados.",
   "gráficas de \\(y=f(x)\\), \\(y=f^{-1}(x)\\) y la recta \\(y=x\\).": "gráficos de \\(y=f \\(x)\\),\\(y=f^{-1}(x)\\) e da linha \\(y=x\\).",
   "hacer clic en una posición para introducir un error binario y recalcular \\(\\mathbf s\\).": "clique em uma posição para introduzir um erro binário e recalcular \\(\\mathbf s\\).",
-  "hacer clic sobre factores repetidos para seleccionarlos como factor común y verificar el resultado.": "clique em fatores repetidos para selecioná-los como um fator comum e verificar o resultado.",
   "idempotencia y complemento mediante tablas y estados binarios.": "idempotência e complemento via tabelas e estados binários.",
   "identidad como transformación que no cambia un vector o matriz.": "identidade como a transformação que não altera um vetor ou matriz.",
   "imagen como conjunto de salidas alcanzables.": "imagem como o conjunto de saídas alcançáveis.",
@@ -1629,8 +1627,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Vais ver que \\(|x|\\) é a distância ao zero: nunca desce abaixo de zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Vais ver que a distância entre dois pontos é o comprimento do segmento que os une: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Vais ver que ao multiplicar potências da mesma base, os expoentes somam-se: \\(a^n a^m = a^{n+m}\\).",
-  "Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.": "Vais ver que pôr em evidência um fator comum é reagrupar áreas que partilham um lado.",
-  "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara ambos cuadros: sacar el factor común \\(a\\) es juntar \\(ab\\) y \\(ac\\) en un solo rectángulo.": "Move \\(a\\), \\(b\\) e \\(c\\) e compara os dois painéis: pôr \\(a\\) em evidência junta \\(ab\\) e \\(ac\\) num só retângulo.",
   "Vas a ver que factorizar \\(a^2-b^2\\) es rearmar el área sobrante como un rectángulo.": "Vais ver que fatorar \\(a^2-b^2\\) é remontar a área restante como um retângulo.",
   "Vas a ver que un trinomio cuadrado perfecto se arma como un cuadrado completo.": "Vais ver que um trinómio quadrado perfeito se monta como um quadrado completo.",
   "Vas a ver que una ecuación lineal es una recta: la solución es donde corta al eje \\(x\\).": "Vais ver que uma equação linear é uma reta: a solução é onde corta o eixo \\(x\\).",
@@ -1930,5 +1926,10 @@
   "fórmula general; triángulo de Pascal con fila \\(n\\) resaltada; tarjetas \\(T_k\\); patrón de exponentes; expansión simplificada; ejemplo numérico opcional con \\(a,b\\).": "fórmula geral; triângulo de Pascal com linha \\(n\\) destacada; cartões \\(T_k\\); padrão de expoentes; expansão simplificada; exemplo numérico opcional com \\(a,b\\).",
   "Cada término tiene tres partes: un coeficiente binomial, una potencia de \\(a\\) y una potencia de \\(b\\); los exponentes siempre suman \\(n\\).": "Cada termo tem três partes: um coeficiente binomial, uma potência de \\(a\\) e uma de \\(b\\); os expoentes somam sempre \\(n\\).",
   "Vas a ver cómo la fila \\(n\\) de Pascal y los exponentes \\(a^{n-k}b^k\\) construyen toda la expansión.": "Vais ver como a linha \\(n\\) de Pascal e os expoentes \\(a^{n-k}b^k\\) constroem toda a expansão.",
-  "slider \\(n\\in\\{0,\\ldots,6\\}\\); seleccionar \\(k\\); toggles de evaluación numérica e interpretación combinatoria.": "slider \\(n\\in\\{0,\\ldots,6\\}\\); selecionar \\(k\\); toggles de avaliação numérica e interpretação combinatória."
+  "slider \\(n\\in\\{0,\\ldots,6\\}\\); seleccionar \\(k\\); toggles de evaluación numérica e interpretación combinatoria.": "slider \\(n\\in\\{0,\\ldots,6\\}\\); selecionar \\(k\\); toggles de avaliação numérica e interpretação combinatória.",
+  "de \\(ab+ac\\) a \\(a(b+c)\\) uniendo dos rectángulos de la misma altura \\(a\\).": "de \\(ab+ac\\) a \\(a(b+c)\\) unindo dois retângulos da mesma altura \\(a\\).",
+  "rectángulos \\(a\\times b\\) y \\(a\\times c\\); resaltado del factor común \\(a\\); acción Factorizar / Distribuir; ancho \\(b+c\\); ejemplo numérico.": "retângulos \\(a\\times b\\) e \\(a\\times c\\); destaque do fator comum \\(a\\); ações Fatorizar / Distribuir; largura \\(b+c\\); exemplo numérico.",
+  "Los términos \\(ab\\) y \\(ac\\) comparten el factor \\(a\\); al unir los rectángulos, los anchos \\(b\\) y \\(c\\) se suman.": "Os termos \\(ab\\) e \\(ac\\) partilham o fator \\(a\\); ao unir os retângulos, as larguras \\(b\\) e \\(c\\) somam-se.",
+  "Vas a ver que factorizar es juntar áreas que comparten un lado, la inversa de distribuir.": "Vais ver que fatorizar é juntar áreas que partilham um lado — o inverso de distribuir.",
+  "sliders \\(a,b,c\\ge0\\); botones Factorizar y Distribuir conservando las mismas piezas.": "sliders \\(a,b,c\\ge0\\); botões Fatorizar e Distribuir conservando as mesmas peças."
 }

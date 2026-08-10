@@ -686,11 +686,11 @@ ab+ac=a(b+c)
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `distribute`
-- **Concepto visual:** extracción de un factor común como distributiva inversa.
-- **Elementos:** dos paneles comparables: \(ab\) y \(ac\) separados frente a un solo rectángulo \(a(b+c)\).
-- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara ambos cuadros: sacar el factor común \(a\) es juntar \(ab\) y \(ac\) en un solo rectángulo.
-- **Objetivo educativo:** Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.
-- **Interactividad sugerida:** hacer clic sobre factores repetidos para seleccionarlos como factor común y verificar el resultado.
+- **Concepto visual:** de \(ab+ac\) a \(a(b+c)\) uniendo dos rectángulos de la misma altura \(a\).
+- **Elementos:** rectángulos \(a\times b\) y \(a\times c\); resaltado del factor común \(a\); acción Factorizar / Distribuir; ancho \(b+c\); ejemplo numérico.
+- **Idea:** Los términos \(ab\) y \(ac\) comparten el factor \(a\); al unir los rectángulos, los anchos \(b\) y \(c\) se suman.
+- **Objetivo educativo:** Vas a ver que factorizar es juntar áreas que comparten un lado, la inversa de distribuir.
+- **Interactividad sugerida:** sliders \(a,b,c\ge0\); botones Factorizar y Distribuir conservando las mismas piezas.
 
 ### Fórmulas relacionadas
 

@@ -1338,7 +1338,6 @@
   "estructura fila-columna de una matriz.": "Zeilen-Spalten-Struktur einer Matrix.",
   "evolución de una recurrencia de orden 2 desde condiciones iniciales.": "Entwicklung einer Wiederholung der Ordnung 2 aus den Anfangsbedingungen.",
   "expansión del determinante mediante menores y cofactores.": "Erweiterung der Determinante durch Neben- und Kofaktoren.",
-  "extracción de un factor común como distributiva inversa.": "Extraktion eines gemeinsamen Faktors als inverser Verteilungsfaktor.",
   "figura inicial, transformación por \\(B\\), luego por \\(A\\), y factores \\(\\det B\\), \\(\\det A\\), \\(\\det(AB)\\).": "Anfangszahl, Transformation um\\(B\\), dann um\\(A\\)und Faktoren\\(\\det B\\),\\(\\det A\\),\\(\\det(AB)\\).",
   "figura original, estado tras \\(A\\), estado final tras \\(B\\), y matriz combinada \\(BA\\).": "Originalzahl, Zustand nach\\(A\\), Endzustand nach\\(B\\)und kombinierte Matrix\\(BA\\).",
   "figura y vectores antes/después de aplicar \\(Q\\), con longitudes y ángulo medidos en ambos estados.": "Figur und Vektoren vor/nach der Anwendung von\\(Q\\), wobei Längen und Winkel in beiden Zuständen gemessen werden.",
@@ -1351,7 +1350,6 @@
   "gráficas de \\(y=b^x\\), \\(y=\\log_bx\\) y \\(y=x\\), con puntos correspondientes intercambiados.": "Diagramme von\\(y=b^x\\),\\(y=\\log_bx\\)und\\(y=x\\), wobei die entsprechenden Punkte vertauscht sind.",
   "gráficas de \\(y=f(x)\\), \\(y=f^{-1}(x)\\) y la recta \\(y=x\\).": "Diagramme von\\(y=f(x)\\),\\(y=f^{-1}(x)\\)und der Linie\\(y=x\\).",
   "hacer clic en una posición para introducir un error binario y recalcular \\(\\mathbf s\\).": "Klicken Sie auf eine Position, um einen binären Fehler einzugeben und\\(\\mathbf s\\)neu zu berechnen.",
-  "hacer clic sobre factores repetidos para seleccionarlos como factor común y verificar el resultado.": "Klicken Sie auf wiederholte Faktoren, um sie als gemeinsamen Faktor auszuwählen und das Ergebnis zu überprüfen.",
   "idempotencia y complemento mediante tablas y estados binarios.": "Idempotenz und Komplement durch Tabellen und binäre Zustände.",
   "identidad como transformación que no cambia un vector o matriz.": "Identität als Transformation, die weder einen Vektor noch eine Matrix verändert.",
   "imagen como conjunto de salidas alcanzables.": "Bild als eine Reihe erreichbarer Ausgaben.",
@@ -1629,8 +1627,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Du siehst: \\(|x|\\) ist der Abstand zur Null — nie negativ.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Du siehst: Der Abstand zweier Punkte ist die Länge der Strecke dazwischen: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Du siehst: Beim Multiplizieren von Potenzen gleicher Basis addieren sich die Exponenten: \\(a^n a^m = a^{n+m}\\).",
-  "Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.": "Du siehst: Gemeinsamen Faktor ausklammern heißt Flächen mit gemeinsamer Seite neu zu ordnen.",
-  "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara ambos cuadros: sacar el factor común \\(a\\) es juntar \\(ab\\) y \\(ac\\) en un solo rectángulo.": "Bewege \\(a\\), \\(b\\) und \\(c\\) und vergleiche beide Felder: \\(a\\) ausklammern heißt \\(ab\\) und \\(ac\\) zu einem Rechteck zu fügen.",
   "Vas a ver que factorizar \\(a^2-b^2\\) es rearmar el área sobrante como un rectángulo.": "Du siehst: \\(a^2-b^2\\) zu faktorisieren heißt die Restfläche zum Rechteck umzubauen.",
   "Vas a ver que un trinomio cuadrado perfecto se arma como un cuadrado completo.": "Du siehst: Ein vollständiges Quadrat-Trinom baut sich zu einem ganzen Quadrat.",
   "Vas a ver que una ecuación lineal es una recta: la solución es donde corta al eje \\(x\\).": "Du siehst: Eine lineare Gleichung ist eine Gerade — die Lösung ist der Schnitt mit der \\(x\\)-Achse.",
@@ -1930,5 +1926,10 @@
   "fórmula general; triángulo de Pascal con fila \\(n\\) resaltada; tarjetas \\(T_k\\); patrón de exponentes; expansión simplificada; ejemplo numérico opcional con \\(a,b\\).": "allgemeine Formel; Pascal-Dreieck mit hervorgehobener Zeile \\(n\\); Karten \\(T_k\\); Exponentenmuster; vereinfachte Expansion; optionales Zahlenbeispiel mit \\(a,b\\).",
   "Cada término tiene tres partes: un coeficiente binomial, una potencia de \\(a\\) y una potencia de \\(b\\); los exponentes siempre suman \\(n\\).": "Jeder Term hat drei Teile: einen Binomialkoeffizienten, eine Potenz von \\(a\\) und eine Potenz von \\(b\\); die Exponenten ergeben stets \\(n\\).",
   "Vas a ver cómo la fila \\(n\\) de Pascal y los exponentes \\(a^{n-k}b^k\\) construyen toda la expansión.": "Du siehst, wie die Pascal-Zeile \\(n\\) und die Exponenten \\(a^{n-k}b^k\\) die gesamte Expansion aufbauen.",
-  "slider \\(n\\in\\{0,\\ldots,6\\}\\); seleccionar \\(k\\); toggles de evaluación numérica e interpretación combinatoria.": "Schieberegler \\(n\\in\\{0,\\ldots,6\\}\\); \\(k\\) wählen; Schalter für numerische Auswertung und kombinatorische Deutung."
+  "slider \\(n\\in\\{0,\\ldots,6\\}\\); seleccionar \\(k\\); toggles de evaluación numérica e interpretación combinatoria.": "Schieberegler \\(n\\in\\{0,\\ldots,6\\}\\); \\(k\\) wählen; Schalter für numerische Auswertung und kombinatorische Deutung.",
+  "de \\(ab+ac\\) a \\(a(b+c)\\) uniendo dos rectángulos de la misma altura \\(a\\).": "von \\(ab+ac\\) zu \\(a(b+c)\\), indem man zwei Rechtecke derselben Höhe \\(a\\) zusammenfügt.",
+  "rectángulos \\(a\\times b\\) y \\(a\\times c\\); resaltado del factor común \\(a\\); acción Factorizar / Distribuir; ancho \\(b+c\\); ejemplo numérico.": "Rechtecke \\(a\\times b\\) und \\(a\\times c\\); Hervorhebung des gemeinsamen Faktors \\(a\\); Aktionen Faktorisieren / Distribuieren; Breite \\(b+c\\); Zahlenbeispiel.",
+  "Los términos \\(ab\\) y \\(ac\\) comparten el factor \\(a\\); al unir los rectángulos, los anchos \\(b\\) y \\(c\\) se suman.": "Die Terme \\(ab\\) und \\(ac\\) teilen den Faktor \\(a\\); beim Zusammenfügen addieren sich die Breiten \\(b\\) und \\(c\\).",
+  "Vas a ver que factorizar es juntar áreas que comparten un lado, la inversa de distribuir.": "Du siehst, dass Faktorisieren heißt, Flächen mit gemeinsamer Seite zusammenzufügen — die Umkehrung des Distribuierens.",
+  "sliders \\(a,b,c\\ge0\\); botones Factorizar y Distribuir conservando las mismas piezas.": "Schieberegler \\(a,b,c\\ge0\\); Schaltflächen Faktorisieren und Distribuieren unter Beibehaltung derselben Stücke."
 }
