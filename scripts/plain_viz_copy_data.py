@@ -76,8 +76,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Cambia a, b y c y relaciona Δ, la fórmula cuadrática y los cortes de la parábola con el eje x.",
     ),
     "ALG-EQU-004": (
-        "El discriminante dice cuántas raíces reales tiene la cuadrática.",
-        "Ajusta a, b y c y observa si hay 2, 1 o ninguna raíz real según Δ.",
+        "Δ no calcula las raíces por sí solo: determina si hay dos, una (doble) o ninguna raíz real.",
+        "Usa los ejemplos guiados o mueve a, b y c: el signo de Δ fija el caso; la gráfica confirma los cortes.",
     ),
     "ALG-EQU-005": (
         "Completar el cuadrado es añadir (y luego restar) la esquina que falta.",
@@ -624,8 +624,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Change a, b, and c and relate Δ, the quadratic formula, and where the parabola meets the x-axis.",
         ),
         "ALG-EQU-004": (
-            "The discriminant tells how many real roots the quadratic has.",
-            "Adjust a, b, and c and see whether there are 2, 1, or no real roots from Δ.",
+            "Δ does not compute the roots by itself: it tells whether there are two, one (double), or no real roots.",
+            "Use the guided examples or move a, b, and c: the sign of Δ fixes the case; the graph confirms the cuts.",
         ),
         "ALG-EQU-005": (
             "Completing the square means adding (then subtracting) the missing corner.",

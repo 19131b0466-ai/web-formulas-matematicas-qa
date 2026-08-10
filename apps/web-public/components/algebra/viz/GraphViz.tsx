@@ -5,6 +5,7 @@ import { useVizLabels } from '@/lib/viz-labels';
 import type { GraphMode } from '@/lib/viz-modes';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
+import { DiscriminantViz } from './DiscriminantViz';
 import { LinearEquationViz } from './LinearEquationViz';
 import { QuadraticFormulaViz } from './QuadraticFormulaViz';
 
@@ -16,6 +17,9 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('EQU-003')) {
     return <QuadraticFormulaViz />;
+  }
+  if (formulaId.includes('EQU-004')) {
+    return <DiscriminantViz />;
   }
   return <GraphVizInner formulaId={formulaId} mode={modeProp} />;
 }

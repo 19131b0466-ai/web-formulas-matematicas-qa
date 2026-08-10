@@ -975,11 +975,11 @@ El término bajo la raíz es el discriminante. Su signo determina si las raíces
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** efecto del discriminante sobre el número de raíces reales.
-- **Elementos:** tres estados de una parábola: dos cortes, tangencia y ningún corte con el eje \(x\), junto al valor de \(\Delta\).
-- **Idea:** Ajusta \(a\), \(b\) y \(c\) y fíjate si hay 2, 1 o ninguna raíz real según \(\Delta\).
-- **Objetivo educativo:** Vas a ver que el discriminante \(\Delta\) te dice cuántas raíces reales tiene la cuadrática.
-- **Interactividad sugerida:** deslizador de \(c\) o \(b\); cambiar automáticamente el estado y etiquetar el discriminante.
+- **Concepto visual:** \(\Delta=b^2-4ac\) clasifica el número de raíces reales; la parábola \(y=ax^2+bx+c\) solo visualiza esa clasificación (cortes con el eje \(x\)).
+- **Elementos:** cálculo dinámico de \(\Delta\); leyenda fija de los tres casos; raíces numéricas; recta numérica de respaldo; gráfica de apoyo con viewport que incluye ambas raíces; presets \(\Delta>0\), \(\Delta=0\), \(\Delta<0\).
+- **Idea:** Usa los ejemplos guiados o mueve \(a\), \(b\) y \(c\) y observa cómo el signo de \(\Delta\) fija el caso; la gráfica confirma el número de cortes.
+- **Objetivo educativo:** Vas a ver que \(\Delta\) no calcula las raíces por sí solo, sino que determina si hay dos, una (doble) o ninguna raíz real.
+- **Interactividad sugerida:** presets de los tres casos; sliders \(a,b,c\) con \(|a|\ge\varepsilon\); actualizar \(\Delta\), interpretación, raíces y gráfica.
 
 ### Fórmulas relacionadas
 

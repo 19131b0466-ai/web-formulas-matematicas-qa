@@ -72,8 +72,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Cambia \\(a\\), \\(b\\) y \\(c\\) y relaciona \\(\\Delta\\), la fórmula cuadrática y los cortes de la parábola con el eje \\(x\\).',
     ),
     'ALG-EQU-004': (
-        'Vas a ver que el discriminante \\(\\Delta\\) te dice cuántas raíces reales tiene la cuadrática.',
-        'Ajusta \\(a\\), \\(b\\) y \\(c\\) y fíjate si hay 2, 1 o ninguna raíz real según \\(\\Delta\\).',
+        'Vas a ver que \\(\\Delta\\) no calcula las raíces por sí solo, sino que determina si hay dos, una (doble) o ninguna raíz real.',
+        'Usa los ejemplos guiados o mueve \\(a\\), \\(b\\) y \\(c\\) y observa cómo el signo de \\(\\Delta\\) fija el caso; la gráfica confirma el número de cortes.',
     ),
     'ALG-EQU-005': (
         'Vas a ver que completar el cuadrado es añadir (y luego restar) la esquina que falta.',
@@ -620,8 +620,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Change \\(a\\), \\(b\\), and \\(c\\) and relate \\(\\Delta\\), the quadratic formula, and where the parabola meets the \\(x\\)-axis.',
     ),
         'ALG-EQU-004': (
-        "You'll see that the discriminant \\(\\Delta\\) tells you how many real roots the quadratic has.",
-        'Adjust \\(a\\), \\(b\\), and \\(c\\) and notice whether there are 2, 1, or no real roots according to \\(\\Delta\\).',
+        "You'll see that \\(\\Delta\\) does not compute the roots by itself; it tells whether there are two, one (double), or no real roots.",
+        'Use the guided examples or move \\(a\\), \\(b\\), and \\(c\\) and watch how the sign of \\(\\Delta\\) fixes the case; the graph confirms the number of cuts.',
     ),
         'ALG-EQU-005': (
         "You'll see that completing the square means adding (then subtracting) the missing corner.",
