@@ -1462,7 +1462,6 @@
   "permitir activar/desactivar un error en una posición y observar el producto \\(H\\mathbf c^T\\).": "allow toggling an error on/off at a position and observe the product \\(H\\mathbf c^T\\).",
   "permitir activar/desactivar una identidad y resaltar las columnas que se comparan.": "allow toggling an identity on/off and highlight the columns being compared.",
   "permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.": "allow toggling between “expanded form” and “factored form” with the same figure.",
-  "permitir arrastrar \\(x\\) sobre la recta; mostrar simultáneamente \\(x\\), \\(-x\\) y \\(|x|\\).": "allow dragging \\(x\\) on the line; simultaneously show \\(x\\), \\(-x\\), and \\(|x|\\).",
   "permitir arrastrar ambos puntos y actualizar distancia, diferencia \\(a-b\\) y valor absoluto.": "allow dragging both points and update distance, difference \\(a-b\\), and absolute value.",
   "permitir cambiar \\(a,b\\) y el operador \\(<,\\le,>,\\ge\\); actualizar extremo y sombreado.": "allow changing \\(a,b\\) and the operator \\(<,\\le,>,\\ge\\); update the endpoint and shading.",
   "permitir editar entradas y observar cuándo cambia la columna dominante.": "allow editing entries and observe when the dominant column changes.",
@@ -1501,7 +1500,6 @@
   "recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \\(+/-\\).": "number line with numerator zeros, forbidden denominator zeros, intervals, and signs \\(+/-\\).",
   "recta numérica con el origen, puntos \\(-a\\) y \\(a\\) y dos segmentos de longitud \\(a\\).": "number line with the origin, points \\(-a\\) and \\(a\\), and two segments of length \\(a\\).",
   "recta numérica con puntos móviles \\(a\\) y \\(b\\), segmento resaltado entre ambos y valor \\(|a-b|\\).": "number line with movable points \\(a\\) and \\(b\\), highlighted segment between them, and value \\(|a-b|\\).",
-  "recta numérica, origen, punto móvil \\(x\\), segmento desde \\(0\\) hasta \\(x\\) y etiqueta \\(|x|\\).": "number line, origin, movable point \\(x\\), segment from \\(0\\) to \\(x\\), and label \\(|x|\\).",
   "recta numérica, punto frontera \\(-b/a\\), extremo abierto o cerrado según el operador y semirrecta sombreada.": "number line, boundary point \\(-b/a\\), open or closed endpoint according to the operator, and shaded half-line.",
   "región \\(x^2\\), dos rectángulos de dimensiones \\(x\\) y \\(b/2\\), y un pequeño cuadrado \\((b/2)^2\\).": "region \\(x^2\\), two rectangles of dimensions \\(x\\) and \\(b/2\\), and a small square \\((b/2)^2\\).",
   "regla de Cramer como reemplazo de columnas.": "Cramer’s rule as column replacement.",
@@ -1600,7 +1598,6 @@
   "usar matrices 2×2 simples seleccionables y animar la figura a través de ambas transformaciones.": "use simple selectable 2×2 matrices and animate the figure through both transformations.",
   "Usar operaciones elementales para eliminación de Gauss sobre una matriz densa cuadrada \\(n\\times n\\) requiere, con el algoritmo clásico,\n$$\nO(n^3)\n$$\ntiempo. El almacenamiento de la matriz es \\(O(n^2)\\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \\(O(n^2)\\).": "Using elementary operations for Gaussian elimination on a dense square \\(n\\times n\\) matrix requires, with the classical algorithm,\n$$\nO(n^3)\n$$\ntime. Storage for the matrix is \\(O(n^2)\\). Back substitution, once the triangular form is obtained, costs \\(O(n^2)\\).",
   "usar una matriz pequeña con rango reducido; permitir alternar entre \\(A\\), \\(\\Sigma\\), \\(\\Sigma^+\\) y \\(A^+\\).": "use a small matrix with reduced rank; allow toggling among \\(A\\), \\(\\Sigma\\), \\(\\Sigma^+\\), and \\(A^+\\).",
-  "valor absoluto como distancia al cero.": "absolute value as distance to zero.",
   "valor absoluto como intervalo de distancias permitidas.": "absolute value as an interval of allowed distances.",
   "valores propios como ceros del polinomio característico.": "eigenvalues as zeros of the characteristic polynomial.",
   "varias palabras código como centros, vecindarios de radio \\(t\\), una palabra recibida y distancias a los centros.": "several codewords as centers, neighborhoods of radius \\(t\\), a received word, and distances to the centers.",
@@ -1660,7 +1657,6 @@
   "Vas a ver que \\(a(b+c)\\) es la misma área que \\(ab+ac\\).": "You'll see that \\(a(b+c)\\) is the same area as \\(ab+ac\\).",
   "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \\(ab\\) y \\(ac\\) separados.": "Move \\(a\\), \\(b\\), and \\(c\\) and compare both panels: one whole rectangle on the left; \\(ab\\) and \\(ac\\) side by side on the right.",
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "You'll see that \\(|x|\\) is the distance to zero: it never goes below zero.",
-  "Mueve \\(x\\) a la izquierda o a la derecha y fíjate: la marca solo cuenta cuánto te alejas del origen.": "Move \\(x\\) left or right and notice: the mark only counts how far you are from the origin.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "You'll see that the distance between two points is the length of the segment joining them: \\(|a-b|\\).",
   "Mueve \\(a\\) y \\(b\\) y mira la longitud entre ambos: esa medida es \\(|a-b|\\).": "Move \\(a\\) and \\(b\\) and watch the length between them: that measure is \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "You'll see that when you multiply powers with the same base, the exponents add: \\(a^n a^m = a^{n+m}\\).",
@@ -1930,5 +1926,9 @@
   "Pulsa Agrupar izquierda o derecha: cambia qué sumas primero \\((a+b)\\) o \\((b+c)\\), pero el total final es el mismo.": "Tap Group left or Group right: what you add first changes \\((a+b)\\) or \\((b+c)\\), but the final total stays the same.",
   "solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).": "grouping button only; fixed values; show step 1 (partial) and step 2 (total).",
   "tres bloques \\(a,b,c\\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.": "three blocks \\(a,b,c\\); a box around the pair added first; a second row with the merged partial and the remaining addend; a total bar.",
-  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "change of grouping with a two-step calculation: first the grouped pair, then the total."
+  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "change of grouping with a two-step calculation: first the grouped pair, then the total.",
+  "valor absoluto como distancia al cero, con el caso negativo explícito.": "absolute value as distance to zero, with the negative case made explicit.",
+  "recta numérica, origen, punto \\(x\\), segmento de distancia \\(0\\)–\\(x\\), marca de \\(|x|\\) en el lado positivo cuando \\(x<0\\), y el caso \\(x\\ge0\\) / \\(x<0\\).": "number line, origin, point \\(x\\), distance segment \\(0\\)–\\(x\\), a \\(|x|\\) mark on the positive side when \\(x<0\\), and the \\(x\\ge0\\) / \\(x<0\\) case.",
+  "Mueve \\(x\\) hacia la izquierda: el punto es negativo, pero \\(|x|\\) aparece como distancia positiva al otro lado del cero.": "Move \\(x\\) to the left: the point is negative, but \\(|x|\\) shows up as a positive distance on the other side of zero.",
+  "slider para \\(x\\); mostrar a la vez \\(x\\), \\(-x\\), la distancia y el caso de la definición a trozos.": "slider for \\(x\\); show at once \\(x\\), \\(-x\\), the distance, and the piecewise-definition case."
 }

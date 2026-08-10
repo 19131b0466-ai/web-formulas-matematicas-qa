@@ -1461,7 +1461,6 @@
   "permitir activar/desactivar un error en una posición y observar el producto \\(H\\mathbf c^T\\).": "permettono di attivare/disattivare un errore in una posizione e osservare il prodotto \\(H\\mathbf c^T\\).",
   "permitir activar/desactivar una identidad y resaltar las columnas que se comparan.": "permettono di attivare/disattivare un'identità e di evidenziare le colonne oggetto del confronto.",
   "permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.": "consentire l'alternanza tra “forma espansa” e “forma fattorizzata” con la stessa figura.",
-  "permitir arrastrar \\(x\\) sobre la recta; mostrar simultáneamente \\(x\\), \\(-x\\) y \\(|x|\\).": "consentire il trascinamento di \\(x\\) sulla linea; visualizzare contemporaneamente \\(x\\),\\(-x\\) e \\(|x|\\).",
   "permitir arrastrar ambos puntos y actualizar distancia, diferencia \\(a-b\\) y valor absoluto.": "consente di trascinare entrambi i punti e aggiornare la distanza, la differenza \\(a-b\\) e il valore assoluto.",
   "permitir cambiar \\(a,b\\) y el operador \\(<,\\le,>,\\ge\\); actualizar extremo y sombreado.": "consentire la modifica di \\(a,b\\) e dell'operatore \\(<,\\le,>,\\ge\\); aggiornamento estremo e ombreggiatura.",
   "permitir editar entradas y observar cuándo cambia la columna dominante.": "consentono di modificare le voci e osservare quando cambia la colonna dominante.",
@@ -1500,7 +1499,6 @@
   "recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \\(+/-\\).": "linea numerica con zeri al numeratore, zeri proibiti al denominatore, intervalli e segni \\(+/-\\).",
   "recta numérica con el origen, puntos \\(-a\\) y \\(a\\) y dos segmentos de longitud \\(a\\).": "linea numerica con l'origine, i punti \\(-a\\) e \\(a\\) e due segmenti di lunghezza \\(a\\).",
   "recta numérica con puntos móviles \\(a\\) y \\(b\\), segmento resaltado entre ambos y valor \\(|a-b|\\).": "linea numerica con punti mobili \\(a\\) e \\(b\\), segmento evidenziato tra di loro e valore \\(|a-b|\\).",
-  "recta numérica, origen, punto móvil \\(x\\), segmento desde \\(0\\) hasta \\(x\\) y etiqueta \\(|x|\\).": "linea numerica, origine, punto mobile \\(x\\), segmento da \\(0\\) a \\(x\\) ed etichetta \\(|x|\\).",
   "recta numérica, punto frontera \\(-b/a\\), extremo abierto o cerrado según el operador y semirrecta sombreada.": "linea numerica, punto di confine \\(-b/a\\), estremità aperta o chiusa a seconda dell'operatore e del raggio ombreggiato.",
   "región \\(x^2\\), dos rectángulos de dimensiones \\(x\\) y \\(b/2\\), y un pequeño cuadrado \\((b/2)^2\\).": "regione \\(x^2\\), due rettangoli di dimensioni \\(x\\) e \\(b/2\\) e un quadratino \\((b/2)^2\\).",
   "regla de Cramer como reemplazo de columnas.": "Regola di Cramer in sostituzione delle colonne.",
@@ -1599,7 +1597,6 @@
   "usar matrices 2×2 simples seleccionables y animar la figura a través de ambas transformaciones.": "utilizzare semplici matrici 2x2 selezionabili e animare la figura attraverso entrambe le trasformazioni.",
   "Usar operaciones elementales para eliminación de Gauss sobre una matriz densa cuadrada \\(n\\times n\\) requiere, con el algoritmo clásico,\n$$\nO(n^3)\n$$\ntiempo. El almacenamiento de la matriz es \\(O(n^2)\\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \\(O(n^2)\\).": "L’utilizzo delle operazioni elementari per l’eliminazione gaussiana su una matrice quadrata densa \\(n\\times n\\) richiede, con l’algoritmo classico,$$\nO \\(n^3)\n$$tempo. La memoria dell'array è \\(O \\(n^2)\\). La sostituzione all'indietro, una volta ottenuta la forma triangolare, costa \\(O \\(n^2)\\).",
   "usar una matriz pequeña con rango reducido; permitir alternar entre \\(A\\), \\(\\Sigma\\), \\(\\Sigma^+\\) y \\(A^+\\).": "utilizzare una matrice piccola con rango ridotto; consente di alternare tra \\(A\\),\\(\\Sigma\\),\\(\\Sigma^+\\) e \\(A^+\\).",
-  "valor absoluto como distancia al cero.": "valore assoluto come distanza dallo zero.",
   "valor absoluto como intervalo de distancias permitidas.": "valore assoluto come intervallo di distanze consentite.",
   "valores propios como ceros del polinomio característico.": "autovalori come zeri del polinomio caratteristico.",
   "varias palabras código como centros, vecindarios de radio \\(t\\), una palabra recibida y distancias a los centros.": "varie parole in codice come centri, vicinanze del raggio \\(t\\), una parola ricevuta e distanze dai centri.",
@@ -1660,7 +1657,6 @@
   "Vas a ver que \\(a(b+c)\\) es la misma área que \\(ab+ac\\).": "Vedrai che \\(a(b+c)\\) è la stessa area di \\(ab+ac\\).",
   "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \\(ab\\) y \\(ac\\) separados.": "Muovi \\(a\\), \\(b\\) e \\(c\\) e confronta i due riquadri: a sinistra un rettangolo intero; a destra \\(ab\\) e \\(ac\\) separati.",
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Vedrai che \\(|x|\\) è la distanza dallo zero: non scende mai sotto zero.",
-  "Mueve \\(x\\) a la izquierda o a la derecha y fíjate: la marca solo cuenta cuánto te alejas del origen.": "Muovi \\(x\\) a sinistra o a destra e nota: il segno conta solo quanto ti allontani dall'origine.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Vedrai che la distanza tra due punti è la lunghezza del segmento che li unisce: \\(|a-b|\\).",
   "Mueve \\(a\\) y \\(b\\) y mira la longitud entre ambos: esa medida es \\(|a-b|\\).": "Muovi \\(a\\) e \\(b\\) e guarda la lunghezza tra loro: quella misura è \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Vedrai che moltiplicando potenze con la stessa base, gli esponenti si sommano: \\(a^n a^m = a^{n+m}\\).",
@@ -1930,5 +1926,9 @@
   "Pulsa Agrupar izquierda o derecha: cambia qué sumas primero \\((a+b)\\) o \\((b+c)\\), pero el total final es el mismo.": "Premi Raggruppa a sinistra o a destra: cambia cosa sommi per prima \\((a+b)\\) o \\((b+c)\\), ma il totale finale resta lo stesso.",
   "solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).": "solo pulsante di raggruppamento; valori fissi; mostrare il passo 1 (parziale) e il passo 2 (totale).",
   "tres bloques \\(a,b,c\\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.": "tre blocchi \\(a,b,c\\); riquadro sulla coppia sommata per prima; seconda riga con il parziale fuso e l’addendo mancante; barra del totale.",
-  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "cambio di raggruppamento con calcolo in due passi: prima la coppia raggruppata, poi il totale."
+  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "cambio di raggruppamento con calcolo in due passi: prima la coppia raggruppata, poi il totale.",
+  "valor absoluto como distancia al cero, con el caso negativo explícito.": "valore assoluto come distanza dallo zero, con il caso negativo esplicito.",
+  "recta numérica, origen, punto \\(x\\), segmento de distancia \\(0\\)–\\(x\\), marca de \\(|x|\\) en el lado positivo cuando \\(x<0\\), y el caso \\(x\\ge0\\) / \\(x<0\\).": "retta numerica, origine, punto \\(x\\), segmento di distanza \\(0\\)–\\(x\\), segno di \\(|x|\\) sul lato positivo quando \\(x<0\\), e il caso \\(x\\ge0\\) / \\(x<0\\).",
+  "Mueve \\(x\\) hacia la izquierda: el punto es negativo, pero \\(|x|\\) aparece como distancia positiva al otro lado del cero.": "Sposta \\(x\\) a sinistra: il punto è negativo, ma \\(|x|\\) compare come distanza positiva dall’altra parte dello zero.",
+  "slider para \\(x\\); mostrar a la vez \\(x\\), \\(-x\\), la distancia y el caso de la definición a trozos.": "slider per \\(x\\); mostrare insieme \\(x\\), \\(-x\\), la distanza e il caso della definizione a tratti."
 }

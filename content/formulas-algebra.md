@@ -223,11 +223,11 @@ a+(-a)=0;\quad a\cdot\frac1a=1\;(a\ne0)
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** valor absoluto como distancia al cero.
-- **Elementos:** recta numérica, origen, punto móvil \(x\), segmento desde \(0\) hasta \(x\) y etiqueta \(|x|\).
-- **Idea:** Mueve \(x\) a la izquierda o a la derecha y fíjate: la marca solo cuenta cuánto te alejas del origen.
+- **Concepto visual:** valor absoluto como distancia al cero, con el caso negativo explícito.
+- **Elementos:** recta numérica, origen, punto \(x\), segmento de distancia \(0\)–\(x\), marca de \(|x|\) en el lado positivo cuando \(x<0\), y el caso \(x\ge0\) / \(x<0\).
+- **Idea:** Mueve \(x\) hacia la izquierda: el punto es negativo, pero \(|x|\) aparece como distancia positiva al otro lado del cero.
 - **Objetivo educativo:** Vas a ver que \(|x|\) es la distancia al cero: nunca baja de cero.
-- **Interactividad sugerida:** permitir arrastrar \(x\) sobre la recta; mostrar simultáneamente \(x\), \(-x\) y \(|x|\).
+- **Interactividad sugerida:** slider para \(x\); mostrar a la vez \(x\), \(-x\), la distancia y el caso de la definición a trozos.
 
 ### Fórmulas relacionadas
 
