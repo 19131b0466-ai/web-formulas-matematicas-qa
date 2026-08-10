@@ -944,11 +944,11 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 
 - **Tipo:** `graph`
 - **Modo:** `quadratic`
-- **Concepto visual:** raíces de una cuadrática como cortes de la parábola.
-- **Elementos:** parábola \(y=ax^2+bx+c\), eje \(x\), raíces marcadas y fórmula cuadrática junto a la gráfica.
-- **Idea:** Cambia \(a\), \(b\) y \(c\) y mira el discriminante \(\Delta\) y las marcas naranjas de las raíces.
-- **Objetivo educativo:** Vas a ver que la parábola corta al eje \(x\) en las soluciones (si existen).
-- **Interactividad sugerida:** controles para \(a,b,c\); recalcular raíces y mover los puntos de intersección.
+- **Concepto visual:** para visualizar \(ax^2+bx+c=0\) se dibuja \(y=ax^2+bx+c\); las raíces reales son donde \(y=0\) (cortes con el eje \(x\)).
+- **Elementos:** ecuación vs función asociada; fórmula \(x=(-b\pm\sqrt{b^2-4ac})/(2a)\); discriminante \(\Delta\) con interpretación; parábola; raíces en \((x,0)\); vértice y eje de simetría; desarrollo algebraico; caso \(a=0\).
+- **Idea:** Cambia \(a\), \(b\) y \(c\) y relaciona \(\Delta\), la fórmula cuadrática y los cortes de la parábola con el eje \(x\).
+- **Objetivo educativo:** Vas a ver que las soluciones reales de \(ax^2+bx+c=0\) son los \(x\) donde \(y=ax^2+bx+c\) vale cero, y que \(\Delta\) determina cuántas hay.
+- **Interactividad sugerida:** controles para \(a,b,c\) (\(a\neq0\)); actualizar \(\Delta\), raíces, vértice, gráfica y pasos algebraicos.
 
 ### Interpretación
 

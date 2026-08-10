@@ -68,8 +68,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Resolver \\(ax+b=0\\) es encontrar el \\(x\\) que anula la expresión; gráficamente, donde \\(y=ax+b\\) cruza el eje \\(x\\).',
     ),
     'ALG-EQU-003': (
-        'Vas a ver que la parábola corta al eje \\(x\\) en las soluciones (si existen).',
-        'Cambia \\(a\\), \\(b\\) y \\(c\\) y mira el discriminante \\(\\Delta\\) y las marcas naranjas de las raíces.',
+        'Vas a ver que las soluciones reales de \\(ax^2+bx+c=0\\) son los \\(x\\) donde \\(y=ax^2+bx+c\\) vale cero, y que \\(\\Delta\\) determina cuántas hay.',
+        'Cambia \\(a\\), \\(b\\) y \\(c\\) y relaciona \\(\\Delta\\), la fórmula cuadrática y los cortes de la parábola con el eje \\(x\\).',
     ),
     'ALG-EQU-004': (
         'Vas a ver que el discriminante \\(\\Delta\\) te dice cuántas raíces reales tiene la cuadrática.',
@@ -616,8 +616,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Solving \\(ax+b=0\\) means finding the \\(x\\) that makes the expression zero; graphically, where \\(y=ax+b\\) crosses the \\(x\\)-axis.',
     ),
         'ALG-EQU-003': (
-        "You'll see that the parabola meets the \\(x\\)-axis at the solutions (if they exist).",
-        'Change \\(a\\), \\(b\\), and \\(c\\) and watch the discriminant \\(\\Delta\\) and the orange root marks.',
+        "You'll see that the real solutions of \\(ax^2+bx+c=0\\) are the \\(x\\) where \\(y=ax^2+bx+c\\) is zero, and that \\(\\Delta\\) tells how many there are.",
+        'Change \\(a\\), \\(b\\), and \\(c\\) and relate \\(\\Delta\\), the quadratic formula, and where the parabola meets the \\(x\\)-axis.',
     ),
         'ALG-EQU-004': (
         "You'll see that the discriminant \\(\\Delta\\) tells you how many real roots the quadratic has.",

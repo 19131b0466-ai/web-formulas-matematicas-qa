@@ -72,8 +72,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Resolver ax+b=0 es encontrar el x que anula la expresión; gráficamente, donde y=ax+b cruza el eje x.",
     ),
     "ALG-EQU-003": (
-        "La parábola corta al eje x en las soluciones (si existen).",
-        "Cambia a, b y c: mira el discriminante Δ y las marcas naranjas de las raíces.",
+        "Las soluciones reales de ax²+bx+c=0 son los x donde y=ax²+bx+c vale cero; Δ dice cuántas hay.",
+        "Cambia a, b y c y relaciona Δ, la fórmula cuadrática y los cortes de la parábola con el eje x.",
     ),
     "ALG-EQU-004": (
         "El discriminante dice cuántas raíces reales tiene la cuadrática.",
@@ -620,8 +620,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Solving ax+b=0 means finding the x that makes the expression zero; graphically, where y=ax+b crosses the x-axis.",
         ),
         "ALG-EQU-003": (
-            "The parabola meets the x-axis at the solutions (if any).",
-            "Change a, b, and c: watch discriminant Δ and the orange root markers.",
+            "The real solutions of ax²+bx+c=0 are the x where y=ax²+bx+c is zero; Δ tells how many there are.",
+            "Change a, b, and c and relate Δ, the quadratic formula, and where the parabola meets the x-axis.",
         ),
         "ALG-EQU-004": (
             "The discriminant tells how many real roots the quadratic has.",

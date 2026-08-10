@@ -6,12 +6,16 @@ import type { GraphMode } from '@/lib/viz-modes';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
 import { LinearEquationViz } from './LinearEquationViz';
+import { QuadraticFormulaViz } from './QuadraticFormulaViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GraphViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('EQU-001')) {
     return <LinearEquationViz />;
+  }
+  if (formulaId.includes('EQU-003')) {
+    return <QuadraticFormulaViz />;
   }
   return <GraphVizInner formulaId={formulaId} mode={modeProp} />;
 }
