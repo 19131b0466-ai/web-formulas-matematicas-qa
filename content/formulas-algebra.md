@@ -566,11 +566,11 @@ a^2-b^2=(a-b)(a+b)
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `diff_sq`
-- **Concepto visual:** reorganización geométrica de una diferencia de áreas.
-- **Elementos:** cuadrado grande de lado \(a\), cuadrado retirado de lado \(b\), y piezas reordenadas como rectángulo de lados \(a-b\) y \(a+b\).
-- **Idea:** Pulsa para pasar de \(a^2-b^2\) al rectángulo \((a-b)(a+b)\) y fíjate: es la misma cantidad.
-- **Objetivo educativo:** Vas a ver que \(a^2-b^2\) es el área que queda al quitar un cuadrado pequeño de uno grande.
-- **Interactividad sugerida:** botón “reordenar” que anime las piezas desde la figura original hasta el rectángulo final.
+- **Concepto visual:** retirar \(b^2\) de \(a^2\), partir la L en dos piezas y reordenarlas en un rectángulo \((a-b)\times(a+b)\).
+- **Elementos:** cuadrado \(a^2\); región rayada “quitar \(b^2\)”; piezas \(a(a-b)\) y \(b(a-b)\); reordenamiento sin cambiar áreas; dimensiones \(a-b\) y \(a+b\).
+- **Idea:** Partimos de un cuadrado de lado \(a\), retiramos uno de lado \(b\) y reordenamos el área restante: queda un rectángulo \((a-b)(a+b)\).
+- **Objetivo educativo:** Vas a ver de dónde salen geométricamente \(a-b\) y \(a+b\), no solo que “cambia la figura”.
+- **Interactividad sugerida:** sliders \(a\ge b\ge0\); pasos hasta dividir la L; botón “Reordenar / factorizar” que mueve las mismas piezas.
 
 ### Fórmulas relacionadas
 
@@ -712,11 +712,11 @@ a^2-b^2=(a-b)(a+b)
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `diff_sq`
-- **Concepto visual:** factorización de diferencia de cuadrados.
-- **Elementos:** misma construcción de áreas que ALG-IDN-003, pero iniciando desde \(a^2-b^2\) y terminando en los factores \((a-b)(a+b)\).
-- **Idea:** Alterna entre \(a^2-b^2\) y \((a-b)(a+b)\) y mira: representan lo mismo.
+- **Concepto visual:** factorización de diferencia de cuadrados reordenando las mismas piezas.
+- **Elementos:** misma construcción que ALG-IDN-003; énfasis en \(a(a-b)+b(a-b)=(a-b)(a+b)\).
+- **Idea:** Alterna entre la L \(a^2-b^2\) y el rectángulo \((a-b)(a+b)\): son las mismas piezas.
 - **Objetivo educativo:** Vas a ver que factorizar \(a^2-b^2\) es rearmar el área sobrante como un rectángulo.
-- **Interactividad sugerida:** permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.
+- **Interactividad sugerida:** sliders \(a\ge b\ge0\); reordenar/factorizar conservando las dos piezas.
 
 ### Fórmulas relacionadas
 

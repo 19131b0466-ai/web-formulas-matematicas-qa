@@ -44,8 +44,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Partimos de un cuadrado de área \\(a^2\\); al quitar dos franjas \\(ab\\) y corregir \\(+b^2\\) queda \\((a-b)^2\\).',
     ),
     'ALG-IDN-003': (
-        'Vas a ver que \\(a^2-b^2\\) es el área que queda al quitar un cuadrado pequeño de uno grande.',
-        'Pulsa para pasar de \\(a^2-b^2\\) al rectángulo \\((a-b)(a+b)\\) y fíjate: es la misma cantidad.',
+        'Vas a ver de dónde salen geométricamente \\(a-b\\) y \\(a+b\\), no solo que “cambia la figura”.',
+        'Partimos de un cuadrado de lado \\(a\\), retiramos uno de lado \\(b\\) y reordenamos el área restante: queda un rectángulo \\((a-b)(a+b)\\).',
     ),
     'ALG-IDN-008': (
         'Vas a ver que los coeficientes del binomio son la fila de Pascal.',
@@ -57,7 +57,7 @@ COPY_ES: dict[str, tuple[str, str]] = {
     ),
     'ALG-FAC-002': (
         'Vas a ver que factorizar \\(a^2-b^2\\) es rearmar el área sobrante como un rectángulo.',
-        'Alterna entre \\(a^2-b^2\\) y \\((a-b)(a+b)\\) y mira: representan lo mismo.',
+        'Alterna entre la L \\(a^2-b^2\\) y el rectángulo \\((a-b)(a+b)\\): son las mismas piezas.',
     ),
     'ALG-FAC-003': (
         'Vas a ver que un trinomio cuadrado perfecto se arma como un cuadrado completo.',
@@ -592,8 +592,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'We start from a square of area \\(a^2\\); removing two strips \\(ab\\) and correcting with \\(+b^2\\) leaves \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
-        "You'll see that \\(a^2-b^2\\) is the area left after removing a small square from a big one.",
-        "Tap to go from \\(a^2-b^2\\) to the rectangle \\((a-b)(a+b)\\) and notice: it's the same amount.",
+        "You'll see where \\(a-b\\) and \\(a+b\\) come from geometrically, not just that “the figure changes”.",
+        'We start from a square of side \\(a\\), remove one of side \\(b\\), and rearrange the remaining area into a rectangle \\((a-b)(a+b)\\).',
     ),
         'ALG-IDN-008': (
         "You'll see that the binomial coefficients are Pascal's row.",
@@ -605,7 +605,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-002': (
         "You'll see that factoring \\(a^2-b^2\\) is rearranging the leftover area into a rectangle.",
-        'Toggle between \\(a^2-b^2\\) and \\((a-b)(a+b)\\) and watch: they represent the same thing.',
+        'Switch between the L \\(a^2-b^2\\) and the rectangle \\((a-b)(a+b)\\): they are the same pieces.',
     ),
         'ALG-FAC-003': (
         "You'll see that a perfect-square trinomial builds into a complete square.",

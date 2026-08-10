@@ -137,10 +137,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \(a^2-b^2 = (a-b)(a+b)\). |
-| **Layout** | Toggle que **reemplaza**: L-región (\(a^2\) con hueco \(b^2\)) **o** rectángulo \((a-b)\times(a+b)\). No dual permanente al factorizar. |
-| **Interacción** | Botón expandido ↔ factorizado. |
-| **Veredicto** | **ADJUST** — restaurar reemplazo de escena (P4). |
+| **Enseña** | \(a^2-b^2=(a-b)(a+b)\): retirar \(b^2\), partir la L, reordenar las mismas piezas. |
+| **Layout** | Pasos sobre un cuadrado \(a\); franja retirada rayada; dos piezas etiquetadas; reorden a rectángulo \((a-b)\times(a+b)\). |
+| **Interacción** | Sliders \(a\ge b\ge0\); pasos + “Reordenar / factorizar”. Guía embebida. |
+| **Componente** | `DiffSquaresViz.tsx` |
+| **Veredicto** | Reordenamiento explícito de piezas (P4), no magia de figura nueva. |
 
 ### `poly_grid` (EXP-003)
 

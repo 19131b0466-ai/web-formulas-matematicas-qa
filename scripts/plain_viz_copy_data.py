@@ -48,8 +48,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Partimos de un cuadrado de área a²; al quitar dos franjas ab y corregir +b² queda (a−b)².",
     ),
     "ALG-IDN-003": (
-        "a²−b² es el área que queda al quitar un cuadrado pequeño de uno grande.",
-        "Pulsa para pasar de a²−b² al rectángulo (a−b)(a+b): es la misma cantidad.",
+        "Vas a ver de dónde salen geométricamente a−b y a+b, no solo que “cambia la figura”.",
+        "Partimos de un cuadrado de lado a, retiramos uno de lado b y reordenamos el área restante: queda un rectángulo (a−b)(a+b).",
     ),
     "ALG-IDN-008": (
         "Los coeficientes del binomio son la fila de Pascal.",
@@ -61,7 +61,7 @@ COPY_ES: dict[str, tuple[str, str]] = {
     ),
     "ALG-FAC-002": (
         "Factorizar a²−b² es rearmar el área sobrante como un rectángulo.",
-        "Alterna entre a²−b² y (a−b)(a+b) para ver que representan lo mismo.",
+        "Alterna entre la L a²−b² y el rectángulo (a−b)(a+b): son las mismas piezas.",
     ),
     "ALG-FAC-003": (
         "Un trinomio cuadrado perfecto se arma como un cuadrado completo.",
@@ -596,8 +596,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "We start from a square of area a²; removing two strips ab and correcting with +b² leaves (a−b)².",
         ),
         "ALG-IDN-003": (
-            "a²−b² is the area left after removing a small square from a large one.",
-            "Toggle from a²−b² to the rectangle (a−b)(a+b): it is the same amount.",
+            "You'll see where a−b and a+b come from geometrically, not just that “the figure changes”.",
+            "We start from a square of side a, remove one of side b, and rearrange the remaining area into a rectangle (a−b)(a+b).",
         ),
         "ALG-IDN-008": (
             "Binomial coefficients are a Pascal row.",
@@ -609,7 +609,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         ),
         "ALG-FAC-002": (
             "Factoring a²−b² rebuilds the leftover area as a rectangle.",
-            "Switch between a²−b² and (a−b)(a+b) to see they match.",
+            "Switch between the L a²−b² and the rectangle (a−b)(a+b): they are the same pieces.",
         ),
         "ALG-FAC-003": (
             "A perfect-square trinomial builds a complete square.",
