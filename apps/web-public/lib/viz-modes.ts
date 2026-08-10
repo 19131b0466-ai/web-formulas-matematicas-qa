@@ -54,7 +54,7 @@ export type GraphMode =
   | 'inverse_pair'
   | 'poly_system';
 
-export type MatrixTransformMode = 'map' | 'eigen' | 'svd' | 'low_rank' | 'inverse';
+export type MatrixTransformMode = 'map' | 'eigen' | 'svd' | 'low_rank' | 'inverse' | 'qr';
 
 export function inferAlgebraTilesMode(formulaId: string): AlgebraTilesMode {
   if (formulaId.includes('FND-001')) return 'commute';
@@ -119,7 +119,8 @@ export function inferGraphMode(formulaId: string): GraphMode {
 export function inferMatrixTransformMode(formulaId: string): MatrixTransformMode {
   if (/DEC-004/.test(formulaId)) return 'svd';
   if (/DEC-005|NOR-007/.test(formulaId)) return 'low_rank';
-  if (/EIG-|TRA-005/.test(formulaId)) return 'eigen';
+  if (/DEC-002/.test(formulaId)) return 'qr';
+  if (/EIG-|TRA-005|DEC-003/.test(formulaId)) return 'eigen';
   if (/TRA-004/.test(formulaId)) return 'inverse';
   return 'map';
 }

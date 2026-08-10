@@ -104,7 +104,8 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
   const [aug, setAug] = useState<[number, number]>([5, 4]);
   const [selRow, setSelRow] = useState(0);
   const [cell, setCell] = useState<[number, number]>([0, 0]);
-  const [errorBit, setErrorBit] = useState(-1);
+  const [msg, setMsg] = useState<[number, number]>([1, 0]);
+  const [recv, setRecv] = useState<[number, number, number]>([1, 0, 1]);
 
   const det = det2(A);
   const sum: Mat2 = [
@@ -130,11 +131,28 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
     [A[1][0] * 1 + A[1][1] * 0, A[1][0] * 0 + A[1][1] * 1],
   ];
 
-  const word = useMemo(() => {
-    const w = [1, 0, 1, 1];
-    if (errorBit >= 0 && errorBit < w.length) w[errorBit] = 1 - w[errorBit]!;
-    return w;
-  }, [errorBit]);
+  // Toy binary [3,2] code: G 2×3, H 2×3 over F₂
+  const G: [[number, number, number], [number, number, number]] = [
+    [1, 0, 1],
+    [0, 1, 1],
+  ];
+  const H: [[number, number, number], [number, number, number]] = [
+    [1, 1, 0],
+    [1, 0, 1],
+  ];
+  const encodeCode = useMemo(() => {
+    const c0 = (msg[0]! * G[0]![0]! + msg[1]! * G[1]![0]!) % 2;
+    const c1 = (msg[0]! * G[0]![1]! + msg[1]! * G[1]![1]!) % 2;
+    const c2 = (msg[0]! * G[0]![2]! + msg[1]! * G[1]![2]!) % 2;
+    return [c0, c1, c2] as [number, number, number];
+  }, [msg]);
+  const syndrome = useMemo(() => {
+    const s0 = (H[0]![0]! * recv[0]! + H[0]![1]! * recv[1]! + H[0]![2]! * recv[2]!) % 2;
+    const s1 = (H[1]![0]! * recv[0]! + H[1]![1]! * recv[1]! + H[1]![2]! * recv[2]!) % 2;
+    return [s0, s1] as [number, number];
+  }, [recv]);
+  const isEncode = _id.includes('COD-002');
+  const isParity = _id.includes('COD-003') || (_id.includes('COD-') && !isEncode);
 
   const swapRows = () => {
     setA([A[1], A[0]]);
@@ -197,25 +215,25 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
 
   const caption = useMemo(() => {
     if (mode === 'rank_compare') {
-      const classStr = rcClass === 'unique' ? '1 solución' : rcClass === 'infinite' ? '∞ soluciones' : '∅ sin solución';
-      return joinCaption(
-        `rg(A)=${rA}`,
-        `rg([A|b])=${rAug}`,
-        classStr,
-      );
+      const classStr =
+        rcClass === 'unique' ? v.oneSolution : rcClass === 'infinite' ? v.infSolutions : v.noSolution;
+      return joinCaption(`rg(A)=${rA}`, `rg([A|b])=${rAug}`, classStr);
     }
-    if (mode === 'transpose') return joinCaption(`A=Aᵀ: ${isSymmetric ? 'sí' : 'no'}`, `det=${fmt(det)}`);
+    if (mode === 'transpose')
+      return joinCaption(`A=Aᵀ: ${isSymmetric ? v.symmetricYes : v.symmetricNo}`, `det=${fmt(det)}`);
     if (mode === 'identity') return joinCaption('AI = A', `det(A)=${fmt(det)}`);
+    if (mode === 'code') {
+      if (isEncode) return joinCaption(`c=[${encodeCode.join(',')}]`, 'mod 2');
+      const ok = syndrome[0] === 0 && syndrome[1] === 0;
+      return joinCaption(`s=[${syndrome.join(',')}]`, ok ? v.validCodeword : v.invalidCodeword);
+    }
     if (mode === 'basic' || mode === 'row_ops' || mode === 'augmented_map')
       return joinCaption(`det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`);
     return undefined;
-  }, [mode, rA, rAug, rcClass, isSymmetric, det]);
+  }, [mode, rA, rAug, rcClass, isSymmetric, det, v, isEncode, encodeCode, syndrome]);
 
   // Only show result panel when it carries new information
-  const showResultPanel =
-    (showT || showScale || showProd || showSum || showIdentity) ||
-    (mode === 'basic' && false) || // basic: just show A is enough
-    mode === 'code';
+  const showResultPanel = showT || showScale || showProd || showSum || showIdentity;
 
   return (
     <VizPanel caption={caption}>
@@ -269,7 +287,7 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
               <MatrixGrid m={A} setM={setA} />
             </div>
           </>
-        ) : (
+        ) : showCode ? null : (
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
             <MatrixGrid
@@ -313,14 +331,15 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
         ) : null}
       </div>
 
-      {/* Transpose badge */}
       {showT ? (
         <p className="mt-2 font-mono text-sm">
-          A = Aᵀ: <span className={isSymmetric ? 'text-[var(--accent-strong)]' : 'opacity-60'}>{isSymmetric ? '✓ simétrica' : '✗ no simétrica'}</span>
+          A = Aᵀ:{' '}
+          <span className={isSymmetric ? 'text-[var(--accent-strong)]' : 'opacity-60'}>
+            {isSymmetric ? `✓ ${v.symmetricYes}` : `✗ ${v.symmetricNo}`}
+          </span>
         </p>
       ) : null}
 
-      {/* Identity result badge */}
       {showIdentity ? (
         <p className="mt-2 font-mono text-sm text-[var(--accent-strong)]">AI = A ✓</p>
       ) : null}
@@ -360,24 +379,95 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
 
       {mode === 'rank_compare' ? (
         <div className="mt-3 space-y-1 font-mono text-sm">
-          <p>rg(A) = {rA} &nbsp; rg([A|b]) = {rAug}</p>
-          <p className={rcClass === 'unique' ? 'text-[var(--accent-strong)]' : rcClass === 'infinite' ? 'text-teal-500' : 'text-red-500'}>
-            {rcClass === 'unique' ? '→ solución única (rg = n = 2)' : rcClass === 'infinite' ? '→ ∞ soluciones (rg(A) = rg([A|b]) < n)' : '→ sin solución (rg(A) < rg([A|b]))'}
+          <p>
+            rg(A) = {rA} · rg([A|b]) = {rAug}
+          </p>
+          <p
+            className={
+              rcClass === 'unique'
+                ? 'text-[var(--accent-strong)]'
+                : rcClass === 'infinite'
+                  ? 'text-teal-600'
+                  : 'text-orange-600'
+            }
+          >
+            → {rcClass === 'unique' ? v.oneSolution : rcClass === 'infinite' ? v.infSolutions : v.noSolution}
           </p>
         </div>
       ) : null}
 
-      {showCode ? (
-        <div className="mt-3 text-sm">
+      {showCode && isEncode ? (
+        <div className="mt-3 space-y-3 text-sm">
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">G (2×3) sobre 𝔽₂</p>
+            <div className="inline-grid grid-cols-3 gap-1 rounded border border-[var(--border)] p-2 font-mono">
+              {G.flat().map((bit, i) => (
+                <span key={i} className="w-8 text-center">
+                  {bit}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">{v.encodeMsg}</p>
+            <ButtonRow>
+              {([0, 1] as const).map((i) => (
+                <VizButton
+                  key={i}
+                  active={msg[i] === 1}
+                  onClick={() => {
+                    const next: [number, number] = [...msg] as [number, number];
+                    next[i] = 1 - next[i]!;
+                    setMsg(next);
+                  }}
+                >
+                  m{i}={msg[i]}
+                </VizButton>
+              ))}
+            </ButtonRow>
+          </div>
+          <p className="font-mono text-[var(--accent-strong)]">
+            {v.codeword} = [{encodeCode.join(', ')}]
+          </p>
+        </div>
+      ) : null}
+
+      {showCode && isParity ? (
+        <div className="mt-3 space-y-3 text-sm">
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">H (2×3) sobre 𝔽₂</p>
+            <div className="inline-grid grid-cols-3 gap-1 rounded border border-[var(--border)] p-2 font-mono">
+              {H.flat().map((bit, i) => (
+                <span key={i} className="w-8 text-center">
+                  {bit}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">r (recibida)</p>
+            <ButtonRow>
+              {([0, 1, 2] as const).map((i) => (
+                <VizButton
+                  key={i}
+                  active={recv[i] === 1}
+                  onClick={() => {
+                    const next: [number, number, number] = [...recv] as [number, number, number];
+                    next[i] = 1 - next[i]!;
+                    setRecv(next);
+                  }}
+                >
+                  r{i}={recv[i]}
+                </VizButton>
+              ))}
+            </ButtonRow>
+          </div>
           <p className="font-mono">
-            c = [{word.join(', ')}] · {v.clickBitError}
+            {v.syndrome} = [{syndrome.join(', ')}] ·{' '}
+            {syndrome[0] === 0 && syndrome[1] === 0 ? v.validCodeword : v.invalidCodeword}
           </p>
           <ButtonRow>
-            {word.map((bit, bi) => (
-              <VizButton key={bi} active={errorBit === bi} onClick={() => setErrorBit(errorBit === bi ? -1 : bi)}>
-                c{bi}={bit}
-              </VizButton>
-            ))}
+            <VizButton onClick={() => setRecv(encodeCode)}>usar c = mG</VizButton>
           </ButtonRow>
         </div>
       ) : null}

@@ -17,6 +17,8 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   const [m, setM] = useState(1.2);
   const [m2, setM2] = useState(-0.5);
   const [b2, setB2] = useState(2);
+  const [a2, setA2] = useState(-0.4);
+  const [c2, setC2] = useState(1.5);
   const [r, setR] = useState(0.6);
   const [base, setBase] = useState(2);
   const [terms, setTerms] = useState(12);
@@ -48,19 +50,23 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     return -b / safeM;
   }, [mode, b, safeM]);
 
-  // poly_system: intersections of y=ax²+bx+c and y=m2*x+b2
-  // → ax²+(b-m2)x+(c-b2) = 0
+  // poly_system: intersections of y=a x²+b x+c and y=a₂ x²+b₂ x+c₂
+  // → (a-a₂)x² + (b-b₂)x + (c-c₂) = 0
   const polySystemRoots = useMemo(() => {
     if (mode !== 'poly_system') return [] as number[];
-    const A = a;
-    const B = b - m2;
-    const C = c - b2;
-    if (Math.abs(A) < 1e-9) return [];
+    const A = a - a2;
+    const B = b - b2;
+    const C = c - c2;
+    if (Math.abs(A) < 1e-9) {
+      if (Math.abs(B) < 1e-9) return [];
+      return [-C / B];
+    }
     const D = B * B - 4 * A * C;
     if (D < 0) return [];
+    if (D === 0) return [-B / (2 * A)];
     const sq = Math.sqrt(D);
     return [(-B - sq) / (2 * A), (-B + sq) / (2 * A)];
-  }, [mode, a, b, c, m2, b2]);
+  }, [mode, a, b, c, a2, b2, c2]);
 
   const path = useMemo(() => {
     const xs = linspace(-7, 7, 160);
@@ -159,14 +165,14 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     let ys: number[];
     if (mode === 'inverse_pair') ys = xs.map((x) => base ** x);
     else if (isFun006) ys = xs.map((x) => m2 * x + c);
-    else if (mode === 'poly_system') ys = xs.map((x) => m2 * x + b2);
+    else if (mode === 'poly_system') ys = xs.map((x) => a2 * x * x + b2 * x + c2);
     else ys = xs.map((x) => m2 * x + b2);
     const pts = xs
       .map((x, i) => ({ x, y: ys[i]! }))
       .filter((p) => Number.isFinite(p.y) && Math.abs(p.y) < 10)
       .map((p) => to(p.x, p.y));
     return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
-  }, [mode, formulaId, base, m, safeM, c, m2, b2, isFun006]);
+  }, [mode, formulaId, base, m, safeM, c, m2, b2, a2, c2, isFun006]);
 
   const intersection = useMemo(() => {
     if (mode !== 'system') return null;
@@ -294,7 +300,14 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
       </svg>
       <ControlsStack>
         {mode === 'quadratic' || mode === 'inequality' || mode === 'poly_system' || /LOG-007/.test(formulaId) ? (
-          <SliderRow label="a" value={a} min={-3} max={3} step={0.1} onChange={(val) => setA(val === 0 ? 0.1 : val)} />
+          <SliderRow
+            label={mode === 'poly_system' ? 'a₁' : 'a'}
+            value={a}
+            min={-3}
+            max={3}
+            step={0.1}
+            onChange={(val) => setA(val === 0 ? 0.1 : val)}
+          />
         ) : null}
         {mode === 'line' || mode === 'system' || /FUN-006|SEC-001|SEC-007/.test(formulaId) ? (
           <SliderRow
@@ -314,7 +327,9 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
                 ? 'r'
                 : mode === 'system'
                   ? 'b₁'
-                  : 'b'
+                  : mode === 'poly_system'
+                    ? 'b₁'
+                    : 'b'
           }
           value={/SEC-003|SEC-005/.test(formulaId) ? r : b}
           min={-3}
@@ -330,18 +345,22 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
         ) : null}
         {mode === 'poly_system' ? (
           <>
-            <SliderRow label="m₂" value={m2} min={-4} max={4} step={0.1} onChange={setM2} />
-            <SliderRow label="b₂" value={b2} min={-5} max={5} step={0.1} onChange={setB2} />
+            <SliderRow label="a₂" value={a2} min={-3} max={3} step={0.1} onChange={(val) => setA2(val === 0 ? 0.1 : val)} />
+            <SliderRow label="b₂" value={b2} min={-4} max={4} step={0.1} onChange={setB2} />
+            <SliderRow label="c₂" value={c2} min={-5} max={5} step={0.1} onChange={setC2} />
           </>
         ) : null}
         {mode === 'quadratic' || mode === 'inequality' || mode === 'poly_system' || /FUN-006|SEC-007/.test(formulaId) ? (
-          <SliderRow label="c" value={c} min={-5} max={5} step={0.1} onChange={setC} />
+          <SliderRow label={mode === 'poly_system' ? 'c₁' : 'c'} value={c} min={-5} max={5} step={0.1} onChange={setC} />
+        ) : null}
+        {mode === 'poly_system' ? (
+          <p className="text-xs text-[var(--fg-muted)]">P: a₁x²+b₁x+c₁ · Q: a₂x²+b₂x+c₂</p>
         ) : null}
         {isFun006 ? (
           <>
             <SliderRow label="m₂" value={m2} min={-4} max={4} step={0.1} onChange={setM2} />
             <ButtonRow>
-              <VizButton onClick={() => setM2(Math.round(perpSlope * 100) / 100)}>make ⊥</VizButton>
+              <VizButton onClick={() => setM2(Math.round(perpSlope * 100) / 100)}>{v.makePerp}</VizButton>
             </ButtonRow>
           </>
         ) : null}

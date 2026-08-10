@@ -73,6 +73,22 @@ type VizLabels = {
   degreeUnits: string;
   powerMerge: string;
   sameArea: string;
+  oneSolution: string;
+  infSolutions: string;
+  noSolution: string;
+  symmetricYes: string;
+  symmetricNo: string;
+  singularNoInv: string;
+  rank1Demo: string;
+  rankFull: string;
+  encodeMsg: string;
+  codeword: string;
+  syndrome: string;
+  validCodeword: string;
+  invalidCodeword: string;
+  qrStep: string;
+  svdUnit: string;
+  makePerp: string;
 };
 
 const LABELS: Record<AppLocale, VizLabels> = {
@@ -146,6 +162,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'unidades de grado',
     powerMerge: 'Abajo se juntan los bloques: los exponentes se suman.',
     sameArea: 'misma área',
+    oneSolution: '1 solución',
+    infSolutions: '∞ soluciones',
+    noSolution: '∅ sin solución',
+    symmetricYes: 'sí simétrica',
+    symmetricNo: 'no simétrica',
+    singularNoInv: 'A es singular (det = 0), no tiene inversa',
+    rank1Demo: 'aprox. rango 1 (σ₂≈0)',
+    rankFull: 'rango completo',
+    encodeMsg: 'mensaje m',
+    codeword: 'palabra c = mG',
+    syndrome: 'síndrome s = Hcᵀ',
+    validCodeword: 'palabra válida (s=0)',
+    invalidCodeword: 'error detectado (s≠0)',
+    qrStep: 'Paso QR',
+    svdUnit: 'círculo unidad',
+    makePerp: 'hacer ⊥',
   },
   en: {
     swap: 'Swap',
@@ -217,6 +249,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'degree units',
     powerMerge: 'Below, the blocks join: the exponents add.',
     sameArea: 'same area',
+    oneSolution: '1 solution',
+    infSolutions: '∞ solutions',
+    noSolution: '∅ no solution',
+    symmetricYes: 'symmetric yes',
+    symmetricNo: 'not symmetric',
+    singularNoInv: 'A is singular (det = 0), no inverse',
+    rank1Demo: 'rank-1 approx (σ₂≈0)',
+    rankFull: 'full rank',
+    encodeMsg: 'message m',
+    codeword: 'codeword c = mG',
+    syndrome: 'syndrome s = Hcᵀ',
+    validCodeword: 'valid codeword (s=0)',
+    invalidCodeword: 'error detected (s≠0)',
+    qrStep: 'QR step',
+    svdUnit: 'unit circle',
+    makePerp: 'make ⊥',
   },
   de: {
     swap: 'Tauschen',
@@ -288,6 +336,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'Gradeinheiten',
     powerMerge: 'Unten verbinden sich die Blöcke: die Exponenten addieren sich.',
     sameArea: 'gleiche Fläche',
+    oneSolution: '1 Lösung',
+    infSolutions: '∞ Lösungen',
+    noSolution: '∅ keine Lösung',
+    symmetricYes: 'symmetrisch ja',
+    symmetricNo: 'nicht symmetrisch',
+    singularNoInv: 'A ist singulär (det = 0), keine Inverse',
+    rank1Demo: 'Rang-1-Näherung (σ₂≈0)',
+    rankFull: 'voller Rang',
+    encodeMsg: 'Nachricht m',
+    codeword: 'Codewort c = mG',
+    syndrome: 'Syndrom s = Hcᵀ',
+    validCodeword: 'gültiges Codewort (s=0)',
+    invalidCodeword: 'Fehler erkannt (s≠0)',
+    qrStep: 'QR-Schritt',
+    svdUnit: 'Einheitskreis',
+    makePerp: '⊥ machen',
   },
   fr: {
     swap: 'Échanger',
@@ -359,6 +423,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'unités de degré',
     powerMerge: 'En bas, les blocs se rejoignent : les exposants s’additionnent.',
     sameArea: 'même aire',
+    oneSolution: '1 solution',
+    infSolutions: '∞ solutions',
+    noSolution: '∅ pas de solution',
+    symmetricYes: 'symétrique oui',
+    symmetricNo: 'pas symétrique',
+    singularNoInv: 'A est singulière (det = 0), pas d’inverse',
+    rank1Demo: 'approx. rang 1 (σ₂≈0)',
+    rankFull: 'rang plein',
+    encodeMsg: 'message m',
+    codeword: 'mot de code c = mG',
+    syndrome: 'syndrome s = Hcᵀ',
+    validCodeword: 'mot valide (s=0)',
+    invalidCodeword: 'erreur détectée (s≠0)',
+    qrStep: 'Étape QR',
+    svdUnit: 'cercle unité',
+    makePerp: 'rendre ⊥',
   },
   it: {
     swap: 'Scambia',
@@ -430,6 +510,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'unità di grado',
     powerMerge: 'Sotto i blocchi si uniscono: gli esponenti si sommano.',
     sameArea: 'stessa area',
+    oneSolution: '1 soluzione',
+    infSolutions: '∞ soluzioni',
+    noSolution: '∅ nessuna soluzione',
+    symmetricYes: 'simmetrica sì',
+    symmetricNo: 'non simmetrica',
+    singularNoInv: 'A è singolare (det = 0), nessuna inversa',
+    rank1Demo: 'approx. rango 1 (σ₂≈0)',
+    rankFull: 'rango pieno',
+    encodeMsg: 'messaggio m',
+    codeword: 'parola c = mG',
+    syndrome: 'sindrome s = Hcᵀ',
+    validCodeword: 'parola valida (s=0)',
+    invalidCodeword: 'errore rilevato (s≠0)',
+    qrStep: 'Passo QR',
+    svdUnit: 'cerchio unitario',
+    makePerp: 'rendi ⊥',
   },
   pt: {
     swap: 'Trocar',
@@ -501,6 +597,22 @@ const LABELS: Record<AppLocale, VizLabels> = {
     degreeUnits: 'unidades de grau',
     powerMerge: 'Em baixo os blocos juntam-se: os expoentes somam-se.',
     sameArea: 'mesma área',
+    oneSolution: '1 solução',
+    infSolutions: '∞ soluções',
+    noSolution: '∅ sem solução',
+    symmetricYes: 'simétrica sim',
+    symmetricNo: 'não simétrica',
+    singularNoInv: 'A é singular (det = 0), sem inversa',
+    rank1Demo: 'aprox. posto 1 (σ₂≈0)',
+    rankFull: 'posto completo',
+    encodeMsg: 'mensagem m',
+    codeword: 'palavra c = mG',
+    syndrome: 'síndrome s = Hcᵀ',
+    validCodeword: 'palavra válida (s=0)',
+    invalidCodeword: 'erro detectado (s≠0)',
+    qrStep: 'Passo QR',
+    svdUnit: 'círculo unitário',
+    makePerp: 'fazer ⊥',
   },
 };
 

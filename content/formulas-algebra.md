@@ -1759,9 +1759,9 @@ P_m(x_1,\ldots,x_n)=0.
 - **Modo:** `poly_system`
 - **Concepto visual:** soluciones como intersecciones de conjuntos definidos por polinomios.
 - **Elementos:** dos curvas implícitas en el plano, por ejemplo \(P(x,y)=0\) y \(Q(x,y)=0\), con sus puntos de intersección resaltados.
-- **Idea:** Mueve los coeficientes de la parábola y de la recta: las marcas naranjas son las intersecciones.
-- **Objetivo educativo:** Vas a ver dónde se cortan dos curvas: esas \(x\) resuelven el sistema \(P=Q\).
-- **Interactividad sugerida:** permitir elegir pares de polinomios sencillos y mostrar cómo cambia el número de intersecciones reales.
+- **Idea:** Mueve los coeficientes de las dos parábolas \(P\) y \(Q\): las marcas naranjas son las intersecciones.
+- **Objetivo educativo:** Vas a ver dónde se cortan dos curvas: esas \(x\) resuelven \(P(x)=Q(x)\).
+- **Interactividad sugerida:** variar ambos polinomios cuadráticos y ver cómo cambia el número de intersecciones reales.
 
 ### Fórmulas relacionadas
 - `ALG-SIS-001`
@@ -3647,10 +3647,11 @@ A=QR
 ### Visualización sugerida
 
 - **Tipo:** `matrix_transform`
+- **Modo:** `qr`
 - **Concepto visual:** QR como base ortonormal más coordenadas triangulares.
 - **Elementos:** columnas de \(A\), proceso que genera columnas ortonormales de \(Q\) y matriz triangular \(R\).
-- **Idea:** Observa la malla de \(A\) como composición de una parte ortogonal y otra triangular.
-- **Objetivo educativo:** Vas a ver que QR escribe \(A\) como rotación/ortogonal por triangular.
+- **Idea:** Avanza el **Paso QR**: primero ves las columnas de \(A\), luego \(q_1\), y al final \(Q\) y \(R\) con \(A\approx QR\).
+- **Objetivo educativo:** Vas a ver que QR escribe \(A\) como ortogonal por triangular.
 - **Interactividad sugerida:** recorrer columnas una a una mostrando proyecciones, normalización y entradas de \(R\).
 
 ### Complejidad computacional
@@ -4607,9 +4608,10 @@ Un mensaje \(\mathbf m\in\mathbb F_q^k\) se codifica mediante
 
 ### Visualización sugerida
 - **Tipo:** `matrix`
+- **Modo:** `code`
 - **Concepto visual:** codificación como producto vector-matriz en un cuerpo finito.
-- **Elementos:** vector mensaje \(\mathbf m\), matriz \(G\), operaciones módulo \(q\) y palabra resultante \(\mathbf c\).
-- **Idea:** Edita bits/entradas y piensa cada fila de \(G\) como un patrón base del código.
+- **Elementos:** vector mensaje \(\mathbf m\), matriz \(G\), operaciones módulo \(2\) y palabra resultante \(\mathbf c=\mathbf mG\).
+- **Idea:** Cambia los bits de \(\mathbf m\) y mira cómo se recalcula \(\mathbf c=\mathbf mG\) en \(\mathbb F_2\).
 - **Objetivo educativo:** Vas a ver que la matriz generadora \(G\) fabrica palabras de código a partir de mensajes.
 - **Interactividad sugerida:** editar un mensaje binario corto y recalcular la palabra código paso a paso.
 
@@ -4657,11 +4659,12 @@ GH^T=0.
 
 ### Visualización sugerida
 - **Tipo:** `matrix`
+- **Modo:** `code`
 - **Concepto visual:** una palabra válida produce un vector de comprobación nulo.
-- **Elementos:** palabra \(\mathbf c\), matriz \(H\), producto matricial y vector cero final; incluir un segundo ejemplo con una palabra alterada.
-- **Idea:** Invierte un bit y relaciona el fallo con un síndrome no nulo (en COD-004).
+- **Elementos:** palabra recibida \(\mathbf r\), matriz \(H\), síndrome \(\mathbf s=H\mathbf r^T\) en \(\mathbb F_2\).
+- **Idea:** Cambia bits de \(\mathbf r\) (o carga un \(c=mG\)) y mira si el síndrome es \(\mathbf 0\).
 - **Objetivo educativo:** Vas a ver que \(H\) comprueba paridad: las palabras válidas cumplen \(Hc=0\).
-- **Interactividad sugerida:** permitir activar/desactivar un error en una posición y observar el producto \(H\mathbf c^T\).
+- **Interactividad sugerida:** permitir activar/desactivar un error en una posición y observar el producto \(H\mathbf r^T\).
 
 ### Fórmulas relacionadas
 - `ALG-COD-001`
