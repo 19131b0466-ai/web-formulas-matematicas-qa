@@ -1291,7 +1291,6 @@
   "diagrama de flujo \\(x\\to g(x)\\to f(g(x))\\) y, opcionalmente, gráficas de \\(g\\) y \\(f\\).": "Organigramme\\(x\\to g(x)\\to f(g(x))\\)et, éventuellement, graphiques de\\(g\\)et\\(f\\).",
   "direcciones que una matriz conserva.": "adresses qu’un tableau préserve.",
   "distancia como número de símbolos distintos.": "distance en nombre de symboles distincts.",
-  "distancia entre dos puntos reales.": "distance entre deux points réels.",
   "distancia entre vectores como norma de su diferencia.": "distance entre les vecteurs comme norme de leur différence.",
   "distinguir grado respecto de una variable y grado total.": "distinguer le degré par rapport à un degré variable et total.",
   "distribución completa en el producto de polinomios.": "distribution complète dans le produit de polynômes.",
@@ -1461,7 +1460,6 @@
   "permitir activar/desactivar un error en una posición y observar el producto \\(H\\mathbf c^T\\).": "permettre d'activer/désactiver une erreur dans une position et d'observer le produit\\(H\\mathbf c^T\\).",
   "permitir activar/desactivar una identidad y resaltar las columnas que se comparan.": "permettre d'activer/désactiver une identité et de mettre en évidence les colonnes comparées.",
   "permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.": "permettre d'alterner entre « forme développée » et « forme factorisée » avec le même chiffre.",
-  "permitir arrastrar ambos puntos y actualizar distancia, diferencia \\(a-b\\) y valor absoluto.": "permettre de faire glisser les deux points et de mettre à jour la distance, la différence\\(a-b\\)et la valeur absolue.",
   "permitir cambiar \\(a,b\\) y el operador \\(<,\\le,>,\\ge\\); actualizar extremo y sombreado.": "permettre de changer\\(a,b\\)et l'opérateur\\(<,\\le,>,\\ge\\); mettre à jour l'extrême et l'ombrage.",
   "permitir editar entradas y observar cuándo cambia la columna dominante.": "vous permettent de modifier les entrées et d'observer quand la colonne dominante change.",
   "permitir editar exponentes enteros no negativos y recalcular el multiíndice y el grado total.": "permettre d'éditer des exposants entiers non négatifs et de recalculer le multi-index et le degré total.",
@@ -1498,7 +1496,6 @@
   "recta numérica con centro 0, fronteras \\(-a\\) y \\(a\\), y regiones interiores/exteriores sombreadas.": "droite numérique avec le centre 0, les limites\\(-a\\)et\\(a\\)et les régions intérieures/extérieures ombrées.",
   "recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \\(+/-\\).": "droite numérique avec des zéros au numérateur, des zéros interdits au dénominateur, des intervalles et des signes\\(+/-\\).",
   "recta numérica con el origen, puntos \\(-a\\) y \\(a\\) y dos segmentos de longitud \\(a\\).": "droite numérique avec l'origine, les points\\(-a\\)et\\(a\\)et deux segments de longueur\\(a\\).",
-  "recta numérica con puntos móviles \\(a\\) y \\(b\\), segmento resaltado entre ambos y valor \\(|a-b|\\).": "droite numérique avec points mobiles\\(a\\)et\\(b\\), segment en surbrillance entre eux et valeur\\(|a-b|\\).",
   "recta numérica, punto frontera \\(-b/a\\), extremo abierto o cerrado según el operador y semirrecta sombreada.": "droite numérique, point frontière\\(-b/a\\), extrémité ouverte ou fermée selon l'opérateur et le rayon ombré.",
   "región \\(x^2\\), dos rectángulos de dimensiones \\(x\\) y \\(b/2\\), y un pequeño cuadrado \\((b/2)^2\\).": "région\\(x^2\\), deux rectangles de dimensions\\(x\\)et\\(b/2\\), et un petit carré\\((b/2)^2\\).",
   "regla de Cramer como reemplazo de columnas.": "Règle de Cramer en remplacement des colonnes.",
@@ -1658,7 +1655,6 @@
   "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \\(ab\\) y \\(ac\\) separados.": "Bouge \\(a\\), \\(b\\) et \\(c\\) et compare les deux cadres : à gauche un seul rectangle ; à droite \\(ab\\) et \\(ac\\) séparés.",
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Tu vas voir que \\(|x|\\) est la distance à zéro : elle ne descend jamais sous zéro.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Tu vas voir que la distance entre deux points est la longueur du segment qui les joint : \\(|a-b|\\).",
-  "Mueve \\(a\\) y \\(b\\) y mira la longitud entre ambos: esa medida es \\(|a-b|\\).": "Bouge \\(a\\) et \\(b\\) et regarde la longueur entre eux : cette mesure est \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Tu vas voir qu’en multipliant des puissances de même base, les exposants s’ajoutent : \\(a^n a^m = a^{n+m}\\).",
   "Cambia \\(n\\) y \\(m\\) y fíjate cómo los bloques de \\(a^n\\) y \\(a^m\\) se juntan en \\(a^{n+m}\\).": "Change \\(n\\) et \\(m\\) et regarde comment les blocs de \\(a^n\\) et \\(a^m\\) se réunissent en \\(a^{n+m}\\).",
   "Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.": "Tu vas voir que chaque case du produit est un terme ; ensuite tu regroupes les semblables.",
@@ -1930,5 +1926,9 @@
   "valor absoluto como distancia entre \\(x\\) y \\(0\\) en la recta numérica.": "valeur absolue comme distance entre \\(x\\) et \\(0\\) sur la droite numérique.",
   "recta con \\(0\\) destacado, punto \\(x\\), segmento solo entre \\(x\\) y \\(0\\), regla a trozos activa y resumen \\(x\\), distancia, \\(|x|\\).": "droite avec \\(0\\) mis en évidence, point \\(x\\), segment seulement entre \\(x\\) et \\(0\\), règle par morceaux active et résumé de \\(x\\), distance et \\(|x|\\).",
   "Mueve \\(x\\) y observa la distancia al cero: nunca es negativa, y la definición a trozos sale de esa geometría.": "Déplace \\(x\\) et observe la distance à zéro : elle n’est jamais négative, et la définition par morceaux découle de cette géométrie.",
-  "slider para \\(x\\in[-5,5]\\); opcionalmente un reflejo etiquetado \\(-x\\), nunca como distancia.": "curseur pour \\(x\\in[-5,5]\\) ; éventuellement un reflet étiqueté \\(-x\\), jamais comme distance."
+  "slider para \\(x\\in[-5,5]\\); opcionalmente un reflejo etiquetado \\(-x\\), nunca como distancia.": "curseur pour \\(x\\in[-5,5]\\) ; éventuellement un reflet étiqueté \\(-x\\), jamais comme distance.",
+  "distancia entre \\(a\\) y \\(b\\) como longitud del segmento en la recta.": "distance entre \\(a\\) et \\(b\\) comme longueur du segment sur la droite.",
+  "puntos \\(a\\) y \\(b\\) distinguibles, segmento solo entre ambos, indicador \\(d(a,b)\\), desarrollo \\(|a-b|\\) y nota \\(d(a,b)=d(b,a)\\).": "points \\(a\\) et \\(b\\) distincts, segment seulement entre eux, indicateur \\(d(a,b)\\), développement \\(|a-b|\\) et note \\(d(a,b)=d(b,a)\\).",
+  "Mueve \\(a\\) y \\(b\\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.": "Bouge \\(a\\) et \\(b\\). La distance dépend de leur écart, pas de qui apparaît en premier.",
+  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "curseurs indépendants pour \\(a\\) et \\(b\\) ; mettre à jour segment, formule substituée et résultat en temps réel."
 }

@@ -250,11 +250,11 @@ d(a,b)=|a-b|
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** distancia entre dos puntos reales.
-- **Elementos:** recta numérica con puntos móviles \(a\) y \(b\), segmento resaltado entre ambos y valor \(|a-b|\).
-- **Idea:** Mueve \(a\) y \(b\) y mira la longitud entre ambos: esa medida es \(|a-b|\).
+- **Concepto visual:** distancia entre \(a\) y \(b\) como longitud del segmento en la recta.
+- **Elementos:** puntos \(a\) y \(b\) distinguibles, segmento solo entre ambos, indicador \(d(a,b)\), desarrollo \(|a-b|\) y nota \(d(a,b)=d(b,a)\).
+- **Idea:** Mueve \(a\) y \(b\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.
 - **Objetivo educativo:** Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \(|a-b|\).
-- **Interactividad sugerida:** permitir arrastrar ambos puntos y actualizar distancia, diferencia \(a-b\) y valor absoluto.
+- **Interactividad sugerida:** sliders independientes para \(a\) y \(b\); actualizar segmento, fórmula sustituida y resultado en tiempo real.
 
 ### Fórmulas relacionadas
 

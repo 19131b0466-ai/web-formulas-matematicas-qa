@@ -3,15 +3,18 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import { AbsoluteValueViz } from './AbsoluteValueViz';
+import { DistanceNumberLineViz } from './DistanceNumberLineViz';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { clamp } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function NumberLineViz({ formulaId }: Props) {
-  // FND-006 has a dedicated pedagogical component.
   if (formulaId.includes('FND-006')) {
     return <AbsoluteValueViz />;
+  }
+  if (formulaId.includes('FND-007')) {
+    return <DistanceNumberLineViz />;
   }
 
   return <NumberLineShared formulaId={formulaId} />;
@@ -27,7 +30,6 @@ function NumberLineShared({ formulaId }: Props) {
 
   const W = 520;
   const absEqMode = formulaId.includes('EQU-008');
-  const distMode = formulaId.includes('FND-007');
   const ineq1Mode = formulaId.includes('INE-001');
   const ineq4Mode = formulaId.includes('INE-004');
   const ineqMode = formulaId.includes('INE');
@@ -142,25 +144,6 @@ function NumberLineShared({ formulaId }: Props) {
           </>
         ) : null}
 
-        {distMode ? (
-          <>
-            <circle cx={toX(coefA)} cy={axisY} r={7} fill="var(--accent-strong)" />
-            <circle cx={toX(coefB)} cy={axisY} r={7} fill="teal" />
-            <line
-              x1={toX(coefA)}
-              y1={axisY}
-              x2={toX(coefB)}
-              y2={axisY}
-              stroke="currentColor"
-              strokeWidth={3}
-              opacity={0.7}
-            />
-            <text x={W / 2} y={18} textAnchor="middle" fontSize={12} fill="currentColor">
-              d={fmt(Math.abs(coefA - coefB))}
-            </text>
-          </>
-        ) : null}
-
         {ineq1Mode ? (
           <circle
             cx={toX(clamp(boundary1, -5, 5))}
@@ -197,13 +180,6 @@ function NumberLineShared({ formulaId }: Props) {
       <ControlsStack>
         {absEqMode ? (
           <SliderRow label="a" value={sliderA} min={0} max={5} step={0.1} onChange={(val) => setSliderA(clamp(val, 0, 5))} />
-        ) : null}
-
-        {distMode ? (
-          <>
-            <SliderRow label="a" value={coefA} min={-5} max={5} step={0.1} onChange={setCoefA} />
-            <SliderRow label="b" value={coefB} min={-5} max={5} step={0.1} onChange={setCoefB} />
-          </>
         ) : null}
 
         {ineq1Mode ? (

@@ -30,6 +30,7 @@ export function VizPanel({
 
 export function SliderRow({
   label,
+  ariaLabel,
   value,
   min,
   max,
@@ -37,6 +38,7 @@ export function SliderRow({
   onChange,
 }: {
   label: string;
+  ariaLabel?: string;
   value: number;
   min: number;
   max: number;
@@ -52,6 +54,7 @@ export function SliderRow({
         max={max}
         step={step}
         value={value}
+        aria-label={ariaLabel ?? label}
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-2 w-full accent-[var(--accent-strong)]"
       />

@@ -1292,7 +1292,6 @@
   "diagrama de flujo \\(x\\to g(x)\\to f(g(x))\\) y, opcionalmente, gráficas de \\(g\\) y \\(f\\).": "flow diagram \\(x\\to g(x)\\to f(g(x))\\) and, optionally, graphs of \\(g\\) and \\(f\\).",
   "direcciones que una matriz conserva.": "directions preserved by a matrix.",
   "distancia como número de símbolos distintos.": "distance as the number of differing symbols.",
-  "distancia entre dos puntos reales.": "distance between two real points.",
   "distancia entre vectores como norma de su diferencia.": "distance between vectors as the norm of their difference.",
   "distinguir grado respecto de una variable y grado total.": "distinguish degree with respect to one variable from total degree.",
   "distribución completa en el producto de polinomios.": "full distribution in the product of polynomials.",
@@ -1462,7 +1461,6 @@
   "permitir activar/desactivar un error en una posición y observar el producto \\(H\\mathbf c^T\\).": "allow toggling an error on/off at a position and observe the product \\(H\\mathbf c^T\\).",
   "permitir activar/desactivar una identidad y resaltar las columnas que se comparan.": "allow toggling an identity on/off and highlight the columns being compared.",
   "permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.": "allow toggling between “expanded form” and “factored form” with the same figure.",
-  "permitir arrastrar ambos puntos y actualizar distancia, diferencia \\(a-b\\) y valor absoluto.": "allow dragging both points and update distance, difference \\(a-b\\), and absolute value.",
   "permitir cambiar \\(a,b\\) y el operador \\(<,\\le,>,\\ge\\); actualizar extremo y sombreado.": "allow changing \\(a,b\\) and the operator \\(<,\\le,>,\\ge\\); update the endpoint and shading.",
   "permitir editar entradas y observar cuándo cambia la columna dominante.": "allow editing entries and observe when the dominant column changes.",
   "permitir editar exponentes enteros no negativos y recalcular el multiíndice y el grado total.": "allow editing nonnegative integer exponents and recompute the multi-index and total degree.",
@@ -1499,7 +1497,6 @@
   "recta numérica con centro 0, fronteras \\(-a\\) y \\(a\\), y regiones interiores/exteriores sombreadas.": "number line centered at 0, boundaries \\(-a\\) and \\(a\\), and shaded interior/exterior regions.",
   "recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \\(+/-\\).": "number line with numerator zeros, forbidden denominator zeros, intervals, and signs \\(+/-\\).",
   "recta numérica con el origen, puntos \\(-a\\) y \\(a\\) y dos segmentos de longitud \\(a\\).": "number line with the origin, points \\(-a\\) and \\(a\\), and two segments of length \\(a\\).",
-  "recta numérica con puntos móviles \\(a\\) y \\(b\\), segmento resaltado entre ambos y valor \\(|a-b|\\).": "number line with movable points \\(a\\) and \\(b\\), highlighted segment between them, and value \\(|a-b|\\).",
   "recta numérica, punto frontera \\(-b/a\\), extremo abierto o cerrado según el operador y semirrecta sombreada.": "number line, boundary point \\(-b/a\\), open or closed endpoint according to the operator, and shaded half-line.",
   "región \\(x^2\\), dos rectángulos de dimensiones \\(x\\) y \\(b/2\\), y un pequeño cuadrado \\((b/2)^2\\).": "region \\(x^2\\), two rectangles of dimensions \\(x\\) and \\(b/2\\), and a small square \\((b/2)^2\\).",
   "regla de Cramer como reemplazo de columnas.": "Cramer’s rule as column replacement.",
@@ -1658,7 +1655,6 @@
   "Mueve \\(a\\), \\(b\\) y \\(c\\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \\(ab\\) y \\(ac\\) separados.": "Move \\(a\\), \\(b\\), and \\(c\\) and compare both panels: one whole rectangle on the left; \\(ab\\) and \\(ac\\) side by side on the right.",
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "You'll see that \\(|x|\\) is the distance to zero: it never goes below zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "You'll see that the distance between two points is the length of the segment joining them: \\(|a-b|\\).",
-  "Mueve \\(a\\) y \\(b\\) y mira la longitud entre ambos: esa medida es \\(|a-b|\\).": "Move \\(a\\) and \\(b\\) and watch the length between them: that measure is \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "You'll see that when you multiply powers with the same base, the exponents add: \\(a^n a^m = a^{n+m}\\).",
   "Cambia \\(n\\) y \\(m\\) y fíjate cómo los bloques de \\(a^n\\) y \\(a^m\\) se juntan en \\(a^{n+m}\\).": "Change \\(n\\) and \\(m\\) and notice how the blocks of \\(a^n\\) and \\(a^m\\) join into \\(a^{n+m}\\).",
   "Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.": "You'll see that each cell of the product is a term; then you group like ones.",
@@ -1930,5 +1926,9 @@
   "valor absoluto como distancia entre \\(x\\) y \\(0\\) en la recta numérica.": "absolute value as the distance between \\(x\\) and \\(0\\) on the number line.",
   "recta con \\(0\\) destacado, punto \\(x\\), segmento solo entre \\(x\\) y \\(0\\), regla a trozos activa y resumen \\(x\\), distancia, \\(|x|\\).": "number line with emphasized \\(0\\), point \\(x\\), a segment only between \\(x\\) and \\(0\\), the active piecewise rule, and a summary of \\(x\\), distance, and \\(|x|\\).",
   "Mueve \\(x\\) y observa la distancia al cero: nunca es negativa, y la definición a trozos sale de esa geometría.": "Move \\(x\\) and watch the distance to zero: it is never negative, and the piecewise definition follows from that geometry.",
-  "slider para \\(x\\in[-5,5]\\); opcionalmente un reflejo etiquetado \\(-x\\), nunca como distancia.": "slider for \\(x\\in[-5,5]\\); optionally a reflection labeled \\(-x\\), never as distance."
+  "slider para \\(x\\in[-5,5]\\); opcionalmente un reflejo etiquetado \\(-x\\), nunca como distancia.": "slider for \\(x\\in[-5,5]\\); optionally a reflection labeled \\(-x\\), never as distance.",
+  "distancia entre \\(a\\) y \\(b\\) como longitud del segmento en la recta.": "distance between \\(a\\) and \\(b\\) as the length of the segment on the line.",
+  "puntos \\(a\\) y \\(b\\) distinguibles, segmento solo entre ambos, indicador \\(d(a,b)\\), desarrollo \\(|a-b|\\) y nota \\(d(a,b)=d(b,a)\\).": "distinguishable points \\(a\\) and \\(b\\), a segment only between them, indicator \\(d(a,b)\\), expanded \\(|a-b|\\), and note \\(d(a,b)=d(b,a)\\).",
+  "Mueve \\(a\\) y \\(b\\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.": "Move \\(a\\) and \\(b\\). Notice the distance depends on how far apart they are, not on which appears first.",
+  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "independent sliders for \\(a\\) and \\(b\\); update segment, substituted formula, and result in real time."
 }
