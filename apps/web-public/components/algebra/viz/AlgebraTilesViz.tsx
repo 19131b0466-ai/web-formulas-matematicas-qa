@@ -794,7 +794,7 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
               onChange={setB}
             />
           </>
-        ) : mode === 'square_minus' || mode === 'diff_sq' ? (
+        ) : mode === 'commute' ? null : mode === 'square_minus' || mode === 'diff_sq' ? (
           <>
             <SliderRow label="a" value={a} min={1.5} max={5} step={0.1} onChange={setA} />
             <SliderRow

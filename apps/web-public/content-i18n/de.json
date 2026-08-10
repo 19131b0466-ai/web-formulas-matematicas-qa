@@ -1926,9 +1926,9 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Du siehst: Der Abstand zweier Vektoren ist die Norm ihrer Differenz.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Bewege \\(n\\), \\(r\\) und \\(\\theta\\): die Punkte liegen auf dem Kreis mit Radius \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Du siehst die \\(n\\) Wurzeln: Winkel \\((\\theta+2\\pi k)/n\\) und Betrag \\(r^{1/n}\\).",
-  "Ajusta \\(a\\) y \\(b\\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.": "Stelle \\(a\\) und \\(b\\) ein, tippe auf Tauschen und sieh die Leiste unten: die Reihenfolge ändert sich, die Gesamtlänge nicht.",
   "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Stelle \\(a\\), \\(b\\) und \\(c\\) ein, tippe auf Links/Rechts gruppieren und sieh, wie der Rahmen wandert: die Summe bleibt gleich.",
-  "sliders para \\(a\\) y \\(b\\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.": "Schieberegler für \\(a\\) und \\(b\\); Schaltfläche Tauschen, die die Blöcke auf einer Fläche neu ordnet, ohne die Summe zu ändern.",
   "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "Schieberegler für \\(a\\), \\(b\\), \\(c\\); Schaltfläche zum Umschalten zwischen beiden Gruppierungen am selben Drei-Block-Satz.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "drei Blöcke \\(a,b,c\\) in einer Zeile und ein gestrichelter Rahmen für die aktive Gruppierung: \\((a+b)+c\\) oder \\(a+(b+c)\\)."
+  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "drei Blöcke \\(a,b,c\\) in einer Zeile und ein gestrichelter Rahmen für die aktive Gruppierung: \\((a+b)+c\\) oder \\(a+(b+c)\\).",
+  "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Tippe auf Tauschen: \\(a\\) und \\(b\\) tauschen den Platz und die Leiste unten bleibt gleich lang.",
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Nur Schaltfläche Tauschen; feste ungleiche \\(a\\) und \\(b\\), damit die Umordnung klar ist."
 }

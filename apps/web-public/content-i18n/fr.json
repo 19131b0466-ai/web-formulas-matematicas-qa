@@ -1926,9 +1926,9 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Tu vas voir que la distance entre deux vecteurs est la norme de leur différence.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Bouge \\(n\\), \\(r\\) et \\(\\theta\\) : les points se placent sur le cercle de rayon \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Tu vas voir les \\(n\\) racines : angle \\((\\theta+2\\pi k)/n\\) et module \\(r^{1/n}\\).",
-  "Ajusta \\(a\\) y \\(b\\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.": "Ajuste \\(a\\) et \\(b\\), appuie sur Échanger et regarde la barre du bas : l’ordre change, la longueur totale non.",
   "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Ajuste \\(a\\), \\(b\\) et \\(c\\), appuie sur Grouper à gauche ou à droite et vois le cadre bouger : le total ne change pas.",
-  "sliders para \\(a\\) y \\(b\\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.": "curseurs pour \\(a\\) et \\(b\\) ; bouton Échanger qui réordonne les blocs sur un seul canevas sans modifier le total.",
   "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "curseurs pour \\(a\\), \\(b\\), \\(c\\) ; bouton pour basculer entre les deux regroupements sur le même trio de blocs.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "trois blocs \\(a,b,c\\) sur une seule ligne et un cadre en pointillés pour le regroupement actif : \\((a+b)+c\\) ou \\(a+(b+c)\\)."
+  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "trois blocs \\(a,b,c\\) sur une seule ligne et un cadre en pointillés pour le regroupement actif : \\((a+b)+c\\) ou \\(a+(b+c)\\).",
+  "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Appuie sur Échanger : \\(a\\) et \\(b\\) changent de place et la barre du bas mesure toujours la même longueur.",
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "bouton Échanger seulement ; \\(a\\) et \\(b\\) fixes et de longueurs distinctes pour rendre le réordonnancement évident."
 }

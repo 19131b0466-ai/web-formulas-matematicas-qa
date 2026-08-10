@@ -1926,9 +1926,9 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "You'll see the distance between two vectors is the norm of their difference.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Move \\(n\\), \\(r\\) and \\(\\theta\\): the points sit on the circle of radius \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "You'll see the \\(n\\) roots: angle \\((\\theta+2\\pi k)/n\\) and modulus \\(r^{1/n}\\).",
-  "Ajusta \\(a\\) y \\(b\\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.": "Adjust \\(a\\) and \\(b\\), tap Swap, and watch the bar below: the order changes, the total length does not.",
   "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Adjust \\(a\\), \\(b\\), and \\(c\\), tap Group left or Group right, and watch the box move: the total stays the same.",
-  "sliders para \\(a\\) y \\(b\\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.": "sliders for \\(a\\) and \\(b\\); a Swap button that reorders the blocks on a single canvas without changing the total.",
   "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "sliders for \\(a\\), \\(b\\), \\(c\\); a button to toggle between the two groupings on the same three blocks.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "three blocks \\(a,b,c\\) in a single row and a dashed box marking the active grouping: \\((a+b)+c\\) or \\(a+(b+c)\\)."
+  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "three blocks \\(a,b,c\\) in a single row and a dashed box marking the active grouping: \\((a+b)+c\\) or \\(a+(b+c)\\).",
+  "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Tap Swap: \\(a\\) and \\(b\\) switch places and the bar below still measures the same length.",
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Swap button only; fixed unequal \\(a\\) and \\(b\\) so the reorder is obvious."
 }

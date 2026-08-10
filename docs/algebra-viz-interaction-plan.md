@@ -81,7 +81,7 @@ flowchart TD
 |---|---|
 | **Enseña** | El orden de sumandos no cambia el total. |
 | **Layout** | Una fila: bloques \(a\), \(b\) + barra de longitud \(a+b\). Etiqueta refleja el orden actual. |
-| **Interacción** | Sliders \(a\), \(b\); botón **Intercambiar** (`swapped`). |
+| **Interacción** | Solo botón **Intercambiar** (`swapped`). Valores \(a\), \(b\) fijos (distintos) para que el reorden se note. Sin sliders. |
 | **Técnico** | Estado `swapped: boolean`. Caption: orden actual = total. Labels: `swap`, `orderAb`. |
 | **Veredicto** | **RESTORE** — single + botón (no dual-row). |
 

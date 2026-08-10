@@ -1926,9 +1926,9 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Vais ver que a distância entre dois vetores é a norma da sua diferença.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Move \\(n\\), \\(r\\) e \\(\\theta\\): os pontos ficam no círculo de raio \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Vais ver as \\(n\\) raízes: ângulo \\((\\theta+2\\pi k)/n\\) e módulo \\(r^{1/n}\\).",
-  "Ajusta \\(a\\) y \\(b\\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.": "Ajusta \\(a\\) e \\(b\\), toca em Trocar e olha a barra de baixo: a ordem muda, o comprimento total não.",
   "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Ajusta \\(a\\), \\(b\\) e \\(c\\), toca em Agrupar à esquerda ou à direita e vê a caixa mover: o total não muda.",
-  "sliders para \\(a\\) y \\(b\\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.": "sliders para \\(a\\) e \\(b\\); botão Trocar que reordena os blocos num único canvas sem alterar o total.",
   "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "sliders para \\(a\\), \\(b\\), \\(c\\); botão para alternar entre os dois agrupamentos no mesmo trio de blocos.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "três blocos \\(a,b,c\\) numa única fila e uma caixa tracejada a marcar o agrupamento ativo: \\((a+b)+c\\) ou \\(a+(b+c)\\)."
+  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "três blocos \\(a,b,c\\) numa única fila e uma caixa tracejada a marcar o agrupamento ativo: \\((a+b)+c\\) ou \\(a+(b+c)\\).",
+  "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Toca em Trocar: \\(a\\) e \\(b\\) mudam de lugar e a barra de baixo continua com o mesmo comprimento.",
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "só o botão Trocar; \\(a\\) e \\(b\\) fixos com comprimentos distintos para o reordenamento ser evidente."
 }

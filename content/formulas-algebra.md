@@ -113,9 +113,9 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
-- **Idea:** Ajusta \(a\) y \(b\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.
+- **Idea:** Pulsa Intercambiar: \(a\) y \(b\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.
 - **Objetivo educativo:** Vas a ver que da igual el orden: \(a+b\) y \(b+a\) suman lo mismo.
-- **Interactividad sugerida:** sliders para \(a\) y \(b\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.
+- **Interactividad sugerida:** solo botón Intercambiar; \(a\) y \(b\) fijos con longitudes distintas para que el reorden sea evidente.
 
 ### Fórmulas relacionadas
 

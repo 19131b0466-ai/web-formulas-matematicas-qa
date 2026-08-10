@@ -1926,9 +1926,9 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Vedrai che la distanza tra due vettori è la norma della loro differenza.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Muovi \\(n\\), \\(r\\) e \\(\\theta\\): i punti stanno sul cerchio di raggio \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Vedrai le \\(n\\) radici: angolo \\((\\theta+2\\pi k)/n\\) e modulo \\(r^{1/n}\\).",
-  "Ajusta \\(a\\) y \\(b\\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.": "Regola \\(a\\) e \\(b\\), premi Scambia e guarda la barra sotto: l’ordine cambia, la lunghezza totale no.",
   "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Regola \\(a\\), \\(b\\) e \\(c\\), premi Raggruppa a sinistra o a destra e guarda il riquadro: il totale non cambia.",
-  "sliders para \\(a\\) y \\(b\\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.": "slider per \\(a\\) e \\(b\\); pulsante Scambia che riordina i blocchi su un solo canvas senza modificare il totale.",
   "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "slider per \\(a\\), \\(b\\), \\(c\\); pulsante per alternare i due raggruppamenti sugli stessi tre blocchi.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "tre blocchi \\(a,b,c\\) in una sola riga e un riquadro tratteggiato per il raggruppamento attivo: \\((a+b)+c\\) oppure \\(a+(b+c)\\)."
+  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "tre blocchi \\(a,b,c\\) in una sola riga e un riquadro tratteggiato per il raggruppamento attivo: \\((a+b)+c\\) oppure \\(a+(b+c)\\).",
+  "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Premi Scambia: \\(a\\) e \\(b\\) si scambiano di posto e la barra sotto misura ancora la stessa lunghezza.",
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "solo pulsante Scambia; \\(a\\) e \\(b\\) fissi e di lunghezze diverse perché il riordino sia evidente."
 }
