@@ -68,8 +68,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Ajusta a y b y mira cómo a²+2ab+b² es exactamente el área del cuadrado (a+b)².",
     ),
     "ALG-EQU-001": (
-        "Una ecuación lineal es una recta: la solución es donde corta al eje x.",
-        "Mueve la pendiente y el intercepto; busca dónde la recta cruza el eje horizontal.",
+        "Vas a ver la diferencia entre la ecuación ax+b=0 y la función y=ax+b, y que la solución es la intersección con el eje x.",
+        "Resolver ax+b=0 es encontrar el x que anula la expresión; gráficamente, donde y=ax+b cruza el eje x.",
     ),
     "ALG-EQU-003": (
         "La parábola corta al eje x en las soluciones (si existen).",
@@ -616,8 +616,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Adjust a and b and see how a²+2ab+b² is exactly the area of the square (a+b)².",
         ),
         "ALG-EQU-001": (
-            "A linear equation is a line: the solution is where it meets the x-axis.",
-            "Move slope and intercept; find where the line crosses the horizontal axis.",
+            "You'll see the difference between the equation ax+b=0 and the function y=ax+b, and that the solution is the intersection with the x-axis.",
+            "Solving ax+b=0 means finding the x that makes the expression zero; graphically, where y=ax+b crosses the x-axis.",
         ),
         "ALG-EQU-003": (
             "The parabola meets the x-axis at the solutions (if any).",
