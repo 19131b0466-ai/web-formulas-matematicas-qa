@@ -279,11 +279,11 @@ a^ma^n=a^{m+n}
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `power`
-- **Concepto visual:** suma de exponentes como unión de factores iguales.
-- **Elementos:** dos grupos de factores \(a\): uno con \(m\) copias y otro con \(n\) copias, seguidos por un solo grupo con \(m+n\) copias.
-- **Idea:** Cambia \(n\) y \(m\) y fíjate cómo los bloques de \(a^n\) y \(a^m\) se juntan en \(a^{n+m}\).
+- **Concepto visual:** cada bloque es un factor \(a\); al multiplicar se reúnen \(n+m\) factores de la misma base.
+- **Elementos:** dos grupos etiquetados (\(n\) y \(m\) factores) con operador \(\times\), secuencia unida que conserva el origen visual, y resultado \(a^{n+m}\).
+- **Idea:** Cada bloque es un factor \(a\). Al multiplicar reunimos los \(n\) y los \(m\); en total hay \(n+m\) factores.
 - **Objetivo educativo:** Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \(a^n a^m = a^{n+m}\).
-- **Interactividad sugerida:** controles enteros pequeños para \(m\) y \(n\); regenerar la cadena de factores y el exponente resultante.
+- **Interactividad sugerida:** sliders enteros \(n,m\ge 1\); actualizar factores, suma de exponentes y expresión \(a^n\cdot a^m=a^{n+m}\).
 
 ### Fórmulas relacionadas
 

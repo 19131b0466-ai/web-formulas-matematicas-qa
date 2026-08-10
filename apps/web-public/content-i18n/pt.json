@@ -1249,7 +1249,6 @@
   "controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.": "controlar as entradas de uma matriz 2×2 e mostrar simultaneamente determinante, posto e invertibilidade.",
   "controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.": "controlar as entradas de uma matriz 2×2 e marcar as raízes reais do polinômio característico.",
   "controles enteros para \\(n\\) y \\(k\\) con \\(0<k\\le n\\).": "controles inteiros para \\(n\\) e \\(k\\) com \\(0<k\\le n\\).",
-  "controles enteros pequeños para \\(m\\) y \\(n\\); regenerar la cadena de factores y el exponente resultante.": "controles inteiros pequenos para \\(m\\) e \\(n\\); regenerar a cadeia de fatores e o expoente resultante.",
   "controles para \\(a,b,c\\); recalcular raíces y mover los puntos de intersección.": "controles para \\(a,b,c\\); recalcular raízes e mover os pontos de interseção.",
   "controles para \\(a\\) y \\(b\\), más interruptores de reflexión; mantener visible la gráfica original.": "controles para \\(a\\) e \\(b\\), além de alternâncias de reflexão; mantenha o gráfico original visível.",
   "controles para \\(c_1,c_2,a_0,a_1\\); generar los primeros términos y mostrar las raíces características.": "controles para \\(c_1,c_2,a_0,a_1\\); gere os primeiros termos e mostre as raízes características.",
@@ -1304,7 +1303,6 @@
   "dos circuitos equivalentes: NOT después de OR frente a AND de entradas negadas, y NOT después de AND frente a OR de entradas negadas.": "dois circuitos equivalentes: NOT após OR versus AND de entradas negadas, e NOT após AND versus OR de entradas negadas.",
   "dos curvas implícitas en el plano, por ejemplo \\(P(x,y)=0\\) y \\(Q(x,y)=0\\), con sus puntos de intersección resaltados.": "duas curvas implícitas no plano, por exemplo \\(P \\(x,y)=0\\) e \\(Q \\(x,y)=0\\), com seus pontos de intersecção destacados.",
   "dos expresiones booleanas y una tabla de verdad con sus columnas de salida lado a lado.": "duas expressões booleanas e uma tabela verdade com suas colunas de saída lado a lado.",
-  "dos grupos de factores \\(a\\): uno con \\(m\\) copias y otro con \\(n\\) copias, seguidos por un solo grupo con \\(m+n\\) copias.": "dois grupos de fatores \\(a\\): um com cópias \\(m\\) e outro com cópias \\(n\\), seguido de um único grupo com cópias \\(m+n\\).",
   "dos matrices 2×2, círculos unidad transformados en elipses, valores \\(\\sigma_{\\max}\\), \\(\\sigma_{\\min}\\) y \\(\\kappa_2\\).": "duas matrizes 2×2, círculos unitários transformados em elipses, valores \\(\\sigma_{\\max}\\),\\(\\sigma_{\\min}\\) e \\(\\kappa_2\\).",
   "dos o tres relojes modulares con módulos coprimos y una línea temporal común de enteros.": "dois ou três relógios modulares com módulos coprime e uma linha do tempo inteira compartilhada.",
   "dos polinomios en los bordes de una cuadrícula; cada celda contiene el producto de un término de la primera expresión por uno de la segunda.": "dois polinômios ao longo das bordas de uma grade; cada célula contém o produto de um termo da primeira expressão por um da segunda.",
@@ -1553,7 +1551,6 @@
   "span como conjunto de todos los puntos alcanzables por combinaciones lineales.": "span como o conjunto de todos os pontos alcançáveis ​​por combinações lineares.",
   "su grado total es": "seu grau total é",
   "subespacio \\(\\operatorname{Col}(A)\\), vector \\(b\\), proyección \\(\\hat b=A\\hat x\\) y residuo \\(r=b-\\hat b\\).": "subespaço \\(\\operatorname{Col}(A)\\), vetor \\(b\\), projeção \\(\\hat b=A\\hat x\\) e residual \\(r=b-\\hat b\\).",
-  "suma de exponentes como unión de factores iguales.": "soma dos expoentes como união de fatores iguais.",
   "suma elemento a elemento.": "soma de entrada.",
   "suma y multiplicación como desplazamientos en un reloj modular.": "adição e multiplicação como turnos em um relógio modular.",
   "SVD como rotación/reflexión → escalamiento → rotación/reflexión.": "SVD como rotação/reflexão → escala → rotação/reflexão.",
@@ -1656,7 +1653,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Vais ver que \\(|x|\\) é a distância ao zero: nunca desce abaixo de zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Vais ver que a distância entre dois pontos é o comprimento do segmento que os une: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Vais ver que ao multiplicar potências da mesma base, os expoentes somam-se: \\(a^n a^m = a^{n+m}\\).",
-  "Cambia \\(n\\) y \\(m\\) y fíjate cómo los bloques de \\(a^n\\) y \\(a^m\\) se juntan en \\(a^{n+m}\\).": "Muda \\(n\\) e \\(m\\) e repara como os blocos de \\(a^n\\) e \\(a^m\\) se juntam em \\(a^{n+m}\\).",
   "Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.": "Vais ver que cada casa do produto é um termo; depois agrupar os semelhantes.",
   "Mira la cuadrícula \\((a+b)(c+d)\\): cada celda es un producto; juntas forman el polinomio.": "Olha a grelha \\((a+b)(c+d)\\): cada célula é um produto; juntas formam o polinómio.",
   "Vas a ver que \\((a+b)^2\\) es un cuadrado partido en cuatro piezas.": "Vais ver que \\((a+b)^2\\) é um quadrado partido em quatro peças.",
@@ -1930,5 +1926,9 @@
   "distancia entre \\(a\\) y \\(b\\) como longitud del segmento en la recta.": "distância entre \\(a\\) e \\(b\\) como comprimento do segmento na reta.",
   "puntos \\(a\\) y \\(b\\) distinguibles, segmento solo entre ambos, indicador \\(d(a,b)\\), desarrollo \\(|a-b|\\) y nota \\(d(a,b)=d(b,a)\\).": "pontos \\(a\\) e \\(b\\) distinguíveis, segmento só entre ambos, indicador \\(d(a,b)\\), desenvolvimento \\(|a-b|\\) e nota \\(d(a,b)=d(b,a)\\).",
   "Mueve \\(a\\) y \\(b\\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.": "Move \\(a\\) e \\(b\\). A distância depende de quão separados estão, não de qual aparece primeiro.",
-  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "sliders independentes para \\(a\\) e \\(b\\); atualizar segmento, fórmula substituída e resultado em tempo real."
+  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "sliders independentes para \\(a\\) e \\(b\\); atualizar segmento, fórmula substituída e resultado em tempo real.",
+  "cada bloque es un factor \\(a\\); al multiplicar se reúnen \\(n+m\\) factores de la misma base.": "cada bloco é um fator \\(a\\); ao multiplicar reúnem-se \\(n+m\\) fatores da mesma base.",
+  "dos grupos etiquetados (\\(n\\) y \\(m\\) factores) con operador \\(\\times\\), secuencia unida que conserva el origen visual, y resultado \\(a^{n+m}\\).": "dois grupos etiquetados (\\(n\\) e \\(m\\) fatores) com \\(\\times\\), sequência unida que conserva a origem visual, e resultado \\(a^{n+m}\\).",
+  "Cada bloque es un factor \\(a\\). Al multiplicar reunimos los \\(n\\) y los \\(m\\); en total hay \\(n+m\\) factores.": "Cada bloco é um fator \\(a\\). Ao multiplicar reunimos os \\(n\\) e os \\(m\\); no total há \\(n+m\\) fatores.",
+  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "sliders inteiros \\(n,m\\ge 1\\); atualizar fatores, soma de expoentes e \\(a^n\\cdot a^m=a^{n+m}\\)."
 }

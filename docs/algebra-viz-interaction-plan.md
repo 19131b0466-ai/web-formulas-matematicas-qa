@@ -170,13 +170,15 @@ flowchart TD
 | **Layout** | Representación simple de exponentes (no dual de identidades). |
 | **Veredicto** | **KEEP**. |
 
-### `power` (POT-* excepto POT-008)
+### `power` (ALG-POT-001)
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \(a^n\cdot a^m = a^{n+m}\) (apilar / unir exponentes). |
-| **Layout** | Filas de “bloques de potencia” que ilustran la suma de exponentes; no es dual LHS/RHS de una identidad de reorder. |
-| **Veredicto** | **KEEP** (no confundir con P1). |
+| **Enseña** | \(a^n\cdot a^m=a^{n+m}\) porque se reúnen \(n+m\) factores \(a\). |
+| **Layout** | Dos grupos con \(\times\); luego secuencia unida (borde sólido / discontinuo); resultado \(a^{n+m}\). |
+| **Interacción** | Sliders enteros \(n,m\in[1,6]\). Guía embebida (sin Idea/Objetivo duplicados). |
+| **Componente** | `PowerProductViz.tsx` |
+| **Veredicto** | Factores explícitos con letra \(a\); no bloques vacíos. |
 
 ### `conjugate_rationalize` (POT-008)
 

@@ -1250,7 +1250,6 @@
   "controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.": "control the entries of a 2×2 matrix and simultaneously show determinant, rank, and invertibility.",
   "controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.": "control the entries of a 2×2 matrix and mark the real roots of the characteristic polynomial.",
   "controles enteros para \\(n\\) y \\(k\\) con \\(0<k\\le n\\).": "integer controls for \\(n\\) and \\(k\\) with \\(0<k\\le n\\).",
-  "controles enteros pequeños para \\(m\\) y \\(n\\); regenerar la cadena de factores y el exponente resultante.": "small integer controls for \\(m\\) and \\(n\\); regenerate the factor chain and the resulting exponent.",
   "controles para \\(a,b,c\\); recalcular raíces y mover los puntos de intersección.": "controls for \\(a,b,c\\); recompute roots and move the intersection points.",
   "controles para \\(a\\) y \\(b\\), más interruptores de reflexión; mantener visible la gráfica original.": "controls for \\(a\\) and \\(b\\), plus reflection toggles; keep the original graph visible.",
   "controles para \\(c_1,c_2,a_0,a_1\\); generar los primeros términos y mostrar las raíces características.": "controls for \\(c_1,c_2,a_0,a_1\\); generate the first terms and show the characteristic roots.",
@@ -1305,7 +1304,6 @@
   "dos circuitos equivalentes: NOT después de OR frente a AND de entradas negadas, y NOT después de AND frente a OR de entradas negadas.": "two equivalent circuits: NOT after OR versus AND of negated inputs, and NOT after AND versus OR of negated inputs.",
   "dos curvas implícitas en el plano, por ejemplo \\(P(x,y)=0\\) y \\(Q(x,y)=0\\), con sus puntos de intersección resaltados.": "two implicit curves in the plane, for example \\(P(x,y)=0\\) and \\(Q(x,y)=0\\), with their intersection points highlighted.",
   "dos expresiones booleanas y una tabla de verdad con sus columnas de salida lado a lado.": "two Boolean expressions and a truth table with their output columns side by side.",
-  "dos grupos de factores \\(a\\): uno con \\(m\\) copias y otro con \\(n\\) copias, seguidos por un solo grupo con \\(m+n\\) copias.": "two groups of factors \\(a\\): one with \\(m\\) copies and another with \\(n\\) copies, followed by a single group with \\(m+n\\) copies.",
   "dos matrices 2×2, círculos unidad transformados en elipses, valores \\(\\sigma_{\\max}\\), \\(\\sigma_{\\min}\\) y \\(\\kappa_2\\).": "two 2×2 matrices, unit circles transformed into ellipses, values \\(\\sigma_{\\max}\\), \\(\\sigma_{\\min}\\), and \\(\\kappa_2\\).",
   "dos o tres relojes modulares con módulos coprimos y una línea temporal común de enteros.": "two or three modular clocks with coprime moduli and a shared integer timeline.",
   "dos polinomios en los bordes de una cuadrícula; cada celda contiene el producto de un término de la primera expresión por uno de la segunda.": "two polynomials along the edges of a grid; each cell contains the product of one term from the first expression by one from the second.",
@@ -1554,7 +1552,6 @@
   "span como conjunto de todos los puntos alcanzables por combinaciones lineales.": "span as the set of all points reachable by linear combinations.",
   "su grado total es": "its total degree is",
   "subespacio \\(\\operatorname{Col}(A)\\), vector \\(b\\), proyección \\(\\hat b=A\\hat x\\) y residuo \\(r=b-\\hat b\\).": "subspace \\(\\operatorname{Col}(A)\\), vector \\(b\\), projection \\(\\hat b=A\\hat x\\), and residual \\(r=b-\\hat b\\).",
-  "suma de exponentes como unión de factores iguales.": "sum of exponents as joining equal factors.",
   "suma elemento a elemento.": "entrywise sum.",
   "suma y multiplicación como desplazamientos en un reloj modular.": "addition and multiplication as shifts on a modular clock.",
   "SVD como rotación/reflexión → escalamiento → rotación/reflexión.": "SVD as rotation/reflection → scaling → rotation/reflection.",
@@ -1656,7 +1653,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "You'll see that \\(|x|\\) is the distance to zero: it never goes below zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "You'll see that the distance between two points is the length of the segment joining them: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "You'll see that when you multiply powers with the same base, the exponents add: \\(a^n a^m = a^{n+m}\\).",
-  "Cambia \\(n\\) y \\(m\\) y fíjate cómo los bloques de \\(a^n\\) y \\(a^m\\) se juntan en \\(a^{n+m}\\).": "Change \\(n\\) and \\(m\\) and notice how the blocks of \\(a^n\\) and \\(a^m\\) join into \\(a^{n+m}\\).",
   "Vas a ver que cada casilla del producto es un término; luego agrupas los parecidos.": "You'll see that each cell of the product is a term; then you group like ones.",
   "Mira la cuadrícula \\((a+b)(c+d)\\): cada celda es un producto; juntas forman el polinomio.": "Look at the grid \\((a+b)(c+d)\\): each cell is a product; together they form the polynomial.",
   "Vas a ver que \\((a+b)^2\\) es un cuadrado partido en cuatro piezas.": "You'll see that \\((a+b)^2\\) is a square split into four pieces.",
@@ -1930,5 +1926,9 @@
   "distancia entre \\(a\\) y \\(b\\) como longitud del segmento en la recta.": "distance between \\(a\\) and \\(b\\) as the length of the segment on the line.",
   "puntos \\(a\\) y \\(b\\) distinguibles, segmento solo entre ambos, indicador \\(d(a,b)\\), desarrollo \\(|a-b|\\) y nota \\(d(a,b)=d(b,a)\\).": "distinguishable points \\(a\\) and \\(b\\), a segment only between them, indicator \\(d(a,b)\\), expanded \\(|a-b|\\), and note \\(d(a,b)=d(b,a)\\).",
   "Mueve \\(a\\) y \\(b\\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.": "Move \\(a\\) and \\(b\\). Notice the distance depends on how far apart they are, not on which appears first.",
-  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "independent sliders for \\(a\\) and \\(b\\); update segment, substituted formula, and result in real time."
+  "sliders independientes para \\(a\\) y \\(b\\); actualizar segmento, fórmula sustituida y resultado en tiempo real.": "independent sliders for \\(a\\) and \\(b\\); update segment, substituted formula, and result in real time.",
+  "cada bloque es un factor \\(a\\); al multiplicar se reúnen \\(n+m\\) factores de la misma base.": "each block is a factor \\(a\\); multiplying gathers \\(n+m\\) factors of the same base.",
+  "dos grupos etiquetados (\\(n\\) y \\(m\\) factores) con operador \\(\\times\\), secuencia unida que conserva el origen visual, y resultado \\(a^{n+m}\\).": "two labeled groups (\\(n\\) and \\(m\\) factors) with a \\(\\times\\) operator, a merged sequence that keeps visual origin, and result \\(a^{n+m}\\).",
+  "Cada bloque es un factor \\(a\\). Al multiplicar reunimos los \\(n\\) y los \\(m\\); en total hay \\(n+m\\) factores.": "Each block is a factor \\(a\\). Multiplying gathers the \\(n\\) and the \\(m\\); in total there are \\(n+m\\) factors.",
+  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "integer sliders \\(n,m\\ge 1\\); update factors, exponent sum, and \\(a^n\\cdot a^m=a^{n+m}\\)."
 }
