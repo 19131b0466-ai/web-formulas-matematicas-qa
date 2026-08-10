@@ -5,15 +5,15 @@ from __future__ import annotations
 COPY_ES: dict[str, tuple[str, str]] = {
     'ALG-FND-001': (
         'Vas a ver que da igual el orden: \\(a+b\\) y \\(b+a\\) suman lo mismo.',
-        'Pulsa **Intercambiar** y fíjate: los bloques cambian de sitio, pero la barra de abajo sigue igual de larga.',
+        'Mueve \\(a\\) y \\(b\\) y compara las dos filas: arriba \\(a+b\\), abajo \\(b+a\\); las barras quedan igual de largas.',
     ),
     'ALG-FND-002': (
         'Vas a ver que agrupar distinto no cambia el total: \\((a+b)+c\\) y \\(a+(b+c)\\) dan lo mismo.',
-        'Pulsa **Agrupar izquierda** o **Agrupar derecha** y mira el recuadro: solo se mueve la agrupación; el total sigue igual.',
+        'Mueve \\(a\\), \\(b\\) y \\(c\\) y compara las dos filas: el recuadro agrupa distinto, pero el total es el mismo.',
     ),
     'ALG-FND-003': (
         'Vas a ver que \\(a(b+c)\\) es la misma área que \\(ab+ac\\).',
-        'Mueve \\(a\\), \\(b\\) y \\(c\\) y fíjate cómo el rectángulo grande se parte en dos piezas con la misma área total.',
+        'Mueve \\(a\\), \\(b\\) y \\(c\\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \\(ab\\) y \\(ac\\) separados.',
     ),
     'ALG-FND-006': (
         'Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.',
@@ -53,7 +53,7 @@ COPY_ES: dict[str, tuple[str, str]] = {
     ),
     'ALG-FAC-001': (
         'Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.',
-        'Mueve \\(a\\), \\(b\\) y \\(c\\) y fíjate: el rectángulo \\(a(b+c)\\) se ve igual que \\(ab+ac\\).',
+        'Mueve \\(a\\), \\(b\\) y \\(c\\) y compara ambos cuadros: sacar el factor común \\(a\\) es juntar \\(ab\\) y \\(ac\\) en un solo rectángulo.',
     ),
     'ALG-FAC-002': (
         'Vas a ver que factorizar \\(a^2-b^2\\) es rearmar el área sobrante como un rectángulo.',
@@ -553,15 +553,15 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     'en': {
         'ALG-FND-001': (
         "You'll see that order doesn't matter: \\(a+b\\) and \\(b+a\\) add up to the same thing.",
-        'Tap **Swap** and notice: the blocks switch places, but the bar below stays just as long.',
+        'Move \\(a\\) and \\(b\\) and compare the two rows: \\(a+b\\) on top, \\(b+a\\) below; both bars stay the same length.',
     ),
         'ALG-FND-002': (
         "You'll see that grouping differently doesn't change the total: \\((a+b)+c\\) and \\(a+(b+c)\\) give the same result.",
-        'Tap **Group left** or **Group right** and watch the box: only the grouping moves; the total stays the same.',
+        'Move \\(a\\), \\(b\\), and \\(c\\) and compare both rows: the box groups differently, but the total matches.',
     ),
         'ALG-FND-003': (
         "You'll see that \\(a(b+c)\\) is the same area as \\(ab+ac\\).",
-        'Move \\(a\\), \\(b\\), and \\(c\\) and notice how the big rectangle splits into two pieces with the same total area.',
+        'Move \\(a\\), \\(b\\), and \\(c\\) and compare both panels: one whole rectangle on the left; \\(ab\\) and \\(ac\\) side by side on the right.',
     ),
         'ALG-FND-006': (
         "You'll see that \\(|x|\\) is the distance to zero: it never goes below zero.",
@@ -601,7 +601,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-001': (
         "You'll see that factoring out a common factor is regrouping areas that share a side.",
-        'Move \\(a\\), \\(b\\), and \\(c\\) and notice: the rectangle \\(a(b+c)\\) looks the same as \\(ab+ac\\).',
+        'Move \\(a\\), \\(b\\), and \\(c\\) and compare both panels: factoring out \\(a\\) joins \\(ab\\) and \\(ac\\) into one rectangle.',
     ),
         'ALG-FAC-002': (
         "You'll see that factoring \\(a^2-b^2\\) is rearranging the leftover area into a rectangle.",
@@ -1099,15 +1099,15 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     'de': {
         'ALG-FND-001': (
         'Du siehst: Die Reihenfolge spielt keine Rolle — \\(a+b\\) und \\(b+a\\) ergeben dieselbe Summe.',
-        'Tippe auf **Tauschen** und schau hin: Die Blöcke tauschen den Platz, aber die Leiste unten bleibt gleich lang.',
+        'Bewege \(a\) und \(b\) und vergleiche die beiden Zeilen: oben \(a+b\), unten \(b+a\); beide Leisten bleiben gleich lang.',
     ),
         'ALG-FND-002': (
         'Du siehst: Anders gruppieren ändert die Summe nicht — \\((a+b)+c\\) und \\(a+(b+c)\\) sind gleich.',
-        'Tippe auf **Links gruppieren** oder **Rechts gruppieren** und schau auf den Rahmen: Nur die Gruppierung bewegt sich; die Summe bleibt gleich.',
+        'Bewege \(a\), \(b\) und \(c\) und vergleiche beide Zeilen: der Rahmen gruppiert anders, aber die Summe ist gleich.',
     ),
         'ALG-FND-003': (
         'Du siehst: \\(a(b+c)\\) ist dieselbe Fläche wie \\(ab+ac\\).',
-        'Bewege \\(a\\), \\(b\\) und \\(c\\) und schau, wie das große Rechteck in zwei Teile mit derselben Gesamtfläche zerfällt.',
+        'Bewege \\(a\\), \\(b\\) und \\(c\\) und vergleiche beide Felder: links ein Rechteck, rechts \\(ab\\) und \\(ac\\) getrennt.',
     ),
         'ALG-FND-006': (
         'Du siehst: \\(|x|\\) ist der Abstand zur Null — nie negativ.',
@@ -1147,7 +1147,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-001': (
         'Du siehst: Gemeinsamen Faktor ausklammern heißt Flächen mit gemeinsamer Seite neu zu ordnen.',
-        'Bewege \\(a\\), \\(b\\) und \\(c\\) und schau: Das Rechteck \\(a(b+c)\\) sieht aus wie \\(ab+ac\\).',
+        'Bewege \\(a\\), \\(b\\) und \\(c\\) und vergleiche beide Felder: \\(a\\) ausklammern heißt \\(ab\\) und \\(ac\\) zu einem Rechteck zu fügen.',
     ),
         'ALG-FAC-002': (
         'Du siehst: \\(a^2-b^2\\) zu faktorisieren heißt die Restfläche zum Rechteck umzubauen.',
@@ -1645,15 +1645,15 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     'fr': {
         'ALG-FND-001': (
         'Tu vas voir que l’ordre ne change rien : \\(a+b\\) et \\(b+a\\) donnent la même somme.',
-        'Appuie sur **Échanger** et regarde : les blocs changent de place, mais la barre du bas reste aussi longue.',
+        'Bouge \(a\) et \(b\) et compare les deux lignes : \(a+b\) en haut, \(b+a\) en bas ; les barres restent aussi longues.',
     ),
         'ALG-FND-002': (
         'Tu vas voir que regrouper autrement ne change pas le total : \\((a+b)+c\\) et \\(a+(b+c)\\) donnent la même chose.',
-        'Appuie sur **Grouper à gauche** ou **Grouper à droite** et regarde le cadre : seule le regroupement bouge ; le total reste égal.',
+        'Bouge \(a\), \(b\) et \(c\) et compare les deux lignes : le cadre regroupe autrement, mais le total est le même.',
     ),
         'ALG-FND-003': (
         'Tu vas voir que \\(a(b+c)\\) est la même aire que \\(ab+ac\\).',
-        'Bouge \\(a\\), \\(b\\) et \\(c\\) et regarde comment le grand rectangle se partage en deux pièces de même aire totale.',
+        'Bouge \\(a\\), \\(b\\) et \\(c\\) et compare les deux cadres : à gauche un seul rectangle ; à droite \\(ab\\) et \\(ac\\) séparés.',
     ),
         'ALG-FND-006': (
         'Tu vas voir que \\(|x|\\) est la distance à zéro : elle ne descend jamais sous zéro.',
@@ -1693,7 +1693,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-001': (
         'Tu vas voir que mettre en facteur commun, c’est regrouper des aires qui partagent un côté.',
-        'Bouge \\(a\\), \\(b\\) et \\(c\\) et regarde : le rectangle \\(a(b+c)\\) se voit comme \\(ab+ac\\).',
+        'Bouge \\(a\\), \\(b\\) et \\(c\\) et compare les deux cadres : mettre \\(a\\) en facteur, c’est rejoindre \\(ab\\) et \\(ac\\) en un seul rectangle.',
     ),
         'ALG-FAC-002': (
         'Tu vas voir que factoriser \\(a^2-b^2\\), c’est réassembler l’aire restante en rectangle.',
@@ -2191,15 +2191,15 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     'it': {
         'ALG-FND-001': (
         "Vedrai che l'ordine non conta: \\(a+b\\) e \\(b+a\\) danno la stessa somma.",
-        'Tocca **Scambia** e nota: i blocchi cambiano posto, ma la barra sotto resta lunga uguale.',
+        'Muovi \(a\) e \(b\) e confronta le due righe: sopra \(a+b\), sotto \(b+a\); le barre restano lunghe uguali.',
     ),
         'ALG-FND-002': (
         'Vedrai che raggruppare diversamente non cambia il totale: \\((a+b)+c\\) e \\(a+(b+c)\\) danno lo stesso.',
-        'Tocca **Raggruppa a sinistra** o **Raggruppa a destra** e guarda il riquadro: si muove solo il raggruppamento; il totale resta uguale.',
+        'Muovi \(a\), \(b\) e \(c\) e confronta le due righe: il riquadro raggruppa in modo diverso, ma il totale è lo stesso.',
     ),
         'ALG-FND-003': (
         'Vedrai che \\(a(b+c)\\) è la stessa area di \\(ab+ac\\).',
-        'Muovi \\(a\\), \\(b\\) e \\(c\\) e nota come il rettangolo grande si divide in due pezzi con la stessa area totale.',
+        'Muovi \\(a\\), \\(b\\) e \\(c\\) e confronta i due riquadri: a sinistra un rettangolo intero; a destra \\(ab\\) e \\(ac\\) separati.',
     ),
         'ALG-FND-006': (
         'Vedrai che \\(|x|\\) è la distanza dallo zero: non scende mai sotto zero.',
@@ -2239,7 +2239,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-001': (
         'Vedrai che mettere in evidenza un fattore comune è riordinare aree che condividono un lato.',
-        'Muovi \\(a\\), \\(b\\) e \\(c\\) e nota: il rettangolo \\(a(b+c)\\) si vede come \\(ab+ac\\).',
+        'Muovi \\(a\\), \\(b\\) e \\(c\\) e confronta i due riquadri: mettere in evidenza \\(a\\) unisce \\(ab\\) e \\(ac\\) in un solo rettangolo.',
     ),
         'ALG-FAC-002': (
         "Vedrai che fattorizzare \\(a^2-b^2\\) è rimontare l'area restante come un rettangolo.",
@@ -2737,15 +2737,15 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     'pt': {
         'ALG-FND-001': (
         'Vais ver que a ordem não importa: \\(a+b\\) e \\(b+a\\) somam o mesmo.',
-        'Toca em **Trocar** e repara: os blocos mudam de sítio, mas a barra de baixo continua do mesmo comprimento.',
+        'Move \(a\) e \(b\) e compara as duas filas: em cima \(a+b\), em baixo \(b+a\); as barras ficam do mesmo comprimento.',
     ),
         'ALG-FND-002': (
         'Vais ver que agrupar de outra forma não muda o total: \\((a+b)+c\\) e \\(a+(b+c)\\) dão o mesmo.',
-        'Toca em **Agrupar à esquerda** ou **Agrupar à direita** e olha a caixa: só se move o agrupamento; o total continua igual.',
+        'Move \(a\), \(b\) e \(c\) e compara as duas filas: a caixa agrupa de outra forma, mas o total é o mesmo.',
     ),
         'ALG-FND-003': (
         'Vais ver que \\(a(b+c)\\) é a mesma área que \\(ab+ac\\).',
-        'Move \\(a\\), \\(b\\) e \\(c\\) e repara como o retângulo grande se parte em duas peças com a mesma área total.',
+        'Move \\(a\\), \\(b\\) e \\(c\\) e compara os dois painéis: à esquerda um retângulo só; à direita \\(ab\\) e \\(ac\\) separados.',
     ),
         'ALG-FND-006': (
         'Vais ver que \\(|x|\\) é a distância ao zero: nunca desce abaixo de zero.',
@@ -2785,7 +2785,7 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
     ),
         'ALG-FAC-001': (
         'Vais ver que pôr em evidência um fator comum é reagrupar áreas que partilham um lado.',
-        'Move \\(a\\), \\(b\\) e \\(c\\) e repara: o retângulo \\(a(b+c)\\) vê-se igual a \\(ab+ac\\).',
+        'Move \\(a\\), \\(b\\) e \\(c\\) e compara os dois painéis: pôr \\(a\\) em evidência junta \\(ab\\) e \\(ac\\) num só retângulo.',
     ),
         'ALG-FAC-002': (
         'Vais ver que fatorar \\(a^2-b^2\\) é remontar a área restante como um retângulo.',

@@ -15,6 +15,8 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   const [b, setB] = useState(-1);
   const [c, setC] = useState(-2);
   const [m, setM] = useState(1.2);
+  const [m2, setM2] = useState(-0.5);
+  const [b2, setB2] = useState(2);
   const [r, setR] = useState(0.6);
   const [base, setBase] = useState(2);
   const [terms, setTerms] = useState(12);
@@ -111,24 +113,21 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
     let ys: number[];
     if (mode === 'inverse_pair') ys = xs.map((x) => base ** x);
     else if (/FUN-006/.test(formulaId)) ys = xs.map((x) => (-1 / (m || 1)) * x + c);
-    else ys = xs.map((x) => -0.5 * x + 2); // second line for system
+    else ys = xs.map((x) => m2 * x + b2);
     const pts = xs
       .map((x, i) => ({ x, y: ys[i]! }))
       .filter((p) => Number.isFinite(p.y) && Math.abs(p.y) < 10)
       .map((p) => to(p.x, p.y));
     return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
-  }, [mode, formulaId, base, m, c]);
+  }, [mode, formulaId, base, m, c, m2, b2]);
 
   const intersection = useMemo(() => {
     if (mode !== 'system') return null;
-    // y = m x + b and y = -0.5 x + 2
-    const m2 = -0.5;
-    const b2 = 2;
     if (Math.abs(m - m2) < 1e-9) return Math.abs(b - b2) < 1e-9 ? 'infinite' : 'none';
     const x = (b2 - b) / (m - m2);
     const y = m * x + b;
     return { x, y };
-  }, [mode, m, b]);
+  }, [mode, m, b, m2, b2]);
 
   const caption =
     mode === 'quadratic'
@@ -182,7 +181,7 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
         ) : null}
         {mode === 'line' || mode === 'system' || /FUN-006|SEC-001|SEC-007/.test(formulaId) ? (
           <SliderRow
-            label={/SEC-/.test(formulaId) ? 'a₁' : 'm'}
+            label={/SEC-/.test(formulaId) ? 'a₁' : mode === 'system' ? 'm₁' : 'm'}
             value={/SEC-/.test(formulaId) ? a : m}
             min={-3}
             max={3}
@@ -191,13 +190,27 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
           />
         ) : null}
         <SliderRow
-          label={/SEC-001/.test(formulaId) ? 'd' : /SEC-003|SEC-005/.test(formulaId) ? 'r' : 'b'}
+          label={
+            /SEC-001/.test(formulaId)
+              ? 'd'
+              : /SEC-003|SEC-005/.test(formulaId)
+                ? 'r'
+                : mode === 'system'
+                  ? 'b₁'
+                  : 'b'
+          }
           value={/SEC-003|SEC-005/.test(formulaId) ? r : b}
           min={-3}
           max={3}
           step={0.05}
           onChange={/SEC-003|SEC-005/.test(formulaId) ? setR : setB}
         />
+        {mode === 'system' ? (
+          <>
+            <SliderRow label="m₂" value={m2} min={-3} max={3} step={0.1} onChange={setM2} />
+            <SliderRow label="b₂" value={b2} min={-3} max={3} step={0.1} onChange={setB2} />
+          </>
+        ) : null}
         {mode === 'quadratic' || mode === 'inequality' || /FUN-006|SEC-007/.test(formulaId) ? (
           <SliderRow label="c" value={c} min={-5} max={5} step={0.1} onChange={setC} />
         ) : null}

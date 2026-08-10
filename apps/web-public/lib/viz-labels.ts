@@ -68,6 +68,11 @@ type VizLabels = {
   svdCompose: string;
   rankLabel: string;
   cellProduct: string;
+  sameTotal: string;
+  compareBothSides: string;
+  degreeUnits: string;
+  powerMerge: string;
+  sameArea: string;
 };
 
 const LABELS: Record<AppLocale, VizLabels> = {
@@ -136,6 +141,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U: recomponer',
     rankLabel: 'rango',
     cellProduct: 'producto fila×columna',
+    sameTotal: 'Mismo total',
+    compareBothSides: 'Compara ambos lados: al mover a, b y c, las dos áreas cambian igual.',
+    degreeUnits: 'unidades de grado',
+    powerMerge: 'Abajo se juntan los bloques: los exponentes se suman.',
+    sameArea: 'misma área',
   },
   en: {
     swap: 'Swap',
@@ -202,6 +212,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U: reassemble',
     rankLabel: 'rank',
     cellProduct: 'row×column product',
+    sameTotal: 'Same total',
+    compareBothSides: 'Compare both sides: when you move a, b and c, both areas change the same way.',
+    degreeUnits: 'degree units',
+    powerMerge: 'Below, the blocks join: the exponents add.',
+    sameArea: 'same area',
   },
   de: {
     swap: 'Tauschen',
@@ -268,6 +283,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U: zusammensetzen',
     rankLabel: 'Rang',
     cellProduct: 'Zeile×Spalte-Produkt',
+    sameTotal: 'Gleiche Summe',
+    compareBothSides: 'Vergleiche beide Seiten: Wenn du a, b und c bewegst, ändern sich beide Flächen gleich.',
+    degreeUnits: 'Gradeinheiten',
+    powerMerge: 'Unten verbinden sich die Blöcke: die Exponenten addieren sich.',
+    sameArea: 'gleiche Fläche',
   },
   fr: {
     swap: 'Échanger',
@@ -334,6 +354,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U : recomposer',
     rankLabel: 'rang',
     cellProduct: 'produit ligne×colonne',
+    sameTotal: 'Même total',
+    compareBothSides: 'Compare les deux côtés : quand tu bouges a, b et c, les deux aires changent pareil.',
+    degreeUnits: 'unités de degré',
+    powerMerge: 'En bas, les blocs se rejoignent : les exposants s’additionnent.',
+    sameArea: 'même aire',
   },
   it: {
     swap: 'Scambia',
@@ -400,6 +425,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U: ricomponi',
     rankLabel: 'rango',
     cellProduct: 'prodotto riga×colonna',
+    sameTotal: 'Stesso totale',
+    compareBothSides: 'Confronta i due lati: muovendo a, b e c, le due aree cambiano allo stesso modo.',
+    degreeUnits: 'unità di grado',
+    powerMerge: 'Sotto i blocchi si uniscono: gli esponenti si sommano.',
+    sameArea: 'stessa area',
   },
   pt: {
     swap: 'Trocar',
@@ -466,6 +496,11 @@ const LABELS: Record<AppLocale, VizLabels> = {
     svdCompose: 'U: recompor',
     rankLabel: 'posto',
     cellProduct: 'produto linha×coluna',
+    sameTotal: 'Mesmo total',
+    compareBothSides: 'Compara os dois lados: ao mover a, b e c, as duas áreas mudam igual.',
+    degreeUnits: 'unidades de grau',
+    powerMerge: 'Em baixo os blocos juntam-se: os expoentes somam-se.',
+    sameArea: 'mesma área',
   },
 };
 

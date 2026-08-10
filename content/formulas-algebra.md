@@ -113,7 +113,7 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
-- **Idea:** Pulsa **Intercambiar** y fíjate: los bloques cambian de sitio, pero la barra de abajo sigue igual de larga.
+- **Idea:** Mueve \(a\) y \(b\) y compara las dos filas: arriba \(a+b\), abajo \(b+a\); las barras quedan igual de largas.
 - **Objetivo educativo:** Vas a ver que da igual el orden: \(a+b\) y \(b+a\) suman lo mismo.
 - **Interactividad sugerida:** permitir arrastrar los bloques \(a\) y \(b\) para intercambiarlos; actualizar el orden escrito sin modificar el total.
 
@@ -140,7 +140,7 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `associate`
 - **Concepto visual:** cambio de agrupación sin cambiar el resultado.
 - **Elementos:** tres bloques \(a,b,c\), dos esquemas de agrupación con llaves o contenedores: \((a+b)+c\) y \(a+(b+c)\).
-- **Idea:** Pulsa **Agrupar izquierda** o **Agrupar derecha** y mira el recuadro: solo se mueve la agrupación; el total sigue igual.
+- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara las dos filas: el recuadro agrupa distinto, pero el total es el mismo.
 - **Objetivo educativo:** Vas a ver que agrupar distinto no cambia el total: \((a+b)+c\) y \(a+(b+c)\) dan lo mismo.
 - **Interactividad sugerida:** permitir alternar entre las dos agrupaciones y mostrar el cálculo parcial que se realiza primero.
 
@@ -165,11 +165,11 @@ a(b+c)=ab+ac
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `distribute`
-- **Concepto visual:** distribución de un factor sobre una suma.
-- **Elementos:** un rectángulo de altura \(a\) y ancho \(b+c\), dividido verticalmente en regiones \(ab\) y \(ac\).
-- **Idea:** Mueve \(a\), \(b\) y \(c\) y fíjate cómo el rectángulo grande se parte en dos piezas con la misma área total.
+- **Concepto visual:** comparación lado a lado de \(a(b+c)\) frente a \(ab+ac\).
+- **Elementos:** dos paneles: rectángulo único de altura \(a\) y ancho \(b+c\); y dos rectángulos \(ab\) y \(ac\) separados con la misma altura.
+- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara los dos cuadros: a la izquierda un solo rectángulo; a la derecha \(ab\) y \(ac\) separados.
 - **Objetivo educativo:** Vas a ver que \(a(b+c)\) es la misma área que \(ab+ac\).
-- **Interactividad sugerida:** permitir variar \(a,b,c\) con controles y actualizar las áreas y la identidad en tiempo real.
+- **Interactividad sugerida:** variar \(a,b,c\) y ver que ambas construcciones actualizan el mismo total.
 
 ### Fórmulas relacionadas
 
@@ -537,6 +537,7 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `square_minus`
 - **Concepto visual:** cuadrado de una diferencia como reducción de longitud.
 - **Elementos:** cuadrado de lado \(a\), franjas de ancho \(b\) retiradas y región restante de lado \(a-b\).
 - **Idea:** Ajusta \(a\) y \(b\) y mira cómo aparecen \(a^2\), \(-2ab\) y \(+b^2\).
@@ -683,9 +684,10 @@ ab+ac=a(b+c)
 ### Visualización sugerida
 
 - **Tipo:** `algebra_tiles`
+- **Modo:** `distribute`
 - **Concepto visual:** extracción de un factor común como distributiva inversa.
-- **Elementos:** dos productos \(ab\) y \(ac\) con el factor \(a\) resaltado en ambos y una flecha hacia \(a(b+c)\).
-- **Idea:** Mueve \(a\), \(b\) y \(c\) y fíjate: el rectángulo \(a(b+c)\) se ve igual que \(ab+ac\).
+- **Elementos:** dos paneles comparables: \(ab\) y \(ac\) separados frente a un solo rectángulo \(a(b+c)\).
+- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara ambos cuadros: sacar el factor común \(a\) es juntar \(ab\) y \(ac\) en un solo rectángulo.
 - **Objetivo educativo:** Vas a ver que sacar factor común es reagrupar áreas que comparten un lado.
 - **Interactividad sugerida:** hacer clic sobre factores repetidos para seleccionarlos como factor común y verificar el resultado.
 

@@ -101,17 +101,24 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
     return w;
   }, [errorBit]);
 
-  const swapRows = () => setA([A[1], A[0]]);
-  const scaleRow = () =>
+  const swapRows = () => {
+    setA([A[1], A[0]]);
+    setAug([aug[1], aug[0]]);
+  };
+  const scaleRow = () => {
     setA([
       [A[0][0] * c, A[0][1] * c],
       A[1],
     ]);
-  const addRows = () =>
+    setAug([aug[0] * c, aug[1]]);
+  };
+  const addRows = () => {
     setA([
       A[0],
       [A[1][0] + A[0][0], A[1][1] + A[0][1]],
     ]);
+    setAug([aug[0], aug[1] + aug[0]]);
+  };
 
   const showAug = mode === 'augmented_map' || mode === 'row_ops' || mode === 'rank_compare';
   const showOps = mode === 'row_ops';
@@ -144,52 +151,65 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
         ? joinCaption(`det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`)
         : undefined;
 
+  const showResultPanel = showT || showScale || showProd || showSum || mode === 'basic' || mode === 'code';
+
   return (
     <VizPanel caption={caption}>
       <div className="flex flex-wrap items-start gap-4">
-        <div>
-          <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
-          <MatrixGrid
-            m={A}
-            setM={setA}
-            highlightRow={mode === 'product' || mode === 'augmented_map' || mode === 'row_ops' ? (mode === 'product' ? i : selRow) : null}
-          />
-        </div>
+        {showAug ? (
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">[A | b]</p>
+            <div className="inline-flex items-stretch gap-0 rounded-lg border border-[var(--border)] p-2">
+              <MatrixGrid
+                m={A}
+                setM={setA}
+                highlightRow={mode === 'augmented_map' || mode === 'row_ops' ? selRow : null}
+              />
+              <div className="mx-2 w-px self-stretch bg-[var(--accent-strong)]" aria-hidden />
+              <div className="flex flex-col justify-center gap-2">
+                {[0, 1].map((ri) => (
+                  <input
+                    key={ri}
+                    type="number"
+                    className={`w-16 rounded border bg-[var(--bg)] px-1 py-1 text-center font-mono text-sm ${
+                      selRow === ri ? 'border-[var(--accent-strong)]' : 'border-[var(--border)]'
+                    }`}
+                    value={aug[ri]}
+                    onChange={(e) => {
+                      const next: [number, number] = [...aug] as [number, number];
+                      next[ri] = Number(e.target.value);
+                      setAug(next);
+                    }}
+                    onFocus={() => setSelRow(ri)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>
+            <MatrixGrid
+              m={A}
+              setM={setA}
+              highlightRow={mode === 'product' ? i : null}
+            />
+          </div>
+        )}
         {showProd || showSum ? (
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">B</p>
             <MatrixGrid m={B} setM={setB} />
           </div>
         ) : null}
-        {showAug ? (
+        {showResultPanel ? (
           <div>
-            <p className="mb-1 text-xs text-[var(--fg-muted)]">{v.augmented}</p>
-            <div className="flex flex-col gap-2">
-              {[0, 1].map((ri) => (
-                <input
-                  key={ri}
-                  type="number"
-                  className={`w-16 rounded border bg-[var(--bg)] px-1 py-1 text-center font-mono text-sm ${
-                    selRow === ri ? 'border-[var(--accent-strong)]' : 'border-[var(--border)]'
-                  }`}
-                  value={aug[ri]}
-                  onChange={(e) => {
-                    const next: [number, number] = [...aug] as [number, number];
-                    next[ri] = Number(e.target.value);
-                    setAug(next);
-                  }}
-                  onFocus={() => setSelRow(ri)}
-                />
-              ))}
-            </div>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">
+              {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : showSum ? 'A+B' : v.result}
+            </p>
+            <MatrixGrid m={result} highlightCell={mode === 'product' ? cell : null} />
           </div>
         ) : null}
-        <div>
-          <p className="mb-1 text-xs text-[var(--fg-muted)]">
-            {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : showSum ? 'A+B' : v.result}
-          </p>
-          <MatrixGrid m={result} highlightCell={mode === 'product' ? cell : null} />
-        </div>
       </div>
 
       {eq ? (

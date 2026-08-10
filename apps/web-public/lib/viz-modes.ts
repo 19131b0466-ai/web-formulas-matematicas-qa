@@ -8,6 +8,7 @@ export type AlgebraTilesMode =
   | 'associate'
   | 'distribute'
   | 'square'
+  | 'square_minus'
   | 'diff_sq'
   | 'binomial'
   | 'poly_grid'
@@ -56,7 +57,8 @@ export function inferAlgebraTilesMode(formulaId: string): AlgebraTilesMode {
   if (formulaId.includes('EQU-005')) return 'complete_square';
   if (formulaId.includes('POL-008')) return 'degree';
   if (/POT-/.test(formulaId)) return 'power';
-  if (/IDN-001|IDN-002|FAC-003/.test(formulaId)) return 'square';
+  if (formulaId.includes('IDN-002')) return 'square_minus';
+  if (/IDN-001|FAC-003/.test(formulaId)) return 'square';
   if (/IDN-003|FAC-002/.test(formulaId)) return 'diff_sq';
   if (formulaId.includes('IDN-008')) return 'binomial';
   if (formulaId.includes('EXP-003')) return 'poly_grid';
