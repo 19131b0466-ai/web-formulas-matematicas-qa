@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import type { FormulaVisual } from '@repo/shared-types';
+import { useVizLabels } from '@/lib/viz-labels';
 import {
   AlgebraTilesViz,
   ErrorCorrectionViz,
@@ -27,6 +28,7 @@ type Props = {
 };
 
 export function FormulaVisualization({ formulaId, visual, title }: Props) {
+  const v = useVizLabels();
   const idea = visual.idea || visual.concept;
   const type = visual.type;
 
@@ -80,7 +82,7 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
     default:
       body = (
         <div className="rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-4 py-3 text-sm text-[var(--fg-muted)]">
-          Visualización <code>{type}</code>: {visual.concept}
+          {v.fallbackViz} <code>{type}</code>: {visual.concept}
         </div>
       );
   }

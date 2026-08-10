@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
 import { det2, type Mat2 } from './math2d';
 
@@ -45,6 +46,7 @@ function MatrixGrid({
 }
 
 export function MatrixViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [A, setA] = useState<Mat2>([
     [2, 1],
     [1, 3],
@@ -118,7 +120,7 @@ export function MatrixViz({ formulaId, idea }: Props) {
         ) : null}
         {showAug ? (
           <div>
-            <p className="mb-1 text-xs text-[var(--fg-muted)]">b (aumentada)</p>
+            <p className="mb-1 text-xs text-[var(--fg-muted)]">{v.augmented}</p>
             <div className="flex flex-col gap-2">
               {[0, 1].map((i) => (
                 <input
@@ -138,7 +140,7 @@ export function MatrixViz({ formulaId, idea }: Props) {
         ) : null}
         <div>
           <p className="mb-1 text-xs text-[var(--fg-muted)]">
-            {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : /MAT-002/.test(formulaId) ? 'A+B' : 'resultado'}
+            {showT ? 'Aᵀ' : showScale ? 'cA' : showProd ? 'AB' : /MAT-002/.test(formulaId) ? 'A+B' : v.result}
           </p>
           <MatrixGrid
             m={showT ? T : showScale ? scaled : showProd ? prod : /MAT-002/.test(formulaId) ? sum : A}
@@ -148,7 +150,7 @@ export function MatrixViz({ formulaId, idea }: Props) {
       {showCode ? (
         <div className="mt-3 text-sm">
           <p className="font-mono">
-            c = [{word.join(', ')}] · click bit para error
+            c = [{word.join(', ')}] · {v.clickBitError}
           </p>
           <ButtonRow>
             {word.map((bit, i) => (
@@ -166,7 +168,9 @@ export function MatrixViz({ formulaId, idea }: Props) {
             <VizButton onClick={swapRows}>R₁ ↔ R₂</VizButton>
             <VizButton onClick={scaleRow}>c·R₁</VizButton>
             <VizButton onClick={addRows}>R₂ ← R₂+R₁</VizButton>
-            <VizButton onClick={() => setStep((s) => s + 1)}>Paso LU {step}</VizButton>
+            <VizButton onClick={() => setStep((s) => s + 1)}>
+              {v.luStep} {step}
+            </VizButton>
           </ButtonRow>
         ) : null}
       </ControlsStack>

@@ -1,0 +1,328 @@
+'use client';
+
+import { useLocale } from 'next-intl';
+import type { AppLocale } from '@/i18n/routing';
+
+type VizLabels = {
+  swap: string;
+  orderAb: string;
+  groupLeft: string;
+  groupRight: string;
+  expandedForm: string;
+  reorderFactor: string;
+  closedEnds: string;
+  inputA: string;
+  inputB: string;
+  showTerms: string;
+  reflectH: string;
+  showBasis: string;
+  dependent: string;
+  independent: string;
+  gramStep: string;
+  eigenvectors: string;
+  applyInverse: string;
+  svdStep: string;
+  lowRank: string;
+  luStep: string;
+  roots2: string;
+  root1: string;
+  noRealRoot: string;
+  orientedArea: string;
+  noInverse: string;
+  valid: string;
+  error: string;
+  dragVectors: string;
+  tableAdd: string;
+  tableMul: string;
+  subspaceNote: string;
+  homogeneousForm: string;
+  fallbackViz: string;
+  time: string;
+  space: string;
+  algebraTiles: string;
+  termProduct: string;
+  augmented: string;
+  result: string;
+  clickBitError: string;
+  areaDet: string;
+  fermatDemo: string;
+  errorBit: string;
+};
+
+const LABELS: Record<AppLocale, VizLabels> = {
+  es: {
+    swap: 'Intercambiar',
+    orderAb: 'Orden a,b',
+    groupLeft: 'Agrupar izquierda',
+    groupRight: 'Agrupar derecha',
+    expandedForm: 'Forma expandida',
+    reorderFactor: 'Reordenar / factorizar',
+    closedEnds: 'Extremos cerrados',
+    inputA: 'Entrada A',
+    inputB: 'Entrada B',
+    showTerms: 'Mostrar términos',
+    reflectH: 'Reflexión horizontal',
+    showBasis: 'Mostrar base',
+    dependent: 'dependientes',
+    independent: 'independientes',
+    gramStep: 'Gram-Schmidt paso',
+    eigenvectors: 'Eigenvectores',
+    applyInverse: 'Aplicar A⁻¹',
+    svdStep: 'Paso SVD/QR',
+    lowRank: 'Rango bajo demo',
+    luStep: 'Paso LU',
+    roots2: '2 raíces',
+    root1: '1 raíz',
+    noRealRoot: 'sin raíz real',
+    orientedArea: 'área orientada',
+    noInverse: 'sin inverso',
+    valid: 'válida',
+    error: 'error',
+    dragVectors: 'Arrastra las puntas de los vectores.',
+    tableAdd: 'Tabla +',
+    tableMul: 'Tabla ·',
+    subspaceNote: 'Suma c1+c2 = [1, 1, 0] (cierre del subespacio)',
+    homogeneousForm: 'forma homogénea grado',
+    fallbackViz: 'Visualización',
+    time: 'Tiempo',
+    space: 'Espacio',
+    algebraTiles: 'Piezas algebraicas',
+    termProduct: 'Producto término × término',
+    augmented: 'b (aumentada)',
+    result: 'resultado',
+    clickBitError: 'click bit para error',
+    areaDet: 'área/det',
+    fermatDemo: 'demo de Fermat',
+    errorBit: 'error',
+  },
+  en: {
+    swap: 'Swap',
+    orderAb: 'Order a,b',
+    groupLeft: 'Group left',
+    groupRight: 'Group right',
+    expandedForm: 'Expanded form',
+    reorderFactor: 'Reorder / factor',
+    closedEnds: 'Closed endpoints',
+    inputA: 'Input A',
+    inputB: 'Input B',
+    showTerms: 'Show terms',
+    reflectH: 'Horizontal reflection',
+    showBasis: 'Show basis',
+    dependent: 'dependent',
+    independent: 'independent',
+    gramStep: 'Gram-Schmidt step',
+    eigenvectors: 'Eigenvectors',
+    applyInverse: 'Apply A⁻¹',
+    svdStep: 'SVD/QR step',
+    lowRank: 'Low-rank demo',
+    luStep: 'LU step',
+    roots2: '2 roots',
+    root1: '1 root',
+    noRealRoot: 'no real root',
+    orientedArea: 'oriented area',
+    noInverse: 'no inverse',
+    valid: 'valid',
+    error: 'error',
+    dragVectors: 'Drag the vector tips.',
+    tableAdd: 'Table +',
+    tableMul: 'Table ·',
+    subspaceNote: 'Sum c1+c2 = [1, 1, 0] (subspace closed)',
+    homogeneousForm: 'homogeneous form degree',
+    fallbackViz: 'Visualization',
+    time: 'Time',
+    space: 'Space',
+    algebraTiles: 'Algebra tiles',
+    termProduct: 'Term × term product',
+    augmented: 'b (augmented)',
+    result: 'result',
+    clickBitError: 'click bit to flip error',
+    areaDet: 'area/det',
+    fermatDemo: 'Fermat demo',
+    errorBit: 'error',
+  },
+  de: {
+    swap: 'Tauschen',
+    orderAb: 'Reihenfolge a,b',
+    groupLeft: 'Links gruppieren',
+    groupRight: 'Rechts gruppieren',
+    expandedForm: 'Ausmultipliziert',
+    reorderFactor: 'Umordnen / faktorisieren',
+    closedEnds: 'Geschlossene Enden',
+    inputA: 'Eingang A',
+    inputB: 'Eingang B',
+    showTerms: 'Terme anzeigen',
+    reflectH: 'Horizontale Spiegelung',
+    showBasis: 'Basis anzeigen',
+    dependent: 'abhängig',
+    independent: 'unabhängig',
+    gramStep: 'Gram-Schmidt Schritt',
+    eigenvectors: 'Eigenvektoren',
+    applyInverse: 'A⁻¹ anwenden',
+    svdStep: 'SVD/QR Schritt',
+    lowRank: 'Niedrigrang-Demo',
+    luStep: 'LU Schritt',
+    roots2: '2 Wurzeln',
+    root1: '1 Wurzel',
+    noRealRoot: 'keine reelle Wurzel',
+    orientedArea: 'orientierte Fläche',
+    noInverse: 'kein Inverses',
+    valid: 'gültig',
+    error: 'Fehler',
+    dragVectors: 'Ziehe die Vektorspitzen.',
+    tableAdd: 'Tabelle +',
+    tableMul: 'Tabelle ·',
+    subspaceNote: 'Summe c1+c2 = [1, 1, 0] (Unterraum abgeschlossen)',
+    homogeneousForm: 'homogene Form Grad',
+    fallbackViz: 'Visualisierung',
+    time: 'Zeit',
+    space: 'Speicher',
+    algebraTiles: 'Algebra-Kacheln',
+    termProduct: 'Term × Term Produkt',
+    augmented: 'b (erweitert)',
+    result: 'Ergebnis',
+    clickBitError: 'Bit anklicken für Fehler',
+    areaDet: 'Fläche/det',
+    fermatDemo: 'Fermat-Demo',
+    errorBit: 'Fehler',
+  },
+  fr: {
+    swap: 'Échanger',
+    orderAb: 'Ordre a,b',
+    groupLeft: 'Grouper à gauche',
+    groupRight: 'Grouper à droite',
+    expandedForm: 'Forme développée',
+    reorderFactor: 'Réordonner / factoriser',
+    closedEnds: 'Extrémités fermées',
+    inputA: 'Entrée A',
+    inputB: 'Entrée B',
+    showTerms: 'Afficher les termes',
+    reflectH: 'Réflexion horizontale',
+    showBasis: 'Afficher la base',
+    dependent: 'dépendants',
+    independent: 'indépendants',
+    gramStep: 'Étape Gram-Schmidt',
+    eigenvectors: 'Vecteurs propres',
+    applyInverse: 'Appliquer A⁻¹',
+    svdStep: 'Étape SVD/QR',
+    lowRank: 'Démo rang faible',
+    luStep: 'Étape LU',
+    roots2: '2 racines',
+    root1: '1 racine',
+    noRealRoot: 'pas de racine réelle',
+    orientedArea: 'aire orientée',
+    noInverse: 'pas d’inverse',
+    valid: 'valide',
+    error: 'erreur',
+    dragVectors: 'Faites glisser les pointes des vecteurs.',
+    tableAdd: 'Table +',
+    tableMul: 'Table ·',
+    subspaceNote: 'Somme c1+c2 = [1, 1, 0] (sous-espace fermé)',
+    homogeneousForm: 'forme homogène degré',
+    fallbackViz: 'Visualisation',
+    time: 'Temps',
+    space: 'Espace',
+    algebraTiles: 'Tuiles algébriques',
+    termProduct: 'Produit terme × terme',
+    augmented: 'b (augmentée)',
+    result: 'résultat',
+    clickBitError: 'cliquer un bit pour erreur',
+    areaDet: 'aire/det',
+    fermatDemo: 'démo de Fermat',
+    errorBit: 'erreur',
+  },
+  it: {
+    swap: 'Scambia',
+    orderAb: 'Ordine a,b',
+    groupLeft: 'Raggruppa a sinistra',
+    groupRight: 'Raggruppa a destra',
+    expandedForm: 'Forma sviluppata',
+    reorderFactor: 'Riordina / fattorizza',
+    closedEnds: 'Estremi chiusi',
+    inputA: 'Ingresso A',
+    inputB: 'Ingresso B',
+    showTerms: 'Mostra termini',
+    reflectH: 'Riflessione orizzontale',
+    showBasis: 'Mostra base',
+    dependent: 'dipendenti',
+    independent: 'indipendenti',
+    gramStep: 'Passo Gram-Schmidt',
+    eigenvectors: 'Autovettori',
+    applyInverse: 'Applica A⁻¹',
+    svdStep: 'Passo SVD/QR',
+    lowRank: 'Demo basso rango',
+    luStep: 'Passo LU',
+    roots2: '2 radici',
+    root1: '1 radice',
+    noRealRoot: 'nessuna radice reale',
+    orientedArea: 'area orientata',
+    noInverse: 'senza inverso',
+    valid: 'valida',
+    error: 'errore',
+    dragVectors: 'Trascina le punte dei vettori.',
+    tableAdd: 'Tabella +',
+    tableMul: 'Tabella ·',
+    subspaceNote: 'Somma c1+c2 = [1, 1, 0] (sottospazio chiuso)',
+    homogeneousForm: 'forma omogenea grado',
+    fallbackViz: 'Visualizzazione',
+    time: 'Tempo',
+    space: 'Spazio',
+    algebraTiles: 'Tessere algebriche',
+    termProduct: 'Prodotto termine × termine',
+    augmented: 'b (aumentata)',
+    result: 'risultato',
+    clickBitError: 'clicca bit per errore',
+    areaDet: 'area/det',
+    fermatDemo: 'demo di Fermat',
+    errorBit: 'errore',
+  },
+  pt: {
+    swap: 'Trocar',
+    orderAb: 'Ordem a,b',
+    groupLeft: 'Agrupar à esquerda',
+    groupRight: 'Agrupar à direita',
+    expandedForm: 'Forma expandida',
+    reorderFactor: 'Reordenar / fatorar',
+    closedEnds: 'Extremos fechados',
+    inputA: 'Entrada A',
+    inputB: 'Entrada B',
+    showTerms: 'Mostrar termos',
+    reflectH: 'Reflexão horizontal',
+    showBasis: 'Mostrar base',
+    dependent: 'dependentes',
+    independent: 'independentes',
+    gramStep: 'Passo Gram-Schmidt',
+    eigenvectors: 'Autovetores',
+    applyInverse: 'Aplicar A⁻¹',
+    svdStep: 'Passo SVD/QR',
+    lowRank: 'Demo baixo posto',
+    luStep: 'Passo LU',
+    roots2: '2 raízes',
+    root1: '1 raiz',
+    noRealRoot: 'sem raiz real',
+    orientedArea: 'área orientada',
+    noInverse: 'sem inverso',
+    valid: 'válida',
+    error: 'erro',
+    dragVectors: 'Arraste as pontas dos vetores.',
+    tableAdd: 'Tabela +',
+    tableMul: 'Tabela ·',
+    subspaceNote: 'Soma c1+c2 = [1, 1, 0] (subespaço fechado)',
+    homogeneousForm: 'forma homogênea grau',
+    fallbackViz: 'Visualização',
+    time: 'Tempo',
+    space: 'Espaço',
+    algebraTiles: 'Peças algébricas',
+    termProduct: 'Produto termo × termo',
+    augmented: 'b (aumentada)',
+    result: 'resultado',
+    clickBitError: 'clique no bit para erro',
+    areaDet: 'área/det',
+    fermatDemo: 'demo de Fermat',
+    errorBit: 'erro',
+  },
+};
+
+export function useVizLabels(): VizLabels {
+  const locale = useLocale() as AppLocale;
+  return LABELS[locale] ?? LABELS.es;
+}

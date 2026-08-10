@@ -1,12 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function GraphViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [a, setA] = useState(1);
   const [b, setB] = useState(-1);
   const [c, setC] = useState(-2);
@@ -94,7 +96,7 @@ export function GraphViz({ formulaId, idea }: Props) {
     <VizPanel
       caption={
         /EQU-003|EQU-004/.test(formulaId)
-          ? `${idea ?? ''} · Δ = ${fmt(disc)} (${disc > 0 ? '2 raíces' : disc === 0 ? '1 raíz' : 'sin raíz real'})`
+          ? `${idea ?? ''} · Δ = ${fmt(disc)} (${disc > 0 ? v.roots2 : disc === 0 ? v.root1 : v.noRealRoot})`
           : idea
       }
     >

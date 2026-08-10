@@ -88,13 +88,13 @@
     "subsections": "Sous-sections",
     "inThisSection": "Dans cette section",
     "notFound": "Section introuvable",
-    "metaDescription": "Formules et concepts de {title} dans le formulaire de Calcul II.",
+    "metaDescription": "Formules et concepts de {title}.",
     "jsonDescription": "Section {number} : {title}",
     "loading": "Chargement de la section…"
   },
   "appendix": {
     "notFound": "Annexe introuvable",
-    "metaDescription": "Annexe du formulaire de Calcul II : {title}."
+    "metaDescription": "Annexe de formules : {title}."
   },
   "content": {
     "formula": "Formule",

@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel, fmt } from './controls';
 import { add, applyMat, det2, scale, type Mat2, type Vec2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function VectorSpaceViz({ formulaId, idea }: Props) {
+  const vLab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2, y: 0.4 });
   const [v, setV] = useState<Vec2>({ x: 0.6, y: 1.8 });
   const [s, setS] = useState(0.7);
@@ -42,7 +44,7 @@ export function VectorSpaceViz({ formulaId, idea }: Props) {
   );
 
   return (
-    <VizPanel caption={`${idea ?? ''} · área/det ≈ ${fmt(area)} (${area < 1e-3 ? 'dependientes' : 'independientes'})`}>
+    <VizPanel caption={`${idea ?? ''} · ${vLab.areaDet} ≈ ${fmt(area)} (${area < 1e-3 ? vLab.dependent : vLab.independent})`}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />
@@ -81,9 +83,11 @@ export function VectorSpaceViz({ formulaId, idea }: Props) {
         <SliderRow label="vᵧ" value={v.y} min={-3} max={3} step={0.1} onChange={(y) => setV({ ...v, y })} />
         <SliderRow label="s" value={s} min={-1.5} max={1.5} step={0.05} onChange={setS} />
         <SliderRow label="t" value={t} min={-1.5} max={1.5} step={0.05} onChange={setT} />
-        <ToggleRow label="Mostrar base" checked={basisOn} onChange={setBasisOn} />
+        <ToggleRow label={vLab.showBasis} checked={basisOn} onChange={setBasisOn} />
         <ButtonRow>
-          <VizButton onClick={() => setStep((x) => (x + 1) % 3)}>Gram-Schmidt paso {step + 1}</VizButton>
+          <VizButton onClick={() => setStep((x) => (x + 1) % 3)}>
+            {vLab.gramStep} {step + 1}
+          </VizButton>
         </ButtonRow>
       </ControlsStack>
     </VizPanel>

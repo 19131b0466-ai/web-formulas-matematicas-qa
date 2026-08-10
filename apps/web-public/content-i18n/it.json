@@ -362,7 +362,7 @@
   "Constantes físicas": "Costanti fisiche",
   "Cálculo II": "Calcolo II",
   "Física Básica": "Fisica di base",
-  "Cálculo Integral — fórmulas, métodos y aplicaciones": "Integral Calculus — formulas, methods and applications",
+  "Cálculo Integral — fórmulas, métodos y aplicaciones": "Calcolo integrale — formule, metodi e applicazioni",
   "**Convención:** \\(Q>0\\) entra al sistema y \\(W>0\\) es trabajo realizado por el sistema.": "**Convenzione:** \\(Q>0\\) entra nel sistema e \\(W>0\\) è il lavoro compiuto dal sistema.",
   "**Convención:** el signo del numerador se elige según el movimiento del observador hacia/desde la fuente; el del denominador según el movimiento de la fuente hacia/desde el observador.": "**Convenzione:** il segno del numeratore si sceglie in base al movimento dell'osservatore verso/lontano dalla sorgente; quello del denominatore in base al movimento della sorgente verso/lontano dall'osservatore.",
   "**Nota:** esta corrige la expresión \\(v_y=v_0\\sin\\theta\\), que solo corresponde al valor inicial.": "**Nota:** questa corregge l'espressione \\(v_y=v_0\\sin\\theta\\), che corrisponde solo al valore iniziale.",
@@ -1926,5 +1926,8 @@
   "Resorte u péndulo, periodo, frecuencia, movimiento armónico": "Molla o pendolo, periodo, frequenza, moto armonico",
   "Si hay varias etapas (p. ej. choque + energía), encadenar fórmulas relacionadas.": "Se sono presenti più fasi (ad esempio shock + energia), formule correlate alla catena.",
   "Sonido, batidos, efecto Doppler, nivel en decibelios": "Suono, vibrazioni, effetto Doppler, livello di decibel",
-  "Trabajo, energía cinética/potencial, potencia, conservación de energía": "Lavoro, energia cinetica/potenziale, potenza, conservazione dell'energia"
+  "Trabajo, energía cinética/potencial, potencia, conservación de energía": "Lavoro, energia cinetica/potenziale, potenza, conservazione dell'energia",
+  "Fórmulas de Física General universitaria": "Formule di fisica generale universitaria",
+  "Índice": "Indice",
+  "Resumen de relaciones": "Riepilogo delle relazioni"
 }

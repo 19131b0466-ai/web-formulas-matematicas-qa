@@ -1,12 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel, fmt } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function PolynomialSurfaceViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [a, setA] = useState(1);
   const [b, setB] = useState(0.4);
   const [c, setC] = useState(-0.6);
@@ -66,7 +68,7 @@ export function PolynomialSurfaceViz({ formulaId, idea }: Props) {
           );
         })}
         <text x={12} y={14} fontSize={12} fill="currentColor">
-          z = {showTerms ? `${fmt(a)}x² + ${fmt(b)}xy + ${fmt(c)}y²` : `forma homogénea grado ${d}`}
+          z = {showTerms ? `${fmt(a)}x² + ${fmt(b)}xy + ${fmt(c)}y²` : `${v.homogeneousForm} ${d}`}
         </text>
       </svg>
       <ControlsStack>
@@ -79,7 +81,7 @@ export function PolynomialSurfaceViz({ formulaId, idea }: Props) {
             <SliderRow label="d" value={d} min={1} max={4} step={1} onChange={setD} />
           </>
         ) : null}
-        <ToggleRow label="Mostrar términos" checked={showTerms} onChange={setShowTerms} />
+        <ToggleRow label={v.showTerms} checked={showTerms} onChange={setShowTerms} />
       </ControlsStack>
     </VizPanel>
   );

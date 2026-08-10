@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { ComputationalCost } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
+import { useVizLabels } from '@/lib/viz-labels';
 
 type Props = {
   cost: ComputationalCost;
@@ -13,6 +14,7 @@ type Props = {
 
 export function ComputationalCostPanel({ cost, title, showLabel, hideLabel }: Props) {
   const [open, setOpen] = useState(true);
+  const v = useVizLabels();
   const body = cost.markdown ?? [cost.assumptions, cost.time, cost.space, cost.notes].filter(Boolean).join('\n\n');
 
   return (
@@ -21,7 +23,7 @@ export function ComputationalCostPanel({ cost, title, showLabel, hideLabel }: Pr
         <h2 className="font-display text-xl font-semibold tracking-tight">{title}</h2>
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((vOpen) => !vOpen)}
           className="rounded-lg border border-[var(--border)] px-3 py-1 text-sm text-[var(--fg-muted)] hover:bg-[var(--accent-soft)]"
         >
           {open ? hideLabel : showLabel}
@@ -29,8 +31,8 @@ export function ComputationalCostPanel({ cost, title, showLabel, hideLabel }: Pr
       </div>
       {open ? (
         <div className="mt-3 space-y-2 rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-4 py-3 text-base leading-relaxed">
-          {cost.time ? <p className="font-mono text-sm">Tiempo: {cost.time}</p> : null}
-          {cost.space ? <p className="font-mono text-sm">Espacio: {cost.space}</p> : null}
+          {cost.time ? <p className="font-mono text-sm">{v.time}: {cost.time}</p> : null}
+          {cost.space ? <p className="font-mono text-sm">{v.space}: {cost.space}</p> : null}
           {body ? (
             <div className="whitespace-pre-wrap text-sm text-[var(--fg)]">
               <InlineMarkdown text={body.replace(/\$\$/g, '$')} />

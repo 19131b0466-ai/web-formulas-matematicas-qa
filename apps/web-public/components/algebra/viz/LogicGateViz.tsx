@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, ToggleRow, VizPanel } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
 export function LogicGateViz({ idea }: Props) {
+  const v = useVizLabels();
   const [A, setA] = useState(true);
   const [B, setB] = useState(false);
 
@@ -37,8 +39,8 @@ export function LogicGateViz({ idea }: Props) {
         <circle cx={30} cy={110} r={6} fill={B ? 'teal' : 'currentColor'} opacity={B ? 1 : 0.3} />
       </svg>
       <ControlsStack>
-        <ToggleRow label="Entrada A" checked={A} onChange={setA} />
-        <ToggleRow label="Entrada B" checked={B} onChange={setB} />
+        <ToggleRow label={v.inputA} checked={A} onChange={setA} />
+        <ToggleRow label={v.inputB} checked={B} onChange={setB} />
       </ControlsStack>
     </VizPanel>
   );

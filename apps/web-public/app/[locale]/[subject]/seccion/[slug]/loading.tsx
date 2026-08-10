@@ -1,5 +1,7 @@
-/** Keep this sync and free of next-intl — loading boundaries can render
- *  before `setRequestLocale`, which throws under static/ISR generation. */
-export default function Loading() {
-  return <p className="text-sm text-[var(--fg-muted)]">Cargando sección…</p>;
+import { getLoadingCopy } from '@/lib/loading-copy';
+
+/** Avoid next-intl here — loading can render before setRequestLocale. */
+export default async function Loading() {
+  const copy = await getLoadingCopy();
+  return <p className="text-sm text-[var(--fg-muted)]">{copy.section}</p>;
 }

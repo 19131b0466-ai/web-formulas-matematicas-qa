@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useRef, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { add, dot, normalize, norm, project, scale, sub, type Vec2 } from './math2d';
 
@@ -35,6 +36,7 @@ function useDrag(set: (v: Vec2) => void, scalePx: number, origin: Vec2) {
 }
 
 export function VectorViz({ formulaId, idea }: Props) {
+  const vLab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2.2, y: 1.4 });
   const [v, setV] = useState<Vec2>({ x: 0.8, y: 2.1 });
   const [theta, setTheta] = useState(0.8);
@@ -135,7 +137,7 @@ export function VectorViz({ formulaId, idea }: Props) {
       <ControlsStack>
         {complex ? <SliderRow label="θ" value={theta} min={-Math.PI} max={Math.PI} step={0.05} onChange={setTheta} /> : null}
         {moivre ? <SliderRow label="n" value={n} min={2} max={8} step={1} onChange={setN} /> : null}
-        <p className="text-xs text-[var(--fg-muted)]">Arrastra las puntas de los vectores.</p>
+        <p className="text-xs text-[var(--fg-muted)]">{vLab.dragVectors}</p>
       </ControlsStack>
     </VizPanel>
   );

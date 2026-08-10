@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
 import {
   applyMat,
@@ -17,6 +18,7 @@ import {
 type Props = { formulaId: string; idea?: string };
 
 export function MatrixTransformViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [a11, setA11] = useState(1.2);
   const [a12, setA12] = useState(0.4);
   const [a21, setA21] = useState(0.3);
@@ -134,7 +136,7 @@ export function MatrixTransformViz({ formulaId, idea }: Props) {
         ) : null}
         <ButtonRow>
           <VizButton active={showEigen} onClick={() => setShowEigen((s) => !s)}>
-            Eigenvectores
+            {v.eigenvectors}
           </VizButton>
           <VizButton
             onClick={() => {
@@ -145,15 +147,15 @@ export function MatrixTransformViz({ formulaId, idea }: Props) {
               setA22(Ainv[1][1]);
             }}
           >
-            Aplicar A⁻¹
+            {v.applyInverse}
           </VizButton>
           <VizButton onClick={() => setStep((s) => (s + 1) % 3)}>
-            Paso SVD/QR {step + 1}/3
+            {v.svdStep} {step + 1}/3
           </VizButton>
         </ButtonRow>
         {k <= 1 ? (
           <p className="font-mono text-xs text-[var(--fg-muted)]">
-            Rango bajo demo: [[{fmt(rankApprox[0][0])}, {fmt(rankApprox[0][1])}], [{fmt(rankApprox[1][0])},{' '}
+            {v.lowRank}: [[{fmt(rankApprox[0][0])}, {fmt(rankApprox[0][1])}], [{fmt(rankApprox[1][0])},{' '}
             {fmt(rankApprox[1][1])}]]
           </p>
         ) : null}

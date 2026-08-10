@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 
 type Props = { formulaId: string; idea?: string };
@@ -13,6 +14,7 @@ function hamming(a: string, b: string): number {
 }
 
 export function ErrorCorrectionViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [word, setWord] = useState('0000000');
   const [errorPos, setErrorPos] = useState(2);
   const [other, setOther] = useState('0001011');
@@ -56,7 +58,7 @@ export function ErrorCorrectionViz({ formulaId, idea }: Props) {
             ))}
           </div>
           <p className="font-mono text-sm">
-            s = [{syndrome.join(', ')}] {syndrome.every((x) => x === 0) ? '(válida)' : '(error)'}
+            s = [{syndrome.join(', ')}] {syndrome.every((x) => x === 0) ? `(${v.valid})` : `(${v.error})`}
           </p>
         </div>
       ) : null}
@@ -133,7 +135,7 @@ export function ErrorCorrectionViz({ formulaId, idea }: Props) {
 
       <ControlsStack>
         {/COD-004/.test(formulaId) ? (
-          <SliderRow label="error" value={errorPos} min={0} max={6} step={1} onChange={setErrorPos} />
+          <SliderRow label={v.errorBit} value={errorPos} min={0} max={6} step={1} onChange={setErrorPos} />
         ) : null}
         {/COD-006/.test(formulaId) ? (
           <SliderRow label="d_min" value={dmin} min={1} max={7} step={1} onChange={setDmin} />

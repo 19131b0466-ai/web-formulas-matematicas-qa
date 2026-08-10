@@ -1,12 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel, fmt } from './controls';
 import { clamp } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function NumberLineViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [x, setX] = useState(2.5);
   const [a, setA] = useState(-1);
   const [b, setB] = useState(3);
@@ -137,7 +139,7 @@ export function NumberLineViz({ formulaId, idea }: Props) {
                 </button>
               ))}
             </div>
-            <ToggleRow label="Extremos cerrados" checked={closed} onChange={setClosed} />
+            <ToggleRow label={v.closedEnds} checked={closed} onChange={setClosed} />
           </>
         ) : null}
       </ControlsStack>

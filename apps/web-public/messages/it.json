@@ -88,13 +88,13 @@
     "subsections": "Sottosezioni",
     "inThisSection": "In questa sezione",
     "notFound": "Sezione non trovata",
-    "metaDescription": "Formule e concetti di {title} nel formulario di Calcolo II.",
+    "metaDescription": "Formule e concetti di {title}.",
     "jsonDescription": "Sezione {number}: {title}",
     "loading": "Caricamento sezione…"
   },
   "appendix": {
     "notFound": "Appendice non trovata",
-    "metaDescription": "Appendice del formulario di Calcolo II: {title}."
+    "metaDescription": "Appendice di formule: {title}."
   },
   "content": {
     "formula": "Formula",

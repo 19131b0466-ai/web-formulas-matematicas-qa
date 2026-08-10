@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
 export function AlgebraTilesViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [a, setA] = useState(3);
   const [b, setB] = useState(2);
   const [c, setC] = useState(1.5);
@@ -136,7 +138,7 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
               )),
             )}
             <text x={60} y={30} fontSize={12} fill="currentColor">
-              Producto término × término
+              {v.termProduct}
             </text>
           </>
         ) : null}
@@ -145,7 +147,7 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
             <rect x={40} y={50} width={a * scale} height={40} fill="var(--accent-soft)" stroke="var(--accent-strong)" rx={6} />
             <rect x={40 + a * scale + 8} y={50} width={b * scale} height={40} fill="color-mix(in oklab, teal 30%, transparent)" stroke="teal" rx={6} />
             <text x={40} y={40} fontSize={13} fill="currentColor">
-              Piezas algebraicas a={fmt(a)}, b={fmt(b)}
+              {v.algebraTiles} a={fmt(a)}, b={fmt(b)}
             </text>
           </>
         ) : null}
@@ -156,15 +158,15 @@ export function AlgebraTilesViz({ formulaId, idea }: Props) {
         {isAssoc || isDist ? <SliderRow label="c" value={c} min={0.2} max={4} step={0.1} onChange={setC} /> : null}
         {isBinom ? <SliderRow label="n" value={n} min={1} max={6} step={1} onChange={setN} /> : null}
         <ButtonRow>
-          {isComm ? <VizButton onClick={() => setSwapped((s) => !s)}>{swapped ? 'Orden a,b' : 'Intercambiar'}</VizButton> : null}
+          {isComm ? <VizButton onClick={() => setSwapped((s) => !s)}>{swapped ? v.orderAb : v.swap}</VizButton> : null}
           {isAssoc ? (
             <VizButton onClick={() => setAssocRight((s) => !s)}>
-              {assocRight ? 'Agrupar izquierda' : 'Agrupar derecha'}
+              {assocRight ? v.groupLeft : v.groupRight}
             </VizButton>
           ) : null}
           {isDiffSq ? (
             <VizButton onClick={() => setFactored((s) => !s)} active={factored}>
-              {factored ? 'Forma expandida' : 'Reordenar / factorizar'}
+              {factored ? v.expandedForm : v.reorderFactor}
             </VizButton>
           ) : null}
         </ButtonRow>

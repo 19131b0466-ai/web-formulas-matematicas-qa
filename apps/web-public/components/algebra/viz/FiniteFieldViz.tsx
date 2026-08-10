@@ -1,11 +1,13 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
 export function FiniteFieldViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [p, setP] = useState(5);
   const [sel, setSel] = useState<[number, number] | null>([2, 3]);
   const [mode, setMode] = useState<'add' | 'mul'>('add');
@@ -38,7 +40,7 @@ export function FiniteFieldViz({ formulaId, idea }: Props) {
           {codeWords.map((w, i) => (
             <div key={i}>c{i} = [{w.join(', ')}]</div>
           ))}
-          <p className="text-[var(--fg-muted)]">Suma c1+c2 = [1,1,0] (cierre del subespacio)</p>
+          <p className="text-[var(--fg-muted)]">{v.subspaceNote}</p>
         </div>
       ) : null}
       <div className="flex gap-2 text-sm">
@@ -47,14 +49,14 @@ export function FiniteFieldViz({ formulaId, idea }: Props) {
           className={`rounded border px-2 py-1 ${mode === 'add' ? 'border-[var(--accent-strong)] bg-[var(--accent-soft)]' : 'border-[var(--border)]'}`}
           onClick={() => setMode('add')}
         >
-          Tabla +
+          {v.tableAdd}
         </button>
         <button
           type="button"
           className={`rounded border px-2 py-1 ${mode === 'mul' ? 'border-[var(--accent-strong)] bg-[var(--accent-soft)]' : 'border-[var(--border)]'}`}
           onClick={() => setMode('mul')}
         >
-          Tabla ·
+          {v.tableMul}
         </button>
       </div>
       <div className="mt-2 overflow-x-auto">

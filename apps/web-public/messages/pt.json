@@ -88,13 +88,13 @@
     "subsections": "Subseções",
     "inThisSection": "Nesta seção",
     "notFound": "Seção não encontrada",
-    "metaDescription": "Fórmulas e conceitos de {title} no formulário de Cálculo II.",
+    "metaDescription": "Fórmulas e conceitos de {title}.",
     "jsonDescription": "Seção {number}: {title}",
     "loading": "Carregando seção…"
   },
   "appendix": {
     "notFound": "Apêndice não encontrado",
-    "metaDescription": "Apêndice do formulário de Cálculo II: {title}."
+    "metaDescription": "Apêndice de fórmulas: {title}."
   },
   "content": {
     "formula": "Fórmula",
@@ -147,7 +147,7 @@
     "level": "Nível",
     "visualization": "Visualização",
     "complexity": "Complexidade computacional",
-    "showComplexity": "Mostrar (modo CS)",
+    "showComplexity": "Exibir (modo CS)",
     "hideComplexity": "Ocultar (modo básico)"
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 
 type Props = { formulaId: string; idea?: string };
@@ -24,6 +25,7 @@ function egcd(a: number, b: number): [number, number, number] {
 }
 
 export function ModularClockViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [mod, setMod] = useState(7);
   const [a, setA] = useState(3);
   const [b, setB] = useState(5);
@@ -63,7 +65,7 @@ export function ModularClockViz({ formulaId, idea }: Props) {
 
   return (
     <VizPanel
-      caption={`${idea ?? ''} · a+b≡${sum}, ab≡${prod}${inv !== null ? `, a⁻¹≡${inv}` : ', sin inverso'}${formulaId.includes('MOD-006') ? `, a^{p-1}≡${pow}` : ''}${crt !== null ? `, CRT x≡${crt}` : ''}`}
+      caption={`${idea ?? ''} · a+b≡${sum}, ab≡${prod}${inv !== null ? `, a⁻¹≡${inv}` : `, ${v.noInverse}`}${formulaId.includes('MOD-006') ? `, a^{p-1}≡${pow}` : ''}${crt !== null ? `, CRT x≡${crt}` : ''}`}
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <circle cx={cx} cy={cy} r={R} fill="none" stroke="currentColor" opacity={0.3} />
@@ -99,7 +101,7 @@ export function ModularClockViz({ formulaId, idea }: Props) {
         ) : null}
         <p className="text-xs text-[var(--fg-muted)]">
           gcd(a,m)={fmt(g)}
-          {formulaId.includes('MOD-006') ? ' · Fermat demo' : ''}
+          {formulaId.includes('MOD-006') ? ` · ${v.fermatDemo}` : ''}
         </p>
       </ControlsStack>
     </VizPanel>

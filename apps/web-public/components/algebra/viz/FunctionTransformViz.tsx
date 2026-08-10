@@ -1,12 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function FunctionTransformViz({ formulaId, idea }: Props) {
+  const v = useVizLabels();
   const [h, setH] = useState(1);
   const [k, setK] = useState(0.5);
   const [a, setA] = useState(1);
@@ -63,7 +65,7 @@ export function FunctionTransformViz({ formulaId, idea }: Props) {
           <>
             <SliderRow label="a" value={a} min={-2} max={2} step={0.1} onChange={setA} />
             <SliderRow label="b" value={b} min={0.2} max={3} step={0.1} onChange={setB} />
-            <ToggleRow label="Reflexión horizontal" checked={reflectX} onChange={setReflectX} />
+            <ToggleRow label={v.reflectH} checked={reflectX} onChange={setReflectX} />
           </>
         ) : null}
         {formulaId.includes('FUN-002') ? (

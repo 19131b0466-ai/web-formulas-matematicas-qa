@@ -88,13 +88,13 @@
     "subsections": "Subsections",
     "inThisSection": "In this section",
     "notFound": "Section not found",
-    "metaDescription": "Formulas and concepts for {title} in the Calculus II formula sheet.",
+    "metaDescription": "Formulas and concepts for {title}.",
     "jsonDescription": "Section {number}: {title}",
     "loading": "Loading section…"
   },
   "appendix": {
     "notFound": "Appendix not found",
-    "metaDescription": "Appendix of the Calculus II formula sheet: {title}."
+    "metaDescription": "Formulas appendix: {title}."
   },
   "content": {
     "formula": "Formula",

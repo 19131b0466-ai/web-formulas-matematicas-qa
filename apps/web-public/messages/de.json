@@ -88,13 +88,13 @@
     "subsections": "Unterabschnitte",
     "inThisSection": "In diesem Abschnitt",
     "notFound": "Abschnitt nicht gefunden",
-    "metaDescription": "Formeln und Konzepte zu {title} in der Formelsammlung Analysis II.",
+    "metaDescription": "Formeln und Konzepte zu {title}.",
     "jsonDescription": "Abschnitt {number}: {title}",
     "loading": "Abschnitt wird geladen…"
   },
   "appendix": {
     "notFound": "Anhang nicht gefunden",
-    "metaDescription": "Anhang der Formelsammlung Analysis II: {title}."
+    "metaDescription": "Formelnanhang: {title}."
   },
   "content": {
     "formula": "Formel",

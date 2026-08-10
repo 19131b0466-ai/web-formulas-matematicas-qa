@@ -1,4 +1,7 @@
-/** Sync loading — avoid next-intl before setRequestLocale. */
-export default function Loading() {
-  return <p className="text-sm text-[var(--fg-muted)]">Cargando fórmula…</p>;
+import { getLoadingCopy } from '@/lib/loading-copy';
+
+/** Avoid next-intl here — loading can render before setRequestLocale. */
+export default async function Loading() {
+  const copy = await getLoadingCopy();
+  return <p className="text-sm text-[var(--fg-muted)]">{copy.formula}</p>;
 }

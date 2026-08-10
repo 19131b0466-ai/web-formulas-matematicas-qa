@@ -362,7 +362,7 @@
   "Constantes físicas": "Constantes físicas",
   "Cálculo II": "Cálculo II",
   "Física Básica": "Física Básica",
-  "Cálculo Integral — fórmulas, métodos y aplicaciones": "Integral Calculus — formulas, methods and applications",
+  "Cálculo Integral — fórmulas, métodos y aplicaciones": "Cálculo Integral — fórmulas, métodos e aplicações",
   "**Convención:** \\(Q>0\\) entra al sistema y \\(W>0\\) es trabajo realizado por el sistema.": "**Convenção:** \\(Q>0\\) entra no sistema e \\(W>0\\) é o trabalho realizado pelo sistema.",
   "**Convención:** el signo del numerador se elige según el movimiento del observador hacia/desde la fuente; el del denominador según el movimiento de la fuente hacia/desde el observador.": "**Convenção:** o sinal do numerador é escolhido conforme o movimento do observador em direção à/afastando-se da fonte; o do denominador conforme o movimento da fonte em direção ao/afastando-se do observador.",
   "**Nota:** esta corrige la expresión \\(v_y=v_0\\sin\\theta\\), que solo corresponde al valor inicial.": "**Nota:** esta corrige a expressão \\(v_y=v_0\\sin\\theta\\), que corresponde apenas ao valor inicial.",
@@ -1926,5 +1926,8 @@
   "Resorte u péndulo, periodo, frecuencia, movimiento armónico": "Mola ou pêndulo, período, frequência, movimento harmônico",
   "Si hay varias etapas (p. ej. choque + energía), encadenar fórmulas relacionadas.": "Se houver vários estágios (por exemplo, colisão + energia), fórmulas relacionadas à cadeia.",
   "Sonido, batidos, efecto Doppler, nivel en decibelios": "Som, batidas, efeito Doppler, nível em decibéis",
-  "Trabajo, energía cinética/potencial, potencia, conservación de energía": "Trabalho, energia cinética/potencial, potência, conservação de energia"
+  "Trabajo, energía cinética/potencial, potencia, conservación de energía": "Trabalho, energia cinética/potencial, potência, conservação de energia",
+  "Fórmulas de Física General universitaria": "Fórmulas de Física Geral universitária",
+  "Índice": "Índice",
+  "Resumen de relaciones": "Resumo das relações"
 }
