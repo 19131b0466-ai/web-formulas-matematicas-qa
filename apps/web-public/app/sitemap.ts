@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     });
 
-    for (const path of ['/acerca', '/privacidad', '/terminos', '/contacto'] as const) {
+    for (const path of ['/acerca', '/contacto'] as const) {
       entries.push({
         url: localePath(locale, path),
         lastModified: new Date(),
