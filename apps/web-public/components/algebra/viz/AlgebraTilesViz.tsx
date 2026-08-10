@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { AlgebraTilesMode } from '@/lib/viz-modes';
 import { PowerProductViz } from './PowerProductViz';
+import { ConjugateRationalizeViz } from './ConjugateRationalizeViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -22,6 +23,9 @@ function fitScale(w: number, h: number, maxW: number, maxH: number, cap = 32): n
 export function AlgebraTilesViz(props: Props) {
   if (props.formulaId.includes('POT-001')) {
     return <PowerProductViz />;
+  }
+  if (props.formulaId.includes('POT-008')) {
+    return <ConjugateRationalizeViz />;
   }
   return <AlgebraTilesVizInner {...props} />;
 }

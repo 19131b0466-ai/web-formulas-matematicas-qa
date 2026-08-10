@@ -160,6 +160,6 @@ export function resolveMode(
  * Extend this list whenever a redesigned viz owns its own teaching text.
  */
 export function vizHasEmbeddedGuide(formulaId: string): boolean {
-  return /FND-006|FND-007|POT-001/.test(formulaId);
+  return /FND-006|FND-007|POT-001|POT-008/.test(formulaId);
 }
 

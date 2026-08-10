@@ -411,11 +411,11 @@ En números reales, si el índice de la raíz es par, el radicando debe ser no n
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `conjugate_rationalize`
-- **Concepto visual:** eliminación de un radical del denominador mediante el conjugado.
-- **Elementos:** fracción inicial, conjugado resaltado, producto numerador-denominador y aparición de una diferencia de cuadrados en el denominador.
-- **Idea:** Mueve \(a\) y \(b\) y compara \(a+\sqrt{b}\) con \(a-\sqrt{b}\): su producto es \(a^2-b\), sin raíz.
+- **Concepto visual:** racionalizar \(1/(a+\sqrt{b})\) multiplicando por el conjugado como forma de 1.
+- **Elementos:** fracción original, paso \(\cdot(a-\sqrt{b})/(a-\sqrt{b})\), resultado \((a-\sqrt{b})/(a^2-b)\), y panel de por qué \((a+\sqrt{b})(a-\sqrt{b})=a^2-b\).
+- **Idea:** Multiplica numerador y denominador por el conjugado: el valor no cambia y el denominador queda sin raíz.
 - **Objetivo educativo:** Vas a ver que el conjugado quita la raíz del denominador porque \((a+\sqrt{b})(a-\sqrt{b})=a^2-b\).
-- **Interactividad sugerida:** avance por pasos: elegir conjugado → multiplicar → aplicar diferencia de cuadrados → simplificar.
+- **Interactividad sugerida:** sliders \(a\) y \(b\ge 0\); advertir si \(a^2-b=0\); mostrar forma exacta primero y aproximación solo como apoyo.
 
 ### Fórmulas relacionadas
 

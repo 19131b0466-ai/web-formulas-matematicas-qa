@@ -1200,7 +1200,6 @@
   "autoespacio como núcleo de \\(A-\\lambda I\\).": "eigenspace as the kernel of \\(A-\\lambda I\\).",
   "avance fila por fila y comprobación visual de que \\(LU=A\\) o \\(PA=LU\\).": "step row by row with a visual check that \\(LU=A\\) or \\(PA=LU\\).",
   "avance por pasos y opción de normalizar al final para obtener una base ortonormal.": "step-by-step advance with an option to normalize at the end to obtain an orthonormal basis.",
-  "avance por pasos: elegir conjugado → multiplicar → aplicar diferencia de cuadrados → simplificar.": "step-by-step advance: choose conjugate → multiply → apply difference of squares → simplify.",
   "barra de \\(n\\) dimensiones dividida en segmentos “rango” y “nulidad”, acompañada por una transformación esquemática.": "bar of \\(n\\) dimensions split into “rank” and “nullity” segments, accompanied by a schematic transformation.",
   "barras o segmentos con longitudes \\(a,ar,ar^2,\\ldots\\) y una barra de suma parcial que se acerca a \\(a/(1-r)\\).": "bars or segments with lengths \\(a,ar,ar^2,\\ldots\\) and a partial-sum bar approaching \\(a/(1-r)\\).",
   "base como conjunto mínimo de direcciones que genera el espacio.": "basis as a minimal set of directions that spans the space.",
@@ -1337,7 +1336,6 @@
   "El peso de Hamming es": "The Hamming weight is",
   "El término bajo la raíz es el discriminante. Su signo determina si las raíces son reales distintas, reales dobles o complejas conjugadas.": "The term under the radical is the discriminant. Its sign determines whether the roots are distinct real, repeated real, or complex conjugates.",
   "elegir \\(x\\) o \\(y\\) y animar la correspondencia entre ambas gráficas.": "choose \\(x\\) or \\(y\\) and animate the correspondence between both graphs.",
-  "eliminación de un radical del denominador mediante el conjugado.": "removing a radical from the denominator via the conjugate.",
   "En norma 2": "In the 2-norm",
   "En números reales, si el índice de la raíz es par, el radicando debe ser no negativo.": "In the real numbers, if the root index is even, the radicand must be nonnegative.",
   "equivalencia de De Morgan mediante puertas lógicas.": "De Morgan equivalence via logic gates.",
@@ -1360,7 +1358,6 @@
   "figura original, estado tras \\(A\\), estado final tras \\(B\\), y matriz combinada \\(BA\\).": "original figure, state after \\(A\\), final state after \\(B\\), and combined matrix \\(BA\\).",
   "figura y vectores antes/después de aplicar \\(Q\\), con longitudes y ángulo medidos en ambos estados.": "figure and vectors before/after applying \\(Q\\), with lengths and angle measured in both states.",
   "fórmula de Euler sobre el círculo unitario.": "Euler’s formula on the unit circle.",
-  "fracción inicial, conjugado resaltado, producto numerador-denominador y aparición de una diferencia de cuadrados en el denominador.": "initial fraction, highlighted conjugate, numerator–denominator product, and appearance of a difference of squares in the denominator.",
   "Fundamentos": "Fundamentals",
   "gráfica base \\(y=f(x)\\) y copia transformada \\(y=f(x-h)+k\\), con flechas de desplazamiento.": "base graph \\(y=f(x)\\) and transformed copy \\(y=f(x-h)+k\\), with displacement arrows.",
   "gráfica base y transformada para \\(af(x)\\), \\(f(bx)\\), \\(-f(x)\\) y \\(f(-x)\\).": "base and transformed graphs for \\(af(x)\\), \\(f(bx)\\), \\(-f(x)\\), and \\(f(-x)\\).",
@@ -1899,7 +1896,6 @@
   "Ajusta \\(n\\) y \\(k\\): la barra muestra la parte de mensaje frente a la de redundancia.": "Adjust \\(n\\) and \\(k\\): the bar shows message part versus redundancy.",
   "Mueve \\(a\\ge 0\\) y mira los dos puntos \\(\\pm a\\): son las soluciones de \\(|x|=a\\).": "Move \\(a\\ge 0\\) and look at the two points \\(\\pm a\\): they solve \\(|x|=a\\).",
   "Vas a ver que \\(|x|=a\\) (con \\(a\\ge 0\\)) da dos soluciones simétricas: \\(x=a\\) y \\(x=-a\\).": "You'll see that \\(|x|=a\\) (with \\(a\\ge 0\\)) gives two symmetric solutions: \\(x=a\\) and \\(x=-a\\).",
-  "Mueve \\(a\\) y \\(b\\) y compara \\(a+\\sqrt{b}\\) con \\(a-\\sqrt{b}\\): su producto es \\(a^2-b\\), sin raíz.": "Move \\(a\\) and \\(b\\) and compare \\(a+\\sqrt{b}\\) with \\(a-\\sqrt{b}\\): their product is \\(a^2-b\\), with no root left.",
   "Vas a ver que el conjugado quita la raíz del denominador porque \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).": "You'll see the conjugate clears the root from the denominator because \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).",
   "Mueve \\(\\theta\\) y fíjate: el punto \\((\\cos\\theta,\\sin\\theta)\\) recorre el círculo unitario como \\(e^{i\\theta}\\).": "Move \\(\\theta\\) and notice: the point \\((\\cos\\theta,\\sin\\theta)\\) travels the unit circle as \\(e^{i\\theta}\\).",
   "Vas a ver que Euler une el ángulo con coseno y seno sobre el círculo unitario.": "You'll see Euler links the angle with cosine and sine on the unit circle.",
@@ -1930,5 +1926,9 @@
   "cada bloque es un factor \\(a\\); al multiplicar se reúnen \\(n+m\\) factores de la misma base.": "each block is a factor \\(a\\); multiplying gathers \\(n+m\\) factors of the same base.",
   "dos grupos etiquetados (\\(n\\) y \\(m\\) factores) con operador \\(\\times\\), secuencia unida que conserva el origen visual, y resultado \\(a^{n+m}\\).": "two labeled groups (\\(n\\) and \\(m\\) factors) with a \\(\\times\\) operator, a merged sequence that keeps visual origin, and result \\(a^{n+m}\\).",
   "Cada bloque es un factor \\(a\\). Al multiplicar reunimos los \\(n\\) y los \\(m\\); en total hay \\(n+m\\) factores.": "Each block is a factor \\(a\\). Multiplying gathers the \\(n\\) and the \\(m\\); in total there are \\(n+m\\) factors.",
-  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "integer sliders \\(n,m\\ge 1\\); update factors, exponent sum, and \\(a^n\\cdot a^m=a^{n+m}\\)."
+  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "integer sliders \\(n,m\\ge 1\\); update factors, exponent sum, and \\(a^n\\cdot a^m=a^{n+m}\\).",
+  "racionalizar \\(1/(a+\\sqrt{b})\\) multiplicando por el conjugado como forma de 1.": "rationalize \\(1/(a+\\sqrt{b})\\) by multiplying by the conjugate as a form of 1.",
+  "fracción original, paso \\(\\cdot(a-\\sqrt{b})/(a-\\sqrt{b})\\), resultado \\((a-\\sqrt{b})/(a^2-b)\\), y panel de por qué \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).": "original fraction, step \\(\\cdot(a-\\sqrt{b})/(a-\\sqrt{b})\\), result \\((a-\\sqrt{b})/(a^2-b)\\), and a panel on why \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).",
+  "Multiplica numerador y denominador por el conjugado: el valor no cambia y el denominador queda sin raíz.": "Multiply numerator and denominator by the conjugate: the value stays the same and the denominator loses its root.",
+  "sliders \\(a\\) y \\(b\\ge 0\\); advertir si \\(a^2-b=0\\); mostrar forma exacta primero y aproximación solo como apoyo.": "sliders for \\(a\\) and \\(b\\ge 0\\); warn if \\(a^2-b=0\\); show exact form first and approximation only as support."
 }

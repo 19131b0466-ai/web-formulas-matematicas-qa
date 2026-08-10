@@ -180,13 +180,15 @@ flowchart TD
 | **Componente** | `PowerProductViz.tsx` |
 | **Veredicto** | Factores explícitos con letra \(a\); no bloques vacíos. |
 
-### `conjugate_rationalize` (POT-008)
+### `conjugate_rationalize` (ALG-POT-008)
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \((a+\sqrt{b})(a-\sqrt{b}) = a^2-b\) (producto racional). |
-| **Layout** | Factores + bloque de producto; comparación de forma, no reorder. |
-| **Veredicto** | **KEEP** con cuidado de no saturar; prioridad baja de churn. |
+| **Enseña** | Racionalizar \(1/(a+\sqrt{b})\) multiplicando por conjugado/conjugado (=1). |
+| **Layout** | Tres etapas: original → × conjugado → resultado; panel expandible de la identidad. |
+| **Interacción** | Sliders \(a\), \(b\ge0\); bloqueo/aviso si \(a^2-b=0\). Guía embebida. |
+| **Componente** | `ConjugateRationalizeViz.tsx` |
+| **Veredicto** | Proceso completo, no solo “sale \(a^2-b\)”. |
 
 ---
 

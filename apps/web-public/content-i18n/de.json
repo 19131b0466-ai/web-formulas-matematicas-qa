@@ -1199,7 +1199,6 @@
   "autoespacio como núcleo de \\(A-\\lambda I\\).": "Selfspace als Kern von\\(A-\\lambda I\\).",
   "avance fila por fila y comprobación visual de que \\(LU=A\\) o \\(PA=LU\\).": "Gehen Sie Zeile für Zeile vor und überprüfen Sie visuell, ob\\(LU=A\\)oder\\(PA=LU\\)ist.",
   "avance por pasos y opción de normalizar al final para obtener una base ortonormal.": "Fortschritt in Schritten und Option zur Normalisierung am Ende, um eine orthonormale Basis zu erhalten.",
-  "avance por pasos: elegir conjugado → multiplicar → aplicar diferencia de cuadrados → simplificar.": "Schrittweise vorgehen: Konjugieren wählen → Multiplizieren → Quadratdifferenz anwenden → Vereinfachen.",
   "barra de \\(n\\) dimensiones dividida en segmentos “rango” y “nulidad”, acompañada por una transformación esquemática.": "\\(n\\)-Dimensionsleiste, unterteilt in „Bereich“- und „Nullheits“-Segmente, begleitet von einer schematischen Transformation.",
   "barras o segmentos con longitudes \\(a,ar,ar^2,\\ldots\\) y una barra de suma parcial que se acerca a \\(a/(1-r)\\).": "Balken oder Segmente mit der Länge\\(a,ar,ar^2,\\ldots\\)und einem Teilsummenbalken, der sich\\(a/(1-r)\\)nähert.",
   "base como conjunto mínimo de direcciones que genera el espacio.": "Basis als minimaler Satz von Adressen, die vom Raum generiert werden.",
@@ -1336,7 +1335,6 @@
   "El peso de Hamming es": "Das Hamming-Gewicht ist",
   "El término bajo la raíz es el discriminante. Su signo determina si las raíces son reales distintas, reales dobles o complejas conjugadas.": "Der Term unter der Wurzel ist die Diskriminante. Ihr Vorzeichen bestimmt, ob es sich bei den Wurzeln um verschiedene reelle Zahlen, doppelte reelle Zahlen oder komplex konjugierte Zahlen handelt.",
   "elegir \\(x\\) o \\(y\\) y animar la correspondencia entre ambas gráficas.": "Wählen Sie\\(x\\)oder\\(y\\)und animieren Sie die Korrespondenz zwischen beiden Diagrammen.",
-  "eliminación de un radical del denominador mediante el conjugado.": "Eliminierung eines Radikals aus dem Nenner durch das Konjugat.",
   "En norma 2": "Im Standard 2",
   "En números reales, si el índice de la raíz es par, el radicando debe ser no negativo.": "Wenn in reellen Zahlen der Wurzelindex gerade ist, darf die Wurzel nicht negativ sein.",
   "equivalencia de De Morgan mediante puertas lógicas.": "De-Morgan-Äquivalenz unter Verwendung von Logikgattern.",
@@ -1359,7 +1357,6 @@
   "figura original, estado tras \\(A\\), estado final tras \\(B\\), y matriz combinada \\(BA\\).": "Originalzahl, Zustand nach\\(A\\), Endzustand nach\\(B\\)und kombinierte Matrix\\(BA\\).",
   "figura y vectores antes/después de aplicar \\(Q\\), con longitudes y ángulo medidos en ambos estados.": "Figur und Vektoren vor/nach der Anwendung von\\(Q\\), wobei Längen und Winkel in beiden Zuständen gemessen werden.",
   "fórmula de Euler sobre el círculo unitario.": "Eulers Formel für den Einheitskreis.",
-  "fracción inicial, conjugado resaltado, producto numerador-denominador y aparición de una diferencia de cuadrados en el denominador.": "Anfangsbruch, hervorgehobenes Konjugat, Zähler-Nenner-Produkt und Auftreten einer Quadratdifferenz im Nenner.",
   "Fundamentos": "Grundlagen",
   "gráfica base \\(y=f(x)\\) y copia transformada \\(y=f(x-h)+k\\), con flechas de desplazamiento.": "Basisdiagramm\\(y=f(x)\\)und transformierte Kopie\\(y=f(x-h)+k\\)mit Bildlaufpfeilen.",
   "gráfica base y transformada para \\(af(x)\\), \\(f(bx)\\), \\(-f(x)\\) y \\(f(-x)\\).": "Basis- und transformierter Graph für\\(af(x)\\),\\(f(bx)\\),\\(-f(x)\\)und\\(f(-x)\\).",
@@ -1899,7 +1896,6 @@
   "Ajusta \\(n\\) y \\(k\\): la barra muestra la parte de mensaje frente a la de redundancia.": "Stelle \\(n\\) und \\(k\\) ein: Der Balken zeigt Nachrichtenanteil gegenüber Redundanz.",
   "Mueve \\(a\\ge 0\\) y mira los dos puntos \\(\\pm a\\): son las soluciones de \\(|x|=a\\).": "Bewege \\(a\\ge 0\\) und schau die beiden Punkte \\(\\pm a\\): sie lösen \\(|x|=a\\).",
   "Vas a ver que \\(|x|=a\\) (con \\(a\\ge 0\\)) da dos soluciones simétricas: \\(x=a\\) y \\(x=-a\\).": "Du siehst: \\(|x|=a\\) (mit \\(a\\ge 0\\)) hat zwei symmetrische Lösungen: \\(x=a\\) und \\(x=-a\\).",
-  "Mueve \\(a\\) y \\(b\\) y compara \\(a+\\sqrt{b}\\) con \\(a-\\sqrt{b}\\): su producto es \\(a^2-b\\), sin raíz.": "Bewege \\(a\\) und \\(b\\) und vergleiche \\(a+\\sqrt{b}\\) mit \\(a-\\sqrt{b}\\): ihr Produkt ist \\(a^2-b\\), ohne Wurzel.",
   "Vas a ver que el conjugado quita la raíz del denominador porque \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).": "Du siehst: Das Konjugierte entfernt die Wurzel im Nenner, weil \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).",
   "Mueve \\(\\theta\\) y fíjate: el punto \\((\\cos\\theta,\\sin\\theta)\\) recorre el círculo unitario como \\(e^{i\\theta}\\).": "Bewege \\(\\theta\\) und schau: Der Punkt \\((\\cos\\theta,\\sin\\theta)\\) läuft auf dem Einheitskreis als \\(e^{i\\theta}\\).",
   "Vas a ver que Euler une el ángulo con coseno y seno sobre el círculo unitario.": "Du siehst: Euler verbindet den Winkel mit Kosinus und Sinus auf dem Einheitskreis.",
@@ -1930,5 +1926,9 @@
   "cada bloque es un factor \\(a\\); al multiplicar se reúnen \\(n+m\\) factores de la misma base.": "jeder Block ist ein Faktor \\(a\\); beim Multiplizieren entstehen \\(n+m\\) Faktoren derselben Basis.",
   "dos grupos etiquetados (\\(n\\) y \\(m\\) factores) con operador \\(\\times\\), secuencia unida que conserva el origen visual, y resultado \\(a^{n+m}\\).": "zwei beschriftete Gruppen (\\(n\\) und \\(m\\) Faktoren) mit \\(\\times\\), vereinte Folge mit sichtbarer Herkunft und Ergebnis \\(a^{n+m}\\).",
   "Cada bloque es un factor \\(a\\). Al multiplicar reunimos los \\(n\\) y los \\(m\\); en total hay \\(n+m\\) factores.": "Jeder Block ist ein Faktor \\(a\\). Beim Multiplizieren kommen die \\(n\\) und \\(m\\) zusammen; insgesamt \\(n+m\\) Faktoren.",
-  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "ganzzahlige Schieberegler \\(n,m\\ge 1\\); Faktoren, Exponentensumme und \\(a^n\\cdot a^m=a^{n+m}\\) aktualisieren."
+  "sliders enteros \\(n,m\\ge 1\\); actualizar factores, suma de exponentes y expresión \\(a^n\\cdot a^m=a^{n+m}\\).": "ganzzahlige Schieberegler \\(n,m\\ge 1\\); Faktoren, Exponentensumme und \\(a^n\\cdot a^m=a^{n+m}\\) aktualisieren.",
+  "racionalizar \\(1/(a+\\sqrt{b})\\) multiplicando por el conjugado como forma de 1.": "\\(1/(a+\\sqrt{b})\\) rationalisieren, indem man mit dem Konjugierten als Form von 1 multipliziert.",
+  "fracción original, paso \\(\\cdot(a-\\sqrt{b})/(a-\\sqrt{b})\\), resultado \\((a-\\sqrt{b})/(a^2-b)\\), y panel de por qué \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).": "Ausgangbruch, Schritt \\(\\cdot(a-\\sqrt{b})/(a-\\sqrt{b})\\), Ergebnis \\((a-\\sqrt{b})/(a^2-b)\\) und Panel zu \\((a+\\sqrt{b})(a-\\sqrt{b})=a^2-b\\).",
+  "Multiplica numerador y denominador por el conjugado: el valor no cambia y el denominador queda sin raíz.": "Multipliziere Zähler und Nenner mit dem Konjugierten: der Wert bleibt gleich und der Nenner wird wurzelfrei.",
+  "sliders \\(a\\) y \\(b\\ge 0\\); advertir si \\(a^2-b=0\\); mostrar forma exacta primero y aproximación solo como apoyo.": "Schieberegler für \\(a\\) und \\(b\\ge 0\\); Warnung bei \\(a^2-b=0\\); zuerst exakte Form, Näherung nur als Hilfe."
 }
