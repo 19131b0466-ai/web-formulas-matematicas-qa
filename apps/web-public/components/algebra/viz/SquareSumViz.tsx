@@ -35,7 +35,7 @@ type Step = 0 | 1 | 2 | 3 | 4;
 export function SquareSumViz({ formulaId = '' }: { formulaId?: string }) {
   const [a, setA] = useState(3);
   const [b, setB] = useState(2);
-  const [step, setStep] = useState<Step>(4);
+  const [step, setStep] = useState<Step>(0);
   const guideId = useId();
   const statusId = useId();
   const isFactor = formulaId.includes('FAC-003');
@@ -123,22 +123,28 @@ export function SquareSumViz({ formulaId = '' }: { formulaId?: string }) {
             </p>
             <ButtonRow>
               <VizButton onClick={() => setStep((s) => (s > 0 ? ((s - 1) as Step) : s))}>
-                Anterior
+                Paso anterior
               </VizButton>
               <VizButton onClick={() => setStep((s) => (s < 4 ? ((s + 1) as Step) : s))}>
-                Siguiente
+                Paso siguiente
               </VizButton>
               <VizButton onClick={() => setStep(4)} active={step === 4}>
-                Ver todo
+                Ver resultado final
               </VizButton>
             </ButtonRow>
           </div>
           <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            {step === 0 && '1. Cuadrado completo de lado a+b.'}
-            {step === 1 && '2. División vertical: segmentos a y b.'}
-            {step === 2 && '3. División horizontal: aparecen a², ab, ab y b².'}
-            {step === 3 && '4. Se resaltan los dos rectángulos de área ab.'}
-            {step === 4 && '5. Esos dos rectángulos se agrupan como 2ab.'}
+            <span className="font-medium text-[var(--fg)]">Paso {step + 1} de 5</span>
+            {' — '}
+            {step === 0 && 'cuadrado completo de lado a+b (aún sin partir).'}
+            {step === 1 && 'se dibuja la división vertical: segmentos a y b arriba.'}
+            {step === 2 && 'se dibuja la división horizontal y aparecen las cuatro áreas.'}
+            {step === 3 && 'se resaltan los dos rectángulos de área ab.'}
+            {step === 4 && 'se agrupan esos dos rectángulos como 2ab (resultado final).'}
+          </p>
+          <p className="mt-1 text-xs text-[var(--fg-muted)]">
+            Estos botones solo cambian qué parte de la demostración se muestra. No cambian los
+            valores de a y b (eso lo hacen los deslizadores de abajo).
           </p>
 
           <div className="mt-3 overflow-x-auto">
