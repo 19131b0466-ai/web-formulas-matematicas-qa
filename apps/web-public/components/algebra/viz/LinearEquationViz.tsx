@@ -256,15 +256,15 @@ export function LinearEquationViz() {
                 </g>
               ))}
 
-              {/* Axes */}
+              {/* Axes — emphasize y=0 (eje x) as the solution line */}
               <line
                 x1={toX(view.xMin)}
                 y1={toY(0)}
                 x2={toX(view.xMax)}
                 y2={toY(0)}
                 stroke="currentColor"
-                strokeWidth={1.5}
-                opacity={0.45}
+                strokeWidth={2.25}
+                opacity={0.7}
               />
               <line
                 x1={toX(0)}
@@ -283,7 +283,7 @@ export function LinearEquationViz() {
                 fontWeight={600}
                 fill="currentColor"
               >
-                x
+                eje x (y=0)
               </text>
               <text
                 x={toX(0) + 10}
@@ -292,7 +292,7 @@ export function LinearEquationViz() {
                 fontWeight={600}
                 fill="currentColor"
               >
-                y
+                eje y (x=0)
               </text>
               <text
                 x={toX(0) + 8}
@@ -335,9 +335,20 @@ export function LinearEquationViz() {
                 </g>
               ) : null}
 
-              {/* Solution on x-axis */}
+              {/* Solution on x-axis: explicitly y=0 */}
               {kind === 'unique' && xs !== null && solInView ? (
                 <g>
+                  {/* Drop guide from nowhere — just mark that this is ON y=0 */}
+                  <line
+                    x1={toX(xs)}
+                    y1={toY(0) - 22}
+                    x2={toX(xs)}
+                    y2={toY(0) + 10}
+                    stroke="orange"
+                    strokeWidth={1}
+                    strokeDasharray="3 2"
+                    opacity={0.7}
+                  />
                   <circle
                     cx={toX(xs)}
                     cy={toY(0)}
@@ -348,13 +359,13 @@ export function LinearEquationViz() {
                   />
                   <text
                     x={toX(xs)}
-                    y={toY(0) - 14}
+                    y={toY(0) - 28}
                     textAnchor="middle"
                     fontSize={12}
                     fontWeight={600}
                     fill="currentColor"
                   >
-                    solución
+                    solución (y=0)
                   </text>
                   <text
                     x={toX(xs)}
@@ -363,7 +374,7 @@ export function LinearEquationViz() {
                     fontSize={11}
                     fill="currentColor"
                   >
-                    x=−b/a≈{xsL} · ({xsL},0)
+                    punto ({xsL}, 0) · x≈{xsL}
                   </text>
                 </g>
               ) : null}
@@ -405,6 +416,10 @@ export function LinearEquationViz() {
               ) : null}
             </svg>
           </div>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">
+            El punto naranja está sobre el eje x: su coordenada es (x, 0), o sea y=0. El círculo
+            abierto en el eje y es solo el intercepto (0,b); no es la solución.
+          </p>
           <p className="mt-1 text-xs text-[var(--fg-muted)]">
             {a > ZERO_EPS
               ? 'a>0: recta creciente.'
@@ -422,12 +437,19 @@ export function LinearEquationViz() {
           {kind === 'unique' && xs !== null ? (
             <>
               <p className="font-mono">{expr}=0</p>
-              <p className="font-mono">ax=−b → {aL}x={present(-b)}</p>
+              <p className="font-mono">
+                ax=−b → {aL}x={present(-b)}
+                <span className="text-[var(--fg-muted)]">
+                  {' '}
+                  (−b es un número en el despeje, no un cruce en y={present(-b)})
+                </span>
+              </p>
               <p className="font-mono">
                 x=−b/a=−({bL})/({aL})≈{xsL}
               </p>
               <p className="text-[var(--fg-muted)]">
-                Intersección con el eje x: ({xsL}, 0). Ahí y=0.
+                La solución es el punto ({xsL}, <strong className="text-[var(--fg)]">0</strong>)
+                sobre el eje x. Ahí la función vale y=0.
               </p>
             </>
           ) : null}
