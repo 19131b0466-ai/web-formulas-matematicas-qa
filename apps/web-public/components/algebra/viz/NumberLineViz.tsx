@@ -7,7 +7,7 @@ import { clamp } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
-export function NumberLineViz({ formulaId, idea }: Props) {
+export function NumberLineViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [x, setX] = useState(2.5);
   const [a, setA] = useState(-1);
@@ -38,7 +38,7 @@ export function NumberLineViz({ formulaId, idea }: Props) {
   }, [ineqMode, formulaId, bound, op, a]);
 
   return (
-    <VizPanel caption={idea}>
+    <VizPanel>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={pad} y1={H / 2} x2={W - pad} y2={H / 2} stroke="currentColor" strokeWidth={2} opacity={0.35} />
         {[-4, -2, 0, 2, 4].map((t) => (

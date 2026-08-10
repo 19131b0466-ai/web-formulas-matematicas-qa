@@ -145,9 +145,11 @@
     "metaDescription": "Detail for formula {title}.",
     "loading": "Loading formula…",
     "level": "Level",
-    "visualization": "Visualization",
+    "visualization": "Explore the idea",
     "complexity": "Computational complexity",
     "showComplexity": "Show (CS mode)",
-    "hideComplexity": "Hide (basic mode)"
+    "hideComplexity": "Hide (basic mode)",
+    "vizTeaches": "What this shows",
+    "vizTry": "Try this"
   }
 }

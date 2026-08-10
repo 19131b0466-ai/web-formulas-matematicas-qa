@@ -3,12 +3,12 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { GraphMode } from '@/lib/viz-modes';
-import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
+import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
-export function GraphViz({ formulaId, idea, mode: modeProp }: Props) {
+export function GraphViz({ formulaId, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'line') as GraphMode;
   const [a, setA] = useState(1);
@@ -132,18 +132,18 @@ export function GraphViz({ formulaId, idea, mode: modeProp }: Props) {
 
   const caption =
     mode === 'quadratic'
-      ? `${idea ?? ''} · Δ = ${fmt(disc)} (${disc > 0 ? v.roots2 : disc === 0 ? v.root1 : v.noRealRoot})`
+      ? joinCaption(`Δ = ${fmt(disc)} (${disc > 0 ? v.roots2 : disc === 0 ? v.root1 : v.noRealRoot})`)
       : mode === 'system'
-        ? `${idea ?? ''} · ${
+        ? joinCaption(
             intersection === 'none'
               ? v.noIntersection
               : intersection === 'infinite'
                 ? '∞'
-                : `${v.intersection} (${fmt((intersection as { x: number }).x)}, ${fmt((intersection as { y: number }).y)})`
-          }`
+                : `${v.intersection} (${fmt((intersection as { x: number }).x)}, ${fmt((intersection as { y: number }).y)})`,
+          )
         : mode === 'inequality'
-          ? `${idea ?? ''} · ${v.solutionRegion}`
-          : idea;
+          ? joinCaption(v.solutionRegion)
+          : undefined;
 
   return (
     <VizPanel caption={caption}>

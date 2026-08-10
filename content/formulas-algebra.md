@@ -40,8 +40,8 @@ Cada bloque `Visualización sugerida` utiliza ahora seis campos:
 - **Modo:** lección concreta dentro del componente (p. ej. `commute`, `row_ops`, `moivre_power`).
 - **Concepto visual:** fenómeno algebraico concreto que debe representarse.
 - **Elementos:** objetos que deben aparecer en pantalla y qué representan.
-- **Idea:** comportamiento o comparación que la representación debe mostrar.
-- **Objetivo educativo:** relación que el estudiante debería comprender al verla.
+- **Idea:** instrucción breve y clara: qué probar con los controles.
+- **Objetivo educativo:** en una frase, qué entiende el usuario al usar el gráfico.
 - **Interactividad sugerida:** controles o animaciones útiles; es una recomendación y puede omitirse en una implementación estática.
 
 ## Complejidad computacional
@@ -113,8 +113,8 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
-- **Idea:** mostrar primero los bloques en el orden \(a,b\) y luego intercambiarlos a \(b,a\); la barra total debe conservar exactamente la misma longitud.
-- **Objetivo educativo:** hacer visible que el orden de los sumandos no altera la suma.
+- **Idea:** Pulsa Intercambiar: los bloques cambian de sitio, pero la barra total sigue igual.
+- **Objetivo educativo:** El orden de los sumandos no cambia el resultado.
 - **Interactividad sugerida:** permitir arrastrar los bloques \(a\) y \(b\) para intercambiarlos; actualizar el orden escrito sin modificar el total.
 
 ### Fórmulas relacionadas
@@ -140,8 +140,8 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `associate`
 - **Concepto visual:** cambio de agrupación sin cambiar el resultado.
 - **Elementos:** tres bloques \(a,b,c\), dos esquemas de agrupación con llaves o contenedores: \((a+b)+c\) y \(a+(b+c)\).
-- **Idea:** mantener el mismo orden de los tres bloques y cambiar únicamente qué dos se agrupan primero; el total debe permanecer idéntico.
-- **Objetivo educativo:** distinguir agrupación de orden y comprender por qué los paréntesis no cambian la suma o el producto en este caso.
+- **Idea:** Pulsa Agrupar izquierda/derecha. Solo cambia el recuadro; el total  a+b+c  sigue igual.
+- **Objetivo educativo:** Aunque agrupes los números de otra forma, la suma (o el producto) no cambia.
 - **Interactividad sugerida:** permitir alternar entre las dos agrupaciones y mostrar el cálculo parcial que se realiza primero.
 
 ### Fórmulas relacionadas
@@ -167,8 +167,8 @@ a(b+c)=ab+ac
 - **Modo:** `distribute`
 - **Concepto visual:** distribución de un factor sobre una suma.
 - **Elementos:** un rectángulo de altura \(a\) y ancho \(b+c\), dividido verticalmente en regiones \(ab\) y \(ac\).
-- **Idea:** mostrar el rectángulo completo como \(a(b+c)\) y después separar sus dos áreas para obtener \(ab+ac\).
-- **Objetivo educativo:** relacionar la propiedad distributiva con una descomposición de área.
+- **Idea:** Mueve a, b y c: el rectángulo grande a(b+c) se parte en ab y ac con la misma área total.
+- **Objetivo educativo:** Multiplicar una suma es como sumar las áreas de dos rectángulos.
 - **Interactividad sugerida:** permitir variar \(a,b,c\) con controles y actualizar las áreas y la identidad en tiempo real.
 
 ### Fórmulas relacionadas
@@ -225,8 +225,8 @@ a+(-a)=0;\quad a\cdot\frac1a=1\;(a\ne0)
 - **Tipo:** `number_line`
 - **Concepto visual:** valor absoluto como distancia al cero.
 - **Elementos:** recta numérica, origen, punto móvil \(x\), segmento desde \(0\) hasta \(x\) y etiqueta \(|x|\).
-- **Idea:** mostrar que al mover \(x\) a valores positivos o negativos la distancia al origen siempre es no negativa.
-- **Objetivo educativo:** interpretar \(|x|\) como distancia y no como una operación arbitraria de cambio de signo.
+- **Idea:** Mueve x a la izquierda o a la derecha: la marca muestra cuánto se aleja del origen.
+- **Objetivo educativo:** El valor absoluto es la distancia al cero: nunca es negativo.
 - **Interactividad sugerida:** permitir arrastrar \(x\) sobre la recta; mostrar simultáneamente \(x\), \(-x\) y \(|x|\).
 
 ### Fórmulas relacionadas
@@ -252,8 +252,8 @@ d(a,b)=|a-b|
 - **Tipo:** `number_line`
 - **Concepto visual:** distancia entre dos puntos reales.
 - **Elementos:** recta numérica con puntos móviles \(a\) y \(b\), segmento resaltado entre ambos y valor \(|a-b|\).
-- **Idea:** hacer que la longitud del segmento permanezca positiva independientemente de cuál punto esté a la izquierda.
-- **Objetivo educativo:** conectar la fórmula \(d(a,b)=|a-b|\) con una distancia geométrica.
+- **Idea:** Mueve a y b: la distancia |a−b| se ve como la longitud entre ambos puntos.
+- **Objetivo educativo:** La distancia entre dos puntos es el largo del segmento que los une.
 - **Interactividad sugerida:** permitir arrastrar ambos puntos y actualizar distancia, diferencia \(a-b\) y valor absoluto.
 
 ### Fórmulas relacionadas
@@ -281,8 +281,8 @@ a^ma^n=a^{m+n}
 - **Modo:** `power`
 - **Concepto visual:** suma de exponentes como unión de factores iguales.
 - **Elementos:** dos grupos de factores \(a\): uno con \(m\) copias y otro con \(n\) copias, seguidos por un solo grupo con \(m+n\) copias.
-- **Idea:** animar la concatenación de ambos grupos para pasar de \(a^m a^n\) a \(a^{m+n}\).
-- **Objetivo educativo:** mostrar que los exponentes cuentan factores repetidos de una misma base.
+- **Idea:** Cambia n y m: los bloques de a^n y a^m se juntan en a^(n+m).
+- **Objetivo educativo:** Al multiplicar potencias de la misma base, los exponentes se suman.
 - **Interactividad sugerida:** controles enteros pequeños para \(m\) y \(n\); regenerar la cadena de factores y el exponente resultante.
 
 ### Fórmulas relacionadas
@@ -412,8 +412,8 @@ En números reales, si el índice de la raíz es par, el radicando debe ser no n
 - **Tipo:** `algebra_tiles`
 - **Concepto visual:** eliminación de un radical del denominador mediante el conjugado.
 - **Elementos:** fracción inicial, conjugado resaltado, producto numerador-denominador y aparición de una diferencia de cuadrados en el denominador.
-- **Idea:** mostrar paso a paso cómo \((a+\sqrt b)(a-\sqrt b)=a^2-b\) elimina el radical del denominador.
-- **Objetivo educativo:** entender por qué se multiplica por el conjugado y qué identidad algebraica lo hace funcionar.
+- **Idea:** Compara a+√b con a−√b: su producto deja un resultado sin raíz en el medio.
+- **Objetivo educativo:** El conjugado ayuda a quitar una raíz del denominador.
 - **Interactividad sugerida:** avance por pasos: elegir conjugado → multiplicar → aplicar diferencia de cuadrados → simplificar.
 
 ### Fórmulas relacionadas
@@ -474,8 +474,8 @@ P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0
 - **Modo:** `poly_grid`
 - **Concepto visual:** distribución completa en el producto de polinomios.
 - **Elementos:** dos polinomios en los bordes de una cuadrícula; cada celda contiene el producto de un término de la primera expresión por uno de la segunda.
-- **Idea:** rellenar la cuadrícula y luego agrupar diagonales o términos con el mismo grado para formar los coeficientes del producto.
-- **Objetivo educativo:** visualizar de dónde proviene cada término y por qué los coeficientes se combinan como una convolución.
+- **Idea:** Mira la cuadrícula (a+b)(c+d): cada celda es un producto; juntas forman el polinomio.
+- **Objetivo educativo:** Cada casilla del producto es un término; luego se agrupan los parecidos.
 - **Interactividad sugerida:** resaltar una celda al pasar el cursor y destacar los dos términos que la generan; botón para agrupar términos semejantes.
 
 ### Complejidad computacional
@@ -513,8 +513,8 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 - **Modo:** `square`
 - **Concepto visual:** área de un cuadrado de lado \(a+b\).
 - **Elementos:** cuadrado dividido en cuatro regiones: \(a^2\), \(ab\), \(ab\) y \(b^2\).
-- **Idea:** mostrar que el área total \((a+b)^2\) es la suma de las cuatro regiones y combinar los dos rectángulos \(ab\) en \(2ab\).
-- **Objetivo educativo:** derivar visualmente la identidad \((a+b)^2=a^2+2ab+b^2\).
+- **Idea:** Cambia a y b: el cuadrado grande es a² + 2ab + b².
+- **Objetivo educativo:** (a+b)² se ve como un cuadrado partido en cuatro piezas.
 - **Interactividad sugerida:** deslizadores para \(a\) y \(b\); actualizar dimensiones y áreas manteniendo etiquetas proporcionales.
 
 ### Fórmulas relacionadas
@@ -539,8 +539,8 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 - **Tipo:** `algebra_tiles`
 - **Concepto visual:** cuadrado de una diferencia como reducción de longitud.
 - **Elementos:** cuadrado de lado \(a\), franjas de ancho \(b\) retiradas y región restante de lado \(a-b\).
-- **Idea:** comparar el área restante con \(a^2-2ab+b^2\), explicando por qué la esquina \(b^2\) se corrige una vez.
-- **Objetivo educativo:** hacer visible el origen del término negativo \(-2ab\) y de la corrección \(+b^2\).
+- **Idea:** Ajusta a y b y observa cómo aparecen a², −2ab y +b².
+- **Objetivo educativo:** (a−b)² también es un área, con una corrección en la esquina.
 - **Interactividad sugerida:** controlar \(a>b\ge0\) y animar la retirada de las dos franjas.
 
 ### Fórmulas relacionadas
@@ -566,8 +566,8 @@ a^2-b^2=(a-b)(a+b)
 - **Modo:** `diff_sq`
 - **Concepto visual:** reorganización geométrica de una diferencia de áreas.
 - **Elementos:** cuadrado grande de lado \(a\), cuadrado retirado de lado \(b\), y piezas reordenadas como rectángulo de lados \(a-b\) y \(a+b\).
-- **Idea:** transformar el área \(a^2-b^2\) en el rectángulo \((a-b)(a+b)\).
-- **Objetivo educativo:** comprender la factorización como una equivalencia de áreas.
+- **Idea:** Pulsa para pasar de a²−b² al rectángulo (a−b)(a+b): es la misma cantidad.
+- **Objetivo educativo:** a²−b² es el área que queda al quitar un cuadrado pequeño de uno grande.
 - **Interactividad sugerida:** botón “reordenar” que anime las piezas desde la figura original hasta el rectángulo final.
 
 ### Fórmulas relacionadas
@@ -658,8 +658,8 @@ a^3-b^3=(a-b)(a^2+ab+b^2)
 - **Modo:** `binomial`
 - **Concepto visual:** coeficientes del binomio desde el triángulo de Pascal.
 - **Elementos:** triángulo de Pascal, fila \(n\) resaltada y expansión de \((a+b)^n\) alineada término a término.
-- **Idea:** al seleccionar un coeficiente, destacar su \(\binom nk\), la potencia \(a^{n-k}\) y la potencia \(b^k\).
-- **Objetivo educativo:** relacionar coeficientes binomiales, exponentes y posición de cada término.
+- **Idea:** Cambia n: ves los números de Pascal y cómo se arma (a+b)^n.
+- **Objetivo educativo:** Los coeficientes del binomio son la fila de Pascal.
 - **Interactividad sugerida:** selector de \(n\) pequeño; al cambiarlo, regenerar la fila y la expansión completa.
 
 ### Fórmulas relacionadas
@@ -685,8 +685,8 @@ ab+ac=a(b+c)
 - **Tipo:** `algebra_tiles`
 - **Concepto visual:** extracción de un factor común como distributiva inversa.
 - **Elementos:** dos productos \(ab\) y \(ac\) con el factor \(a\) resaltado en ambos y una flecha hacia \(a(b+c)\).
-- **Idea:** agrupar visualmente las dos copias del factor \(a\) para mostrar que lo compartido puede salir de la suma.
-- **Objetivo educativo:** ver la factorización como la operación inversa de expandir.
+- **Idea:** Mueve a, b y c: el rectángulo a(b+c) se ve igual que ab+ac.
+- **Objetivo educativo:** Sacar factor común es reagrupar áreas que comparten un lado.
 - **Interactividad sugerida:** hacer clic sobre factores repetidos para seleccionarlos como factor común y verificar el resultado.
 
 ### Fórmulas relacionadas
@@ -710,8 +710,8 @@ a^2-b^2=(a-b)(a+b)
 - **Tipo:** `algebra_tiles`
 - **Concepto visual:** factorización de diferencia de cuadrados.
 - **Elementos:** misma construcción de áreas que ALG-IDN-003, pero iniciando desde \(a^2-b^2\) y terminando en los factores \((a-b)(a+b)\).
-- **Idea:** enfatizar el paso de una expresión restada a un producto de dos binomios.
-- **Objetivo educativo:** identificar rápidamente el patrón de diferencia de cuadrados.
+- **Idea:** Alterna entre a²−b² y (a−b)(a+b) para ver que representan lo mismo.
+- **Objetivo educativo:** Factorizar a²−b² es rearmar el área sobrante como un rectángulo.
 - **Interactividad sugerida:** permitir alternar entre “forma expandida” y “forma factorizada” con la misma figura.
 
 ### Fórmulas relacionadas
@@ -735,8 +735,8 @@ a^2\pm2ab+b^2=(a\pm b)^2
 - **Tipo:** `algebra_tiles`
 - **Concepto visual:** reconocimiento de un trinomio como cuadrado perfecto.
 - **Elementos:** cuatro piezas de área: \(a^2\), dos rectángulos \(ab\) y \(b^2\), que encajan formando un cuadrado.
-- **Idea:** ensamblar las piezas para formar un cuadrado de lado \(a+b\) o \(a-b\), según el signo del término central.
-- **Objetivo educativo:** mostrar el criterio visual que distingue un trinomio cuadrado perfecto.
+- **Idea:** Ajusta a y b hasta ver el patrón (a±b)² en las piezas.
+- **Objetivo educativo:** Un trinomio cuadrado perfecto se arma como un cuadrado completo.
 - **Interactividad sugerida:** arrastrar las piezas hasta completar el cuadrado y revelar la factorización.
 
 ### Fórmulas relacionadas
@@ -899,8 +899,8 @@ ax+b=0\Rightarrow x=-\frac ba\;(a\ne0)
 - **Tipo:** `graph`
 - **Concepto visual:** solución de una ecuación lineal como intersección con el eje x.
 - **Elementos:** plano cartesiano, recta \(y=ax+b\), eje \(x\) y punto marcado en \(x=-b/a\).
-- **Idea:** mover \(a\) y \(b\) y observar cómo cambia la raíz de la ecuación.
-- **Objetivo educativo:** conectar resolver \(ax+b=0\) con hallar dónde la función lineal vale cero.
+- **Idea:** Mueve la pendiente y el intercepto; busca dónde la recta cruza el eje horizontal.
+- **Objetivo educativo:** Una ecuación lineal es una recta: la solución es donde corta al eje x.
 - **Interactividad sugerida:** deslizadores para \(a\neq0\) y \(b\); mostrar el valor de la raíz y la intersección.
 
 ### Fórmulas relacionadas
@@ -941,8 +941,8 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 - **Modo:** `quadratic`
 - **Concepto visual:** raíces de una cuadrática como cortes de la parábola.
 - **Elementos:** parábola \(y=ax^2+bx+c\), eje \(x\), raíces marcadas y fórmula cuadrática junto a la gráfica.
-- **Idea:** mostrar cómo las soluciones calculadas coinciden con las intersecciones de la parábola con el eje \(x\).
-- **Objetivo educativo:** dar significado geométrico a las raíces y a la fórmula general.
+- **Idea:** Cambia a, b y c: mira el discriminante Δ y las marcas naranjas de las raíces.
+- **Objetivo educativo:** La parábola corta al eje x en las soluciones (si existen).
 - **Interactividad sugerida:** controles para \(a,b,c\); recalcular raíces y mover los puntos de intersección.
 
 ### Interpretación
@@ -972,8 +972,8 @@ El término bajo la raíz es el discriminante. Su signo determina si las raíces
 - **Tipo:** `graph`
 - **Concepto visual:** efecto del discriminante sobre el número de raíces reales.
 - **Elementos:** tres estados de una parábola: dos cortes, tangencia y ningún corte con el eje \(x\), junto al valor de \(\Delta\).
-- **Idea:** variar continuamente un coeficiente hasta atravesar \(\Delta>0\), \(\Delta=0\) y \(\Delta<0\).
-- **Objetivo educativo:** visualizar por qué el signo de \(b^2-4ac\) determina el tipo de raíces.
+- **Idea:** Ajusta a, b y c y observa si hay 2, 1 o ninguna raíz real según Δ.
+- **Objetivo educativo:** El discriminante dice cuántas raíces reales tiene la cuadrática.
 - **Interactividad sugerida:** deslizador de \(c\) o \(b\); cambiar automáticamente el estado y etiquetar el discriminante.
 
 ### Fórmulas relacionadas
@@ -999,8 +999,8 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 - **Modo:** `complete_square`
 - **Concepto visual:** completar un cuadrado añadiendo la pieza faltante.
 - **Elementos:** región \(x^2\), dos rectángulos de dimensiones \(x\) y \(b/2\), y un pequeño cuadrado \((b/2)^2\).
-- **Idea:** ensamblar las piezas para convertir \(x^2+bx\) en \((x+b/2)^2-b^2/4\).
-- **Objetivo educativo:** entender geométricamente de dónde aparece el término \(b^2/4\).
+- **Idea:** Pulsa Añadir/Restar (b/2)²: verás de dónde sale el término b²/4.
+- **Objetivo educativo:** Completar el cuadrado es añadir (y luego restar) la esquina que falta.
 - **Interactividad sugerida:** animar la división del término \(bx\) en dos rectángulos y la adición/sustracción del cuadrado faltante.
 
 ### Fórmulas relacionadas
@@ -1057,8 +1057,8 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 - **Tipo:** `number_line`
 - **Concepto visual:** soluciones simétricas de una ecuación de valor absoluto.
 - **Elementos:** recta numérica con el origen, puntos \(-a\) y \(a\) y dos segmentos de longitud \(a\).
-- **Idea:** mostrar que \(|x|=a\) selecciona exactamente los puntos situados a distancia \(a\) del cero.
-- **Objetivo educativo:** relacionar la ecuación con una condición de distancia.
+- **Idea:** Mueve el punto en la recta y relaciona las distancias con las soluciones.
+- **Objetivo educativo:** Una ecuación con valor absoluto suele tener dos soluciones simétricas.
 - **Interactividad sugerida:** deslizador para \(a\ge0\); mover los dos puntos solución simétricamente.
 
 ### Fórmulas relacionadas
@@ -1085,8 +1085,8 @@ ax+b>0
 - **Tipo:** `number_line`
 - **Concepto visual:** solución de una desigualdad como intervalo en la recta.
 - **Elementos:** recta numérica, punto frontera \(-b/a\), extremo abierto o cerrado según el operador y semirrecta sombreada.
-- **Idea:** mostrar el cambio de orientación cuando se multiplica o divide por un número negativo.
-- **Objetivo educativo:** comprender la solución como conjunto de valores y recordar la inversión del signo.
+- **Idea:** Cambia el borde y el tipo de desigualdad: la zona sombreada es la solución.
+- **Objetivo educativo:** Una inecuación lineal pinta un rayo o un intervalo en la recta.
 - **Interactividad sugerida:** permitir cambiar \(a,b\) y el operador \(<,\le,>,\ge\); actualizar extremo y sombreado.
 
 ### Fórmulas relacionadas
@@ -1112,8 +1112,8 @@ ax^2+bx+c>0
 - **Modo:** `inequality`
 - **Concepto visual:** signo de una cuadrática mediante regiones de la parábola.
 - **Elementos:** parábola, eje \(x\), raíces y sombreado de los intervalos del eje donde la función es positiva o negativa.
-- **Idea:** sincronizar el signo de \(y\) con una tabla de signos bajo la gráfica.
-- **Objetivo educativo:** vincular la inecuación con la posición de la parábola respecto del eje \(x\).
+- **Idea:** Ajusta la parábola: la zona sombreada marca los x que cumplen la desigualdad.
+- **Objetivo educativo:** La solución de una inecuación cuadrática es donde la parábola está por encima (o debajo) del eje.
 - **Interactividad sugerida:** selector del operador y controles para los coeficientes; resaltar automáticamente los intervalos solución.
 
 ### Fórmulas relacionadas
@@ -1138,8 +1138,8 @@ ax^2+bx+c>0
 - **Tipo:** `number_line`
 - **Concepto visual:** tabla de signos de una función racional.
 - **Elementos:** recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \(+/-\).
-- **Idea:** diferenciar visualmente raíces incluidas/excluidas y discontinuidades que nunca pueden pertenecer a la solución.
-- **Objetivo educativo:** entender el método de intervalos y las restricciones del denominador.
+- **Idea:** Mueve el borde y observa qué parte de la recta queda permitida.
+- **Objetivo educativo:** En inecuaciones racionales hay que cuidar los puntos donde el denominador se anula.
 - **Interactividad sugerida:** permitir activar cada factor para ver cómo cambia su signo y cómo se obtiene el signo total.
 
 ### Fórmulas relacionadas
@@ -1164,8 +1164,8 @@ ax^2+bx+c>0
 - **Tipo:** `number_line`
 - **Concepto visual:** valor absoluto como intervalo de distancias permitidas.
 - **Elementos:** recta numérica con centro 0, fronteras \(-a\) y \(a\), y regiones interiores/exteriores sombreadas.
-- **Idea:** alternar entre \(|x|<a\), \(|x|\le a\), \(|x|>a\) y \(|x|\ge a\).
-- **Objetivo educativo:** asociar “menor distancia” con intervalo interior y “mayor distancia” con regiones exteriores.
+- **Idea:** Cambia el radio y los extremos abiertos/cerrados para ver el intervalo solución.
+- **Objetivo educativo:** El valor absoluto en desigualdades define intervalos centrados o exteriores.
 - **Interactividad sugerida:** selector de desigualdad y deslizador para \(a\); cambiar extremos abiertos/cerrados y sombreado.
 
 ### Fórmulas relacionadas
@@ -1193,8 +1193,8 @@ ax^2+bx+c>0
 - **Modo:** `system`
 - **Concepto visual:** soluciones de un sistema 2×2 como intersección de rectas.
 - **Elementos:** dos rectas en el plano y estados: una intersección, paralelas distintas o coincidentes.
-- **Idea:** mostrar junto a la gráfica la clasificación: solución única, ninguna o infinitas.
-- **Objetivo educativo:** relacionar el sistema algebraico con su interpretación geométrica.
+- **Idea:** Mueve la pendiente: el punto naranja marca la intersección, o verás si son paralelas.
+- **Objetivo educativo:** Un sistema 2×2 es dos rectas: la solución es su cruce (si se cortan).
 - **Interactividad sugerida:** permitir modificar pendientes e interceptos de ambas rectas y actualizar la clasificación.
 
 ### Fórmulas relacionadas
@@ -1219,8 +1219,8 @@ A\mathbf x=\mathbf b
 - **Tipo:** `matrix`
 - **Concepto visual:** traducción de ecuaciones a la forma \(A\mathbf x=\mathbf b\).
 - **Elementos:** sistema de ecuaciones a la izquierda, matriz \(A\), vector \(\mathbf x\) y vector \(\mathbf b\) a la derecha, con colores/etiquetas consistentes.
-- **Idea:** resaltar cómo cada coeficiente de las ecuaciones ocupa una celda específica de \(A\).
-- **Objetivo educativo:** entender que la notación matricial es una representación compacta del mismo sistema.
+- **Idea:** Edita A y observa cómo se organiza la información del sistema.
+- **Objetivo educativo:** El sistema se puede escribir como una sola ecuación con matrices: Ax = b.
 - **Interactividad sugerida:** al pasar el cursor sobre un coeficiente de la ecuación, destacar su celda correspondiente en la matriz.
 
 ### Fórmulas relacionadas
@@ -1246,8 +1246,8 @@ A\mathbf x=\mathbf b
 - **Modo:** `augmented_map`
 - **Concepto visual:** separación entre coeficientes y términos independientes.
 - **Elementos:** matriz aumentada con barra vertical, columnas de coeficientes y columna final \(\mathbf b\).
-- **Idea:** mostrar la correspondencia fila a fila entre la matriz aumentada y las ecuaciones originales.
-- **Objetivo educativo:** comprender qué información contiene \([A|\mathbf b]\).
+- **Idea:** Elige R₁ o R₂: debajo aparece la ecuación que representa esa fila.
+- **Objetivo educativo:** Cada fila de la matriz aumentada es una ecuación del sistema.
 - **Interactividad sugerida:** seleccionar una fila para mostrar la ecuación que representa.
 
 ### Fórmulas relacionadas
@@ -1272,8 +1272,8 @@ R_i\leftrightarrow R_j;\;R_i\leftarrow cR_i;\;R_i\leftarrow R_i+cR_j
 - **Modo:** `row_ops`
 - **Concepto visual:** efecto de operaciones elementales sobre un sistema equivalente.
 - **Elementos:** matriz aumentada antes y después de cada operación de fila, con fila afectada resaltada.
-- **Idea:** animar intercambio, escalamiento y suma de filas hasta alcanzar forma escalonada.
-- **Objetivo educativo:** entender que estas operaciones cambian la representación pero conservan el conjunto de soluciones.
+- **Idea:** Prueba intercambiar, escalar o sumar filas y mira cómo cambia A.
+- **Objetivo educativo:** Las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.
 - **Interactividad sugerida:** botones para aplicar \(R_i\leftrightarrow R_j\), \(cR_i\) y \(R_i+cR_j\), con historial de pasos.
 
 ### Complejidad computacional
@@ -1309,8 +1309,8 @@ tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atr�
 - **Modo:** `rank_compare`
 - **Concepto visual:** comparación visual de rangos para decidir compatibilidad.
 - **Elementos:** matriz \(A\) y matriz aumentada \([A|b]\) en forma escalonada, pivotes resaltados y contadores de rango.
-- **Idea:** comparar el número de pivotes de ambas matrices y mostrar el caso correspondiente del criterio.
-- **Objetivo educativo:** hacer tangible el criterio de Rouché-Capelli mediante pivotes y filas incompatibles.
+- **Idea:** Haz A singular o no y mira el indicador de rango / ∅ / ∞.
+- **Objetivo educativo:** Comparar rangos te dice si hay una, infinitas o ninguna solución.
 - **Interactividad sugerida:** cambiar ejemplos predefinidos entre solución única, infinitas soluciones y sistema incompatible.
 
 ### Fórmulas relacionadas
@@ -1337,8 +1337,8 @@ tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atr�
 - **Tipo:** `graph`
 - **Concepto visual:** dominio como conjunto de entradas permitidas.
 - **Elementos:** gráfica de una función con zonas válidas e inválidas del eje \(x\), incluyendo agujeros, asíntotas o extremos cuando corresponda.
-- **Idea:** proyectar la gráfica sobre el eje \(x\) para mostrar exactamente qué valores pertenecen al dominio.
-- **Objetivo educativo:** distinguir dominio de rango y reconocer restricciones algebraicas.
+- **Idea:** Mira la hipérbola 1/x: cerca de cero la curva se dispara; ese hueco es el dominio roto.
+- **Objetivo educativo:** El dominio son los x donde la función tiene sentido (aquí, x ≠ 0).
 - **Interactividad sugerida:** selector de ejemplos: polinómica, racional y radical; resaltar las restricciones que eliminan valores.
 
 ### Fórmulas relacionadas
@@ -1363,8 +1363,8 @@ tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atr�
 - **Tipo:** `function_transform`
 - **Concepto visual:** composición como proceso en dos etapas.
 - **Elementos:** diagrama de flujo \(x\to g(x)\to f(g(x))\) y, opcionalmente, gráficas de \(g\) y \(f\).
-- **Idea:** seguir un valor concreto desde la entrada, pasando por \(g\), hasta la salida de \(f\).
-- **Objetivo educativo:** comprender el orden de aplicación y por qué \(f\circ g\) generalmente difiere de \(g\circ f\).
+- **Idea:** Mueve x₀ y los parámetros: el valor mostrado es f(g(x)).
+- **Objetivo educativo:** Componer funciones es aplicar una después de la otra.
 - **Interactividad sugerida:** campo para elegir un valor de \(x\); animar su recorrido y permitir intercambiar el orden de composición.
 
 ### Fórmulas relacionadas
@@ -1389,8 +1389,8 @@ f^{-1}(f(x))=x
 - **Tipo:** `graph`
 - **Concepto visual:** inversa como intercambio de entrada y salida.
 - **Elementos:** gráficas de \(y=f(x)\), \(y=f^{-1}(x)\) y la recta \(y=x\).
-- **Idea:** mostrar puntos \((a,b)\) de \(f\) junto con \((b,a)\) de la inversa reflejados respecto de \(y=x\).
-- **Objetivo educativo:** visualizar por qué una función debe ser uno-a-uno para tener inversa funcional en todo su dominio.
+- **Idea:** Compara la curva y su inversa; la diagonal punteada es el espejo y = x.
+- **Objetivo educativo:** La inversa “deshace” la función: sus gráficas son simétricas respecto de y = x.
 - **Interactividad sugerida:** permitir seleccionar puntos y reflejarlos; alternar entre una función invertible y otra que falla la prueba horizontal.
 
 ### Fórmulas relacionadas
@@ -1431,8 +1431,8 @@ y=mx+b;\quad m=\frac{y_2-y_1}{x_2-x_1}
 - **Tipo:** `graph`
 - **Concepto visual:** pendiente e intercepto de una recta.
 - **Elementos:** recta \(y=mx+b\), triángulo de pendiente con cambio vertical/horizontal y punto de corte \((0,b)\).
-- **Idea:** modificar \(m\) para rotar la recta alrededor del intercepto y modificar \(b\) para trasladarla verticalmente.
-- **Objetivo educativo:** dar significado geométrico a \(m\) y \(b\).
+- **Idea:** Mueve m y b: la recta se inclina y se desplaza al instante.
+- **Objetivo educativo:** Una recta queda determinada por su pendiente y su corte con el eje y.
 - **Interactividad sugerida:** deslizadores para \(m\) y \(b\); mostrar \(\Delta y/\Delta x\) sobre dos puntos de la recta.
 
 ### Fórmulas relacionadas
@@ -1457,8 +1457,8 @@ m_1=m_2;\quad m_1m_2=-1
 - **Tipo:** `graph`
 - **Concepto visual:** paralelismo y perpendicularidad mediante pendientes.
 - **Elementos:** dos rectas con sus pendientes etiquetadas y un indicador del ángulo entre ellas.
-- **Idea:** mostrar un caso paralelo \(m_1=m_2\) y uno perpendicular \(m_1m_2=-1\).
-- **Objetivo educativo:** relacionar condiciones algebraicas de pendiente con relaciones geométricas entre rectas.
+- **Idea:** Ajusta las dos rectas y observa cuándo no se cortan o se cruzan en ángulo recto.
+- **Objetivo educativo:** Rectas paralelas tienen la misma pendiente; perpendiculares, pendientes inversas cambiadas de signo.
 - **Interactividad sugerida:** modificar \(m_2\) y mostrar en tiempo real si las rectas son paralelas, perpendiculares o ninguna.
 
 ### Fórmulas relacionadas
@@ -1483,8 +1483,8 @@ g(x)=f(x-h)+k
 - **Tipo:** `function_transform`
 - **Concepto visual:** traslaciones horizontal y vertical de una gráfica.
 - **Elementos:** gráfica base \(y=f(x)\) y copia transformada \(y=f(x-h)+k\), con flechas de desplazamiento.
-- **Idea:** mover la copia exactamente \(h\) unidades en horizontal y \(k\) en vertical sin cambiar su forma.
-- **Objetivo educativo:** distinguir el efecto de sumar fuera de la función y modificar el argumento.
+- **Idea:** Mueve h y k: la curva se desplaza horizontal y verticalmente.
+- **Objetivo educativo:** Trasladar una gráfica es moverla sin deformarla.
 - **Interactividad sugerida:** deslizadores de \(h\) y \(k\) con superposición de la gráfica original y transformada.
 
 ### Fórmulas relacionadas
@@ -1508,8 +1508,8 @@ g(x)=af(bx);\quad -f(x);\quad f(-x)
 - **Tipo:** `function_transform`
 - **Concepto visual:** escalamiento y reflexión de una función.
 - **Elementos:** gráfica base y transformada para \(af(x)\), \(f(bx)\), \(-f(x)\) y \(f(-x)\).
-- **Idea:** mostrar compresión/estiramiento vertical u horizontal y reflexiones en los ejes.
-- **Objetivo educativo:** asociar cada parámetro con un cambio geométrico específico.
+- **Idea:** Cambia a y la reflexión: mira cómo se deforma la onda respecto del original.
+- **Objetivo educativo:** Escalar y reflejar estiran, comprimen o voltean la curva.
 - **Interactividad sugerida:** controles para \(a\) y \(b\), más interruptores de reflexión; mantener visible la gráfica original.
 
 ### Fórmulas relacionadas
@@ -1641,8 +1641,8 @@ donde \(\boldsymbol\alpha=(\alpha_1,\ldots,\alpha_n)\) es un multiíndice de ent
 - **Tipo:** `polynomial_surface`
 - **Concepto visual:** pasar de un polinomio univariable a uno de dos variables.
 - **Elementos:** una expresión \(P(x,y)\), ejes \(x\), \(y\), \(z\) y la superficie \(z=P(x,y)\); resaltar además uno o dos monomios de la expresión.
-- **Idea:** mostrar que cada par \((x,y)\) produce un valor \(P(x,y)\), mientras los términos como \(x^2y\) combinan potencias de distintas variables.
-- **Objetivo educativo:** comprender que un polinomio multivariable sigue siendo una suma finita de monomios, pero cada monomio puede involucrar varias variables.
+- **Idea:** Mueve a, b y c: el mapa de color muestra z = ax² + bxy + cy².
+- **Objetivo educativo:** Un polinomio en dos variables asigna un valor a cada punto (x, y).
 - **Interactividad sugerida:** permitir modificar coeficientes y activar/desactivar términos para observar cómo cambia la superficie.
 
 ### Fórmulas relacionadas
@@ -1687,8 +1687,8 @@ El grado total de un polinomio no nulo es
 - **Modo:** `degree`
 - **Concepto visual:** distinguir grado respecto de una variable y grado total.
 - **Elementos:** monomios como \(x^3y^2\), \(xy^4\) y \(x^2yz^3\), con cada exponente resaltado y una suma visible de exponentes.
-- **Idea:** al seleccionar un monomio, mostrar \(3+2=5\) o \(2+1+3=6\) como grado total, manteniendo por separado los grados en \(x\), \(y\), \(z\).
-- **Objetivo educativo:** evitar confundir el mayor exponente individual con el grado total de un monomio multivariable.
+- **Idea:** Cambia α y β: el rectángulo ilustra el grado α+β del monomio x^α y^β.
+- **Objetivo educativo:** El grado total suma los exponentes de cada variable.
 - **Interactividad sugerida:** permitir editar exponentes enteros no negativos y recalcular el multiíndice y el grado total.
 
 ### Fórmulas relacionadas
@@ -1723,8 +1723,8 @@ P(tx_1,\ldots,tx_n)=t^dP(x_1,\ldots,x_n).
 - **Tipo:** `polynomial_surface`
 - **Concepto visual:** escalamiento uniforme de las variables en un polinomio homogéneo.
 - **Elementos:** un punto \((x,y)\), un control de escala \(t\), la superficie de \(P\) y los valores \(P(x,y)\) y \(P(tx,ty)\).
-- **Idea:** mostrar simultáneamente que escalar las entradas por \(t\) multiplica la salida por \(t^d\).
-- **Objetivo educativo:** relacionar homogeneidad con una ley de escalamiento simple y verificable.
+- **Idea:** Activa la forma homogénea y mueve t: compara P(tx, ty) con t^d P(x, y).
+- **Objetivo educativo:** En un polinomio homogéneo, escalar (x, y) escala el resultado de forma predecible.
 - **Interactividad sugerida:** slider para \(t\) y selector del grado \(d\) usando ejemplos homogéneos predefinidos.
 
 ### Fórmulas relacionadas
@@ -1753,8 +1753,8 @@ P_m(x_1,\ldots,x_n)=0.
 - **Tipo:** `graph`
 - **Concepto visual:** soluciones como intersecciones de conjuntos definidos por polinomios.
 - **Elementos:** dos curvas implícitas en el plano, por ejemplo \(P(x,y)=0\) y \(Q(x,y)=0\), con sus puntos de intersección resaltados.
-- **Idea:** cada ecuación define un conjunto de puntos; las soluciones del sistema son únicamente los puntos comunes.
-- **Objetivo educativo:** conectar la solución algebraica de un sistema polinómico con una intersección geométrica.
+- **Idea:** Ajusta los parámetros y busca los cruces entre las dos curvas.
+- **Objetivo educativo:** Un sistema polinómico se ve como curvas que se cortan en las soluciones.
 - **Interactividad sugerida:** permitir elegir pares de polinomios sencillos y mostrar cómo cambia el número de intersecciones reales.
 
 ### Fórmulas relacionadas
@@ -1790,8 +1790,8 @@ f\text{ y }g\text{ tienen una raíz común}.
 - **Tipo:** `matrix`
 - **Concepto visual:** convertir coeficientes de dos polinomios en una matriz cuyo determinante detecta raíces comunes.
 - **Elementos:** dos polinomios pequeños, por ejemplo cuadrático y lineal; sus vectores de coeficientes; la matriz de Sylvester construida por filas desplazadas; y el valor de su determinante.
-- **Idea:** mostrar paso a paso cómo los coeficientes llenan \(S(f,g)\) y comparar un caso con resultante cero frente a otro con resultante no nula.
-- **Objetivo educativo:** comprender la conexión entre polinomios, eliminación, determinantes y existencia de raíces comunes.
+- **Idea:** Edita la matriz y observa el determinante como señal de raíces compartidas.
+- **Objetivo educativo:** La resultante concentra condiciones de solución común en una matriz.
 - **Interactividad sugerida:** selector de dos polinomios predefinidos; resaltar la raíz común cuando la resultante sea cero.
 
 ### Fórmulas relacionadas
@@ -1819,8 +1819,8 @@ f(x)=a^x,\quad a>0,\;a\ne1
 - **Tipo:** `graph`
 - **Concepto visual:** crecimiento o decrecimiento de \(a^x\) según la base.
 - **Elementos:** gráfica de \(y=a^x\), punto fijo \((0,1)\), asíntota horizontal \(y=0\) y valor de \(a\).
-- **Idea:** comparar bases \(a>1\) y \(0<a<1\) mostrando cómo cambia la monotonía.
-- **Objetivo educativo:** comprender el papel de la base en una función exponencial.
+- **Idea:** Cambia la base: la curva se hace más empinada o más suave.
+- **Objetivo educativo:** La exponencial crece (o decrece) multiplicando una y otra vez.
 - **Interactividad sugerida:** deslizador para \(a>0, a\neq1\); mostrar valores seleccionados de \(x\) y \(a^x\).
 
 ### Fórmulas relacionadas
@@ -1845,8 +1845,8 @@ f(x)=a^x,\quad a>0,\;a\ne1
 - **Tipo:** `graph`
 - **Concepto visual:** logaritmo como inversa de la exponencial.
 - **Elementos:** gráficas de \(y=b^x\), \(y=\log_bx\) y \(y=x\), con puntos correspondientes intercambiados.
-- **Idea:** mostrar que \(b^y=x\) y \(\log_bx=y\) describen la misma relación con variables invertidas.
-- **Objetivo educativo:** interpretar el logaritmo como el exponente necesario para obtener un número.
+- **Idea:** Compara log y exponencial: son inversas; la diagonal y = x las refleja.
+- **Objetivo educativo:** El logaritmo responde: “¿a qué exponente elevo la base para obtener x?”.
 - **Interactividad sugerida:** elegir \(x\) o \(y\) y animar la correspondencia entre ambas gráficas.
 
 ### Condiciones
@@ -1943,8 +1943,8 @@ y=y_0e^{kt}
 - **Tipo:** `graph`
 - **Concepto visual:** modelo exponencial a través del signo de \(k\).
 - **Elementos:** curvas \(y=y_0e^{kt}\) con \(k>0\), \(k=0\) y \(k<0\), todas partiendo de \(y_0\).
-- **Idea:** mostrar cómo el signo y magnitud de \(k\) controlan crecimiento, constancia o decaimiento.
-- **Objetivo educativo:** interpretar parámetros de un modelo exponencial usado en ingeniería y ciencias.
+- **Idea:** Mueve k (vía b) y mira si la curva sube o baja con el tiempo.
+- **Objetivo educativo:** El signo del exponente decide si la cantidad crece o se apaga.
 - **Interactividad sugerida:** deslizadores para \(y_0\) y \(k\); mostrar razón de cambio relativa y valores en tiempos seleccionados.
 
 ### Fórmulas relacionadas
@@ -1970,8 +1970,8 @@ i^2=-1;\quad z=a+bi
 - **Tipo:** `vector`
 - **Concepto visual:** número complejo como punto/vector en el plano complejo.
 - **Elementos:** eje real, eje imaginario, punto \((a,b)\), vector desde el origen y etiqueta \(z=a+bi\).
-- **Idea:** mostrar que la parte real es la coordenada horizontal y la imaginaria la vertical.
-- **Objetivo educativo:** pasar de notación algebraica a representación geométrica.
+- **Idea:** Arrastra la punta: las coordenadas son la parte real e imaginaria.
+- **Objetivo educativo:** Un complejo a+bi es un punto (o flecha) en el plano.
 - **Interactividad sugerida:** arrastrar el punto y actualizar \(a\), \(b\) y \(z\).
 
 ### Fórmulas relacionadas
@@ -1996,8 +1996,8 @@ i^2=-1;\quad z=a+bi
 - **Tipo:** `vector`
 - **Concepto visual:** conjugación como reflexión respecto del eje real.
 - **Elementos:** puntos \(z=a+bi\) y \(\bar z=a-bi\), unidos por una línea vertical y reflejados respecto del eje real.
-- **Idea:** mover \(z\) y hacer que su conjugado se mueva simétricamente.
-- **Objetivo educativo:** ver que conjugación conserva la parte real y cambia el signo de la parte imaginaria.
+- **Idea:** Arrastra z: la flecha naranja es el conjugado (misma x, y al revés).
+- **Objetivo educativo:** El conjugado refleja el número respecto del eje real.
 - **Interactividad sugerida:** arrastrar \(z\); mostrar simultáneamente \(z\bar z=|z|^2\).
 
 ### Fórmulas relacionadas
@@ -2021,8 +2021,8 @@ i^2=-1;\quad z=a+bi
 - **Tipo:** `vector`
 - **Concepto visual:** módulo como distancia al origen en el plano complejo.
 - **Elementos:** triángulo rectángulo con catetos \(a\) y \(b\), hipotenusa desde el origen hasta \(z\).
-- **Idea:** mostrar la aplicación de Pitágoras \(|z|=\sqrt{a^2+b^2}\).
-- **Objetivo educativo:** conectar módulo complejo con norma euclidiana.
+- **Idea:** Estira o acorta el vector: el número r es esa longitud.
+- **Objetivo educativo:** El módulo es la longitud de la flecha desde el origen.
 - **Interactividad sugerida:** arrastrar \(z\) y actualizar catetos, módulo y círculo de radio \(|z|\).
 
 ### Fórmulas relacionadas
@@ -2047,8 +2047,8 @@ z=r(\cos\theta+i\sin\theta)=re^{i\theta}
 - **Tipo:** `vector`
 - **Concepto visual:** equivalencia entre coordenadas rectangulares y polares.
 - **Elementos:** vector complejo con módulo \(r\), ángulo \(\theta\), proyecciones \(r\cos\theta\) y \(r\sin\theta\), y formas \(a+bi\) y \(re^{i\theta}\).
-- **Idea:** mostrar que ambas notaciones describen exactamente el mismo punto.
-- **Objetivo educativo:** entender cuándo conviene usar forma rectangular o polar/exponencial.
+- **Idea:** Gira θ: el punto se mueve sobre el círculo de radio r.
+- **Objetivo educativo:** En forma polar usas longitud y ángulo en lugar de (x, y).
 - **Interactividad sugerida:** controles para \(r\) y \(\theta\); actualizar \(a\), \(b\) y las tres representaciones.
 
 ### Fórmulas relacionadas
@@ -2073,8 +2073,8 @@ e^{i\theta}=\cos\theta+i\sin\theta
 - **Tipo:** `vector`
 - **Concepto visual:** fórmula de Euler sobre el círculo unitario.
 - **Elementos:** círculo unitario, ángulo \(\theta\), punto \((\cos\theta,\sin\theta)\) y vector \(e^{i\theta}\).
-- **Idea:** proyectar el vector sobre los ejes para identificar las partes real e imaginaria.
-- **Objetivo educativo:** visualizar \(e^{i\theta}=\cos\theta+i\sin\theta\).
+- **Idea:** Mueve θ: el punto (cos θ, sin θ) recorre la circunferencia.
+- **Objetivo educativo:** Euler une el ángulo con coseno y seno sobre el círculo unitario.
 - **Interactividad sugerida:** deslizador angular o animación de rotación; actualizar seno, coseno y forma exponencial.
 
 ### Fórmulas relacionadas
@@ -2100,8 +2100,8 @@ e^{i\theta}=\cos\theta+i\sin\theta
 - **Modo:** `moivre_power`
 - **Concepto visual:** potencias complejas como multiplicación de ángulos.
 - **Elementos:** círculo complejo con vector inicial de ángulo \(\theta\) y vector resultante de ángulo \(n\theta\).
-- **Idea:** mostrar simultáneamente que el módulo se eleva a \(n\) y el argumento se multiplica por \(n\).
-- **Objetivo educativo:** interpretar geométricamente la fórmula de De Moivre.
+- **Idea:** Cambia n y θ: ves z, z², z³… girando y alejándose según rⁿ.
+- **Objetivo educativo:** Elevar a n multiplica el ángulo por n y potencia el radio.
 - **Interactividad sugerida:** selector entero de \(n\) y deslizador de \(\theta\); animar las rotaciones sucesivas.
 
 ### Fórmulas relacionadas
@@ -2125,8 +2125,8 @@ w_k=r^{1/n}e^{i(\theta+2\pi k)/n}
 - **Tipo:** `geometry`
 - **Concepto visual:** raíces complejas distribuidas uniformemente en una circunferencia.
 - **Elementos:** círculo de radio \(r^{1/n}\) con \(n\) puntos separados por \(2\pi/n\).
-- **Idea:** marcar cada raíz \(w_k\) y mostrar sus argumentos \((\theta+2\pi k)/n\).
-- **Objetivo educativo:** ver por qué las raíces n-ésimas forman un polígono regular.
+- **Idea:** Cambia n: los puntos naranjas se distribuyen en el círculo.
+- **Objetivo educativo:** Las raíces n-ésimas se repartan como vértices de un polígono regular.
 - **Interactividad sugerida:** selector de \(n\) y controles de \(r,\theta\); regenerar los puntos y el polígono.
 
 ### Fórmulas relacionadas
@@ -2153,8 +2153,8 @@ a_n=a_1+(n-1)d
 - **Tipo:** `graph`
 - **Concepto visual:** crecimiento lineal de una sucesión aritmética.
 - **Elementos:** puntos discretos \((n,a_n)\) y diferencia constante \(d\) indicada entre alturas consecutivas.
-- **Idea:** mostrar que cada término se obtiene sumando exactamente \(d\) al anterior.
-- **Objetivo educativo:** relacionar la fórmula explícita con un patrón de incremento constante.
+- **Idea:** Mueve a₁ y d: los puntos suben o bajan a pasos constantes.
+- **Objetivo educativo:** En una sucesión aritmética cada salto suma la misma cantidad.
 - **Interactividad sugerida:** deslizadores para \(a_1\) y \(d\); actualizar los primeros términos y su gráfica discreta.
 
 ### Fórmulas relacionadas
@@ -2194,8 +2194,8 @@ a_n=a_1r^{n-1}
 - **Tipo:** `graph`
 - **Concepto visual:** crecimiento multiplicativo de una sucesión geométrica.
 - **Elementos:** puntos discretos \((n,a_n)\) y razón \(r\) mostrada entre términos consecutivos.
-- **Idea:** mostrar que cada término es el anterior multiplicado por \(r\).
-- **Objetivo educativo:** distinguir cambio aditivo de cambio multiplicativo.
+- **Idea:** Cambia a y r: los puntos crecen o se acercan a cero según |r|.
+- **Objetivo educativo:** En una sucesión geométrica cada término se multiplica por r.
 - **Interactividad sugerida:** deslizadores para \(a_1\) y \(r\); mostrar valores y cocientes consecutivos.
 
 ### Fórmulas relacionadas
@@ -2237,8 +2237,8 @@ S_n=a_1\frac{1-r^n}{1-r}\;(r\ne1)
 - **Tipo:** `graph`
 - **Concepto visual:** acumulación de una serie geométrica convergente.
 - **Elementos:** barras o segmentos con longitudes \(a,ar,ar^2,\ldots\) y una barra de suma parcial que se acerca a \(a/(1-r)\).
-- **Idea:** añadir términos uno por uno y mostrar cómo la suma parcial se aproxima a un límite cuando \(|r|<1\).
-- **Objetivo educativo:** dar intuición visual de convergencia geométrica.
+- **Idea:** Prueba |r|<1 y |r|≥1: mira si los puntos se estabilizan o se disparan.
+- **Objetivo educativo:** Si |r|<1, la serie geométrica infinita se acerca a un valor límite.
 - **Interactividad sugerida:** control de \(r\) entre -0.95 y 0.95 y selector del número de términos; mostrar suma parcial y límite.
 
 ### Fórmulas relacionadas
@@ -2278,8 +2278,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Tipo:** `graph`
 - **Concepto visual:** evolución de una recurrencia de orden 2 desde condiciones iniciales.
 - **Elementos:** secuencia de puntos \(a_n\), flechas desde \(a_{n-1}\) y \(a_{n-2}\) hacia \(a_n\), y ecuación característica.
-- **Idea:** mostrar cómo dos términos previos determinan el siguiente y cómo las raíces características predicen el patrón global.
-- **Objetivo educativo:** conectar recurrencias usadas en algoritmos con ecuaciones algebraicas.
+- **Idea:** Cambia los coeficientes y observa cómo evoluciona la sucesión punto a punto.
+- **Objetivo educativo:** Una recurrencia construye cada término a partir de los anteriores.
 - **Interactividad sugerida:** controles para \(c_1,c_2,a_0,a_1\); generar los primeros términos y mostrar las raíces características.
 
 ### Fórmulas relacionadas
@@ -2308,8 +2308,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Tipo:** `vector`
 - **Concepto visual:** vector como lista ordenada y como flecha geométrica.
 - **Elementos:** vector columna con componentes y, para 2D/3D, flecha desde el origen con proyecciones sobre ejes.
-- **Idea:** resaltar cada componente en la lista y la proyección geométrica correspondiente.
-- **Objetivo educativo:** entender que un vector en \(\mathbb R^n\) es una colección ordenada de componentes y, en baja dimensión, una dirección con magnitud.
+- **Idea:** Arrastra las puntas: cambias el vector en el desenlace del plano.
+- **Objetivo educativo:** Un vector es una flecha: dirección y longitud.
 - **Interactividad sugerida:** editar componentes y actualizar la flecha; para \(n>3\), mantener representación de barras/componentes.
 
 ### Fórmulas relacionadas
@@ -2334,8 +2334,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Tipo:** `vector`
 - **Concepto visual:** norma como longitud de un vector.
 - **Elementos:** vector en 2D, triángulo rectángulo formado por sus componentes y valor de \(\|v\|_2\).
-- **Idea:** mostrar Pitágoras en 2D y generalizar mediante la suma de cuadrados.
-- **Objetivo educativo:** interpretar la norma euclidiana como distancia al origen.
+- **Idea:** Estira u: el valor ‖u‖ se actualiza con la longitud.
+- **Objetivo educativo:** La norma es la longitud de la flecha.
 - **Interactividad sugerida:** arrastrar el extremo del vector y actualizar componentes, cuadrados y norma.
 
 ### Fórmulas relacionadas
@@ -2360,8 +2360,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Tipo:** `vector`
 - **Concepto visual:** normalización sin cambiar dirección.
 - **Elementos:** vector original \(v\) y vector unitario \(\hat v\) sobre la misma semirrecta, con longitudes etiquetadas.
-- **Idea:** reducir o ampliar \(v\) hasta longitud 1 manteniendo exactamente su dirección.
-- **Objetivo educativo:** comprender que normalizar cambia escala pero no orientación.
+- **Idea:** Mueve u: ves la versión “normalizada” û de longitud 1.
+- **Objetivo educativo:** El vector unitario tiene longitud 1 y guarda la dirección.
 - **Interactividad sugerida:** arrastrar \(v\); botón “normalizar” que anime el cambio de longitud a 1.
 
 ### Fórmulas relacionadas
@@ -2386,8 +2386,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Modo:** `proj`
 - **Concepto visual:** producto punto como proyección y alineación.
 - **Elementos:** vectores \(u\) y \(v\), ángulo \(\theta\), proyección de uno sobre el otro y valor del producto punto.
-- **Idea:** mostrar producto positivo para ángulo agudo, cero para 90° y negativo para obtuso.
-- **Objetivo educativo:** interpretar el producto punto como medida de alineación además de suma de productos de componentes.
+- **Idea:** Arrastra u y v: mira u·v y si el ángulo es agudo, recto u obtuso; la proyección aparece en naranja.
+- **Objetivo educativo:** El producto punto mide alineación: positivo = ángulo agudo.
 - **Interactividad sugerida:** controlar el ángulo entre vectores y actualizar \(u\cdot v\), \(\cos\theta\) y la proyección.
 
 ### Fórmulas relacionadas
@@ -2414,8 +2414,8 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 - **Modo:** `angle`
 - **Concepto visual:** ángulo determinado por producto punto y normas.
 - **Elementos:** dos vectores, arco del ángulo entre ellos y panel con \(u\cdot v\), \(\|u\|\), \(\|v\|\) y \(\cos\theta\).
-- **Idea:** mostrar cómo la fórmula reconstruye el ángulo a partir de datos algebraicos.
-- **Objetivo educativo:** conectar coordenadas vectoriales con una medida geométrica.
+- **Idea:** Mueve las flechas: el ángulo y el tipo (agudo/recto/obtuso) se actualizan.
+- **Objetivo educativo:** El ángulo entre vectores se lee del producto punto.
 - **Interactividad sugerida:** arrastrar ambos vectores y actualizar el ángulo calculado.
 
 ### Fórmulas relacionadas
@@ -2439,8 +2439,8 @@ d(u,v)=\|u-v\|_2
 - **Tipo:** `vector`
 - **Concepto visual:** distancia entre vectores como norma de su diferencia.
 - **Elementos:** puntos \(u\) y \(v\), vector \(v-u\) trasladado entre ellos y segmento de distancia.
-- **Idea:** mostrar que \(\|u-v\|\) es exactamente la longitud del segmento que conecta los puntos.
-- **Objetivo educativo:** generalizar la distancia de la recta real a espacios euclidianos.
+- **Idea:** Separa u y v: la distancia crece con la separación.
+- **Objetivo educativo:** La distancia entre puntas de vectores es la norma de la diferencia.
 - **Interactividad sugerida:** arrastrar ambos puntos y actualizar vector diferencia y distancia.
 
 ### Fórmulas relacionadas
@@ -2465,8 +2465,8 @@ w=c_1v_1+\cdots+c_kv_k
 - **Tipo:** `vector`
 - **Concepto visual:** combinación lineal como suma de vectores escalados.
 - **Elementos:** vectores base \(u,v\), copias escaladas \(au\), \(bv\) y resultante \(w=au+bv\) con paralelogramo guía.
-- **Idea:** mover los coeficientes para recorrer los puntos generados por las combinaciones lineales.
-- **Objetivo educativo:** entender visualmente span, dependencia y coordenadas respecto de una base.
+- **Idea:** Arrastra u y v: la flecha naranja es 0.7u + 0.5v.
+- **Objetivo educativo:** Una combinación lineal mezcla vectores con pesos.
 - **Interactividad sugerida:** deslizadores para \(a\) y \(b\); dibujar la resultante y el rastro opcional de puntos alcanzables.
 
 ### Fórmulas relacionadas
@@ -2493,8 +2493,8 @@ A=(a_{ij})_{m\times n}
 - **Tipo:** `matrix`
 - **Concepto visual:** estructura fila-columna de una matriz.
 - **Elementos:** matriz con índices \(i,j\), filas y columnas resaltables y dimensiones \(m\times n\).
-- **Idea:** seleccionar una entrada \(a_{ij}\) y resaltar simultáneamente su fila \(i\) y columna \(j\).
-- **Objetivo educativo:** familiarizar al estudiante con indexación y dimensiones.
+- **Idea:** Edita las entradas de A: cada celda es un coeficiente del objeto lineal.
+- **Objetivo educativo:** Una matriz es una tabla de números organizada en filas y columnas.
 - **Interactividad sugerida:** clic en cualquier celda para mostrar \(a_{ij}\), número de fila y número de columna.
 
 ### Fórmulas relacionadas
@@ -2519,8 +2519,8 @@ A=(a_{ij})_{m\times n}
 - **Tipo:** `matrix`
 - **Concepto visual:** suma elemento a elemento.
 - **Elementos:** matrices \(A\) y \(B\) del mismo tamaño y matriz resultado \(C\), con celdas correspondientes enlazadas.
-- **Idea:** resaltar \(a_{ij}\) y \(b_{ij}\) para producir \(c_{ij}=a_{ij}+b_{ij}\).
-- **Objetivo educativo:** mostrar que la suma de matrices no mezcla filas ni columnas distintas.
+- **Idea:** Cambia A y B: el resultado A+B se actualiza entrada por entrada.
+- **Objetivo educativo:** Sumar matrices se hace casilla a casilla.
 - **Interactividad sugerida:** seleccionar una celda del resultado y mostrar la suma exacta que la genera.
 
 ### Fórmulas relacionadas
@@ -2544,8 +2544,8 @@ A=(a_{ij})_{m\times n}
 - **Tipo:** `matrix`
 - **Concepto visual:** escalamiento uniforme de todas las entradas.
 - **Elementos:** matriz \(A\), escalar \(c\) y matriz \(cA\), con flechas de cada celda hacia su producto.
-- **Idea:** mostrar que el mismo factor multiplica todas las entradas.
-- **Objetivo educativo:** entender el producto por escalar como cambio uniforme de escala.
+- **Idea:** Mueve c: ves cA crecer, encogerse o cambiar de signo.
+- **Objetivo educativo:** Multiplicar por un escalar estira o invierte todos los números de la matriz.
 - **Interactividad sugerida:** deslizador para \(c\); actualizar todas las entradas y, opcionalmente, una figura transformada.
 
 ### Fórmulas relacionadas
@@ -2570,8 +2570,8 @@ A=(a_{ij})_{m\times n}
 - **Modo:** `product`
 - **Concepto visual:** regla fila por columna del producto matricial.
 - **Elementos:** matriz \(A\), matriz \(B\) y \(C=AB\); una fila de \(A\) y una columna de \(B\) resaltadas para calcular \(c_{ij}\).
-- **Idea:** mostrar cada multiplicación parcial \(a_{ik}b_{kj}\) y su suma hasta obtener una entrada de \(C\).
-- **Objetivo educativo:** hacer evidente por qué las dimensiones internas deben coincidir y cómo se calcula cada celda.
+- **Idea:** Elige una casilla (i,j): debajo ves la cuenta fila×columna paso a paso.
+- **Objetivo educativo:** Cada entrada de AB mezcla una fila de A con una columna de B.
 - **Interactividad sugerida:** clic sobre una celda \(c_{ij}\) para animar la fila y columna que la generan.
 
 ### Condiciones
@@ -2617,8 +2617,8 @@ AI=IA=A
 - **Tipo:** `matrix`
 - **Concepto visual:** identidad como transformación que no cambia un vector o matriz.
 - **Elementos:** matriz identidad con diagonal resaltada y comparación \(AI=A\), \(Ix=x\).
-- **Idea:** mostrar que cada fila de \(I\) selecciona exactamente una componente sin mezclarla.
-- **Objetivo educativo:** interpretar la identidad matricial como análogo multiplicativo del número 1.
+- **Idea:** Compara A con el efecto de la identidad sobre la base.
+- **Objetivo educativo:** La identidad deja los vectores igual: es el “1” de las matrices.
 - **Interactividad sugerida:** permitir multiplicar una matriz o vector de ejemplo por \(I\) y mostrar el resultado sin cambios.
 
 ### Fórmulas relacionadas
@@ -2642,8 +2642,8 @@ AI=IA=A
 - **Tipo:** `matrix`
 - **Concepto visual:** transposición como intercambio de filas y columnas.
 - **Elementos:** matriz \(A\) y \(A^T\) lado a lado, diagonal principal como eje de reflexión conceptual.
-- **Idea:** animar cada celda \(a_{ij}\) moviéndose a la posición \(a_{ji}\).
-- **Objetivo educativo:** comprender la regla de indexación y las nuevas dimensiones.
+- **Idea:** Edita A: a la derecha ves Aᵀ con filas y columnas volcadas.
+- **Objetivo educativo:** La transpuesta intercambia filas por columnas.
 - **Interactividad sugerida:** pasar el cursor por una celda para resaltar su posición espejo en la transpuesta.
 
 ### Fórmulas relacionadas
@@ -2668,8 +2668,8 @@ A^T=A
 - **Tipo:** `matrix`
 - **Concepto visual:** simetría matricial respecto de la diagonal principal.
 - **Elementos:** matriz cuadrada con pares \(a_{ij}\) y \(a_{ji}\) conectados y diagonal principal destacada.
-- **Idea:** mostrar que una matriz simétrica coincide con su reflejo/transpuesta.
-- **Objetivo educativo:** reconocer visualmente la condición \(A^T=A\).
+- **Idea:** Ajusta A hasta que coincida con Aᵀ.
+- **Objetivo educativo:** Una matriz simétrica coincide con su transpuesta.
 - **Interactividad sugerida:** editar una entrada fuera de la diagonal y ofrecer opción de reflejarla automáticamente en la posición simétrica.
 
 ### Fórmulas relacionadas
@@ -2696,8 +2696,8 @@ A^T=A
 - **Tipo:** `geometry`
 - **Concepto visual:** determinante como área orientada/factor de escala en 2D.
 - **Elementos:** vectores columna de una matriz 2×2 formando un paralelogramo y valor \(ad-bc\).
-- **Idea:** mostrar que \(|\det A|\) es el área del paralelogramo y el signo indica orientación.
-- **Objetivo educativo:** dar significado geométrico al determinante más allá de la fórmula.
+- **Idea:** Mueve los vectores: el área coloreada es |det|; el signo indica orientación.
+- **Objetivo educativo:** El determinante 2×2 es el área con signo del paralelogramo de las columnas.
 - **Interactividad sugerida:** arrastrar los vectores columna; actualizar área, signo y valor del determinante.
 
 ### Fórmulas relacionadas
@@ -2722,8 +2722,8 @@ A^T=A
 - **Tipo:** `matrix`
 - **Concepto visual:** expansión del determinante mediante menores y cofactores.
 - **Elementos:** matriz con una fila/columna elegida, celda \(a_{ij}\), submatriz menor correspondiente y signo de cofactor.
-- **Idea:** al seleccionar un término, tachar su fila y columna y mostrar el menor que queda.
-- **Objetivo educativo:** comprender cómo se construye la expansión por cofactores.
+- **Idea:** Edita A y observa cómo det(A) responde a los cambios.
+- **Objetivo educativo:** El determinante se puede expandir por una fila o columna (cofactores).
 - **Interactividad sugerida:** permitir elegir fila o columna de expansión y recorrer término por término.
 
 ### Complejidad computacional
@@ -2758,8 +2758,8 @@ Por ello es útil sobre todo como fórmula teórica o para matrices pequeñas. E
 - **Tipo:** `geometry`
 - **Concepto visual:** multiplicación de factores de escala de área/volumen.
 - **Elementos:** figura inicial, transformación por \(B\), luego por \(A\), y factores \(\det B\), \(\det A\), \(\det(AB)\).
-- **Idea:** mostrar que los factores de escala se multiplican al componer transformaciones.
-- **Objetivo educativo:** interpretar geométricamente \(\det(AB)=\det A\det B\).
+- **Idea:** Cambia A y B y compara el área del producto con el producto de áreas.
+- **Objetivo educativo:** det(AB) = det(A)det(B): las áreas se multiplican.
 - **Interactividad sugerida:** usar matrices 2×2 simples seleccionables y animar la figura a través de ambas transformaciones.
 
 ### Fórmulas relacionadas
@@ -2784,8 +2784,8 @@ A\text{ invertible}\iff\det(A)\ne0
 - **Tipo:** `geometry`
 - **Concepto visual:** invertibilidad como preservación de dimensión/área no nula.
 - **Elementos:** cuadrícula transformada por una matriz y paralelogramo de columnas; caso \(\det A\neq0\) frente a \(\det A=0\).
-- **Idea:** mostrar cómo una transformación singular aplasta el plano a una línea o punto.
-- **Objetivo educativo:** ver por qué un determinante cero implica pérdida de información y ausencia de inversa.
+- **Idea:** Haz el paralelogramo plano (área ≈ 0): la matriz se vuelve singular.
+- **Objetivo educativo:** Si el área (det) es cero, las columnas son paralelas y no hay inversa.
 - **Interactividad sugerida:** controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.
 
 ### Fórmulas relacionadas
@@ -2810,8 +2810,8 @@ A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
 - **Tipo:** `matrix`
 - **Concepto visual:** inversa como transformación que deshace a \(A\).
 - **Elementos:** vector o cuadrícula original, resultado después de \(A\) y recuperación después de \(A^{-1}\).
-- **Idea:** mostrar la composición \(A^{-1}A=I\) como ida y vuelta exacta.
-- **Objetivo educativo:** interpretar la inversa operacionalmente y relacionarla con \(\det A\neq0\).
+- **Idea:** Edita A y mira det: si no es cero, la inversa está bien definida.
+- **Objetivo educativo:** La inversa “deshace” A; existe solo si det ≠ 0.
 - **Interactividad sugerida:** seleccionar matrices 2×2 invertibles y animar transformación e inversión; bloquear el caso singular explicando por qué.
 
 ### Fórmulas relacionadas
@@ -2837,8 +2837,8 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `matrix`
 - **Concepto visual:** regla de Cramer como reemplazo de columnas.
 - **Elementos:** matriz \(A\), vector \(b\), matrices \(A_i\) con la columna reemplazada y cocientes de determinantes.
-- **Idea:** resaltar qué columna se sustituye para calcular cada incógnita.
-- **Objetivo educativo:** hacer explícita la construcción de \(A_i\) y la condición \(\det A\neq0\).
+- **Idea:** Cambia A y b: relaciona det(A) con la posibilidad de solución única.
+- **Objetivo educativo:** Cramer usa determinantes para resolver sistemas pequeños.
 - **Interactividad sugerida:** selector de incógnita \(x_i\); construir visualmente la matriz correspondiente y calcular los determinantes.
 
 ### Fórmulas relacionadas
@@ -2865,8 +2865,8 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** span como conjunto de todos los puntos alcanzables por combinaciones lineales.
 - **Elementos:** uno o dos vectores generadores en 2D/3D y la recta/plano que producen.
-- **Idea:** variar coeficientes y dejar un rastro que revele el subespacio generado.
-- **Objetivo educativo:** comprender la noción de espacio generado de manera geométrica.
+- **Idea:** Mueve s y t: la flecha naranja barre el plano (o la recta) que generan u y v.
+- **Objetivo educativo:** El espacio generado son todas las mezclas s·u + t·v.
 - **Interactividad sugerida:** deslizadores para coeficientes y opción de mostrar el rastro de combinaciones.
 
 ### Fórmulas relacionadas
@@ -2891,8 +2891,8 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** independencia lineal como ausencia de redundancia direccional.
 - **Elementos:** dos vectores en 2D y paralelogramo asociado; área \(|\det(u,v)|\) visible.
-- **Idea:** hacer colapsar el paralelogramo cuando los vectores se vuelven colineales.
-- **Objetivo educativo:** visualizar que área no nula equivale a independencia en 2D.
+- **Idea:** Alinea u y v: el indicador pasa a “dependientes”.
+- **Objetivo educativo:** Si el área del paralelogramo es cero, los vectores son dependientes.
 - **Interactividad sugerida:** arrastrar vectores y mostrar indicador “independientes/dependientes” junto al determinante.
 
 ### Fórmulas relacionadas
@@ -2917,8 +2917,8 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** base como conjunto mínimo de direcciones que genera el espacio.
 - **Elementos:** conjunto de vectores candidatos, región generada y contador de dimensión.
-- **Idea:** mostrar qué vectores son redundantes y cuáles forman una base.
-- **Objetivo educativo:** relacionar generación, independencia y dimensión.
+- **Idea:** Activa “mostrar base” y compara con tus vectores u y v.
+- **Objetivo educativo:** Una base es un conjunto independiente que genera todo el espacio.
 - **Interactividad sugerida:** activar/desactivar vectores y recalcular span, rango y si el conjunto sigue siendo base.
 
 ### Fórmulas relacionadas
@@ -2944,8 +2944,8 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `vector_space`
 - **Concepto visual:** coordenadas de un mismo vector en bases diferentes.
 - **Elementos:** vector geométrico fijo y dos pares de ejes/base; coeficientes \([v]_\mathcal B\) y \([v]_\mathcal C\).
-- **Idea:** mantener el vector físico inmóvil mientras cambian sus coordenadas al cambiar la base.
-- **Objetivo educativo:** distinguir objeto vectorial de su representación mediante coordenadas.
+- **Idea:** Cambia s y t: son las coordenadas de la combinación en la base u, v.
+- **Objetivo educativo:** Las coordenadas dicen cuánto de cada vector de la base necesitas.
 - **Interactividad sugerida:** permitir rotar/deformar una base válida y actualizar las coordenadas del mismo vector.
 
 ### Fórmulas relacionadas
@@ -2969,8 +2969,8 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `matrix`
 - **Concepto visual:** rango como número de direcciones independientes producidas por una matriz.
 - **Elementos:** matriz escalonada con pivotes resaltados y, en baja dimensión, espacio columna generado.
-- **Idea:** contar pivotes y relacionarlos con la dimensión de la imagen.
-- **Objetivo educativo:** dar una interpretación simultáneamente algebraica y geométrica del rango.
+- **Idea:** Edita A: mira el determinante/rango para ver si hay 0, 1 o 2 direcciones.
+- **Objetivo educativo:** El rango es cuántas direcciones independientes tiene la matriz.
 - **Interactividad sugerida:** editar una matriz pequeña y actualizar pivotes, rango y visualización del espacio columna.
 
 ### Fórmulas relacionadas
@@ -2996,8 +2996,8 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `vector_space`
 - **Concepto visual:** nulidad como dimensión del conjunto de soluciones de \(Ax=0\).
 - **Elementos:** transformación de vectores con el núcleo resaltado como línea/plano que colapsa al cero.
-- **Idea:** mostrar varios vectores distintos del núcleo que todos terminan en el origen.
-- **Objetivo educativo:** interpretar el núcleo como información perdida por la transformación.
+- **Idea:** Haz columnas dependientes y relaciona con direcciones que van al origen.
+- **Objetivo educativo:** La nulidad cuenta soluciones no triviales de Ax = 0.
 - **Interactividad sugerida:** arrastrar un vector dentro/fuera del núcleo y mostrar si \(Ax=0\).
 
 ### Fórmulas relacionadas
@@ -3022,8 +3022,8 @@ n=\operatorname{rank}(A)+\operatorname{nullity}(A)
 - **Tipo:** `vector_space`
 - **Concepto visual:** reparto de dimensiones entre imagen y núcleo.
 - **Elementos:** barra de \(n\) dimensiones dividida en segmentos “rango” y “nulidad”, acompañada por una transformación esquemática.
-- **Idea:** variar una matriz y actualizar la división manteniendo \(n=\text{rango}+\text{nulidad}\).
-- **Objetivo educativo:** hacer intuitivo el teorema rango-nulidad como conservación del conteo de grados de libertad.
+- **Idea:** Explora vectores dependientes/independientes y cómo se reparte la dimensión.
+- **Objetivo educativo:** Rango + nulidad = número de columnas (en el caso n).
 - **Interactividad sugerida:** selector de matrices ejemplo con distintos rangos; actualizar ambos segmentos y bases asociadas.
 
 ### Fórmulas relacionadas
@@ -3050,8 +3050,8 @@ T(au+bv)=aT(u)+bT(v)
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** linealidad como preservación de suma y escala.
 - **Elementos:** vectores \(u,v\), su suma, sus imágenes \(T(u),T(v)\) y comparación con \(T(u+v)\).
-- **Idea:** mostrar dos caminos que terminan en el mismo vector: transformar después de sumar o sumar después de transformar.
-- **Objetivo educativo:** visualizar las dos propiedades que definen una transformación lineal.
+- **Idea:** Mira la cuadrícula deformada por A: líneas rectas siguen siendo rectas.
+- **Objetivo educativo:** Una transformación lineal respeta sumas y escalados.
 - **Interactividad sugerida:** mover \(u,v\) o el escalar \(c\) y comprobar en tiempo real ambas igualdades.
 
 ### Fórmulas relacionadas
@@ -3076,8 +3076,8 @@ T(x)=Ax
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** matriz como transformación geométrica del espacio.
 - **Elementos:** cuadrícula, vectores base \(e_1,e_2\), sus imágenes \(Ae_1,Ae_2\) y una figura de prueba.
-- **Idea:** deformar toda la cuadrícula según la matriz para revelar escala, cizalla, rotación o reflexión.
-- **Objetivo educativo:** entender que las columnas de \(A\) determinan la transformación.
+- **Idea:** Cambia las entradas de A: la malla muestra el empujón lineal.
+- **Objetivo educativo:** Aplicar A es empujar cada punto (y la cuadrícula) a una nueva forma.
 - **Interactividad sugerida:** editar las cuatro entradas de una matriz 2×2 y animar la cuadrícula y vectores base.
 
 ### Fórmulas relacionadas
@@ -3102,8 +3102,8 @@ T(x)=Ax
 - **Tipo:** `vector_space`
 - **Concepto visual:** núcleo como conjunto enviado al vector cero.
 - **Elementos:** dominio con una línea/plano destacado, flechas de varios puntos hacia el origen del codominio.
-- **Idea:** mostrar que todos los múltiplos de vectores del núcleo comparten imagen cero.
-- **Objetivo educativo:** comprender por qué el núcleo mide falta de inyectividad.
+- **Idea:** Busca direcciones que se aplastan cuando det se acerca a cero.
+- **Objetivo educativo:** El núcleo son los vectores que A manda al origen.
 - **Interactividad sugerida:** seleccionar matrices de rango completo o reducido y visualizar cómo cambia el núcleo.
 
 ### Fórmulas relacionadas
@@ -3128,8 +3128,8 @@ T(x)=Ax
 - **Tipo:** `vector_space`
 - **Concepto visual:** imagen como conjunto de salidas alcanzables.
 - **Elementos:** dominio, transformación y subespacio resaltado en el codominio formado por las columnas de \(A\).
-- **Idea:** mover la entrada \(x\) y mostrar que \(Ax\) siempre permanece dentro de la imagen.
-- **Objetivo educativo:** relacionar imagen de una transformación con espacio columna y rango.
+- **Idea:** Observa hacia dónde apuntan las columnas transformadas e₁ y e₂.
+- **Objetivo educativo:** La imagen son las direcciones que A sí puede alcanzar.
 - **Interactividad sugerida:** arrastrar la entrada y dejar rastro de salidas; opción de mostrar vectores columna generadores.
 
 ### Fórmulas relacionadas
@@ -3154,8 +3154,8 @@ T(x)=Ax
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** composición como aplicación sucesiva de dos transformaciones.
 - **Elementos:** figura original, estado tras \(A\), estado final tras \(B\), y matriz combinada \(BA\).
-- **Idea:** comparar la ruta en dos pasos con aplicar directamente \(BA\).
-- **Objetivo educativo:** visualizar por qué el orden del producto matricial corresponde al orden inverso de lectura de la composición.
+- **Idea:** Cambia A y piensa A como un paso de la composición.
+- **Objetivo educativo:** Componer transformaciones es aplicar una después de la otra (producto de matrices).
 - **Interactividad sugerida:** botones “A luego B” y “BA directo” para superponer resultados y comprobar que coinciden.
 
 ### Fórmulas relacionadas
@@ -3180,8 +3180,8 @@ T^{-1}(y)=A^{-1}y
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** transformación inversa como recuperación del estado original.
 - **Elementos:** cuadrícula o vector inicial, imagen bajo \(A\) y retorno bajo \(A^{-1}\).
-- **Idea:** animar ida y vuelta y mostrar que la composición produce la identidad.
-- **Objetivo educativo:** conectar inversa de transformación e inversa matricial.
+- **Idea:** Pulsa Aplicar A⁻¹ (si existe): la malla vuelve hacia la forma original.
+- **Objetivo educativo:** La inversa deshace el empujón de A.
 - **Interactividad sugerida:** editar una matriz invertible y usar botones “aplicar A” / “aplicar A⁻¹”; advertir cuando no es invertible.
 
 ### Fórmulas relacionadas
@@ -3206,8 +3206,8 @@ T^{-1}(y)=A^{-1}y
 - **Tipo:** `vector_space`
 - **Concepto visual:** cambio de base como cambio de coordenadas, no del vector.
 - **Elementos:** mismo vector dibujado con dos sistemas de ejes/base y matrices de cambio entre coordenadas.
-- **Idea:** mantener fijo el punto/vector mientras las coordenadas numéricas cambian al cambiar la base.
-- **Objetivo educativo:** evitar confundir transformación del vector con cambio de representación.
+- **Idea:** Modifica A como matriz de cambio y mira cómo se reorienta la malla.
+- **Objetivo educativo:** Cambiar de base es describir los mismos vectores con otras coordenadas.
 - **Interactividad sugerida:** rotar o modificar la base destino y actualizar \([v]_\mathcal B\), \([v]_\mathcal C\) y la matriz de cambio.
 
 ### Fórmulas relacionadas
@@ -3234,8 +3234,8 @@ Av=\lambda v,\quad v\ne0
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** direcciones que una matriz conserva.
 - **Elementos:** campo de vectores antes/después de una transformación 2D y eigendirecciones resaltadas.
-- **Idea:** mostrar que un eigenvector transformado queda sobre la misma línea, escalado por \(\lambda\).
-- **Objetivo educativo:** dar significado geométrico a \(Av=\lambda v\).
+- **Idea:** Activa autovectores: las rayas naranjas marcan esas direcciones especiales.
+- **Objetivo educativo:** Un autovector solo se estira o se encoge; no gira hacia otro lado.
 - **Interactividad sugerida:** editar una matriz 2×2; recalcular eigenvalores/eigendirecciones reales y permitir arrastrar un vector de prueba.
 
 ### Complejidad computacional
@@ -3270,8 +3270,8 @@ Para matrices grandes y dispersas, cuando solo se requieren unos pocos valores p
 - **Tipo:** `matrix`
 - **Concepto visual:** valores propios como ceros del polinomio característico.
 - **Elementos:** matriz \(A-\lambda I\), determinante simbólico/polinomio y gráfica del polinomio característico para caso 2×2.
-- **Idea:** mostrar que los valores de \(\lambda\) donde el determinante se hace cero son precisamente los eigenvalores.
-- **Objetivo educativo:** conectar singularidad de \(A-\lambda I\) con existencia de vectores propios no nulos.
+- **Idea:** Edita A y relaciona det(A−λI)=0 con las direcciones que ves en la malla.
+- **Objetivo educativo:** La ecuación característica encuentra los valores propios (estiramientos).
 - **Interactividad sugerida:** controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.
 
 ### Fórmulas relacionadas
@@ -3296,8 +3296,8 @@ E_\lambda=\ker(A-\lambda I)
 - **Tipo:** `vector_space`
 - **Concepto visual:** autoespacio como núcleo de \(A-\lambda I\).
 - **Elementos:** eigendirección o plano resaltado y varios vectores propios para un mismo \(\lambda\).
-- **Idea:** mostrar que todos los vectores del autoespacio, salvo cero, se escalan por el mismo \(\lambda\).
-- **Objetivo educativo:** relacionar eigenvectores con un subespacio completo, no con un único vector.
+- **Idea:** Observa la dirección naranja asociada a cada valor propio.
+- **Objetivo educativo:** El autoespacio es la recta (o plano) de todos los autovectores de un λ.
 - **Interactividad sugerida:** seleccionar un eigenvalor y visualizar la base de \(\ker(A-\lambda I)\).
 
 ### Fórmulas relacionadas
@@ -3322,8 +3322,8 @@ A=PDP^{-1}
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** diagonalización como cambio a una base de eigenvectores.
 - **Elementos:** tres etapas: cambio de base por \(P^{-1}\), escalamiento independiente por \(D\), regreso por \(P\).
-- **Idea:** mostrar que una transformación complicada se vuelve un escalamiento por ejes en la base propia.
-- **Objetivo educativo:** entender el significado estructural de \(A=PDP^{-1}\).
+- **Idea:** Con autovectores visibles, imagina ejes donde A solo estira.
+- **Objetivo educativo:** Diagonalizar es escribir A en una base de autovectores, donde actúa por escalados.
 - **Interactividad sugerida:** animar las tres etapas con una figura/vector y permitir comparar resultado con aplicar \(A\) directamente.
 
 ### Fórmulas relacionadas
@@ -3348,8 +3348,8 @@ A^n=PD^nP^{-1}
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** potencias de una matriz mediante potencias escalares de eigenvalores.
 - **Elementos:** pipeline \(A=PDP^{-1}\rightarrow A^n=PD^nP^{-1}\) con diagonal de \(D\) elevada término a término.
-- **Idea:** mostrar el mismo vector después de aplicaciones repetidas de \(A\) y mediante la forma diagonalizada.
-- **Objetivo educativo:** hacer visible por qué diagonalizar simplifica recurrencias y dinámica discreta.
+- **Idea:** Explora A y sus direcciones propias como atajo para Aⁿ.
+- **Objetivo educativo:** Con A = PDP⁻¹, potenciar A es potenciar los escalados en la diagonal.
 - **Interactividad sugerida:** selector entero de \(n\); animar iteraciones y comparar costo conceptual de \(A^n\) frente a \(D^n\).
 
 ### Fórmulas relacionadas
@@ -3374,8 +3374,8 @@ A=A^T\Rightarrow A=Q\Lambda Q^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** teorema espectral como ejes ortogonales propios de una matriz simétrica.
 - **Elementos:** matriz simétrica, eigenvectores ortonormales como ejes perpendiculares y escalamiento por eigenvalores.
-- **Idea:** mostrar la descomposición \(Q\Lambda Q^T\) como rotación/reflexión, escalamiento y retorno.
-- **Objetivo educativo:** comprender por qué las matrices simétricas admiten una base ortonormal de eigenvectores.
+- **Idea:** Prueba una A casi simétrica y mira autovectores casi perpendiculares.
+- **Objetivo educativo:** En matrices simétricas, los autovectores se pueden elegir ortogonales.
 - **Interactividad sugerida:** editar una matriz simétrica 2×2 y actualizar ejes propios, eigenvalores y transformación de una elipse.
 
 ### Fórmulas relacionadas
@@ -3403,8 +3403,8 @@ u\perp v\iff u\cdot v=0
 - **Tipo:** `vector`
 - **Concepto visual:** ortogonalidad como ángulo recto y producto punto cero.
 - **Elementos:** dos vectores con arco de 90° y cálculo de \(u\cdot v\).
-- **Idea:** mover uno de los vectores hasta que el producto punto llegue a cero y marcar el instante de perpendicularidad.
-- **Objetivo educativo:** unir criterio algebraico y significado geométrico de ortogonalidad.
+- **Idea:** Coloca u ⊥ v: u·v ≈ 0 y el ángulo se marca como recto.
+- **Objetivo educativo:** Ortogonal significa ángulo recto: el producto punto es cero.
 - **Interactividad sugerida:** arrastrar un vector; mostrar ángulo y producto punto con indicador cuando se cumple \(u\perp v\).
 
 ### Fórmulas relacionadas
@@ -3429,8 +3429,8 @@ u\perp v\iff u\cdot v=0
 - **Tipo:** `vector`
 - **Concepto visual:** proyección como sombra perpendicular sobre una dirección.
 - **Elementos:** vector \(a\), dirección \(b\), proyección sobre \(b\) y residuo perpendicular.
-- **Idea:** trazar desde el extremo de \(a\) una perpendicular a la línea generada por \(b\).
-- **Objetivo educativo:** visualizar la descomposición \(a=\operatorname{proj}_b(a)+r\) con \(r\perp b\).
+- **Idea:** Arrastra u: el segmento naranja es la proyección; el resto es el error ortogonal.
+- **Objetivo educativo:** La proyección es la sombra de u sobre la dirección de v.
 - **Interactividad sugerida:** modificar el ángulo y las magnitudes; actualizar componente escalar, proyección y residuo.
 
 ### Fórmulas relacionadas
@@ -3455,8 +3455,8 @@ Q^TQ=I\Rightarrow Q^{-1}=Q^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** matriz ortogonal como transformación que preserva longitudes y ángulos.
 - **Elementos:** figura y vectores antes/después de aplicar \(Q\), con longitudes y ángulo medidos en ambos estados.
-- **Idea:** usar rotaciones/reflexiones para mostrar que \(Q^TQ=I\) y que las distancias no cambian.
-- **Objetivo educativo:** interpretar las matrices ortogonales geométricamente.
+- **Idea:** Ajusta A hacia una rotación y mira que la malla no se estira de forma desigual.
+- **Objetivo educativo:** Una matriz ortogonal rota/refleja sin cambiar longitudes.
 - **Interactividad sugerida:** control angular para una matriz de rotación y opción de reflexión; mostrar \(Q^{-1}=Q^T\).
 
 ### Fórmulas relacionadas
@@ -3482,8 +3482,8 @@ u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k)
 - **Tipo:** `vector_space`
 - **Concepto visual:** ortogonalización progresiva de un conjunto independiente.
 - **Elementos:** vectores originales \(v_1,v_2,\ldots\), proyecciones restadas y vectores ortogonales \(u_i\).
-- **Idea:** mostrar paso a paso cómo se elimina de cada vector su componente en las direcciones ya construidas.
-- **Objetivo educativo:** comprender el algoritmo de Gram-Schmidt como resta sucesiva de proyecciones.
+- **Idea:** Avanza el paso Gram–Schmidt y observa la nueva dirección ortogonal.
+- **Objetivo educativo:** Gram–Schmidt convierte vectores en una base ortogonal paso a paso.
 - **Interactividad sugerida:** avance por pasos y opción de normalizar al final para obtener una base ortonormal.
 
 ### Fórmulas relacionadas
@@ -3510,8 +3510,8 @@ u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k)
 - **Tipo:** `geometry`
 - **Concepto visual:** mínimos cuadrados como proyección de \(b\) sobre el espacio columna.
 - **Elementos:** subespacio \(\operatorname{Col}(A)\), vector \(b\), proyección \(\hat b=A\hat x\) y residuo \(r=b-\hat b\).
-- **Idea:** mostrar que el residuo mínimo es perpendicular al espacio columna.
-- **Objetivo educativo:** dar interpretación geométrica al problema \(\min\|Ax-b\|^2\).
+- **Idea:** Mueve los vectores y el punto: la proyección es la mejor aproximación.
+- **Objetivo educativo:** Mínimos cuadrados busca el punto del subespacio más cercano al dato.
 - **Interactividad sugerida:** mover \(b\) y observar cómo cambian proyección, residuo y error cuadrático.
 
 ### Fórmulas relacionadas
@@ -3536,8 +3536,8 @@ A^TA\hat x=A^Tb
 - **Tipo:** `matrix`
 - **Concepto visual:** ecuaciones normales como condición de ortogonalidad del residuo.
 - **Elementos:** vectores/columnas de \(A\), residuo \(r=b-A\hat x\) y productos punto \(A^Tr\).
-- **Idea:** mostrar que en la solución cada columna de \(A\) es ortogonal al residuo, por lo que \(A^T(b-A\hat x)=0\).
-- **Objetivo educativo:** entender de dónde surge \(A^TA\hat x=A^Tb\).
+- **Idea:** Edita A y b como datos del ajuste lineal por mínimos cuadrados.
+- **Objetivo educativo:** Las ecuaciones normales AᵀAx = Aᵀb resumen ese problema de proyección.
 - **Interactividad sugerida:** seleccionar un ejemplo pequeño y mostrar simultáneamente la geometría y las matrices de la ecuación normal.
 
 ### Condiciones
@@ -3576,8 +3576,8 @@ y resolver después el sistema denso de tamaño \(n\) añade \(O(n^3)\). Aunque 
 - **Tipo:** `matrix`
 - **Concepto visual:** pseudoinversa como inversa generalizada para soluciones de mínimos cuadrados.
 - **Elementos:** pipeline SVD \(A=U\Sigma V^T\), inversión solo de valores singulares no nulos y recomposición \(A^+=V\Sigma^+U^T\).
-- **Idea:** resaltar qué valores singulares se invierten y cuáles permanecen cero.
-- **Objetivo educativo:** explicar cómo la pseudoinversa maneja matrices no cuadradas o singulares.
+- **Idea:** Explora A rectangular/singular y piensa en la “mejor” solución aproximada.
+- **Objetivo educativo:** La pseudoinversa generaliza la inversa cuando A no es invertible.
 - **Interactividad sugerida:** usar una matriz pequeña con rango reducido; permitir alternar entre \(A\), \(\Sigma\), \(\Sigma^+\) y \(A^+\).
 
 ### Fórmulas relacionadas
@@ -3603,8 +3603,8 @@ PA=LU
 - **Tipo:** `matrix`
 - **Concepto visual:** LU como secuencia compacta de eliminación gaussiana.
 - **Elementos:** matriz \(A\), factores \(L\) y \(U\), y multiplicadores de eliminación almacenados en \(L\).
-- **Idea:** animar la eliminación que transforma \(A\) en \(U\) mientras registra los multiplicadores en \(L\).
-- **Objetivo educativo:** mostrar por qué LU reutiliza el trabajo de eliminación para resolver varios sistemas.
+- **Idea:** Aplica operaciones de fila: te acercas a la forma que usa la factorización LU.
+- **Objetivo educativo:** LU parte A en triangular inferior y superior para resolver sistemas más fácil.
 - **Interactividad sugerida:** avance fila por fila y comprobación visual de que \(LU=A\) o \(PA=LU\).
 
 ### Complejidad computacional
@@ -3638,8 +3638,8 @@ A=QR
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** QR como base ortonormal más coordenadas triangulares.
 - **Elementos:** columnas de \(A\), proceso que genera columnas ortonormales de \(Q\) y matriz triangular \(R\).
-- **Idea:** relacionar QR con Gram-Schmidt: \(Q\) conserva direcciones ortogonales y \(R\) contiene coeficientes.
-- **Objetivo educativo:** entender la estructura de la factorización y su uso en mínimos cuadrados.
+- **Idea:** Observa la malla de A como composición de una parte ortogonal y otra triangular.
+- **Objetivo educativo:** QR escribe A como rotación/ortogonal por triangular.
 - **Interactividad sugerida:** recorrer columnas una a una mostrando proyecciones, normalización y entradas de \(R\).
 
 ### Complejidad computacional
@@ -3675,8 +3675,8 @@ A=Q\Lambda Q^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** descomposición espectral de una matriz simétrica.
 - **Elementos:** ejes propios ortonormales, matriz \(Q\), escalas \(\Lambda\) y una elipse o cuadrícula transformada.
-- **Idea:** descomponer la transformación en cambio a ejes propios, escalamiento por eigenvalores y retorno.
-- **Objetivo educativo:** conectar teorema espectral con una interpretación geométrica directa.
+- **Idea:** Activa autovectores: son los ejes de esa descomposición.
+- **Objetivo educativo:** La descomposición espectral usa autovalores y autovectores.
 - **Interactividad sugerida:** editar una matriz simétrica 2×2 y actualizar la descomposición y figura transformada.
 
 ### Fórmulas relacionadas
@@ -3701,8 +3701,8 @@ A=U\Sigma V^T
 - **Modo:** `svd`
 - **Concepto visual:** SVD como rotación/reflexión → escalamiento → rotación/reflexión.
 - **Elementos:** círculo unitario, estado tras \(V^T\), elipse tras \(\Sigma\) y orientación final tras \(U\).
-- **Idea:** animar las tres etapas y etiquetar valores singulares como longitudes de los ejes principales.
-- **Objetivo educativo:** interpretar la SVD geométricamente y relacionarla con rango y compresión.
+- **Idea:** Pulsa el paso SVD: 1) orienta, 2) escala con σ, 3) recomponer con A.
+- **Objetivo educativo:** SVD descompone A en rotar → escalar → rotar.
 - **Interactividad sugerida:** controles para una matriz 2×2; botones para avanzar por \(V^T\), \(\Sigma\) y \(U\).
 
 ### Aplicaciones
@@ -3748,8 +3748,8 @@ A_k=\sum_{i=1}^{k}\sigma_i u_i v_i^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** aproximación de bajo rango eliminando componentes singulares pequeñas.
 - **Elementos:** matriz/imagen original, valores singulares ordenados y reconstrucciones \(A_k\) para varios valores de \(k\).
-- **Idea:** añadir componentes \(\sigma_i u_i v_i^T\) una a una y mostrar cómo mejora la reconstrucción.
-- **Objetivo educativo:** hacer visible el compromiso entre rango, compresión y fidelidad.
+- **Idea:** Baja k: la malla usa solo el mayor valor singular (versión simplificada).
+- **Objetivo educativo:** Quedarse con los σ grandes aproxima A con poco rango.
 - **Interactividad sugerida:** deslizador de \(k\); actualizar reconstrucción y porcentaje de energía/frobenius capturada cuando esté disponible.
 
 ### Fórmulas relacionadas
@@ -3789,8 +3789,8 @@ Equivalentemente:
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** amplificación máxima de vectores por una transformación matricial.
 - **Elementos:** círculo o esfera unidad de la norma elegida, varios vectores unitarios, su imagen bajo \(A\) y el vector cuya imagen alcanza la mayor norma.
-- **Idea:** transformar simultáneamente muchos vectores unitarios y resaltar el que produce \(\|A\mathbf x\|_p\) máxima.
-- **Objetivo educativo:** interpretar una norma inducida como la máxima amplificación producida por \(A\), no como una simple suma de entradas.
+- **Idea:** Cambia A: σ grandes indican estiramientos fuertes en alguna dirección.
+- **Objetivo educativo:** Una norma matricial mide cuánto puede estirar A a un vector.
 - **Interactividad sugerida:** selector de una matriz 2×2 y de norma \(p=1,2,\infty\).
 
 ### Fórmulas relacionadas
@@ -3828,8 +3828,8 @@ Mediante los valores singulares:
 - **Tipo:** `matrix`
 - **Concepto visual:** la norma de Frobenius como longitud euclidiana del vector formado por todas las entradas.
 - **Elementos:** una matriz pequeña, sus entradas elevadas al cuadrado, una suma acumulada y la raíz cuadrada final; en paralelo, sus valores singulares si se activa el modo avanzado.
-- **Idea:** desplegar la matriz como un vector largo y demostrar que ambas representaciones producen la misma norma.
-- **Objetivo educativo:** conectar norma matricial, norma vectorial y SVD.
+- **Idea:** Edita A y relaciona entradas grandes con una norma más grande.
+- **Objetivo educativo:** Frobenius mide el “tamaño” de A sumando todas las entradas al cuadrado.
 - **Interactividad sugerida:** editar entradas de una matriz 2×2 o 3×3 y actualizar automáticamente ambos cálculos.
 
 ### Fórmulas relacionadas
@@ -3855,8 +3855,8 @@ Mediante los valores singulares:
 - **Tipo:** `matrix`
 - **Concepto visual:** comparar sumas absolutas por columnas.
 - **Elementos:** matriz, suma debajo de cada columna y resaltado de la columna con mayor suma.
-- **Idea:** calcular simultáneamente todas las sumas y marcar cuál determina \(\|A\|_1\).
-- **Objetivo educativo:** reconocer rápidamente la fórmula concreta de la norma inducida 1.
+- **Idea:** Haz una columna mucho mayor: esa norma crece con ella.
+- **Objetivo educativo:** La norma 1 se liga a sumas de columnas.
 - **Interactividad sugerida:** permitir editar entradas y observar cuándo cambia la columna dominante.
 
 ### Fórmulas relacionadas
@@ -3882,8 +3882,8 @@ Mediante los valores singulares:
 - **Tipo:** `matrix`
 - **Concepto visual:** comparar sumas absolutas por filas.
 - **Elementos:** matriz, suma al final de cada fila y resaltado de la fila con mayor suma.
-- **Idea:** contrastar visualmente esta norma con la norma 1, donde se comparan columnas.
-- **Objetivo educativo:** diferenciar de forma inmediata \(\|A\|_1\) y \(\|A\|_\infty\).
+- **Idea:** Haz una fila dominante y observa el efecto sobre el tamaño de A.
+- **Objetivo educativo:** La norma infinito se liga a sumas de filas.
 - **Interactividad sugerida:** botón para alternar “filas” y “columnas”, mostrando la norma correspondiente.
 
 ### Fórmulas relacionadas
@@ -3919,8 +3919,8 @@ para matrices reales.
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** máxima elongación de la circunferencia unidad.
 - **Elementos:** circunferencia unidad, elipse resultante de aplicar \(A\), ejes principales y semieje mayor etiquetado \(\sigma_{\max}\).
-- **Idea:** mostrar que la longitud del semieje mayor de la elipse coincide con la norma espectral.
-- **Objetivo educativo:** conectar geometría de transformaciones, valores singulares y norma operador 2.
+- **Idea:** Mira la elipse de valores singulares: el eje largo es ese estiramiento.
+- **Objetivo educativo:** La norma espectral es el mayor estiramiento (σ₁).
 - **Interactividad sugerida:** modificar una matriz 2×2 y actualizar elipse, valores singulares y \(\|A\|_2\).
 
 ### Fórmulas relacionadas
@@ -3949,8 +3949,8 @@ Para una norma matricial submultiplicativa:
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** acotar una transformación compuesta \(AB\) mediante dos amplificaciones sucesivas.
 - **Elementos:** vector inicial, imagen bajo \(B\), imagen posterior bajo \(A\), y barras que comparen \(\|AB\mathbf x\|\), \(\|A\|\|B\|\|\mathbf x\|\).
-- **Idea:** mostrar una cadena de cotas desde el vector inicial hasta la transformación compuesta.
-- **Objetivo educativo:** entender por qué las normas permiten controlar errores y crecimiento en productos matriciales.
+- **Idea:** Compara visualmente cuánto estira A frente a transformaciones encadenadas.
+- **Objetivo educativo:** ‖AB‖ ≤ ‖A‖‖B‖: el tamaño del producto no supera el producto de tamaños.
 - **Interactividad sugerida:** matrices 2×2 predefinidas con posibilidad de cambiar el vector de entrada.
 
 ### Fórmulas relacionadas
@@ -3987,8 +3987,8 @@ En norma 2:
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** comparar transformaciones bien y mal condicionadas.
 - **Elementos:** dos matrices 2×2, círculos unidad transformados en elipses, valores \(\sigma_{\max}\), \(\sigma_{\min}\) y \(\kappa_2\).
-- **Idea:** una elipse casi circular representa mejor condicionamiento; una elipse extremadamente alargada muestra una dirección fuertemente comprimida y un número de condición grande.
-- **Objetivo educativo:** relacionar sensibilidad numérica con la razón entre máxima y mínima amplificación.
+- **Idea:** Haz σ₁ ≫ σ₂ (k bajo): la malla se aplasta y el problema se vuelve mal condicionado.
+- **Objetivo educativo:** El número de condición dice si un sistema es sensible a errores.
 - **Interactividad sugerida:** slider que acerque dos columnas de la matriz a la dependencia lineal y muestre cómo crece \(\kappa_2(A)\).
 
 ### Condiciones
@@ -4024,8 +4024,8 @@ A+0=A;\;A1=A;\;A+1=1;\;A0=0
 - **Modo:** `verify`
 - **Concepto visual:** verificación de identidades mediante todas las entradas booleanas.
 - **Elementos:** tabla con columna de entrada \(A\) y columnas para \(A+0\), \(A\cdot1\), \(A+1\), \(A\cdot0\).
-- **Idea:** mostrar fila por fila que cada identidad produce la salida indicada para 0 y 1.
-- **Objetivo educativo:** comprender una identidad booleana como equivalencia para todas las asignaciones posibles.
+- **Idea:** Cambia salidas con el botón: las filas en naranja no coinciden con lo esperado.
+- **Objetivo educativo:** Puedes comprobar una identidad lógica fila a fila en la tabla de verdad.
 - **Interactividad sugerida:** permitir activar/desactivar una identidad y resaltar las columnas que se comparan.
 
 ### Fórmulas relacionadas
@@ -4050,8 +4050,8 @@ A+A=A;\;AA=A;\;A+\bar A=1;\;A\bar A=0
 - **Tipo:** `truth_table`
 - **Concepto visual:** idempotencia y complemento mediante tablas y estados binarios.
 - **Elementos:** tabla para \(A\), \(A+A\), \(AA\), \(A+\bar A\), \(A\bar A\).
-- **Idea:** resaltar que repetir una variable no cambia su valor y que una variable junto a su complemento produce 1 u 0 según la operación.
-- **Objetivo educativo:** internalizar idempotencia, complemento y sus resultados constantes.
+- **Idea:** Alterna A y B y compara la tabla con el resultado en vivo.
+- **Objetivo educativo:** Algunas operaciones booleanas se simplifican (idempotencia, complemento).
 - **Interactividad sugerida:** interruptor para \(A=0/1\) que actualice todas las expresiones simultáneamente.
 
 ### Fórmulas relacionadas
@@ -4076,8 +4076,8 @@ A(B+C)=AB+AC;\quad A+BC=(A+B)(A+C)
 - **Tipo:** `truth_table`
 - **Concepto visual:** equivalencia de las dos formas distributivas booleanas.
 - **Elementos:** tabla de verdad con \(A,B,C\) y pares de columnas \(A(B+C)\) / \(AB+AC\), y \(A+BC\) / \((A+B)(A+C)\).
-- **Idea:** comparar cada par fila por fila para demostrar igualdad lógica.
-- **Objetivo educativo:** distinguir la distributividad booleana de la distributividad aritmética usual.
+- **Idea:** Revisa la tabla: AND/OR se reparte como en el área a(b+c).
+- **Objetivo educativo:** La distributividad también existe en lógica, no solo en álgebra de números.
 - **Interactividad sugerida:** seleccionar filas o asignaciones y resaltar los pasos de evaluación de cada lado.
 
 ### Fórmulas relacionadas
@@ -4101,8 +4101,8 @@ A(B+C)=AB+AC;\quad A+BC=(A+B)(A+C)
 - **Tipo:** `logic_gate`
 - **Concepto visual:** equivalencia de De Morgan mediante puertas lógicas.
 - **Elementos:** dos circuitos equivalentes: NOT después de OR frente a AND de entradas negadas, y NOT después de AND frente a OR de entradas negadas.
-- **Idea:** propagar los mismos valores \(A,B\) por ambos circuitos y mostrar salidas idénticas.
-- **Objetivo educativo:** conectar las leyes simbólicas con transformaciones reales de circuitos.
+- **Idea:** Cambia A y B: las dos expresiones de cada ley siempre dan el mismo resultado.
+- **Objetivo educativo:** De Morgan: negar un AND es como un OR de negaciones (y al revés).
 - **Interactividad sugerida:** interruptores para \(A\) y \(B\); animar señales y permitir alternar entre las dos leyes.
 
 ### Fórmulas relacionadas
@@ -4127,8 +4127,8 @@ A\oplus B=\bar AB+A\bar B
 - **Tipo:** `truth_table`
 - **Concepto visual:** XOR como “exactamente una entrada verdadera”.
 - **Elementos:** tabla de verdad de \(A,B,A\oplus B\), expresión \(\bar AB+A\bar B\) y opcionalmente puerta XOR.
-- **Idea:** resaltar únicamente las filas 01 y 10 como verdaderas.
-- **Objetivo educativo:** distinguir XOR de OR inclusivo.
+- **Idea:** Prueba las cuatro combinaciones: solo 01 y 10 dan 1.
+- **Objetivo educativo:** XOR es verdadero cuando A y B son distintos.
 - **Interactividad sugerida:** interruptores para las dos entradas y comparación simultánea entre XOR y OR.
 
 ### Fórmulas relacionadas
@@ -4152,8 +4152,8 @@ A+AB=A;\quad A(A+B)=A
 - **Tipo:** `truth_table`
 - **Concepto visual:** absorción como eliminación de información redundante.
 - **Elementos:** tabla con columnas \(A\), \(AB\), \(A+AB\) y, en paralelo, \(A+B\), \(A(A+B)\).
-- **Idea:** mostrar que el término adicional nunca cambia el resultado determinado por \(A\).
-- **Objetivo educativo:** entender por qué ciertas expresiones booleanas pueden simplificarse drásticamente.
+- **Idea:** Compara filas de la tabla para ver qué entradas sobran.
+- **Objetivo educativo:** La absorción elimina términos redundantes en expresiones booleanas.
 - **Interactividad sugerida:** seleccionar una fila y mostrar el razonamiento lógico que hace redundante al término absorbido.
 
 ### Fórmulas relacionadas
@@ -4177,8 +4177,8 @@ F=\Sigma m(i_1,\ldots,i_k)
 - **Tipo:** `truth_table`
 - **Concepto visual:** construcción de una función desde sus filas verdaderas.
 - **Elementos:** tabla de verdad, filas con salida 1 resaltadas, minterm correspondiente a cada fila y OR final de todos los minterms.
-- **Idea:** construir la suma de productos seleccionando exactamente las asignaciones donde \(F=1\).
-- **Objetivo educativo:** comprender de dónde provienen minterms y la forma canónica SOP.
+- **Idea:** Marca en la tabla las filas donde la salida es 1: esas son tus productos.
+- **Objetivo educativo:** Suma de productos escribe la función como ORs de ANDs.
 - **Interactividad sugerida:** permitir editar la columna de salida de una función de 2–3 variables y generar automáticamente los minterms.
 
 ### Fórmulas relacionadas
@@ -4203,8 +4203,8 @@ F=\Pi M(i_1,\ldots,i_k)
 - **Tipo:** `truth_table`
 - **Concepto visual:** construcción de una función desde sus filas falsas.
 - **Elementos:** tabla de verdad, filas con salida 0 resaltadas, maxterm de cada fila y AND final de maxterms.
-- **Idea:** construir el producto de sumas a partir de las asignaciones que hacen \(F=0\).
-- **Objetivo educativo:** comprender la forma canónica POS y su dualidad con SOP.
+- **Idea:** Usa la tabla para ver qué cláusulas cubren los ceros de la función.
+- **Objetivo educativo:** Producto de sumas es la forma dual: ANDs de ORs.
 - **Interactividad sugerida:** editar la columna de salida y generar automáticamente los maxterms correspondientes.
 
 ### Fórmulas relacionadas
@@ -4229,8 +4229,8 @@ F\equiv G\iff F\text{ y }G\text{ tienen la misma tabla de verdad}
 - **Tipo:** `truth_table`
 - **Concepto visual:** equivalencia de expresiones mediante columnas idénticas.
 - **Elementos:** dos expresiones booleanas y una tabla de verdad con sus columnas de salida lado a lado.
-- **Idea:** comparar todas las filas y marcar “equivalentes” solo cuando ambas columnas coincidan por completo.
-- **Objetivo educativo:** entender que equivalencia lógica significa misma salida para toda asignación.
+- **Idea:** Edita salidas: si todo queda en ✓, las tablas coinciden.
+- **Objetivo educativo:** Dos expresiones son equivalentes si su tabla de verdad coincide.
 - **Interactividad sugerida:** permitir elegir dos expresiones de ejemplos predefinidos y resaltar cualquier fila donde difieran.
 
 ### Fórmulas relacionadas
@@ -4258,8 +4258,8 @@ a\equiv b\pmod n\iff n\mid(a-b)
 - **Modo:** `congruence`
 - **Concepto visual:** congruencia como misma posición en un reloj modular.
 - **Elementos:** círculo con residuos \(0,1,\ldots,n-1\), números como \(a\) y \(b\) cayendo sobre el mismo residuo.
-- **Idea:** mostrar vueltas completas y el resto final para ilustrar que \(n\mid(a-b)\).
-- **Objetivo educativo:** interpretar \(a\equiv b\pmod n\) como igualdad de residuos.
+- **Idea:** Mueve a y b: el texto dice si a ≡ b (mod m) cuando comparten marca.
+- **Objetivo educativo:** a y b son congruentes módulo m si caen en el mismo “tick” del reloj.
 - **Interactividad sugerida:** deslizadores para \(a,b,n\); marcar automáticamente si son congruentes y visualizar sus posiciones.
 
 ### Fórmulas relacionadas
@@ -4284,8 +4284,8 @@ a\equiv b,\;c\equiv d\pmod n\Rightarrow a+c\equiv b+d,\;ac\equiv bd\pmod n
 - **Tipo:** `modular_clock`
 - **Concepto visual:** suma y multiplicación como desplazamientos en un reloj modular.
 - **Elementos:** reloj módulo \(n\), punto inicial y saltos para sumar o multiplicar residuos.
-- **Idea:** comparar la operación con números originales y con sus residuos, mostrando que ambos llegan al mismo resultado modular.
-- **Objetivo educativo:** visualizar por qué las congruencias se preservan bajo suma y producto.
+- **Idea:** Cambia a, b y m: las marcas muestran a+b y a·b en el círculo.
+- **Objetivo educativo:** Sumar y multiplicar módulo m es operar y volver al reloj 0…m−1.
 - **Interactividad sugerida:** seleccionar operación, operandos y módulo; animar los saltos y mostrar el residuo final.
 
 ### Fórmulas relacionadas
@@ -4310,8 +4310,8 @@ aa^{-1}\equiv1\pmod n\iff\gcd(a,n)=1
 - **Tipo:** `modular_clock`
 - **Concepto visual:** inverso modular como número que lleva el producto al residuo 1.
 - **Elementos:** reloj módulo \(n\) o tabla de multiplicación de residuos; fila de \(a\) resaltada y celda donde aparece 1.
-- **Idea:** buscar \(x\) tal que \(ax\equiv1\pmod n\) y mostrar ausencia de solución cuando \(\gcd(a,n)\neq1\).
-- **Objetivo educativo:** entender tanto la definición como la condición de existencia del inverso.
+- **Idea:** Prueba varios a: si no hay inverso, el texto lo indica.
+- **Objetivo educativo:** El inverso de a módulo m existe solo si gcd(a, m) = 1.
 - **Interactividad sugerida:** selector de \(a,n\); resaltar automáticamente el inverso si existe y mostrar el gcd.
 
 ### Fórmulas relacionadas
@@ -4353,8 +4353,8 @@ x\equiv a_i\pmod{n_i};\quad N=\prod_i n_i
 - **Tipo:** `modular_clock`
 - **Concepto visual:** sincronización de varias congruencias en un único ciclo.
 - **Elementos:** dos o tres relojes modulares con módulos coprimos y una línea temporal común de enteros.
-- **Idea:** marcar en cada reloj los residuos deseados y buscar el primer entero que satisface simultáneamente todas las condiciones.
-- **Objetivo educativo:** dar intuición al teorema chino del resto como sincronización de ciclos independientes.
+- **Idea:** Ajusta a, b, m y m₂: cuando existe, aparece el x que cumple ambos restos.
+- **Objetivo educativo:** El teorema chino combina dos relojes (m y m₂) en una solución x.
 - **Interactividad sugerida:** permitir elegir pequeños módulos coprimos y residuos; avanzar por enteros hasta encontrar la coincidencia.
 
 ### Fórmulas relacionadas
@@ -4378,8 +4378,8 @@ a^{p-1}\equiv1\pmod p\quad(p\nmid a)
 - **Tipo:** `modular_clock`
 - **Concepto visual:** ciclo de potencias no nulas módulo un primo.
 - **Elementos:** reloj o tabla con residuos de \(a,a^2,\ldots,a^{p-1}\pmod p\).
-- **Idea:** mostrar que para \(p\) primo y \(p\nmid a\), la potencia \(a^{p-1}\) termina en 1.
-- **Objetivo educativo:** visualizar el carácter cíclico detrás del pequeño teorema de Fermat.
+- **Idea:** Con m primo, mira a^(p−1) en el caption; debería ser 1 si gcd(a,p)=1.
+- **Objetivo educativo:** Fermat: si p es primo y p no divide a, entonces a^(p−1) ≡ 1 (mod p).
 - **Interactividad sugerida:** selector de primo pequeño \(p\) y base \(a\); animar las potencias sucesivas y sus residuos.
 
 ### Fórmulas relacionadas
@@ -4489,8 +4489,8 @@ a\ne0\Rightarrow a^{-1}\text{ existe}
 - **Tipo:** `finite_field`
 - **Concepto visual:** tablas de operación de un cuerpo finito primo.
 - **Elementos:** tablas de suma y multiplicación de \(\mathbb F_p\), con filas/columnas de residuos y elementos identidad resaltados.
-- **Idea:** mostrar que cada elemento no nulo tiene exactamente un inverso multiplicativo y que las operaciones permanecen dentro del conjunto.
-- **Objetivo educativo:** hacer concretas las propiedades de un cuerpo finito mediante ejemplos pequeños.
+- **Idea:** Elige p y abre las tablas + / ·; pulsa una celda para ver el resultado e inverso.
+- **Objetivo educativo:** En un cuerpo finito, suma y producto se envuelven módulo p.
 - **Interactividad sugerida:** selector de \(p=2,3,5,7\); hacer clic en un elemento para resaltar su inverso aditivo y multiplicativo.
 
 ### Fórmulas relacionadas
@@ -4563,8 +4563,8 @@ se denomina código lineal \([n,k]_q\).
 - **Tipo:** `finite_field`
 - **Concepto visual:** un código lineal como subespacio dentro de \(\mathbb F_q^n\).
 - **Elementos:** para un ejemplo pequeño sobre \(\mathbb F_2\), mostrar todas las palabras de \(\mathbb F_2^3\) y resaltar únicamente las que pertenecen al código.
-- **Idea:** sumar dos palabras código y comprobar que el resultado también pertenece al conjunto resaltado.
-- **Objetivo educativo:** relacionar directamente códigos lineales con las propiedades de un espacio vectorial sobre un cuerpo finito.
+- **Idea:** Lee la lista de codewords: su suma permanece dentro del conjunto.
+- **Objetivo educativo:** Un código lineal es un subespacio: sumar palabras de código da otra palabra de código.
 - **Interactividad sugerida:** seleccionar dos palabras código y mostrar su suma módulo 2.
 
 ### Fórmulas relacionadas
@@ -4597,8 +4597,8 @@ Un mensaje \(\mathbf m\in\mathbb F_q^k\) se codifica mediante
 - **Tipo:** `matrix`
 - **Concepto visual:** codificación como producto vector-matriz en un cuerpo finito.
 - **Elementos:** vector mensaje \(\mathbf m\), matriz \(G\), operaciones módulo \(q\) y palabra resultante \(\mathbf c\).
-- **Idea:** resaltar fila por columna o combinación lineal de filas de \(G\) para mostrar de dónde sale cada símbolo de \(\mathbf c\).
-- **Objetivo educativo:** ver que codificar no es una operación nueva: es álgebra lineal realizada sobre \(\mathbb F_q\).
+- **Idea:** Edita bits/entradas y piensa cada fila de G como un patrón base del código.
+- **Objetivo educativo:** La matriz generadora G fabrica palabras de código a partir de mensajes.
 - **Interactividad sugerida:** editar un mensaje binario corto y recalcular la palabra código paso a paso.
 
 ### Complejidad computacional
@@ -4647,8 +4647,8 @@ GH^T=0.
 - **Tipo:** `matrix`
 - **Concepto visual:** una palabra válida produce un vector de comprobación nulo.
 - **Elementos:** palabra \(\mathbf c\), matriz \(H\), producto matricial y vector cero final; incluir un segundo ejemplo con una palabra alterada.
-- **Idea:** comparar una palabra válida y una palabra con un bit modificado para mostrar cómo cambia el resultado de las comprobaciones.
-- **Objetivo educativo:** comprender el papel dual de \(G\) para generar palabras y \(H\) para verificar restricciones.
+- **Idea:** Invierte un bit y relaciona el fallo con un síndrome no nulo (en COD-004).
+- **Objetivo educativo:** H comprueba paridad: las palabras válidas cumplen H c = 0.
 - **Interactividad sugerida:** permitir activar/desactivar un error en una posición y observar el producto \(H\mathbf c^T\).
 
 ### Fórmulas relacionadas
@@ -4687,8 +4687,8 @@ Si \(\mathbf r=\mathbf c+\mathbf e\), entonces
 - **Tipo:** `error_correction`
 - **Concepto visual:** un error cambia el síndrome sin necesidad de comparar con el mensaje original.
 - **Elementos:** palabra transmitida, canal con un error marcado, palabra recibida, matriz \(H\) y síndrome resultante.
-- **Idea:** mover el error entre distintas posiciones y observar cómo cambia el patrón del síndrome.
-- **Objetivo educativo:** entender por qué el síndrome contiene información sobre el patrón de error.
+- **Idea:** Elige la posición del error: el síndrome s cambia al instante.
+- **Objetivo educativo:** El síndrome señala (en códigos simples) dónde está el bit erróneo.
 - **Interactividad sugerida:** hacer clic en una posición para introducir un error binario y recalcular \(\mathbf s\).
 
 ### Complejidad computacional
@@ -4734,8 +4734,8 @@ d_H(\mathbf x,\mathbf0).
 - **Tipo:** `error_correction`
 - **Concepto visual:** distancia como número de símbolos distintos.
 - **Elementos:** dos cadenas alineadas, posiciones iguales atenuadas, posiciones diferentes resaltadas y contador de diferencias.
-- **Idea:** modificar símbolos y actualizar la distancia en tiempo real.
-- **Objetivo educativo:** interpretar la distancia de Hamming como una métrica discreta y comprender por qué separaciones mayores permiten tolerar más errores.
+- **Idea:** Edita las dos cadenas: los bits distintos se resaltan y d_H se actualiza.
+- **Objetivo educativo:** La distancia de Hamming cuenta en cuántas posiciones difieren dos palabras.
 - **Interactividad sugerida:** cadenas binarias editables de igual longitud.
 
 ### Fórmulas relacionadas
@@ -4790,8 +4790,8 @@ d_{\min}
 - **Tipo:** `error_correction`
 - **Concepto visual:** bolas de Hamming alrededor de palabras código.
 - **Elementos:** varias palabras código como centros, vecindarios de radio \(t\), una palabra recibida y distancias a los centros.
-- **Idea:** mostrar que la corrección es inequívoca mientras las regiones de radio \(t\) alrededor de palabras distintas no se solapen.
-- **Objetivo educativo:** comprender geométricamente por qué aparece \(\lfloor(d_{\min}-1)/2\rfloor\).
+- **Idea:** Mueve d_min: el radio de corrección t = ⌊(d−1)/2⌋ cambia con él.
+- **Objetivo educativo:** Con distancia mínima d puedes detectar/corregir una cantidad limitada de errores.
 - **Interactividad sugerida:** slider para \(d_{\min}\) en ejemplos pequeños y visualización del número de errores detectables/corregibles.
 
 ### Fórmulas relacionadas
@@ -4817,8 +4817,8 @@ R=\frac{k}{n}.
 - **Tipo:** `error_correction`
 - **Concepto visual:** relación entre información y redundancia.
 - **Elementos:** una palabra de longitud \(n\) dividida visualmente en \(k\) grados de libertad informativos y \(n-k\) símbolos de redundancia, sin asumir necesariamente una forma sistemática concreta del código.
-- **Idea:** comparar varios pares \((n,k)\) y mostrar cómo cambia \(R\).
-- **Objetivo educativo:** entender el compromiso básico entre redundancia y eficiencia de transmisión.
+- **Idea:** Ajusta n y k: la barra muestra la parte de mensaje frente a la de redundancia.
+- **Objetivo educativo:** La tasa k/n mide cuánta información útil llevas frente a la longitud total.
 - **Interactividad sugerida:** controles enteros para \(n\) y \(k\) con \(0<k\le n\).
 
 ### Fórmulas relacionadas

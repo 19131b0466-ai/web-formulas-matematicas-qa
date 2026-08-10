@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ControlsStack, SliderRow, ToggleRow, VizPanel, fmt } from './controls';
+import { ControlsStack, SliderRow, ToggleRow, VizPanel, fmt, joinCaption } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
-export function PolynomialSurfaceViz({ formulaId, idea }: Props) {
+export function PolynomialSurfaceViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [a, setA] = useState(1);
   const [b, setB] = useState(0.4);
@@ -48,8 +48,8 @@ export function PolynomialSurfaceViz({ formulaId, idea }: Props) {
     <VizPanel
       caption={
         formulaId.includes('POL-009')
-          ? `${idea ?? ''} · P(tx,ty)≈${fmt(homogCheck)} · t^d P≈${fmt(scaled)}`
-          : idea
+          ? joinCaption(`P(tx,ty)≈${fmt(homogCheck)}`, `t^d P≈${fmt(scaled)}`)
+          : undefined
       }
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">

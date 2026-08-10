@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { MatrixTransformMode } from '@/lib/viz-modes';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
+import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import {
   applyMat,
   det2,
@@ -18,7 +18,7 @@ import {
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
-export function MatrixTransformViz({ formulaId: _id, idea, mode: modeProp }: Props) {
+export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'map') as MatrixTransformMode;
   const [a11, setA11] = useState(1.2);
@@ -98,7 +98,7 @@ export function MatrixTransformViz({ formulaId: _id, idea, mode: modeProp }: Pro
 
   return (
     <VizPanel
-      caption={`${idea ?? ''} · det=${fmt(det)} · σ≈(${fmt(sigma[0]!)}, ${fmt(sigma[1]!)})${svdLabel ? ` · ${svdLabel}` : ''}`}
+      caption={joinCaption(`det=${fmt(det)}`, `σ≈(${fmt(sigma[0]!)}, ${fmt(sigma[1]!)})`, svdLabel)}
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />

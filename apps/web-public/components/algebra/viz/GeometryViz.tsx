@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
+import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2, type Vec2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
-export function GeometryViz({ formulaId, idea }: Props) {
+export function GeometryViz({ formulaId }: Props) {
   const lab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2, y: 0.3 });
   const [v, setV] = useState<Vec2>({ x: 0.5, y: 1.8 });
@@ -38,7 +38,7 @@ export function GeometryViz({ formulaId, idea }: Props) {
   const isArea = /DET-001|DET-003|DET-004|LSQ-001/.test(formulaId);
 
   return (
-    <VizPanel caption={`${idea ?? ''}${isArea ? ` · ${lab.orientedArea}=${fmt(area)}` : ''}`}>
+    <VizPanel caption={isArea ? joinCaption(`${lab.orientedArea}=${fmt(area)}`) : undefined}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />

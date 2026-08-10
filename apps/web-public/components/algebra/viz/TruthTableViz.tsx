@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ControlsStack, ToggleRow, VizPanel } from './controls';
+import { ControlsStack, ToggleRow, VizPanel, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -18,7 +18,7 @@ function op(formulaId: string, a: boolean, b: boolean): boolean {
   return a && b;
 }
 
-export function TruthTableViz({ formulaId, idea }: Props) {
+export function TruthTableViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [editA, setEditA] = useState(true);
   const [editB, setEditB] = useState(false);
@@ -41,7 +41,7 @@ export function TruthTableViz({ formulaId, idea }: Props) {
   const live = op(formulaId, editA, editB);
 
   return (
-    <VizPanel caption={`${idea ?? ''} · ${allOk ? v.tableMatch : v.tableMismatch}`}>
+    <VizPanel caption={joinCaption(allOk ? v.tableMatch : v.tableMismatch)}>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>

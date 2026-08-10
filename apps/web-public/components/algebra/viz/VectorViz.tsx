@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { VectorMode } from '@/lib/viz-modes';
-import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
+import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { add, dot, normalize, norm, project, scale, sub, type Vec2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -36,7 +36,7 @@ function useDrag(set: (v: Vec2) => void, scalePx: number, origin: Vec2) {
   };
 }
 
-export function VectorViz({ formulaId, idea, mode: modeProp }: Props) {
+export function VectorViz({ formulaId, mode: modeProp }: Props) {
   const vLab = useVizLabels();
   const mode = (modeProp ?? 'basic') as VectorMode;
   const [u, setU] = useState<Vec2>({ x: 2.2, y: 1.4 });
@@ -115,7 +115,7 @@ export function VectorViz({ formulaId, idea, mode: modeProp }: Props) {
   const showV = mode !== 'moivre_power' && mode !== 'conjugate' && (mode !== 'complex' || /VEC-|ORT-/.test(formulaId));
 
   return (
-    <VizPanel caption={`${idea ?? ''} · ${derived.label}`}>
+    <VizPanel caption={joinCaption(derived.label)}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full touch-none" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />

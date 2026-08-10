@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel, fmt } from './controls';
+import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { add, applyMat, det2, scale, type Mat2, type Vec2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
-export function VectorSpaceViz({ formulaId, idea }: Props) {
+export function VectorSpaceViz({ formulaId }: Props) {
   const vLab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2, y: 0.4 });
   const [v, setV] = useState<Vec2>({ x: 0.6, y: 1.8 });
@@ -44,7 +44,7 @@ export function VectorSpaceViz({ formulaId, idea }: Props) {
   );
 
   return (
-    <VizPanel caption={`${idea ?? ''} · ${vLab.areaDet} ≈ ${fmt(area)} (${area < 1e-3 ? vLab.dependent : vLab.independent})`}>
+    <VizPanel caption={joinCaption(`${vLab.areaDet} ≈ ${fmt(area)} (${area < 1e-3 ? vLab.dependent : vLab.independent})`)}>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.2} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.2} />

@@ -6,7 +6,7 @@ import { ControlsStack, ToggleRow, VizPanel } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
-export function LogicGateViz({ idea }: Props) {
+export function LogicGateViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [A, setA] = useState(true);
   const [B, setB] = useState(false);
@@ -17,7 +17,7 @@ export function LogicGateViz({ idea }: Props) {
   const deMorganRight = !A && !B;
 
   return (
-    <VizPanel caption={idea}>
+    <VizPanel>
       <svg viewBox="0 0 440 200" className="h-auto w-full" role="img">
         <text x={20} y={30} fontSize={13} fill="currentColor">
           De Morgan: ¬(A∧B)=¬A∨¬B · ¬(A∨B)=¬A∧¬B

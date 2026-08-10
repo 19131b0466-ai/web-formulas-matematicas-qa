@@ -117,6 +117,14 @@ export function fmt(n: number, digits = 2): string {
   return n.toFixed(digits).replace(/\.?0+$/, '') || '0';
 }
 
+/** Join caption parts, skipping empties (avoids a leading " · "). */
+export function joinCaption(...parts: Array<string | false | null | undefined>): string | undefined {
+  const cleaned = parts
+    .map((p) => (typeof p === 'string' ? p.trim() : ''))
+    .filter(Boolean);
+  return cleaned.length ? cleaned.join(' · ') : undefined;
+}
+
 export function ControlsStack({ children }: { children: ReactNode }) {
   return <div className="mt-3 space-y-2">{children}</div>;
 }

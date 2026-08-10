@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { AlgebraTilesMode } from '@/lib/viz-modes';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
+import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -14,7 +14,7 @@ function binom(n: number, k: number): number {
   return Math.round(r);
 }
 
-export function AlgebraTilesViz({ formulaId: _formulaId, idea, mode: modeProp }: Props) {
+export function AlgebraTilesViz({ formulaId: _formulaId, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'commute') as AlgebraTilesMode;
   const [a, setA] = useState(3);
@@ -31,24 +31,25 @@ export function AlgebraTilesViz({ formulaId: _formulaId, idea, mode: modeProp }:
   const pascal = useMemo(() => Array.from({ length: n + 1 }, (_, k) => binom(n, k)), [n]);
 
   const caption = useMemo(() => {
-    const base = idea ?? '';
     switch (mode) {
       case 'commute':
-        return `${base} · a+b = b+a = ${fmt(a + b)}`;
+        return joinCaption(`a+b = b+a = ${fmt(a + b)}`);
+      case 'associate':
+        return joinCaption(`${assocRight ? 'a+(b+c)' : '(a+b)+c'} = ${fmt(a + b + c)}`);
       case 'distribute':
-        return `${base} · a(b+c)=${fmt(a * (b + c))} = ab+ac=${fmt(a * b + a * c)}`;
+        return joinCaption(`a(b+c)=${fmt(a * (b + c))} = ab+ac=${fmt(a * b + a * c)}`);
       case 'complete_square':
-        return `${base} · x²+bx = (x+b/2)² − (b/2)² · (b/2)²=${fmt(halfB * halfB)}`;
+        return joinCaption(`x²+bx = (x+b/2)² − (b/2)²`, `(b/2)²=${fmt(halfB * halfB)}`);
       case 'degree':
-        return `${base} · deg(x^a y^b) = a+b = ${fmt(a + b, 0)}`;
+        return joinCaption(`deg(x^a y^b) = a+b = ${fmt(a + b, 0)}`);
       case 'power':
-        return `${base} · a^n · a^m → a^{n+m} · n=${fmt(a, 0)}, m=${fmt(b, 0)}`;
+        return joinCaption(`a^n · a^m → a^{n+m}`, `n=${fmt(a, 0)}, m=${fmt(b, 0)}`);
       case 'binomial':
-        return `${base} · ${v.pascalRow} ${n}: [${pascal.join(', ')}]`;
+        return joinCaption(`${v.pascalRow} ${n}: [${pascal.join(', ')}]`);
       default:
-        return base;
+        return undefined;
     }
-  }, [idea, mode, a, b, c, halfB, n, pascal, v.pascalRow]);
+  }, [mode, a, b, c, halfB, n, pascal, assocRight, v.pascalRow]);
 
   return (
     <VizPanel caption={caption}>

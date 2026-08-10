@@ -118,7 +118,9 @@
     "metaDescription": "Detalle de la fórmula {title}.",
     "loading": "Cargando fórmula…",
     "level": "Nivel",
-    "visualization": "Visualización",
+    "visualization": "Explora la idea",
+    "vizTeaches": "Qué te enseña",
+    "vizTry": "Qué hacer",
     "complexity": "Complejidad computacional",
     "showComplexity": "Mostrar (modo CS)",
     "hideComplexity": "Ocultar (modo básico)"

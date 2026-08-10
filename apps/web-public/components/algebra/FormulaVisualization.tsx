@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import type { FormulaVisual } from '@repo/shared-types';
 import { useVizLabels } from '@/lib/viz-labels';
 import { resolveMode } from '@/lib/viz-modes';
@@ -30,56 +31,58 @@ type Props = {
 
 export function FormulaVisualization({ formulaId, visual, title }: Props) {
   const v = useVizLabels();
-  const idea = visual.idea || visual.concept;
+  const t = useTranslations('formula');
+  const guide = visual.idea || visual.concept;
   const type = visual.type;
   const mode = resolveMode(formulaId, type, visual.mode);
 
+  // Guide copy lives above the panel; viz captions keep only live feedback.
   let body: ReactNode;
   switch (type) {
     case 'number_line':
-      body = <NumberLineViz formulaId={formulaId} idea={idea} />;
+      body = <NumberLineViz formulaId={formulaId} />;
       break;
     case 'algebra_tiles':
-      body = <AlgebraTilesViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <AlgebraTilesViz formulaId={formulaId} mode={mode} />;
       break;
     case 'graph':
-      body = <GraphViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <GraphViz formulaId={formulaId} mode={mode} />;
       break;
     case 'function_transform':
-      body = <FunctionTransformViz formulaId={formulaId} idea={idea} />;
+      body = <FunctionTransformViz formulaId={formulaId} />;
       break;
     case 'vector':
-      body = <VectorViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <VectorViz formulaId={formulaId} mode={mode} />;
       break;
     case 'vector_space':
-      body = <VectorSpaceViz formulaId={formulaId} idea={idea} />;
+      body = <VectorSpaceViz formulaId={formulaId} />;
       break;
     case 'matrix':
-      body = <MatrixViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <MatrixViz formulaId={formulaId} mode={mode} />;
       break;
     case 'matrix_transform':
-      body = <MatrixTransformViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <MatrixTransformViz formulaId={formulaId} mode={mode} />;
       break;
     case 'geometry':
-      body = <GeometryViz formulaId={formulaId} idea={idea} />;
+      body = <GeometryViz formulaId={formulaId} />;
       break;
     case 'truth_table':
-      body = <TruthTableViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <TruthTableViz formulaId={formulaId} mode={mode} />;
       break;
     case 'logic_gate':
-      body = <LogicGateViz formulaId={formulaId} idea={idea} />;
+      body = <LogicGateViz formulaId={formulaId} />;
       break;
     case 'modular_clock':
-      body = <ModularClockViz formulaId={formulaId} idea={idea} mode={mode} />;
+      body = <ModularClockViz formulaId={formulaId} mode={mode} />;
       break;
     case 'finite_field':
-      body = <FiniteFieldViz formulaId={formulaId} idea={idea} />;
+      body = <FiniteFieldViz formulaId={formulaId} />;
       break;
     case 'polynomial_surface':
-      body = <PolynomialSurfaceViz formulaId={formulaId} idea={idea} />;
+      body = <PolynomialSurfaceViz formulaId={formulaId} />;
       break;
     case 'error_correction':
-      body = <ErrorCorrectionViz formulaId={formulaId} idea={idea} />;
+      body = <ErrorCorrectionViz formulaId={formulaId} />;
       break;
     default:
       body = (
@@ -95,7 +98,16 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
         <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{title}</h2>
       ) : null}
       {visual.learningObjective ? (
-        <p className="mb-3 text-sm leading-relaxed text-[var(--fg-muted)]">{visual.learningObjective}</p>
+        <p className="mb-2 text-sm leading-relaxed text-[var(--fg)]">
+          <span className="font-medium text-[var(--fg-muted)]">{t('vizTeaches')}: </span>
+          {visual.learningObjective}
+        </p>
+      ) : null}
+      {guide ? (
+        <p className="mb-3 text-sm leading-relaxed text-[var(--fg-muted)]">
+          <span className="font-medium text-[var(--fg)]">{t('vizTry')}: </span>
+          {guide}
+        </p>
       ) : null}
       {body}
     </section>

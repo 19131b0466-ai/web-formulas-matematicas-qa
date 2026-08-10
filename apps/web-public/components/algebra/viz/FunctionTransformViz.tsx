@@ -7,7 +7,7 @@ import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
-export function FunctionTransformViz({ formulaId, idea }: Props) {
+export function FunctionTransformViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [h, setH] = useState(1);
   const [k, setK] = useState(0.5);
@@ -43,7 +43,7 @@ export function FunctionTransformViz({ formulaId, idea }: Props) {
   const fog = a * base(b * g(x0));
 
   return (
-    <VizPanel caption={idea}>
+    <VizPanel>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
         <line x1={20} y1={oy} x2={W - 20} y2={oy} stroke="currentColor" opacity={0.25} />
         <line x1={ox} y1={20} x2={ox} y2={H - 20} stroke="currentColor" opacity={0.25} />

@@ -145,9 +145,11 @@
     "metaDescription": "Détail de la formule {title}.",
     "loading": "Chargement de la formule…",
     "level": "Niveau",
-    "visualization": "Visualisation",
+    "visualization": "Explore l’idée",
     "complexity": "Complexité computationnelle",
     "showComplexity": "Afficher (mode CS)",
-    "hideComplexity": "Masquer (mode basique)"
+    "hideComplexity": "Masquer (mode basique)",
+    "vizTeaches": "Ce que ça montre",
+    "vizTry": "À essayer"
   }
 }

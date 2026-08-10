@@ -6,7 +6,7 @@ import { ControlsStack, SliderRow, VizPanel } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
-export function FiniteFieldViz({ formulaId, idea }: Props) {
+export function FiniteFieldViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [p, setP] = useState(5);
   const [sel, setSel] = useState<[number, number] | null>([2, 3]);
@@ -34,7 +34,7 @@ export function FiniteFieldViz({ formulaId, idea }: Props) {
       : null;
 
   return (
-    <VizPanel caption={idea}>
+    <VizPanel>
       {codeWords ? (
         <div className="mb-3 space-y-1 font-mono text-sm">
           {codeWords.map((w, i) => (

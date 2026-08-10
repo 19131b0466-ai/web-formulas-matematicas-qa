@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import type { MatrixMode } from '@/lib/viz-modes';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
+import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -60,7 +60,7 @@ function rank2(m: Mat2): number {
   return nonzero ? 1 : 0;
 }
 
-export function MatrixViz({ formulaId: _id, idea, mode: modeProp }: Props) {
+export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'basic') as MatrixMode;
   const [A, setA] = useState<Mat2>([
@@ -137,15 +137,15 @@ export function MatrixViz({ formulaId: _id, idea, mode: modeProp }: Props) {
       ? `${fmt(A[selRow]![0]!)} x + ${fmt(A[selRow]![1]!)} y = ${fmt(aug[selRow]!)}`
       : null;
 
-  const captionExtra =
+  const caption =
     mode === 'rank_compare'
-      ? ` · ${v.rankLabel}(A)=${rA}${Math.abs(det) < 1e-9 ? ' · singular' : ''}`
+      ? joinCaption(`${v.rankLabel}(A)=${rA}`, Math.abs(det) < 1e-9 && 'singular')
       : mode === 'basic' || mode === 'row_ops' || mode === 'augmented_map'
-        ? ` · det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`
-        : '';
+        ? joinCaption(`det(A)=${fmt(det)}${Math.abs(det) < 1e-9 ? ' (singular)' : ''}`)
+        : undefined;
 
   return (
-    <VizPanel caption={`${idea ?? ''}${captionExtra}`}>
+    <VizPanel caption={caption}>
       <div className="flex flex-wrap items-start gap-4">
         <div>
           <p className="mb-1 text-xs text-[var(--fg-muted)]">A</p>

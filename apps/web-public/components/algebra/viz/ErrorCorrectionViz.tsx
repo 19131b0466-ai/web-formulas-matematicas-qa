@@ -13,7 +13,7 @@ function hamming(a: string, b: string): number {
   return d;
 }
 
-export function ErrorCorrectionViz({ formulaId, idea }: Props) {
+export function ErrorCorrectionViz({ formulaId }: Props) {
   const v = useVizLabels();
   const [word, setWord] = useState('0000000');
   const [errorPos, setErrorPos] = useState(2);
@@ -38,7 +38,7 @@ export function ErrorCorrectionViz({ formulaId, idea }: Props) {
   const rate = k / n;
 
   return (
-    <VizPanel caption={idea}>
+    <VizPanel>
       {/COD-004/.test(formulaId) ? (
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
