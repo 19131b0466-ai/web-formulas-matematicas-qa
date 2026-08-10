@@ -113,9 +113,9 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
-- **Idea:** Mueve \(a\) y \(b\) y compara las dos filas: arriba \(a+b\), abajo \(b+a\); las barras quedan igual de largas.
+- **Idea:** Ajusta \(a\) y \(b\), pulsa Intercambiar y mira la barra de abajo: el orden cambia, la longitud total no.
 - **Objetivo educativo:** Vas a ver que da igual el orden: \(a+b\) y \(b+a\) suman lo mismo.
-- **Interactividad sugerida:** permitir arrastrar los bloques \(a\) y \(b\) para intercambiarlos; actualizar el orden escrito sin modificar el total.
+- **Interactividad sugerida:** sliders para \(a\) y \(b\); botón Intercambiar que reordena los bloques en un solo lienzo sin modificar el total.
 
 ### Fórmulas relacionadas
 
@@ -139,10 +139,10 @@ a+b=b+a;\quad ab=ba
 - **Tipo:** `algebra_tiles`
 - **Modo:** `associate`
 - **Concepto visual:** cambio de agrupación sin cambiar el resultado.
-- **Elementos:** tres bloques \(a,b,c\), dos esquemas de agrupación con llaves o contenedores: \((a+b)+c\) y \(a+(b+c)\).
-- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara las dos filas: el recuadro agrupa distinto, pero el total es el mismo.
+- **Elementos:** tres bloques \(a,b,c\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \((a+b)+c\) o \(a+(b+c)\).
+- **Idea:** Ajusta \(a\), \(b\) y \(c\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.
 - **Objetivo educativo:** Vas a ver que agrupar distinto no cambia el total: \((a+b)+c\) y \(a+(b+c)\) dan lo mismo.
-- **Interactividad sugerida:** permitir alternar entre las dos agrupaciones y mostrar el cálculo parcial que se realiza primero.
+- **Interactividad sugerida:** sliders para \(a,b,c\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.
 
 ### Fórmulas relacionadas
 
