@@ -89,7 +89,7 @@ function svdFactors(A: Mat2): { U: Mat2; S: Mat2; Vt: Mat2; sigma: [number, numb
   return { U, S, Vt, sigma: [s1, s2] };
 }
 
-export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
+export function MatrixTransformViz({ mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'map') as MatrixTransformMode;
   const [a11, setA11] = useState(1.2);
@@ -101,17 +101,20 @@ export function MatrixTransformViz({ formulaId: _id, mode: modeProp }: Props) {
   const [svdStep, setSvdStep] = useState(0);
   const [qrStep, setQrStep] = useState(0);
 
-  const A: Mat2 = [
-    [a11, a12],
-    [a21, a22],
-  ];
+  const A = useMemo<Mat2>(
+    () => [
+      [a11, a12],
+      [a21, a22],
+    ],
+    [a11, a12, a21, a22],
+  );
   const det = det2(A);
-  const eig = useMemo(() => eigen2(A), [a11, a12, a21, a22]);
+  const eig = useMemo(() => eigen2(A), [A]);
   const Ainv = inv2(A);
   const AinvProduct: Mat2 | null = Ainv ? matMul(A, Ainv) : null;
-  const qr = useMemo(() => qr2(A), [a11, a12, a21, a22]);
-  const svd = useMemo(() => svdFactors(A), [a11, a12, a21, a22]);
-  const sigma = svd?.sigma ?? [1, 1];
+  const qr = useMemo(() => qr2(A), [A]);
+  const svd = useMemo(() => svdFactors(A), [A]);
+  const sigma = useMemo<[number, number]>(() => svd?.sigma ?? [1, 1], [svd]);
 
   const W = 420;
   const H = 320;

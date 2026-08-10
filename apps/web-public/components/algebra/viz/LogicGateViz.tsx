@@ -6,7 +6,7 @@ import { ControlsStack, ToggleRow, VizPanel, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string };
 
-export function LogicGateViz({ formulaId: _id }: Props) {
+export function LogicGateViz({}: Props) {
   const v = useVizLabels();
   const [A, setA] = useState(true);
   const [B, setB] = useState(false);

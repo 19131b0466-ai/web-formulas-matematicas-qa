@@ -23,17 +23,22 @@ export function ErrorCorrectionViz({ formulaId }: Props) {
   const [k, setK] = useState(4);
 
   const bits = word.padEnd(7, '0').slice(0, 7).split('');
-  const received = bits.map((b, i) => (i === errorPos ? (b === '0' ? '1' : '0') : b));
+  const received = useMemo(
+    () => bits.map((b, i) => (i === errorPos ? (b === '0' ? '1' : '0') : b)),
+    // bits is derived from word each render; depend on word + errorPos
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bits tracks word
+    [word, errorPos],
+  );
 
   // Toy Hamming(7,4) parity checks for positions p1=1, p2=2, p4=4 (1-indexed)
   // Bit positions (0-indexed): 0=p1, 1=p2, 2=d1, 3=p4, 4=d2, 5=d3, 6=d4
   const syndrome = useMemo(() => {
     const r = received.map(Number);
-    const s1 = (r[0]! ^ r[2]! ^ r[4]! ^ r[6]!);
-    const s2 = (r[1]! ^ r[2]! ^ r[5]! ^ r[6]!);
-    const s4 = (r[3]! ^ r[4]! ^ r[5]! ^ r[6]!);
+    const s1 = r[0]! ^ r[2]! ^ r[4]! ^ r[6]!;
+    const s2 = r[1]! ^ r[2]! ^ r[5]! ^ r[6]!;
+    const s4 = r[3]! ^ r[4]! ^ r[5]! ^ r[6]!;
     return [s1, s2, s4];
-  }, [received.join('')]);
+  }, [received]);
 
   // Decode: error position (1-based) = s1*1 + s2*2 + s4*4
   const decodedPos1 = syndrome[0]! * 1 + syndrome[1]! * 2 + syndrome[2]! * 4; // 1-based, 0 means no error

@@ -1,14 +1,12 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useVizLabels } from '@/lib/viz-labels';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel } from './controls';
 import { linspace } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function FunctionTransformViz({ formulaId }: Props) {
-  const v = useVizLabels();
   const [h, setH] = useState(1);
   const [k, setK] = useState(0.5);
   const [a, setA] = useState(1);
@@ -47,7 +45,7 @@ export function FunctionTransformViz({ formulaId }: Props) {
     const xs = linspace(-6, 6, 180);
     const pts = xs
       .map((x) => {
-        let xx = b * (x - (isFun007 ? h : 0));
+        const xx = b * (x - (isFun007 ? h : 0));
         let y = a * base(xx);
         if (isFun007) y += k;
         return to(x, y);

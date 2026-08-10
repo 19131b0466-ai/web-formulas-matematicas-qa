@@ -8,6 +8,16 @@ import { det2, type Mat2 } from './math2d';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
+/** Toy binary [3,2] generator / parity-check matrices over F₂. */
+const CODE_G: [[number, number, number], [number, number, number]] = [
+  [1, 0, 1],
+  [0, 1, 1],
+];
+const CODE_H: [[number, number, number], [number, number, number]] = [
+  [1, 1, 0],
+  [1, 0, 1],
+];
+
 function MatrixGrid({
   m,
   setM,
@@ -131,24 +141,16 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
     [A[1][0] * 1 + A[1][1] * 0, A[1][0] * 0 + A[1][1] * 1],
   ];
 
-  // Toy binary [3,2] code: G 2×3, H 2×3 over F₂
-  const G: [[number, number, number], [number, number, number]] = [
-    [1, 0, 1],
-    [0, 1, 1],
-  ];
-  const H: [[number, number, number], [number, number, number]] = [
-    [1, 1, 0],
-    [1, 0, 1],
-  ];
+  // Toy binary [3,2] code: G 2×3, H 2×3 over F₂ (module constants)
   const encodeCode = useMemo(() => {
-    const c0 = (msg[0]! * G[0]![0]! + msg[1]! * G[1]![0]!) % 2;
-    const c1 = (msg[0]! * G[0]![1]! + msg[1]! * G[1]![1]!) % 2;
-    const c2 = (msg[0]! * G[0]![2]! + msg[1]! * G[1]![2]!) % 2;
+    const c0 = (msg[0]! * CODE_G[0]![0]! + msg[1]! * CODE_G[1]![0]!) % 2;
+    const c1 = (msg[0]! * CODE_G[0]![1]! + msg[1]! * CODE_G[1]![1]!) % 2;
+    const c2 = (msg[0]! * CODE_G[0]![2]! + msg[1]! * CODE_G[1]![2]!) % 2;
     return [c0, c1, c2] as [number, number, number];
   }, [msg]);
   const syndrome = useMemo(() => {
-    const s0 = (H[0]![0]! * recv[0]! + H[0]![1]! * recv[1]! + H[0]![2]! * recv[2]!) % 2;
-    const s1 = (H[1]![0]! * recv[0]! + H[1]![1]! * recv[1]! + H[1]![2]! * recv[2]!) % 2;
+    const s0 = (CODE_H[0]![0]! * recv[0]! + CODE_H[0]![1]! * recv[1]! + CODE_H[0]![2]! * recv[2]!) % 2;
+    const s1 = (CODE_H[1]![0]! * recv[0]! + CODE_H[1]![1]! * recv[1]! + CODE_H[1]![2]! * recv[2]!) % 2;
     return [s0, s1] as [number, number];
   }, [recv]);
   const isEncode = _id.includes('COD-002');
@@ -401,7 +403,7 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">G (2×3) sobre 𝔽₂</p>
             <div className="inline-grid grid-cols-3 gap-1 rounded border border-[var(--border)] p-2 font-mono">
-              {G.flat().map((bit, i) => (
+              {CODE_G.flat().map((bit, i) => (
                 <span key={i} className="w-8 text-center">
                   {bit}
                 </span>
@@ -437,7 +439,7 @@ export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
           <div>
             <p className="mb-1 text-xs text-[var(--fg-muted)]">H (2×3) sobre 𝔽₂</p>
             <div className="inline-grid grid-cols-3 gap-1 rounded border border-[var(--border)] p-2 font-mono">
-              {H.flat().map((bit, i) => (
+              {CODE_H.flat().map((bit, i) => (
                 <span key={i} className="w-8 text-center">
                   {bit}
                 </span>
