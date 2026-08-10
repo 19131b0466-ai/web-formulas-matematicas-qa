@@ -190,7 +190,7 @@ flowchart TD
 | `vector` | Un plano; proyecciones/ángulos en sitio. | No dual paneles. |
 | `logic_gate` | Dual OK para De Morgan: LHS y RHS son expresiones lógicas distintas (P2). | **Pasa** el criterio. |
 | `truth_table` | Columnas de comparación en tabla (no SVG dual). | OK. |
-| `number_line` / `modular_clock` | Un eje / un reloj; badges de igualdad. | No dual. |
+| `number_line` / `modular_clock` | Un eje / un reloj; badges de igualdad. Absoluto (FND-006): **solo** segmento \(x\)–\(0\); sin arco a \(+|x|\). | No dual. |
 | `error_correction` | Estado del código + síndrome; no duplicar la misma trama. | — |
 
 **Prohibido por defecto:** aplicar “dos paneles siempre que haya una igualdad \(A=B\)”. Solo si \(A\) y \(B\) son **construcciones visuales distintas** (P2) o el alumno debe **alternar** representaciones (P4).

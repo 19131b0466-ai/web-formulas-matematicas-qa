@@ -2,55 +2,47 @@
 
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
-import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
+import { AbsoluteValueViz } from './AbsoluteValueViz';
+import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { clamp } from './math2d';
 
 type Props = { formulaId: string; idea?: string };
 
 export function NumberLineViz({ formulaId }: Props) {
+  // FND-006 has a dedicated pedagogical component.
+  if (formulaId.includes('FND-006')) {
+    return <AbsoluteValueViz />;
+  }
+
+  return <NumberLineShared formulaId={formulaId} />;
+}
+
+function NumberLineShared({ formulaId }: Props) {
   const v = useVizLabels();
-  // Start negative so |x|≠x is visible on first look (FND-006).
-  const [x, setX] = useState(-2.5);
-  const [sliderA, setSliderA] = useState(2); // reused as |x|=a boundary for EQU-008
-  const [coefA, setCoefA] = useState(1); // coefficient for INE-001: ax+b>0
-  const [coefB, setCoefB] = useState(-2); // constant for INE-001
-  const [bound, setBound] = useState(2); // bound for INE-004
+  const [sliderA, setSliderA] = useState(2);
+  const [coefA, setCoefA] = useState(1);
+  const [coefB, setCoefB] = useState(-2);
+  const [bound, setBound] = useState(2);
   const [op, setOp] = useState<'<' | '≤' | '>' | '≥'>('<');
 
   const W = 520;
-  // FND-006: distance to origin |x| with x slider
-  const absMode = formulaId.includes('FND-006');
-  // EQU-008: |x| = a has solutions ±a (slider for a ≥ 0)
   const absEqMode = formulaId.includes('EQU-008');
-  // FND-007: distance between two points
   const distMode = formulaId.includes('FND-007');
-  // INE-001: ax+b ? 0 with coefficient sliders
   const ineq1Mode = formulaId.includes('INE-001');
-  // INE-004: |x| ? a
   const ineq4Mode = formulaId.includes('INE-004');
   const ineqMode = formulaId.includes('INE');
 
-  const H = absMode ? 150 : 90;
+  const H = 90;
   const pad = 28;
-  const axisY = absMode ? 78 : H / 2;
+  const axisY = H / 2;
   const toX = (val: number) => pad + ((val + 5) / 10) * (W - 2 * pad);
 
-  const absX = Math.abs(x);
-  const negX = -x;
-  const absCase = x >= 0 ? 'x≥0 → |x|=x' : 'x<0 → |x|=−x';
-
-  const absCaption = absMode
-    ? joinCaption(`x=${fmt(x)}`, `−x=${fmt(negX)}`, `|x|=${fmt(absX)}`, absCase)
-    : undefined;
-
-  // For INE-001: compute boundary = -b/a (handle a≈0), flip inequality if a<0
   const boundary1 = useMemo(() => {
     if (!ineq1Mode) return 0;
     if (Math.abs(coefA) < 1e-9) return 0;
     return -coefB / coefA;
   }, [ineq1Mode, coefA, coefB]);
 
-  // When a<0, the inequality direction flips
   const effectiveOp = useMemo((): '<' | '≤' | '>' | '≥' => {
     if (ineq1Mode && coefA < 0) {
       const flip: Record<'<' | '≤' | '>' | '≥', '<' | '≤' | '>' | '≥'> = {
@@ -64,12 +56,10 @@ export function NumberLineViz({ formulaId }: Props) {
     return op;
   }, [ineq1Mode, coefA, op]);
 
-  // Derived shading for inequalities
   const shade = useMemo(() => {
     if (ineq4Mode) {
       const hi = Math.abs(bound);
       const lo = -hi;
-      // |x| < a → shade interior; |x| > a → shade exterior
       return { lo, hi, exterior: effectiveOp === '>' || effectiveOp === '≥' };
     }
     if (ineq1Mode) {
@@ -83,13 +73,11 @@ export function NumberLineViz({ formulaId }: Props) {
     return null;
   }, [ineq4Mode, ineq1Mode, bound, effectiveOp, boundary1]);
 
-  // Closed endpoint: derived from operator (≤ or ≥ → closed)
   const isClosedOp = op === '≤' || op === '≥';
 
   return (
-    <VizPanel caption={absCaption}>
+    <VizPanel>
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img">
-        {/* Axis */}
         <line x1={pad} y1={axisY} x2={W - pad} y2={axisY} stroke="currentColor" strokeWidth={2} opacity={0.35} />
         {[-4, -2, 0, 2, 4].map((t) => (
           <g key={t}>
@@ -108,7 +96,6 @@ export function NumberLineViz({ formulaId }: Props) {
           </g>
         ))}
 
-        {/* INE shading */}
         {shade ? (
           <rect
             x={toX(shade.exterior ? -5 : shade.lo)}
@@ -130,82 +117,6 @@ export function NumberLineViz({ formulaId }: Props) {
           />
         ) : null}
 
-        {/* FND-006: |x| as distance to 0 — show x, −x and distance */}
-        {absMode ? (
-          <>
-            <text x={pad} y={18} fontSize={12} fill="currentColor">
-              {absCase}
-            </text>
-            <text x={W - pad} y={18} textAnchor="end" fontSize={12} fill="currentColor" opacity={0.8}>
-              distancia al 0 = |x| = {fmt(absX)}
-            </text>
-
-            {/* Distance segment 0 ↔ x (always non-negative length) */}
-            <line
-              x1={toX(0)}
-              y1={axisY}
-              x2={toX(x)}
-              y2={axisY}
-              stroke="var(--accent-strong)"
-              strokeWidth={5}
-              strokeLinecap="round"
-              opacity={0.9}
-            />
-            {/* Mirror mark of |x| on the positive side when x is negative */}
-            {x < -1e-9 ? (
-              <>
-                <line
-                  x1={toX(0)}
-                  y1={axisY}
-                  x2={toX(absX)}
-                  y2={axisY}
-                  stroke="teal"
-                  strokeWidth={3}
-                  strokeDasharray="5 4"
-                  opacity={0.85}
-                />
-                {/* fold hint from x to |x| */}
-                <path
-                  d={`M ${toX(x)} ${axisY - 14} Q ${toX(0)} ${axisY - 42} ${toX(absX)} ${axisY - 14}`}
-                  fill="none"
-                  stroke="teal"
-                  strokeWidth={1.5}
-                  strokeDasharray="3 3"
-                  opacity={0.7}
-                />
-                <circle cx={toX(absX)} cy={axisY} r={6} fill="teal" />
-                <text x={toX(absX)} y={axisY - 18} textAnchor="middle" fontSize={11} fill="teal">
-                  |x|={fmt(absX)}
-                </text>
-              </>
-            ) : null}
-
-            {/* Point x */}
-            <circle cx={toX(x)} cy={axisY} r={7} fill="var(--accent-strong)" />
-            <text x={toX(x)} y={x >= 0 ? axisY - 18 : axisY + 40} textAnchor="middle" fontSize={11} fill="currentColor">
-              x={fmt(x)}
-            </text>
-
-            {/* −x marker when it differs from x and from the |x| mark already shown */}
-            {Math.abs(negX - x) > 1e-9 && Math.abs(negX - absX) > 1e-9 ? (
-              <>
-                <circle cx={toX(negX)} cy={axisY} r={5} fill="none" stroke="currentColor" strokeWidth={1.5} opacity={0.55} />
-                <text x={toX(negX)} y={axisY - 18} textAnchor="middle" fontSize={10} fill="currentColor" opacity={0.65}>
-                  −x
-                </text>
-              </>
-            ) : null}
-
-            {/* When x≥0, |x| coincides with x — say so explicitly */}
-            {x >= -1e-9 ? (
-              <text x={toX(x)} y={axisY + 40} textAnchor="middle" fontSize={11} fill="currentColor" opacity={0.8}>
-                |x|={fmt(absX)} (mismo punto)
-              </text>
-            ) : null}
-          </>
-        ) : null}
-
-        {/* EQU-008: |x|=a → solutions ±a */}
         {absEqMode ? (
           <>
             <circle cx={toX(-sliderA)} cy={axisY} r={7} fill="var(--accent-strong)" />
@@ -231,7 +142,6 @@ export function NumberLineViz({ formulaId }: Props) {
           </>
         ) : null}
 
-        {/* FND-007: distance between two points */}
         {distMode ? (
           <>
             <circle cx={toX(coefA)} cy={axisY} r={7} fill="var(--accent-strong)" />
@@ -251,7 +161,6 @@ export function NumberLineViz({ formulaId }: Props) {
           </>
         ) : null}
 
-        {/* INE-001 boundary point */}
         {ineq1Mode ? (
           <circle
             cx={toX(clamp(boundary1, -5, 5))}
@@ -263,7 +172,6 @@ export function NumberLineViz({ formulaId }: Props) {
           />
         ) : null}
 
-        {/* INE-004 boundary points (open/closed from op) */}
         {ineq4Mode ? (
           <>
             <circle
@@ -287,8 +195,6 @@ export function NumberLineViz({ formulaId }: Props) {
       </svg>
 
       <ControlsStack>
-        {absMode ? <SliderRow label="x" value={x} min={-5} max={5} step={0.1} onChange={setX} /> : null}
-
         {absEqMode ? (
           <SliderRow label="a" value={sliderA} min={0} max={5} step={0.1} onChange={(val) => setSliderA(clamp(val, 0, 5))} />
         ) : null}
