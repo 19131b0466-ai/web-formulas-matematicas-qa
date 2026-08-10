@@ -149,7 +149,7 @@
     "complexity": "Complexité computationnelle",
     "showComplexity": "Afficher (mode CS)",
     "hideComplexity": "Masquer (mode basique)",
-    "vizTeaches": "Ce que ça montre",
-    "vizTry": "À essayer"
+    "vizTeaches": "L’idée",
+    "vizTry": "Essaie"
   }
 }

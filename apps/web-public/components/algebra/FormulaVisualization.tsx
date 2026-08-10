@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import type { FormulaVisual } from '@repo/shared-types';
+import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { useVizLabels } from '@/lib/viz-labels';
 import { resolveMode } from '@/lib/viz-modes';
 import {
@@ -99,14 +100,13 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
       ) : null}
       {visual.learningObjective ? (
         <p className="mb-2 text-sm leading-relaxed text-[var(--fg)]">
-          <span className="font-medium text-[var(--fg-muted)]">{t('vizTeaches')}: </span>
-          {visual.learningObjective}
+          <InlineMarkdown text={visual.learningObjective} />
         </p>
       ) : null}
       {guide ? (
         <p className="mb-3 text-sm leading-relaxed text-[var(--fg-muted)]">
-          <span className="font-medium text-[var(--fg)]">{t('vizTry')}: </span>
-          {guide}
+          <span className="font-medium text-[var(--fg)]">{t('vizTry')} — </span>
+          <InlineMarkdown text={guide} />
         </p>
       ) : null}
       {body}

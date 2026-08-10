@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply plain-language Idea/Objetivo to formulas-algebra.md and content-i18n."""
+"""Apply personal (tú) Idea/Objetivo to formulas-algebra.md and content-i18n."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ MD = ROOT / "content" / "formulas-algebra.md"
 I18N_DIR = ROOT / "apps" / "web-public" / "content-i18n"
 
 # Loaded from sibling module generated next to this file
-from plain_viz_copy_data import COPY_ES, COPY_I18N  # noqa: E402
+from personal_viz_copy_data import COPY_ES, COPY_I18N  # noqa: E402
 
 
 def main() -> None:
@@ -35,13 +35,23 @@ def main() -> None:
         else:
             text = text2
 
-    text = text.replace(
-        "- **Idea:** comportamiento o comparación que la representación debe mostrar.\n"
-        "- **Objetivo educativo:** relación que el estudiante debería comprender al verla.\n",
-        "- **Idea:** instrucción breve y clara: qué probar con los controles.\n"
-        "- **Objetivo educativo:** en una frase, qué entiende el usuario al usar el gráfico.\n",
-    )
-    # Also handle if already updated by previous rewrite-viz-copy docs line
+    # Docs template lines (current + previous plain-language wording)
+    for old, new in (
+        (
+            "- **Idea:** instrucción breve y clara: qué probar con los controles.\n"
+            "- **Objetivo educativo:** en una frase, qué entiende el usuario al usar el gráfico.\n",
+            "- **Idea:** instrucción en segunda persona: qué probar y qué observar.\n"
+            "- **Objetivo educativo:** en una frase cercana (tú), qué descubre el usuario.\n",
+        ),
+        (
+            "- **Idea:** comportamiento o comparación que la representación debe mostrar.\n"
+            "- **Objetivo educativo:** relación que el estudiante debería comprender al verla.\n",
+            "- **Idea:** instrucción en segunda persona: qué probar y qué observar.\n"
+            "- **Objetivo educativo:** en una frase cercana (tú), qué descubre el usuario.\n",
+        ),
+    ):
+        text = text.replace(old, new)
+
     MD.write_text(text)
 
     for loc in ("en", "de", "fr", "it", "pt"):

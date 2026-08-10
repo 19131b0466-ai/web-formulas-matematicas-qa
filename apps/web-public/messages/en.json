@@ -149,7 +149,7 @@
     "complexity": "Computational complexity",
     "showComplexity": "Show (CS mode)",
     "hideComplexity": "Hide (basic mode)",
-    "vizTeaches": "What this shows",
-    "vizTry": "Try this"
+    "vizTeaches": "The idea",
+    "vizTry": "Try it"
   }
 }

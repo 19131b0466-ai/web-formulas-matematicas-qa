@@ -119,8 +119,8 @@
     "loading": "Cargando fórmula…",
     "level": "Nivel",
     "visualization": "Explora la idea",
-    "vizTeaches": "Qué te enseña",
-    "vizTry": "Qué hacer",
+    "vizTeaches": "La idea",
+    "vizTry": "Pruébalo",
     "complexity": "Complejidad computacional",
     "showComplexity": "Mostrar (modo CS)",
     "hideComplexity": "Ocultar (modo básico)"
