@@ -1241,7 +1241,6 @@
   "construcción de una función desde sus filas verdaderas.": "construção de uma função a partir de suas linhas verdadeiras.",
   "control angular para una matriz de rotación y opción de reflexión; mostrar \\(Q^{-1}=Q^T\\).": "controle angular para matriz de rotação e opção de reflexão; mostrar \\(Q^{-1}=Q^T\\).",
   "control de \\(r\\) entre -0.95 y 0.95 y selector del número de términos; mostrar suma parcial y límite.": "controle para \\(r\\) entre -0,95 e 0,95 e seletor para quantidade de termos; mostrar soma parcial e limite.",
-  "controlar \\(a>b\\ge0\\) y animar la retirada de las dos franjas.": "controle \\(a>b\\ge0\\) e anime removendo as duas tiras.",
   "controlar el ángulo entre vectores y actualizar \\(u\\cdot v\\), \\(\\cos\\theta\\) y la proyección.": "controle o ângulo entre os vetores e atualize \\(u\\cdot v\\),\\(\\cos\\theta\\) e a projeção.",
   "controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.": "controlar as entradas de uma matriz 2×2 e mostrar simultaneamente determinante, posto e invertibilidade.",
   "controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.": "controlar as entradas de uma matriz 2×2 e marcar as raízes reais do polinômio característico.",
@@ -1256,8 +1255,6 @@
   "crecimiento lineal de una sucesión aritmética.": "crescimento linear de uma sequência aritmética.",
   "crecimiento multiplicativo de una sucesión geométrica.": "crescimento multiplicativo de uma sequência geométrica.",
   "crecimiento o decrecimiento de \\(a^x\\) según la base.": "crescimento ou decadência de \\(a^x\\) dependendo da base.",
-  "cuadrado de lado \\(a\\), franjas de ancho \\(b\\) retiradas y región restante de lado \\(a-b\\).": "quadrado do lado \\(a\\), tiras de largura \\(b\\) removidas e região restante do lado \\(a-b\\).",
-  "cuadrado de una diferencia como reducción de longitud.": "quadrado de uma diferença como uma redução de comprimento.",
   "cuadrado grande de lado \\(a\\), cuadrado retirado de lado \\(b\\), y piezas reordenadas como rectángulo de lados \\(a-b\\) y \\(a+b\\).": "quadrado grande de lado \\(a\\), quadrado removido de lado \\(b\\) e peças reorganizadas como um retângulo de lados \\(a-b\\) e \\(a+b\\).",
   "cuadrícula o vector inicial, imagen bajo \\(A\\) y retorno bajo \\(A^{-1}\\).": "grade ou vetor inicial, imagem em \\(A\\) e retorno em \\(A^{-1}\\).",
   "cuadrícula transformada por una matriz y paralelogramo de columnas; caso \\(\\det A\\neq0\\) frente a \\(\\det A=0\\).": "grade transformada por um paralelogramo de matriz e coluna; caso \\(\\det A\\neq0\\) versus \\(\\det A=0\\).",
@@ -1641,8 +1638,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Vais ver que \\(|x|\\) é a distância ao zero: nunca desce abaixo de zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Vais ver que a distância entre dois pontos é o comprimento do segmento que os une: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Vais ver que ao multiplicar potências da mesma base, os expoentes somam-se: \\(a^n a^m = a^{n+m}\\).",
-  "Vas a ver que \\((a-b)^2\\) también es un área, con una corrección en la esquina.": "Vais ver que \\((a-b)^2\\) também é uma área, com uma correção no canto.",
-  "Ajusta \\(a\\) y \\(b\\) y mira cómo aparecen \\(a^2\\), \\(-2ab\\) y \\(+b^2\\).": "Ajusta \\(a\\) e \\(b\\) e olha como aparecem \\(a^2\\), \\(-2ab\\) e \\(+b^2\\).",
   "Vas a ver que \\(a^2-b^2\\) es el área que queda al quitar un cuadrado pequeño de uno grande.": "Vais ver que \\(a^2-b^2\\) é a área que fica ao tirar um quadrado pequeno de um grande.",
   "Pulsa para pasar de \\(a^2-b^2\\) al rectángulo \\((a-b)(a+b)\\) y fíjate: es la misma cantidad.": "Toca para passar de \\(a^2-b^2\\) ao retângulo \\((a-b)(a+b)\\) e repara: é a mesma quantidade.",
   "Vas a ver que los coeficientes del binomio son la fila de Pascal.": "Vais ver que os coeficientes do binómio são a linha de Pascal.",
@@ -1930,5 +1925,10 @@
   "las piezas \\(a^2\\), \\(ab\\), \\(ab\\) y \\(b^2\\) encajan en un cuadrado de lado \\(a+b\\).": "as peças \\(a^2\\), \\(ab\\), \\(ab\\) e \\(b^2\\) encaixam num quadrado de lado \\(a+b\\).",
   "cuadrado proporcional con etiquetas; agrupación \\(ab+ab=2ab\\); lectura \\(a^2+2ab+b^2=(a+b)^2\\).": "quadrado proporcional com etiquetas; agrupamento \\(ab+ab=2ab\\); leitura \\(a^2+2ab+b^2=(a+b)^2\\).",
   "Ajusta \\(a\\) y \\(b\\) y mira cómo \\(a^2+2ab+b^2\\) es exactamente el área del cuadrado \\((a+b)^2\\).": "Ajusta \\(a\\) e \\(b\\) e vê como \\(a^2+2ab+b^2\\) é exatamente a área do quadrado \\((a+b)^2\\).",
-  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "sliders \\(a\\ge0\\), \\(b\\ge0\\); passos que revelam as quatro peças e o fator \\((a+b)^2\\)."
+  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "sliders \\(a\\ge0\\), \\(b\\ge0\\); passos que revelam as quatro peças e o fator \\((a+b)^2\\).",
+  "partir de \\(a^2\\), restar dos franjas \\(ab\\) y corregir la esquina \\(+b^2\\).": "partir de \\(a^2\\), subtrair duas faixas \\(ab\\) e corrigir o canto \\(+b^2\\).",
+  "cuadrado de lado \\(a\\); franjas rayadas \\(-ab\\); anotación de que \\(b^2\\) se restó dos veces; cuadrado restante \\((a-b)^2\\); identidad separada del ejemplo numérico.": "quadrado de lado \\(a\\); faixas tracejadas \\(-ab\\); nota de que \\(b^2\\) foi subtraído duas vezes; quadrado restante \\((a-b)^2\\); identidade separada do exemplo numérico.",
+  "Partimos de un cuadrado de área \\(a^2\\); al quitar dos franjas \\(ab\\) y corregir \\(+b^2\\) queda \\((a-b)^2\\).": "Partimos de um quadrado de área \\(a^2\\); ao tirar duas faixas \\(ab\\) e corrigir com \\(+b^2\\) fica \\((a-b)^2\\).",
+  "Vas a ver por qué aparece \\(-2ab\\) y por qué hace falta la corrección \\(+b^2\\).": "Vais ver por que aparece \\(-2ab\\) e por que é precisa a correção \\(+b^2\\).",
+  "sliders con \\(a\\ge b\\ge0\\); pasos ( \\(a^2\\) → franjas → corrección → agrupación \\(-2ab\\) ).": "sliders com \\(a\\ge b\\ge0\\); passos (\\(a^2\\) → faixas → correção → agrupamento \\(-2ab\\))."
 }

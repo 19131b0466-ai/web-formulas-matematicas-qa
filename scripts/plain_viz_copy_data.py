@@ -44,8 +44,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Un cuadrado de lado a+b tiene área (a+b)²; al partir cada lado en a y b aparecen a², dos ab y b².",
     ),
     "ALG-IDN-002": (
-        "(a−b)² también es un área, con una corrección en la esquina.",
-        "Ajusta a y b y observa cómo aparecen a², −2ab y +b².",
+        "Vas a ver por qué aparece −2ab y por qué hace falta la corrección +b².",
+        "Partimos de un cuadrado de área a²; al quitar dos franjas ab y corregir +b² queda (a−b)².",
     ),
     "ALG-IDN-003": (
         "a²−b² es el área que queda al quitar un cuadrado pequeño de uno grande.",
@@ -592,8 +592,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "A square of side a+b has area (a+b)²; splitting each side into a and b yields a², two ab and b².",
         ),
         "ALG-IDN-002": (
-            "(a−b)² is also an area, with a correction in the corner.",
-            "Adjust a and b and watch a², −2ab, and +b² appear.",
+            "You'll see why −2ab appears and why the +b² correction is needed.",
+            "We start from a square of area a²; removing two strips ab and correcting with +b² leaves (a−b)².",
         ),
         "ALG-IDN-003": (
             "a²−b² is the area left after removing a small square from a large one.",

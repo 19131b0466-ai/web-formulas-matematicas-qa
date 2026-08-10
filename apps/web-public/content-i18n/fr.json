@@ -1241,7 +1241,6 @@
   "construcción de una función desde sus filas verdaderas.": "construction d'une fonction à partir de ses vraies lignes.",
   "control angular para una matriz de rotación y opción de reflexión; mostrar \\(Q^{-1}=Q^T\\).": "contrôle angulaire pour une matrice de rotation et une option de réflexion ; afficher\\(Q^{-1}=Q^T\\).",
   "control de \\(r\\) entre -0.95 y 0.95 y selector del número de términos; mostrar suma parcial y límite.": "contrôle de\\(r\\)entre -0,95 et 0,95 et sélecteur du nombre de termes ; afficher la somme partielle et la limite.",
-  "controlar \\(a>b\\ge0\\) y animar la retirada de las dos franjas.": "contrôler\\(a>b\\ge0\\)et animer la suppression des deux bandes.",
   "controlar el ángulo entre vectores y actualizar \\(u\\cdot v\\), \\(\\cos\\theta\\) y la proyección.": "contrôlez l'angle entre les vecteurs et mettez à jour\\(u\\cdot v\\),\\(\\cos\\theta\\)et la projection.",
   "controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.": "contrôler les entrées d'une matrice 2x2 et afficher simultanément le déterminant, la plage et l'inversibilité.",
   "controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.": "contrôler les entrées d’une matrice 2×2 et marquer les racines réelles du polynôme caractéristique.",
@@ -1256,8 +1255,6 @@
   "crecimiento lineal de una sucesión aritmética.": "croissance linéaire d'une suite arithmétique.",
   "crecimiento multiplicativo de una sucesión geométrica.": "croissance multiplicative d'une séquence géométrique.",
   "crecimiento o decrecimiento de \\(a^x\\) según la base.": "croissance ou diminution de\\(a^x\\)selon la base.",
-  "cuadrado de lado \\(a\\), franjas de ancho \\(b\\) retiradas y región restante de lado \\(a-b\\).": "carré du côté\\(a\\), rayures de largeur\\(b\\)supprimées et région restante du côté\\(a-b\\).",
-  "cuadrado de una diferencia como reducción de longitud.": "carré d'une différence comme réduction de longueur.",
   "cuadrado grande de lado \\(a\\), cuadrado retirado de lado \\(b\\), y piezas reordenadas como rectángulo de lados \\(a-b\\) y \\(a+b\\).": "grand carré de côté\\(a\\), carré supprimé de côté\\(b\\)et pièces réarrangées en rectangle de côtés\\(a-b\\)et\\(a+b\\).",
   "cuadrícula o vector inicial, imagen bajo \\(A\\) y retorno bajo \\(A^{-1}\\).": "grille ou vecteur initial, image sous\\(A\\)et retour sous\\(A^{-1}\\).",
   "cuadrícula transformada por una matriz y paralelogramo de columnas; caso \\(\\det A\\neq0\\) frente a \\(\\det A=0\\).": "grille transformée par un parallélogramme matriciel et colonnes ; cas\\(\\det A\\neq0\\)contre\\(\\det A=0\\).",
@@ -1641,8 +1638,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "Tu vas voir que \\(|x|\\) est la distance à zéro : elle ne descend jamais sous zéro.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "Tu vas voir que la distance entre deux points est la longueur du segment qui les joint : \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "Tu vas voir qu’en multipliant des puissances de même base, les exposants s’ajoutent : \\(a^n a^m = a^{n+m}\\).",
-  "Vas a ver que \\((a-b)^2\\) también es un área, con una corrección en la esquina.": "Tu vas voir que \\((a-b)^2\\) est aussi une aire, avec une correction dans le coin.",
-  "Ajusta \\(a\\) y \\(b\\) y mira cómo aparecen \\(a^2\\), \\(-2ab\\) y \\(+b^2\\).": "Ajuste \\(a\\) et \\(b\\) et regarde comment apparaissent \\(a^2\\), \\(-2ab\\) et \\(+b^2\\).",
   "Vas a ver que \\(a^2-b^2\\) es el área que queda al quitar un cuadrado pequeño de uno grande.": "Tu vas voir que \\(a^2-b^2\\) est l’aire qui reste après avoir enlevé un petit carré d’un grand.",
   "Pulsa para pasar de \\(a^2-b^2\\) al rectángulo \\((a-b)(a+b)\\) y fíjate: es la misma cantidad.": "Appuie pour passer de \\(a^2-b^2\\) au rectangle \\((a-b)(a+b)\\) et regarde : c’est la même quantité.",
   "Vas a ver que los coeficientes del binomio son la fila de Pascal.": "Tu vas voir que les coefficients du binôme sont la ligne de Pascal.",
@@ -1930,5 +1925,10 @@
   "las piezas \\(a^2\\), \\(ab\\), \\(ab\\) y \\(b^2\\) encajan en un cuadrado de lado \\(a+b\\).": "les pièces \\(a^2\\), \\(ab\\), \\(ab\\) et \\(b^2\\) s'emboîtent en un carré de côté \\(a+b\\).",
   "cuadrado proporcional con etiquetas; agrupación \\(ab+ab=2ab\\); lectura \\(a^2+2ab+b^2=(a+b)^2\\).": "carré proportionnel avec étiquettes ; regroupement \\(ab+ab=2ab\\) ; lecture \\(a^2+2ab+b^2=(a+b)^2\\).",
   "Ajusta \\(a\\) y \\(b\\) y mira cómo \\(a^2+2ab+b^2\\) es exactamente el área del cuadrado \\((a+b)^2\\).": "Ajuste \\(a\\) et \\(b\\) et vois comment \\(a^2+2ab+b^2\\) est exactement l'aire du carré \\((a+b)^2\\).",
-  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "curseurs \\(a\\ge0\\), \\(b\\ge0\\) ; étapes qui révèlent les quatre pièces et le facteur \\((a+b)^2\\)."
+  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "curseurs \\(a\\ge0\\), \\(b\\ge0\\) ; étapes qui révèlent les quatre pièces et le facteur \\((a+b)^2\\).",
+  "partir de \\(a^2\\), restar dos franjas \\(ab\\) y corregir la esquina \\(+b^2\\).": "partir de \\(a^2\\), soustraire deux bandes \\(ab\\) et corriger le coin \\(+b^2\\).",
+  "cuadrado de lado \\(a\\); franjas rayadas \\(-ab\\); anotación de que \\(b^2\\) se restó dos veces; cuadrado restante \\((a-b)^2\\); identidad separada del ejemplo numérico.": "carré de côté \\(a\\) ; bandes hachurées \\(-ab\\) ; note que \\(b^2\\) a été soustrait deux fois ; carré restant \\((a-b)^2\\) ; identité séparée de l'exemple numérique.",
+  "Partimos de un cuadrado de área \\(a^2\\); al quitar dos franjas \\(ab\\) y corregir \\(+b^2\\) queda \\((a-b)^2\\).": "On part d'un carré d'aire \\(a^2\\) ; en enlevant deux bandes \\(ab\\) et en corrigeant par \\(+b^2\\), il reste \\((a-b)^2\\).",
+  "Vas a ver por qué aparece \\(-2ab\\) y por qué hace falta la corrección \\(+b^2\\).": "Tu verras pourquoi apparaît \\(-2ab\\) et pourquoi la correction \\(+b^2\\) est nécessaire.",
+  "sliders con \\(a\\ge b\\ge0\\); pasos ( \\(a^2\\) → franjas → corrección → agrupación \\(-2ab\\) ).": "curseurs avec \\(a\\ge b\\ge0\\) ; étapes (\\(a^2\\) → bandes → correction → regroupement \\(-2ab\\))."
 }

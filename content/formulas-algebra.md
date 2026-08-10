@@ -539,11 +539,11 @@ multiplicaciones/sumas de coeficientes. Cuando ambos grados son del orden de \(n
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `square_minus`
-- **Concepto visual:** cuadrado de una diferencia como reducción de longitud.
-- **Elementos:** cuadrado de lado \(a\), franjas de ancho \(b\) retiradas y región restante de lado \(a-b\).
-- **Idea:** Ajusta \(a\) y \(b\) y mira cómo aparecen \(a^2\), \(-2ab\) y \(+b^2\).
-- **Objetivo educativo:** Vas a ver que \((a-b)^2\) también es un área, con una corrección en la esquina.
-- **Interactividad sugerida:** controlar \(a>b\ge0\) y animar la retirada de las dos franjas.
+- **Concepto visual:** partir de \(a^2\), restar dos franjas \(ab\) y corregir la esquina \(+b^2\).
+- **Elementos:** cuadrado de lado \(a\); franjas rayadas \(-ab\); anotación de que \(b^2\) se restó dos veces; cuadrado restante \((a-b)^2\); identidad separada del ejemplo numérico.
+- **Idea:** Partimos de un cuadrado de área \(a^2\); al quitar dos franjas \(ab\) y corregir \(+b^2\) queda \((a-b)^2\).
+- **Objetivo educativo:** Vas a ver por qué aparece \(-2ab\) y por qué hace falta la corrección \(+b^2\).
+- **Interactividad sugerida:** sliders con \(a\ge b\ge0\); pasos ( \(a^2\) → franjas → corrección → agrupación \(-2ab\) ).
 
 ### Fórmulas relacionadas
 

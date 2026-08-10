@@ -127,9 +127,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | \((a-b)^2\) vs expansión \(a^2-2ab+b^2\). |
-| **Layout** | Dual: cuadrado limpio de lado \(a-b\) ↔ cuadrado \(a\) con piezas \(\pm ab\), \(+b^2\). |
-| **Veredicto** | **KEEP** dual — reescritura geométrica (P2). |
+| **Enseña** | \((a-b)^2=a^2-2ab+b^2\): partir de \(a^2\), restar dos franjas \(ab\), corregir \(+b^2\). |
+| **Layout** | Un cuadrado de lado \(a\) (no dual); franjas rayadas; pasos de construcción; identidad ≠ ejemplo numérico. |
+| **Interacción** | Sliders \(a\ge b\ge0\); Paso anterior/siguiente/resultado final. Guía embebida. |
+| **Componente** | `SquareDifferenceViz.tsx` |
+| **Veredicto** | Demostración por sustracción (ya no dual permanente). |
 
 ### `diff_sq` (IDN-003, FAC-002)
 

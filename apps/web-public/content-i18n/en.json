@@ -1242,7 +1242,6 @@
   "construcción de una función desde sus filas verdaderas.": "construction of a function from its true rows.",
   "control angular para una matriz de rotación y opción de reflexión; mostrar \\(Q^{-1}=Q^T\\).": "angular control for a rotation matrix and a reflection option; show \\(Q^{-1}=Q^T\\).",
   "control de \\(r\\) entre -0.95 y 0.95 y selector del número de términos; mostrar suma parcial y límite.": "control for \\(r\\) between -0.95 and 0.95 and a selector for the number of terms; show partial sum and limit.",
-  "controlar \\(a>b\\ge0\\) y animar la retirada de las dos franjas.": "control \\(a>b\\ge0\\) and animate removing the two strips.",
   "controlar el ángulo entre vectores y actualizar \\(u\\cdot v\\), \\(\\cos\\theta\\) y la proyección.": "control the angle between vectors and update \\(u\\cdot v\\), \\(\\cos\\theta\\), and the projection.",
   "controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.": "control the entries of a 2×2 matrix and simultaneously show determinant, rank, and invertibility.",
   "controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.": "control the entries of a 2×2 matrix and mark the real roots of the characteristic polynomial.",
@@ -1257,8 +1256,6 @@
   "crecimiento lineal de una sucesión aritmética.": "linear growth of an arithmetic sequence.",
   "crecimiento multiplicativo de una sucesión geométrica.": "multiplicative growth of a geometric sequence.",
   "crecimiento o decrecimiento de \\(a^x\\) según la base.": "growth or decay of \\(a^x\\) depending on the base.",
-  "cuadrado de lado \\(a\\), franjas de ancho \\(b\\) retiradas y región restante de lado \\(a-b\\).": "square of side \\(a\\), strips of width \\(b\\) removed, and remaining region of side \\(a-b\\).",
-  "cuadrado de una diferencia como reducción de longitud.": "square of a difference as a length reduction.",
   "cuadrado grande de lado \\(a\\), cuadrado retirado de lado \\(b\\), y piezas reordenadas como rectángulo de lados \\(a-b\\) y \\(a+b\\).": "large square of side \\(a\\), removed square of side \\(b\\), and pieces rearranged as a rectangle of sides \\(a-b\\) and \\(a+b\\).",
   "cuadrícula o vector inicial, imagen bajo \\(A\\) y retorno bajo \\(A^{-1}\\).": "initial grid or vector, image under \\(A\\), and return under \\(A^{-1}\\).",
   "cuadrícula transformada por una matriz y paralelogramo de columnas; caso \\(\\det A\\neq0\\) frente a \\(\\det A=0\\).": "grid transformed by a matrix and column parallelogram; case \\(\\det A\\neq0\\) versus \\(\\det A=0\\).",
@@ -1641,8 +1638,6 @@
   "Vas a ver que \\(|x|\\) es la distancia al cero: nunca baja de cero.": "You'll see that \\(|x|\\) is the distance to zero: it never goes below zero.",
   "Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \\(|a-b|\\).": "You'll see that the distance between two points is the length of the segment joining them: \\(|a-b|\\).",
   "Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \\(a^n a^m = a^{n+m}\\).": "You'll see that when you multiply powers with the same base, the exponents add: \\(a^n a^m = a^{n+m}\\).",
-  "Vas a ver que \\((a-b)^2\\) también es un área, con una corrección en la esquina.": "You'll see that \\((a-b)^2\\) is also an area, with a correction in the corner.",
-  "Ajusta \\(a\\) y \\(b\\) y mira cómo aparecen \\(a^2\\), \\(-2ab\\) y \\(+b^2\\).": "Adjust \\(a\\) and \\(b\\) and watch how \\(a^2\\), \\(-2ab\\), and \\(+b^2\\) appear.",
   "Vas a ver que \\(a^2-b^2\\) es el área que queda al quitar un cuadrado pequeño de uno grande.": "You'll see that \\(a^2-b^2\\) is the area left after removing a small square from a big one.",
   "Pulsa para pasar de \\(a^2-b^2\\) al rectángulo \\((a-b)(a+b)\\) y fíjate: es la misma cantidad.": "Tap to go from \\(a^2-b^2\\) to the rectangle \\((a-b)(a+b)\\) and notice: it's the same amount.",
   "Vas a ver que los coeficientes del binomio son la fila de Pascal.": "You'll see that the binomial coefficients are Pascal's row.",
@@ -1930,5 +1925,10 @@
   "las piezas \\(a^2\\), \\(ab\\), \\(ab\\) y \\(b^2\\) encajan en un cuadrado de lado \\(a+b\\).": "the pieces \\(a^2\\), \\(ab\\), \\(ab\\) and \\(b^2\\) fit into a square of side \\(a+b\\).",
   "cuadrado proporcional con etiquetas; agrupación \\(ab+ab=2ab\\); lectura \\(a^2+2ab+b^2=(a+b)^2\\).": "proportional labeled square; grouping \\(ab+ab=2ab\\); reading \\(a^2+2ab+b^2=(a+b)^2\\).",
   "Ajusta \\(a\\) y \\(b\\) y mira cómo \\(a^2+2ab+b^2\\) es exactamente el área del cuadrado \\((a+b)^2\\).": "Adjust \\(a\\) and \\(b\\) and see how \\(a^2+2ab+b^2\\) is exactly the area of the square \\((a+b)^2\\).",
-  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "sliders \\(a\\ge0\\), \\(b\\ge0\\); steps that reveal the four pieces and the factor \\((a+b)^2\\)."
+  "sliders \\(a\\ge0\\), \\(b\\ge0\\); pasos que revelan las cuatro piezas y el factor \\((a+b)^2\\).": "sliders \\(a\\ge0\\), \\(b\\ge0\\); steps that reveal the four pieces and the factor \\((a+b)^2\\).",
+  "partir de \\(a^2\\), restar dos franjas \\(ab\\) y corregir la esquina \\(+b^2\\).": "start from \\(a^2\\), subtract two strips \\(ab\\), and correct the corner \\(+b^2\\).",
+  "cuadrado de lado \\(a\\); franjas rayadas \\(-ab\\); anotación de que \\(b^2\\) se restó dos veces; cuadrado restante \\((a-b)^2\\); identidad separada del ejemplo numérico.": "square of side \\(a\\); hatched strips \\(-ab\\); note that \\(b^2\\) was subtracted twice; remaining square \\((a-b)^2\\); identity kept separate from the numeric example.",
+  "Partimos de un cuadrado de área \\(a^2\\); al quitar dos franjas \\(ab\\) y corregir \\(+b^2\\) queda \\((a-b)^2\\).": "We start from a square of area \\(a^2\\); removing two strips \\(ab\\) and correcting with \\(+b^2\\) leaves \\((a-b)^2\\).",
+  "Vas a ver por qué aparece \\(-2ab\\) y por qué hace falta la corrección \\(+b^2\\).": "You'll see why \\(-2ab\\) appears and why the \\(+b^2\\) correction is needed.",
+  "sliders con \\(a\\ge b\\ge0\\); pasos ( \\(a^2\\) → franjas → corrección → agrupación \\(-2ab\\) ).": "sliders with \\(a\\ge b\\ge0\\); steps (\\(a^2\\) → strips → correction → grouping \\(-2ab\\))."
 }

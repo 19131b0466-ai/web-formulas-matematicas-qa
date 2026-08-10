@@ -7,6 +7,7 @@ import { PowerProductViz } from './PowerProductViz';
 import { ConjugateRationalizeViz } from './ConjugateRationalizeViz';
 import { PolynomialProductViz } from './PolynomialProductViz';
 import { SquareSumViz } from './SquareSumViz';
+import { SquareDifferenceViz } from './SquareDifferenceViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -34,6 +35,9 @@ export function AlgebraTilesViz(props: Props) {
   }
   if (props.formulaId.includes('IDN-001') || props.formulaId.includes('FAC-003')) {
     return <SquareSumViz formulaId={props.formulaId} />;
+  }
+  if (props.formulaId.includes('IDN-002')) {
+    return <SquareDifferenceViz />;
   }
   return <AlgebraTilesVizInner {...props} />;
 }

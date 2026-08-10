@@ -40,8 +40,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Un cuadrado de lado \\(a+b\\) tiene área \\((a+b)^2\\); al partir cada lado en \\(a\\) y \\(b\\) aparecen \\(a^2\\), dos \\(ab\\) y \\(b^2\\).',
     ),
     'ALG-IDN-002': (
-        'Vas a ver que \\((a-b)^2\\) también es un área, con una corrección en la esquina.',
-        'Ajusta \\(a\\) y \\(b\\) y mira cómo aparecen \\(a^2\\), \\(-2ab\\) y \\(+b^2\\).',
+        'Vas a ver por qué aparece \\(-2ab\\) y por qué hace falta la corrección \\(+b^2\\).',
+        'Partimos de un cuadrado de área \\(a^2\\); al quitar dos franjas \\(ab\\) y corregir \\(+b^2\\) queda \\((a-b)^2\\).',
     ),
     'ALG-IDN-003': (
         'Vas a ver que \\(a^2-b^2\\) es el área que queda al quitar un cuadrado pequeño de uno grande.',
@@ -588,8 +588,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'A square of side \\(a+b\\) has area \\((a+b)^2\\); splitting each side into \\(a\\) and \\(b\\) yields \\(a^2\\), two \\(ab\\) and \\(b^2\\).',
     ),
         'ALG-IDN-002': (
-        "You'll see that \\((a-b)^2\\) is also an area, with a correction in the corner.",
-        'Adjust \\(a\\) and \\(b\\) and watch how \\(a^2\\), \\(-2ab\\), and \\(+b^2\\) appear.',
+        "You'll see why \\(-2ab\\) appears and why the \\(+b^2\\) correction is needed.",
+        'We start from a square of area \\(a^2\\); removing two strips \\(ab\\) and correcting with \\(+b^2\\) leaves \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
         "You'll see that \\(a^2-b^2\\) is the area left after removing a small square from a big one.",
@@ -1134,8 +1134,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Ein Quadrat der Seite \\(a+b\\) hat Fläche \\((a+b)^2\\); teilt man jede Seite in \\(a\\) und \\(b\\), entstehen \\(a^2\\), zwei \\(ab\\) und \\(b^2\\).',
     ),
         'ALG-IDN-002': (
-        'Du siehst: \\((a-b)^2\\) ist auch eine Fläche, mit einer Korrektur in der Ecke.',
-        'Stelle \\(a\\) und \\(b\\) ein und schau, wie \\(a^2\\), \\(-2ab\\) und \\(+b^2\\) erscheinen.',
+        'Du siehst, warum \\(-2ab\\) erscheint und warum die Korrektur \\(+b^2\\) nötig ist.',
+        'Wir starten mit einem Quadrat der Fläche \\(a^2\\); nach Entfernen zweier Streifen \\(ab\\) und Korrektur \\(+b^2\\) bleibt \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
         'Du siehst: \\(a^2-b^2\\) ist die Fläche, die bleibt, wenn du ein kleines Quadrat aus einem großen nimmst.',
@@ -1680,8 +1680,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Un carré de côté \\(a+b\\) a pour aire \\((a+b)^2\\) ; en partageant chaque côté en \\(a\\) et \\(b\\), apparaissent \\(a^2\\), deux \\(ab\\) et \\(b^2\\).',
     ),
         'ALG-IDN-002': (
-        'Tu vas voir que \\((a-b)^2\\) est aussi une aire, avec une correction dans le coin.',
-        'Ajuste \\(a\\) et \\(b\\) et regarde comment apparaissent \\(a^2\\), \\(-2ab\\) et \\(+b^2\\).',
+        'Tu verras pourquoi apparaît \\(-2ab\\) et pourquoi la correction \\(+b^2\\) est nécessaire.',
+        'On part d\'un carré d\'aire \\(a^2\\) ; en enlevant deux bandes \\(ab\\) et en corrigeant par \\(+b^2\\), il reste \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
         'Tu vas voir que \\(a^2-b^2\\) est l’aire qui reste après avoir enlevé un petit carré d’un grand.',
@@ -2226,8 +2226,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Un quadrato di lato \\(a+b\\) ha area \\((a+b)^2\\); dividendo ogni lato in \\(a\\) e \\(b\\) compaiono \\(a^2\\), due \\(ab\\) e \\(b^2\\).',
     ),
         'ALG-IDN-002': (
-        "Vedrai che \\((a-b)^2\\) è anche un'area, con una correzione nell'angolo.",
-        'Regola \\(a\\) e \\(b\\) e guarda come compaiono \\(a^2\\), \\(-2ab\\) e \\(+b^2\\).',
+        'Vedrai perché compare \\(-2ab\\) e perché serve la correzione \\(+b^2\\).',
+        'Partiamo da un quadrato di area \\(a^2\\); togliendo due fasce \\(ab\\) e correggendo con \\(+b^2\\) resta \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
         "Vedrai che \\(a^2-b^2\\) è l'area che resta togliendo un quadrato piccolo da uno grande.",
@@ -2772,8 +2772,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Um quadrado de lado \\(a+b\\) tem área \\((a+b)^2\\); ao partir cada lado em \\(a\\) e \\(b\\) aparecem \\(a^2\\), dois \\(ab\\) e \\(b^2\\).',
     ),
         'ALG-IDN-002': (
-        'Vais ver que \\((a-b)^2\\) também é uma área, com uma correção no canto.',
-        'Ajusta \\(a\\) e \\(b\\) e olha como aparecem \\(a^2\\), \\(-2ab\\) e \\(+b^2\\).',
+        'Vais ver por que aparece \\(-2ab\\) e por que é precisa a correção \\(+b^2\\).',
+        'Partimos de um quadrado de área \\(a^2\\); ao tirar duas faixas \\(ab\\) e corrigir com \\(+b^2\\) fica \\((a-b)^2\\).',
     ),
         'ALG-IDN-003': (
         'Vais ver que \\(a^2-b^2\\) é a área que fica ao tirar um quadrado pequeno de um grande.',
