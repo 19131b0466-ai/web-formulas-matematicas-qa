@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import type { FormulaVisual } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { useVizLabels } from '@/lib/viz-labels';
-import { resolveMode } from '@/lib/viz-modes';
+import { resolveMode, vizHasEmbeddedGuide } from '@/lib/viz-modes';
 import {
   AlgebraTilesViz,
   ErrorCorrectionViz,
@@ -36,8 +36,9 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
   const guide = visual.idea || visual.concept;
   const type = visual.type;
   const mode = resolveMode(formulaId, type, visual.mode);
+  const showExternalGuide = !vizHasEmbeddedGuide(formulaId);
 
-  // Guide copy lives above the panel; viz captions keep only live feedback.
+  // When the viz embeds its own guide, keep only the panel (no duplicate Idea/Objetivo).
   let body: ReactNode;
   switch (type) {
     case 'number_line':
@@ -98,12 +99,12 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
       {title ? (
         <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{title}</h2>
       ) : null}
-      {visual.learningObjective ? (
+      {showExternalGuide && visual.learningObjective ? (
         <p className="mb-2 text-sm leading-relaxed text-[var(--fg)]">
           <InlineMarkdown text={visual.learningObjective} />
         </p>
       ) : null}
-      {guide ? (
+      {showExternalGuide && guide ? (
         <p className="mb-3 text-sm leading-relaxed text-[var(--fg-muted)]">
           <span className="font-medium text-[var(--fg)]">{t('vizTry')} — </span>
           <InlineMarkdown text={guide} />

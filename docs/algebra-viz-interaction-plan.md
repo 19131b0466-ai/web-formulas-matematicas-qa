@@ -8,6 +8,14 @@ Fuente de verdad del runtime: modos en `apps/web-public/lib/viz-modes.ts`, compo
 
 ## 1. Principios (cerrados)
 
+### P0 — Una sola explicación
+
+**No duplicar** Idea / Objetivo / instrucción encima del card si el gráfico ya trae ese texto dentro del panel.
+
+- Si el viz embebe guía pedagógica → ocultar copy externo (`vizHasEmbeddedGuide` en `viz-modes.ts`).
+- Al rediseñar un gráfico con texto interno, añadir su ID a esa lista.
+- El título de sección (“Explora la idea”) puede quedarse; el párrafo duplicado no.
+
 ### P1 — Acción / reorder
 
 **Qué enseña:** el mismo objeto cambia de orden o de agrupación; el resultado no cambia.

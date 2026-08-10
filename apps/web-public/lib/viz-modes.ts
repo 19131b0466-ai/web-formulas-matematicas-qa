@@ -153,3 +153,13 @@ export function resolveMode(
       return 'default';
   }
 }
+
+/**
+ * Viz panels that already embed pedagogical guide copy inside the card.
+ * For these, FormulaVisualization must NOT also render Idea / Objetivo above the panel.
+ * Extend this list whenever a redesigned viz owns its own teaching text.
+ */
+export function vizHasEmbeddedGuide(formulaId: string): boolean {
+  return /FND-006|FND-007/.test(formulaId);
+}
+
