@@ -138,11 +138,11 @@ a+b=b+a;\quad ab=ba
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `associate`
-- **Concepto visual:** cambio de agrupación sin cambiar el resultado.
-- **Elementos:** tres bloques \(a,b,c\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \((a+b)+c\) o \(a+(b+c)\).
-- **Idea:** Ajusta \(a\), \(b\) y \(c\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.
+- **Concepto visual:** cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.
+- **Elementos:** tres bloques \(a,b,c\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.
+- **Idea:** Pulsa Agrupar izquierda o derecha: cambia qué sumas primero (\(a+b\) o \(b+c\)), pero el total final es el mismo.
 - **Objetivo educativo:** Vas a ver que agrupar distinto no cambia el total: \((a+b)+c\) y \(a+(b+c)\) dan lo mismo.
-- **Interactividad sugerida:** sliders para \(a,b,c\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.
+- **Interactividad sugerida:** solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).
 
 ### Fórmulas relacionadas
 

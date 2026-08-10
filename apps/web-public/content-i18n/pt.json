@@ -1211,7 +1211,6 @@
   "cadenas binarias editables de igual longitud.": "cadeias binárias editáveis ​​de igual comprimento.",
   "Calcular todos los valores propios de una matriz densa \\(n\\times n\\) con métodos numéricos estándar tiene coste del orden de\n$$\nO(n^3).\n$$\nPara matrices grandes y dispersas, cuando solo se requieren unos pocos valores propios, se emplean métodos iterativos con costes muy diferentes.": "Calcular todos os autovalores de uma matriz \\(n\\times n\\) densa com métodos numéricos padrão tem um custo da ordem de\n$$\nO \\(n^3).\n$$\nPara grandes matrizes esparsas, quando apenas alguns autovalores são necessários, são utilizados métodos iterativos com custos muito diferentes.",
   "cambiar ejemplos predefinidos entre solución única, infinitas soluciones y sistema incompatible.": "alternar exemplos predefinidos entre solução única, infinitas soluções e um sistema inconsistente.",
-  "cambio de agrupación sin cambiar el resultado.": "mudança de agrupamento sem alterar o resultado.",
   "cambio de base como cambio de coordenadas, no del vector.": "mudança de base como uma mudança de coordenadas, não do vetor.",
   "campo de vectores antes/después de una transformación 2D y eigendirecciones resaltadas.": "campo vetorial antes/depois de uma transformação 2D com direções próprias destacadas.",
   "campo para elegir un valor de \\(x\\); animar su recorrido y permitir intercambiar el orden de composición.": "campo para escolher um valor de \\(x\\); animar seu caminho e permitir trocar a ordem de composição.",
@@ -1926,9 +1925,10 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Vais ver que a distância entre dois vetores é a norma da sua diferença.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Move \\(n\\), \\(r\\) e \\(\\theta\\): os pontos ficam no círculo de raio \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Vais ver as \\(n\\) raízes: ângulo \\((\\theta+2\\pi k)/n\\) e módulo \\(r^{1/n}\\).",
-  "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Ajusta \\(a\\), \\(b\\) e \\(c\\), toca em Agrupar à esquerda ou à direita e vê a caixa mover: o total não muda.",
-  "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "sliders para \\(a\\), \\(b\\), \\(c\\); botão para alternar entre os dois agrupamentos no mesmo trio de blocos.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "três blocos \\(a,b,c\\) numa única fila e uma caixa tracejada a marcar o agrupamento ativo: \\((a+b)+c\\) ou \\(a+(b+c)\\).",
   "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Toca em Trocar: \\(a\\) e \\(b\\) mudam de lugar e a barra de baixo continua com o mesmo comprimento.",
-  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "só o botão Trocar; \\(a\\) e \\(b\\) fixos com comprimentos distintos para o reordenamento ser evidente."
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "só o botão Trocar; \\(a\\) e \\(b\\) fixos com comprimentos distintos para o reordenamento ser evidente.",
+  "Pulsa Agrupar izquierda o derecha: cambia qué sumas primero \\((a+b)\\) o \\((b+c)\\), pero el total final es el mismo.": "Toca em Agrupar à esquerda ou à direita: muda o que somas primeiro \\((a+b)\\) ou \\((b+c)\\), mas o total final é o mesmo.",
+  "solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).": "só o botão de agrupamento; valores fixos; mostrar o passo 1 (parcial) e o passo 2 (total).",
+  "tres bloques \\(a,b,c\\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.": "três blocos \\(a,b,c\\); caixa no par que se soma primeiro; segunda fila com o parcial fundido e a parcela que falta; barra do total.",
+  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "mudança de agrupamento com cálculo em dois passos: primeiro o par agrupado, depois o total."
 }

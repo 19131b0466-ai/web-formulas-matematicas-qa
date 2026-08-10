@@ -1212,7 +1212,6 @@
   "cadenas binarias editables de igual longitud.": "editable binary strings of equal length.",
   "Calcular todos los valores propios de una matriz densa \\(n\\times n\\) con métodos numéricos estándar tiene coste del orden de\n$$\nO(n^3).\n$$\nPara matrices grandes y dispersas, cuando solo se requieren unos pocos valores propios, se emplean métodos iterativos con costes muy diferentes.": "Computing all eigenvalues of a dense \\(n\\times n\\) matrix with standard numerical methods has cost on the order of\n$$\nO(n^3).\n$$\nFor large sparse matrices, when only a few eigenvalues are needed, iterative methods with very different costs are used.",
   "cambiar ejemplos predefinidos entre solución única, infinitas soluciones y sistema incompatible.": "switch predefined examples among unique solution, infinitely many solutions, and an inconsistent system.",
-  "cambio de agrupación sin cambiar el resultado.": "change of grouping without changing the result.",
   "cambio de base como cambio de coordenadas, no del vector.": "change of basis as a change of coordinates, not of the vector.",
   "campo de vectores antes/después de una transformación 2D y eigendirecciones resaltadas.": "vector field before/after a 2D transformation with highlighted eigendirections.",
   "campo para elegir un valor de \\(x\\); animar su recorrido y permitir intercambiar el orden de composición.": "field to choose a value of \\(x\\); animate its path and allow swapping the composition order.",
@@ -1926,9 +1925,10 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "You'll see the distance between two vectors is the norm of their difference.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Move \\(n\\), \\(r\\) and \\(\\theta\\): the points sit on the circle of radius \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "You'll see the \\(n\\) roots: angle \\((\\theta+2\\pi k)/n\\) and modulus \\(r^{1/n}\\).",
-  "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Adjust \\(a\\), \\(b\\), and \\(c\\), tap Group left or Group right, and watch the box move: the total stays the same.",
-  "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "sliders for \\(a\\), \\(b\\), \\(c\\); a button to toggle between the two groupings on the same three blocks.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "three blocks \\(a,b,c\\) in a single row and a dashed box marking the active grouping: \\((a+b)+c\\) or \\(a+(b+c)\\).",
   "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Tap Swap: \\(a\\) and \\(b\\) switch places and the bar below still measures the same length.",
-  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Swap button only; fixed unequal \\(a\\) and \\(b\\) so the reorder is obvious."
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Swap button only; fixed unequal \\(a\\) and \\(b\\) so the reorder is obvious.",
+  "Pulsa Agrupar izquierda o derecha: cambia qué sumas primero \\((a+b)\\) o \\((b+c)\\), pero el total final es el mismo.": "Tap Group left or Group right: what you add first changes \\((a+b)\\) or \\((b+c)\\), but the final total stays the same.",
+  "solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).": "grouping button only; fixed values; show step 1 (partial) and step 2 (total).",
+  "tres bloques \\(a,b,c\\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.": "three blocks \\(a,b,c\\); a box around the pair added first; a second row with the merged partial and the remaining addend; a total bar.",
+  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "change of grouping with a two-step calculation: first the grouped pair, then the total."
 }

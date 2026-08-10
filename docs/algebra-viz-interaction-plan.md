@@ -89,11 +89,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | Cambiar la agrupación no cambia el total. |
-| **Layout** | Un trío de bloques \(a,b,c\); un recuadro discontinuo que marca \((a+b)\) o \((b+c)\). |
-| **Interacción** | Sliders \(a,b,c\); botón **Agrupar izquierda / derecha** (`assocRight`). |
-| **Técnico** | Estado `assocRight: boolean`. Caption muestra la expresión activa. Labels: `groupLeft`, `groupRight`. |
-| **Veredicto** | **RESTORE** — single + toggle (no dual-row). |
+| **Enseña** | Cambiar la agrupación no cambia el total; importa qué se suma primero. |
+| **Layout** | Paso 1: trío \(a,b,c\) con recuadro en la pareja; Paso 2: bloque del parcial + el sumando restante + barra de total. |
+| **Interacción** | Solo botón **Agrupar izquierda / derecha** (`assocRight`). Valores fijos. Sin sliders. |
+| **Técnico** | Estado `assocRight: boolean`. Caption: `1º parcial` · `2º total`. Labels: `groupLeft`, `groupRight`. |
+| **Veredicto** | Single + toggle; enfatizar cálculo parcial (no solo mover el recuadro). |
 
 ### `distribute` (ALG-FND-003, ALG-FAC-001)
 

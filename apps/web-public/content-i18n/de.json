@@ -1211,7 +1211,6 @@
   "cadenas binarias editables de igual longitud.": "editierbare Binärzeichenfolgen gleicher Länge.",
   "Calcular todos los valores propios de una matriz densa \\(n\\times n\\) con métodos numéricos estándar tiene coste del orden de\n$$\nO(n^3).\n$$\nPara matrices grandes y dispersas, cuando solo se requieren unos pocos valores propios, se emplean métodos iterativos con costes muy diferentes.": "Die Berechnung aller Eigenwerte einer dichten Matrix\\(n\\times n\\)mit numerischen Standardmethoden verursacht Kosten in der Größenordnung von$$\nO(n^3).\n$$Für große und dünn besetzte Matrizen, wenn nur wenige Eigenwerte erforderlich sind, werden iterative Methoden mit sehr unterschiedlichen Kosten verwendet.",
   "cambiar ejemplos predefinidos entre solución única, infinitas soluciones y sistema incompatible.": "Wechseln Sie vordefinierte Beispiele zwischen Einzellösung, unendlichen Lösungen und inkompatiblem System.",
-  "cambio de agrupación sin cambiar el resultado.": "Ändern Sie die Gruppierung, ohne das Ergebnis zu ändern.",
   "cambio de base como cambio de coordenadas, no del vector.": "Änderung der Basis als Änderung der Koordinaten, nicht des Vektors.",
   "campo de vectores antes/después de una transformación 2D y eigendirecciones resaltadas.": "Vektorfeld vor/nach einer 2D-Transformation und hervorgehobene Eigenrichtungen.",
   "campo para elegir un valor de \\(x\\); animar su recorrido y permitir intercambiar el orden de composición.": "Feld zur Auswahl eines Werts aus\\(x\\); animieren Sie seinen Pfad und ermöglichen Sie den Austausch der Kompositionsreihenfolge.",
@@ -1926,9 +1925,10 @@
   "Vas a ver que la distancia entre dos vectores es la norma de su diferencia.": "Du siehst: Der Abstand zweier Vektoren ist die Norm ihrer Differenz.",
   "Mueve \\(n\\), \\(r\\) y \\(\\theta\\): los puntos se repartirán en el círculo de radio \\(r^{1/n}\\).": "Bewege \\(n\\), \\(r\\) und \\(\\theta\\): die Punkte liegen auf dem Kreis mit Radius \\(r^{1/n}\\).",
   "Vas a ver las \\(n\\) raíces: ángulo \\((\\theta+2\\pi k)/n\\) y módulo \\(r^{1/n}\\).": "Du siehst die \\(n\\) Wurzeln: Winkel \\((\\theta+2\\pi k)/n\\) und Betrag \\(r^{1/n}\\).",
-  "Ajusta \\(a\\), \\(b\\) y \\(c\\), pulsa Agrupar izquierda o derecha y mira cómo se mueve el recuadro: el total no cambia.": "Stelle \\(a\\), \\(b\\) und \\(c\\) ein, tippe auf Links/Rechts gruppieren und sieh, wie der Rahmen wandert: die Summe bleibt gleich.",
-  "sliders para \\(a,b,c\\); botón para alternar entre las dos agrupaciones en el mismo trío de bloques.": "Schieberegler für \\(a\\), \\(b\\), \\(c\\); Schaltfläche zum Umschalten zwischen beiden Gruppierungen am selben Drei-Block-Satz.",
-  "tres bloques \\(a,b,c\\) en una sola fila y un recuadro discontinuo que marca la agrupación activa: \\((a+b)+c\\) o \\(a+(b+c)\\).": "drei Blöcke \\(a,b,c\\) in einer Zeile und ein gestrichelter Rahmen für die aktive Gruppierung: \\((a+b)+c\\) oder \\(a+(b+c)\\).",
   "Pulsa Intercambiar: \\(a\\) y \\(b\\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.": "Tippe auf Tauschen: \\(a\\) und \\(b\\) tauschen den Platz und die Leiste unten bleibt gleich lang.",
-  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Nur Schaltfläche Tauschen; feste ungleiche \\(a\\) und \\(b\\), damit die Umordnung klar ist."
+  "solo botón Intercambiar; \\(a\\) y \\(b\\) fijos con longitudes distintas para que el reorden sea evidente.": "Nur Schaltfläche Tauschen; feste ungleiche \\(a\\) und \\(b\\), damit die Umordnung klar ist.",
+  "Pulsa Agrupar izquierda o derecha: cambia qué sumas primero \\((a+b)\\) o \\((b+c)\\), pero el total final es el mismo.": "Tippe auf Links/Rechts gruppieren: was du zuerst addierst ändert sich \\((a+b)\\) oder \\((b+c)\\), aber die Endsumme bleibt gleich.",
+  "solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).": "nur Gruppierungsschaltfläche; feste Werte; Schritt 1 (Teilsumme) und Schritt 2 (Gesamtsumme) zeigen.",
+  "tres bloques \\(a,b,c\\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.": "drei Blöcke \\(a,b,c\\); Rahmen um das zuerst addierte Paar; zweite Zeile mit fusionierter Teilsumme und dem fehlenden Summanden; Gesamtleiste.",
+  "cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.": "Gruppierungswechsel mit Zweischritt-Rechnung: zuerst das gruppierte Paar, dann die Summe."
 }

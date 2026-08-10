@@ -46,11 +46,17 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
     switch (mode) {
       case 'commute':
         return joinCaption(`a+b = b+a = ${fmt(a + b)}`, v.sameTotal);
-      case 'associate':
+      case 'associate': {
+        const partial = assocRight ? b + c : a + b;
+        const partialLabel = assocRight ? 'b+c' : 'a+b';
         return joinCaption(
-          `${assocRight ? 'a+(b+c)' : '(a+b)+c'} = ${fmt(a + b + c)}`,
+          `1º ${partialLabel} = ${fmt(partial)}`,
+          assocRight
+            ? `2º a+(b+c) = ${fmt(a + partial)}`
+            : `2º (a+b)+c = ${fmt(partial + c)}`,
           v.sameTotal,
         );
+      }
       case 'distribute':
         return joinCaption(
           `a(b+c) = ${fmt(leftArea)}`,
@@ -103,12 +109,7 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
     v.sameTotal,
   ]);
 
-  const viewH =
-    mode === 'distribute' || mode === 'power'
-      ? 260
-      : mode === 'poly_grid' || mode === 'conjugate_rationalize'
-        ? 240
-        : 220;
+  const viewH = mode === 'distribute' || mode === 'power' || mode === 'associate' ? 260 : mode === 'poly_grid' || mode === 'conjugate_rationalize' ? 240 : 220;
 
   return (
     <VizPanel caption={caption}>
@@ -147,45 +148,154 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
 
         {mode === 'associate' ? (
           <>
-            <text x={40} y={40} fontSize={13} fill="currentColor">
-              {assocRight ? 'a+(b+c)' : '(a+b)+c'} = {fmt(a + b + c)}
-            </text>
-            {[a, b, c].map((len, i) => (
-              <g key={`assoc-${i}`}>
-                <rect
-                  x={40 + [0, a, a + b][i]! * scale}
-                  y={80}
-                  width={len * scale}
-                  height={36}
-                  rx={4}
-                  fill="var(--accent-soft)"
-                  stroke="var(--accent-strong)"
-                />
-                <text
-                  x={40 + [0, a, a + b][i]! * scale + (len * scale) / 2}
-                  y={103}
-                  textAnchor="middle"
-                  fontSize={11}
-                  fill="currentColor"
-                >
-                  {['a', 'b', 'c'][i]}
-                </text>
-              </g>
-            ))}
-            <rect
-              x={assocRight ? 40 + a * scale : 40}
-              y={70}
-              width={(assocRight ? b + c : a + b) * scale}
-              height={56}
-              fill="none"
-              stroke="teal"
-              strokeWidth={2}
-              strokeDasharray="4 3"
-              rx={6}
-            />
-            <text x={40} y={160} fontSize={12} fill="currentColor" opacity={0.8}>
-              {v.sameTotal}
-            </text>
+            {(() => {
+              const partial = assocRight ? b + c : a + b;
+              const partialLabel = assocRight ? 'b+c' : 'a+b';
+              const groupX = assocRight ? 40 + a * scale : 40;
+              const groupW = (assocRight ? b + c : a + b) * scale;
+              const step2Y = 168;
+              return (
+                <>
+                  <text x={40} y={28} fontSize={13} fill="currentColor">
+                    {assocRight ? 'a+(b+c)' : '(a+b)+c'}
+                  </text>
+
+                  {/* Step 1: three blocks + grouping */}
+                  <text x={40} y={52} fontSize={11} fill="currentColor" opacity={0.75}>
+                    1º {partialLabel} = {fmt(partial)}
+                  </text>
+                  {[a, b, c].map((len, i) => {
+                    const inGroup = assocRight ? i > 0 : i < 2;
+                    return (
+                      <g key={`assoc-${i}`}>
+                        <rect
+                          x={40 + [0, a, a + b][i]! * scale}
+                          y={64}
+                          width={len * scale}
+                          height={36}
+                          rx={4}
+                          fill={
+                            inGroup
+                              ? 'color-mix(in oklab, teal 32%, transparent)'
+                              : 'var(--accent-soft)'
+                          }
+                          stroke={inGroup ? 'teal' : 'var(--accent-strong)'}
+                        />
+                        <text
+                          x={40 + [0, a, a + b][i]! * scale + (len * scale) / 2}
+                          y={87}
+                          textAnchor="middle"
+                          fontSize={11}
+                          fill="currentColor"
+                        >
+                          {['a', 'b', 'c'][i]}
+                        </text>
+                      </g>
+                    );
+                  })}
+                  <rect
+                    x={groupX}
+                    y={56}
+                    width={groupW}
+                    height={52}
+                    fill="none"
+                    stroke="teal"
+                    strokeWidth={2}
+                    strokeDasharray="4 3"
+                    rx={6}
+                  />
+
+                  {/* Step 2: partial sum as one block + remaining */}
+                  <text x={40} y={140} fontSize={11} fill="currentColor" opacity={0.75}>
+                    2º {assocRight ? `a + (${partialLabel})` : `(${partialLabel}) + c`} = {fmt(a + b + c)}
+                  </text>
+                  {assocRight ? (
+                    <>
+                      <rect
+                        x={40}
+                        y={step2Y}
+                        width={a * scale}
+                        height={36}
+                        rx={4}
+                        fill="var(--accent-soft)"
+                        stroke="var(--accent-strong)"
+                      />
+                      <text x={40 + (a * scale) / 2} y={step2Y + 23} textAnchor="middle" fontSize={11} fill="currentColor">
+                        a
+                      </text>
+                      <rect
+                        x={40 + a * scale}
+                        y={step2Y}
+                        width={partial * scale}
+                        height={36}
+                        rx={4}
+                        fill="color-mix(in oklab, teal 32%, transparent)"
+                        stroke="teal"
+                      />
+                      <text
+                        x={40 + a * scale + (partial * scale) / 2}
+                        y={step2Y + 23}
+                        textAnchor="middle"
+                        fontSize={11}
+                        fill="currentColor"
+                      >
+                        {fmt(partial)}
+                      </text>
+                    </>
+                  ) : (
+                    <>
+                      <rect
+                        x={40}
+                        y={step2Y}
+                        width={partial * scale}
+                        height={36}
+                        rx={4}
+                        fill="color-mix(in oklab, teal 32%, transparent)"
+                        stroke="teal"
+                      />
+                      <text
+                        x={40 + (partial * scale) / 2}
+                        y={step2Y + 23}
+                        textAnchor="middle"
+                        fontSize={11}
+                        fill="currentColor"
+                      >
+                        {fmt(partial)}
+                      </text>
+                      <rect
+                        x={40 + partial * scale}
+                        y={step2Y}
+                        width={c * scale}
+                        height={36}
+                        rx={4}
+                        fill="var(--accent-soft)"
+                        stroke="var(--accent-strong)"
+                      />
+                      <text
+                        x={40 + partial * scale + (c * scale) / 2}
+                        y={step2Y + 23}
+                        textAnchor="middle"
+                        fontSize={11}
+                        fill="currentColor"
+                      >
+                        c
+                      </text>
+                    </>
+                  )}
+                  <line
+                    x1={40}
+                    y1={step2Y + 48}
+                    x2={40 + (a + b + c) * scale}
+                    y2={step2Y + 48}
+                    stroke="currentColor"
+                    strokeWidth={4}
+                  />
+                  <text x={40} y={step2Y + 72} fontSize={12} fill="currentColor" opacity={0.8}>
+                    {v.sameTotal}
+                  </text>
+                </>
+              );
+            })()}
           </>
         ) : null}
 
@@ -794,7 +904,7 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
               onChange={setB}
             />
           </>
-        ) : mode === 'commute' ? null : mode === 'square_minus' || mode === 'diff_sq' ? (
+        ) : mode === 'commute' || mode === 'associate' ? null : mode === 'square_minus' || mode === 'diff_sq' ? (
           <>
             <SliderRow label="a" value={a} min={1.5} max={5} step={0.1} onChange={setA} />
             <SliderRow
@@ -824,7 +934,7 @@ export function AlgebraTilesViz({ formulaId, mode: modeProp }: Props) {
             <SliderRow label="b" value={b} min={0.2} max={4} step={0.1} onChange={setB} />
           </>
         )}
-        {mode === 'associate' || mode === 'distribute' || mode === 'poly_grid' ? (
+        {mode === 'distribute' || mode === 'poly_grid' ? (
           <SliderRow label="c" value={c} min={0.2} max={4} step={0.1} onChange={setC} />
         ) : null}
         {mode === 'poly_grid' ? <SliderRow label="d" value={d} min={0.2} max={4} step={0.1} onChange={setD} /> : null}
