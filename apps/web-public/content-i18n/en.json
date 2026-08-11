@@ -1947,5 +1947,7 @@
   "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "You'll see that denominator zeros never belong to the solution, and the answer is a union of intervals.",
   "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Identify the zeros of the numerator and denominator; they split the line into constant-sign intervals.",
   "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "You'll see that \\(|x|<a\\) and \\(\\le a\\) are interior solutions, and \\(|x|>a\\) and \\(\\ge a\\) are symmetric exterior ones.",
-  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Choose \\(|x|<a\\), \\(\\le\\), \\(>\\), or \\(\\ge\\) and move \\(a\\ge0\\): the line shows the interior region or the two exteriors."
+  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Choose \\(|x|<a\\), \\(\\le\\), \\(>\\), or \\(\\ge\\) and move \\(a\\ge0\\): the line shows the interior region or the two exteriors.",
+  "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "You'll see that a \\(2\\times 2\\) system can have one, none, or infinitely many solutions depending on slopes and intercepts.",
+  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) and watch whether the lines cross, are parallel, or coincide."
 }

@@ -104,8 +104,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Elige |x|<a, ≤, > o ≥ y mueve a≥0: la recta muestra el interior o las dos exteriores.",
     ),
     "ALG-SIS-001": (
-        "Un sistema 2×2 es dos rectas: la solución es su cruce (si se cortan).",
-        "Mueve la pendiente: el punto naranja marca la intersección, o verás si son paralelas.",
+        "Un sistema 2×2 puede tener una, ninguna o infinitas soluciones según pendientes e interceptos.",
+        "Mueve m1,b1,m2,b2 y observa si las rectas se cruzan, son paralelas o coinciden.",
     ),
     "ALG-SIS-002": (
         "El sistema se puede escribir como una sola ecuación con matrices: Ax = b.",
@@ -652,8 +652,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Choose |x|<a, ≤, >, or ≥ and move a≥0: the line shows the interior or the two exteriors.",
         ),
         "ALG-SIS-001": (
-            "A 2×2 system is two lines: the solution is their crossing (if they meet).",
-            "Move the slope: the orange point marks the intersection, or you see parallels.",
+            "A 2×2 system can have one, none, or infinitely many solutions from slopes and intercepts.",
+            "Move m1,b1,m2,b2 and watch whether the lines cross, are parallel, or coincide.",
         ),
         "ALG-SIS-002": (
             "The system can be written as one matrix equation Ax = b.",

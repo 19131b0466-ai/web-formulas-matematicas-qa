@@ -7,6 +7,7 @@ import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCapt
 import { linspace } from './math2d';
 import { DiscriminantViz } from './DiscriminantViz';
 import { LinearEquationViz } from './LinearEquationViz';
+import { LinearSystem2Viz } from './LinearSystem2Viz';
 import { QuadraticFormulaViz } from './QuadraticFormulaViz';
 import { QuadraticInequalityViz } from './QuadraticInequalityViz';
 
@@ -24,6 +25,9 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('INE-002')) {
     return <QuadraticInequalityViz />;
+  }
+  if (formulaId.includes('SIS-001')) {
+    return <LinearSystem2Viz />;
   }
   return <GraphVizInner formulaId={formulaId} mode={modeProp} />;
 }

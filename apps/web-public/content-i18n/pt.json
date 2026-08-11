@@ -1947,5 +1947,7 @@
   "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "Vais ver que os zeros do denominador nunca pertencem à solução, e que a resposta é uma união de intervalos.",
   "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Identifica os zeros do numerador e do denominador; eles dividem a reta em intervalos de sinal constante.",
   "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "Vais ver que \\(|x|<a\\) e \\(\\le a\\) são soluções interiores, e que \\(|x|>a\\) e \\(\\ge a\\) são exteriores simétricas.",
-  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Escolhe \\(|x|<a\\), \\(\\le\\), \\(>\\) ou \\(\\ge\\) e move \\(a\\ge0\\): a reta mostra a região interior ou as duas exteriores."
+  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Escolhe \\(|x|<a\\), \\(\\le\\), \\(>\\) ou \\(\\ge\\) e move \\(a\\ge0\\): a reta mostra a região interior ou as duas exteriores.",
+  "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "Vais ver que um sistema \\(2\\times 2\\) pode ter uma, nenhuma ou infinitas soluções conforme declives e interceptos.",
+  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) e observa se as retas se cruzam, são paralelas ou coincidem."
 }

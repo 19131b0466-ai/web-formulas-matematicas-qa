@@ -1196,11 +1196,11 @@ ax^2+bx+c>0
 
 - **Tipo:** `graph`
 - **Modo:** `system`
-- **Concepto visual:** soluciones de un sistema 2×2 como intersección de rectas.
-- **Elementos:** dos rectas en el plano y estados: una intersección, paralelas distintas o coincidentes.
-- **Idea:** Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.
-- **Objetivo educativo:** Vas a ver que un sistema \(2\times 2\) es dos rectas: la solución es su cruce (si se cortan).
-- **Interactividad sugerida:** permitir modificar pendientes e interceptos de ambas rectas y actualizar la clasificación.
+- **Concepto visual:** cada ecuación es una recta; la solución del sistema es el punto común (si existe).
+- **Elementos:** dos rectas \(y=m_ix+b_i\) con colores distintos; clasificación secantes/paralelas/coincidentes; punto de intersección; forma general equivalente; presets.
+- **Idea:** Mueve \(m_1,b_1,m_2,b_2\) y observa si las rectas se cruzan, son paralelas o coinciden.
+- **Objetivo educativo:** Vas a ver que un sistema \(2\times 2\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.
+- **Interactividad sugerida:** sliders \(m_1,b_1,m_2,b_2\); presets de los tres casos; actualizar clasificación y coordenadas.
 
 ### Fórmulas relacionadas
 

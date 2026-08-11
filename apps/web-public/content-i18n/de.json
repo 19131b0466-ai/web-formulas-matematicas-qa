@@ -1947,5 +1947,7 @@
   "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "Du siehst: Nullstellen des Nenners gehören nie zur Lösung; die Antwort ist eine Vereinigung von Intervallen.",
   "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Bestimme die Nullstellen von Zähler und Nenner; sie teilen die Gerade in Intervalle konstanten Vorzeichens.",
   "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "Du siehst: \\(|x|<a\\) und \\(\\le a\\) sind innere Lösungen, \\(|x|>a\\) und \\(\\ge a\\) symmetrische äußere.",
-  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Wähle \\(|x|<a\\), \\(\\le\\), \\(>\\) oder \\(\\ge\\) und verschiebe \\(a\\ge0\\): Die Gerade zeigt den Innenbereich oder die beiden Außenbereiche."
+  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Wähle \\(|x|<a\\), \\(\\le\\), \\(>\\) oder \\(\\ge\\) und verschiebe \\(a\\ge0\\): Die Gerade zeigt den Innenbereich oder die beiden Außenbereiche.",
+  "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "Du siehst: Ein \\(2\\times 2\\)-System kann eine, keine oder unendlich viele Lösungen haben — je nach Steigungen und Achsenabschnitten.",
+  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Verschiebe \\(m_1,b_1,m_2,b_2\\) und sieh, ob sich die Geraden schneiden, parallel sind oder zusammenfallen."
 }

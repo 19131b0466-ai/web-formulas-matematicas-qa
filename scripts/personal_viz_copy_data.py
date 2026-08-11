@@ -100,8 +100,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.',
     ),
     'ALG-SIS-001': (
-        'Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).',
-        'Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.',
+        'Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.',
+        'Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.',
     ),
     'ALG-SIS-002': (
         'Vas a ver que el sistema se puede escribir como una sola ecuación con matrices: \\(Ax=b\\).',
@@ -648,8 +648,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Choose \\(|x|<a\\), \\(\\le\\), \\(>\\), or \\(\\ge\\) and move \\(a\\ge0\\): the line shows the interior region or the two exteriors.',
     ),
         'ALG-SIS-001': (
-        "You'll see that a \\(2\\times 2\\) system is two lines: the solution is their crossing (if they meet).",
-        "Move the slope and watch the orange point: it marks the intersection, or you'll see if they're parallel.",
+        "You'll see that a \\(2\\times 2\\) system can have one, none, or infinitely many solutions depending on slopes and intercepts.",
+        'Move \\(m_1,b_1,m_2,b_2\\) and watch whether the lines cross, are parallel, or coincide.',
     ),
         'ALG-SIS-002': (
         "You'll see that the system can be written as one matrix equation: \\(Ax=b\\).",
