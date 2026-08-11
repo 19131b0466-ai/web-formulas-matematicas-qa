@@ -107,8 +107,8 @@ export function AbsoluteEquationViz() {
             del cero?
           </p>
           <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Conexión con Valor absoluto (ALG-FND-006): primero se entiende |x| como distancia; aquí se
-            resuelve la ecuación que fija esa distancia.
+            Conexión con Valor absoluto: primero se entiende |x| como distancia; aquí se resuelve la
+            ecuación que fija esa distancia.
           </p>
         </div>
 
