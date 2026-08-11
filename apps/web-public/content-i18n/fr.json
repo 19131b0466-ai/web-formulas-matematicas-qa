@@ -1943,5 +1943,7 @@
   "Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.": "Tu vas voir qu’une inéquation linéaire simple est une demi-droite ; dans des cas particuliers, tous les réels ou aucune solution.",
   "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Change \\(a\\), \\(b\\) et l’opérateur : la zone ombrée est la demi-droite solution (ou tout \\(\\mathbb{R}\\)/vide si \\(a=0\\)).",
   "Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.": "Tu vas voir que la solution est un ensemble de valeurs de \\(x\\) (intervalles), pas une « région du plan ».",
-  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Choisis l’inégalité et déplace \\(a,b,c\\) : utilise la parabole pour le signe et lis la solution sur la droite."
+  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Choisis l’inégalité et déplace \\(a,b,c\\) : utilise la parabole pour le signe et lis la solution sur la droite.",
+  "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "Tu vas voir que les zéros du dénominateur n’appartiennent jamais à la solution, et que la réponse est une union d’intervalles.",
+  "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Identifie les zéros du numérateur et du dénominateur ; ils découpent la droite en intervalles de signe constant."
 }

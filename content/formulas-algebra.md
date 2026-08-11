@@ -1141,11 +1141,11 @@ ax^2+bx+c>0
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** tabla de signos de una función racional.
-- **Elementos:** recta numérica con ceros del numerador, ceros prohibidos del denominador, intervalos y signos \(+/-\).
-- **Idea:** Mueve el borde y fíjate qué parte de la recta queda permitida.
-- **Objetivo educativo:** Vas a ver que en inecuaciones racionales hay que cuidar los puntos donde el denominador se anula.
-- **Interactividad sugerida:** permitir activar cada factor para ver cómo cambia su signo y cómo se obtiene el signo total.
+- **Concepto visual:** inecuación racional por ceros de \(P\) y \(Q\), tabla de signos e intervalos solución.
+- **Elementos:** expresión concreta \(P/Q\); ceros de \(P\) vs ceros de \(Q\) (siempre excluidos); tabla de signos; recta con extremos abiertos/cerrados; ejemplos guiados.
+- **Idea:** Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.
+- **Objetivo educativo:** Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.
+- **Interactividad sugerida:** selector \(>, <, \ge, \le\); presets; sliders de ceros; actualizar signos y solución.
 
 ### Fórmulas relacionadas
 

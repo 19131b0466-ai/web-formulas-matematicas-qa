@@ -1943,5 +1943,7 @@
   "Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.": "Du siehst: Eine einfache lineare Ungleichung ist ein Strahl; in Sonderfällen alle reellen Zahlen oder keine Lösung.",
   "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Ändere \\(a\\), \\(b\\) und den Operator: Der schattierte Bereich ist der Lösungsstrahl (oder ganz \\(\\mathbb{R}\\)/leer wenn \\(a=0\\)).",
   "Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.": "Du siehst: Die Lösung ist eine Menge von \\(x\\)-Werten (Intervalle), keine „Fläche in der Ebene“.",
-  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Wähle die Ungleichung und verschiebe \\(a,b,c\\): nutze die Parabel für das Vorzeichen und lies die Lösung auf der Zahlengeraden."
+  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Wähle die Ungleichung und verschiebe \\(a,b,c\\): nutze die Parabel für das Vorzeichen und lies die Lösung auf der Zahlengeraden.",
+  "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "Du siehst: Nullstellen des Nenners gehören nie zur Lösung; die Antwort ist eine Vereinigung von Intervallen.",
+  "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Bestimme die Nullstellen von Zähler und Nenner; sie teilen die Gerade in Intervalle konstanten Vorzeichens."
 }

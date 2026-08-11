@@ -6,6 +6,7 @@ import { AbsoluteEquationViz } from './AbsoluteEquationViz';
 import { AbsoluteValueViz } from './AbsoluteValueViz';
 import { DistanceNumberLineViz } from './DistanceNumberLineViz';
 import { LinearInequalityViz } from './LinearInequalityViz';
+import { RationalInequalityViz } from './RationalInequalityViz';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { clamp } from './math2d';
 
@@ -23,6 +24,9 @@ export function NumberLineViz({ formulaId }: Props) {
   }
   if (formulaId.includes('INE-001')) {
     return <LinearInequalityViz />;
+  }
+  if (formulaId.includes('INE-003')) {
+    return <RationalInequalityViz />;
   }
 
   return <NumberLineShared formulaId={formulaId} />;

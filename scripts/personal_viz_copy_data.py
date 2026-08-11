@@ -92,8 +92,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.',
     ),
     'ALG-INE-003': (
-        'Vas a ver que en inecuaciones racionales hay que cuidar los puntos donde el denominador se anula.',
-        'Mueve el borde y fíjate qué parte de la recta queda permitida.',
+        'Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.',
+        'Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.',
     ),
     'ALG-INE-004': (
         'Vas a ver que el valor absoluto en desigualdades define intervalos centrados o exteriores.',
@@ -640,8 +640,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Pick the inequality and move \\(a,b,c\\): use the parabola for the sign and read the solution set on the number line.',
     ),
         'ALG-INE-003': (
-        "You'll see that with rational inequalities you must watch points where the denominator is zero.",
-        'Move the boundary and notice which part of the line stays allowed.',
+        "You'll see that denominator zeros never belong to the solution, and the answer is a union of intervals.",
+        'Identify the zeros of the numerator and denominator; they split the line into constant-sign intervals.',
     ),
         'ALG-INE-004': (
         "You'll see that absolute value in inequalities defines centered or outer intervals.",
