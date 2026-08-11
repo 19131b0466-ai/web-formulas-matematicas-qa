@@ -1941,5 +1941,7 @@
   "Vas a ver que \\(|x|=a\\) busca puntos a distancia \\(a\\) del cero: dos si \\(a>0\\), uno si \\(a=0\\), ninguno si \\(a<0\\).": "You'll see that \\(|x|=a\\) looks for points at distance \\(a\\) from zero: two if \\(a>0\\), one if \\(a=0\\), none if \\(a<0\\).",
   "Mueve \\(a\\) e interpreta \\(|x|=a\\) como “distancia al cero igual a \\(a\\)”; observa cuántas soluciones hay según el signo de \\(a\\).": "Move \\(a\\) and read \\(|x|=a\\) as “distance to zero equals \\(a\\)”; watch how many solutions appear by the sign of \\(a\\).",
   "Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.": "You'll see that a simple linear inequality is a ray on the number line; in special cases, all reals or no solution.",
-  "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Change \\(a\\), \\(b\\), and the operator: the shaded region is the solution ray (or all \\(\\mathbb{R}\\)/empty if \\(a=0\\))."
+  "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Change \\(a\\), \\(b\\), and the operator: the shaded region is the solution ray (or all \\(\\mathbb{R}\\)/empty if \\(a=0\\)).",
+  "Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.": "You'll see that the solution is a set of \\(x\\) values (intervals), not a “region of the plane”.",
+  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Pick the inequality and move \\(a,b,c\\): use the parabola for the sign and read the solution set on the number line."
 }

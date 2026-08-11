@@ -88,8 +88,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).',
     ),
     'ALG-INE-002': (
-        'Vas a ver que la solución de una inecuación cuadrática es donde la parábola está por encima (o debajo) del eje.',
-        'Ajusta la parábola y mira la zona sombreada: marca los \\(x\\) que cumplen la desigualdad.',
+        'Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.',
+        'Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.',
     ),
     'ALG-INE-003': (
         'Vas a ver que en inecuaciones racionales hay que cuidar los puntos donde el denominador se anula.',
@@ -636,8 +636,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Change \\(a\\), \\(b\\), and the operator: the shaded region is the solution ray (or all \\(\\mathbb{R}\\)/empty if \\(a=0\\)).',
     ),
         'ALG-INE-002': (
-        "You'll see that a quadratic inequality's solution is where the parabola is above (or below) the axis.",
-        'Adjust the parabola and watch the shaded region: it marks the \\(x\\) that satisfy the inequality.',
+        "You'll see that the solution is a set of \\(x\\) values (intervals), not a “region of the plane”.",
+        'Pick the inequality and move \\(a,b,c\\): use the parabola for the sign and read the solution set on the number line.',
     ),
         'ALG-INE-003': (
         "You'll see that with rational inequalities you must watch points where the denominator is zero.",

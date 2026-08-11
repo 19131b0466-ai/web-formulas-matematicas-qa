@@ -8,6 +8,7 @@ import { linspace } from './math2d';
 import { DiscriminantViz } from './DiscriminantViz';
 import { LinearEquationViz } from './LinearEquationViz';
 import { QuadraticFormulaViz } from './QuadraticFormulaViz';
+import { QuadraticInequalityViz } from './QuadraticInequalityViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -20,6 +21,9 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('EQU-004')) {
     return <DiscriminantViz />;
+  }
+  if (formulaId.includes('INE-002')) {
+    return <QuadraticInequalityViz />;
   }
   return <GraphVizInner formulaId={formulaId} mode={modeProp} />;
 }

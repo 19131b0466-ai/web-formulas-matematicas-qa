@@ -1941,5 +1941,7 @@
   "Vas a ver que \\(|x|=a\\) busca puntos a distancia \\(a\\) del cero: dos si \\(a>0\\), uno si \\(a=0\\), ninguno si \\(a<0\\).": "Vais ver que \\(|x|=a\\) procura pontos à distância \\(a\\) do zero: dois se \\(a>0\\), um se \\(a=0\\), nenhum se \\(a<0\\).",
   "Mueve \\(a\\) e interpreta \\(|x|=a\\) como “distancia al cero igual a \\(a\\)”; observa cuántas soluciones hay según el signo de \\(a\\).": "Move \\(a\\) e lê \\(|x|=a\\) como «distância ao zero igual a \\(a\\)»; observa quantas soluções o sinal de \\(a\\) dá.",
   "Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.": "Vais ver que uma inequação linear simples é uma semirreta; em casos especiais, todos os reais ou nenhuma solução.",
-  "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Muda \\(a\\), \\(b\\) e o operador: a zona sombreada é a semirreta solução (ou todo \\(\\mathbb{R}\\)/vazio se \\(a=0\\))."
+  "Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).": "Muda \\(a\\), \\(b\\) e o operador: a zona sombreada é a semirreta solução (ou todo \\(\\mathbb{R}\\)/vazio se \\(a=0\\)).",
+  "Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.": "Vais ver que a solução é um conjunto de valores de \\(x\\) (intervalos), não uma “área do plano”.",
+  "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Escolhe a desigualdade e move \\(a,b,c\\): usa a parábola para o sinal e lê a solução na reta."
 }

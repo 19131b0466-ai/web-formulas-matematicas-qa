@@ -1115,11 +1115,11 @@ ax^2+bx+c>0
 
 - **Tipo:** `graph`
 - **Modo:** `inequality`
-- **Concepto visual:** signo de una cuadrática mediante regiones de la parábola.
-- **Elementos:** parábola, eje \(x\), raíces y sombreado de los intervalos del eje donde la función es positiva o negativa.
-- **Idea:** Ajusta la parábola y mira la zona sombreada: marca los \(x\) que cumplen la desigualdad.
-- **Objetivo educativo:** Vas a ver que la solución de una inecuación cuadrática es donde la parábola está por encima (o debajo) del eje.
-- **Interactividad sugerida:** selector del operador y controles para los coeficientes; resaltar automáticamente los intervalos solución.
+- **Concepto visual:** la parábola indica el signo de \(f\); la solución final son intervalos en la recta real.
+- **Elementos:** inecuación activa; \(\Delta\); orientación por \(a\); raíces; tabla de signos; gráfica de apoyo; recta numérica con extremos abiertos/cerrados; operadores \(<,\le,>,\ge\).
+- **Idea:** Elige la desigualdad y mueve \(a,b,c\): usa la parábola para el signo y lee el conjunto solución en la recta.
+- **Objetivo educativo:** Vas a ver que la solución es un conjunto de valores de \(x\) (intervalos), no un “área del plano”.
+- **Interactividad sugerida:** selector \(<,\le,>,\ge\); sliders \(a,b,c\); actualizar raíces, signos, gráfica y solución en intervalos.
 
 ### Fórmulas relacionadas
 
