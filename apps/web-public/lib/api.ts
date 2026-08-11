@@ -14,7 +14,14 @@ import { sectionHref as subjectSectionHref } from './subjects';
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const FETCH_TIMEOUT_MS = 10_000;
+const RUNTIME_FETCH_TIMEOUT_MS = 10_000;
+const BUILD_FETCH_TIMEOUT_MS = 4_000;
+
+function getFetchTimeoutMs(): number {
+  return process.env.NEXT_PHASE === 'phase-production-build'
+    ? BUILD_FETCH_TIMEOUT_MS
+    : RUNTIME_FETCH_TIMEOUT_MS;
+}
 /** Always-available catalog so the hub never renders empty if the API flakes. */
 const FALLBACK_SUBJECTS: SubjectSummary[] = [
   {
@@ -62,7 +69,7 @@ export function getApiBaseUrl(): string {
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
   try {
     const res = await fetch(url, {
       ...init,
@@ -156,7 +163,7 @@ export async function fetchSearch(params: {
   if (params.limit) sp.set('limit', String(params.limit));
   const url = `${getApiBaseUrl()}/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
   try {
     const res = await fetch(url, {
       headers: { Accept: 'application/json' },

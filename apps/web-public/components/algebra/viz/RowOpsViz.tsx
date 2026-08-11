@@ -339,11 +339,6 @@ export function RowOpsViz() {
     return `R${i + 1} ← R${i + 1}${cPart}`;
   })();
 
-  const canApply =
-    (op === 'swap' && i !== j) ||
-    (op === 'scale' && !isZero(c)) ||
-    (op === 'add' && i !== j);
-
   return (
     <VizPanel>
       <div className="space-y-4">

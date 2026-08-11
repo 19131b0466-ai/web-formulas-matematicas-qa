@@ -27,6 +27,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   transpilePackages: ['@repo/shared-types', '@repo/math-renderer'],
   poweredByHeader: false,
+  /** Sitemap + static pages may call the API several times during build. */
+  staticPageGenerationTimeout: 180,
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
