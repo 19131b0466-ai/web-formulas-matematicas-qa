@@ -13,7 +13,8 @@ type Props = {
 };
 
 export function ComputationalCostPanel({ cost, title, showLabel, hideLabel }: Props) {
-  const [open, setOpen] = useState(true);
+  // Secondary CS note: start collapsed so it does not compete with the main lesson.
+  const [open, setOpen] = useState(false);
   const v = useVizLabels();
   const body = cost.markdown ?? [cost.assumptions, cost.time, cost.space, cost.notes].filter(Boolean).join('\n\n');
 
@@ -34,8 +35,9 @@ export function ComputationalCostPanel({ cost, title, showLabel, hideLabel }: Pr
           {cost.time ? <p className="font-mono text-sm">{v.time}: {cost.time}</p> : null}
           {cost.space ? <p className="font-mono text-sm">{v.space}: {cost.space}</p> : null}
           {body ? (
-            <div className="whitespace-pre-wrap text-sm text-[var(--fg)]">
-              <InlineMarkdown text={body.replace(/\$\$/g, '$')} />
+            <div className="text-sm text-[var(--fg)]">
+              {/* Keep $$ / \[ \] so InlineMarkdown can render display math; do not flatten to $. */}
+              <InlineMarkdown text={body} />
             </div>
           ) : null}
         </div>

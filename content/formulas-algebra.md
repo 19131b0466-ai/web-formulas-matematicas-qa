@@ -1283,13 +1283,7 @@ R_i\leftrightarrow R_j;\;R_i\leftarrow cR_i;\;R_i\leftarrow R_i+cR_j
 
 ### Complejidad computacional
 
-Usar operaciones elementales para eliminación de Gauss sobre una matriz densa cuadrada \(n\times n\) requiere, con el algoritmo clásico,
-
-\[
-O(n^3)
-\]
-
-tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \(O(n^2)\). En el recurso interactivo este bloque va en modo avanzado, para no distraer del objetivo gráfico.
+Usar operaciones elementales para eliminación de Gauss sobre una matriz densa cuadrada \(n\times n\) requiere, con el algoritmo clásico, \(O(n^3)\) tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \(O(n^2)\).
 
 ### Fórmulas relacionadas
 
