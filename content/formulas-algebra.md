@@ -1275,11 +1275,11 @@ R_i\leftrightarrow R_j;\;R_i\leftarrow cR_i;\;R_i\leftarrow R_i+cR_j
 
 - **Tipo:** `matrix`
 - **Modo:** `row_ops`
-- **Concepto visual:** efecto de operaciones elementales sobre un sistema equivalente.
-- **Elementos:** matriz aumentada antes y después de cada operación de fila, con fila afectada resaltada.
-- **Idea:** Prueba intercambiar, escalar o sumar filas y mira cómo cambia \(A\).
-- **Objetivo educativo:** Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.
-- **Interactividad sugerida:** botones para aplicar \(R_i\leftrightarrow R_j\), \(cR_i\) y \(R_i+cR_j\), con historial de pasos.
+- **Concepto visual:** operaciones elementales sobre \([A\mid b]\) que preservan el conjunto solución (base de Gauss / Gauss-Jordan).
+- **Elementos:** matriz aumentada editable; sistema original vs transformado; operación simbólica con antes/después; metas guiadas (cero bajo pivote, escalonada, RREF); det y complejidad en bloques secundarios.
+- **Idea:** Elige \(R_i\leftrightarrow R_j\), \(cR_i\) o \(R_i+cR_j\) con filas y \(c\); aplica y compara el sistema con el original.
+- **Objetivo educativo:** Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.
+- **Interactividad sugerida:** elegir tipo de operación, filas origen/destino y \(c\); resaltar filas; metas guiadas; bloques opcionales de \(\det(A)\) y complejidad.
 
 ### Complejidad computacional
 
@@ -1289,7 +1289,7 @@ Usar operaciones elementales para eliminación de Gauss sobre una matriz densa c
 O(n^3)
 \]
 
-tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \(O(n^2)\).
+tiempo. El almacenamiento de la matriz es \(O(n^2)\). La sustitución hacia atrás, una vez obtenida la forma triangular, cuesta \(O(n^2)\). En el recurso interactivo este bloque va en modo avanzado, para no distraer del objetivo gráfico.
 
 ### Fórmulas relacionadas
 

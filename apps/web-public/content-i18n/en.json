@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Change the radius and tap **Closed endpoints** to see how the solution interval opens or closes.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "You'll see that a \\(2\\times 2\\) system is two lines: the solution is their crossing (if they meet).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Move the slope and watch the orange point: it marks the intersection, or you'll see if they're parallel.",
-  "Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.": "You'll see that row operations change the matrix, but the system stays equivalent.",
-  "Prueba intercambiar, escalar o sumar filas y mira cómo cambia \\(A\\).": "Try swapping, scaling, or adding rows and watch how \\(A\\) changes.",
   "Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.": "You'll see that comparing ranks tells you whether there's one, infinitely many, or no solution.",
   "Haz \\(A\\) singular o no y mira el indicador de rango / \\(\\emptyset\\) / \\(\\infty\\).": "Make \\(A\\) singular or not and watch the rank / \\(\\emptyset\\) / \\(\\infty\\) indicator.",
   "Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).": "You'll see that the domain is the \\(x\\) where the function makes sense (here, \\(x\\neq 0\\)).",
@@ -1949,5 +1947,7 @@
   "Vas a ver que el sistema lineal se compacta en \\(Ax=b\\): filas de \\(A\\) son ecuaciones, columnas son variables; \\(\\det(A)\\neq0\\) implica solución única.": "You'll see that a linear system packs into \\(Ax=b\\): rows of \\(A\\) are equations, columns are variables; \\(\\det(A)\\neq0\\) means a unique solution.",
   "Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.": "Edit \\(A\\) and \\(b\\): compare the traditional system with the matrix form, the \\(Ax\\) expansion, and the determinant.",
   "Vas a ver que la matriz aumentada \\([A\\mid b]\\) reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.": "You'll see that the augmented matrix \\([A\\mid b]\\) gathers coefficients and right-hand sides: each row is one equation of the system.",
-  "Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.": "Pick \\(R_1\\) or \\(R_2\\) and edit \\(A\\) and \\(b\\): you see the matrix, the active row, and the full system together."
+  "Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.": "Pick \\(R_1\\) or \\(R_2\\) and edit \\(A\\) and \\(b\\): you see the matrix, the active row, and the full system together.",
+  "Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.": "You'll see that elementary row operations change the system's form, not its solution: that's how Gauss and Gauss–Jordan work.",
+  "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Pick \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\), or \\(R_i+cR_j\\) with rows and \\(c\\); apply and compare with the original system."
 }

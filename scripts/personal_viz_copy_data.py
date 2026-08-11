@@ -112,8 +112,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.',
     ),
     'ALG-SIS-004': (
-        'Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.',
-        'Prueba intercambiar, escalar o sumar filas y mira cómo cambia \\(A\\).',
+        'Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.',
+        'Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.',
     ),
     'ALG-SIS-005': (
         'Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.',
@@ -660,8 +660,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Pick \\(R_1\\) or \\(R_2\\) and edit \\(A\\) and \\(b\\): you see the matrix, the active row, and the full system together.',
     ),
         'ALG-SIS-004': (
-        "You'll see that row operations change the matrix, but the system stays equivalent.",
-        'Try swapping, scaling, or adding rows and watch how \\(A\\) changes.',
+        "You'll see that elementary row operations change the system's form, not its solution: that's how Gauss and Gauss–Jordan work.",
+        "Pick \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\), or \\(R_i+cR_j\\) with rows and \\(c\\); apply and compare with the original system.",
     ),
         'ALG-SIS-005': (
         "You'll see that comparing ranks tells you whether there's one, infinitely many, or no solution.",
@@ -1206,8 +1206,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Wähle \\(R_1\\) oder \\(R_2\\) und editiere \\(A\\) und \\(b\\): du siehst Matrix, aktive Zeile und das ganze System zusammen.',
     ),
         'ALG-SIS-004': (
-        'Du siehst: Zeilenoperationen ändern die Matrix, aber das System bleibt äquivalent.',
-        'Probiere Tauschen, Skalieren oder Addieren von Zeilen und schau, wie \\(A\\) sich ändert.',
+        'Du siehst: Elementare Zeilenoperationen ändern die Form des Systems, nicht die Lösung — so entstehen Gauß und Gauß–Jordan.',
+        'Wähle \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) oder \\(R_i+cR_j\\) mit Zeilen und \\(c\\); wende an und vergleiche mit dem Originalsystem.',
     ),
         'ALG-SIS-005': (
         'Du siehst: Rangvergleiche sagen dir, ob es eine, unendlich viele oder keine Lösung gibt.',
@@ -1752,8 +1752,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Choisis \\(R_1\\) ou \\(R_2\\) et édite \\(A\\) et \\(b\\) : tu vois la matrice, la ligne active et le système complet ensemble.',
     ),
         'ALG-SIS-004': (
-        'Tu vas voir que les opérations sur les lignes changent la matrice, mais le système reste équivalent.',
-        'Essaie d’échanger, d’échelonner ou d’ajouter des lignes et regarde comment \\(A\\) change.',
+        'Tu vas voir que les opérations élémentaires changent la forme du système, pas sa solution : c’est la base de Gauss et Gauss–Jordan.',
+        'Choisis \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) ou \\(R_i+cR_j\\) avec lignes et \\(c\\) ; applique et compare au système original.',
     ),
         'ALG-SIS-005': (
         'Tu vas voir que comparer les rangs te dit s’il y a une, une infinité, ou aucune solution.',
@@ -2298,8 +2298,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Scegli \\(R_1\\) o \\(R_2\\) e modifica \\(A\\) e \\(b\\): vedi insieme la matrice, la riga attiva e il sistema completo.',
     ),
         'ALG-SIS-004': (
-        'Vedrai che le operazioni di riga cambiano la matrice, ma il sistema resta equivalente.',
-        'Prova a scambiare, scalare o sommare righe e guarda come cambia \\(A\\).',
+        'Vedrai che le operazioni elementari cambiano la forma del sistema, non la soluzione: così nascono Gauss e Gauss–Jordan.',
+        'Scegli \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con righe e \\(c\\); applica e confronta con il sistema originale.',
     ),
         'ALG-SIS-005': (
         "Vedrai che confrontare i ranghi ti dice se c'è una, infinite o nessuna soluzione.",
@@ -2844,8 +2844,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Escolhe \\(R_1\\) ou \\(R_2\\) e edita \\(A\\) e \\(b\\): vês a matriz, a linha ativa e o sistema completo ao mesmo tempo.',
     ),
         'ALG-SIS-004': (
-        'Vais ver que as operações de linha mudam a matriz, mas o sistema continua equivalente.',
-        'Experimenta trocar, escalar ou somar linhas e olha como muda \\(A\\).',
+        'Vais ver que as operações elementares mudam a forma do sistema, não a solução: assim se constroem Gauss e Gauss–Jordan.',
+        'Escolhe \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) ou \\(R_i+cR_j\\) com linhas e \\(c\\); aplica e compara com o sistema original.',
     ),
         'ALG-SIS-005': (
         'Vais ver que comparar postos te diz se há uma, infinitas ou nenhuma solução.',

@@ -7,6 +7,7 @@ import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCapt
 import { det2, type Mat2 } from './math2d';
 import { AugmentedMatrixViz } from './AugmentedMatrixViz';
 import { MatrixFormViz } from './MatrixFormViz';
+import { RowOpsViz } from './RowOpsViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -107,6 +108,9 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('SIS-003')) {
     return <AugmentedMatrixViz />;
+  }
+  if (formulaId.includes('SIS-004')) {
+    return <RowOpsViz />;
   }
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }
