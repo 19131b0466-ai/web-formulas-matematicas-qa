@@ -1364,11 +1364,11 @@ Usar operaciones elementales para eliminación de Gauss sobre una matriz densa c
 ### Visualización sugerida
 
 - **Tipo:** `function_transform`
-- **Concepto visual:** composición como proceso en dos etapas.
-- **Elementos:** diagrama de flujo \(x\to g(x)\to f(g(x))\) y, opcionalmente, gráficas de \(g\) y \(f\).
-- **Idea:** Mueve \(x_0\) y los parámetros y fíjate: el valor mostrado es \(f(g(x))\).
-- **Objetivo educativo:** Vas a ver que componer funciones es aplicar una después de la otra.
-- **Interactividad sugerida:** campo para elegir un valor de \(x\); animar su recorrido y permitir intercambiar el orden de composición.
+- **Concepto visual:** composición como cadena \(x_0\to g(x_0)\to f(g(x_0))\) con valores numéricos.
+- **Elementos:** flujo superior con bloques; etapas Entrada / Aplicar g / Componer; gráficas de \(g\) y \(f\); selector \(f\circ g\mid g\circ f\); validación de dominio.
+- **Idea:** Mueve \(x_0\) y sigue su recorrido: primero entra en \(g\), y el resultado \(g(x_0)\) entra después en \(f\).
+- **Objetivo educativo:** Vas a ver que componer funciones significa usar la salida de una función como entrada de otra.
+- **Interactividad sugerida:** deslizador \(x_0\); recorrer los tres estados; cambiar el orden de composición.
 
 ### Fórmulas relacionadas
 
@@ -1390,11 +1390,11 @@ f^{-1}(f(x))=x
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** inversa como intercambio de entrada y salida.
-- **Elementos:** gráficas de \(y=f(x)\), \(y=f^{-1}(x)\) y la recta \(y=x\).
-- **Idea:** Compara la curva y su inversa; la diagonal punteada es el espejo \(y=x\).
-- **Objetivo educativo:** Vas a ver que la inversa “deshace” la función: sus gráficas son simétricas respecto de \(y=x\).
-- **Interactividad sugerida:** permitir seleccionar puntos y reflejarlos; alternar entre una función invertible y otra que falla la prueba horizontal.
+- **Concepto visual:** inversa como intercambio \((x,y)\leftrightarrow(y,x)\) y reflexión respecto de \(y=x\).
+- **Elementos:** gráficas de \(f\), \(y=x\) y el reflejo; puntos \(P\) y \(P'\); prueba de la línea horizontal; botón «Restringir dominio»; caso lineal \(mx+b\).
+- **Idea:** Compara la curva y su reflejo; la diagonal punteada es el espejo \(y=x\). Restringe el dominio de \(x^2\) cuando no sea inyectiva.
+- **Objetivo educativo:** Vas a ver que una función inversa deshace la original intercambiando entradas y salidas, y que solo existe (como función) cuando \(f\) es inyectiva.
+- **Interactividad sugerida:** mover \(x_0\); alternar cuadrática/lineal; restringir dominio \(x\ge 0\).
 
 ### Fórmulas relacionadas
 
@@ -1432,11 +1432,11 @@ y=mx+b;\quad m=\frac{y_2-y_1}{x_2-x_1}
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** pendiente e intercepto de una recta.
-- **Elementos:** recta \(y=mx+b\), triángulo de pendiente con cambio vertical/horizontal y punto de corte \((0,b)\).
-- **Idea:** Mueve \(m\) y \(b\) y mira: la recta se inclina y se desplaza al instante.
-- **Objetivo educativo:** Vas a ver que una recta queda determinada por su pendiente y su corte con el eje \(y\).
-- **Interactividad sugerida:** deslizadores para \(m\) y \(b\); mostrar \(\Delta y/\Delta x\) sobre dos puntos de la recta.
+- **Concepto visual:** pendiente e intercepto de una recta \(y=mx+b\).
+- **Elementos:** ecuación en vivo; punto principal \(P=(0,b)\); triángulo de pendiente con \(\Delta x=1\), \(\Delta y=m\); clasificación creciente/decreciente/horizontal; corte en \(x\) secundario.
+- **Idea:** Mueve \(m\) y observa la subida respecto al avance. Mueve \(b\) y observa cómo la recta se desplaza sin cambiar su inclinación.
+- **Objetivo educativo:** Vas a ver que en \(y=mx+b\), \(m\) controla la inclinación y \(b\) indica dónde corta al eje \(y\).
+- **Interactividad sugerida:** deslizadores para \(m\) y \(b\); mostrar \(\Delta y/\Delta x\) sobre el triángulo anclado en \((0,b)\).
 
 ### Fórmulas relacionadas
 
@@ -1458,11 +1458,11 @@ m_1=m_2;\quad m_1m_2=-1
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** paralelismo y perpendicularidad mediante pendientes.
-- **Elementos:** dos rectas con sus pendientes etiquetadas y un indicador del ángulo entre ellas.
-- **Idea:** Ajusta las dos rectas y fíjate cuándo no se cortan o se cruzan en ángulo recto.
-- **Objetivo educativo:** Vas a ver que rectas paralelas tienen la misma pendiente; perpendiculares, pendientes inversas cambiadas de signo.
-- **Interactividad sugerida:** modificar \(m_2\) y mostrar en tiempo real si las rectas son paralelas, perpendiculares o ninguna.
+- **Concepto visual:** paralelismo (\(m_1=m_2\)) y perpendicularidad (\(m_1m_2=-1\)) mediante pendientes.
+- **Elementos:** ecuaciones \(r_1\), \(r_2\); controles \(m_1,b_1,m_2,b_2\); clasificación paralelas/coincidentes/perpendiculares/secantes; punto de intersección \(I\); ángulo \(\theta\); acciones «Hacer paralelas» / «Hacer perpendiculares».
+- **Idea:** Mueve \(m_1\) y \(m_2\). Observa cuándo las rectas dejan de cortarse o cuándo forman exactamente \(90^\circ\). Luego cambia \(b_1\) y \(b_2\).
+- **Objetivo educativo:** Vas a ver que dos rectas no verticales son paralelas cuando tienen la misma pendiente, y perpendiculares cuando sus pendientes son recíprocas y de signo opuesto.
+- **Interactividad sugerida:** modificar las cuatro pendientes/interceptos; comprobar \(m_1m_2\) y \(\theta\) en tiempo real.
 
 ### Fórmulas relacionadas
 
@@ -1484,11 +1484,11 @@ g(x)=f(x-h)+k
 ### Visualización sugerida
 
 - **Tipo:** `function_transform`
-- **Concepto visual:** traslaciones horizontal y vertical de una gráfica.
-- **Elementos:** gráfica base \(y=f(x)\) y copia transformada \(y=f(x-h)+k\), con flechas de desplazamiento.
-- **Idea:** Mueve \(h\) y \(k\) y mira cómo la curva se desplaza horizontal y verticalmente.
-- **Objetivo educativo:** Vas a ver que trasladar una gráfica es moverla sin deformarla.
-- **Interactividad sugerida:** deslizadores de \(h\) y \(k\) con superposición de la gráfica original y transformada.
+- **Concepto visual:** traslación \(g(x)=f(x-h)+k\) que conserva la forma.
+- **Elementos:** \(f(x)=x^2\) y \(g\); puntos \(P\) y \(P'\); vector \(\vec t=(h,k)\); solo controles \(h\) y \(k\); descripciones dinámicas de dirección.
+- **Idea:** Mueve \(h\) y observa cómo todos los puntos se desplazan a izquierda o derecha. Mueve \(k\) y observa cómo la gráfica completa sube o baja.
+- **Objetivo educativo:** Vas a ver que en \(g(x)=f(x-h)+k\), \(h\) desplaza horizontalmente y \(k\) verticalmente; la forma no cambia. Un \(h\) positivo mueve hacia la derecha aunque aparezca \(x-h\).
+- **Interactividad sugerida:** deslizadores de \(h\) y \(k\) con superposición de original y trasladada.
 
 ### Fórmulas relacionadas
 
@@ -1509,11 +1509,11 @@ g(x)=af(bx);\quad -f(x);\quad f(-x)
 ### Visualización sugerida
 
 - **Tipo:** `function_transform`
-- **Concepto visual:** escalamiento y reflexión de una función.
-- **Elementos:** gráfica base y transformada para \(af(x)\), \(f(bx)\), \(-f(x)\) y \(f(-x)\).
-- **Idea:** Cambia \(a\) y pulsa **Reflexión horizontal**: mira cómo se deforma la onda respecto del original.
-- **Objetivo educativo:** Vas a ver que escalar y reflejar estiran, comprimen o voltean la curva.
-- **Interactividad sugerida:** controles para \(a\) y \(b\), más interruptores de reflexión; mantener visible la gráfica original.
+- **Concepto visual:** \(g(x)=af(bx)\): \(a\) controla vertical (escala/reflexión en el eje \(x\)) y \(b\) horizontal (factor \(1/|b|\), reflexión en el eje \(y\)).
+- **Elementos:** original y transformada; función base asimétrica por defecto; puntos \(P\) y \(P'\); acciones Restablecer / Reflejar respecto a \(x\) / Reflejar respecto a \(y\).
+- **Idea:** Mueve \(a\): observa las alturas. Mueve \(b\): el efecto horizontal es inverso (\(|b|=2\) comprime a la mitad). Prueba valores negativos para reflejar.
+- **Objetivo educativo:** Vas a ver que en \(g(x)=af(bx)\), \(a\) modifica verticalmente y \(b\) horizontalmente; los signos negativos producen reflexiones respecto a los ejes.
+- **Interactividad sugerida:** controles \(a\) y \(b\); selector de función base; resumen dinámico de transformaciones.
 
 ### Fórmulas relacionadas
 

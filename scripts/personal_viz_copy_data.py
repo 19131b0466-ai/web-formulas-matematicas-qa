@@ -124,28 +124,28 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Mueve \\(b\\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \\(f(x)=1/(x-b)\\)).',
     ),
     'ALG-FUN-002': (
-        'Vas a ver que componer funciones es aplicar una después de la otra.',
-        'Mueve \\(x_0\\) y los parámetros y fíjate: el valor mostrado es \\(f(g(x))\\).',
+        'Vas a ver que componer funciones significa usar la salida de una función como entrada de otra.',
+        'Mueve \\(x_0\\) y sigue su recorrido: primero entra en \\(g\\), y el resultado \\(g(x_0)\\) entra después en \\(f\\).',
     ),
     'ALG-FUN-003': (
-        'Vas a ver que la inversa “deshace” la función: sus gráficas son simétricas respecto de \\(y=x\\).',
-        'Compara la curva y su inversa; la diagonal punteada es el espejo \\(y=x\\).',
+        'Vas a ver que una función inversa deshace la original intercambiando entradas y salidas, y que solo existe (como función) cuando \\(f\\) es inyectiva.',
+        'Compara la curva y su reflejo; la diagonal punteada es el espejo \\(y=x\\). Restringe el dominio de \\(x^2\\) cuando no sea inyectiva.',
     ),
     'ALG-FUN-005': (
-        'Vas a ver que una recta queda determinada por su pendiente y su corte con el eje \\(y\\).',
-        'Mueve \\(m\\) y \\(b\\) y mira: la recta se inclina y se desplaza al instante.',
+        'Vas a ver que en \\(y=mx+b\\), \\(m\\) controla la inclinación y \\(b\\) indica dónde corta al eje \\(y\\).',
+        'Mueve \\(m\\) y observa la subida respecto al avance. Mueve \\(b\\) y observa cómo la recta se desplaza sin cambiar su inclinación.',
     ),
     'ALG-FUN-006': (
-        'Vas a ver que rectas paralelas tienen la misma pendiente; perpendiculares, pendientes inversas cambiadas de signo.',
-        'Ajusta las dos rectas y fíjate cuándo no se cortan o se cruzan en ángulo recto.',
+        'Vas a ver que dos rectas no verticales son paralelas cuando tienen la misma pendiente, y perpendiculares cuando sus pendientes son recíprocas y de signo opuesto.',
+        'Mueve \\(m_1\\) y \\(m_2\\). Observa cuándo las rectas dejan de cortarse o cuándo forman exactamente \\(90^\\circ\\).',
     ),
     'ALG-FUN-007': (
-        'Vas a ver que trasladar una gráfica es moverla sin deformarla.',
-        'Mueve \\(h\\) y \\(k\\) y mira cómo la curva se desplaza horizontal y verticalmente.',
+        'Vas a ver que en \\(g(x)=f(x-h)+k\\), \\(h\\) desplaza horizontalmente y \\(k\\) verticalmente; la forma no cambia.',
+        'Mueve \\(h\\) y observa cómo todos los puntos se desplazan. Aunque aparece \\(x-h\\), un \\(h\\) positivo mueve hacia la derecha.',
     ),
     'ALG-FUN-008': (
-        'Vas a ver que escalar y reflejar estiran, comprimen o voltean la curva.',
-        'Cambia \\(a\\) y pulsa **Reflexión horizontal**: mira cómo se deforma la onda respecto del original.',
+        'Vas a ver que en \\(g(x)=af(bx)\\), \\(a\\) modifica verticalmente y \\(b\\) horizontalmente; los signos negativos producen reflexiones.',
+        'Mueve \\(a\\) y \\(b\\). Atención: el efecto horizontal es inverso. Si \\(|b|=2\\), el ancho se reduce a la mitad.',
     ),
     'ALG-POL-007': (
         'Vas a ver que un polinomio en dos variables asigna un valor a cada punto \\((x,y)\\).',
@@ -672,28 +672,28 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Move \\(b\\) and watch the excluded value, asymptote, and domain shift together (for \\(f(x)=1/(x-b)\\)).",
     ),
         'ALG-FUN-002': (
-        "You'll see that composing functions means applying one after the other.",
-        'Move \\(x_0\\) and the parameters and notice: the shown value is \\(f(g(x))\\).',
+        "You'll see that composing functions means using the output of one function as the input of another.",
+        'Move \\(x_0\\) and follow its path: it first enters \\(g\\), then \\(g(x_0)\\) enters \\(f\\).',
     ),
         'ALG-FUN-003': (
-        "You'll see that the inverse “undoes” the function: their graphs are symmetric about \\(y=x\\).",
-        'Compare the curve and its inverse; the dashed diagonal is the mirror \\(y=x\\).',
+        "You'll see that an inverse undoes the original by swapping inputs and outputs, and exists as a function only when \\(f\\) is injective.",
+        'Compare the curve and its reflection; the dashed diagonal is the mirror \\(y=x\\). Restrict the domain of \\(x^2\\) when it is not injective.',
     ),
         'ALG-FUN-005': (
-        "You'll see that a line is determined by its slope and its \\(y\\)-intercept.",
-        'Move \\(m\\) and \\(b\\) and watch: the line tilts and shifts instantly.',
+        "You'll see that in \\(y=mx+b\\), \\(m\\) controls the slope and \\(b\\) is where the line meets the \\(y\\)-axis.",
+        'Move \\(m\\) and watch rise over run. Move \\(b\\) and watch the line shift without changing its slope.',
     ),
         'ALG-FUN-006': (
-        "You'll see that parallel lines share a slope; perpendicular ones have opposite reciprocal slopes.",
-        'Adjust the two lines and notice when they never meet or cross at a right angle.',
+        "You'll see that two non-vertical lines are parallel when they share the same slope, and perpendicular when their slopes are opposite reciprocals.",
+        'Move \\(m_1\\) and \\(m_2\\). Watch when the lines stop intersecting or form exactly \\(90^\\circ\\).',
     ),
         'ALG-FUN-007': (
-        "You'll see that translating a graph means moving it without reshaping it.",
-        'Move \\(h\\) and \\(k\\) and watch the curve shift horizontally and vertically.',
+        "You'll see that in \\(g(x)=f(x-h)+k\\), \\(h\\) shifts horizontally and \\(k\\) vertically; the shape does not change.",
+        'Move \\(h\\) and watch every point shift. Even though \\(x-h\\) appears, positive \\(h\\) moves the graph to the right.',
     ),
         'ALG-FUN-008': (
-        "You'll see that scaling and reflecting stretch, compress, or flip the curve.",
-        'Change \\(a\\) and tap **Horizontal reflection**: watch how the wave deforms from the original.',
+        "You'll see that in \\(g(x)=af(bx)\\), \\(a\\) acts vertically and \\(b\\) horizontally; negative signs produce reflections.",
+        'Move \\(a\\) and \\(b\\). Note: the horizontal effect is inverse. If \\(|b|=2\\), the width halves.',
     ),
         'ALG-POL-007': (
         "You'll see that a two-variable polynomial assigns a value to each point \\((x,y)\\).",

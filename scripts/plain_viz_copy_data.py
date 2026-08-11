@@ -128,28 +128,28 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Mueve b y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en f(x)=1/(x−b)).",
     ),
     "ALG-FUN-002": (
-        "Componer funciones es aplicar una después de la otra.",
-        "Mueve x₀ y los parámetros: el valor mostrado es f(g(x)).",
+        "Componer funciones significa usar la salida de una función como entrada de otra.",
+        "Mueve x₀ y sigue su recorrido: primero entra en g, y el resultado g(x₀) entra después en f.",
     ),
     "ALG-FUN-003": (
-        "La inversa “deshace” la función: sus gráficas son simétricas respecto de y = x.",
-        "Compara la curva y su inversa; la diagonal punteada es el espejo y = x.",
+        "Una función inversa deshace la original intercambiando entradas y salidas, y solo existe (como función) cuando f es inyectiva.",
+        "Compara la curva y su reflejo; la diagonal punteada es el espejo y = x. Restringe el dominio de x² cuando no sea inyectiva.",
     ),
     "ALG-FUN-005": (
-        "Una recta queda determinada por su pendiente y su corte con el eje y.",
-        "Mueve m y b: la recta se inclina y se desplaza al instante.",
+        "En y = mx + b, m controla la inclinación y b indica dónde corta al eje y.",
+        "Mueve m y observa la subida respecto al avance. Mueve b y observa cómo la recta se desplaza sin cambiar su inclinación.",
     ),
     "ALG-FUN-006": (
-        "Rectas paralelas tienen la misma pendiente; perpendiculares, pendientes inversas cambiadas de signo.",
-        "Ajusta las dos rectas y observa cuándo no se cortan o se cruzan en ángulo recto.",
+        "Dos rectas no verticales son paralelas cuando tienen la misma pendiente, y perpendiculares cuando sus pendientes son recíprocas y de signo opuesto.",
+        "Mueve m₁ y m₂. Observa cuándo las rectas dejan de cortarse o cuándo forman exactamente 90°.",
     ),
     "ALG-FUN-007": (
-        "Trasladar una gráfica es moverla sin deformarla.",
-        "Mueve h y k: la curva se desplaza horizontal y verticalmente.",
+        "En g(x) = f(x − h) + k, h desplaza horizontalmente y k verticalmente; la forma no cambia.",
+        "Mueve h y observa cómo todos los puntos se desplazan. Aunque aparece x − h, un h positivo mueve hacia la derecha.",
     ),
     "ALG-FUN-008": (
-        "Escalar y reflejar estiran, comprimen o voltean la curva.",
-        "Cambia a y la reflexión: mira cómo se deforma la onda respecto del original.",
+        "En g(x) = af(bx), a modifica verticalmente y b horizontalmente; los signos negativos producen reflexiones.",
+        "Mueve a y b. Atención: el efecto horizontal es inverso. Si |b| = 2, el ancho se reduce a la mitad.",
     ),
     "ALG-POL-007": (
         "Un polinomio en dos variables asigna un valor a cada punto (x, y).",

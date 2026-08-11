@@ -1,6 +1,12 @@
 export { NumberLineViz } from './NumberLineViz';
 export { AlgebraTilesViz } from './AlgebraTilesViz';
 export { GraphViz } from './GraphViz';
+export { LineSlopeViz } from './LineSlopeViz';
+export { ParallelPerpendicularViz } from './ParallelPerpendicularViz';
+export { InverseFunctionViz } from './InverseFunctionViz';
+export { CompositionViz } from './CompositionViz';
+export { TranslationViz } from './TranslationViz';
+export { ScalingReflectionViz } from './ScalingReflectionViz';
 export { FunctionTransformViz } from './FunctionTransformViz';
 export { VectorViz } from './VectorViz';
 export { VectorSpaceViz } from './VectorSpaceViz';
