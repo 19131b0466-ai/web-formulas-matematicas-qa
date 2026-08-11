@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Cambia il raggio e tocca **Estremi chiusi** per vedere come si apre o chiude l'intervallo soluzione.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "Vedrai che un sistema \\(2\\times 2\\) sono due rette: la soluzione è il loro incrocio (se si tagliano).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Muovi la pendenza e guarda il punto arancione: segna l'intersezione, o vedrai se sono parallele.",
-  "Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).": "Vedrai che il dominio sono le \\(x\\) dove la funzione ha senso (qui, \\(x\\neq 0\\)).",
-  "Mira la hipérbola \\(1/x\\): cerca de cero la curva se dispara; ese hueco es el dominio roto.": "Guarda l'iperbole \\(1/x\\): vicino a zero la curva sale; quel buco è il dominio spezzato.",
   "Vas a ver que componer funciones es aplicar una después de la otra.": "Vedrai che comporre funzioni significa applicarne una dopo l'altra.",
   "Mueve \\(x_0\\) y los parámetros y fíjate: el valor mostrado es \\(f(g(x))\\).": "Muovi \\(x_0\\) e i parametri e nota: il valore mostrato è \\(f(g(x))\\).",
   "Vas a ver que la inversa “deshace” la función: sus gráficas son simétricas respecto de \\(y=x\\).": "Vedrai che l'inversa «disfa» la funzione: i loro grafici sono simmetrici rispetto a \\(y=x\\).",
@@ -1949,5 +1947,7 @@
   "Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.": "Vedrai che le operazioni elementari cambiano la forma del sistema, non la soluzione: così nascono Gauss e Gauss–Jordan.",
   "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Scegli \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con righe e \\(c\\); applica e confronta con il sistema originale.",
   "Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \\(n\\) ⇒ una; rangos iguales y menores que \\(n\\) ⇒ infinitas.": "Vedrai il criterio completo: ranghi diversi ⇒ nessuna soluzione; ranghi uguali a \\(n\\) ⇒ una; ranghi uguali e < \\(n\\) ⇒ infinite.",
-  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Carica i tre casi o modifica \\([A\\mid b]\\): guarda rank(A), rank([A|b]) e \\(n\\), e segui i due confronti."
+  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Carica i tre casi o modifica \\([A\\mid b]\\): guarda rank(A), rank([A|b]) e \\(n\\), e segui i due confronti.",
+  "Vas a ver que el dominio es el conjunto de \\(x\\) para los cuales \\(f(x)\\) está definida, no solo un «hueco» en la gráfica.": "Vedrai che il dominio è l’insieme degli \\(x\\) per cui \\(f(x)\\) è definita, non solo un buco nel grafico.",
+  "Mueve \\(b\\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \\(f(x)=1/(x-b)\\)).": "Muovi \\(b\\) e osserva come valore escluso, asintota e dominio si spostano insieme."
 }

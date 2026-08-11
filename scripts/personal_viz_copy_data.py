@@ -120,8 +120,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.',
     ),
     'ALG-FUN-001': (
-        'Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).',
-        'Mira la hipérbola \\(1/x\\): cerca de cero la curva se dispara; ese hueco es el dominio roto.',
+        'Vas a ver que el dominio es el conjunto de \\(x\\) para los cuales \\(f(x)\\) está definida, no solo un «hueco» en la gráfica.',
+        'Mueve \\(b\\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \\(f(x)=1/(x-b)\\)).',
     ),
     'ALG-FUN-002': (
         'Vas a ver que componer funciones es aplicar una después de la otra.',
@@ -668,8 +668,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Load the three cases or edit \\([A\\mid b]\\): watch rank(A), rank([A|b]) and \\(n\\), and follow the two comparisons.",
     ),
         'ALG-FUN-001': (
-        "You'll see that the domain is the \\(x\\) where the function makes sense (here, \\(x\\neq 0\\)).",
-        'Look at the hyperbola \\(1/x\\): near zero the curve shoots up; that gap is the broken domain.',
+        "You'll see that the domain is the set of \\(x\\) for which \\(f(x)\\) is defined—not just a gap in the graph.",
+        "Move \\(b\\) and watch the excluded value, asymptote, and domain shift together (for \\(f(x)=1/(x-b)\\)).",
     ),
         'ALG-FUN-002': (
         "You'll see that composing functions means applying one after the other.",
@@ -1214,8 +1214,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Lade die drei Fälle oder editiere \\([A\\mid b]\\): schau rank(A), rank([A|b]) und \\(n\\), und folge den zwei Vergleichen.',
     ),
         'ALG-FUN-001': (
-        'Du siehst: Der Definitionsbereich sind die \\(x\\), wo die Funktion Sinn ergibt (hier \\(x\\neq 0\\)).',
-        'Schau auf die Hyperbel \\(1/x\\): Nahe null schießt die Kurve hoch; diese Lücke ist der gebrochene Definitionsbereich.',
+        'Du siehst: Der Definitionsbereich ist die Menge der \\(x\\), für die \\(f(x)\\) definiert ist—not nur ein Loch im Graphen.',
+        'Bewege \\(b\\) und beobachte, wie ausgeschlossener Wert, Asymptote und Definitionsbereich sich gemeinsam verschieben.',
     ),
         'ALG-FUN-002': (
         'Du siehst: Funktionen zu verknüpfen heißt eine nach der anderen anzuwenden.',
@@ -1760,8 +1760,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Charge les trois cas ou édite \\([A\\mid b]\\) : regarde rank(A), rank([A|b]) et \\(n\\), et suis les deux comparaisons.',
     ),
         'ALG-FUN-001': (
-        'Tu vas voir que le domaine ce sont les \\(x\\) où la fonction a un sens (ici, \\(x\\neq 0\\)).',
-        'Regarde l’hyperbole \\(1/x\\) : près de zéro la courbe s’envole ; ce trou est le domaine cassé.',
+        'Tu vas voir que le domaine est l’ensemble des \\(x\\) pour lesquels \\(f(x)\\) est définie, pas seulement un trou dans le graphe.',
+        'Bouge \\(b\\) et observe comment la valeur exclue, l’asymptote et le domaine se déplacent ensemble.',
     ),
         'ALG-FUN-002': (
         'Tu vas voir que composer des fonctions, c’est en appliquer une après l’autre.',
@@ -2306,8 +2306,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Carica i tre casi o modifica \\([A\\mid b]\\): guarda rank(A), rank([A|b]) e \\(n\\), e segui i due confronti.",
     ),
         'ALG-FUN-001': (
-        'Vedrai che il dominio sono le \\(x\\) dove la funzione ha senso (qui, \\(x\\neq 0\\)).',
-        "Guarda l'iperbole \\(1/x\\): vicino a zero la curva sale; quel buco è il dominio spezzato.",
+        'Vedrai che il dominio è l’insieme degli \\(x\\) per cui \\(f(x)\\) è definita, non solo un buco nel grafico.',
+        'Muovi \\(b\\) e osserva come valore escluso, asintota e dominio si spostano insieme.',
     ),
         'ALG-FUN-002': (
         "Vedrai che comporre funzioni significa applicarne una dopo l'altra.",
@@ -2852,8 +2852,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Carrega os três casos ou edita \\([A\\mid b]\\): olha rank(A), rank([A|b]) e \\(n\\), e segue as duas comparações.',
     ),
         'ALG-FUN-001': (
-        'Vais ver que o domínio são os \\(x\\) onde a função faz sentido (aqui, \\(x\\neq 0\\)).',
-        'Olha a hipérbole \\(1/x\\): perto de zero a curva dispara; esse buraco é o domínio partido.',
+        'Vais ver que o domínio é o conjunto dos \\(x\\) para os quais \\(f(x)\\) está definida, não só um buraco no gráfico.',
+        'Move \\(b\\) e observa como o valor excluído, a assíntota e o domínio se deslocam juntos.',
     ),
         'ALG-FUN-002': (
         'Vais ver que compor funções é aplicar uma depois da outra.',

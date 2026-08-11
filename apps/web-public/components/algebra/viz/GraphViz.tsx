@@ -10,10 +10,14 @@ import { LinearEquationViz } from './LinearEquationViz';
 import { LinearSystem2Viz } from './LinearSystem2Viz';
 import { QuadraticFormulaViz } from './QuadraticFormulaViz';
 import { QuadraticInequalityViz } from './QuadraticInequalityViz';
+import { DomainViz } from './DomainViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GraphViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('FUN-001')) {
+    return <DomainViz />;
+  }
   if (formulaId.includes('EQU-001')) {
     return <LinearEquationViz />;
   }

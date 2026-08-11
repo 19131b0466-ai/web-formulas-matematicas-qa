@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Ändere den Radius und tippe auf **Geschlossene Enden**, um zu sehen, wie sich das Lösungsintervall öffnet oder schließt.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "Du siehst: Ein \\(2\\times 2\\)-System sind zwei Geraden — die Lösung ist ihr Schnitt (falls sie sich treffen).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Bewege die Steigung und schau auf den orangenen Punkt: Er markiert den Schnitt, oder du siehst, dass sie parallel sind.",
-  "Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).": "Du siehst: Der Definitionsbereich sind die \\(x\\), wo die Funktion Sinn ergibt (hier \\(x\\neq 0\\)).",
-  "Mira la hipérbola \\(1/x\\): cerca de cero la curva se dispara; ese hueco es el dominio roto.": "Schau auf die Hyperbel \\(1/x\\): Nahe null schießt die Kurve hoch; diese Lücke ist der gebrochene Definitionsbereich.",
   "Vas a ver que componer funciones es aplicar una después de la otra.": "Du siehst: Funktionen zu verknüpfen heißt eine nach der anderen anzuwenden.",
   "Mueve \\(x_0\\) y los parámetros y fíjate: el valor mostrado es \\(f(g(x))\\).": "Bewege \\(x_0\\) und die Parameter und schau: Der angezeigte Wert ist \\(f(g(x))\\).",
   "Vas a ver que la inversa “deshace” la función: sus gráficas son simétricas respecto de \\(y=x\\).": "Du siehst: Die Umkehrfunktion „macht die Funktion rückgängig“ — ihre Graphen sind symmetrisch zu \\(y=x\\).",
@@ -1949,5 +1947,7 @@
   "Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.": "Du siehst: Elementare Zeilenoperationen ändern die Form des Systems, nicht die Lösung — so entstehen Gauß und Gauß–Jordan.",
   "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Wähle \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) oder \\(R_i+cR_j\\) mit Zeilen und \\(c\\); wende an und vergleiche mit dem Originalsystem.",
   "Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \\(n\\) ⇒ una; rangos iguales y menores que \\(n\\) ⇒ infinitas.": "Du siehst das volle Kriterium: verschiedene Ränge ⇒ keine Lösung; Ränge gleich \\(n\\) ⇒ eine; gleiche Ränge kleiner als \\(n\\) ⇒ unendlich viele.",
-  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Lade die drei Fälle oder editiere \\([A\\mid b]\\): schau rank(A), rank([A|b]) und \\(n\\), und folge den zwei Vergleichen."
+  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Lade die drei Fälle oder editiere \\([A\\mid b]\\): schau rank(A), rank([A|b]) und \\(n\\), und folge den zwei Vergleichen.",
+  "Vas a ver que el dominio es el conjunto de \\(x\\) para los cuales \\(f(x)\\) está definida, no solo un «hueco» en la gráfica.": "Du siehst: Der Definitionsbereich ist die Menge der \\(x\\), für die \\(f(x)\\) definiert ist—not nur ein Loch im Graphen.",
+  "Mueve \\(b\\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \\(f(x)=1/(x-b)\\)).": "Bewege \\(b\\) und beobachte, wie ausgeschlossener Wert, Asymptote und Definitionsbereich sich gemeinsam verschieben."
 }

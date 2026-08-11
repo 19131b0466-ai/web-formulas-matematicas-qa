@@ -1338,11 +1338,11 @@ Usar operaciones elementales para eliminación de Gauss sobre una matriz densa c
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** dominio como conjunto de entradas permitidas.
-- **Elementos:** gráfica de una función con zonas válidas e inválidas del eje \(x\), incluyendo agujeros, asíntotas o extremos cuando corresponda.
-- **Idea:** Mira la hipérbola \(1/x\): cerca de cero la curva se dispara; ese hueco es el dominio roto.
-- **Objetivo educativo:** Vas a ver que el dominio son los \(x\) donde la función tiene sentido (aquí, \(x\neq 0\)).
-- **Interactividad sugerida:** selector de ejemplos: polinómica, racional y radical; resaltar las restricciones que eliminan valores.
+- **Concepto visual:** dominio como conjunto de entradas x permitidas; expresión, gráfica y recta del dominio sincronizadas.
+- **Elementos:** selector polinómica / racional / radical / logarítmica; control \(b\); cadena expresión→condición→restricción→Dom(f); gráfica con asíntota vertical; recta real del dominio con círculos abiertos en exclusiones.
+- **Idea:** Mueve \(b\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \(f(x)=1/(x-b)\)).
+- **Objetivo educativo:** Vas a ver que el dominio es el conjunto de \(x\) para los cuales \(f(x)\) está definida, no solo un «hueco» en la gráfica.
+- **Interactividad sugerida:** cambiar tipo de función y \(b\); ver \(\mathbb{R}\setminus\{b\}\) y notación de intervalos en tiempo real.
 
 ### Fórmulas relacionadas
 

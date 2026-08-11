@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Change the radius and tap **Closed endpoints** to see how the solution interval opens or closes.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "You'll see that a \\(2\\times 2\\) system is two lines: the solution is their crossing (if they meet).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Move the slope and watch the orange point: it marks the intersection, or you'll see if they're parallel.",
-  "Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).": "You'll see that the domain is the \\(x\\) where the function makes sense (here, \\(x\\neq 0\\)).",
-  "Mira la hipérbola \\(1/x\\): cerca de cero la curva se dispara; ese hueco es el dominio roto.": "Look at the hyperbola \\(1/x\\): near zero the curve shoots up; that gap is the broken domain.",
   "Vas a ver que componer funciones es aplicar una después de la otra.": "You'll see that composing functions means applying one after the other.",
   "Mueve \\(x_0\\) y los parámetros y fíjate: el valor mostrado es \\(f(g(x))\\).": "Move \\(x_0\\) and the parameters and notice: the shown value is \\(f(g(x))\\).",
   "Vas a ver que la inversa “deshace” la función: sus gráficas son simétricas respecto de \\(y=x\\).": "You'll see that the inverse “undoes” the function: their graphs are symmetric about \\(y=x\\).",
@@ -1949,5 +1947,7 @@
   "Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.": "You'll see that elementary row operations change the system's form, not its solution: that's how Gauss and Gauss–Jordan work.",
   "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Pick \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\), or \\(R_i+cR_j\\) with rows and \\(c\\); apply and compare with the original system.",
   "Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \\(n\\) ⇒ una; rangos iguales y menores que \\(n\\) ⇒ infinitas.": "You'll see the full criterion: different ranks ⇒ no solution; ranks equal to \\(n\\) ⇒ one; equal ranks less than \\(n\\) ⇒ infinitely many.",
-  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Load the three cases or edit \\([A\\mid b]\\): watch rank(A), rank([A|b]) and \\(n\\), and follow the two comparisons."
+  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Load the three cases or edit \\([A\\mid b]\\): watch rank(A), rank([A|b]) and \\(n\\), and follow the two comparisons.",
+  "Vas a ver que el dominio es el conjunto de \\(x\\) para los cuales \\(f(x)\\) está definida, no solo un «hueco» en la gráfica.": "You'll see that the domain is the set of \\(x\\) for which \\(f(x)\\) is defined—not just a gap in the graph.",
+  "Mueve \\(b\\) y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en \\(f(x)=1/(x-b)\\)).": "Move \\(b\\) and watch the excluded value, asymptote, and domain shift together (for \\(f(x)=1/(x-b)\\))."
 }

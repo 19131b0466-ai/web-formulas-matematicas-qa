@@ -124,8 +124,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Carga los tres casos o edita [A|b]: mira rank(A), rank([A|b]) y n, y sigue las dos comparaciones del criterio.",
     ),
     "ALG-FUN-001": (
-        "El dominio son los x donde la función tiene sentido (aquí, x ≠ 0).",
-        "Mira la hipérbola 1/x: cerca de cero la curva se dispara; ese hueco es el dominio roto.",
+        "El dominio es el conjunto de x para los cuales f(x) está definida, no solo un hueco en la gráfica.",
+        "Mueve b y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos (en f(x)=1/(x−b)).",
     ),
     "ALG-FUN-002": (
         "Componer funciones es aplicar una después de la otra.",
@@ -672,8 +672,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Load the three cases or edit [A|b]: watch rank(A), rank([A|b]) and n, and follow the two comparisons.",
         ),
         "ALG-FUN-001": (
-            "The domain is the x values where the function makes sense (here x ≠ 0).",
-            "Look at 1/x: near zero the curve blows up; that gap is the broken domain.",
+            "The domain is the set of x for which f(x) is defined—not just a gap in the graph.",
+            "Move b and watch the excluded value, asymptote, and domain shift together (for f(x)=1/(x−b)).",
         ),
         "ALG-FUN-002": (
             "Composition means applying one function after another.",
@@ -1218,8 +1218,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Lade die drei Fälle oder bearbeite [A|b]: schau rank(A), rank([A|b]) und n, und folge den zwei Vergleichen.",
         ),
         "ALG-FUN-001": (
-            "Der Definitionsbereich sind die x, für die die Funktion Sinn hat (hier x ≠ 0).",
-            "Sieh dir 1/x an: Nahe null schießt die Kurve hoch; diese Lücke ist der gebrochene Definitionsbereich.",
+            "Der Definitionsbereich ist die Menge der x, für die f(x) definiert ist—not nur ein Loch im Graphen.",
+            "Bewege b und beobachte, wie ausgeschlossener Wert, Asymptote und Definitionsbereich sich gemeinsam verschieben.",
         ),
         "ALG-FUN-002": (
             "Zusammensetzen heißt, eine Funktion nach der anderen anzuwenden.",
@@ -1764,8 +1764,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Charge les trois cas ou modifie [A|b] : regarde rank(A), rank([A|b]) et n, et suis les deux comparaisons.",
         ),
         "ALG-FUN-001": (
-            "Le domaine, ce sont les x où la fonction a un sens (ici x ≠ 0).",
-            "Regarde 1/x : près de zéro la courbe s’envole ; ce trou est le domaine cassé.",
+            "Le domaine est l’ensemble des x pour lesquels f(x) est définie, pas seulement un trou dans le graphe.",
+            "Bouge b et observe comment la valeur exclue, l’asymptote et le domaine se déplacent ensemble.",
         ),
         "ALG-FUN-002": (
             "Composer des fonctions, c’est en appliquer une après l’autre.",
@@ -2310,8 +2310,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Carica i tre casi o modifica [A|b]: guarda rank(A), rank([A|b]) e n, e segui i due confronti.",
         ),
         "ALG-FUN-001": (
-            "Il dominio sono gli x dove la funzione ha senso (qui x ≠ 0).",
-            "Guarda 1/x: vicino a zero la curva esplode; quel buco è il dominio rotto.",
+            "Il dominio è l’insieme degli x per cui f(x) è definita, non solo un buco nel grafico.",
+            "Muovi b e osserva come valore escluso, asintota e dominio si spostano insieme.",
         ),
         "ALG-FUN-002": (
             "Comporre funzioni significa applicarne una dopo l’altra.",
@@ -2856,8 +2856,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Carrega os três casos ou edita [A|b]: olha rank(A), rank([A|b]) e n, e segue as duas comparações.",
         ),
         "ALG-FUN-001": (
-            "O domínio são os x onde a função faz sentido (aqui x ≠ 0).",
-            "Olha 1/x: perto de zero a curva dispara; esse buraco é o domínio partido.",
+            "O domínio é o conjunto dos x para os quais f(x) está definida, não só um buraco no gráfico.",
+            "Move b e observa como o valor excluído, a assíntota e o domínio se deslocam juntos.",
         ),
         "ALG-FUN-002": (
             "Compor funções é aplicar uma a seguir à outra.",
