@@ -1945,5 +1945,7 @@
   "Vas a ver que la solución es un conjunto de valores de \\(x\\) (intervalos), no un “área del plano”.": "Vedrai che la soluzione è un insieme di valori di \\(x\\) (intervalli), non un’”area del piano”.",
   "Elige la desigualdad y mueve \\(a,b,c\\): usa la parábola para el signo y lee el conjunto solución en la recta.": "Scegli la disuguaglianza e muovi \\(a,b,c\\): usa la parabola per il segno e leggi la soluzione sulla retta.",
   "Vas a ver que los ceros del denominador nunca pertenecen a la solución, y que la respuesta es una unión de intervalos.": "Vedrai che gli zeri del denominatore non appartengono mai alla soluzione, e che la risposta è un'unione di intervalli.",
-  "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Identifica gli zeri di numeratore e denominatore; dividono la retta in intervalli a segno costante."
+  "Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.": "Identifica gli zeri di numeratore e denominatore; dividono la retta in intervalli a segno costante.",
+  "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "Vedrai che \\(|x|<a\\) e \\(\\le a\\) sono soluzioni interiori, e che \\(|x|>a\\) e \\(\\ge a\\) sono esterni simmetrici.",
+  "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Scegli \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) e muovi \\(a\\ge0\\): la retta mostra la regione interna o le due esterne."
 }

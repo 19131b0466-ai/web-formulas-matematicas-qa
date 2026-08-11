@@ -1167,11 +1167,11 @@ ax^2+bx+c>0
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** valor absoluto como intervalo de distancias permitidas.
-- **Elementos:** recta numérica con centro 0, fronteras \(-a\) y \(a\), y regiones interiores/exteriores sombreadas.
-- **Idea:** Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.
-- **Objetivo educativo:** Vas a ver que el valor absoluto en desigualdades define intervalos centrados o exteriores.
-- **Interactividad sugerida:** selector de desigualdad y deslizador para \(a\); cambiar extremos abiertos/cerrados y sombreado.
+- **Concepto visual:** \(|x|\square a\) como distancia al 0: interior (\(<,\le\)) o exterior (\(>,\ge\)).
+- **Elementos:** inecuación y equivalencias; extremos \(\pm a\) abiertos/cerrados; sombreado interior o exterior; caso \(a=0\); nota sobre \(|x-h|\).
+- **Idea:** Elige \(|x|<a\), \(\le\), \(>\) o \(\ge\) y mueve \(a\ge0\): la recta muestra la región interior o las dos exteriores.
+- **Objetivo educativo:** Vas a ver que \(|x|<a\) y \(\le a\) son soluciones interiores, y que \(|x|>a\) y \(\ge a\) son exteriores simétricas.
+- **Interactividad sugerida:** cuatro botones de desigualdad; slider \(a\ge0\); actualizar equivalencias, extremos e intervalos.
 
 ### Fórmulas relacionadas
 

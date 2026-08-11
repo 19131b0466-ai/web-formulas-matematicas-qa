@@ -96,8 +96,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Identifica los ceros del numerador y del denominador; estos dividen la recta en intervalos de signo constante.',
     ),
     'ALG-INE-004': (
-        'Vas a ver que el valor absoluto en desigualdades define intervalos centrados o exteriores.',
-        'Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.',
+        'Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.',
+        'Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.',
     ),
     'ALG-SIS-001': (
         'Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).',
@@ -644,8 +644,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Identify the zeros of the numerator and denominator; they split the line into constant-sign intervals.',
     ),
         'ALG-INE-004': (
-        "You'll see that absolute value in inequalities defines centered or outer intervals.",
-        'Change the radius and tap **Closed endpoints** to see how the solution interval opens or closes.',
+        "You'll see that \\(|x|<a\\) and \\(\\le a\\) are interior solutions, and \\(|x|>a\\) and \\(\\ge a\\) are symmetric exterior ones.",
+        'Choose \\(|x|<a\\), \\(\\le\\), \\(>\\), or \\(\\ge\\) and move \\(a\\ge0\\): the line shows the interior region or the two exteriors.',
     ),
         'ALG-SIS-001': (
         "You'll see that a \\(2\\times 2\\) system is two lines: the solution is their crossing (if they meet).",

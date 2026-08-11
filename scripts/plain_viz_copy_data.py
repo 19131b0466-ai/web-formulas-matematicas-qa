@@ -100,8 +100,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Identifica los ceros del numerador y del denominador: dividen la recta en intervalos de signo constante.",
     ),
     "ALG-INE-004": (
-        "El valor absoluto en desigualdades define intervalos centrados o exteriores.",
-        "Cambia el radio y los extremos abiertos/cerrados para ver el intervalo solución.",
+        "|x|<a y ≤a son soluciones interiores; |x|>a y ≥a son exteriores simétricas.",
+        "Elige |x|<a, ≤, > o ≥ y mueve a≥0: la recta muestra el interior o las dos exteriores.",
     ),
     "ALG-SIS-001": (
         "Un sistema 2×2 es dos rectas: la solución es su cruce (si se cortan).",
@@ -648,8 +648,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Identify numerator and denominator zeros: they split the line into constant-sign intervals.",
         ),
         "ALG-INE-004": (
-            "Absolute value in inequalities defines centered or outer intervals.",
-            "Change the radius and open/closed ends to see the solution interval.",
+            "|x|<a and ≤a are interior solutions; |x|>a and ≥a are symmetric exteriors.",
+            "Choose |x|<a, ≤, >, or ≥ and move a≥0: the line shows the interior or the two exteriors.",
         ),
         "ALG-SIS-001": (
             "A 2×2 system is two lines: the solution is their crossing (if they meet).",

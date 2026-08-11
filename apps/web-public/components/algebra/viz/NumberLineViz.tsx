@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import { AbsoluteEquationViz } from './AbsoluteEquationViz';
+import { AbsoluteIntervalViz } from './AbsoluteIntervalViz';
 import { AbsoluteValueViz } from './AbsoluteValueViz';
 import { DistanceNumberLineViz } from './DistanceNumberLineViz';
 import { LinearInequalityViz } from './LinearInequalityViz';
@@ -27,6 +28,9 @@ export function NumberLineViz({ formulaId }: Props) {
   }
   if (formulaId.includes('INE-003')) {
     return <RationalInequalityViz />;
+  }
+  if (formulaId.includes('INE-004')) {
+    return <AbsoluteIntervalViz />;
   }
 
   return <NumberLineShared formulaId={formulaId} />;
