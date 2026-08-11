@@ -400,6 +400,7 @@ export function LinearSystem2Viz() {
           </p>
           <ButtonRow>
             <VizButton
+              active={kind === 'unique'}
               onClick={() => {
                 setM1(1);
                 setB1(1);
@@ -410,6 +411,7 @@ export function LinearSystem2Viz() {
               Secantes
             </VizButton>
             <VizButton
+              active={kind === 'none'}
               onClick={() => {
                 setM1(1);
                 setB1(1);
@@ -420,6 +422,7 @@ export function LinearSystem2Viz() {
               Paralelas
             </VizButton>
             <VizButton
+              active={kind === 'infinite'}
               onClick={() => {
                 setM1(0.8);
                 setB1(-1);
