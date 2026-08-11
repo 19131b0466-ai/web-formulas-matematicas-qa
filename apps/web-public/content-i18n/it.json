@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Cambia il raggio e tocca **Estremi chiusi** per vedere come si apre o chiude l'intervallo soluzione.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "Vedrai che un sistema \\(2\\times 2\\) sono due rette: la soluzione è il loro incrocio (se si tagliano).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Muovi la pendenza e guarda il punto arancione: segna l'intersezione, o vedrai se sono parallele.",
-  "Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.": "Vedrai che ogni riga della matrice aumentata è un'equazione del sistema.",
-  "Elige \\(R_1\\) o \\(R_2\\) y mira debajo: aparece la ecuación que representa esa fila.": "Scegli \\(R_1\\) o \\(R_2\\) e guarda sotto: compare l'equazione di quella riga.",
   "Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.": "Vedrai che le operazioni di riga cambiano la matrice, ma il sistema resta equivalente.",
   "Prueba intercambiar, escalar o sumar filas y mira cómo cambia \\(A\\).": "Prova a scambiare, scalare o sommare righe e guarda come cambia \\(A\\).",
   "Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.": "Vedrai che confrontare i ranghi ti dice se c'è una, infinite o nessuna soluzione.",
@@ -1949,5 +1947,7 @@
   "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "Vedrai che un sistema \\(2\\times 2\\) può avere una, nessuna o infinite soluzioni secondo pendenze e intercette.",
   "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Muovi \\(m_1,b_1,m_2,b_2\\) e osserva se le rette si incrociano, sono parallele o coincidono.",
   "Vas a ver que el sistema lineal se compacta en \\(Ax=b\\): filas de \\(A\\) son ecuaciones, columnas son variables; \\(\\det(A)\\neq0\\) implica solución única.": "Vedrai che un sistema lineare si compatta in \\(Ax=b\\): le righe di \\(A\\) sono equazioni, le colonne variabili; \\(\\det(A)\\neq0\\) implica soluzione unica.",
-  "Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.": "Modifica \\(A\\) e \\(b\\): confronta il sistema tradizionale con la forma matriciale, lo sviluppo di \\(Ax\\) e il determinante."
+  "Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.": "Modifica \\(A\\) e \\(b\\): confronta il sistema tradizionale con la forma matriciale, lo sviluppo di \\(Ax\\) e il determinante.",
+  "Vas a ver que la matriz aumentada \\([A\\mid b]\\) reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.": "Vedrai che la matrice aumentata \\([A\\mid b]\\) riunisce coefficienti e termini noti: ogni riga è un'equazione del sistema.",
+  "Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.": "Scegli \\(R_1\\) o \\(R_2\\) e modifica \\(A\\) e \\(b\\): vedi insieme la matrice, la riga attiva e il sistema completo."
 }

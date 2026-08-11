@@ -112,8 +112,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Edita A y b: compara el sistema tradicional con la forma matricial, la expansión de Ax y el determinante.",
     ),
     "ALG-SIS-003": (
-        "Cada fila de la matriz aumentada es una ecuación del sistema.",
-        "Elige R₁ o R₂: debajo aparece la ecuación que representa esa fila.",
+        "La matriz aumentada [A|b] reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.",
+        "Elige R₁ o R₂ y edita A y b: ves a la vez la matriz, la fila activa y el sistema completo.",
     ),
     "ALG-SIS-004": (
         "Las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.",
@@ -660,8 +660,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Edit A and b: compare the traditional system with the matrix form, the Ax expansion, and the determinant.",
         ),
         "ALG-SIS-003": (
-            "Each row of the augmented matrix is one equation of the system.",
-            "Pick R₁ or R₂: the equation for that row appears below.",
+            "The augmented matrix [A|b] gathers coefficients and right-hand sides: each row is one equation of the system.",
+            "Pick R₁ or R₂ and edit A and b: you see the matrix, the active row, and the full system together.",
         ),
         "ALG-SIS-004": (
             "Row operations change the matrix, but the system stays equivalent.",
@@ -1206,8 +1206,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Bearbeite A und b: vergleiche das klassische System mit der Matrixform, der Ax-Entwicklung und der Determinante.",
         ),
         "ALG-SIS-003": (
-            "Jede Zeile der erweiterten Matrix ist eine Gleichung des Systems.",
-            "Wähle R₁ oder R₂: Darunter erscheint die Gleichung dieser Zeile.",
+            "Die erweiterte Matrix [A|b] sammelt Koeffizienten und rechte Seiten: jede Zeile ist eine Gleichung des Systems.",
+            "Wähle R₁ oder R₂ und bearbeite A und b: du siehst Matrix, aktive Zeile und das ganze System zusammen.",
         ),
         "ALG-SIS-004": (
             "Zeilenoperationen ändern die Matrix, aber das System bleibt äquivalent.",
@@ -1752,8 +1752,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Modifie A et b : compare le système classique avec la forme matricielle, le développement de Ax et le déterminant.",
         ),
         "ALG-SIS-003": (
-            "Chaque ligne de la matrice augmentée est une équation du système.",
-            "Choisis R₁ ou R₂ : l’équation de cette ligne apparaît en dessous.",
+            "La matrice augmentée [A|b] rassemble coefficients et seconds membres : chaque ligne est une équation du système.",
+            "Choisis R₁ ou R₂ et modifie A et b : tu vois la matrice, la ligne active et le système complet ensemble.",
         ),
         "ALG-SIS-004": (
             "Les opérations sur les lignes changent la matrice, mais le système reste équivalent.",
@@ -2298,8 +2298,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Modifica A e b: confronta il sistema tradizionale con la forma matriciale, lo sviluppo di Ax e il determinante.",
         ),
         "ALG-SIS-003": (
-            "Ogni riga della matrice aumentata è un’equazione del sistema.",
-            "Scegli R₁ o R₂: sotto compare l’equazione di quella riga.",
+            "La matrice aumentata [A|b] riunisce coefficienti e termini noti: ogni riga è un’equazione del sistema.",
+            "Scegli R₁ o R₂ e modifica A e b: vedi insieme la matrice, la riga attiva e il sistema completo.",
         ),
         "ALG-SIS-004": (
             "Le operazioni di riga cambiano la matrice, ma il sistema resta equivalente.",
@@ -2844,8 +2844,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Edita A e b: compara o sistema tradicional com a forma matricial, a expansão de Ax e o determinante.",
         ),
         "ALG-SIS-003": (
-            "Cada linha da matriz aumentada é uma equação do sistema.",
-            "Escolhe R₁ ou R₂: abaixo aparece a equação dessa linha.",
+            "A matriz aumentada [A|b] reúne coeficientes e termos independentes: cada linha é uma equação do sistema.",
+            "Escolhe R₁ ou R₂ e edita A e b: vês a matriz, a linha ativa e o sistema completo ao mesmo tempo.",
         ),
         "ALG-SIS-004": (
             "As operações de linha mudam a matriz, mas o sistema continua equivalente.",

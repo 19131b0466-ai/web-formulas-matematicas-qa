@@ -108,8 +108,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.',
     ),
     'ALG-SIS-003': (
-        'Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.',
-        'Elige \\(R_1\\) o \\(R_2\\) y mira debajo: aparece la ecuación que representa esa fila.',
+        'Vas a ver que la matriz aumentada \\([A\\mid b]\\) reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.',
+        'Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.',
     ),
     'ALG-SIS-004': (
         'Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.',
@@ -656,8 +656,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Edit \\(A\\) and \\(b\\): compare the traditional system with the matrix form, the \\(Ax\\) expansion, and the determinant.',
     ),
         'ALG-SIS-003': (
-        "You'll see that each row of the augmented matrix is one equation of the system.",
-        'Pick \\(R_1\\) or \\(R_2\\) and look below: the equation for that row appears.',
+        "You'll see that the augmented matrix \\([A\\mid b]\\) gathers coefficients and right-hand sides: each row is one equation of the system.",
+        'Pick \\(R_1\\) or \\(R_2\\) and edit \\(A\\) and \\(b\\): you see the matrix, the active row, and the full system together.',
     ),
         'ALG-SIS-004': (
         "You'll see that row operations change the matrix, but the system stays equivalent.",
@@ -1202,8 +1202,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Editiere \\(A\\) und \\(b\\): vergleiche das klassische System mit der Matrixform, der \\(Ax\\)-Entwicklung und der Determinante.',
     ),
         'ALG-SIS-003': (
-        'Du siehst: Jede Zeile der erweiterten Matrix ist eine Gleichung des Systems.',
-        'Wähle \\(R_1\\) oder \\(R_2\\) und schau darunter: Die Gleichung dieser Zeile erscheint.',
+        'Du siehst: Die erweiterte Matrix \\([A\\mid b]\\) sammelt Koeffizienten und rechte Seiten: jede Zeile ist eine Gleichung des Systems.',
+        'Wähle \\(R_1\\) oder \\(R_2\\) und editiere \\(A\\) und \\(b\\): du siehst Matrix, aktive Zeile und das ganze System zusammen.',
     ),
         'ALG-SIS-004': (
         'Du siehst: Zeilenoperationen ändern die Matrix, aber das System bleibt äquivalent.',
@@ -1748,8 +1748,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Édite \\(A\\) et \\(b\\) : compare le système classique avec la forme matricielle, le développement de \\(Ax\\) et le déterminant.',
     ),
         'ALG-SIS-003': (
-        'Tu vas voir que chaque ligne de la matrice augmentée est une équation du système.',
-        'Choisis \\(R_1\\) ou \\(R_2\\) et regarde en dessous : l’équation de cette ligne apparaît.',
+        'Tu vas voir que la matrice augmentée \\([A\\mid b]\\) rassemble coefficients et seconds membres : chaque ligne est une équation du système.',
+        'Choisis \\(R_1\\) ou \\(R_2\\) et édite \\(A\\) et \\(b\\) : tu vois la matrice, la ligne active et le système complet ensemble.',
     ),
         'ALG-SIS-004': (
         'Tu vas voir que les opérations sur les lignes changent la matrice, mais le système reste équivalent.',
@@ -2294,8 +2294,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Modifica \\(A\\) e \\(b\\): confronta il sistema tradizionale con la forma matriciale, lo sviluppo di \\(Ax\\) e il determinante.',
     ),
         'ALG-SIS-003': (
-        "Vedrai che ogni riga della matrice aumentata è un'equazione del sistema.",
-        "Scegli \\(R_1\\) o \\(R_2\\) e guarda sotto: compare l'equazione di quella riga.",
+        "Vedrai che la matrice aumentata \\([A\\mid b]\\) riunisce coefficienti e termini noti: ogni riga è un'equazione del sistema.",
+        'Scegli \\(R_1\\) o \\(R_2\\) e modifica \\(A\\) e \\(b\\): vedi insieme la matrice, la riga attiva e il sistema completo.',
     ),
         'ALG-SIS-004': (
         'Vedrai che le operazioni di riga cambiano la matrice, ma il sistema resta equivalente.',
@@ -2840,8 +2840,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Edita \\(A\\) e \\(b\\): compara o sistema tradicional com a forma matricial, a expansão de \\(Ax\\) e o determinante.',
     ),
         'ALG-SIS-003': (
-        'Vais ver que cada linha da matriz aumentada é uma equação do sistema.',
-        'Escolhe \\(R_1\\) ou \\(R_2\\) e olha abaixo: aparece a equação dessa linha.',
+        'Vais ver que a matriz aumentada \\([A\\mid b]\\) reúne coeficientes e termos independentes: cada linha é uma equação do sistema.',
+        'Escolhe \\(R_1\\) ou \\(R_2\\) e edita \\(A\\) e \\(b\\): vês a matriz, a linha ativa e o sistema completo ao mesmo tempo.',
     ),
         'ALG-SIS-004': (
         'Vais ver que as operações de linha mudam a matriz, mas o sistema continua equivalente.',

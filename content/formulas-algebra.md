@@ -1249,11 +1249,11 @@ A\mathbf x=\mathbf b
 
 - **Tipo:** `matrix`
 - **Modo:** `augmented_map`
-- **Concepto visual:** separación entre coeficientes y términos independientes.
-- **Elementos:** matriz aumentada con barra vertical, columnas de coeficientes y columna final \(\mathbf b\).
-- **Idea:** Elige \(R_1\) o \(R_2\) y mira debajo: aparece la ecuación que representa esa fila.
-- **Objetivo educativo:** Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.
-- **Interactividad sugerida:** seleccionar una fila para mostrar la ecuación que representa.
+- **Concepto visual:** separación entre coeficientes y términos independientes en \([A\mid\mathbf b]\); cada fila es una ecuación.
+- **Elementos:** construcción \(A,\mathbf b\Rightarrow[A\mid b]\); matriz aumentada con barra vertical etiquetada; selección de fila; sistema completo reconstruido con ecuación activa resaltada; etapa opcional de operaciones de fila.
+- **Idea:** Elige \(R_1\) o \(R_2\) y edita \(A\) y \(b\): ves a la vez la matriz, la fila activa y el sistema completo.
+- **Objetivo educativo:** Vas a ver que la matriz aumentada \([A\mid b]\) reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.
+- **Interactividad sugerida:** editar celdas de \(A\) y \(b\); seleccionar fila; opcionalmente aplicar \(R_i\leftrightarrow R_j\), escalar o sumar filas.
 
 ### Fórmulas relacionadas
 
