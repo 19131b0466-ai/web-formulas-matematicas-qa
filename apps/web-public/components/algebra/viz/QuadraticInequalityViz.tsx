@@ -250,8 +250,8 @@ export function QuadraticInequalityViz() {
     const xLo = Math.min(...focusX);
     const xHi = Math.max(...focusX);
     const xPad = Math.max(2, (xHi - xLo) * 0.35 + 1.2);
-    let xMin = Math.min(-3, xLo - xPad);
-    let xMax = Math.max(3, xHi + xPad);
+    const xMin = Math.min(-3, xLo - xPad);
+    const xMax = Math.max(3, xHi + xPad);
 
     const samples: number[] = [0, yv];
     for (let i = 0; i <= 24; i++) {

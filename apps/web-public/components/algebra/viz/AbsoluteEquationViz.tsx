@@ -34,7 +34,6 @@ export function AbsoluteEquationViz() {
 
   const aAbs = Math.abs(a);
   const aL = present(a);
-  const aAbsL = present(aAbs);
   const x1 = kind === 'two' ? -a : kind === 'one' ? 0 : null;
   const x2 = kind === 'two' ? a : null;
   const x1L = x1 !== null ? present(x1) : null;
