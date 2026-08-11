@@ -76,8 +76,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Usa los ejemplos guiados o mueve \\(a\\), \\(b\\) y \\(c\\) y observa cómo el signo de \\(\\Delta\\) fija el caso; la gráfica confirma el número de cortes.',
     ),
     'ALG-EQU-005': (
-        'Vas a ver que completar el cuadrado es añadir (y luego restar) la esquina que falta.',
-        'Pulsa **Añadir (b/2)²** o **Restar (b/2)²** y mira de dónde sale el término \\(\\left(b/2\\right)^2\\).',
+        'Vas a ver que completar el cuadrado convierte \\(x^2+bx\\) en \\((x+b/2)^2-(b/2)^2\\) añadiendo y compensando la misma área.',
+        'Avanza los pasos: dividir \\(bx\\), añadir \\((b/2)^2\\), ver el cuadrado de lado \\(x+b/2\\) y restar la esquina para obtener la identidad.',
     ),
     'ALG-EQU-008': (
         'Vas a ver que una ecuación con valor absoluto suele tener dos soluciones simétricas.',
@@ -624,8 +624,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Use the guided examples or move \\(a\\), \\(b\\), and \\(c\\) and watch how the sign of \\(\\Delta\\) fixes the case; the graph confirms the number of cuts.',
     ),
         'ALG-EQU-005': (
-        "You'll see that completing the square means adding (then subtracting) the missing corner.",
-        'Tap **Add (b/2)²** or **Subtract (b/2)²** and watch where the term \\(\\left(b/2\\right)^2\\) comes from.',
+        "You'll see that completing the square turns \\(x^2+bx\\) into \\((x+b/2)^2-(b/2)^2\\) by adding and then compensating the same area.",
+        'Step through: split \\(bx\\), add \\((b/2)^2\\), see the square of side \\(x+b/2\\), then subtract the corner to get the identity.',
     ),
         'ALG-EQU-008': (
         "You'll see that an absolute-value equation often has two symmetric solutions.",

@@ -80,8 +80,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Usa los ejemplos guiados o mueve a, b y c: el signo de Δ fija el caso; la gráfica confirma los cortes.",
     ),
     "ALG-EQU-005": (
-        "Completar el cuadrado es añadir (y luego restar) la esquina que falta.",
-        "Pulsa Añadir/Restar (b/2)²: verás de dónde sale el término b²/4.",
+        "Completar el cuadrado convierte x²+bx en (x+b/2)²−(b/2)² añadiendo y compensando la misma área.",
+        "Avanza los pasos: dividir bx, añadir (b/2)², ver el cuadrado de lado x+b/2 y restar la esquina.",
     ),
     "ALG-EQU-008": (
         "Una ecuación con valor absoluto suele tener dos soluciones simétricas.",
@@ -628,8 +628,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Use the guided examples or move a, b, and c: the sign of Δ fixes the case; the graph confirms the cuts.",
         ),
         "ALG-EQU-005": (
-            "Completing the square means adding (then subtracting) the missing corner.",
-            "Tap Add/Subtract (b/2)²: you see where the b²/4 term comes from.",
+            "Completing the square turns x²+bx into (x+b/2)²−(b/2)² by adding and compensating the same area.",
+            "Step through: split bx, add (b/2)², see the square of side x+b/2, then subtract the corner.",
         ),
         "ALG-EQU-008": (
             "An absolute-value equation often has two symmetric solutions.",

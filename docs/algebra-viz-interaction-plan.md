@@ -176,9 +176,11 @@ flowchart TD
 
 | Campo | Decisión |
 |---|---|
-| **Enseña** | Completar el cuadrado añadiendo/restando \((b/2)^2\). |
-| **Layout** | Un diagrama; toggle muestra/oculta el hueco. |
-| **Veredicto** | **KEEP** (P4). |
+| **Enseña** | Completar el cuadrado: partir \(bx\), añadir \((b/2)^2\), formar \((x+b/2)^2\), restar la esquina. |
+| **Layout** | Un diagrama por áreas con pasos guiados (P4 / secuencia). |
+| **Interacción** | Pasos 1–6; sliders \(x>0\), \(b\ge0\); verificación numérica. Guía embebida. |
+| **Componente** | `CompleteSquareViz.tsx` |
+| **Veredicto** | Proceso completo, no solo toggle del hueco. |
 
 ### `degree` (POL-008)
 

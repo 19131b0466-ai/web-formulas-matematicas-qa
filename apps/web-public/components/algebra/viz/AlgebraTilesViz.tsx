@@ -11,6 +11,7 @@ import { SquareDifferenceViz } from './SquareDifferenceViz';
 import { DiffSquaresViz } from './DiffSquaresViz';
 import { BinomialTheoremViz } from './BinomialTheoremViz';
 import { CommonFactorViz } from './CommonFactorViz';
+import { CompleteSquareViz } from './CompleteSquareViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -50,6 +51,9 @@ export function AlgebraTilesViz(props: Props) {
   }
   if (props.formulaId.includes('FAC-001')) {
     return <CommonFactorViz />;
+  }
+  if (props.formulaId.includes('EQU-005')) {
+    return <CompleteSquareViz />;
   }
   return <AlgebraTilesVizInner {...props} />;
 }

@@ -1002,11 +1002,11 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 
 - **Tipo:** `algebra_tiles`
 - **Modo:** `complete_square`
-- **Concepto visual:** completar un cuadrado añadiendo la pieza faltante.
-- **Elementos:** región \(x^2\), dos rectángulos de dimensiones \(x\) y \(b/2\), y un pequeño cuadrado \((b/2)^2\).
-- **Idea:** Pulsa **Añadir (b/2)²** o **Restar (b/2)²** y mira de dónde sale el término \(\left(b/2\right)^2\).
-- **Objetivo educativo:** Vas a ver que completar el cuadrado es añadir (y luego restar) la esquina que falta.
-- **Interactividad sugerida:** animar la división del término \(bx\) en dos rectángulos y la adición/sustracción del cuadrado faltante.
+- **Concepto visual:** completar el cuadrado como construcción por áreas: partir \(bx\), añadir \((b/2)^2\), formar \((x+b/2)^2\) y restar la misma esquina.
+- **Elementos:** cuadrado \(x^2\); dos rectángulos \(x\cdot(b/2)\); esquina \((b/2)^2\); pasos algebraicos; verificación numérica; restricción geométrica \(x>0\), \(b\ge0\).
+- **Idea:** Avanza los pasos: dividir \(bx\), añadir \((b/2)^2\), ver el cuadrado de lado \(x+b/2\) y restar la esquina para obtener la identidad.
+- **Objetivo educativo:** Vas a ver que completar el cuadrado convierte \(x^2+bx\) en \((x+b/2)^2-(b/2)^2\) añadiendo y compensando la misma área.
+- **Interactividad sugerida:** pasos guiados; sliders \(x\) y \(b\ge0\); actualizar áreas y la verificación \(x^2+bx=(x+b/2)^2-(b/2)^2\).
 
 ### Fórmulas relacionadas
 
