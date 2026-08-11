@@ -120,8 +120,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Elige Ri↔Rj, cRi o Ri+cRj con filas y c; aplica y compara el sistema con el original.",
     ),
     "ALG-SIS-005": (
-        "Comparar rangos te dice si hay una, infinitas o ninguna solución.",
-        "Haz A singular o no y mira el indicador de rango / ∅ / ∞.",
+        "El criterio completo: rangos distintos ⇒ sin solución; rangos iguales a n ⇒ una; rangos iguales y menores que n ⇒ infinitas.",
+        "Carga los tres casos o edita [A|b]: mira rank(A), rank([A|b]) y n, y sigue las dos comparaciones del criterio.",
     ),
     "ALG-FUN-001": (
         "El dominio son los x donde la función tiene sentido (aquí, x ≠ 0).",
@@ -668,8 +668,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Pick Ri↔Rj, cRi, or Ri+cRj with rows and c; apply and compare with the original system.",
         ),
         "ALG-SIS-005": (
-            "Comparing ranks tells you whether there is one, infinitely many, or no solution.",
-            "Make A singular or not and watch the rank / ∅ / ∞ indicator.",
+            "The full criterion: different ranks ⇒ no solution; ranks equal to n ⇒ one; equal ranks less than n ⇒ infinitely many.",
+            "Load the three cases or edit [A|b]: watch rank(A), rank([A|b]) and n, and follow the two comparisons.",
         ),
         "ALG-FUN-001": (
             "The domain is the x values where the function makes sense (here x ≠ 0).",
@@ -1214,8 +1214,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Wähle Ri↔Rj, cRi oder Ri+cRj mit Zeilen und c; wende an und vergleiche mit dem Originalsystem.",
         ),
         "ALG-SIS-005": (
-            "Rangvergleiche sagen dir, ob es eine, unendlich viele oder keine Lösung gibt.",
-            "Mache A singulär oder nicht und beobachte den Rang- / ∅- / ∞-Indikator.",
+            "Das volle Kriterium: verschiedene Ränge ⇒ keine Lösung; Ränge gleich n ⇒ eine; gleiche Ränge kleiner als n ⇒ unendlich viele.",
+            "Lade die drei Fälle oder bearbeite [A|b]: schau rank(A), rank([A|b]) und n, und folge den zwei Vergleichen.",
         ),
         "ALG-FUN-001": (
             "Der Definitionsbereich sind die x, für die die Funktion Sinn hat (hier x ≠ 0).",
@@ -1760,8 +1760,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Choisis Ri↔Rj, cRi ou Ri+cRj avec lignes et c ; applique et compare au système original.",
         ),
         "ALG-SIS-005": (
-            "Comparer les rangs te dit s’il y a une, une infinité, ou aucune solution.",
-            "Rends A singulière ou non et regarde l’indicateur rang / ∅ / ∞.",
+            "Le critère complet : rangs différents ⇒ aucune solution ; rangs égaux à n ⇒ une ; rangs égaux et < n ⇒ une infinité.",
+            "Charge les trois cas ou modifie [A|b] : regarde rank(A), rank([A|b]) et n, et suis les deux comparaisons.",
         ),
         "ALG-FUN-001": (
             "Le domaine, ce sont les x où la fonction a un sens (ici x ≠ 0).",
@@ -2306,8 +2306,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Scegli Ri↔Rj, cRi o Ri+cRj con righe e c; applica e confronta con il sistema originale.",
         ),
         "ALG-SIS-005": (
-            "Confrontare i ranghi ti dice se c’è una, infinite o nessuna soluzione.",
-            "Rendi A singolare o no e osserva l’indicatore rango / ∅ / ∞.",
+            "Il criterio completo: ranghi diversi ⇒ nessuna soluzione; ranghi uguali a n ⇒ una; ranghi uguali e < n ⇒ infinite.",
+            "Carica i tre casi o modifica [A|b]: guarda rank(A), rank([A|b]) e n, e segui i due confronti.",
         ),
         "ALG-FUN-001": (
             "Il dominio sono gli x dove la funzione ha senso (qui x ≠ 0).",
@@ -2852,8 +2852,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Escolhe Ri↔Rj, cRi ou Ri+cRj com linhas e c; aplica e compara com o sistema original.",
         ),
         "ALG-SIS-005": (
-            "Comparar postos diz-te se há uma, infinitas ou nenhuma solução.",
-            "Torna A singular ou não e observa o indicador posto / ∅ / ∞.",
+            "O critério completo: postos distintos ⇒ sem solução; postos iguais a n ⇒ uma; postos iguais e < n ⇒ infinitas.",
+            "Carrega os três casos ou edita [A|b]: olha rank(A), rank([A|b]) e n, e segue as duas comparações.",
         ),
         "ALG-FUN-001": (
             "O domínio são os x onde a função faz sentido (aqui x ≠ 0).",

@@ -1297,7 +1297,11 @@ Usar operaciones elementales para eliminación de Gauss sobre una matriz densa c
 **Nivel:** `intermedio`
 
 \[
-\operatorname{rank}(A)=\operatorname{rank}([A|b])
+\operatorname{rank}(A)=\operatorname{rank}([A|b])=n
+\quad\text{o}\quad
+\operatorname{rank}(A)=\operatorname{rank}([A|b])<n
+\quad\text{o}\quad
+\operatorname{rank}(A)\neq\operatorname{rank}([A|b])
 \]
 
 **Descripción corta:** Clasifica sistemas según rangos y número de incógnitas.
@@ -1306,11 +1310,11 @@ Usar operaciones elementales para eliminación de Gauss sobre una matriz densa c
 
 - **Tipo:** `matrix`
 - **Modo:** `rank_compare`
-- **Concepto visual:** comparación visual de rangos para decidir compatibilidad.
-- **Elementos:** matriz \(A\) y matriz aumentada \([A|b]\) en forma escalonada, pivotes resaltados y contadores de rango.
-- **Idea:** Haz \(A\) singular o no y mira el indicador de rango / \(\emptyset\) / \(\infty\).
-- **Objetivo educativo:** Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.
-- **Interactividad sugerida:** cambiar ejemplos predefinidos entre solución única, infinitas soluciones y sistema incompatible.
+- **Concepto visual:** dos comparaciones consecutivas — \(\operatorname{rank}(A)\) vs \(\operatorname{rank}([A|b])\), y si coinciden vs \(n\) — para una / infinitas / ninguna solución.
+- **Elementos:** \([A\mid b]\) editable; contadores \(\operatorname{rank}(A)\), \(\operatorname{rank}([A|b])\), \(n\); cadena de razonamiento; presets de los tres casos; reducción opcional a escalonada; nota sobre \(\det(A)=0\).
+- **Idea:** Carga los tres casos o edita \([A\mid b]\): observa rank(A), rank([A|b]) y \(n\), y sigue las dos comparaciones del criterio.
+- **Objetivo educativo:** Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \(n\) ⇒ una; rangos iguales y menores que \(n\) ⇒ infinitas.
+- **Interactividad sugerida:** presets (única / infinitas / incompatible); editar celdas; toggle «cómo se obtiene el rango».
 
 ### Fórmulas relacionadas
 

@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Cambia il raggio e tocca **Estremi chiusi** per vedere come si apre o chiude l'intervallo soluzione.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "Vedrai che un sistema \\(2\\times 2\\) sono due rette: la soluzione è il loro incrocio (se si tagliano).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Muovi la pendenza e guarda il punto arancione: segna l'intersezione, o vedrai se sono parallele.",
-  "Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.": "Vedrai che confrontare i ranghi ti dice se c'è una, infinite o nessuna soluzione.",
-  "Haz \\(A\\) singular o no y mira el indicador de rango / \\(\\emptyset\\) / \\(\\infty\\).": "Rendi \\(A\\) singolare o no e guarda l'indicatore di rango / \\(\\emptyset\\) / \\(\\infty\\).",
   "Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).": "Vedrai che il dominio sono le \\(x\\) dove la funzione ha senso (qui, \\(x\\neq 0\\)).",
   "Mira la hipérbola \\(1/x\\): cerca de cero la curva se dispara; ese hueco es el dominio roto.": "Guarda l'iperbole \\(1/x\\): vicino a zero la curva sale; quel buco è il dominio spezzato.",
   "Vas a ver que componer funciones es aplicar una después de la otra.": "Vedrai che comporre funzioni significa applicarne una dopo l'altra.",
@@ -1949,5 +1947,7 @@
   "Vas a ver que la matriz aumentada \\([A\\mid b]\\) reúne coeficientes y términos independientes: cada fila es una ecuación del sistema.": "Vedrai che la matrice aumentata \\([A\\mid b]\\) riunisce coefficienti e termini noti: ogni riga è un'equazione del sistema.",
   "Elige \\(R_1\\) o \\(R_2\\) y edita \\(A\\) y \\(b\\): ves a la vez la matriz, la fila activa y el sistema completo.": "Scegli \\(R_1\\) o \\(R_2\\) e modifica \\(A\\) e \\(b\\): vedi insieme la matrice, la riga attiva e il sistema completo.",
   "Vas a ver que las operaciones elementales cambian la forma del sistema, pero no su solución: así se construye Gauss y Gauss-Jordan.": "Vedrai che le operazioni elementari cambiano la forma del sistema, non la soluzione: così nascono Gauss e Gauss–Jordan.",
-  "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Scegli \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con righe e \\(c\\); applica e confronta con il sistema originale."
+  "Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.": "Scegli \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con righe e \\(c\\); applica e confronta con il sistema originale.",
+  "Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \\(n\\) ⇒ una; rangos iguales y menores que \\(n\\) ⇒ infinitas.": "Vedrai il criterio completo: ranghi diversi ⇒ nessuna soluzione; ranghi uguali a \\(n\\) ⇒ una; ranghi uguali e < \\(n\\) ⇒ infinite.",
+  "Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.": "Carica i tre casi o modifica \\([A\\mid b]\\): guarda rank(A), rank([A|b]) e \\(n\\), e segui i due confronti."
 }

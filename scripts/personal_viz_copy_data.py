@@ -116,8 +116,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Elige \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con filas y \\(c\\); aplica y compara el sistema con el original.',
     ),
     'ALG-SIS-005': (
-        'Vas a ver que comparar rangos te dice si hay una, infinitas o ninguna solución.',
-        'Haz \\(A\\) singular o no y mira el indicador de rango / \\(\\emptyset\\) / \\(\\infty\\).',
+        'Vas a ver el criterio completo: rangos distintos ⇒ sin solución; rangos iguales a \\(n\\) ⇒ una; rangos iguales y menores que \\(n\\) ⇒ infinitas.',
+        'Carga los tres casos o edita \\([A\\mid b]\\): observa rank(A), rank([A|b]) y \\(n\\), y sigue las dos comparaciones del criterio.',
     ),
     'ALG-FUN-001': (
         'Vas a ver que el dominio son los \\(x\\) donde la función tiene sentido (aquí, \\(x\\neq 0\\)).',
@@ -664,8 +664,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Pick \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\), or \\(R_i+cR_j\\) with rows and \\(c\\); apply and compare with the original system.",
     ),
         'ALG-SIS-005': (
-        "You'll see that comparing ranks tells you whether there's one, infinitely many, or no solution.",
-        'Make \\(A\\) singular or not and watch the rank / \\(\\emptyset\\) / \\(\\infty\\) indicator.',
+        "You'll see the full criterion: different ranks ⇒ no solution; ranks equal to \\(n\\) ⇒ one; equal ranks less than \\(n\\) ⇒ infinitely many.",
+        "Load the three cases or edit \\([A\\mid b]\\): watch rank(A), rank([A|b]) and \\(n\\), and follow the two comparisons.",
     ),
         'ALG-FUN-001': (
         "You'll see that the domain is the \\(x\\) where the function makes sense (here, \\(x\\neq 0\\)).",
@@ -1210,8 +1210,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Wähle \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) oder \\(R_i+cR_j\\) mit Zeilen und \\(c\\); wende an und vergleiche mit dem Originalsystem.',
     ),
         'ALG-SIS-005': (
-        'Du siehst: Rangvergleiche sagen dir, ob es eine, unendlich viele oder keine Lösung gibt.',
-        'Mache \\(A\\) singulär oder nicht und schau auf den Rang- / \\(\\emptyset\\)- / \\(\\infty\\)-Indikator.',
+        'Du siehst das volle Kriterium: verschiedene Ränge ⇒ keine Lösung; Ränge gleich \\(n\\) ⇒ eine; gleiche Ränge kleiner als \\(n\\) ⇒ unendlich viele.',
+        'Lade die drei Fälle oder editiere \\([A\\mid b]\\): schau rank(A), rank([A|b]) und \\(n\\), und folge den zwei Vergleichen.',
     ),
         'ALG-FUN-001': (
         'Du siehst: Der Definitionsbereich sind die \\(x\\), wo die Funktion Sinn ergibt (hier \\(x\\neq 0\\)).',
@@ -1756,8 +1756,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Choisis \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) ou \\(R_i+cR_j\\) avec lignes et \\(c\\) ; applique et compare au système original.',
     ),
         'ALG-SIS-005': (
-        'Tu vas voir que comparer les rangs te dit s’il y a une, une infinité, ou aucune solution.',
-        'Rends \\(A\\) singulière ou non et regarde l’indicateur de rang / \\(\\emptyset\\) / \\(\\infty\\).',
+        'Tu vas voir le critère complet : rangs différents ⇒ aucune solution ; rangs égaux à \\(n\\) ⇒ une ; rangs égaux et < \\(n\\) ⇒ une infinité.',
+        'Charge les trois cas ou édite \\([A\\mid b]\\) : regarde rank(A), rank([A|b]) et \\(n\\), et suis les deux comparaisons.',
     ),
         'ALG-FUN-001': (
         'Tu vas voir que le domaine ce sont les \\(x\\) où la fonction a un sens (ici, \\(x\\neq 0\\)).',
@@ -2302,8 +2302,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Scegli \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) o \\(R_i+cR_j\\) con righe e \\(c\\); applica e confronta con il sistema originale.',
     ),
         'ALG-SIS-005': (
-        "Vedrai che confrontare i ranghi ti dice se c'è una, infinite o nessuna soluzione.",
-        "Rendi \\(A\\) singolare o no e guarda l'indicatore di rango / \\(\\emptyset\\) / \\(\\infty\\).",
+        "Vedrai il criterio completo: ranghi diversi ⇒ nessuna soluzione; ranghi uguali a \\(n\\) ⇒ una; ranghi uguali e < \\(n\\) ⇒ infinite.",
+        "Carica i tre casi o modifica \\([A\\mid b]\\): guarda rank(A), rank([A|b]) e \\(n\\), e segui i due confronti.",
     ),
         'ALG-FUN-001': (
         'Vedrai che il dominio sono le \\(x\\) dove la funzione ha senso (qui, \\(x\\neq 0\\)).',
@@ -2848,8 +2848,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Escolhe \\(R_i\\leftrightarrow R_j\\), \\(cR_i\\) ou \\(R_i+cR_j\\) com linhas e \\(c\\); aplica e compara com o sistema original.',
     ),
         'ALG-SIS-005': (
-        'Vais ver que comparar postos te diz se há uma, infinitas ou nenhuma solução.',
-        'Torna \\(A\\) singular ou não e olha o indicador de posto / \\(\\emptyset\\) / \\(\\infty\\).',
+        'Vais ver o critério completo: postos distintos ⇒ sem solução; postos iguais a \\(n\\) ⇒ uma; postos iguais e < \\(n\\) ⇒ infinitas.',
+        'Carrega os três casos ou edita \\([A\\mid b]\\): olha rank(A), rank([A|b]) e \\(n\\), e segue as duas comparações.',
     ),
         'ALG-FUN-001': (
         'Vais ver que o domínio são os \\(x\\) onde a função faz sentido (aqui, \\(x\\neq 0\\)).',
