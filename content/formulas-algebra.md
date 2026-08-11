@@ -1088,11 +1088,11 @@ ax+b>0
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** solución de una desigualdad como intervalo en la recta.
-- **Elementos:** recta numérica, punto frontera \(-b/a\), extremo abierto o cerrado según el operador y semirrecta sombreada.
-- **Idea:** Cambia el borde y el tipo de desigualdad: la zona sombreada es tu solución.
-- **Objetivo educativo:** Vas a ver que una inecuación lineal pinta un rayo o un intervalo en la recta.
-- **Interactividad sugerida:** permitir cambiar \(a,b\) y el operador \(<,\le,>,\ge\); actualizar extremo y sombreado.
+- **Concepto visual:** inecuación lineal simple como semirrecta; casos \(a=0\) dan \(\mathbb{R}\) o \(\emptyset\).
+- **Elementos:** inecuación actual; resolución con inversión si \(a<0\); frontera de \(ax+b=0\); círculo abierto/cerrado; sombreado del rayo; intervalo; puntos de prueba.
+- **Idea:** Cambia \(a\), \(b\) y el operador: la zona sombreada es la semirrecta solución (o todo \(\mathbb{R}\)/nada si \(a=0\)).
+- **Objetivo educativo:** Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.
+- **Interactividad sugerida:** sliders \(a,b\); selector \(<,\le,>,\ge\); actualizar frontera, sentido, sombreado e intervalo.
 
 ### Fórmulas relacionadas
 

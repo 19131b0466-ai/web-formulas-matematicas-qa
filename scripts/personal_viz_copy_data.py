@@ -84,8 +84,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Mueve \\(a\\) e interpreta \\(|x|=a\\) como “distancia al cero igual a \\(a\\)”; observa cuántas soluciones hay según el signo de \\(a\\).',
     ),
     'ALG-INE-001': (
-        'Vas a ver que una inecuación lineal pinta un rayo o un intervalo en la recta.',
-        'Cambia el borde y el tipo de desigualdad: la zona sombreada es tu solución.',
+        'Vas a ver que una inecuación lineal simple representa una semirrecta; en casos especiales, todos los reales o ninguna solución.',
+        'Cambia \\(a\\), \\(b\\) y el operador: la zona sombreada es la semirrecta solución (o todo \\(\\mathbb{R}\\)/nada si \\(a=0\\)).',
     ),
     'ALG-INE-002': (
         'Vas a ver que la solución de una inecuación cuadrática es donde la parábola está por encima (o debajo) del eje.',
@@ -632,8 +632,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Move \\(a\\) and read \\(|x|=a\\) as “distance to zero equals \\(a\\)”; watch how many solutions appear by the sign of \\(a\\).',
     ),
         'ALG-INE-001': (
-        "You'll see that a linear inequality paints a ray or an interval on the number line.",
-        'Change the boundary and the inequality type: the shaded region is your solution.',
+        "You'll see that a simple linear inequality is a ray on the number line; in special cases, all reals or no solution.",
+        'Change \\(a\\), \\(b\\), and the operator: the shaded region is the solution ray (or all \\(\\mathbb{R}\\)/empty if \\(a=0\\)).',
     ),
         'ALG-INE-002': (
         "You'll see that a quadratic inequality's solution is where the parabola is above (or below) the axis.",

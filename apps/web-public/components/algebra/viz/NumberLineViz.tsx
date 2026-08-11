@@ -5,6 +5,7 @@ import { useVizLabels } from '@/lib/viz-labels';
 import { AbsoluteEquationViz } from './AbsoluteEquationViz';
 import { AbsoluteValueViz } from './AbsoluteValueViz';
 import { DistanceNumberLineViz } from './DistanceNumberLineViz';
+import { LinearInequalityViz } from './LinearInequalityViz';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
 import { clamp } from './math2d';
 
@@ -19,6 +20,9 @@ export function NumberLineViz({ formulaId }: Props) {
   }
   if (formulaId.includes('EQU-008')) {
     return <AbsoluteEquationViz />;
+  }
+  if (formulaId.includes('INE-001')) {
+    return <LinearInequalityViz />;
   }
 
   return <NumberLineShared formulaId={formulaId} />;
