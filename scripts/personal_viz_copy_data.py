@@ -80,8 +80,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Avanza los pasos: dividir \\(bx\\), añadir \\((b/2)^2\\), ver el cuadrado de lado \\(x+b/2\\) y restar la esquina para obtener la identidad.',
     ),
     'ALG-EQU-008': (
-        'Vas a ver que una ecuación con valor absoluto suele tener dos soluciones simétricas.',
-        'Mueve el punto en la recta y relaciona las distancias con las soluciones.',
+        'Vas a ver que \\(|x|=a\\) busca puntos a distancia \\(a\\) del cero: dos si \\(a>0\\), uno si \\(a=0\\), ninguno si \\(a<0\\).',
+        'Mueve \\(a\\) e interpreta \\(|x|=a\\) como “distancia al cero igual a \\(a\\)”; observa cuántas soluciones hay según el signo de \\(a\\).',
     ),
     'ALG-INE-001': (
         'Vas a ver que una inecuación lineal pinta un rayo o un intervalo en la recta.',
@@ -628,8 +628,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Step through: split \\(bx\\), add \\((b/2)^2\\), see the square of side \\(x+b/2\\), then subtract the corner to get the identity.',
     ),
         'ALG-EQU-008': (
-        "You'll see that an absolute-value equation often has two symmetric solutions.",
-        'Move the point on the line and relate the distances to the solutions.',
+        "You'll see that \\(|x|=a\\) looks for points at distance \\(a\\) from zero: two if \\(a>0\\), one if \\(a=0\\), none if \\(a<0\\).",
+        'Move \\(a\\) and read \\(|x|=a\\) as “distance to zero equals \\(a\\)”; watch how many solutions appear by the sign of \\(a\\).',
     ),
         'ALG-INE-001': (
         "You'll see that a linear inequality paints a ray or an interval on the number line.",

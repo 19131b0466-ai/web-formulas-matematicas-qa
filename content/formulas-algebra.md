@@ -1060,11 +1060,11 @@ x^2+bx=(x+\frac b2)^2-\frac{b^2}{4}
 ### Visualización sugerida
 
 - **Tipo:** `number_line`
-- **Concepto visual:** soluciones simétricas de una ecuación de valor absoluto.
-- **Elementos:** recta numérica con el origen, puntos \(-a\) y \(a\) y dos segmentos de longitud \(a\).
-- **Idea:** Mueve \(a\ge 0\) y mira los dos puntos \(\pm a\): son las soluciones de \(|x|=a\).
-- **Objetivo educativo:** Vas a ver que \(|x|=a\) (con \(a\ge 0\)) da dos soluciones simétricas: \(x=a\) y \(x=-a\).
-- **Interactividad sugerida:** deslizador para \(a\ge0\); mover los dos puntos solución simétricamente.
+- **Concepto visual:** \(|x|=a\) como puntos a distancia \(a\) del cero; casos \(a>0\), \(a=0\) y \(a<0\).
+- **Elementos:** recta con origen; distancias \(d(-a,0)=a\) y \(d(0,a)=a\); soluciones etiquetadas; comprobación \(|\pm a|=a\); caso único en \(0\) y caso sin solución.
+- **Idea:** Mueve \(a\) e interpreta \(|x|=a\) como “distancia al cero igual a \(a\)”; observa cuántas soluciones hay según el signo de \(a\).
+- **Objetivo educativo:** Vas a ver que \(|x|=a\) busca puntos a distancia \(a\) del cero: dos si \(a>0\), uno si \(a=0\), ninguno si \(a<0\).
+- **Interactividad sugerida:** slider \(a\) (incluir negativos); actualizar puntos, distancias, conteo de soluciones y verificación.
 
 ### Fórmulas relacionadas
 

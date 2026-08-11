@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
+import { AbsoluteEquationViz } from './AbsoluteEquationViz';
 import { AbsoluteValueViz } from './AbsoluteValueViz';
 import { DistanceNumberLineViz } from './DistanceNumberLineViz';
 import { ControlsStack, SliderRow, VizPanel, fmt } from './controls';
@@ -15,6 +16,9 @@ export function NumberLineViz({ formulaId }: Props) {
   }
   if (formulaId.includes('FND-007')) {
     return <DistanceNumberLineViz />;
+  }
+  if (formulaId.includes('EQU-008')) {
+    return <AbsoluteEquationViz />;
   }
 
   return <NumberLineShared formulaId={formulaId} />;

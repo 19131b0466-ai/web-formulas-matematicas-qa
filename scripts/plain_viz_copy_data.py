@@ -84,8 +84,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Avanza los pasos: dividir bx, añadir (b/2)², ver el cuadrado de lado x+b/2 y restar la esquina.",
     ),
     "ALG-EQU-008": (
-        "Una ecuación con valor absoluto suele tener dos soluciones simétricas.",
-        "Mueve el punto en la recta y relaciona las distancias con las soluciones.",
+        "|x|=a busca puntos a distancia a del cero: dos si a>0, uno si a=0, ninguno si a<0.",
+        "Mueve a e interpreta |x|=a como distancia al cero; observa cuántas soluciones hay según el signo de a.",
     ),
     "ALG-INE-001": (
         "Una inecuación lineal pinta un rayo o un intervalo en la recta.",
@@ -632,8 +632,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Step through: split bx, add (b/2)², see the square of side x+b/2, then subtract the corner.",
         ),
         "ALG-EQU-008": (
-            "An absolute-value equation often has two symmetric solutions.",
-            "Move the point on the line and relate distances to the solutions.",
+            "|x|=a looks for points at distance a from zero: two if a>0, one if a=0, none if a<0.",
+            "Move a and read |x|=a as distance to zero; watch how many solutions appear by the sign of a.",
         ),
         "ALG-INE-001": (
             "A linear inequality paints a ray or interval on the number line.",
