@@ -148,24 +148,24 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Mueve \\(a\\) y \\(b\\). Atención: el efecto horizontal es inverso. Si \\(|b|=2\\), el ancho se reduce a la mitad.',
     ),
     'ALG-POL-007': (
-        'Vas a ver que un polinomio en dos variables asigna un valor a cada punto \\((x,y)\\).',
-        'Mueve \\(a\\), \\(b\\) y \\(c\\) y fíjate: el mapa de color muestra \\(z=ax^2+bxy+cy^2\\).',
+        'Vas a ver que un polinomio de dos variables recibe un punto \((x,y)\) y le asigna un valor; el color representa \(P(x,y)\).',
+        'Mueve el punto sobre el plano para ver cómo cambian \(x\), \(y\) y \(P(x,y)\). Después modifica \(a\), \(b\) y \(c\).',
     ),
     'ALG-POL-008': (
-        'Vas a ver que el grado total suma los exponentes de cada variable.',
-        'Cambia \\(\\alpha\\) y \\(\\beta\\) y mira el rectángulo: ilustra el grado \\(\\alpha+\\beta\\) del monomio \\(x^{\\alpha}y^{\\beta}\\).',
+        'Vas a ver que un multiíndice guarda los exponentes de un monomio y que el grado total se obtiene sumando sus componentes.',
+        'Cambia los exponentes y observa cómo se actualizan el multiíndice, el monomio y su grado total.',
     ),
     'ALG-POL-009': (
-        'Vas a ver que en un polinomio homogéneo, escalar \\((x,y)\\) escala el resultado de forma predecible.',
-        'Activa la **forma homogénea** y mueve \\(t\\): compara \\(P(tx,ty)\\) con \\(t^d P(x,y)\\).',
+        'Vas a ver que un polinomio es homogéneo cuando todos sus términos tienen el mismo grado total, y entonces \(P(tx,ty)=t^d P(x,y)\).',
+        'Mueve \(t\) y observa qué ocurre al escalar simultáneamente \(x\) e \(y\): el valor se multiplica por \(t^2\).',
     ),
     'ALG-POL-010': (
-        'Vas a ver que un sistema polinómico se ve como curvas que se cortan en las soluciones.',
-        'Ajusta los parámetros y busca los cruces entre las dos curvas.',
+        'Vas a ver que una solución debe satisfacer ambas ecuaciones a la vez: gráficamente donde se cortan las curvas, y algebraicamente donde \(P(x)-Q(x)=0\).',
+        'Mueve los coeficientes de \(P\) y \(Q\). Observa cómo las intersecciones aparecen, desaparecen o se desplazan.',
     ),
     'ALG-POL-011': (
-        'Vas a ver que la resultante concentra condiciones de solución común en una matriz.',
-        'Edita la matriz y mira el determinante: es una señal de raíces compartidas.',
+        'Vas a ver que la matriz de Sylvester organiza los coeficientes de dos polinomios y que su determinante es la resultante.',
+        'Modifica los coeficientes de \(f\) y \(g\). Observa cómo cambia la matriz y su determinante. Cuando la resultante llega a cero, comparten una raíz.',
     ),
     'ALG-LOG-001': (
         'Vas a ver que la exponencial crece (o decrece) multiplicando una y otra vez.',
@@ -696,24 +696,24 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Move \\(a\\) and \\(b\\). Note: the horizontal effect is inverse. If \\(|b|=2\\), the width halves.',
     ),
         'ALG-POL-007': (
-        "You'll see that a two-variable polynomial assigns a value to each point \\((x,y)\\).",
-        'Move \\(a\\), \\(b\\), and \\(c\\) and notice: the color map shows \\(z=ax^2+bxy+cy^2\\).',
+        "You'll see that a two-variable polynomial takes a point \((x,y)\) and assigns a value; color represents \(P(x,y)\).",
+        "Move the point on the plane to watch \(x\), \(y\), and \(P(x,y)\) change. Then adjust \(a\), \(b\), and \(c\).",
     ),
         'ALG-POL-008': (
-        "You'll see that total degree adds the exponents of each variable.",
-        'Change \\(\\alpha\\) and \\(\\beta\\) and watch the rectangle: it shows degree \\(\\alpha+\\beta\\) of \\(x^{\\alpha}y^{\\beta}\\).',
+        "You'll see that a multi-index stores a monomial's exponents and that total degree is the sum of its components.",
+        "Change the exponents and watch the multi-index, monomial, and total degree update together.",
     ),
         'ALG-POL-009': (
-        "You'll see that for a homogeneous polynomial, scaling \\((x,y)\\) scales the result predictably.",
-        'Turn on the **homogeneous form** and move \\(t\\): compare \\(P(tx,ty)\\) with \\(t^d P(x,y)\\).',
+        "You'll see that a polynomial is homogeneous when every term has the same total degree, and then \(P(tx,ty)=t^d P(x,y)\).",
+        "Move \(t\) and watch simultaneous scaling of \(x\) and \(y\): the value is multiplied by \(t^2\).",
     ),
         'ALG-POL-010': (
-        "You'll see that a polynomial system looks like curves meeting at the solutions.",
-        'Adjust the parameters and look for crossings between the two curves.',
+        "You'll see that a solution must satisfy both equations at once: graphically at curve intersections, algebraically where \(P(x)-Q(x)=0\).",
+        "Move the coefficients of \(P\) and \(Q\). Watch intersections appear, vanish, or shift.",
     ),
         'ALG-POL-011': (
-        "You'll see that the resultant packs common-root conditions into a matrix.",
-        "Edit the matrix and watch the determinant: it's a signal of shared roots.",
+        "You'll see that the Sylvester matrix organizes the coefficients of two polynomials and that its determinant is the resultant.",
+        "Change the coefficients of \(f\) and \(g\). Watch the matrix and determinant; when the resultant hits zero, they share a root.",
     ),
         'ALG-LOG-001': (
         "You'll see that the exponential grows (or shrinks) by multiplying again and again.",

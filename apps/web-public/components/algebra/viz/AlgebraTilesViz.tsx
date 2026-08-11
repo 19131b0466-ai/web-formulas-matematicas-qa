@@ -12,6 +12,7 @@ import { DiffSquaresViz } from './DiffSquaresViz';
 import { BinomialTheoremViz } from './BinomialTheoremViz';
 import { CommonFactorViz } from './CommonFactorViz';
 import { CompleteSquareViz } from './CompleteSquareViz';
+import { MultiindexViz } from './MultiindexViz';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -28,6 +29,9 @@ function fitScale(w: number, h: number, maxW: number, maxH: number, cap = 32): n
 }
 
 export function AlgebraTilesViz(props: Props) {
+  if (props.formulaId.includes('POL-008')) {
+    return <MultiindexViz />;
+  }
   if (props.formulaId.includes('POT-001')) {
     return <PowerProductViz />;
   }

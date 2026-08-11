@@ -1642,11 +1642,11 @@ donde \(\boldsymbol\alpha=(\alpha_1,\ldots,\alpha_n)\) es un multiíndice de ent
 
 ### Visualización sugerida
 - **Tipo:** `polynomial_surface`
-- **Concepto visual:** pasar de un polinomio univariable a uno de dos variables.
-- **Elementos:** una expresión \(P(x,y)\), ejes \(x\), \(y\), \(z\) y la superficie \(z=P(x,y)\); resaltar además uno o dos monomios de la expresión.
-- **Idea:** Mueve \(a\), \(b\) y \(c\) y fíjate: el mapa de color muestra \(z=ax^2+bxy+cy^2\).
-- **Objetivo educativo:** Vas a ver que un polinomio en dos variables asigna un valor a cada punto \((x,y)\).
-- **Interactividad sugerida:** permitir modificar coeficientes y activar/desactivar términos para observar cómo cambia la superficie.
+- **Concepto visual:** \(P(x,y)=ax^2+bxy+cy^2\) como mapa \((x,y)\mapsto P(x,y)\) con curvas de nivel y punto interactivo.
+- **Elementos:** ecuación viva; ejes \(x,y\); leyenda de color centrada en 0; curvas \(P=k\); punto \((x_0,y_0)\); sustitución y contribuciones de monomios; presets cuenco/silla/\(xy\).
+- **Idea:** Mueve el punto sobre el plano para ver cómo cambian \(x\), \(y\) y \(P(x,y)\). Después modifica \(a\), \(b\) y \(c\).
+- **Objetivo educativo:** Vas a ver que un polinomio de dos variables recibe un punto \((x,y)\) y le asigna un valor; el color representa \(P(x,y)\).
+- **Interactividad sugerida:** punto interactivo; «Mostrar términos»; aislar \(ax^2\), \(bxy\), \(cy^2\); vista 2D/3D y avanzada matricial.
 
 ### Fórmulas relacionadas
 - `ALG-EXP-001`
@@ -1688,11 +1688,11 @@ El grado total de un polinomio no nulo es
 ### Visualización sugerida
 - **Tipo:** `algebra_tiles`
 - **Modo:** `degree`
-- **Concepto visual:** distinguir grado respecto de una variable y grado total.
-- **Elementos:** monomios como \(x^3y^2\), \(xy^4\) y \(x^2yz^3\), con cada exponente resaltado y una suma visible de exponentes.
-- **Idea:** Cambia \(\alpha\) y \(\beta\) y mira el rectángulo: ilustra el grado \(\alpha+\beta\) del monomio \(x^{\alpha}y^{\beta}\).
-- **Objetivo educativo:** Vas a ver que el grado total suma los exponentes de cada variable.
-- **Interactividad sugerida:** permitir editar exponentes enteros no negativos y recalcular el multiíndice y el grado total.
+- **Concepto visual:** multiíndice \(\alpha=(\alpha_1,\alpha_2)\) → monomio \(x^{\alpha}\) → grado total \(|\alpha|\).
+- **Elementos:** \(\alpha\) visible; flujo \((3,2)\to x^3y^2\to 3+2=5\); bloques por variable; modos 2/3 variables; ejemplo de polinomio con \(\deg P=\max|\alpha|\).
+- **Idea:** Cambia los exponentes y observa cómo se actualizan el multiíndice, el monomio y su grado total.
+- **Objetivo educativo:** Vas a ver que un multiíndice guarda los exponentes de un monomio y que el grado total se obtiene sumando sus componentes.
+- **Interactividad sugerida:** sliders enteros \(\alpha_i\in\mathbb N_0\); coeficiente opcional; sección «Del monomio al polinomio».
 
 ### Fórmulas relacionadas
 - `ALG-POL-007`
@@ -1724,11 +1724,11 @@ P(tx_1,\ldots,tx_n)=t^dP(x_1,\ldots,x_n).
 
 ### Visualización sugerida
 - **Tipo:** `polynomial_surface`
-- **Concepto visual:** escalamiento uniforme de las variables en un polinomio homogéneo.
-- **Elementos:** un punto \((x,y)\), un control de escala \(t\), la superficie de \(P\) y los valores \(P(x,y)\) y \(P(tx,ty)\).
-- **Idea:** Activa la **forma homogénea** y mueve \(t\): compara \(P(tx,ty)\) con \(t^d P(x,y)\).
-- **Objetivo educativo:** Vas a ver que en un polinomio homogéneo, escalar \((x,y)\) escala el resultado de forma predecible.
-- **Interactividad sugerida:** slider para \(t\) y selector del grado \(d\) usando ejemplos homogéneos predefinidos.
+- **Concepto visual:** homogeneidad = mismo grado total + identidad \(P(tx,ty)=t^d P(x,y)\).
+- **Elementos:** términos con grados 2,2,2; \(d=2\) calculado; punto \((x_0,y_0)\) y escalado \((tx_0,ty_0)\); comprobación \(P(tx,ty)\stackrel{?}{=}t^2P\); contraste con un polinomio no homogéneo.
+- **Idea:** Mueve \(t\) y observa qué ocurre al escalar simultáneamente \(x\) e \(y\): el valor se multiplica por \(t^2\).
+- **Objetivo educativo:** Vas a ver que un polinomio es homogéneo cuando todos sus términos tienen el mismo grado total, y entonces \(P(tx,ty)=t^d P(x,y)\).
+- **Interactividad sugerida:** sliders \(t,a,b,c\); selector homogéneo / no homogéneo; mapa con rayo desde el origen.
 
 ### Fórmulas relacionadas
 - `ALG-POL-007`
@@ -1755,11 +1755,11 @@ P_m(x_1,\ldots,x_n)=0.
 ### Visualización sugerida
 - **Tipo:** `graph`
 - **Modo:** `poly_system`
-- **Concepto visual:** soluciones como intersecciones de conjuntos definidos por polinomios.
-- **Elementos:** dos curvas implícitas en el plano, por ejemplo \(P(x,y)=0\) y \(Q(x,y)=0\), con sus puntos de intersección resaltados.
-- **Idea:** Mueve los coeficientes de las dos parábolas \(P\) y \(Q\): las marcas naranjas son las intersecciones.
-- **Objetivo educativo:** Vas a ver dónde se cortan dos curvas: esas \(x\) resuelven \(P(x)=Q(x)\).
-- **Interactividad sugerida:** variar ambos polinomios cuadráticos y ver cómo cambia el número de intersecciones reales.
+- **Concepto visual:** sistema \(y=P(x)\), \(y=Q(x)\); soluciones = intersecciones = raíces de \(P-Q=0\).
+- **Elementos:** ecuaciones vivas; curvas etiquetadas; puntos \(S_i=(x_i,y_i)\); reducción \(Ax^2+Bx+C=0\); vistas gráfica / \(P-Q\) / algebraica; casos 0/1/2/infinitas.
+- **Idea:** Mueve los coeficientes de \(P\) y \(Q\). Observa cómo las intersecciones aparecen, desaparecen o se desplazan.
+- **Objetivo educativo:** Vas a ver que una solución debe satisfacer ambas ecuaciones a la vez: gráficamente donde se cortan las curvas, y algebraicamente donde \(P(x)-Q(x)=0\).
+- **Interactividad sugerida:** controles agrupados \(a_1,b_1,c_1\) y \(a_2,b_2,c_2\); seleccionar \(S_1,S_2\); verificar \(P(x_i)=Q(x_i)\).
 
 ### Fórmulas relacionadas
 - `ALG-SIS-001`
@@ -1792,11 +1792,11 @@ f\text{ y }g\text{ tienen una raíz común}.
 
 ### Visualización sugerida
 - **Tipo:** `matrix`
-- **Concepto visual:** convertir coeficientes de dos polinomios en una matriz cuyo determinante detecta raíces comunes.
-- **Elementos:** dos polinomios pequeños, por ejemplo cuadrático y lineal; sus vectores de coeficientes; la matriz de Sylvester construida por filas desplazadas; y el valor de su determinante.
-- **Idea:** Edita la matriz y mira el determinante: es una señal de raíces compartidas.
-- **Objetivo educativo:** Vas a ver que la resultante concentra condiciones de solución común en una matriz.
-- **Interactividad sugerida:** selector de dos polinomios predefinidos; resaltar la raíz común cuando la resultante sea cero.
+- **Concepto visual:** \(S(f,g)\) construida desde coeficientes; \(\operatorname{Res}(f,g)=\det S(f,g)\); cero ⟺ raíz común.
+- **Elementos:** \(f,g\) cuadráticos; filas desplazadas; matriz 4×4; \(\operatorname{Res}\); gráficas con raíces en el eje \(x\); presets con/sin raíz común.
+- **Idea:** Modifica los coeficientes de \(f\) y \(g\). Observa cómo cambia la matriz y su determinante. Cuando la resultante llega a cero, comparten una raíz.
+- **Objetivo educativo:** Vas a ver que la matriz de Sylvester organiza los coeficientes de dos polinomios y que su determinante es la resultante.
+- **Interactividad sugerida:** controles de coeficientes (no celdas arbitrarias); construcción paso a paso; distinguir raíz común de una intersección \(f=g\) cualquiera.
 
 ### Fórmulas relacionadas
 - `ALG-POL-003`

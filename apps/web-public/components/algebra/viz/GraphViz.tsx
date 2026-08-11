@@ -14,10 +14,14 @@ import { DomainViz } from './DomainViz';
 import { InverseFunctionViz } from './InverseFunctionViz';
 import { LineSlopeViz } from './LineSlopeViz';
 import { ParallelPerpendicularViz } from './ParallelPerpendicularViz';
+import { PolySystemViz } from './PolySystemViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GraphViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('POL-010')) {
+    return <PolySystemViz />;
+  }
   if (formulaId.includes('FUN-001')) {
     return <DomainViz />;
   }

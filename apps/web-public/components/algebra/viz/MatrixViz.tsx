@@ -9,6 +9,7 @@ import { AugmentedMatrixViz } from './AugmentedMatrixViz';
 import { MatrixFormViz } from './MatrixFormViz';
 import { RoucheCapelliViz } from './RoucheCapelliViz';
 import { RowOpsViz } from './RowOpsViz';
+import { SylvesterResultantViz } from './SylvesterResultantViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -104,6 +105,9 @@ function lu2(m: Mat2): [Mat2, Mat2] | null {
 }
 
 export function MatrixViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('POL-011')) {
+    return <SylvesterResultantViz />;
+  }
   if (formulaId.includes('SIS-002')) {
     return <MatrixFormViz />;
   }

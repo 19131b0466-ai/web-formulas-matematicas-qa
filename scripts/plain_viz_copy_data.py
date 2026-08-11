@@ -152,24 +152,24 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Mueve a y b. Atención: el efecto horizontal es inverso. Si |b| = 2, el ancho se reduce a la mitad.",
     ),
     "ALG-POL-007": (
-        "Un polinomio en dos variables asigna un valor a cada punto (x, y).",
-        "Mueve a, b y c: el mapa de color muestra z = ax² + bxy + cy².",
+        "Un polinomio de dos variables recibe un punto (x, y) y le asigna un valor; el color representa P(x, y).",
+        "Mueve el punto sobre el plano para ver cómo cambian x, y y P(x, y). Después modifica a, b y c.",
     ),
     "ALG-POL-008": (
-        "El grado total suma los exponentes de cada variable.",
-        "Cambia α y β: el rectángulo ilustra el grado α+β del monomio x^α y^β.",
+        "Un multiíndice guarda los exponentes de un monomio; el grado total se obtiene sumando sus componentes.",
+        "Cambia los exponentes y observa cómo se actualizan el multiíndice, el monomio y su grado total.",
     ),
     "ALG-POL-009": (
-        "En un polinomio homogéneo, escalar (x, y) escala el resultado de forma predecible.",
-        "Activa la forma homogénea y mueve t: compara P(tx, ty) con t^d P(x, y).",
+        "Un polinomio es homogéneo cuando todos sus términos tienen el mismo grado total; entonces P(tx, ty) = t^d P(x, y).",
+        "Mueve t y observa el escalamiento simultáneo de x e y: el valor se multiplica por t².",
     ),
     "ALG-POL-010": (
-        "Un sistema polinómico se ve como curvas que se cortan en las soluciones.",
-        "Ajusta los parámetros y busca los cruces entre las dos curvas.",
+        "Una solución debe satisfacer ambas ecuaciones a la vez: gráficamente en las intersecciones, y algebraicamente donde P(x) − Q(x) = 0.",
+        "Mueve los coeficientes de P y Q. Observa cómo las intersecciones aparecen, desaparecen o se desplazan.",
     ),
     "ALG-POL-011": (
-        "La resultante concentra condiciones de solución común en una matriz.",
-        "Edita la matriz y observa el determinante como señal de raíces compartidas.",
+        "La matriz de Sylvester organiza los coeficientes de dos polinomios; su determinante es la resultante.",
+        "Modifica los coeficientes de f y g. Cuando la resultante llega a cero, comparten una raíz.",
     ),
     "ALG-LOG-001": (
         "La exponencial crece (o decrece) multiplicando una y otra vez.",
@@ -700,24 +700,24 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Change a and reflection: watch how the wave deforms.",
         ),
         "ALG-POL-007": (
-            "A two-variable polynomial assigns a value to every point (x, y).",
-            "Move a, b, and c: the color map shows z = ax² + bxy + cy².",
+            "A two-variable polynomial takes a point (x, y) and assigns a value; color represents P(x, y).",
+            "Move the point on the plane to watch x, y, and P(x, y) change. Then adjust a, b, and c.",
         ),
         "ALG-POL-008": (
-            "Total degree adds the exponents of each variable.",
-            "Change α and β: the rectangle illustrates degree α+β of x^α y^β.",
+            "A multi-index stores a monomial's exponents; total degree is the sum of its components.",
+            "Change the exponents and watch the multi-index, monomial, and total degree update together.",
         ),
         "ALG-POL-009": (
-            "For a homogeneous polynomial, scaling (x, y) scales the output predictably.",
-            "Turn on homogeneous form and move t: compare P(tx, ty) with t^d P(x, y).",
+            "A polynomial is homogeneous when every term has the same total degree; then P(tx, ty) = t^d P(x, y).",
+            "Move t and watch simultaneous scaling of x and y: the value is multiplied by t².",
         ),
         "ALG-POL-010": (
-            "A polynomial system looks like curves meeting at the solutions.",
-            "Adjust parameters and look for crossings between the two curves.",
+            "A solution must satisfy both equations at once: graphically at intersections, algebraically where P(x) − Q(x) = 0.",
+            "Move the coefficients of P and Q. Watch intersections appear, vanish, or shift.",
         ),
         "ALG-POL-011": (
-            "The resultant packs common-root conditions into a matrix.",
-            "Edit the matrix and watch the determinant as a signal of shared roots.",
+            "The Sylvester matrix organizes the coefficients of two polynomials; its determinant is the resultant.",
+            "Change the coefficients of f and g. When the resultant hits zero, they share a root.",
         ),
         "ALG-LOG-001": (
             "An exponential grows (or decays) by multiplying over and over.",
