@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Muda o raio e toca em **Extremos fechados** para ver como o intervalo solução abre ou fecha.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "Vais ver que um sistema \\(2\\times 2\\) são duas retas: a solução é o seu cruzamento (se se cortarem).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Move o declive e olha o ponto laranja: marca a interseção, ou verás se são paralelas.",
-  "Vas a ver que el sistema se puede escribir como una sola ecuación con matrices: \\(Ax=b\\).": "Vais ver que o sistema se pode escrever como uma única equação matricial: \\(Ax=b\\).",
-  "Edita \\(A\\) y fíjate cómo se organiza la información del sistema.": "Edita \\(A\\) e repara como se organiza a informação do sistema.",
   "Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.": "Vais ver que cada linha da matriz aumentada é uma equação do sistema.",
   "Elige \\(R_1\\) o \\(R_2\\) y mira debajo: aparece la ecuación que representa esa fila.": "Escolhe \\(R_1\\) ou \\(R_2\\) e olha abaixo: aparece a equação dessa linha.",
   "Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.": "Vais ver que as operações de linha mudam a matriz, mas o sistema continua equivalente.",
@@ -1949,5 +1947,7 @@
   "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "Vais ver que \\(|x|<a\\) e \\(\\le a\\) são soluções interiores, e que \\(|x|>a\\) e \\(\\ge a\\) são exteriores simétricas.",
   "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Escolhe \\(|x|<a\\), \\(\\le\\), \\(>\\) ou \\(\\ge\\) e move \\(a\\ge0\\): a reta mostra a região interior ou as duas exteriores.",
   "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "Vais ver que um sistema \\(2\\times 2\\) pode ter uma, nenhuma ou infinitas soluções conforme declives e interceptos.",
-  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) e observa se as retas se cruzam, são paralelas ou coincidem."
+  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) e observa se as retas se cruzam, são paralelas ou coincidem.",
+  "Vas a ver que el sistema lineal se compacta en \\(Ax=b\\): filas de \\(A\\) son ecuaciones, columnas son variables; \\(\\det(A)\\neq0\\) implica solución única.": "Vais ver que um sistema linear se compacta em \\(Ax=b\\): as linhas de \\(A\\) são equações, as colunas são variáveis; \\(\\det(A)\\neq0\\) implica solução única.",
+  "Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.": "Edita \\(A\\) e \\(b\\): compara o sistema tradicional com a forma matricial, a expansão de \\(Ax\\) e o determinante."
 }

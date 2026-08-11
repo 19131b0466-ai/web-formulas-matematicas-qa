@@ -5,6 +5,7 @@ import { useVizLabels } from '@/lib/viz-labels';
 import type { MatrixMode } from '@/lib/viz-modes';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2 } from './math2d';
+import { MatrixFormViz } from './MatrixFormViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -99,7 +100,14 @@ function lu2(m: Mat2): [Mat2, Mat2] | null {
   return [L, U];
 }
 
-export function MatrixViz({ formulaId: _id, mode: modeProp }: Props) {
+export function MatrixViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('SIS-002')) {
+    return <MatrixFormViz />;
+  }
+  return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
+}
+
+function MatrixVizInner({ formulaId: _id, mode: modeProp }: Props) {
   const v = useVizLabels();
   const mode = (modeProp ?? 'basic') as MatrixMode;
   const [A, setA] = useState<Mat2>([

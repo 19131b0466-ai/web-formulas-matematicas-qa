@@ -1642,8 +1642,6 @@
   "Cambia el radio y pulsa **Extremos cerrados** para ver cómo se abre o cierra el intervalo solución.": "Change the radius and tap **Closed endpoints** to see how the solution interval opens or closes.",
   "Vas a ver que un sistema \\(2\\times 2\\) es dos rectas: la solución es su cruce (si se cortan).": "You'll see that a \\(2\\times 2\\) system is two lines: the solution is their crossing (if they meet).",
   "Mueve la pendiente y mira el punto naranja: marca la intersección, o verás si son paralelas.": "Move the slope and watch the orange point: it marks the intersection, or you'll see if they're parallel.",
-  "Vas a ver que el sistema se puede escribir como una sola ecuación con matrices: \\(Ax=b\\).": "You'll see that the system can be written as one matrix equation: \\(Ax=b\\).",
-  "Edita \\(A\\) y fíjate cómo se organiza la información del sistema.": "Edit \\(A\\) and notice how the system's information is organized.",
   "Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.": "You'll see that each row of the augmented matrix is one equation of the system.",
   "Elige \\(R_1\\) o \\(R_2\\) y mira debajo: aparece la ecuación que representa esa fila.": "Pick \\(R_1\\) or \\(R_2\\) and look below: the equation for that row appears.",
   "Vas a ver que las operaciones de fila cambian la matriz, pero el sistema sigue siendo equivalente.": "You'll see that row operations change the matrix, but the system stays equivalent.",
@@ -1949,5 +1947,7 @@
   "Vas a ver que \\(|x|<a\\) y \\(\\le a\\) son soluciones interiores, y que \\(|x|>a\\) y \\(\\ge a\\) son exteriores simétricas.": "You'll see that \\(|x|<a\\) and \\(\\le a\\) are interior solutions, and \\(|x|>a\\) and \\(\\ge a\\) are symmetric exterior ones.",
   "Elige \\(|x|<a\\), \\(\\le\\), \\(>\\) o \\(\\ge\\) y mueve \\(a\\ge0\\): la recta muestra la región interior o las dos exteriores.": "Choose \\(|x|<a\\), \\(\\le\\), \\(>\\), or \\(\\ge\\) and move \\(a\\ge0\\): the line shows the interior region or the two exteriors.",
   "Vas a ver que un sistema \\(2\\times 2\\) puede tener una, ninguna o infinitas soluciones según las pendientes e interceptos.": "You'll see that a \\(2\\times 2\\) system can have one, none, or infinitely many solutions depending on slopes and intercepts.",
-  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) and watch whether the lines cross, are parallel, or coincide."
+  "Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.": "Move \\(m_1,b_1,m_2,b_2\\) and watch whether the lines cross, are parallel, or coincide.",
+  "Vas a ver que el sistema lineal se compacta en \\(Ax=b\\): filas de \\(A\\) son ecuaciones, columnas son variables; \\(\\det(A)\\neq0\\) implica solución única.": "You'll see that a linear system packs into \\(Ax=b\\): rows of \\(A\\) are equations, columns are variables; \\(\\det(A)\\neq0\\) means a unique solution.",
+  "Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.": "Edit \\(A\\) and \\(b\\): compare the traditional system with the matrix form, the \\(Ax\\) expansion, and the determinant."
 }

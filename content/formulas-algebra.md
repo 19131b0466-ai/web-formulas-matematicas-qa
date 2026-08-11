@@ -1222,11 +1222,11 @@ A\mathbf x=\mathbf b
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** traducción de ecuaciones a la forma \(A\mathbf x=\mathbf b\).
-- **Elementos:** sistema de ecuaciones a la izquierda, matriz \(A\), vector \(\mathbf x\) y vector \(\mathbf b\) a la derecha, con colores/etiquetas consistentes.
-- **Idea:** Edita \(A\) y fíjate cómo se organiza la información del sistema.
-- **Objetivo educativo:** Vas a ver que el sistema se puede escribir como una sola ecuación con matrices: \(Ax=b\).
-- **Interactividad sugerida:** al pasar el cursor sobre un coeficiente de la ecuación, destacar su celda correspondiente en la matriz.
+- **Concepto visual:** traducción de ecuaciones a la forma \(A\mathbf x=\mathbf b\), con expansión de \(A\mathbf x\) y lectura de \(\det(A)\).
+- **Elementos:** sistema tradicional; matriz \(A\), vector \(\mathbf x\) y vector \(\mathbf b\) etiquetados por color; expansión de \(A\mathbf x\); \(\det(A)\) e invertibilidad; \(x=A^{-1}b\) si \(\det(A)\neq0\).
+- **Idea:** Edita \(A\) y \(b\): compara el sistema tradicional con la forma matricial, la expansión de \(Ax\) y el determinante.
+- **Objetivo educativo:** Vas a ver que el sistema lineal se compacta en \(Ax=b\): filas de \(A\) son ecuaciones, columnas son variables; \(\det(A)\neq0\) implica solución única.
+- **Interactividad sugerida:** editar celdas de \(A\) y \(b\); actualizar a la vez sistema, \(Ax=b\), expansión y \(\det(A)\).
 
 ### Fórmulas relacionadas
 

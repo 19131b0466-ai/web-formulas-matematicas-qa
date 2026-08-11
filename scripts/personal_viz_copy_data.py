@@ -104,8 +104,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Mueve \\(m_1,b_1,m_2,b_2\\) y observa si las rectas se cruzan, son paralelas o coinciden.',
     ),
     'ALG-SIS-002': (
-        'Vas a ver que el sistema se puede escribir como una sola ecuación con matrices: \\(Ax=b\\).',
-        'Edita \\(A\\) y fíjate cómo se organiza la información del sistema.',
+        'Vas a ver que el sistema lineal se compacta en \\(Ax=b\\): filas de \\(A\\) son ecuaciones, columnas son variables; \\(\\det(A)\\neq0\\) implica solución única.',
+        'Edita \\(A\\) y \\(b\\): compara el sistema tradicional con la forma matricial, la expansión de \\(Ax\\) y el determinante.',
     ),
     'ALG-SIS-003': (
         'Vas a ver que cada fila de la matriz aumentada es una ecuación del sistema.',
@@ -652,8 +652,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Move \\(m_1,b_1,m_2,b_2\\) and watch whether the lines cross, are parallel, or coincide.',
     ),
         'ALG-SIS-002': (
-        "You'll see that the system can be written as one matrix equation: \\(Ax=b\\).",
-        "Edit \\(A\\) and notice how the system's information is organized.",
+        "You'll see that a linear system packs into \\(Ax=b\\): rows of \\(A\\) are equations, columns are variables; \\(\\det(A)\\neq0\\) means a unique solution.",
+        'Edit \\(A\\) and \\(b\\): compare the traditional system with the matrix form, the \\(Ax\\) expansion, and the determinant.',
     ),
         'ALG-SIS-003': (
         "You'll see that each row of the augmented matrix is one equation of the system.",
@@ -1198,8 +1198,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Bewege die Steigung und schau auf den orangenen Punkt: Er markiert den Schnitt, oder du siehst, dass sie parallel sind.',
     ),
         'ALG-SIS-002': (
-        'Du siehst: Das System lässt sich als eine Matrixgleichung schreiben: \\(Ax=b\\).',
-        'Editiere \\(A\\) und schau, wie die Information des Systems organisiert ist.',
+        'Du siehst: Ein lineares System verdichtet sich zu \\(Ax=b\\): Zeilen von \\(A\\) sind Gleichungen, Spalten sind Variablen; \\(\\det(A)\\neq0\\) heißt eindeutige Lösung.',
+        'Editiere \\(A\\) und \\(b\\): vergleiche das klassische System mit der Matrixform, der \\(Ax\\)-Entwicklung und der Determinante.',
     ),
         'ALG-SIS-003': (
         'Du siehst: Jede Zeile der erweiterten Matrix ist eine Gleichung des Systems.',
@@ -1744,8 +1744,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Bouge la pente et regarde le point orange : il marque l’intersection, ou tu verras qu’elles sont parallèles.',
     ),
         'ALG-SIS-002': (
-        'Tu vas voir que le système peut s’écrire comme une seule équation matricielle : \\(Ax=b\\).',
-        'Édite \\(A\\) et regarde comment l’information du système s’organise.',
+        'Tu vas voir qu’un système linéaire se compacte en \\(Ax=b\\) : les lignes de \\(A\\) sont des équations, les colonnes des variables ; \\(\\det(A)\\neq0\\) implique une solution unique.',
+        'Édite \\(A\\) et \\(b\\) : compare le système classique avec la forme matricielle, le développement de \\(Ax\\) et le déterminant.',
     ),
         'ALG-SIS-003': (
         'Tu vas voir que chaque ligne de la matrice augmentée est une équation du système.',
@@ -2290,8 +2290,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Muovi la pendenza e guarda il punto arancione: segna l'intersezione, o vedrai se sono parallele.",
     ),
         'ALG-SIS-002': (
-        "Vedrai che il sistema si può scrivere come un'unica equazione matriciale: \\(Ax=b\\).",
-        "Modifica \\(A\\) e nota come si organizza l'informazione del sistema.",
+        'Vedrai che un sistema lineare si compatta in \\(Ax=b\\): le righe di \\(A\\) sono equazioni, le colonne variabili; \\(\\det(A)\\neq0\\) implica soluzione unica.',
+        'Modifica \\(A\\) e \\(b\\): confronta il sistema tradizionale con la forma matriciale, lo sviluppo di \\(Ax\\) e il determinante.',
     ),
         'ALG-SIS-003': (
         "Vedrai che ogni riga della matrice aumentata è un'equazione del sistema.",
@@ -2836,8 +2836,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Move o declive e olha o ponto laranja: marca a interseção, ou verás se são paralelas.',
     ),
         'ALG-SIS-002': (
-        'Vais ver que o sistema se pode escrever como uma única equação matricial: \\(Ax=b\\).',
-        'Edita \\(A\\) e repara como se organiza a informação do sistema.',
+        'Vais ver que um sistema linear se compacta em \\(Ax=b\\): as linhas de \\(A\\) são equações, as colunas são variáveis; \\(\\det(A)\\neq0\\) implica solução única.',
+        'Edita \\(A\\) e \\(b\\): compara o sistema tradicional com a forma matricial, a expansão de \\(Ax\\) e o determinante.',
     ),
         'ALG-SIS-003': (
         'Vais ver que cada linha da matriz aumentada é uma equação do sistema.',

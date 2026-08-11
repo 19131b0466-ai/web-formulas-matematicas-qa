@@ -108,8 +108,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Mueve m1,b1,m2,b2 y observa si las rectas se cruzan, son paralelas o coinciden.",
     ),
     "ALG-SIS-002": (
-        "El sistema se puede escribir como una sola ecuación con matrices: Ax = b.",
-        "Edita A y observa cómo se organiza la información del sistema.",
+        "El sistema lineal se compacta en Ax=b: filas de A son ecuaciones, columnas son variables; det(A)≠0 implica solución única.",
+        "Edita A y b: compara el sistema tradicional con la forma matricial, la expansión de Ax y el determinante.",
     ),
     "ALG-SIS-003": (
         "Cada fila de la matriz aumentada es una ecuación del sistema.",
@@ -656,8 +656,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Move m1,b1,m2,b2 and watch whether the lines cross, are parallel, or coincide.",
         ),
         "ALG-SIS-002": (
-            "The system can be written as one matrix equation Ax = b.",
-            "Edit A and see how the system’s information is arranged.",
+            "A linear system packs into Ax=b: rows of A are equations, columns are variables; det(A)≠0 means a unique solution.",
+            "Edit A and b: compare the traditional system with the matrix form, the Ax expansion, and the determinant.",
         ),
         "ALG-SIS-003": (
             "Each row of the augmented matrix is one equation of the system.",
@@ -1202,8 +1202,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Bewege die Steigung: Der orangene Punkt markiert den Schnitt, oder du siehst Parallelen.",
         ),
         "ALG-SIS-002": (
-            "Das System lässt sich als eine Matrixgleichung Ax = b schreiben.",
-            "Bearbeite A und sieh, wie die Information des Systems angeordnet ist.",
+            "Ein lineares System verdichtet sich zu Ax=b: Zeilen von A sind Gleichungen, Spalten sind Variablen; det(A)≠0 heißt eindeutige Lösung.",
+            "Bearbeite A und b: vergleiche das klassische System mit der Matrixform, der Ax-Entwicklung und der Determinante.",
         ),
         "ALG-SIS-003": (
             "Jede Zeile der erweiterten Matrix ist eine Gleichung des Systems.",
@@ -1748,8 +1748,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Bouge la pente : le point orange marque l’intersection, ou tu vois si elles sont parallèles.",
         ),
         "ALG-SIS-002": (
-            "Le système peut s’écrire comme une seule équation matricielle Ax = b.",
-            "Modifie A et vois comment l’information du système s’organise.",
+            "Un système linéaire se compacte en Ax=b : les lignes de A sont des équations, les colonnes des variables ; det(A)≠0 implique une solution unique.",
+            "Modifie A et b : compare le système classique avec la forme matricielle, le développement de Ax et le déterminant.",
         ),
         "ALG-SIS-003": (
             "Chaque ligne de la matrice augmentée est une équation du système.",
@@ -2294,8 +2294,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Muovi la pendenza: il punto arancione segna l’intersezione, o vedi se sono parallele.",
         ),
         "ALG-SIS-002": (
-            "Il sistema si può scrivere come un’unica equazione matriciale Ax = b.",
-            "Modifica A e vedi come si organizza l’informazione del sistema.",
+            "Un sistema lineare si compatta in Ax=b: le righe di A sono equazioni, le colonne variabili; det(A)≠0 implica soluzione unica.",
+            "Modifica A e b: confronta il sistema tradizionale con la forma matriciale, lo sviluppo di Ax e il determinante.",
         ),
         "ALG-SIS-003": (
             "Ogni riga della matrice aumentata è un’equazione del sistema.",
@@ -2840,8 +2840,8 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
             "Move o declive: o ponto laranja marca a interseção, ou vês se são paralelas.",
         ),
         "ALG-SIS-002": (
-            "O sistema pode escrever-se como uma única equação matricial Ax = b.",
-            "Edita A e vê como se organiza a informação do sistema.",
+            "Um sistema linear compacta-se em Ax=b: as linhas de A são equações, as colunas são variáveis; det(A)≠0 implica solução única.",
+            "Edita A e b: compara o sistema tradicional com a forma matricial, a expansão de Ax e o determinante.",
         ),
         "ALG-SIS-003": (
             "Cada linha da matriz aumentada é uma equação do sistema.",
