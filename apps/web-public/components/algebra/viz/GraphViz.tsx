@@ -15,6 +15,9 @@ import { InverseFunctionViz } from './InverseFunctionViz';
 import { LineSlopeViz } from './LineSlopeViz';
 import { ParallelPerpendicularViz } from './ParallelPerpendicularViz';
 import { PolySystemViz } from './PolySystemViz';
+import { ExponentialFunctionViz } from './ExponentialFunctionViz';
+import { LogarithmDefViz } from './LogarithmDefViz';
+import { ExpGrowthDecayViz } from './ExpGrowthDecayViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -33,6 +36,15 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('FUN-006')) {
     return <ParallelPerpendicularViz />;
+  }
+  if (formulaId.includes('LOG-001')) {
+    return <ExponentialFunctionViz />;
+  }
+  if (formulaId.includes('LOG-002')) {
+    return <LogarithmDefViz />;
+  }
+  if (formulaId.includes('LOG-007')) {
+    return <ExpGrowthDecayViz />;
   }
   if (formulaId.includes('EQU-001')) {
     return <LinearEquationViz />;

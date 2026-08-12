@@ -1,6 +1,9 @@
 export { NumberLineViz } from './NumberLineViz';
 export { AlgebraTilesViz } from './AlgebraTilesViz';
 export { GraphViz } from './GraphViz';
+export { ExponentialFunctionViz } from './ExponentialFunctionViz';
+export { LogarithmDefViz } from './LogarithmDefViz';
+export { ExpGrowthDecayViz } from './ExpGrowthDecayViz';
 export { LineSlopeViz } from './LineSlopeViz';
 export { ParallelPerpendicularViz } from './ParallelPerpendicularViz';
 export { InverseFunctionViz } from './InverseFunctionViz';

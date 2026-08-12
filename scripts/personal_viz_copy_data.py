@@ -168,16 +168,16 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Modifica los coeficientes de \(f\) y \(g\). Observa cómo cambia la matriz y su determinante. Cuando la resultante llega a cero, comparten una raíz.',
     ),
     'ALG-LOG-001': (
-        'Vas a ver que la exponencial crece (o decrece) multiplicando una y otra vez.',
-        'Cambia la base y fíjate: la curva se hace más empinada o más suave.',
+        'Vas a ver que cada avance de una unidad en \(x\) multiplica el valor por la base \(a\): si \(a>1\) crece y si \(0<a<1\) decrece.',
+        'Mueve la base \(a\) y el valor \(x\). Observa el punto \((0,1)\), la asíntota \(y=0\) y cómo la curva crece o decrece.',
     ),
     'ALG-LOG-002': (
-        'Vas a ver que el logaritmo responde: “¿a qué exponente elevo la base para obtener \\(x\\)?”.',
-        'Compara log y exponencial: son inversas; la diagonal \\(y=x\\) las refleja.',
+        'Vas a ver que el logaritmo responde: “¿a qué exponente elevo la base para obtener \(x\)?”.',
+        'Mueve la base y el valor \(x\). Observa que si \(\log_b(x)=y\), entonces \(b^y=x\). Los puntos \((x,y)\) y \((y,x)\) se reflejan respecto a \(y=x\).',
     ),
     'ALG-LOG-007': (
-        'Vas a ver que el signo del exponente decide si la cantidad crece o se apaga.',
-        'Mueve \\(k\\) (vía \\(b\\)) y mira si la curva sube o baja con el tiempo.',
+        'Vas a ver que el signo de \(k\) decide si la cantidad crece, decrece o permanece constante.',
+        'Mueve \(k\): positivo crece, negativo decrece y \(k=0\) queda constante. Mueve \(t\) y observa \(P(t)=P_0 e^{kt}\).',
     ),
     'ALG-COM-001': (
         'Vas a ver que un complejo \\(a+bi\\) es un punto (o flecha) en el plano.',
@@ -716,16 +716,16 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         "Change the coefficients of \(f\) and \(g\). Watch the matrix and determinant; when the resultant hits zero, they share a root.",
     ),
         'ALG-LOG-001': (
-        "You'll see that the exponential grows (or shrinks) by multiplying again and again.",
-        'Change the base and notice: the curve gets steeper or gentler.',
+        "You'll see that each step of one unit in \(x\) multiplies the value by the base \(a\): if \(a>1\) it grows and if \(0<a<1\) it decays.",
+        'Move the base \(a\) and the value \(x\). Watch the point \((0,1)\), the asymptote \(y=0\), and how the curve grows or decays.',
     ),
         'ALG-LOG-002': (
-        "You'll see that the logarithm answers: “to what power do I raise the base to get \\(x\\)?”.",
-        "Compare log and exponential: they're inverses; the diagonal \\(y=x\\) mirrors them.",
+        "You'll see that the logarithm answers: “to what power do I raise the base to get \(x\)?”.",
+        'Move the base and the value \(x\). Notice that if \(\log_b(x)=y\), then \(b^y=x\). The points \((x,y)\) and \((y,x)\) mirror across \(y=x\).',
     ),
         'ALG-LOG-007': (
-        "You'll see that the sign of the exponent decides whether the quantity grows or fades.",
-        'Move \\(k\\) (via \\(b\\)) and watch whether the curve rises or falls over time.',
+        "You'll see that the sign of \(k\) decides whether the quantity grows, decays, or stays constant.",
+        'Move \(k\): positive grows, negative decays, and \(k=0\) stays flat. Move \(t\) and watch \(P(t)=P_0 e^{kt}\).',
     ),
         'ALG-COM-001': (
         "You'll see that a complex number \\(a+bi\\) is a point (or arrow) in the plane.",
@@ -1262,16 +1262,16 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Editiere die Matrix und schau auf die Determinante: Sie signalisiert gemeinsame Wurzeln.',
     ),
         'ALG-LOG-001': (
-        'Du siehst: Die Exponentialfunktion wächst (oder schrumpft), indem sie immer wieder multipliziert.',
-        'Ändere die Basis und schau: Die Kurve wird steiler oder flacher.',
+        'Du siehst: Jeder Schritt um eine Einheit in \(x\) multipliziert den Wert mit der Basis \(a\): bei \(a>1\) wächst sie, bei \(0<a<1\) fällt sie.',
+        'Bewege die Basis \(a\) und den Wert \(x\). Beobachte den Punkt \((0,1)\), die Asymptote \(y=0\) und ob die Kurve wächst oder fällt.',
     ),
         'ALG-LOG-002': (
-        'Du siehst: Der Logarithmus antwortet: „Mit welchem Exponenten erhebe ich die Basis, um \\(x\\) zu bekommen?“.',
-        'Vergleiche Log und Exponential: Sie sind Umkehrungen; die Diagonale \\(y=x\\) spiegelt sie.',
+        'Du siehst: Der Logarithmus antwortet: „Mit welchem Exponenten erhebe ich die Basis, um \(x\) zu bekommen?“.',
+        'Bewege Basis und Wert \(x\). Wenn \(\log_b(x)=y\), dann \(b^y=x\). Die Punkte \((x,y)\) und \((y,x)\) spiegeln sich an \(y=x\).',
     ),
         'ALG-LOG-007': (
-        'Du siehst: Das Vorzeichen des Exponenten entscheidet, ob die Größe wächst oder abklingt.',
-        'Bewege \\(k\\) (über \\(b\\)) und schau, ob die Kurve mit der Zeit steigt oder fällt.',
+        'Du siehst: Das Vorzeichen von \(k\) entscheidet, ob die Größe wächst, fällt oder konstant bleibt.',
+        'Bewege \(k\): positiv wächst, negativ fällt, \(k=0\) bleibt flach. Bewege \(t\) und sieh \(P(t)=P_0 e^{kt}\).',
     ),
         'ALG-COM-001': (
         'Du siehst: Eine komplexe Zahl \\(a+bi\\) ist ein Punkt (oder Pfeil) in der Ebene.',
@@ -1808,16 +1808,16 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Édite la matrice et regarde le déterminant : c’est un signal de racines partagées.',
     ),
         'ALG-LOG-001': (
-        'Tu vas voir que l’exponentielle croît (ou décroît) en multipliant encore et encore.',
-        'Change la base et regarde : la courbe devient plus raide ou plus douce.',
+        'Tu vas voir que chaque pas d’une unité en \(x\) multiplie la valeur par la base \(a\) : si \(a>1\) ça croît, si \(0<a<1\) ça décroît.',
+        'Bouge la base \(a\) et la valeur \(x\). Observe le point \((0,1)\), l’asymptote \(y=0\) et si la courbe croît ou décroît.',
     ),
         'ALG-LOG-002': (
-        'Tu vas voir que le logarithme répond : « à quel exposant j’élève la base pour obtenir \\(x\\) ? ».',
-        'Compare log et exponentielle : ce sont des inverses ; la diagonale \\(y=x\\) les reflète.',
+        'Tu vas voir que le logarithme répond : « à quel exposant j’élève la base pour obtenir \(x\) ? ».',
+        'Bouge la base et la valeur \(x\). Si \(\log_b(x)=y\), alors \(b^y=x\). Les points \((x,y)\) et \((y,x)\) se reflètent par rapport à \(y=x\).',
     ),
         'ALG-LOG-007': (
-        'Tu vas voir que le signe de l’exposant décide si la quantité croît ou s’éteint.',
-        'Bouge \\(k\\) (via \\(b\\)) et regarde si la courbe monte ou descend avec le temps.',
+        'Tu vas voir que le signe de \(k\) décide si la quantité croît, décroît ou reste constante.',
+        'Bouge \(k\) : positif croît, négatif décroît, \(k=0\) reste plat. Bouge \(t\) et observe \(P(t)=P_0 e^{kt}\).',
     ),
         'ALG-COM-001': (
         'Tu vas voir qu’un complexe \\(a+bi\\) est un point (ou une flèche) dans le plan.',
@@ -2354,16 +2354,16 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Modifica la matrice e guarda il determinante: è un segnale di radici condivise.',
     ),
         'ALG-LOG-001': (
-        "Vedrai che l'esponenziale cresce (o decresce) moltiplicando ancora e ancora.",
-        'Cambia la base e nota: la curva diventa più ripida o più dolce.',
+        'Vedrai che ogni passo di un’unità in \(x\) moltiplica il valore per la base \(a\): se \(a>1\) cresce, se \(0<a<1\) decresce.',
+        'Muovi la base \(a\) e il valore \(x\). Osserva il punto \((0,1)\), l’asintoto \(y=0\) e se la curva cresce o decresce.',
     ),
         'ALG-LOG-002': (
-        'Vedrai che il logaritmo risponde: «a quale esponente elevo la base per ottenere \\(x\\)?».',
-        'Confronta log ed esponenziale: sono inverse; la diagonale \\(y=x\\) le riflette.',
+        'Vedrai che il logaritmo risponde: «a quale esponente elevo la base per ottenere \(x\)?».',
+        'Muovi la base e il valore \(x\). Se \(\log_b(x)=y\), allora \(b^y=x\). I punti \((x,y)\) e \((y,x)\) si riflettono rispetto a \(y=x\).',
     ),
         'ALG-LOG-007': (
-        "Vedrai che il segno dell'esponente decide se la quantità cresce o si spegne.",
-        'Muovi \\(k\\) (via \\(b\\)) e guarda se la curva sale o scende nel tempo.',
+        'Vedrai che il segno di \(k\) decide se la quantità cresce, decresce o resta costante.',
+        'Muovi \(k\): positivo cresce, negativo decresce, \(k=0\) resta piatta. Muovi \(t\) e osserva \(P(t)=P_0 e^{kt}\).',
     ),
         'ALG-COM-001': (
         'Vedrai che un complesso \\(a+bi\\) è un punto (o freccia) nel piano.',
@@ -2900,16 +2900,16 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Edita a matriz e olha o determinante: é um sinal de raízes partilhadas.',
     ),
         'ALG-LOG-001': (
-        'Vais ver que a exponencial cresce (ou decresce) multiplicando uma e outra vez.',
-        'Muda a base e repara: a curva fica mais íngreme ou mais suave.',
+        'Vais ver que cada avanço de uma unidade em \(x\) multiplica o valor pela base \(a\): se \(a>1\) cresce e se \(0<a<1\) decresce.',
+        'Move a base \(a\) e o valor \(x\). Observa o ponto \((0,1)\), a assíntota \(y=0\) e como a curva cresce ou decresce.',
     ),
         'ALG-LOG-002': (
-        'Vais ver que o logaritmo responde: «a que expoente elevo a base para obter \\(x\\)?».',
-        'Compara log e exponencial: são inversas; a diagonal \\(y=x\\) reflete-as.',
+        'Vais ver que o logaritmo responde: «a que expoente elevo a base para obter \(x\)?».',
+        'Move a base e o valor \(x\). Se \(\log_b(x)=y\), então \(b^y=x\). Os pontos \((x,y)\) e \((y,x)\) reflectem-se em \(y=x\).',
     ),
         'ALG-LOG-007': (
-        'Vais ver que o sinal do expoente decide se a quantidade cresce ou se apaga.',
-        'Move \\(k\\) (via \\(b\\)) e olha se a curva sobe ou desce com o tempo.',
+        'Vais ver que o sinal de \(k\) decide se a quantidade cresce, decresce ou permanece constante.',
+        'Move \(k\): positivo cresce, negativo decresce e \(k=0\) fica constante. Move \(t\) e observa \(P(t)=P_0 e^{kt}\).',
     ),
         'ALG-COM-001': (
         'Vais ver que um complexo \\(a+bi\\) é um ponto (ou seta) no plano.',

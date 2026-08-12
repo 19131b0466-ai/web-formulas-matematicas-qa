@@ -1821,11 +1821,11 @@ f(x)=a^x,\quad a>0,\;a\ne1
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** crecimiento o decrecimiento de \(a^x\) según la base.
-- **Elementos:** gráfica de \(y=a^x\), punto fijo \((0,1)\), asíntota horizontal \(y=0\) y valor de \(a\).
-- **Idea:** Cambia la base y fíjate: la curva se hace más empinada o más suave.
-- **Objetivo educativo:** Vas a ver que la exponencial crece (o decrece) multiplicando una y otra vez.
-- **Interactividad sugerida:** deslizador para \(a>0, a\neq1\); mostrar valores seleccionados de \(x\) y \(a^x\).
+- **Concepto visual:** crecimiento o decrecimiento de \(a^x\) según la base; multiplicación por \(a\) en cada unidad de \(x\).
+- **Elementos:** gráfica de \(y=a^x\), puntos \((0,1)\), \((1,a)\), \((-1,1/a)\), punto móvil \((x,a^x)\), asíntota \(y=0\), tabla de valores y presets \(a=2,1/2,3,10\).
+- **Idea:** Mueve la base \(a\) y el valor \(x\). Observa el punto \((0,1)\), la asíntota \(y=0\) y cómo la curva crece o decrece.
+- **Objetivo educativo:** Vas a ver que cada avance de una unidad en \(x\) multiplica el valor por la base \(a\): si \(a>1\) crece y si \(0<a<1\) decrece.
+- **Interactividad sugerida:** deslizadores solo para Base \((a)\) y Valor \((x)\); botones de bases típicas; lectura tipo máquina \(x\to a^x\).
 
 ### Fórmulas relacionadas
 
@@ -1847,11 +1847,11 @@ f(x)=a^x,\quad a>0,\;a\ne1
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** logaritmo como inversa de la exponencial.
-- **Elementos:** gráficas de \(y=b^x\), \(y=\log_bx\) y \(y=x\), con puntos correspondientes intercambiados.
-- **Idea:** Compara log y exponencial: son inversas; la diagonal \(y=x\) las refleja.
+- **Concepto visual:** equivalencia \(\log_b(x)=y\iff b^y=x\) y reflexión de inversas respecto a \(y=x\).
+- **Elementos:** curvas \(y=\log_b x\) y \(y=b^x\), diagonal \(y=x\), puntos \(P=(x,y)\) y \(Q=(y,x)\), asíntota \(x=0\), puntos \((1,0)\) y \((b,1)\), máquina \(x\xrightarrow{\log_b}y\xrightarrow{b^{(\cdot)}}x\).
+- **Idea:** Mueve la base y el valor \(x\). Observa que si \(\log_b(x)=y\), entonces \(b^y=x\). Los puntos \((x,y)\) y \((y,x)\) se reflejan respecto a \(y=x\).
 - **Objetivo educativo:** Vas a ver que el logaritmo responde: “¿a qué exponente elevo la base para obtener \(x\)?”.
-- **Interactividad sugerida:** elegir \(x\) o \(y\) y animar la correspondencia entre ambas gráficas.
+- **Interactividad sugerida:** deslizadores Base \((b)\) y Valor \((x)\); opción «¿Qué exponente?» y valores notables.
 
 ### Condiciones
 
@@ -1937,7 +1937,7 @@ b>0,\quad b\ne1,\quad x>0
 **Nivel:** `fundamental`
 
 \[
-y=y_0e^{kt}
+P(t)=P_0e^{kt}
 \]
 
 **Descripción corta:** k positivo produce crecimiento; k negativo, decrecimiento.
@@ -1945,11 +1945,11 @@ y=y_0e^{kt}
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** modelo exponencial a través del signo de \(k\).
-- **Elementos:** curvas \(y=y_0e^{kt}\) con \(k>0\), \(k=0\) y \(k<0\), todas partiendo de \(y_0\).
-- **Idea:** Mueve \(k\) (vía \(b\)) y mira si la curva sube o baja con el tiempo.
-- **Objetivo educativo:** Vas a ver que el signo del exponente decide si la cantidad crece o se apaga.
-- **Interactividad sugerida:** deslizadores para \(y_0\) y \(k\); mostrar razón de cambio relativa y valores en tiempos seleccionados.
+- **Concepto visual:** el signo de \(k\) determina crecimiento, constancia o decrecimiento en \(P(t)=P_0e^{kt}\).
+- **Elementos:** curva \(P(t)\), punto inicial \(P(0)=P_0\), punto móvil \((t,P(t))\), modo comparar \(+k\) y \(-k\), asíntota \(P=0\) en decrecimiento, ejemplos de contexto.
+- **Idea:** Mueve \(k\): positivo crece, negativo decrece y \(k=0\) queda constante. Mueve \(t\) y observa \(P(t)=P_0 e^{kt}\).
+- **Objetivo educativo:** Vas a ver que el signo de \(k\) decide si la cantidad crece, decrece o permanece constante.
+- **Interactividad sugerida:** deslizadores \(P_0\), \(k\) y \(t\); botón Comparar \(+k\) y \(-k\); presets de población, interés y desintegración.
 
 ### Fórmulas relacionadas
 
