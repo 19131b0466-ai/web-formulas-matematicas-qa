@@ -4,10 +4,19 @@ import { useState } from 'react';
 import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2, type Vec2 } from './math2d';
+import { ComplexRootsViz } from './ComplexRootsViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GeometryViz({ formulaId, mode }: Props) {
+  if (formulaId.includes('COM-007')) {
+    return <ComplexRootsViz />;
+  }
+
+  return <GeometryVizInner formulaId={formulaId} mode={mode} />;
+}
+
+function GeometryVizInner({ formulaId, mode }: Props) {
   const lab = useVizLabels();
   const [u, setU] = useState<Vec2>({ x: 2, y: 0.3 });
   const [v, setV] = useState<Vec2>({ x: 0.5, y: 1.8 });

@@ -113,7 +113,7 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `commute`
 - **Concepto visual:** intercambio de sumandos sin cambiar el total.
 - **Elementos:** dos bloques de longitudes distintas etiquetados \(a\) y \(b\), una barra de longitud total y la igualdad \(a+b=b+a\).
-- **Idea:** Pulsa Intercambiar: \(a\) y \(b\) cambian de sitio y la barra de abajo sigue midiendo lo mismo.
+- **Idea:** Mueve \(a\) y \(b\) y compara las dos filas: arriba \(a+b\), abajo \(b+a\); las barras quedan igual de largas.
 - **Objetivo educativo:** Vas a ver que da igual el orden: \(a+b\) y \(b+a\) suman lo mismo.
 - **Interactividad sugerida:** solo botón Intercambiar; \(a\) y \(b\) fijos con longitudes distintas para que el reorden sea evidente.
 
@@ -140,7 +140,7 @@ a+b=b+a;\quad ab=ba
 - **Modo:** `associate`
 - **Concepto visual:** cambio de agrupación con cálculo en dos pasos: primero la pareja agrupada, luego el total.
 - **Elementos:** tres bloques \(a,b,c\); recuadro en la pareja que se suma primero; segunda fila con el parcial fusionado y el sumando que falta; barra de total.
-- **Idea:** Pulsa Agrupar izquierda o derecha: cambia qué sumas primero (\(a+b\) o \(b+c\)), pero el total final es el mismo.
+- **Idea:** Mueve \(a\), \(b\) y \(c\) y compara las dos filas: el recuadro agrupa distinto, pero el total es el mismo.
 - **Objetivo educativo:** Vas a ver que agrupar distinto no cambia el total: \((a+b)+c\) y \(a+(b+c)\) dan lo mismo.
 - **Interactividad sugerida:** solo botón de agrupación; valores fijos; mostrar el paso 1 (parcial) y el paso 2 (total).
 
@@ -225,7 +225,7 @@ a+(-a)=0;\quad a\cdot\frac1a=1\;(a\ne0)
 - **Tipo:** `number_line`
 - **Concepto visual:** valor absoluto como distancia entre \(x\) y \(0\) en la recta numérica.
 - **Elementos:** recta con \(0\) destacado, punto \(x\), segmento solo entre \(x\) y \(0\), regla a trozos activa y resumen \(x\), distancia, \(|x|\).
-- **Idea:** Mueve \(x\) y observa la distancia al cero: nunca es negativa, y la definición a trozos sale de esa geometría.
+- **Idea:** Mueve \(x\) a la izquierda o a la derecha y fíjate: la marca solo cuenta cuánto te alejas del origen.
 - **Objetivo educativo:** Vas a ver que \(|x|\) es la distancia al cero: nunca baja de cero.
 - **Interactividad sugerida:** slider para \(x\in[-5,5]\); opcionalmente un reflejo etiquetado \(-x\), nunca como distancia.
 
@@ -252,7 +252,7 @@ d(a,b)=|a-b|
 - **Tipo:** `number_line`
 - **Concepto visual:** distancia entre \(a\) y \(b\) como longitud del segmento en la recta.
 - **Elementos:** puntos \(a\) y \(b\) distinguibles, segmento solo entre ambos, indicador \(d(a,b)\), desarrollo \(|a-b|\) y nota \(d(a,b)=d(b,a)\).
-- **Idea:** Mueve \(a\) y \(b\). Observa que la distancia depende de cuánto están separados y no de cuál aparece primero.
+- **Idea:** Mueve \(a\) y \(b\) y mira la longitud entre ambos: esa medida es \(|a-b|\).
 - **Objetivo educativo:** Vas a ver que la distancia entre dos puntos es el largo del segmento que los une: \(|a-b|\).
 - **Interactividad sugerida:** sliders independientes para \(a\) y \(b\); actualizar segmento, fórmula sustituida y resultado en tiempo real.
 
@@ -281,7 +281,7 @@ a^ma^n=a^{m+n}
 - **Modo:** `power`
 - **Concepto visual:** cada bloque es un factor \(a\); al multiplicar se reúnen \(n+m\) factores de la misma base.
 - **Elementos:** dos grupos etiquetados (\(n\) y \(m\) factores) con operador \(\times\), secuencia unida que conserva el origen visual, y resultado \(a^{n+m}\).
-- **Idea:** Cada bloque es un factor \(a\). Al multiplicar reunimos los \(n\) y los \(m\); en total hay \(n+m\) factores.
+- **Idea:** Cambia \(n\) y \(m\) y fíjate cómo los bloques de \(a^n\) y \(a^m\) se juntan en \(a^{n+m}\).
 - **Objetivo educativo:** Vas a ver que al multiplicar potencias de la misma base, los exponentes se suman: \(a^n a^m = a^{n+m}\).
 - **Interactividad sugerida:** sliders enteros \(n,m\ge 1\); actualizar factores, suma de exponentes y expresión \(a^n\cdot a^m=a^{n+m}\).
 
@@ -413,8 +413,8 @@ En números reales, si el índice de la raíz es par, el radicando debe ser no n
 - **Modo:** `conjugate_rationalize`
 - **Concepto visual:** racionalizar \(1/(a+\sqrt{b})\) multiplicando por el conjugado como forma de 1.
 - **Elementos:** fracción original, paso \(\cdot(a-\sqrt{b})/(a-\sqrt{b})\), resultado \((a-\sqrt{b})/(a^2-b)\), y panel de por qué \((a+\sqrt{b})(a-\sqrt{b})=a^2-b\).
-- **Idea:** Multiplica numerador y denominador por el conjugado: el valor no cambia y el denominador queda sin raíz.
-- **Objetivo educativo:** Vas a ver que el conjugado quita la raíz del denominador porque \((a+\sqrt{b})(a-\sqrt{b})=a^2-b\).
+- **Idea:** Compara \(a+\sqrt{b}\) con \(a-\sqrt{b}\) y mira su producto: el resultado queda sin raíz en el medio.
+- **Objetivo educativo:** Vas a ver que el conjugado ayuda a quitar una raíz del denominador.
 - **Interactividad sugerida:** sliders \(a\) y \(b\ge 0\); advertir si \(a^2-b=0\); mostrar forma exacta primero y aproximación solo como apoyo.
 
 ### Fórmulas relacionadas
@@ -1460,7 +1460,7 @@ m_1=m_2;\quad m_1m_2=-1
 - **Tipo:** `graph`
 - **Concepto visual:** paralelismo (\(m_1=m_2\)) y perpendicularidad (\(m_1m_2=-1\)) mediante pendientes.
 - **Elementos:** ecuaciones \(r_1\), \(r_2\); controles \(m_1,b_1,m_2,b_2\); clasificación paralelas/coincidentes/perpendiculares/secantes; punto de intersección \(I\); ángulo \(\theta\); acciones «Hacer paralelas» / «Hacer perpendiculares».
-- **Idea:** Mueve \(m_1\) y \(m_2\). Observa cuándo las rectas dejan de cortarse o cuándo forman exactamente \(90^\circ\). Luego cambia \(b_1\) y \(b_2\).
+- **Idea:** Mueve \(m_1\) y \(m_2\). Observa cuándo las rectas dejan de cortarse o cuándo forman exactamente \(90^\circ\).
 - **Objetivo educativo:** Vas a ver que dos rectas no verticales son paralelas cuando tienen la misma pendiente, y perpendiculares cuando sus pendientes son recíprocas y de signo opuesto.
 - **Interactividad sugerida:** modificar las cuatro pendientes/interceptos; comprobar \(m_1m_2\) y \(\theta\) en tiempo real.
 
@@ -1486,8 +1486,8 @@ g(x)=f(x-h)+k
 - **Tipo:** `function_transform`
 - **Concepto visual:** traslación \(g(x)=f(x-h)+k\) que conserva la forma.
 - **Elementos:** \(f(x)=x^2\) y \(g\); puntos \(P\) y \(P'\); vector \(\vec t=(h,k)\); solo controles \(h\) y \(k\); descripciones dinámicas de dirección.
-- **Idea:** Mueve \(h\) y observa cómo todos los puntos se desplazan a izquierda o derecha. Mueve \(k\) y observa cómo la gráfica completa sube o baja.
-- **Objetivo educativo:** Vas a ver que en \(g(x)=f(x-h)+k\), \(h\) desplaza horizontalmente y \(k\) verticalmente; la forma no cambia. Un \(h\) positivo mueve hacia la derecha aunque aparezca \(x-h\).
+- **Idea:** Mueve \(h\) y observa cómo todos los puntos se desplazan. Aunque aparece \(x-h\), un \(h\) positivo mueve hacia la derecha.
+- **Objetivo educativo:** Vas a ver que en \(g(x)=f(x-h)+k\), \(h\) desplaza horizontalmente y \(k\) verticalmente; la forma no cambia.
 - **Interactividad sugerida:** deslizadores de \(h\) y \(k\) con superposición de original y trasladada.
 
 ### Fórmulas relacionadas
@@ -1511,8 +1511,8 @@ g(x)=af(bx);\quad -f(x);\quad f(-x)
 - **Tipo:** `function_transform`
 - **Concepto visual:** \(g(x)=af(bx)\): \(a\) controla vertical (escala/reflexión en el eje \(x\)) y \(b\) horizontal (factor \(1/|b|\), reflexión en el eje \(y\)).
 - **Elementos:** original y transformada; función base asimétrica por defecto; puntos \(P\) y \(P'\); acciones Restablecer / Reflejar respecto a \(x\) / Reflejar respecto a \(y\).
-- **Idea:** Mueve \(a\): observa las alturas. Mueve \(b\): el efecto horizontal es inverso (\(|b|=2\) comprime a la mitad). Prueba valores negativos para reflejar.
-- **Objetivo educativo:** Vas a ver que en \(g(x)=af(bx)\), \(a\) modifica verticalmente y \(b\) horizontalmente; los signos negativos producen reflexiones respecto a los ejes.
+- **Idea:** Mueve \(a\) y \(b\). Atención: el efecto horizontal es inverso. Si \(|b|=2\), el ancho se reduce a la mitad.
+- **Objetivo educativo:** Vas a ver que en \(g(x)=af(bx)\), \(a\) modifica verticalmente y \(b\) horizontalmente; los signos negativos producen reflexiones.
 - **Interactividad sugerida:** controles \(a\) y \(b\); selector de función base; resumen dinámico de transformaciones.
 
 ### Fórmulas relacionadas
@@ -1972,11 +1972,11 @@ i^2=-1;\quad z=a+bi
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** número complejo como punto/vector en el plano complejo.
-- **Elementos:** eje real, eje imaginario, punto \((a,b)\), vector desde el origen y etiqueta \(z=a+bi\).
-- **Idea:** Arrastra la punta y fíjate: las coordenadas son la parte real e imaginaria.
-- **Objetivo educativo:** Vas a ver que un complejo \(a+bi\) es un punto (o flecha) en el plano.
-- **Interactividad sugerida:** arrastrar el punto y actualizar \(a\), \(b\) y \(z\).
+- **Concepto visual:** descomposición cartesiana \(z=a+bi\leftrightarrow(a,b)\).
+- **Elementos:** ejes Re\((z)\)/Im\((z)\), punto \(z\), vector, componentes \(a\) y \(bi\), proyecciones.
+- **Idea:** Arrastra el punto o cambia \(a\) y \(b\): observa cómo Re\((z)\) e Im\((z)\) fijan la posición.
+- **Objetivo educativo:** Vas a ver que un número complejo \(z=a+bi\) es un punto del plano: \(a\) es horizontal y \(b\) vertical.
+- **Interactividad sugerida:** arrastrar \(z\); sliders \(a\), \(b\); mostrar componentes.
 
 ### Fórmulas relacionadas
 
@@ -1999,11 +1999,11 @@ i^2=-1;\quad z=a+bi
 
 - **Tipo:** `vector`
 - **Modo:** `conjugate`
-- **Concepto visual:** conjugación como reflexión respecto del eje real.
-- **Elementos:** puntos \(z=a+bi\) y \(\bar z=a-bi\), unidos por una línea vertical y reflejados respecto del eje real.
-- **Idea:** Arrastra \(z\) y mira la flecha naranja: es el conjugado (misma \(x\), \(y\) al revés).
-- **Objetivo educativo:** Vas a ver que el conjugado refleja el número respecto del eje real.
-- **Interactividad sugerida:** arrastrar \(z\); mostrar simultáneamente \(z\bar z=|z|^2\).
+- **Concepto visual:** conjugación como reflexión \((a,b)	o(a,-b)\) respecto del eje real.
+- **Elementos:** vectores \(z\) y \(ar z\), línea de reflexión, módulo opcional, \(zar z=|z|^2\).
+- **Idea:** Arrastra \(z\) y observa cómo \(ar z\) se mueve simétricamente al otro lado del eje real.
+- **Objetivo educativo:** Vas a ver que el conjugado conserva la parte real y cambia el signo de la imaginaria: reflejo respecto del eje real.
+- **Interactividad sugerida:** arrastrar \(z\); Conjugar / Mostrar módulo / Ver propiedad.
 
 ### Fórmulas relacionadas
 
@@ -2024,11 +2024,11 @@ i^2=-1;\quad z=a+bi
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** módulo como distancia al origen en el plano complejo.
-- **Elementos:** triángulo rectángulo con catetos \(a\) y \(b\), hipotenusa desde el origen hasta \(z\).
-- **Idea:** Estira o acorta el vector y fíjate: el número \(r\) es esa longitud.
-- **Objetivo educativo:** Vas a ver que el módulo es la longitud de la flecha desde el origen.
-- **Interactividad sugerida:** arrastrar \(z\) y actualizar catetos, módulo y círculo de radio \(|z|\).
+- **Concepto visual:** módulo como distancia al origen \(|z|=\sqrt{a^2+b^2}\).
+- **Elementos:** vector \(0	o z\), triángulo de componentes opcional, circunferencia de módulo opcional.
+- **Idea:** Arrastra \(z\) y observa la longitud del vector; activa las componentes para ver el triángulo.
+- **Objetivo educativo:** Vas a ver que el módulo mide la distancia de \(z\) al origen: \(|z|=\sqrt{a^2+b^2}\).
+- **Interactividad sugerida:** arrastrar \(z\); toggles de componentes, circunferencia y argumento.
 
 ### Fórmulas relacionadas
 
@@ -2050,11 +2050,11 @@ z=r(\cos\theta+i\sin\theta)=re^{i\theta}
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** equivalencia entre coordenadas rectangulares y polares.
-- **Elementos:** vector complejo con módulo \(r\), ángulo \(\theta\), proyecciones \(r\cos\theta\) y \(r\sin\theta\), y formas \(a+bi\) y \(re^{i\theta}\).
-- **Idea:** Gira \(\theta\) y mira: el punto se mueve sobre el círculo de radio \(r\).
-- **Objetivo educativo:** Vas a ver que en forma polar usas longitud y ángulo en lugar de \((x,y)\).
-- **Interactividad sugerida:** controles para \(r\) y \(\theta\); actualizar \(a\), \(b\) y las tres representaciones.
+- **Concepto visual:** equivalencia \(a+bi=r(\cos	heta+i\sin	heta)=re^{i	heta}\).
+- **Elementos:** circunferencia de radio \(r\), vector, arco \(	heta\), proyecciones \(r\cos	heta\), \(r\sin	heta\).
+- **Idea:** Mueve \(r\) y \(	heta\): al fijar \(r\) y girar \(	heta\), el punto recorre una circunferencia.
+- **Objetivo educativo:** Vas a ver que en forma polar \(z\) se describe por distancia \(r\) y ángulo \(	heta\), equivalentes a \(a+bi\) y \(re^{i	heta}\).
+- **Interactividad sugerida:** sliders \(r\), \(	heta\); arrastrar \(z\); grados/radianes; animar rotación.
 
 ### Fórmulas relacionadas
 
@@ -2077,11 +2077,11 @@ e^{i\theta}=\cos\theta+i\sin\theta
 
 - **Tipo:** `vector`
 - **Modo:** `euler`
-- **Concepto visual:** fórmula de Euler sobre el círculo unitario.
-- **Elementos:** círculo unitario, ángulo \(\theta\), punto \((\cos\theta,\sin\theta)\) y vector \(e^{i\theta}\).
-- **Idea:** Mueve \(\theta\) y fíjate: el punto \((\cos\theta,\sin\theta)\) recorre el círculo unitario como \(e^{i\theta}\).
-- **Objetivo educativo:** Vas a ver que Euler une el ángulo con coseno y seno sobre el círculo unitario.
-- **Interactividad sugerida:** deslizador angular o animación de rotación; actualizar seno, coseno y forma exponencial.
+- **Concepto visual:** \(e^{i	heta}=\cos	heta+i\sin	heta\) como punto del círculo unitario.
+- **Elementos:** círculo unitario grande, vector, arco \(	heta\), proyecciones \(\cos	heta\) y \(\sin	heta\), identidad de Euler en \(	hetapprox\pi\).
+- **Idea:** Mueve \(	heta\) y observa ángulo, coordenadas y el número complejo a la vez.
+- **Objetivo educativo:** Vas a ver cómo \(	heta\) determina un punto del círculo unitario mediante \(\cos	heta\) y \(\sin	heta\): ese punto es \(e^{i	heta}\).
+- **Interactividad sugerida:** slider \(	heta\); arrastrar en el círculo; ángulos notables; animar.
 
 ### Fórmulas relacionadas
 
@@ -2104,11 +2104,11 @@ e^{i\theta}=\cos\theta+i\sin\theta
 
 - **Tipo:** `vector`
 - **Modo:** `moivre_power`
-- **Concepto visual:** potencias complejas como multiplicación de ángulos.
-- **Elementos:** círculo complejo con vector inicial de ángulo \(\theta\) y vector resultante de ángulo \(n\theta\).
-- **Idea:** Cambia \(n\) y \(\theta\) y mira \(z\), \(z^2\), \(z^3\ldots\) girando y alejándose según \(r^n\).
-- **Objetivo educativo:** Vas a ver que elevar a \(n\) multiplica el ángulo por \(n\) y potencia el radio.
-- **Interactividad sugerida:** selector entero de \(n\) y deslizador de \(\theta\); animar las rotaciones sucesivas.
+- **Concepto visual:** De Moivre: \(r	o r^n\) y \(	heta	o n	heta\) al comparar \(z\) con \(z^n\).
+- **Elementos:** vectores \(z\) y \(z^n\), arcos \(	heta\) y \(n	heta\), circunferencias de radios \(r\) y \(r^n\), potencias intermedias opcionales.
+- **Idea:** Cambia \(r\), \(	heta\) y \(n\): compara \(z\) con \(z^n\) y mira longitud y ángulo.
+- **Objetivo educativo:** Vas a ver que elevar un complejo a \(n\) multiplica el ángulo por \(n\) y eleva el módulo a la potencia \(n\).
+- **Interactividad sugerida:** modos círculo unitario / módulo libre; potencias intermedias; arrastrar \(z\).
 
 ### Fórmulas relacionadas
 
@@ -2129,11 +2129,11 @@ w_k=r^{1/n}e^{i(\theta+2\pi k)/n}
 ### Visualización sugerida
 
 - **Tipo:** `geometry`
-- **Concepto visual:** raíces complejas distribuidas uniformemente en una circunferencia.
-- **Elementos:** círculo de radio \(r^{1/n}\) con \(n\) puntos separados por \(2\pi/n\).
-- **Idea:** Mueve \(n\), \(r\) y \(\theta\): los puntos se repartirán en el círculo de radio \(r^{1/n}\).
-- **Objetivo educativo:** Vas a ver las \(n\) raíces: ángulo \((\theta+2\pi k)/n\) y módulo \(r^{1/n}\).
-- **Interactividad sugerida:** selector de \(n\) y controles de \(r,\theta\); regenerar los puntos y el polígono.
+- **Concepto visual:** raíces \(n\)-ésimas con módulo \(r^{1/n}\) y ángulos \((	heta+2\pi k)/n\).
+- **Elementos:** vector \(z\), circunferencias \(r\) y \(r^{1/n}\), raíces \(w_k\), polígono, arcos \(	heta\), \(\phi_k\) y \(2\pi/n\).
+- **Idea:** Cambia \(n\), \(r\) y \(	heta\): las raíces forman un polígono regular separado por \(2\pi/n\).
+- **Objetivo educativo:** Vas a ver que las \(n\) raíces tienen módulo \(r^{1/n}\) y se distribuyen uniformemente alrededor del origen.
+- **Interactividad sugerida:** controles \(n\), \(r\), \(	heta\), \(k\); construir raíces; arrastrar \(z\).
 
 ### Fórmulas relacionadas
 
@@ -2446,8 +2446,8 @@ d(u,v)=\|u-v\|_2
 - **Modo:** `distance`
 - **Concepto visual:** distancia entre vectores como norma de su diferencia.
 - **Elementos:** puntos \(u\) y \(v\), vector \(v-u\) trasladado entre ellos y segmento de distancia.
-- **Idea:** Mueve las puntas de \(u\) y \(v\) y mira el segmento: su largo es \(\|u-v\|\).
-- **Objetivo educativo:** Vas a ver que la distancia entre dos vectores es la norma de su diferencia.
+- **Idea:** Separa \(u\) y \(v\) y mira: la distancia crece con la separación.
+- **Objetivo educativo:** Vas a ver que la distancia entre puntas de vectores es la norma de la diferencia.
 - **Interactividad sugerida:** arrastrar ambos puntos y actualizar vector diferencia y distancia.
 
 ### Fórmulas relacionadas
@@ -2625,8 +2625,8 @@ AI=IA=A
 - **Modo:** `identity`
 - **Concepto visual:** identidad como transformación que no cambia un vector o matriz.
 - **Elementos:** matriz identidad con diagonal resaltada y comparación \(AI=A\), \(Ix=x\).
-- **Idea:** Edita \(A\) y mira \(I\times A\): el resultado sigue siendo \(A\).
-- **Objetivo educativo:** Vas a ver que la identidad \(I\) no cambia la matriz al multiplicar: \(IA=A\).
+- **Idea:** Compara \(A\) con el efecto de la identidad sobre la base.
+- **Objetivo educativo:** Vas a ver que la identidad deja los vectores igual: es el “1” de las matrices.
 - **Interactividad sugerida:** permitir multiplicar una matriz o vector de ejemplo por \(I\) y mostrar el resultado sin cambios.
 
 ### Fórmulas relacionadas
@@ -3612,8 +3612,8 @@ PA=LU
 - **Modo:** `lu`
 - **Concepto visual:** LU como secuencia compacta de eliminación gaussiana.
 - **Elementos:** matriz \(A\), factores \(L\) y \(U\), y multiplicadores de eliminación almacenados en \(L\).
-- **Idea:** Edita \(A\) y compara \(L\) y \(U\): su producto debe recuperar \(A\).
-- **Objetivo educativo:** Vas a ver que LU parte \(A\) en triangular inferior y superior.
+- **Idea:** Pulsa **Paso LU** y aplica operaciones de fila: te acercas a la forma de la factorización LU.
+- **Objetivo educativo:** Vas a ver que LU parte \(A\) en triangular inferior y superior para resolver sistemas más fácil.
 - **Interactividad sugerida:** avance fila por fila y comprobación visual de que \(LU=A\) o \(PA=LU\).
 
 ### Complejidad computacional
@@ -3648,8 +3648,8 @@ A=QR
 - **Modo:** `qr`
 - **Concepto visual:** QR como base ortonormal más coordenadas triangulares.
 - **Elementos:** columnas de \(A\), proceso que genera columnas ortonormales de \(Q\) y matriz triangular \(R\).
-- **Idea:** Avanza el **Paso QR**: primero ves las columnas de \(A\), luego \(q_1\), y al final \(Q\) y \(R\) con \(A\approx QR\).
-- **Objetivo educativo:** Vas a ver que QR escribe \(A\) como ortogonal por triangular.
+- **Idea:** Observa la malla de \(A\) como composición de una parte ortogonal y otra triangular.
+- **Objetivo educativo:** Vas a ver que QR escribe \(A\) como rotación/ortogonal por triangular.
 - **Interactividad sugerida:** recorrer columnas una a una mostrando proyecciones, normalización y entradas de \(R\).
 
 ### Complejidad computacional
@@ -4609,7 +4609,7 @@ Un mensaje \(\mathbf m\in\mathbb F_q^k\) se codifica mediante
 - **Modo:** `code`
 - **Concepto visual:** codificación como producto vector-matriz en un cuerpo finito.
 - **Elementos:** vector mensaje \(\mathbf m\), matriz \(G\), operaciones módulo \(2\) y palabra resultante \(\mathbf c=\mathbf mG\).
-- **Idea:** Cambia los bits de \(\mathbf m\) y mira cómo se recalcula \(\mathbf c=\mathbf mG\) en \(\mathbb F_2\).
+- **Idea:** Edita bits/entradas y piensa cada fila de \(G\) como un patrón base del código.
 - **Objetivo educativo:** Vas a ver que la matriz generadora \(G\) fabrica palabras de código a partir de mensajes.
 - **Interactividad sugerida:** editar un mensaje binario corto y recalcular la palabra código paso a paso.
 
@@ -4660,7 +4660,7 @@ GH^T=0.
 - **Modo:** `code`
 - **Concepto visual:** una palabra válida produce un vector de comprobación nulo.
 - **Elementos:** palabra recibida \(\mathbf r\), matriz \(H\), síndrome \(\mathbf s=H\mathbf r^T\) en \(\mathbb F_2\).
-- **Idea:** Cambia bits de \(\mathbf r\) (o carga un \(c=mG\)) y mira si el síndrome es \(\mathbf 0\).
+- **Idea:** Invierte un bit y relaciona el fallo con un síndrome no nulo (en COD-004).
 - **Objetivo educativo:** Vas a ver que \(H\) comprueba paridad: las palabras válidas cumplen \(Hc=0\).
 - **Interactividad sugerida:** permitir activar/desactivar un error en una posición y observar el producto \(H\mathbf r^T\).
 

@@ -5,6 +5,12 @@ import { useVizLabels } from '@/lib/viz-labels';
 import type { VectorMode } from '@/lib/viz-modes';
 import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { add, dot, normalize, norm, project, scale, sub, type Vec2 } from './math2d';
+import { ComplexRectangularViz } from './ComplexRectangularViz';
+import { ComplexConjugateViz } from './ComplexConjugateViz';
+import { ComplexModulusViz } from './ComplexModulusViz';
+import { ComplexPolarViz } from './ComplexPolarViz';
+import { EulerFormulaViz } from './EulerFormulaViz';
+import { DeMoivreViz } from './DeMoivreViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -37,6 +43,17 @@ function useDrag(set: (v: Vec2) => void, scalePx: number, origin: Vec2) {
 }
 
 export function VectorViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('COM-001')) return <ComplexRectangularViz />;
+  if (formulaId.includes('COM-002')) return <ComplexConjugateViz />;
+  if (formulaId.includes('COM-003')) return <ComplexModulusViz />;
+  if (formulaId.includes('COM-004')) return <ComplexPolarViz />;
+  if (formulaId.includes('COM-005')) return <EulerFormulaViz />;
+  if (formulaId.includes('COM-006')) return <DeMoivreViz />;
+
+  return <VectorVizInner formulaId={formulaId} mode={modeProp} />;
+}
+
+function VectorVizInner({ formulaId, mode: modeProp }: Props) {
   const vLab = useVizLabels();
   const mode = (modeProp ?? 'basic') as VectorMode;
   const [u, setU] = useState<Vec2>({ x: 2.2, y: 1.4 });
