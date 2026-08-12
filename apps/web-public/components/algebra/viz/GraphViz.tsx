@@ -18,6 +18,10 @@ import { PolySystemViz } from './PolySystemViz';
 import { ExponentialFunctionViz } from './ExponentialFunctionViz';
 import { LogarithmDefViz } from './LogarithmDefViz';
 import { ExpGrowthDecayViz } from './ExpGrowthDecayViz';
+import { ArithmeticSequenceViz } from './ArithmeticSequenceViz';
+import { GeometricSequenceViz } from './GeometricSequenceViz';
+import { GeometricSeriesViz } from './GeometricSeriesViz';
+import { LinearRecurrence2Viz } from './LinearRecurrence2Viz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -45,6 +49,18 @@ export function GraphViz({ formulaId, mode: modeProp }: Props) {
   }
   if (formulaId.includes('LOG-007')) {
     return <ExpGrowthDecayViz />;
+  }
+  if (formulaId.includes('SEC-001')) {
+    return <ArithmeticSequenceViz />;
+  }
+  if (formulaId.includes('SEC-003')) {
+    return <GeometricSequenceViz />;
+  }
+  if (formulaId.includes('SEC-005')) {
+    return <GeometricSeriesViz />;
+  }
+  if (formulaId.includes('SEC-007')) {
+    return <LinearRecurrence2Viz />;
   }
   if (formulaId.includes('EQU-001')) {
     return <LinearEquationViz />;

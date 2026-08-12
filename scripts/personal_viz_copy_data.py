@@ -208,20 +208,24 @@ COPY_ES: dict[str, tuple[str, str]] = {
         'Cambia \(n\), \(r\) y \(\theta\): las raíces forman un polígono regular separado por \(2\pi/n\).',
     ),
     'ALG-SEC-001': (
-        'Vas a ver que en una sucesión aritmética cada salto suma la misma cantidad.',
-        'Mueve \\(a_1\\) y \\(d\\) y mira: los puntos suben o bajan a pasos constantes.',
+        
+        'Vas a ver que en una sucesión aritmética cada término se obtiene sumando siempre la misma cantidad \(d\).',
+        'Cambia \(a_1\), \(d\) y \(N\): observa cómo \(d\) determina el salto constante entre todos los términos.',
     ),
     'ALG-SEC-003': (
-        'Vas a ver que en una sucesión geométrica cada término se multiplica por \\(r\\).',
-        'Cambia \\(a\\) y \\(r\\) y fíjate: los puntos crecen o se acercan a cero según \\(|r|\\).',
+        
+        'Vas a ver que cada término de una sucesión geométrica se obtiene multiplicando el anterior por la misma razón \(r\).',
+        'Cambia \(a_1\), \(r\) y \(N\): observa si los términos crecen, disminuyen, alternan o permanecen constantes.',
     ),
     'ALG-SEC-005': (
-        'Vas a ver que si \\(|r|<1\\), la serie geométrica infinita se acerca a un valor límite.',
-        'Prueba \\(|r|<1\\) y \\(|r|\\ge 1\\) y mira si los puntos se estabilizan o se disparan.',
+        
+        'Vas a ver que, si \(|r|<1\), los términos \(a_n=ar^n\) se acercan a 0 y las sumas parciales \(S_n\) a un límite.',
+        'Cambia \(a\), \(r\) y \(N\): compara cómo los términos se apagan mientras las sumas se estabilizan en \(S_\infty=a/(1-r)\).',
     ),
     'ALG-SEC-007': (
-        'Vas a ver que una recurrencia construye cada término a partir de los anteriores.',
-        'Cambia los coeficientes y fíjate cómo evoluciona la sucesión punto a punto.',
+        
+        'Vas a ver que una recurrencia de orden 2 construye cada término utilizando los dos anteriores.',
+        'Cambia \(a_0\), \(a_1\), \(b\) y \(c\), y selecciona un término para ver cómo se obtiene de los dos anteriores.',
     ),
     'ALG-VEC-001': (
         'Vas a ver que un vector es una flecha: dirección y longitud.',
@@ -756,20 +760,20 @@ COPY_I18N: dict[str, dict[str, tuple[str, str]]] = {
         'Change \(n\), \(r\) and \(\theta\): the roots form a regular polygon spaced by \(2\pi/n\).',
     ),
         'ALG-SEC-001': (
-        "You'll see that in an arithmetic sequence each jump adds the same amount.",
-        'Move \\(a_1\\) and \\(d\\) and watch: the points rise or fall in constant steps.',
+        "You'll see that in an arithmetic sequence each term is obtained by always adding the same amount \(d\).",
+        'Change \(a_1\), \(d\) and \(N\): watch how \(d\) sets the constant jump between terms.',
     ),
         'ALG-SEC-003': (
-        "You'll see that in a geometric sequence each term is multiplied by \\(r\\).",
-        'Change \\(a\\) and \\(r\\) and notice: the points grow or approach zero depending on \\(|r|\\).',
+        "You'll see that each term of a geometric sequence is obtained by multiplying the previous one by the same ratio \(r\).",
+        'Change \(a_1\), \(r\) and \(N\): watch whether terms grow, shrink, alternate, or stay constant.',
     ),
         'ALG-SEC-005': (
-        "You'll see that if \\(|r|<1\\), the infinite geometric series approaches a limit value.",
-        'Try \\(|r|<1\\) and \\(|r|\\ge 1\\) and watch whether the points settle or shoot off.',
+        "You'll see that if \(|r|<1\), the terms \(a_n=ar^n\) approach 0 and the partial sums \(S_n\) approach a limit.",
+        'Change \(a\), \(r\) and \(N\): compare terms fading while sums settle at \(S_\infty=a/(1-r)\).',
     ),
         'ALG-SEC-007': (
-        "You'll see that a recurrence builds each term from the previous ones.",
-        'Change the coefficients and notice how the sequence evolves point by point.',
+        "You'll see that a second-order recurrence builds each term from the two previous ones.",
+        'Change \(a_0\), \(a_1\), \(b\) and \(c\), and select a term to see how it comes from the two before it.',
     ),
         'ALG-VEC-001': (
         "You'll see that a vector is an arrow: direction and length.",

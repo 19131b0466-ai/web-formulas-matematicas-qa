@@ -1,6 +1,10 @@
 export { NumberLineViz } from './NumberLineViz';
 export { AlgebraTilesViz } from './AlgebraTilesViz';
 export { GraphViz } from './GraphViz';
+export { ArithmeticSequenceViz } from './ArithmeticSequenceViz';
+export { GeometricSequenceViz } from './GeometricSequenceViz';
+export { GeometricSeriesViz } from './GeometricSeriesViz';
+export { LinearRecurrence2Viz } from './LinearRecurrence2Viz';
 export { ExponentialFunctionViz } from './ExponentialFunctionViz';
 export { LogarithmDefViz } from './LogarithmDefViz';
 export { ExpGrowthDecayViz } from './ExpGrowthDecayViz';

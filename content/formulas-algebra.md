@@ -2157,11 +2157,11 @@ a_n=a_1+(n-1)d
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** crecimiento lineal de una sucesión aritmética.
-- **Elementos:** puntos discretos \((n,a_n)\) y diferencia constante \(d\) indicada entre alturas consecutivas.
-- **Idea:** Mueve \(a_1\) y \(d\) y mira: los puntos suben o bajan a pasos constantes.
-- **Objetivo educativo:** Vas a ver que en una sucesión aritmética cada salto suma la misma cantidad.
-- **Interactividad sugerida:** deslizadores para \(a_1\) y \(d\); actualizar los primeros términos y su gráfica discreta.
+- **Concepto visual:** sucesión discreta con diferencia constante \(d\) entre términos consecutivos.
+- **Elementos:** puntos \((n,a_n)\), anotaciones \(+d\), fórmula general y selección de término.
+- **Idea:** Cambia \(a_1\), \(d\) y \(N\): observa cómo \(d\) determina el salto constante entre todos los términos.
+- **Objetivo educativo:** Vas a ver que en una sucesión aritmética cada término se obtiene sumando siempre la misma cantidad \(d\).
+- **Interactividad sugerida:** sliders \(a_1\), \(d\), \(N\); mostrar diferencias y tendencia.
 
 ### Fórmulas relacionadas
 
@@ -2198,11 +2198,11 @@ a_n=a_1r^{n-1}
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** crecimiento multiplicativo de una sucesión geométrica.
-- **Elementos:** puntos discretos \((n,a_n)\) y razón \(r\) mostrada entre términos consecutivos.
-- **Idea:** Cambia \(a\) y \(r\) y fíjate: los puntos crecen o se acercan a cero según \(|r|\).
-- **Objetivo educativo:** Vas a ver que en una sucesión geométrica cada término se multiplica por \(r\).
-- **Interactividad sugerida:** deslizadores para \(a_1\) y \(r\); mostrar valores y cocientes consecutivos.
+- **Concepto visual:** sucesión discreta generada por multiplicación por la razón \(r\).
+- **Elementos:** puntos \((n,a_n)\), anotaciones \(\times r\), comportamientos según \(r\).
+- **Idea:** Cambia \(a_1\), \(r\) y \(N\): observa si los términos crecen, disminuyen, alternan o permanecen constantes.
+- **Objetivo educativo:** Vas a ver que cada término de una sucesión geométrica se obtiene multiplicando el anterior por la misma razón \(r\).
+- **Interactividad sugerida:** sliders \(a_1\), \(r\), \(N\); mostrar razón; seleccionar término.
 
 ### Fórmulas relacionadas
 
@@ -2241,11 +2241,11 @@ S_n=a_1\frac{1-r^n}{1-r}\;(r\ne1)
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** acumulación de una serie geométrica convergente.
-- **Elementos:** barras o segmentos con longitudes \(a,ar,ar^2,\ldots\) y una barra de suma parcial que se acerca a \(a/(1-r)\).
-- **Idea:** Prueba \(|r|<1\) y \(|r|\ge 1\) y mira si los puntos se estabilizan o se disparan.
-- **Objetivo educativo:** Vas a ver que si \(|r|<1\), la serie geométrica infinita se acerca a un valor límite.
-- **Interactividad sugerida:** control de \(r\) entre -0.95 y 0.95 y selector del número de términos; mostrar suma parcial y límite.
+- **Concepto visual:** contraste entre términos \(a_n=ar^n\) y sumas parciales \(S_n\), con límite \(S_\infty\) si \(|r|<1\).
+- **Elementos:** dos paneles (términos y sumas), línea \(S_\infty\), leyenda semántica.
+- **Idea:** Cambia \(a\), \(r\) y \(N\): compara cómo los términos se apagan mientras las sumas se estabilizan en \(S_\infty=a/(1-r)\).
+- **Objetivo educativo:** Vas a ver que, si \(|r|<1\), los términos \(a_n=ar^n\) se acercan a 0 y las sumas parciales \(S_n\) a un límite.
+- **Interactividad sugerida:** sliders \(a\), \(r\), \(N\); ocultar \(S_\infty\) si \(|r|\ge1\).
 
 ### Fórmulas relacionadas
 
@@ -2282,11 +2282,11 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `graph`
-- **Concepto visual:** evolución de una recurrencia de orden 2 desde condiciones iniciales.
-- **Elementos:** secuencia de puntos \(a_n\), flechas desde \(a_{n-1}\) y \(a_{n-2}\) hacia \(a_n\), y ecuación característica.
-- **Idea:** Cambia los coeficientes y fíjate cómo evoluciona la sucesión punto a punto.
-- **Objetivo educativo:** Vas a ver que una recurrencia construye cada término a partir de los anteriores.
-- **Interactividad sugerida:** controles para \(c_1,c_2,a_0,a_1\); generar los primeros términos y mostrar las raíces características.
+- **Concepto visual:** construcción término a término \(a_n=ba_{n-1}+ca_{n-2}\) con flechas de dependencia.
+- **Elementos:** gráfica discreta, contribución de los dos términos previos, paso a paso, ecuación característica opcional.
+- **Idea:** Cambia \(a_0\), \(a_1\), \(b\) y \(c\), y selecciona un término para ver cómo se obtiene de los dos anteriores.
+- **Objetivo educativo:** Vas a ver que una recurrencia de orden 2 construye cada término utilizando los dos anteriores.
+- **Interactividad sugerida:** sliders \(a_0\), \(a_1\), \(b\), \(c\), \(N\); siguiente término; ecuación característica.
 
 ### Fórmulas relacionadas
 
