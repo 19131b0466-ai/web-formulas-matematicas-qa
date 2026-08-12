@@ -6,6 +6,7 @@ import { SectionView } from '@/components/section/SectionView';
 import { redirect } from '@/i18n/navigation';
 import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
+import { resolveSectionSlugAlias } from '@/lib/section-slug-aliases';
 import { getSiteUrl } from '@/lib/site';
 import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
 import { routing, type AppLocale } from '@/i18n/routing';
@@ -23,42 +24,53 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale: raw, subject: subjectRaw, slug } = await params;
+  const { locale: raw, subject: subjectRaw, slug: slugRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) return {};
   const locale = raw as AppLocale;
   const subject = subjectRaw as SubjectSlug;
+  const slug = resolveSectionSlugAlias(subject, slugRaw);
   const t = await getTranslations({ locale, namespace: 'section' });
   const ts = await getTranslations({ locale, namespace: 'site' });
-  const detail = await localizeContent(await fetchSection(slug, subject), locale);
-  if (!detail) return { title: t('notFound') };
+  try {
+    const detail = await localizeContent(await fetchSection(slug, subject), locale);
+    if (!detail) return { title: t('notFound') };
 
-  const title = detail.section.number
-    ? `${detail.section.number}. ${detail.section.title}`
-    : detail.section.title;
-  const description =
-    detail.section.description ?? t('metaDescription', { title: detail.section.title });
-  const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-  const url = `${getSiteUrl()}${prefix}/${subject}/seccion/${slug}`;
+    const title = detail.section.number
+      ? `${detail.section.number}. ${detail.section.title}`
+      : detail.section.title;
+    const description =
+      detail.section.description ?? t('metaDescription', { title: detail.section.title });
+    const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
+    const url = `${getSiteUrl()}${prefix}/${subject}/seccion/${slug}`;
 
-  return {
-    title,
-    description,
-    openGraph: {
-      title: `${title} · ${ts('name')}`,
+    return {
+      title,
       description,
-      url,
-      type: 'article',
-    },
-    alternates: { canonical: url },
-  };
+      openGraph: {
+        title: `${title} · ${ts('name')}`,
+        description,
+        url,
+        type: 'article',
+      },
+      alternates: { canonical: url },
+    };
+  } catch {
+    return { title: t('content') };
+  }
 }
 
 export default async function SectionPage({ params }: PageProps) {
-  const { locale: raw, subject: subjectRaw, slug } = await params;
+  const { locale: raw, subject: subjectRaw, slug: slugRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) notFound();
   const subject = subjectRaw as SubjectSlug;
   const locale = raw as AppLocale;
   setRequestLocale(locale);
+
+  const canonical = resolveSectionSlugAlias(subject, slugRaw);
+  if (canonical !== slugRaw) {
+    redirect({ href: `/${subject}/seccion/${canonical}`, locale });
+  }
+  const slug = canonical;
 
   const t = await getTranslations('section');
   const ts = await getTranslations('site');
@@ -115,4 +127,3 @@ export default async function SectionPage({ params }: PageProps) {
     </>
   );
 }
-

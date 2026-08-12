@@ -14,7 +14,7 @@ import { sectionHref as subjectSectionHref } from './subjects';
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const RUNTIME_FETCH_TIMEOUT_MS = 10_000;
+const RUNTIME_FETCH_TIMEOUT_MS = 15_000;
 const BUILD_FETCH_TIMEOUT_MS = 4_000;
 
 function getFetchTimeoutMs(): number {
@@ -22,6 +22,24 @@ function getFetchTimeoutMs(): number {
     ? BUILD_FETCH_TIMEOUT_MS
     : RUNTIME_FETCH_TIMEOUT_MS;
 }
+
+/** Thrown when the upstream API is unreachable/slow — must NOT be treated as a 404. */
+export class ApiUnavailableError extends Error {
+  readonly status: number | null;
+  constructor(path: string, status: number | null, cause?: unknown) {
+    super(
+      status
+        ? `API ${path} failed with ${String(status)}`
+        : `API ${path} unavailable (timeout or network)`,
+    );
+    this.name = 'ApiUnavailableError';
+    this.status = status;
+    if (cause !== undefined) {
+      (this as Error & { cause?: unknown }).cause = cause;
+    }
+  }
+}
+
 /** Always-available catalog so the hub never renders empty if the API flakes. */
 const FALLBACK_SUBJECTS: SubjectSummary[] = [
   {
@@ -66,7 +84,7 @@ export function getApiBaseUrl(): string {
   return LOCAL_API;
 }
 
-async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+async function apiFetch<T>(path: string, init?: RequestInit): Promise<T | null> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
@@ -81,11 +99,17 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
       next: init?.next ?? { revalidate: 300 },
     });
 
+    if (res.status === 404) return null;
+
     if (!res.ok) {
-      throw new Error(`API ${path} failed with ${String(res.status)}`);
+      throw new ApiUnavailableError(path, res.status);
     }
 
     return (await res.json()) as T;
+  } catch (err) {
+    if (err instanceof ApiUnavailableError) throw err;
+    // AbortError / network / DNS — treat as unavailable, not missing content.
+    throw new ApiUnavailableError(path, null, err);
   } finally {
     clearTimeout(timer);
   }
@@ -96,6 +120,7 @@ export const fetchSubjects = cache(async (): Promise<SubjectSummary[]> => {
     const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
       next: { revalidate: 300 },
     });
+    if (!data) return FALLBACK_SUBJECTS;
     return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
   } catch (err) {
     console.error('[fetchSubjects]', getApiBaseUrl(), err);
@@ -110,7 +135,7 @@ export const fetchSections = cache(
         `/subjects/${encodeURIComponent(subject)}/sections`,
         { next: { revalidate: 300 } },
       );
-      return data.sections;
+      return data?.sections ?? [];
     } catch (err) {
       console.error('[fetchSections]', subject, getApiBaseUrl(), err);
       return [];
@@ -123,14 +148,11 @@ export const fetchSection = cache(
     slug: string,
     subject: SubjectSlug = 'calculo-ii',
   ): Promise<SectionDetailResponse | null> => {
-    try {
-      return await apiFetch<SectionDetailResponse>(
-        `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-        { next: { revalidate: 600 } },
-      );
-    } catch {
-      return null;
-    }
+    // Propagates ApiUnavailableError; returns null only for true 404.
+    return apiFetch<SectionDetailResponse>(
+      `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
+      { next: { revalidate: 600 } },
+    );
   },
 );
 
@@ -139,14 +161,11 @@ export const fetchFormula = cache(
     subject: SubjectSlug,
     formulaId: string,
   ): Promise<FormulaDetailResponse | null> => {
-    try {
-      return await apiFetch<FormulaDetailResponse>(
-        `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
-        { next: { revalidate: 600 } },
-      );
-    } catch {
-      return null;
-    }
+    // Propagates ApiUnavailableError; returns null only for true 404.
+    return apiFetch<FormulaDetailResponse>(
+      `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
+      { next: { revalidate: 600 } },
+    );
   },
 );
 
@@ -170,10 +189,16 @@ export async function fetchSearch(params: {
       cache: 'no-store',
       signal: controller.signal,
     });
+    if (res.status === 404) {
+      return { results: [], total: 0, query: params.q ?? '' };
+    }
     if (!res.ok) {
-      throw new Error(`API /search failed with ${String(res.status)}`);
+      throw new ApiUnavailableError(`/subjects/.../search`, res.status);
     }
     return res.json() as Promise<SearchResponse>;
+  } catch (err) {
+    if (err instanceof ApiUnavailableError) throw err;
+    throw new ApiUnavailableError(`/subjects/.../search`, null, err);
   } finally {
     clearTimeout(timer);
   }
@@ -181,9 +206,10 @@ export async function fetchSearch(params: {
 
 export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> => {
   try {
-    return await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
+    const data = await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
       next: { revalidate: 600 },
     });
+    return data ?? { tags: [] };
   } catch {
     return { tags: [] };
   }
@@ -193,9 +219,10 @@ export const fetchMethodGuide = cache(
   async (subject: SubjectSlug = 'calculo-ii'): Promise<MethodGuideResponse> => {
     try {
       const qs = new URLSearchParams({ subject });
-      return await apiFetch<MethodGuideResponse>(`/guide/method-selection?${qs.toString()}`, {
+      const data = await apiFetch<MethodGuideResponse>(`/guide/method-selection?${qs.toString()}`, {
         next: { revalidate: 600 },
       });
+      return data ?? { strategies: [], checklist: [] };
     } catch {
       return { strategies: [], checklist: [] };
     }

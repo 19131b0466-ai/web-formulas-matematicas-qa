@@ -123,8 +123,8 @@
   },
   "notFound": {
     "title": "Pagina non trovata",
-    "body": "Questa sezione non esiste o non è ancora stata importata nell'API.",
-    "back": "Torna alla home"
+    "body": "Questa pagina non esiste, l’URL non è corretta, oppure il contenuto non è ancora disponibile nell’API.",
+    "back": "Torna all’inizio"
   },
   "hub": {
     "intro": "Scegli una materia per consultare le formule con LaTeX, ricerca e navigazione per sezioni.",

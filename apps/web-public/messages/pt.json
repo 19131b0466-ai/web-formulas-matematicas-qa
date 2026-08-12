@@ -123,7 +123,7 @@
   },
   "notFound": {
     "title": "Página não encontrada",
-    "body": "Essa seção não existe ou ainda não foi importada na API.",
+    "body": "Essa página não existe, o URL está incorreto, ou o conteúdo ainda não está disponível na API.",
     "back": "Voltar ao início"
   },
   "hub": {

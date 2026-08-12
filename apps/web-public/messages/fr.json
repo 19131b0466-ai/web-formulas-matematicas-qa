@@ -123,8 +123,8 @@
   },
   "notFound": {
     "title": "Page introuvable",
-    "body": "Cette section n'existe pas ou n'a pas encore été importée dans l'API.",
-    "back": "Retour à l'accueil"
+    "body": "Cette page n’existe pas, l’URL est incorrecte, ou le contenu n’est pas encore disponible dans l’API.",
+    "back": "Retour à l’accueil"
   },
   "hub": {
     "intro": "Choisissez une matière pour consulter les formules avec LaTeX, recherche et navigation par sections.",

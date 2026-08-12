@@ -142,7 +142,7 @@
   },
   "notFound": {
     "title": "Página no encontrada",
-    "body": "Esa sección no existe o aún no fue importada en la API.",
+    "body": "Esa página no existe, la URL es incorrecta, o el contenido aún no está disponible en la API.",
     "back": "Volver al inicio"
   },
   "siteNav": {

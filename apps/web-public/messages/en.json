@@ -123,7 +123,7 @@
   },
   "notFound": {
     "title": "Page not found",
-    "body": "That section does not exist or has not been imported into the API yet.",
+    "body": "That page does not exist, the URL is wrong, or the content is not available in the API yet.",
     "back": "Back to home"
   },
   "hub": {
