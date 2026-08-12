@@ -182,7 +182,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
                 >
                   <Link
                     href={formulaHref(subject, r.formulaId) as '/'}
-                    prefetch={false}={false}
+                    prefetch={false}
                     className="block px-4 pt-3 transition hover:bg-[color-mix(in_oklab,var(--accent-soft)_45%,transparent)]"
                   >
                     <p className="text-xs font-semibold uppercase tracking-wider text-[var(--accent-strong)]">
