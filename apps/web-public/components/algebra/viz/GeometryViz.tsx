@@ -5,12 +5,24 @@ import { useVizLabels } from '@/lib/viz-labels';
 import { ControlsStack, SliderRow, VizPanel, fmt, joinCaption } from './controls';
 import { det2, type Mat2, type Vec2 } from './math2d';
 import { ComplexRootsViz } from './ComplexRootsViz';
+import { Determinant2x2Viz } from './Determinant2x2Viz';
+import { DeterminantProductViz } from './DeterminantProductViz';
+import { InvertibilityCriterionViz } from './InvertibilityCriterionViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
 export function GeometryViz({ formulaId, mode }: Props) {
   if (formulaId.includes('COM-007')) {
     return <ComplexRootsViz />;
+  }
+  if (formulaId.includes('DET-001')) {
+    return <Determinant2x2Viz />;
+  }
+  if (formulaId.includes('DET-003')) {
+    return <DeterminantProductViz />;
+  }
+  if (formulaId.includes('DET-004')) {
+    return <InvertibilityCriterionViz />;
   }
 
   return <GeometryVizInner formulaId={formulaId} mode={mode} />;

@@ -2713,9 +2713,9 @@ A^T=A
 - **Tipo:** `geometry`
 - **Concepto visual:** determinante como área orientada/factor de escala en 2D.
 - **Elementos:** vectores columna de una matriz 2×2 formando un paralelogramo y valor \(ad-bc\).
-- **Idea:** Mueve los vectores y fíjate: el área coloreada es \(|\det|\); el signo indica orientación.
-- **Objetivo educativo:** Vas a ver que el determinante \(2\times 2\) es el área con signo del paralelogramo de las columnas.
-- **Interactividad sugerida:** arrastrar los vectores columna; actualizar área, signo y valor del determinante.
+- **Idea:** Mueve u y v: observa cómo cambian el área y el signo del determinante. Si los vectores quedan alineados, el determinante se vuelve 0.
+- **Objetivo educativo:** Vas a ver que el determinante de una matriz 2×2 mide el área orientada del paralelogramo generado por sus columnas.
+- **Interactividad sugerida:** arrastrar los vectores columna; intercambiar u↔v; ver el colapso cuando det=0; actualizar área, signo y valor del determinante.
 
 ### Fórmulas relacionadas
 
@@ -2739,9 +2739,9 @@ A^T=A
 - **Tipo:** `matrix`
 - **Concepto visual:** expansión del determinante mediante menores y cofactores.
 - **Elementos:** matriz con una fila/columna elegida, celda \(a_{ij}\), submatriz menor correspondiente y signo de cofactor.
-- **Idea:** Edita \(A\) y mira cómo \(\det(A)\) responde a los cambios.
-- **Objetivo educativo:** Vas a ver que el determinante se puede expandir por una fila o columna (cofactores).
-- **Interactividad sugerida:** permitir elegir fila o columna de expansión y recorrer término por término.
+- **Idea:** Elige una fila o columna y selecciona una entrada: verás qué fila y columna se eliminan para construir su menor.
+- **Objetivo educativo:** Vas a ver que el determinante puede construirse sumando los términos de una fila o columna, cada uno multiplicado por su cofactor.
+- **Interactividad sugerida:** matriz 3×3 editable; elegir fila/columna; seleccionar término; ver menor, signo, cofactor y la suma completa.
 
 ### Complejidad computacional
 
@@ -2775,9 +2775,9 @@ Por ello es útil sobre todo como fórmula teórica o para matrices pequeñas. E
 - **Tipo:** `geometry`
 - **Concepto visual:** multiplicación de factores de escala de área/volumen.
 - **Elementos:** figura inicial, transformación por \(B\), luego por \(A\), y factores \(\det B\), \(\det A\), \(\det(AB)\).
-- **Idea:** Cambia \(A\) y \(B\) y compara el área del producto con el producto de áreas.
-- **Objetivo educativo:** Vas a ver que \(\det(AB)=\det(A)\det(B)\): las áreas se multiplican.
-- **Interactividad sugerida:** usar matrices 2×2 simples seleccionables y animar la figura a través de ambas transformaciones.
+- **Idea:** Edita A y B y observa cómo el cuadrado unidad pasa primero por B y después por A. Compara el área final con \(\det(A)\det(B)\).
+- **Objetivo educativo:** Vas a ver que aplicar B y luego A multiplica sucesivamente el área: el factor total es \(\det(A)\cdot\det(B)\).
+- **Interactividad sugerida:** matrices 2×2 editables; etapas S → B(S) → AB(S); comprobar \(\det(AB)=\det(A)\det(B)\).
 
 ### Fórmulas relacionadas
 
@@ -2801,9 +2801,9 @@ A\text{ invertible}\iff\det(A)\ne0
 - **Tipo:** `geometry`
 - **Concepto visual:** invertibilidad como preservación de dimensión/área no nula.
 - **Elementos:** cuadrícula transformada por una matriz y paralelogramo de columnas; caso \(\det A\neq0\) frente a \(\det A=0\).
-- **Idea:** Haz el paralelogramo plano (área \(\approx 0\)) y fíjate: la matriz se vuelve singular.
-- **Objetivo educativo:** Vas a ver que si el área (\(\det\)) es cero, las columnas son paralelas y no hay inversa.
-- **Interactividad sugerida:** controlar entradas de una matriz 2×2 y mostrar simultáneamente determinante, rango e invertibilidad.
+- **Idea:** Mueve las columnas hasta hacerlas paralelas y observa cómo \(\det(A)\), el rango y la existencia de \(A^{-1}\) cambian al mismo tiempo.
+- **Objetivo educativo:** Vas a ver que una matriz 2×2 es invertible mientras sus columnas generen área. Cuando se alinean, el área cae a cero y la transformación pierde una dimensión.
+- **Interactividad sugerida:** sliders/arrastre; presets invertible/casi singular/singular; cadena de equivalencias; rango e invertibilidad.
 
 ### Fórmulas relacionadas
 
@@ -2827,9 +2827,9 @@ A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
 - **Tipo:** `matrix`
 - **Concepto visual:** inversa como transformación que deshace a \(A\).
 - **Elementos:** vector o cuadrícula original, resultado después de \(A\) y recuperación después de \(A^{-1}\).
-- **Idea:** Edita \(A\) y mira \(\det\): si no es cero, la inversa está bien definida.
-- **Objetivo educativo:** Vas a ver que la inversa “deshace” \(A\); existe solo si \(\det\neq 0\).
-- **Interactividad sugerida:** seleccionar matrices 2×2 invertibles y animar transformación e inversión; bloquear el caso singular explicando por qué.
+- **Idea:** Edita A, sigue el intercambio de la diagonal, el cambio de signos y el factor \(1/\det(A)\). Al final comprueba que \(AA^{-1}=I\).
+- **Objetivo educativo:** Vas a ver cómo se construye \(A^{-1}\) paso a paso y por qué realmente deshace la acción de A.
+- **Interactividad sugerida:** pasos determinante → intercambia → signos → escala; verificar \(AA^{-1}=I\); bloquear el caso singular.
 
 ### Fórmulas relacionadas
 
@@ -2854,9 +2854,9 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `matrix`
 - **Concepto visual:** regla de Cramer como reemplazo de columnas.
 - **Elementos:** matriz \(A\), vector \(b\), matrices \(A_i\) con la columna reemplazada y cocientes de determinantes.
-- **Idea:** Cambia \(A\) y \(b\) y relaciona \(\det(A)\) con la posibilidad de solución única.
-- **Objetivo educativo:** Vas a ver que Cramer usa determinantes para resolver sistemas pequeños.
-- **Interactividad sugerida:** selector de incógnita \(x_i\); construir visualmente la matriz correspondiente y calcular los determinantes.
+- **Idea:** Edita A y b, elige x o y y observa cómo se forma \(A_x\) o \(A_y\). Después compara su determinante con \(\det(A)\).
+- **Objetivo educativo:** Vas a ver cómo Cramer obtiene cada incógnita reemplazando su columna por el vector b y comparando determinantes.
+- **Interactividad sugerida:** sistema 2×2 editable; resolver x/y/ver todo; fracciones exactas; caso \(\Delta=0\) sin afirmar «sin solución».
 
 ### Fórmulas relacionadas
 

@@ -17,6 +17,9 @@ import { MatrixProductViz } from './MatrixProductViz';
 import { IdentityMatrixViz } from './IdentityMatrixViz';
 import { TransposeMatrixViz } from './TransposeMatrixViz';
 import { SymmetricMatrixViz } from './SymmetricMatrixViz';
+import { CofactorExpansionViz } from './CofactorExpansionViz';
+import { InverseMatrix2Viz } from './InverseMatrix2Viz';
+import { CramerRuleViz } from './CramerRuleViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -135,6 +138,10 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('MAT-005')) return <IdentityMatrixViz />;
   if (formulaId.includes('MAT-006')) return <TransposeMatrixViz />;
   if (formulaId.includes('MAT-007')) return <SymmetricMatrixViz />;
+
+  if (formulaId.includes('DET-002')) return <CofactorExpansionViz />;
+  if (formulaId.includes('DET-005')) return <InverseMatrix2Viz />;
+  if (formulaId.includes('DET-006')) return <CramerRuleViz />;
 
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }
