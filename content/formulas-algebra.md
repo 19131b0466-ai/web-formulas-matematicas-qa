@@ -2312,11 +2312,12 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** vector como lista ordenada y como flecha geométrica.
-- **Elementos:** vector columna con componentes y, para 2D/3D, flecha desde el origen con proyecciones sobre ejes.
-- **Idea:** Arrastra las puntas y mira cómo cambia el vector en el plano.
-- **Objetivo educativo:** Vas a ver que un vector es una flecha: dirección y longitud.
-- **Interactividad sugerida:** editar componentes y actualizar la flecha; para \(n>3\), mantener representación de barras/componentes.
+- **Modo:** `rn`
+- **Concepto visual:** vector como lista ordenada de componentes y como flecha desde el origen.
+- **Elementos:** notación \(v=(v_1,\ldots,v_n)\in\mathbb{R}^n\); en \(\mathbb{R}^2\) flecha con proyecciones \(v_1,v_2\) y descomposición \(v=v_1e_1+v_2e_2\); selector de dimensión; barras de componentes para \(n>3\).
+- **Idea:** Cambia las componentes o arrastra el extremo del vector y observa cómo sus coordenadas determinan completamente la flecha.
+- **Objetivo educativo:** Vas a ver que un vector en \(\mathbb{R}^n\) queda determinado por sus \(n\) componentes. Cada componente indica cuánto avanza el vector en una dirección coordenada.
+- **Interactividad sugerida:** selector \(\mathbb{R}^2,\mathbb{R}^3,\mathbb{R}^4,\mathbb{R}^n\); sliders de componentes; arrastre del extremo en 2D.
 
 ### Fórmulas relacionadas
 
@@ -2338,11 +2339,12 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** norma como longitud de un vector.
-- **Elementos:** vector en 2D, triángulo rectángulo formado por sus componentes y valor de \(\|v\|_2\).
-- **Idea:** Estira \(u\) y fíjate: el valor \(\|u\|\) se actualiza con la longitud.
-- **Objetivo educativo:** Vas a ver que la norma es la longitud de la flecha.
-- **Interactividad sugerida:** arrastrar el extremo del vector y actualizar componentes, cuadrados y norma.
+- **Modo:** `norm`
+- **Concepto visual:** norma como longitud del vector y distancia al origen (Pitágoras).
+- **Elementos:** un solo vector \(u=(x,y)\), triángulo rectángulo de componentes, etiqueta \(\|u\|\) y círculo opcional de radio \(\|u\|\).
+- **Idea:** Arrastra el extremo del vector o cambia \(x\) e \(y\) y observa cómo \(\|u\|\) se obtiene con el teorema de Pitágoras.
+- **Objetivo educativo:** Vas a ver que la norma euclidiana mide la longitud del vector, es decir, su distancia al origen.
+- **Interactividad sugerida:** arrastrar el extremo; sliders \(x,y\); actualizar fórmula \(\|u\|=\sqrt{x^2+y^2}\) en tiempo real.
 
 ### Fórmulas relacionadas
 
@@ -2364,11 +2366,12 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** normalización sin cambiar dirección.
-- **Elementos:** vector original \(v\) y vector unitario \(\hat v\) sobre la misma semirrecta, con longitudes etiquetadas.
-- **Idea:** Mueve \(u\) y mira la versión normalizada \(\hat{u}\) de longitud 1.
-- **Objetivo educativo:** Vas a ver que el vector unitario tiene longitud 1 y guarda la dirección.
-- **Interactividad sugerida:** arrastrar \(v\); botón “normalizar” que anime el cambio de longitud a 1.
+- **Modo:** `unit`
+- **Concepto visual:** normalización que conserva la dirección y fija la longitud en 1.
+- **Elementos:** vector \(u\), vector unitario \(\hat u\) sobre la misma semirrecta, círculo unitario y etiquetas \(\|u\|\), \(\|\hat u\|=1\).
+- **Idea:** Arrastra \(u\) y compara su extremo con \(\hat u\): el vector normalizado siempre termina sobre el círculo unitario.
+- **Objetivo educativo:** Vas a ver que normalizar un vector conserva su dirección, pero cambia su longitud a 1.
+- **Interactividad sugerida:** arrastrar \(u\); sliders de componentes; manejar el caso \(u=0\) (no normalizable).
 
 ### Fórmulas relacionadas
 
@@ -2389,12 +2392,12 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Modo:** `angle`
-- **Concepto visual:** producto punto como proyección y alineación.
-- **Elementos:** vectores \(u\) y \(v\), ángulo \(\theta\), proyección de uno sobre el otro y valor del producto punto.
-- **Idea:** Arrastra \(u\) y \(v\) y mira \(u\cdot v\): si el ángulo es agudo, recto u obtuso; la proyección aparece en naranja.
-- **Objetivo educativo:** Vas a ver que el producto punto mide alineación: positivo significa ángulo agudo.
-- **Interactividad sugerida:** controlar el ángulo entre vectores y actualizar \(u\cdot v\), \(\cos\theta\) y la proyección.
+- **Modo:** `dot`
+- **Concepto visual:** producto punto como proyección y alineación: \(u\cdot v=\|u\|\|v\|\cos\theta\).
+- **Elementos:** vectores \(u\) y \(v\), arco \(\theta\), proyección de \(v\) sobre \(u\), valor \(u\cdot v\) y clasificación del signo.
+- **Idea:** Arrastra \(u\) y \(v\). Observa cómo cambian el ángulo, la proyección y \(u\cdot v\): positivo si apuntan en direcciones similares, cero si son perpendiculares y negativo si apuntan en sentidos opuestos.
+- **Objetivo educativo:** Vas a ver que el producto punto mide cuánto apunta un vector en la dirección del otro.
+- **Interactividad sugerida:** arrastre de ambos extremos; presets agudo/90°/obtuso; actualizar proyección y fórmula en tiempo real.
 
 ### Fórmulas relacionadas
 
@@ -2418,11 +2421,11 @@ a_n=c_1a_{n-1}+c_2a_{n-2};\quad r^2-c_1r-c_2=0
 
 - **Tipo:** `vector`
 - **Modo:** `angle`
-- **Concepto visual:** ángulo determinado por producto punto y normas.
-- **Elementos:** dos vectores, arco del ángulo entre ellos y panel con \(u\cdot v\), \(\|u\|\), \(\|v\|\) y \(\cos\theta\).
-- **Idea:** Mueve las flechas y fíjate: el ángulo y el tipo (agudo/recto/obtuso) se actualizan.
-- **Objetivo educativo:** Vas a ver que el ángulo entre vectores se lee del producto punto.
-- **Interactividad sugerida:** arrastrar ambos vectores y actualizar el ángulo calculado.
+- **Concepto visual:** ángulo menor entre dos vectores, \(\theta\in[0^\circ,180^\circ]\).
+- **Elementos:** dos vectores, arco y sector de \(\theta\), clasificación agudo/recto/obtuso, escala \(0^\circ\)–\(180^\circ\) y \(\cos\theta\).
+- **Idea:** Arrastra \(u\) y \(v\) y observa el arco \(\theta\). Acércalos, hazlos perpendiculares o colócalos en sentidos opuestos para recorrer ángulos entre \(0^\circ\) y \(180^\circ\).
+- **Objetivo educativo:** Vas a ver que el ángulo entre dos vectores depende de sus direcciones, no de sus longitudes.
+- **Interactividad sugerida:** arrastre de ambos; presets \(0^\circ,45^\circ,90^\circ,135^\circ,180^\circ\); actualizar \(\theta\) y \(\cos\theta\).
 
 ### Fórmulas relacionadas
 
@@ -2444,11 +2447,11 @@ d(u,v)=\|u-v\|_2
 
 - **Tipo:** `vector`
 - **Modo:** `distance`
-- **Concepto visual:** distancia entre vectores como norma de su diferencia.
-- **Elementos:** puntos \(u\) y \(v\), vector \(v-u\) trasladado entre ellos y segmento de distancia.
-- **Idea:** Separa \(u\) y \(v\) y mira: la distancia crece con la separación.
-- **Objetivo educativo:** Vas a ver que la distancia entre puntas de vectores es la norma de la diferencia.
-- **Interactividad sugerida:** arrastrar ambos puntos y actualizar vector diferencia y distancia.
+- **Concepto visual:** distancia como longitud del segmento entre extremos y norma de la diferencia.
+- **Elementos:** puntas de \(u\) y \(v\), segmento \(d(u,v)\), catetos \(\Delta x,\Delta y\) y triángulo rectángulo.
+- **Idea:** Arrastra \(u\) y \(v\). Observa cómo \(\Delta x\) y \(\Delta y\) forman los catetos de un triángulo rectángulo cuya hipotenusa mide \(\|u-v\|\).
+- **Objetivo educativo:** Vas a ver que la distancia entre dos vectores es la longitud del segmento que une sus extremos.
+- **Interactividad sugerida:** arrastre de ambos; toggle de componentes; presets horizontal/vertical/diagonal/coincidentes.
 
 ### Fórmulas relacionadas
 
@@ -2470,11 +2473,12 @@ w=c_1v_1+\cdots+c_kv_k
 ### Visualización sugerida
 
 - **Tipo:** `vector`
-- **Concepto visual:** combinación lineal como suma de vectores escalados.
-- **Elementos:** vectores base \(u,v\), copias escaladas \(au\), \(bv\) y resultante \(w=au+bv\) con paralelogramo guía.
-- **Idea:** Arrastra \(u\) y \(v\) y fíjate: la flecha naranja es \(0.7u+0.5v\).
-- **Objetivo educativo:** Vas a ver que una combinación lineal mezcla vectores con pesos.
-- **Interactividad sugerida:** deslizadores para \(a\) y \(b\); dibujar la resultante y el rastro opcional de puntos alcanzables.
+- **Modo:** `combo`
+- **Concepto visual:** combinación lineal como escalar y luego sumar: \(w=\alpha u+\beta v\).
+- **Elementos:** \(u,v\), versiones escaladas \(\alpha u,\beta v\), construcción cabeza-cola/paralelogramo y resultante \(w\).
+- **Idea:** Mueve \(\alpha\) y \(\beta\). Observa cómo cambian \(\alpha u\) y \(\beta v\) y cómo su suma determina la flecha naranja \(w\).
+- **Objetivo educativo:** Vas a ver que una combinación lineal primero escala los vectores y después suma los resultados.
+- **Interactividad sugerida:** sliders \(\alpha,\beta\in[-2,2]\); arrastre de \(u,v\); presets \(u+v\), \(u-v\), solo \(u\), solo \(v\), promedio.
 
 ### Fórmulas relacionadas
 

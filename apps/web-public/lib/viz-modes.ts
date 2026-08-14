@@ -32,8 +32,11 @@ export type MatrixMode =
 
 export type VectorMode =
   | 'basic'
+  | 'rn'
+  | 'norm'
   | 'proj'
   | 'angle'
+  | 'dot'
   | 'unit'
   | 'complex'
   | 'conjugate'
@@ -94,10 +97,12 @@ export function inferVectorMode(formulaId: string): VectorMode {
   if (formulaId.includes('COM-005')) return 'euler';
   if (formulaId.includes('COM-002')) return 'conjugate';
   if (formulaId.includes('ORT-002')) return 'proj';
-  if (formulaId.includes('VEC-004')) return 'angle';
+  if (formulaId.includes('VEC-001')) return 'rn';
+  if (formulaId.includes('VEC-002')) return 'norm';
+  if (formulaId.includes('VEC-003')) return 'unit';
+  if (formulaId.includes('VEC-004')) return 'dot';
   if (formulaId.includes('VEC-005')) return 'angle';
   if (formulaId.includes('VEC-006')) return 'distance';
-  if (formulaId.includes('VEC-003')) return 'unit';
   if (formulaId.includes('VEC-007')) return 'combo';
   if (/COM-/.test(formulaId)) return 'complex';
   return 'basic';
@@ -160,7 +165,7 @@ export function resolveMode(
  * Extend this list whenever a redesigned viz owns its own teaching text.
  */
 export function vizHasEmbeddedGuide(formulaId: string): boolean {
-  return /FND-006|FND-007|POT-001|POT-008|EXP-003|IDN-001|IDN-002|IDN-003|IDN-008|FAC-001|FAC-002|FAC-003|EQU-001|EQU-003|EQU-004|EQU-005|EQU-008|INE-001|INE-002|INE-003|INE-004|SIS-001|SIS-002|SIS-003|SIS-004|SIS-005|FUN-001|FUN-002|FUN-003|FUN-005|FUN-006|FUN-007|FUN-008|POL-007|POL-008|POL-009|POL-010|POL-011|LOG-001|LOG-002|LOG-007|COM-001|COM-002|COM-003|COM-004|COM-005|COM-006|COM-007|SEC-001|SEC-003|SEC-005|SEC-007/.test(
+  return /FND-006|FND-007|POT-001|POT-008|EXP-003|IDN-001|IDN-002|IDN-003|IDN-008|FAC-001|FAC-002|FAC-003|EQU-001|EQU-003|EQU-004|EQU-005|EQU-008|INE-001|INE-002|INE-003|INE-004|SIS-001|SIS-002|SIS-003|SIS-004|SIS-005|FUN-001|FUN-002|FUN-003|FUN-005|FUN-006|FUN-007|FUN-008|POL-007|POL-008|POL-009|POL-010|POL-011|LOG-001|LOG-002|LOG-007|COM-001|COM-002|COM-003|COM-004|COM-005|COM-006|COM-007|SEC-001|SEC-003|SEC-005|SEC-007|VEC-001|VEC-002|VEC-003|VEC-004|VEC-005|VEC-006|VEC-007/.test(
     formulaId,
   );
 }

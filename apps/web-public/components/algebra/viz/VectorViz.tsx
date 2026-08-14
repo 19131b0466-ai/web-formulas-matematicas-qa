@@ -11,6 +11,13 @@ import { ComplexModulusViz } from './ComplexModulusViz';
 import { ComplexPolarViz } from './ComplexPolarViz';
 import { EulerFormulaViz } from './EulerFormulaViz';
 import { DeMoivreViz } from './DeMoivreViz';
+import { VectorRnViz } from './VectorRnViz';
+import { NormEuclideanViz } from './NormEuclideanViz';
+import { UnitVectorViz } from './UnitVectorViz';
+import { DotProductViz } from './DotProductViz';
+import { AngleBetweenViz } from './AngleBetweenViz';
+import { EuclideanDistanceViz } from './EuclideanDistanceViz';
+import { LinearComboViz } from './LinearComboViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -49,6 +56,14 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('COM-004')) return <ComplexPolarViz />;
   if (formulaId.includes('COM-005')) return <EulerFormulaViz />;
   if (formulaId.includes('COM-006')) return <DeMoivreViz />;
+
+  if (formulaId.includes('VEC-001')) return <VectorRnViz />;
+  if (formulaId.includes('VEC-002')) return <NormEuclideanViz />;
+  if (formulaId.includes('VEC-003')) return <UnitVectorViz />;
+  if (formulaId.includes('VEC-004')) return <DotProductViz />;
+  if (formulaId.includes('VEC-005')) return <AngleBetweenViz />;
+  if (formulaId.includes('VEC-006')) return <EuclideanDistanceViz />;
+  if (formulaId.includes('VEC-007')) return <LinearComboViz />;
 
   return <VectorVizInner formulaId={formulaId} mode={modeProp} />;
 }
