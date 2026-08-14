@@ -2882,9 +2882,9 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** span como conjunto de todos los puntos alcanzables por combinaciones lineales.
 - **Elementos:** uno o dos vectores generadores en 2D/3D y la recta/plano que producen.
-- **Idea:** Mueve \(s\) y \(t\) y mira la flecha naranja: barre el plano (o la recta) que generan \(u\) y \(v\).
-- **Objetivo educativo:** Vas a ver que el espacio generado son todas las mezclas \(s\cdot u+t\cdot v\).
-- **Interactividad sugerida:** deslizadores para coeficientes y opción de mostrar el rastro de combinaciones.
+- **Idea:** Mueve \(s\) y \(t\) para recorrer el espacio generado. Después arrastra \(u\) o \(v\) y observa cuándo el plano se reduce a una sola recta.
+- **Objetivo educativo:** Vas a ver que el espacio generado contiene todas las combinaciones posibles de los vectores.
+- **Interactividad sugerida:** modo «una combinación / todas»; retícula o recta según dimensión; presets (un vector, independientes, dependientes, cero).
 
 ### Fórmulas relacionadas
 
@@ -2908,9 +2908,9 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** independencia lineal como ausencia de redundancia direccional.
 - **Elementos:** dos vectores en 2D y paralelogramo asociado; área \(|\det(u,v)|\) visible.
-- **Idea:** Alinea \(u\) y \(v\) y fíjate: el indicador pasa a “dependientes”.
-- **Objetivo educativo:** Vas a ver que si el área del paralelogramo es cero, los vectores son dependientes.
-- **Interactividad sugerida:** arrastrar vectores y mostrar indicador “independientes/dependientes” junto al determinante.
+- **Idea:** Arrastra \(u\) y \(v\). Cuando quedan sobre una misma dirección aparece una combinación no trivial que produce el vector cero.
+- **Objetivo educativo:** Vas a ver que dos vectores son independientes cuando ninguno puede reproducirse usando el otro.
+- **Interactividad sugerida:** probar \(\alpha u+\beta v\); mostrar relación testigo si son dependientes; preset con tres vectores redundantes.
 
 ### Fórmulas relacionadas
 
@@ -2934,9 +2934,9 @@ x_i=\frac{\det(A_i)}{\det(A)}
 - **Tipo:** `vector_space`
 - **Concepto visual:** base como conjunto mínimo de direcciones que genera el espacio.
 - **Elementos:** conjunto de vectores candidatos, región generada y contador de dimensión.
-- **Idea:** Activa **Mostrar base** y compara con tus vectores \(u\) y \(v\).
-- **Objetivo educativo:** Vas a ver que una base es un conjunto independiente que genera todo el espacio.
-- **Interactividad sugerida:** activar/desactivar vectores y recalcular span, rango y si el conjunto sigue siendo base.
+- **Idea:** Arrastra \(u\) y \(v\). Si apuntan en direcciones diferentes generan todo \(\mathbb R^2\); si quedan sobre la misma recta, dejan de ser una base de \(\mathbb R^2\).
+- **Objetivo educativo:** Vas a ver que una base necesita dos cosas: vectores independientes y suficientes direcciones para generar todo el espacio.
+- **Interactividad sugerida:** checklist independencia + generación; presets (base, dependientes, redundante, espacio cero); dimensión del span.
 
 ### Fórmulas relacionadas
 
@@ -2961,9 +2961,9 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `vector_space`
 - **Concepto visual:** coordenadas de un mismo vector en bases diferentes.
 - **Elementos:** vector geométrico fijo y dos pares de ejes/base; coeficientes \([v]_\mathcal B\) y \([v]_\mathcal C\).
-- **Idea:** Cambia \(s\) y \(t\): son las coordenadas de la combinación en la base \(u\), \(v\).
-- **Objetivo educativo:** Vas a ver que las coordenadas dicen cuánto de cada vector de la base necesitas.
-- **Interactividad sugerida:** permitir rotar/deformar una base válida y actualizar las coordenadas del mismo vector.
+- **Idea:** Mueve \(x\) o cambia \(s\) y \(t\). Observa cómo \(x\) se construye recorriendo \(s\) veces \(u\) y \(t\) veces \(v\).
+- **Objetivo educativo:** Vas a ver que las coordenadas indican cuánto debes avanzar en cada vector de la base para construir \(x\).
+- **Interactividad sugerida:** base oblicua; comparar coordenadas estándar con \([x]_{\mathcal B}\); presets canónica/oblicua; bloquear coordenadas si no son base.
 
 ### Fórmulas relacionadas
 
@@ -2986,9 +2986,9 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `matrix`
 - **Concepto visual:** rango como número de direcciones independientes producidas por una matriz.
 - **Elementos:** matriz escalonada con pivotes resaltados y, en baja dimensión, espacio columna generado.
-- **Idea:** Edita \(A\) y mira el determinante/rango: verás si hay 0, 1 o 2 direcciones.
-- **Objetivo educativo:** Vas a ver que el rango es cuántas direcciones independientes tiene la matriz.
-- **Interactividad sugerida:** editar una matriz pequeña y actualizar pivotes, rango y visualización del espacio columna.
+- **Idea:** Edita las columnas de \(A\) y observa cuándo generan un punto, una recta o todo el plano. Esa dimensión es el rango.
+- **Objetivo educativo:** Vas a ver que el rango mide cuántas direcciones independientes generan las columnas de \(A\).
+- **Interactividad sugerida:** matriz \(2\times 3\) editable; columnas en \(\mathbb R^2\); pivotes vía RREF; presets rango 0/1/2.
 
 ### Fórmulas relacionadas
 
@@ -3013,9 +3013,9 @@ v=\sum_i c_ib_i\Rightarrow[v]_\mathcal B=(c_1,\ldots,c_n)^T
 - **Tipo:** `vector_space`
 - **Concepto visual:** nulidad como dimensión del conjunto de soluciones de \(Ax=0\).
 - **Elementos:** transformación de vectores con el núcleo resaltado como línea/plano que colapsa al cero.
-- **Idea:** Haz columnas dependientes y relaciona con direcciones que van al origen.
-- **Objetivo educativo:** Vas a ver que la nulidad cuenta soluciones no triviales de \(Ax=0\).
-- **Interactividad sugerida:** arrastrar un vector dentro/fuera del núcleo y mostrar si \(Ax=0\).
+- **Idea:** Edita \(A\) y observa cómo las variables libres generan el núcleo. Cada variable libre añade una dimensión a \(\ker A\).
+- **Objetivo educativo:** Vas a ver que la nulidad mide cuántas direcciones independientes puede tener una solución de \(Ax=0\).
+- **Interactividad sugerida:** matriz \(2\times 3\); parametrizar con \(t\) (y \(s\)); verificar \(Av=0\); presets nulidad 0/1/2/cero.
 
 ### Fórmulas relacionadas
 
@@ -3039,9 +3039,9 @@ n=\operatorname{rank}(A)+\operatorname{nullity}(A)
 - **Tipo:** `vector_space`
 - **Concepto visual:** reparto de dimensiones entre imagen y núcleo.
 - **Elementos:** barra de \(n\) dimensiones dividida en segmentos “rango” y “nulidad”, acompañada por una transformación esquemática.
-- **Idea:** Explora vectores dependientes/independientes y fíjate cómo se reparte la dimensión.
-- **Objetivo educativo:** Vas a ver que rango + nulidad = número de columnas (en el caso \(n\)).
-- **Interactividad sugerida:** selector de matrices ejemplo con distintos rangos; actualizar ambos segmentos y bases asociadas.
+- **Idea:** Edita \(A\) y observa cómo cambian los pivotes y las variables libres. El rango y la nulidad cambian, pero su suma siempre sigue siendo \(n\).
+- **Objetivo educativo:** Vas a ver cómo las \(n\) dimensiones del dominio se reparten entre las que sobreviven en la imagen y las que \(A\) envía a cero.
+- **Interactividad sugerida:** barra rango/nulidad; matriz \(2\times 3\); presets rango completo / dependencia / cero; verificación \(2+1=3\).
 
 ### Fórmulas relacionadas
 

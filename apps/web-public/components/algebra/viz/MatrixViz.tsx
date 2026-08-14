@@ -20,6 +20,7 @@ import { SymmetricMatrixViz } from './SymmetricMatrixViz';
 import { CofactorExpansionViz } from './CofactorExpansionViz';
 import { InverseMatrix2Viz } from './InverseMatrix2Viz';
 import { CramerRuleViz } from './CramerRuleViz';
+import { RankViz } from './RankViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -142,6 +143,7 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('DET-002')) return <CofactorExpansionViz />;
   if (formulaId.includes('DET-005')) return <InverseMatrix2Viz />;
   if (formulaId.includes('DET-006')) return <CramerRuleViz />;
+  if (formulaId.includes('ESP-005')) return <RankViz />;
 
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }
