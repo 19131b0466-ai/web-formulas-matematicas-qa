@@ -19,10 +19,12 @@ export type AlgebraTilesMode =
 
 export type MatrixMode =
   | 'basic'
+  | 'size'
   | 'sum'
   | 'scale'
   | 'product'
   | 'transpose'
+  | 'symmetric'
   | 'augmented_map'
   | 'row_ops'
   | 'rank_compare'
@@ -87,8 +89,10 @@ export function inferMatrixMode(formulaId: string): MatrixMode {
   }
   if (/MAT-004|DET-003/.test(formulaId)) return 'product';
   if (/MAT-003|NOR-/.test(formulaId)) return 'scale';
-  if (/MAT-006|MAT-007/.test(formulaId)) return 'transpose';
+  if (formulaId.includes('MAT-007')) return 'symmetric';
+  if (/MAT-006/.test(formulaId)) return 'transpose';
   if (/MAT-002/.test(formulaId)) return 'sum';
+  if (formulaId.includes('MAT-001')) return 'size';
   return 'basic';
 }
 
@@ -165,7 +169,7 @@ export function resolveMode(
  * Extend this list whenever a redesigned viz owns its own teaching text.
  */
 export function vizHasEmbeddedGuide(formulaId: string): boolean {
-  return /FND-006|FND-007|POT-001|POT-008|EXP-003|IDN-001|IDN-002|IDN-003|IDN-008|FAC-001|FAC-002|FAC-003|EQU-001|EQU-003|EQU-004|EQU-005|EQU-008|INE-001|INE-002|INE-003|INE-004|SIS-001|SIS-002|SIS-003|SIS-004|SIS-005|FUN-001|FUN-002|FUN-003|FUN-005|FUN-006|FUN-007|FUN-008|POL-007|POL-008|POL-009|POL-010|POL-011|LOG-001|LOG-002|LOG-007|COM-001|COM-002|COM-003|COM-004|COM-005|COM-006|COM-007|SEC-001|SEC-003|SEC-005|SEC-007|VEC-001|VEC-002|VEC-003|VEC-004|VEC-005|VEC-006|VEC-007/.test(
+  return /FND-006|FND-007|POT-001|POT-008|EXP-003|IDN-001|IDN-002|IDN-003|IDN-008|FAC-001|FAC-002|FAC-003|EQU-001|EQU-003|EQU-004|EQU-005|EQU-008|INE-001|INE-002|INE-003|INE-004|SIS-001|SIS-002|SIS-003|SIS-004|SIS-005|FUN-001|FUN-002|FUN-003|FUN-005|FUN-006|FUN-007|FUN-008|POL-007|POL-008|POL-009|POL-010|POL-011|LOG-001|LOG-002|LOG-007|COM-001|COM-002|COM-003|COM-004|COM-005|COM-006|COM-007|SEC-001|SEC-003|SEC-005|SEC-007|VEC-001|VEC-002|VEC-003|VEC-004|VEC-005|VEC-006|VEC-007|MAT-001|MAT-002|MAT-003|MAT-004|MAT-005|MAT-006|MAT-007/.test(
     formulaId,
   );
 }

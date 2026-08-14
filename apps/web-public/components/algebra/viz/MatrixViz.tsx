@@ -10,6 +10,13 @@ import { MatrixFormViz } from './MatrixFormViz';
 import { RoucheCapelliViz } from './RoucheCapelliViz';
 import { RowOpsViz } from './RowOpsViz';
 import { SylvesterResultantViz } from './SylvesterResultantViz';
+import { MatrixSizeViz } from './MatrixSizeViz';
+import { MatrixSumViz } from './MatrixSumViz';
+import { ScalarMatrixViz } from './ScalarMatrixViz';
+import { MatrixProductViz } from './MatrixProductViz';
+import { IdentityMatrixViz } from './IdentityMatrixViz';
+import { TransposeMatrixViz } from './TransposeMatrixViz';
+import { SymmetricMatrixViz } from './SymmetricMatrixViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -120,6 +127,15 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('SIS-005')) {
     return <RoucheCapelliViz />;
   }
+
+  if (formulaId.includes('MAT-001')) return <MatrixSizeViz />;
+  if (formulaId.includes('MAT-002')) return <MatrixSumViz />;
+  if (formulaId.includes('MAT-003')) return <ScalarMatrixViz />;
+  if (formulaId.includes('MAT-004')) return <MatrixProductViz />;
+  if (formulaId.includes('MAT-005')) return <IdentityMatrixViz />;
+  if (formulaId.includes('MAT-006')) return <TransposeMatrixViz />;
+  if (formulaId.includes('MAT-007')) return <SymmetricMatrixViz />;
+
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }
 

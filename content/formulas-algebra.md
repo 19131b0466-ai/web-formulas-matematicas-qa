@@ -2502,11 +2502,12 @@ A=(a_{ij})_{m\times n}
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** estructura fila-columna de una matriz.
-- **Elementos:** matriz con índices \(i,j\), filas y columnas resaltables y dimensiones \(m\times n\).
-- **Idea:** Edita las entradas de \(A\) y mira: cada celda es un coeficiente del objeto lineal.
-- **Objetivo educativo:** Vas a ver que una matriz es una tabla de números organizada en filas y columnas.
-- **Interactividad sugerida:** clic en cualquier celda para mostrar \(a_{ij}\), número de fila y número de columna.
+- **Modo:** `size`
+- **Concepto visual:** estructura fila-columna y notación \(a_{ij}\) de una matriz \(m\times n\).
+- **Elementos:** controles \(m,n\); matriz con índices; selección de \(a_{ij}\) con fila y columna resaltadas; clasificación rectangular/cuadrada/fila/columna.
+- **Idea:** Cambia \(m\) y \(n\), y selecciona una entrada \(a_{ij}\) para identificar su fila \(i\) y su columna \(j\).
+- **Objetivo educativo:** Vas a ver que una matriz \(m\times n\) organiza valores en \(m\) filas y \(n\) columnas.
+- **Interactividad sugerida:** sliders \(m,n\); clic en celdas e índices de fila/columna.
 
 ### Fórmulas relacionadas
 
@@ -2528,11 +2529,12 @@ A=(a_{ij})_{m\times n}
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** suma elemento a elemento.
-- **Elementos:** matrices \(A\) y \(B\) del mismo tamaño y matriz resultado \(C\), con celdas correspondientes enlazadas.
-- **Idea:** Cambia \(A\) y \(B\) y fíjate: el resultado \(A+B\) se actualiza entrada por entrada.
-- **Objetivo educativo:** Vas a ver que sumar matrices se hace casilla a casilla.
-- **Interactividad sugerida:** seleccionar una celda del resultado y mostrar la suma exacta que la genera.
+- **Modo:** `sum`
+- **Concepto visual:** suma entrada a entrada en la misma posición.
+- **Elementos:** \(A+B=A+B\) con selección sincronizada de \((i,j)\) y modo elemento a elemento.
+- **Idea:** Cambia una entrada de \(A\) o \(B\), o selecciona una celda para ver cómo se calcula la entrada correspondiente de \(A+B\).
+- **Objetivo educativo:** Vas a ver que sumar matrices significa sumar las entradas que ocupan la misma posición.
+- **Interactividad sugerida:** selección de posición; toggle “Ver elemento a elemento”.
 
 ### Fórmulas relacionadas
 
@@ -2553,11 +2555,12 @@ A=(a_{ij})_{m\times n}
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** escalamiento uniforme de todas las entradas.
-- **Elementos:** matriz \(A\), escalar \(c\) y matriz \(cA\), con flechas de cada celda hacia su producto.
-- **Idea:** Mueve \(c\) y mira \(cA\): crece, se encoge o cambia de signo.
-- **Objetivo educativo:** Vas a ver que multiplicar por un escalar estira o invierte todos los números de la matriz.
-- **Interactividad sugerida:** deslizador para \(c\); actualizar todas las entradas y, opcionalmente, una figura transformada.
+- **Modo:** `scale`
+- **Concepto visual:** el mismo escalar \(c\) multiplica todas las entradas.
+- **Elementos:** operación \(c\times A=cA\); selección de celda; etiqueta del efecto de \(c\); modo elemento a elemento.
+- **Idea:** Cambia \(c\) o una entrada de \(A\) y observa cómo cada celda de \(cA\) se actualiza. Selecciona una celda para ver su cálculo.
+- **Objetivo educativo:** Vas a ver que un escalar multiplica todas las entradas de una matriz sin cambiar sus dimensiones.
+- **Interactividad sugerida:** slider \(c\); selección de celda; toggle elemento a elemento.
 
 ### Fórmulas relacionadas
 
@@ -2579,11 +2582,11 @@ A=(a_{ij})_{m\times n}
 
 - **Tipo:** `matrix`
 - **Modo:** `product`
-- **Concepto visual:** regla fila por columna del producto matricial.
-- **Elementos:** matriz \(A\), matriz \(B\) y \(C=AB\); una fila de \(A\) y una columna de \(B\) resaltadas para calcular \(c_{ij}\).
-- **Idea:** Elige una casilla \((i,j)\) y mira debajo: ves la cuenta fila×columna paso a paso.
-- **Objetivo educativo:** Vas a ver que cada entrada de \(AB\) mezcla una fila de \(A\) con una columna de \(B\).
-- **Interactividad sugerida:** clic sobre una celda \(c_{ij}\) para animar la fila y columna que la generan.
+- **Concepto visual:** cada entrada de \(AB\) es el producto punto de una fila de \(A\) con una columna de \(B\).
+- **Elementos:** \(A\times B=AB\) con dimensiones compatibles; clic en \(c_{ij}\) resalta fila y columna; construcción paso a paso.
+- **Idea:** Selecciona una celda de \(AB\) y observa qué fila y columna la construyen. Edita \(A\) o \(B\) y mira cómo cambia el resultado.
+- **Objetivo educativo:** Vas a ver que cada entrada de \(AB\) se construye con una fila de \(A\) y una columna de \(B\).
+- **Interactividad sugerida:** clic directo en celdas de \(AB\); comparación opcional \(AB/BA\).
 
 ### Condiciones
 
@@ -2627,11 +2630,11 @@ AI=IA=A
 
 - **Tipo:** `matrix`
 - **Modo:** `identity`
-- **Concepto visual:** identidad como transformación que no cambia un vector o matriz.
-- **Elementos:** matriz identidad con diagonal resaltada y comparación \(AI=A\), \(Ix=x\).
-- **Idea:** Compara \(A\) con el efecto de la identidad sobre la base.
-- **Objetivo educativo:** Vas a ver que la identidad deja los vectores igual: es el “1” de las matrices.
-- **Interactividad sugerida:** permitir multiplicar una matriz o vector de ejemplo por \(I\) y mostrar el resultado sin cambios.
+- **Concepto visual:** \(I_mA=A\) y \(AI_n=A\); los unos de la diagonal seleccionan y los ceros anulan.
+- **Elementos:** modos izquierda/derecha; \(I\) con diagonal destacada; cálculo de una celda del resultado.
+- **Idea:** Selecciona una celda del resultado y observa qué fila y columna participan en su cálculo. Cambia entre \(I_mA\) y \(AI_n\).
+- **Objetivo educativo:** Vas a ver que la matriz identidad actúa como el número 1: al multiplicar, los unos de la diagonal conservan los valores de \(A\) y los ceros eliminan los demás términos.
+- **Interactividad sugerida:** tabs izquierda/derecha; selección de celda del resultado; dimensiones dinámicas.
 
 ### Fórmulas relacionadas
 
@@ -2652,11 +2655,12 @@ AI=IA=A
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** transposición como intercambio de filas y columnas.
-- **Elementos:** matriz \(A\) y \(A^T\) lado a lado, diagonal principal como eje de reflexión conceptual.
-- **Idea:** Edita \(A\) y mira a la derecha \(A^T\): filas y columnas volcadas.
-- **Objetivo educativo:** Vas a ver que la transpuesta intercambia filas por columnas.
-- **Interactividad sugerida:** pasar el cursor por una celda para resaltar su posición espejo en la transpuesta.
+- **Modo:** `transpose`
+- **Concepto visual:** las filas de \(A\) se convierten en columnas de \(A^T\); \((i,j)\mapsto(j,i)\).
+- **Elementos:** matriz rectangular \(m\times n\) y \(A^T\) \(n\times m\); correspondencia de celdas/filas/columnas.
+- **Idea:** Selecciona una entrada, una fila o una columna de \(A\) y observa dónde aparece en \(A^T\). Cambia \(m\) y \(n\) y observa que \(m\times n\) se convierte en \(n\times m\).
+- **Objetivo educativo:** Vas a ver que transponer una matriz convierte sus filas en columnas: la entrada que estaba en \((i,j)\) aparece en \((j,i)\).
+- **Interactividad sugerida:** selección de celda/fila/columna; ejemplo inicial rectangular no simétrico.
 
 ### Fórmulas relacionadas
 
@@ -2678,11 +2682,12 @@ A^T=A
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
-- **Concepto visual:** simetría matricial respecto de la diagonal principal.
-- **Elementos:** matriz cuadrada con pares \(a_{ij}\) y \(a_{ji}\) conectados y diagonal principal destacada.
-- **Idea:** Ajusta \(A\) hasta que coincida con \(A^T\).
-- **Objetivo educativo:** Vas a ver que una matriz simétrica coincide con su transpuesta.
-- **Interactividad sugerida:** editar una entrada fuera de la diagonal y ofrecer opción de reflejarla automáticamente en la posición simétrica.
+- **Modo:** `symmetric`
+- **Concepto visual:** simetría respecto de la diagonal: \(a_{ij}=a_{ji}\) y \(A=A^T\).
+- **Elementos:** matriz cuadrada; pares reflejados; modos construir/comprobar; \(A^T\) secundaria.
+- **Idea:** Selecciona o modifica una entrada fuera de la diagonal y observa su pareja reflejada. En “Construir simétrica”, modificar una entrada actualiza su reflejo. En “Comprobar matriz”, puedes romper la igualdad y detectar dónde deja de ser simétrica.
+- **Objetivo educativo:** Vas a ver que una matriz simétrica se refleja respecto de su diagonal principal: cada entrada \(a_{ij}\) coincide con \(a_{ji}\).
+- **Interactividad sugerida:** modos construir/comprobar; control \(n\); reparación de simetría.
 
 ### Fórmulas relacionadas
 
