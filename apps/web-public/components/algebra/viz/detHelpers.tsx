@@ -1,7 +1,8 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { det2, type Mat2 } from './math2d';
-import { present } from './matrixGrid';
+import { isPartialNumberInput, parseCellInput, present } from './matrixGrid';
 
 export const DET_EPS = 1e-9;
 export const NEAR_SINGULAR = 0.05;
@@ -87,6 +88,51 @@ export function orientationLabel(det: number): string {
   return det > 0 ? 'antihoraria' : 'horaria';
 }
 
+function Mat2CellInput({
+  value,
+  className,
+  ariaLabel,
+  onCommit,
+}: {
+  value: number;
+  className: string;
+  ariaLabel: string;
+  onCommit: (n: number) => void;
+}) {
+  const [focused, setFocused] = useState(false);
+  const [draft, setDraft] = useState(() => present(value));
+
+  useEffect(() => {
+    if (!focused) setDraft(present(value));
+  }, [value, focused]);
+
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      value={focused ? draft : present(value)}
+      aria-label={ariaLabel}
+      onFocus={() => {
+        setFocused(true);
+        setDraft(present(value));
+      }}
+      onBlur={() => {
+        setFocused(false);
+        const next = parseCellInput(draft, value);
+        onCommit(next);
+        setDraft(present(next));
+      }}
+      onChange={(e) => {
+        const raw = e.target.value;
+        setDraft(raw);
+        if (isPartialNumberInput(raw)) return;
+        onCommit(parseCellInput(raw, value));
+      }}
+      className={className}
+    />
+  );
+}
+
 export function Mat2Editor({
   m,
   onChange,
@@ -120,14 +166,12 @@ export function Mat2Editor({
       );
     }
     return (
-      <input
+      <Mat2CellInput
         key={`${i}-${j}`}
-        type="number"
-        step="any"
         value={m[i]![j]!}
-        aria-label={`${name}, fila ${i + 1}, columna ${j + 1}`}
-        onChange={(e) => onChange(setMat2(m, i, j, Number(e.target.value) || 0))}
         className={`${cls} focus:outline-none focus:ring-2 focus:ring-[var(--accent-strong)]/40`}
+        ariaLabel={`${name}, fila ${i + 1}, columna ${j + 1}`}
+        onCommit={(next) => onChange(setMat2(m, i, j, next))}
       />
     );
   };

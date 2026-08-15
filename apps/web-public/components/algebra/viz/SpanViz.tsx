@@ -86,7 +86,7 @@ export function SpanViz() {
     norm(su),
     norm(sv),
     sw ? norm(sw) : 0,
-    mode === 'one' ? norm(combo) : 0,
+    norm(combo),
     dim === 2 ? Math.max(norm(su), norm(sv)) * 2.2 : 2,
   );
   const S = autoScale(maxAbs, Math.min(W, H), 44, 26, 58);
@@ -170,7 +170,7 @@ export function SpanViz() {
       caption={joinCaption(
         `dim(span) = ${dim}`,
         statusText,
-        mode === 'one' ? `x = su+tv = ${formatPair(combo.x, combo.y)}` : undefined,
+        mode === 'one' || mode === 'all' ? `x = su+tv = ${formatPair(combo.x, combo.y)}` : undefined,
       )}
     >
       <div className="space-y-3">
@@ -350,7 +350,7 @@ export function SpanViz() {
               />
             ) : null}
 
-            {mode === 'one' ? (
+            {mode === 'one' || mode === 'all' ? (
               <>
                 {Math.abs(s) > 0.02 && norm(su) > LIN_EPS ? (
                   <line
@@ -361,7 +361,7 @@ export function SpanViz() {
                     stroke={COLOR_U}
                     strokeWidth={1.6}
                     strokeDasharray="4 3"
-                    opacity={0.7}
+                    opacity={mode === 'all' ? 0.45 : 0.7}
                   />
                 ) : null}
                 {Math.abs(t) > 0.02 && norm(sv) > LIN_EPS ? (
@@ -373,7 +373,7 @@ export function SpanViz() {
                     stroke={COLOR_V}
                     strokeWidth={1.6}
                     strokeDasharray="4 3"
-                    opacity={0.7}
+                    opacity={mode === 'all' ? 0.45 : 0.7}
                   />
                 ) : null}
                 <line
@@ -382,9 +382,11 @@ export function SpanViz() {
                   x2={pc.x}
                   y2={pc.y}
                   stroke={COLOR_W}
-                  strokeWidth={3}
+                  strokeWidth={mode === 'all' ? 2.4 : 3}
                   markerEnd={`url(#${uid}-x)`}
+                  opacity={mode === 'all' ? 0.95 : 1}
                 />
+                <circle cx={pc.x} cy={pc.y} r={5} fill={COLOR_W} />
                 <text
                   x={labelOffset(combo, pc, ox, oy, 16).x}
                   y={labelOffset(combo, pc, ox, oy, 16).y}
@@ -486,9 +488,9 @@ export function SpanViz() {
           {mode === 'one'
             ? 'La flecha naranja es un solo elemento del span. Cambia s y t para visitar otros.'
             : dim === 2
-              ? 'La malla oblicua muestra muchas combinaciones: al variar s y t se llena el plano.'
+              ? 'La malla es el span; la flecha naranja x=su+tv es un punto concreto que sí responde a s y t.'
               : dim === 1
-                ? 'Todas las combinaciones viven en la misma recta por el origen.'
+                ? 'Todas las combinaciones viven en la misma recta; mueve s y t para recorrerla con x.'
                 : 'Solo queda el origen: el span es el punto {0}.'}
         </p>
 

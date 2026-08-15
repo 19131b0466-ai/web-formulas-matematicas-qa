@@ -1,17 +1,22 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { fmt } from './controls';
+import { useEffect, useState, type ReactNode } from 'react';
 
 export type Matrix = number[][];
 export type CellPos = { i: number; j: number }; // 0-based
 
+/** Display numbers in matrix UIs — never scientific notation for ordinary values. */
 export function present(n: number, d = 2): string {
   if (!Number.isFinite(n)) return '—';
+  if (Math.abs(n) < 5e-10) return '0';
+  const roundedInt = Math.round(n);
+  if (Math.abs(n - roundedInt) < 1e-9 && Math.abs(roundedInt) < 1e7) {
+    return String(roundedInt);
+  }
   const r = Number(n.toFixed(d));
   if (Math.abs(r) < 5e-10) return '0';
-  if (Math.abs(r - Math.round(r)) < 1e-9 && Math.abs(r) < 1e6) return fmt(Math.round(r), 0);
-  return fmt(r, d);
+  // Avoid controls.fmt here: it switches to 1.11e+3 for |n|≥1000.
+  return String(r);
 }
 
 export function sub(i: number): string {
@@ -116,6 +121,65 @@ export function parseCellInput(raw: string, fallback: number): number {
   if (t === '' || t === '-' || t === '.' || t === '-.') return fallback;
   const n = Number(t);
   return Number.isFinite(n) ? n : fallback;
+}
+
+/** True while the user is mid-edit (empty, lone sign/dot, or trailing decimal). */
+export function isPartialNumberInput(raw: string): boolean {
+  const t = raw.trim().replace(',', '.');
+  return t === '' || t === '-' || t === '.' || t === '-.' || /^-?\d+\.$/.test(t);
+}
+
+function MatrixCellInput({
+  value,
+  className,
+  ariaLabel,
+  onCommit,
+  onFocusCell,
+  onHoverCell,
+}: {
+  value: number;
+  className: string;
+  ariaLabel: string;
+  onCommit: (n: number) => void;
+  onFocusCell?: () => void;
+  onHoverCell?: (on: boolean) => void;
+}) {
+  const [focused, setFocused] = useState(false);
+  const [draft, setDraft] = useState(() => present(value));
+
+  useEffect(() => {
+    if (!focused) setDraft(present(value));
+  }, [value, focused]);
+
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      value={focused ? draft : present(value)}
+      aria-label={ariaLabel}
+      onFocus={() => {
+        setFocused(true);
+        setDraft(present(value));
+        onFocusCell?.();
+      }}
+      onBlur={() => {
+        setFocused(false);
+        const next = parseCellInput(draft, value);
+        onCommit(next);
+        setDraft(present(next));
+      }}
+      onMouseEnter={() => onHoverCell?.(true)}
+      onMouseLeave={() => onHoverCell?.(false)}
+      onChange={(e) => {
+        const raw = e.target.value;
+        setDraft(raw);
+        if (isPartialNumberInput(raw)) return;
+        const next = parseCellInput(raw, value);
+        onCommit(next);
+      }}
+      className={className}
+    />
+  );
 }
 
 export function dimSuperscript(rows: number, cols: number): string {
@@ -291,21 +355,17 @@ export function MatrixGrid({
 
               if (editable && onChange) {
                 return (
-                  <input
+                  <MatrixCellInput
                     key={`${i}-${j}`}
-                    type="text"
-                    inputMode="decimal"
-                    value={Number.isFinite(v) ? present(v) : ''}
-                    aria-label={`${name}, fila ${i + 1}, columna ${j + 1}, valor ${present(v)}`}
-                    onFocus={() => onSelect?.({ i, j })}
-                    onMouseEnter={() => onHover?.({ i, j })}
-                    onMouseLeave={() => onHover?.(null)}
-                    onChange={(e) => {
-                      const next = parseCellInput(e.target.value, v);
+                    value={v}
+                    className={`${common} focus:outline-none focus:ring-2 focus:ring-[var(--accent-strong)]/40`}
+                    ariaLabel={`${name}, fila ${i + 1}, columna ${j + 1}, valor ${present(v)}`}
+                    onCommit={(next) => {
                       onChange(setCell(matrix, i, j, next));
                       onSelect?.({ i, j });
                     }}
-                    className={`${common} focus:outline-none focus:ring-2 focus:ring-[var(--accent-strong)]/40`}
+                    onFocusCell={() => onSelect?.({ i, j })}
+                    onHoverCell={(on) => onHover?.(on ? { i, j } : null)}
                   />
                 );
               }
