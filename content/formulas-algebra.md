@@ -3067,9 +3067,9 @@ T(au+bv)=aT(u)+bT(v)
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** linealidad como preservación de suma y escala.
 - **Elementos:** vectores \(u,v\), su suma, sus imágenes \(T(u),T(v)\) y comparación con \(T(u+v)\).
-- **Idea:** Mira la cuadrícula deformada por \(A\): las líneas rectas siguen siendo rectas.
-- **Objetivo educativo:** Vas a ver que una transformación lineal respeta sumas y escalados.
-- **Interactividad sugerida:** mover \(u,v\) o el escalar \(c\) y comprobar en tiempo real ambas igualdades.
+- **Idea:** Vas a comprobar que una transformación lineal puede aplicarse antes o después de sumar y escalar vectores: el resultado es el mismo.
+- **Objetivo educativo:** Pruébalo — Mueve \(u\) y \(v\). Compara \(A(u+v)\) con \(Au+Av\); después cambia \(\lambda\) y compara \(A(\lambda u)\) con \(\lambda Au\).
+- **Interactividad sugerida:** modos Suma / Escalamiento / General; dos caminos que coinciden; contraejemplo de traslación (no lineal).
 
 ### Fórmulas relacionadas
 
@@ -3093,9 +3093,9 @@ T(x)=Ax
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** matriz como transformación geométrica del espacio.
 - **Elementos:** cuadrícula, vectores base \(e_1,e_2\), sus imágenes \(Ae_1,Ae_2\) y una figura de prueba.
-- **Idea:** Cambia las entradas de \(A\) y fíjate: la malla muestra el empujón lineal.
-- **Objetivo educativo:** Vas a ver que aplicar \(A\) es empujar cada punto (y la cuadrícula) a una nueva forma.
-- **Interactividad sugerida:** editar las cuatro entradas de una matriz 2×2 y animar la cuadrícula y vectores base.
+- **Idea:** Vas a ver que una matriz \(A\) empuja cada punto del plano: \(x\to Ax\). Las columnas de \(A\) son exactamente \(Ae_1\) y \(Ae_2\).
+- **Objetivo educativo:** Pruébalo — Compara la cuadrícula original (tenue) con la transformada; arrastra \(x\) y observa \(Ax\).
+- **Interactividad sugerida:** presets Identidad/Escala/Rotación/Shear/Reflexión/Proyección; interpolación \(I\to A\); editar columnas arrastrando \(Ae_1,Ae_2\).
 
 ### Fórmulas relacionadas
 
@@ -3119,9 +3119,9 @@ T(x)=Ax
 - **Tipo:** `vector_space`
 - **Concepto visual:** núcleo como conjunto enviado al vector cero.
 - **Elementos:** dominio con una línea/plano destacado, flechas de varios puntos hacia el origen del codominio.
-- **Idea:** Busca direcciones que se aplastan cuando \(\det\) se acerca a cero.
-- **Objetivo educativo:** Vas a ver que el núcleo son los vectores que \(A\) manda al origen.
-- **Interactividad sugerida:** seleccionar matrices de rango completo o reducido y visualizar cómo cambia el núcleo.
+- **Idea:** Vas a ver que el núcleo contiene exactamente los vectores que \(A\) transforma en el vector cero.
+- **Objetivo educativo:** Pruébalo — Mueve \(x\) por el dominio y observa \(Ax\). Cuando \(Ax\) llega al origen, \(x\) pertenece al núcleo.
+- **Interactividad sugerida:** dominio/codominio; presets Invertible/Proyección/Dependiente/Cero; ver núcleo completo \(\{0\}\)/recta/\(\mathbb R^2\).
 
 ### Fórmulas relacionadas
 
@@ -3145,9 +3145,9 @@ T(x)=Ax
 - **Tipo:** `vector_space`
 - **Concepto visual:** imagen como conjunto de salidas alcanzables.
 - **Elementos:** dominio, transformación y subespacio resaltado en el codominio formado por las columnas de \(A\).
-- **Idea:** Observa hacia dónde apuntan las columnas transformadas \(e_1\) y \(e_2\).
-- **Objetivo educativo:** Vas a ver que la imagen son las direcciones que \(A\) sí puede alcanzar.
-- **Interactividad sugerida:** arrastrar la entrada y dejar rastro de salidas; opción de mostrar vectores columna generadores.
+- **Idea:** Vas a ver que la imagen de \(A\) contiene todas las salidas que la transformación puede producir.
+- **Objetivo educativo:** Pruébalo — Mueve un punto en el dominio y observa \(Ax\). Cambia \(A\) y fíjate si las salidas llenan el plano, una recta o solo el origen.
+- **Interactividad sugerida:** Un punto / Muchos / Toda la imagen; \(\operatorname{Im}(A)=\operatorname{Col}(A)=\operatorname{span}\{Ae_1,Ae_2\}\); dominio vs codominio.
 
 ### Fórmulas relacionadas
 
@@ -3171,9 +3171,9 @@ T(x)=Ax
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** composición como aplicación sucesiva de dos transformaciones.
 - **Elementos:** figura original, estado tras \(A\), estado final tras \(B\), y matriz combinada \(BA\).
-- **Idea:** Cambia \(A\) y piensa \(A\) como un paso de la composición.
-- **Objetivo educativo:** Vas a ver que componer transformaciones es aplicar una después de la otra (producto de matrices).
-- **Interactividad sugerida:** botones “A luego B” y “BA directo” para superponer resultados y comprobar que coinciden.
+- **Idea:** Vas a ver que componer transformaciones significa aplicar una y después la otra. El orden importa: \(B\circ A\) significa \(A\) primero y \(B\) después.
+- **Objetivo educativo:** Pruébalo — Aplica primero \(A\) y después \(B\). Compara el resultado con aplicar directamente la matriz \(BA\).
+- **Interactividad sugerida:** estados Original \(\to A\to B\circ A\); orden \(A\to B\) / \(B\to A\); demostrar \(BA\neq AB\) en general.
 
 ### Fórmulas relacionadas
 
@@ -3197,9 +3197,9 @@ T^{-1}(y)=A^{-1}y
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** transformación inversa como recuperación del estado original.
 - **Elementos:** cuadrícula o vector inicial, imagen bajo \(A\) y retorno bajo \(A^{-1}\).
-- **Idea:** Pulsa **Aplicar A⁻¹** (si existe) y mira: la malla vuelve hacia la forma original.
-- **Objetivo educativo:** Vas a ver que la inversa deshace el empujón de \(A\).
-- **Interactividad sugerida:** editar una matriz invertible y usar botones “aplicar A” / “aplicar A⁻¹”; advertir cuando no es invertible.
+- **Idea:** \(A\) transforma. \(A^{-1}\) deshace. Si \(A\) es singular, se pierde información y no hay inversa.
+- **Objetivo educativo:** Pruébalo — Aplica \(A\) y luego deshaz con \(A^{-1}\). Verifica \(A^{-1}(Ax)=x\); prueba también un caso singular.
+- **Interactividad sugerida:** estados Original \(\to\) Transformado \(\to\) Recuperado; ida y vuelta; presets Shear/Rotación/Singular.
 
 ### Fórmulas relacionadas
 
@@ -3223,9 +3223,9 @@ T^{-1}(y)=A^{-1}y
 - **Tipo:** `vector_space`
 - **Concepto visual:** cambio de base como cambio de coordenadas, no del vector.
 - **Elementos:** mismo vector dibujado con dos sistemas de ejes/base y matrices de cambio entre coordenadas.
-- **Idea:** Modifica \(A\) como matriz de cambio y fíjate cómo se reorienta la malla.
-- **Objetivo educativo:** Vas a ver que cambiar de base es describir los mismos vectores con otras coordenadas.
-- **Interactividad sugerida:** rotar o modificar la base destino y actualizar \([v]_\mathcal B\), \([v]_\mathcal C\) y la matriz de cambio.
+- **Idea:** Vas a ver que un mismo vector puede tener coordenadas diferentes según la base desde la que lo describas. La geometría no cambia; cambia el sistema de coordenadas.
+- **Objetivo educativo:** Pruébalo — Cambia entre las bases \(E\) y \(B\) o mueve sus vectores. El vector \(x\) permanece fijo, pero sus coordenadas cambian.
+- **Interactividad sugerida:** retículas \(E\)/\(B\)/Ambas; \([x]_E\) vs \([x]_B\); \(P_{\mathcal C\leftarrow\mathcal B}=C^{-1}B\); presets rotada/oblicua/escalada/inválida.
 
 ### Fórmulas relacionadas
 
