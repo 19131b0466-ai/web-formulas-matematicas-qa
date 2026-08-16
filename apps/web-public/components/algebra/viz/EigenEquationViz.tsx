@@ -164,28 +164,67 @@ function Plane({
         <defs>
           <ArrowMarker id={`${uid}-v`} color={COLOR_V_DARK} />
           <ArrowMarker id={`${uid}-av`} color={COLOR_W} />
-          <ArrowMarker id={`${uid}-lam`} color={COLOR_W} />
+          <ArrowMarker id={`${uid}-lam`} color={COLOR_V_DARK} />
         </defs>
         <Axes W={W} H={H} ox={ox} oy={oy} S={S} ticks={[-3, -1, 1, 3]} />
 
-        {showDirs
-          ? analysis.pairs.map((p, i) => {
+        {showDirs ? (
+          analysis.status === 'complex' || analysis.pairs.length === 0 ? (
+            <text x={16} y={H - 16} fontSize={11} fill="var(--fg-muted)">
+              Sin direcciones propias reales (espectro complejo)
+            </text>
+          ) : analysis.status === 'degenerate' ? (
+            <>
+              {/* Todo el plano es propio: varias rayas de muestra */}
+              {[
+                { x: 1, y: 0 },
+                { x: 0, y: 1 },
+                { x: Math.SQRT1_2, y: Math.SQRT1_2 },
+              ].map((d, i) => {
+                const line = spanLine(d);
+                if (!line) return null;
+                return (
+                  <line
+                    key={i}
+                    x1={line.x1}
+                    y1={line.y1}
+                    x2={line.x2}
+                    y2={line.y2}
+                    stroke={COLOR_W}
+                    strokeWidth={1}
+                    opacity={0.25}
+                    strokeDasharray="3 4"
+                  />
+                );
+              })}
+              <text x={16} y={22} fontSize={11} fill="var(--fg-muted)">
+                Toda dirección es propia (λ repetido)
+              </text>
+            </>
+          ) : (
+            analysis.pairs.map((p, i) => {
               const line = spanLine(p.v);
               if (!line) return null;
+              const tip = to(scale(normalize(p.v), 2.6));
               return (
-                <line
-                  key={i}
-                  x1={line.x1}
-                  y1={line.y1}
-                  x2={line.x2}
-                  y2={line.y2}
-                  stroke={COLOR_W}
-                  strokeWidth={1.3}
-                  opacity={0.45}
-                />
+                <g key={i}>
+                  <line
+                    x1={line.x1}
+                    y1={line.y1}
+                    x2={line.x2}
+                    y2={line.y2}
+                    stroke={COLOR_W}
+                    strokeWidth={1.5}
+                    opacity={0.55}
+                  />
+                  <text x={tip.x + 6} y={tip.y - 4} fontSize={11} fill={COLOR_W} fontWeight={600}>
+                    λ={formatNum(p.lambda)}
+                  </text>
+                </g>
               );
             })
-          : null}
+          )
+        ) : null}
 
         {!isZero ? (
           <line
@@ -211,18 +250,39 @@ function Plane({
           />
         ) : null}
 
-        {showLamV && !isZero && Math.abs(lam) > EIG_EPS ? (
-          <line
-            x1={ox}
-            y1={oy}
-            x2={pLamV.x}
-            y2={pLamV.y}
-            stroke={COLOR_W}
-            strokeWidth={1.6}
-            strokeDasharray="5 4"
-            markerEnd={`url(#${uid}-lam)`}
-            opacity={0.75}
-          />
+        {/* λ*v: mejor escalado colineal con v — comparar con Av */}
+        {showLamV && !isZero ? (
+          Math.abs(lam) > EIG_EPS && Math.hypot(lamV.x, lamV.y) > EIG_EPS ? (
+            <g>
+              <line
+                x1={ox}
+                y1={oy}
+                x2={pLamV.x}
+                y2={pLamV.y}
+                stroke={COLOR_V_DARK}
+                strokeWidth={1.8}
+                strokeDasharray="6 4"
+                markerEnd={`url(#${uid}-lam)`}
+                opacity={0.9}
+              />
+              <text
+                x={labelOffset(lamV, pLamV, ox, oy, 18).x}
+                y={labelOffset(lamV, pLamV, ox, oy, 18).y}
+                fontSize={11}
+                fill={COLOR_V_DARK}
+                fontWeight={600}
+              >
+                λ*v
+              </text>
+            </g>
+          ) : (
+            <g>
+              <circle cx={ox} cy={oy} r={5} fill="none" stroke={COLOR_V_DARK} strokeWidth={1.5} strokeDasharray="3 2" />
+              <text x={ox + 10} y={oy + 16} fontSize={11} fill={COLOR_V_DARK}>
+                λ*v = 0
+              </text>
+            </g>
+          )
         ) : null}
 
         <circle
@@ -462,7 +522,28 @@ export function EigenEquationViz() {
             checked={showDirs}
             onChange={setShowDirs}
           />
-          <ToggleRow label="Mostrar λv (discontinuo)" checked={showLamV} onChange={setShowLamV} />
+          <ToggleRow label="Mostrar λ*v (discontinuo)" checked={showLamV} onChange={setShowLamV} />
+          <p className="text-xs leading-relaxed text-[var(--fg-muted)]">
+            <span className="font-medium text-[var(--fg)]">Direcciones propias</span> — rectas donde
+            A solo escala (si existen en ℝ). En «Rotación» no hay ninguna: A siempre gira 90°.
+            <br />
+            <span className="font-medium text-[var(--fg)]">λ*v</span> — el mejor múltiplo de v
+            (línea discontinua teal). Compáralo con Av (naranja): coinciden ⟺ v es autovector.
+            Prueba el preset «Dos direcciones» y alinea v con una recta naranja.
+          </p>
+          {hasReal ? (
+            <button
+              type="button"
+              className="self-start rounded-md border border-[var(--accent-strong)] bg-[var(--accent-soft)] px-2.5 py-1 text-xs font-medium text-[var(--fg)]"
+              onClick={snapToEigen}
+            >
+              Alinear v con una dirección propia
+            </button>
+          ) : (
+            <p className="text-xs text-[var(--fg-muted)]">
+              Esta A no tiene autovectores reales — prueba «Dos direcciones» o «λ negativo».
+            </p>
+          )}
           <CollapsibleEdit
             label="Editar matriz A"
             open={editOpen}
@@ -476,15 +557,6 @@ export function EigenEquationViz() {
               }}
               name="A"
             />
-            {hasReal ? (
-              <button
-                type="button"
-                className="mt-2 text-sm font-medium text-[var(--accent-strong)] underline-offset-2 hover:underline"
-                onClick={snapToEigen}
-              >
-                Alinear v con un autovector
-              </button>
-            ) : null}
           </CollapsibleEdit>
         </ControlsStack>
       </div>
