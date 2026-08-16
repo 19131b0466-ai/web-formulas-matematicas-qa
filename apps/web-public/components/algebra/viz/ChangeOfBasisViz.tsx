@@ -16,7 +16,6 @@ import {
   Segmented,
   basisGridLines,
   det2,
-  formatPair,
   gridLines,
   matFromCols,
   nearZero,

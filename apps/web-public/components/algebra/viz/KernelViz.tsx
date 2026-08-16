@@ -10,7 +10,6 @@ import {
   Chip,
   ChipRow,
   CollapsibleEdit,
-  DET_EPS,
   GuideBlock,
   Mat2Editor,
   PRESET_GENERAL,

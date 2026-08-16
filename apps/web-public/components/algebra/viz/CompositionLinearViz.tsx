@@ -193,7 +193,7 @@ export function CompositionLinearViz() {
   /** Load A,B and jump to the composed result so the graph visibly changes. */
   const applyPreset = (pr: PairPreset) => {
     setActivePreset(pr.id);
-    let nextA = pr.a;
+    const nextA = pr.a;
     let nextB: Mat2 | null = null;
     if (pr.b === 'inv') {
       const inv = inv2(pr.a);
