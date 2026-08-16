@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   ButtonRow,
   ControlsStack,
@@ -642,10 +642,30 @@ export function NormalEquationsViz() {
   const [editOpen, setEditOpen] = useState(false);
   const [tryOther, setTryOther] = useState(false);
   const [trialX, setTrialX] = useState<Vec>([0.2, 1.4]);
-  const [projectStep, setProjectStep] = useState(5);
+  /** 2 = Col(A)+b visibles; 5 = proyección completa. Arranca en 2 para que «Proyectar b» se note. */
+  const [projectStep, setProjectStep] = useState(2);
+  const [projectPlaying, setProjectPlaying] = useState(false);
+  const projectTimers = useRef<number[]>([]);
   const [deriveStep, setDeriveStep] = useState(0);
   const [altDeriveOpen, setAltDeriveOpen] = useState(false);
   const [numNoteOpen, setNumNoteOpen] = useState(false);
+
+  const PROJECT_CAPTIONS = [
+    'Preparando el espacio…',
+    'Col(A) = span{a₁, a₂}: ahí viven todos los Ax.',
+    'El dato b está fuera de Col(A): no hay solución exacta.',
+    'b̂ = Ax̂ es el punto de Col(A) más cercano a b.',
+    'El residuo r = b − b̂ conecta b̂ con b.',
+    'En el óptimo: r ⊥ Col(A)  ⇒  Aᵀr = 0  ⇒  AᵀA x̂ = Aᵀb.',
+  ] as const;
+
+  function clearProjectTimers() {
+    for (const id of projectTimers.current) window.clearTimeout(id);
+    projectTimers.current = [];
+    setProjectPlaying(false);
+  }
+
+  useEffect(() => () => clearProjectTimers(), []);
 
   const m = rows(A);
   const n = cols(A);
@@ -705,7 +725,8 @@ export function NormalEquationsViz() {
     setB(cloneVec(map.b));
     setPreset(id);
     setTryOther(false);
-    setProjectStep(5);
+    clearProjectTimers();
+    setProjectStep(2);
     setDeriveStep(0);
     const nn = cols(map.A);
     setTrialX(Array.from({ length: Math.max(2, nn) }, (_, i) => (i === 0 ? 0.2 : 1.2)));
@@ -716,7 +737,8 @@ export function NormalEquationsViz() {
     setA(resized.A);
     setB(resized.b);
     setPreset(null);
-    setProjectStep(5);
+    clearProjectTimers();
+    setProjectStep(2);
     setTrialX(Array.from({ length: cols(resized.A) }, (_, i) => (i === 0 ? 0.5 : 0.5)));
   }
 
@@ -736,18 +758,29 @@ export function NormalEquationsViz() {
   }
 
   function projectB() {
+    setTryOther(false);
+    clearProjectTimers();
     if (prefersReducedMotion()) {
       setProjectStep(5);
       return;
     }
-    setProjectStep(0);
-    let s = 0;
-    const tick = () => {
-      s += 1;
-      setProjectStep(s);
-      if (s < 5) window.setTimeout(tick, 320);
-    };
-    window.setTimeout(tick, 280);
+    // Desde Col(A)+b (paso 2) aparecen b̂ → r → 90°
+    setProjectStep(2);
+    setProjectPlaying(true);
+    const delays = [450, 900, 1350]; // →3, →4, →5
+    delays.forEach((ms, i) => {
+      const id = window.setTimeout(() => {
+        setProjectStep(3 + i);
+        if (i === delays.length - 1) setProjectPlaying(false);
+      }, ms);
+      projectTimers.current.push(id);
+    });
+  }
+
+  function resetProjectionView() {
+    clearProjectTimers();
+    setTryOther(false);
+    setProjectStep(2);
   }
 
   const caption = joinCaption(
@@ -782,7 +815,10 @@ export function NormalEquationsViz() {
             onChange={(id) => {
               setMode(id as Mode);
               if (id === 'derive') setDeriveStep(0);
-              if (id === 'geo') setProjectStep(5);
+              if (id === 'geo') {
+                clearProjectTimers();
+                setProjectStep(2);
+              }
             }}
           />
         </div>
@@ -829,41 +865,72 @@ export function NormalEquationsViz() {
                 residual={lsq.residual}
                 trialAx={trialAx}
                 showTrial={tryOther}
-                emph={tryOther ? 'trial' : 'none'}
-                reveal={projectStep}
+                emph={tryOther ? 'trial' : projectStep >= 5 ? 'none' : projectStep >= 3 ? 'normal' : 'cols'}
+                reveal={tryOther ? 5 : projectStep}
               />
             )}
+
+            {!isReg ? (
+              <div
+                className="rounded-lg border border-[var(--border)] bg-[var(--accent-soft)]/40 px-3 py-2 text-sm text-[var(--fg)]"
+                aria-live="polite"
+              >
+                <span className="font-medium text-[var(--accent-strong)]">
+                  {projectPlaying
+                    ? `Proyectando… ${Math.min(projectStep, 5)}/5`
+                    : projectStep < 5
+                      ? `Antes de proyectar · ${projectStep}/5`
+                      : 'Proyección completa · 5/5'}
+                </span>
+                <span className="mt-0.5 block text-[var(--fg-muted)]">
+                  {PROJECT_CAPTIONS[Math.min(projectStep, PROJECT_CAPTIONS.length - 1)]}
+                </span>
+              </div>
+            ) : null}
 
             <p className="text-sm text-[var(--fg-muted)]">
               &quot;Normal&quot; = perpendicular: el residuo es normal a Col(A).
             </p>
 
             <div className="rounded-xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_55%,var(--bg-elevated))] px-3 py-3 font-mono text-sm">
-              <p>
-                r = b − Ax̂ ={' '}
-                <span className="text-[var(--fg)]">{formatVec(lsq.residual)}</span>
-              </p>
-              <p className="mt-1">
-                ||r||₂ = {formatNum(lsq.residualNorm)}
-              </p>
-              <p className="mt-1 text-xs text-[var(--fg-muted)]">
-                {Array.from({ length: n }, (_, j) => (
-                  <span key={j} className="mr-3">
-                    a{j + 1}·r ≈ {formatNum(colDots[j] ?? 0)}
-                  </span>
-                ))}
-              </p>
-              <p className="mt-1">
-                Aᵀr = <span className="text-[var(--accent-strong)]">{formatVec(AtR)}</span>
-                {AtRNear0 ? ' ≈ 0 ✓' : ''}
-              </p>
+              {projectStep < 3 && !tryOther ? (
+                <p className="text-[var(--fg-muted)]">
+                  Pulsa <span className="font-sans font-medium text-[var(--fg)]">Proyectar b</span> para
+                  localizar b̂ = Ax̂ sobre Col(A) y ver el residuo ortogonal.
+                </p>
+              ) : (
+                <>
+                  <p>
+                    r = b − Ax̂ ={' '}
+                    <span className="text-[var(--fg)]">{formatVec(lsq.residual)}</span>
+                  </p>
+                  <p className="mt-1">
+                    ||r||₂ = {formatNum(lsq.residualNorm)}
+                  </p>
+                  <p className="mt-1 text-xs text-[var(--fg-muted)]">
+                    {Array.from({ length: n }, (_, j) => (
+                      <span key={j} className="mr-3">
+                        a{j + 1}·r ≈ {formatNum(colDots[j] ?? 0)}
+                      </span>
+                    ))}
+                  </p>
+                  <p className="mt-1">
+                    Aᵀr = <span className="text-[var(--accent-strong)]">{formatVec(AtR)}</span>
+                    {AtRNear0 ? ' ≈ 0 ✓' : ''}
+                  </p>
+                </>
+              )}
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              {AtRNear0 ? (
-                <Badge tone="ok">Aᵀr = 0 · ÓPTIMA</Badge>
+              {projectStep >= 5 || tryOther ? (
+                AtRNear0 ? (
+                  <Badge tone="ok">Aᵀr = 0 · ÓPTIMA</Badge>
+                ) : (
+                  <Badge tone="warn">Aᵀr ≠ 0</Badge>
+                )
               ) : (
-                <Badge tone="warn">Aᵀr ≠ 0</Badge>
+                <Badge tone="neutral">Pendiente de proyectar</Badge>
               )}
               {isReg ? (
                 <Badge tone="neutral">AᵀA β̂ = Aᵀb</Badge>
@@ -872,12 +939,23 @@ export function NormalEquationsViz() {
 
             <ControlsStack>
               <ButtonRow>
-                <VizButton onClick={projectB} active={projectStep < 5}>
-                  Proyectar b
+                <VizButton
+                  onClick={projectB}
+                  active={projectPlaying || projectStep < 5}
+                  disabled={projectPlaying}
+                >
+                  {projectStep >= 5 ? 'Repetir proyección' : 'Proyectar b'}
                 </VizButton>
+                {projectStep > 2 || projectPlaying ? (
+                  <VizButton onClick={resetProjectionView} disabled={projectPlaying}>
+                    Ver solo Col(A) y b
+                  </VizButton>
+                ) : null}
                 <VizButton
                   active={tryOther}
                   onClick={() => {
+                    clearProjectTimers();
+                    setProjectStep(5);
                     setTryOther((v) => !v);
                     if (!tryOther) {
                       const delta = Array.from({ length: n }, (_, i) =>

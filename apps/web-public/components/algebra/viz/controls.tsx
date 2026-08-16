@@ -93,19 +93,24 @@ export function VizButton({
   children,
   onClick,
   active,
+  disabled,
 }: {
   children: ReactNode;
   onClick: () => void;
   active?: boolean;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition ${
-        active
-          ? 'border-[var(--accent-strong)] bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-          : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)] hover:bg-[var(--accent-soft)]'
+        disabled
+          ? 'cursor-not-allowed border-[var(--border)] bg-[var(--bg)] text-[var(--fg-muted)] opacity-60'
+          : active
+            ? 'border-[var(--accent-strong)] bg-[var(--accent-soft)] text-[var(--accent-strong)]'
+            : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)] hover:bg-[var(--accent-soft)]'
       }`}
     >
       {children}
