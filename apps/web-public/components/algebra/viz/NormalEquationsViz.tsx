@@ -665,7 +665,13 @@ export function NormalEquationsViz() {
     setProjectPlaying(false);
   }
 
-  useEffect(() => () => clearProjectTimers(), []);
+  useEffect(
+    () => () => {
+      for (const id of projectTimers.current) window.clearTimeout(id);
+      projectTimers.current = [];
+    },
+    [],
+  );
 
   const m = rows(A);
   const n = cols(A);
