@@ -3251,9 +3251,9 @@ Av=\lambda v,\quad v\ne0
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** direcciones que una matriz conserva.
 - **Elementos:** campo de vectores antes/después de una transformación 2D y eigendirecciones resaltadas.
-- **Idea:** Activa **Eigenvectores** y mira las rayas naranjas: marcan esas direcciones especiales.
-- **Objetivo educativo:** Vas a ver que un autovector solo se estira o se encoge; no gira hacia otro lado.
-- **Interactividad sugerida:** editar una matriz 2×2; recalcular eigenvalores/eigendirecciones reales y permitir arrastrar un vector de prueba.
+- **Idea:** Vas a comparar un vector cualquiera con un autovector y observar qué ocurre cuando aplicamos \(A\).
+- **Objetivo educativo:** Pruébalo — Arrastra \(v\). Si \(Av\) conserva su dirección, encontraste una dirección propia.
+- **Interactividad sugerida:** arrastrar \(v\); comparar \(Av\) con \(\lambda v\); mostrar direcciones propias; presets con \(\lambda\) negativo, cero y rotación sin autovectores reales.
 
 ### Complejidad computacional
 
@@ -3287,9 +3287,9 @@ Para matrices grandes y dispersas, cuando solo se requieren unos pocos valores p
 - **Tipo:** `matrix`
 - **Concepto visual:** valores propios como ceros del polinomio característico.
 - **Elementos:** matriz \(A-\lambda I\), determinante simbólico/polinomio y gráfica del polinomio característico para caso 2×2.
-- **Idea:** Edita \(A\) y relaciona \(\det(A-\lambda I)=0\) con las direcciones que ves en la malla.
-- **Objetivo educativo:** Vas a ver que la ecuación característica encuentra los valores propios (estiramientos).
-- **Interactividad sugerida:** controlar las entradas de una matriz 2×2 y marcar las raíces reales del polinomio característico.
+- **Idea:** Vas a construir el polinomio cuyas raíces son los valores propios de \(A\).
+- **Objetivo educativo:** Pruébalo — Cambia \(A\) y observa cómo \(A-\lambda I\) produce un polinomio en \(\lambda\). Sus ceros son exactamente los valores propios.
+- **Interactividad sugerida:** construir \(A-\lambda I\); graficar \(p_A(\lambda)\); mover \(\lambda\) y ver cuándo \(\det(A-\lambda I)=0\).
 
 ### Fórmulas relacionadas
 
@@ -3313,9 +3313,9 @@ E_\lambda=\ker(A-\lambda I)
 - **Tipo:** `vector_space`
 - **Concepto visual:** autoespacio como núcleo de \(A-\lambda I\).
 - **Elementos:** eigendirección o plano resaltado y varios vectores propios para un mismo \(\lambda\).
-- **Idea:** Observa la dirección naranja asociada a cada valor propio.
-- **Objetivo educativo:** Vas a ver que el autoespacio es la recta (o plano) de todos los autovectores de un \(\lambda\).
-- **Interactividad sugerida:** seleccionar un eigenvalor y visualizar la base de \(\ker(A-\lambda I)\).
+- **Idea:** Vas a ver que un autoespacio \(E_\lambda=\ker(A-\lambda I)\) es la recta (o el plano) de todos los vectores que \(A\) solo escala por \(\lambda\).
+- **Objetivo educativo:** Pruébalo — Elige \(\lambda\) y mueve \(v\) sobre \(E_\lambda\). Comprueba \(Av=\lambda v\).
+- **Interactividad sugerida:** selector de \(\lambda\); \(E_\lambda\) como recta/\(\mathbb R^2\)/\{0\}; modo núcleo \(A-\lambda I\); \(\lambda\) negativo y cero.
 
 ### Fórmulas relacionadas
 
@@ -3339,9 +3339,9 @@ A=PDP^{-1}
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** diagonalización como cambio a una base de eigenvectores.
 - **Elementos:** tres etapas: cambio de base por \(P^{-1}\), escalamiento independiente por \(D\), regreso por \(P\).
-- **Idea:** Con autovectores visibles, imagina ejes donde \(A\) solo estira.
-- **Objetivo educativo:** Vas a ver que diagonalizar es escribir \(A\) en una base de autovectores, donde actúa por escalados.
-- **Interactividad sugerida:** animar las tres etapas con una figura/vector y permitir comparar resultado con aplicar \(A\) directamente.
+- **Idea:** Vas a ver que diagonalizar consiste en encontrar una base de autovectores en la que \(A\) deja de mezclar coordenadas.
+- **Objetivo educativo:** Pruébalo — Cambia \(A\) y observa cómo \(P^{-1}AP\) se convierte en una matriz diagonal \(D\).
+- **Interactividad sugerida:** modos Autovectores / Cambio de base / Diagonal; bases oblicuas; estado no diagonalizable; comparar \(Ax\) con \(PDP^{-1}x\).
 
 ### Fórmulas relacionadas
 
@@ -3365,9 +3365,9 @@ A^n=PD^nP^{-1}
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** potencias de una matriz mediante potencias escalares de eigenvalores.
 - **Elementos:** pipeline \(A=PDP^{-1}\rightarrow A^n=PD^nP^{-1}\) con diagonal de \(D\) elevada término a término.
-- **Idea:** Explora \(A\) y sus direcciones propias como atajo para \(A^n\).
-- **Objetivo educativo:** Vas a ver que con \(A=PDP^{-1}\), potenciar \(A\) es potenciar los escalados en la diagonal.
-- **Interactividad sugerida:** selector entero de \(n\); animar iteraciones y comparar costo conceptual de \(A^n\) frente a \(D^n\).
+- **Idea:** Vas a ver que una matriz diagonalizable se vuelve muy fácil de potenciar en su base de autovectores.
+- **Objetivo educativo:** Pruébalo — Cambia \(n\) y observa cómo las componentes sobre \(v_1\) y \(v_2\) se multiplican por \(\lambda_1^n\) y \(\lambda_2^n\).
+- **Interactividad sugerida:** pipeline \(P^{-1}\to D^n\to P\); trayectoria \(x,Ax,\ldots,A^n x\); presets crecimiento/decadencia y no ortogonal.
 
 ### Fórmulas relacionadas
 
@@ -3391,9 +3391,9 @@ A=A^T\Rightarrow A=Q\Lambda Q^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** teorema espectral como ejes ortogonales propios de una matriz simétrica.
 - **Elementos:** matriz simétrica, eigenvectores ortonormales como ejes perpendiculares y escalamiento por eigenvalores.
-- **Idea:** Prueba una \(A\) casi simétrica y mira autovectores casi perpendiculares.
-- **Objetivo educativo:** Vas a ver que en matrices simétricas, los autovectores se pueden elegir ortogonales.
-- **Interactividad sugerida:** editar una matriz simétrica 2×2 y actualizar ejes propios, eigenvalores y transformación de una elipse.
+- **Idea:** Vas a ver que una matriz simétrica posee direcciones propias ortogonales y que, usando esas direcciones como base, la transformación se vuelve un simple escalamiento por eje.
+- **Objetivo educativo:** Pruébalo — Cambia \(a\), \(b\) y \(d\). Observa cómo \(q_1\) y \(q_2\) siguen siendo perpendiculares mientras \(\lambda_1\) y \(\lambda_2\) controlan el escalamiento.
+- **Interactividad sugerida:** círculo \(\to\) elipse; \(A=Q\Lambda Q^T\); modos Autovectores / Diagonalización / Acción sobre \(x\); solo matrices \(A=A^T\).
 
 ### Fórmulas relacionadas
 

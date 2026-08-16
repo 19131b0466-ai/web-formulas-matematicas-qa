@@ -9,13 +9,14 @@ import { RankNullityViz } from './RankNullityViz';
 import { KernelViz } from './KernelViz';
 import { ImageViz } from './ImageViz';
 import { ChangeOfBasisViz } from './ChangeOfBasisViz';
+import { EigenspaceViz } from './EigenspaceViz';
 import { VectorSpaceVizLegacy } from './VectorSpaceVizLegacy';
 
 type Props = { formulaId: string; idea?: string };
 
 /**
  * Router for vector_space lessons.
- * ESP-001…007 and TRA-003/004/007 get dedicated pedagogy.
+ * ESP-001…007, TRA-003/004/007, and EIG-003 get dedicated pedagogy.
  * Remaining formulas (ORT-004 Gram–Schmidt, …) keep the legacy lab.
  */
 export function VectorSpaceViz({ formulaId }: Props) {
@@ -28,6 +29,7 @@ export function VectorSpaceViz({ formulaId }: Props) {
   if (formulaId.includes('TRA-003')) return <KernelViz />;
   if (formulaId.includes('TRA-004')) return <ImageViz />;
   if (formulaId.includes('TRA-007')) return <ChangeOfBasisViz />;
+  if (formulaId.includes('EIG-003')) return <EigenspaceViz />;
 
   return <VectorSpaceVizLegacy formulaId={formulaId} />;
 }
