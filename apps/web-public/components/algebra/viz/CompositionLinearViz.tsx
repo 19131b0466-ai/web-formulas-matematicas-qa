@@ -190,15 +190,22 @@ export function CompositionLinearViz() {
     setPhase('original');
   };
 
+  /** Load A,B and jump to the composed result so the graph visibly changes. */
   const applyPreset = (pr: PairPreset) => {
     setActivePreset(pr.id);
+    let nextA = pr.a;
+    let nextB: Mat2 | null = null;
     if (pr.b === 'inv') {
       const inv = inv2(pr.a);
       if (!inv || Math.abs(det2(pr.a)) < DET_EPS) return;
-      reset(pr.a, inv);
-      return;
+      nextB = inv;
+    } else {
+      nextB = pr.b;
     }
-    reset(pr.a, pr.b);
+    setA(cloneMat2(nextA));
+    setB(cloneMat2(nextB));
+    setShowTrail(true);
+    setPhase('afterBoth');
   };
 
   const applyFirst = () => {
@@ -236,7 +243,7 @@ export function CompositionLinearViz() {
       <div className="space-y-3">
         <GuideBlock
           idea="Vas a ver que componer transformaciones es aplicar una después de la otra: x → Ax → B(Ax)."
-          tryIt="Aplica A, luego B. Compara con BA en un solo paso. Cambia el orden A→B / B→A."
+          tryIt="Elige un preset (cambia A y B y muestra la composición). Luego Restablecer y usa Aplicar A → Aplicar B para ver el paso intermedio."
           concept="El orden importa: B∘A significa A primero y B después."
         />
 
@@ -279,23 +286,33 @@ export function CompositionLinearViz() {
           />
         </div>
 
-        <ChipRow>
-          {PAIR_PRESETS.map((pr) => {
-            const disabled =
-              pr.b === 'inv' &&
-              (Math.abs(det2(pr.a)) < DET_EPS || inv2(pr.a) == null);
-            return (
-              <Chip
-                key={pr.id}
-                active={activePreset === pr.id}
-                disabled={disabled}
-                onClick={() => applyPreset(pr)}
-              >
-                {pr.label}
-              </Chip>
-            );
-          })}
-        </ChipRow>
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-[var(--fg-muted)]">
+            Presets del par (A, B) — al elegir uno se muestra el resultado de la composición
+          </p>
+          <ChipRow>
+            {PAIR_PRESETS.map((pr) => {
+              const disabled =
+                pr.b === 'inv' &&
+                (Math.abs(det2(pr.a)) < DET_EPS || inv2(pr.a) == null);
+              return (
+                <Chip
+                  key={pr.id}
+                  active={activePreset === pr.id}
+                  disabled={disabled}
+                  onClick={() => applyPreset(pr)}
+                >
+                  {pr.label}
+                </Chip>
+              );
+            })}
+          </ChipRow>
+          <div className="flex flex-wrap items-start gap-4 rounded-lg border border-[var(--border)] px-3 py-2">
+            <Mat2Editor m={A} name="A" readOnly />
+            <Mat2Editor m={B} name="B" readOnly />
+            <Mat2Editor m={product} name={productLabel} readOnly />
+          </div>
+        </div>
 
         {tab === 'geo' ? (
           <svg
@@ -482,6 +499,25 @@ export function CompositionLinearViz() {
           </VizButton>
           <VizButton onClick={() => reset()}>Restablecer</VizButton>
         </ButtonRow>
+
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-xs leading-relaxed text-[var(--fg-muted)]">
+          {phase === 'afterBoth' ? (
+            <>
+              Estás viendo el resultado de <span className="font-medium text-[var(--fg)]">{composeLabel}</span>
+              {' '}(= matriz {productLabel}). Usa <span className="font-medium text-[var(--fg)]">Restablecer</span> y
+              luego Aplicar {firstName} → Aplicar {secondName} para ver el paso intermedio.
+            </>
+          ) : phase === 'afterFirst' ? (
+            <>
+              Tras {firstName}: ahora pulsa <span className="font-medium text-[var(--fg)]">Aplicar {secondName}</span>.
+            </>
+          ) : (
+            <>
+              Estado original. Pulsa <span className="font-medium text-[var(--fg)]">Aplicar {firstName}</span> o elige
+              un preset para ver la composición de golpe.
+            </>
+          )}
+        </div>
 
         <ControlsStack>
           <ToggleRow

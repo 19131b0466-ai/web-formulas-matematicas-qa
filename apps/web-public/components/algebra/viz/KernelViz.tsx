@@ -3,7 +3,7 @@
 import { useId, useMemo, useState } from 'react';
 import { ButtonRow, ControlsStack, VizButton, VizPanel, joinCaption } from './controls';
 import { nullspaceBasis, presentLin, type Matrix } from './linAlg';
-import { normalize, scale, type Mat2, type Vec2 } from './math2d';
+import { normalize, scale, sub, type Mat2, type Vec2 } from './math2d';
 import { present } from './matrixGrid';
 import {
   Badge,
@@ -233,34 +233,38 @@ function DomainSvg({
         })()
       ) : null}
 
-      {showGen && gens.map((g, i) => {
-        if (nearZero(g)) return null;
-        const tip = to(g);
-        return (
-          <g key={i}>
-            <line
-              x1={ox}
-              y1={oy}
-              x2={tip.x}
-              y2={tip.y}
-              stroke={COLOR_W}
-              strokeWidth={2}
-              markerEnd={`url(#${uid}-w)`}
-              opacity={0.85}
-            />
-            <text
-              x={labelOffset(g, tip, ox, oy, 14).x}
-              y={labelOffset(g, tip, ox, oy, 14).y}
-              fontSize={11}
-              fontWeight={700}
-              fill={COLOR_W}
-              textAnchor="middle"
-            >
-              n{gens.length > 1 ? i + 1 : ''}
-            </text>
-          </g>
-        );
-      })}
+      {/* Generador n: teal, visible también en modo «Un vector». */}
+      {showGen &&
+        gens.map((g, i) => {
+          if (nearZero(g)) return null;
+          const n = scale(normalize(g), 1.8);
+          const tip = to(n);
+          const lab = gens.length > 1 ? `n${i + 1}` : 'n';
+          return (
+            <g key={i}>
+              <line
+                x1={ox}
+                y1={oy}
+                x2={tip.x}
+                y2={tip.y}
+                stroke={COLOR_U}
+                strokeWidth={2.4}
+                markerEnd={`url(#${uid}-u)`}
+                opacity={0.95}
+              />
+              <text
+                x={labelOffset(n, tip, ox, oy, 16).x}
+                y={labelOffset(n, tip, ox, oy, 16).y}
+                fontSize={12}
+                fontWeight={700}
+                fill={COLOR_U}
+                textAnchor="middle"
+              >
+                {lab}
+              </text>
+            </g>
+          );
+        })}
 
       {editCols ? (
         <>
@@ -482,7 +486,7 @@ export function KernelViz() {
                 x={x}
                 mode={mode}
                 editCols={editCols}
-                showGen={showGen && mode === 'full'}
+                showGen={showGen}
                 onX={setX}
                 onCols={(c1, c2) => setA(matFromCols(c1, c2))}
               />
@@ -531,13 +535,19 @@ export function KernelViz() {
               active={showGen}
               onClick={() => setShowGen((v) => !v)}
             >
-              Mostrar generador n
+              {showGen ? 'Ocultar generador n' : 'Mostrar generador n'}
             </VizButton>
             {nullity === 1 && gens[0] ? (
               <VizButton
                 onClick={() => {
                   setMode('one');
-                  setX(clampVec(scale(normalize(gens[0]!), 1.5), CLAMP));
+                  setShowGen(true);
+                  const n = normalize(gens[0]!);
+                  const up = scale(n, 2);
+                  const down = scale(n, -2);
+                  // Si ya está en ker, alterna el sentido para que el cambio se note.
+                  const alreadyUp = nearZero(sub(x, up)) || nearZero(sub(x, scale(n, 1.5)));
+                  setX(clampVec(alreadyUp ? down : up, CLAMP));
                 }}
               >
                 Colocar x en ker
@@ -567,6 +577,9 @@ export function KernelViz() {
           <p className="text-xs text-[var(--fg-muted)]">
             x = {formatPair(x)} → Ax = {formatPair(Ax)}
             {inKer ? ' · x ∈ ker ✓' : ''}
+            {showGen && gens[0] && !nearZero(gens[0])
+              ? ` · generador n = ${formatPair(gens[0])} (flecha teal)`
+              : ''}
           </p>
         </ControlsStack>
 
