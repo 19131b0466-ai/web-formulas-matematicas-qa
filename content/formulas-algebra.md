@@ -3420,9 +3420,9 @@ u\perp v\iff u\cdot v=0
 - **Tipo:** `vector`
 - **Concepto visual:** ortogonalidad como ángulo recto y producto punto cero.
 - **Elementos:** dos vectores con arco de 90° y cálculo de \(u\cdot v\).
-- **Idea:** Coloca \(u\perp v\) y fíjate: \(u\cdot v\approx 0\) y el ángulo se marca como recto.
-- **Objetivo educativo:** Vas a ver que ortogonal significa ángulo recto: el producto punto es cero.
-- **Interactividad sugerida:** arrastrar un vector; mostrar ángulo y producto punto con indicador cuando se cumple \(u\perp v\).
+- **Idea:** Arrastra \(u\) o \(v\) y observa la equivalencia: \(u\perp v\) exactamente cuando \(u\cdot v=0\) (y \(\theta=90^\circ\) si ambos son no nulos). Distingue agudo, recto y obtuso según el signo del producto punto.
+- **Objetivo educativo:** Vas a conectar geometría (ángulo recto) con álgebra (\(u\cdot v=0\)) y a distinguir ortogonal de ortonormal.
+- **Interactividad sugerida:** arrastrar vectores; presets agudo/obtuso/ortogonal; construir \(\pm 90^\circ\); normalizar solo como paso opcional.
 
 ### Fórmulas relacionadas
 
@@ -3446,9 +3446,9 @@ u\perp v\iff u\cdot v=0
 - **Tipo:** `vector`
 - **Concepto visual:** proyección como sombra perpendicular sobre una dirección.
 - **Elementos:** vector \(a\), dirección \(b\), proyección sobre \(b\) y residuo perpendicular.
-- **Idea:** Arrastra \(u\): el segmento naranja es la proyección; el resto es el error ortogonal.
-- **Objetivo educativo:** Vas a ver que la proyección es la sombra de \(u\) sobre la dirección de \(v\).
-- **Interactividad sugerida:** modificar el ángulo y las magnitudes; actualizar componente escalar, proyección y residuo.
+- **Idea:** Arrastra \(u\) o \(v\): el pie de la perpendicular se mueve sobre \(\operatorname{span}(v)\) y ves \(u=\operatorname{proj}_v(u)+r\) con \(r\perp v\). La proyección puede quedar antes del origen o más allá de la punta de \(v\).
+- **Objetivo educativo:** Vas a descomponer \(u\) en una parte paralela a \(v\) y otra perpendicular; la sombra es \(\operatorname{proj}_v(u)\).
+- **Interactividad sugerida:** arrastrar \(u\) y \(v\); presets positivo/negativo/paralelo/perpendicular; cálculo paso a paso del coeficiente \(c\).
 
 ### Fórmulas relacionadas
 
@@ -3472,9 +3472,9 @@ Q^TQ=I\Rightarrow Q^{-1}=Q^T
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** matriz ortogonal como transformación que preserva longitudes y ángulos.
 - **Elementos:** figura y vectores antes/después de aplicar \(Q\), con longitudes y ángulo medidos en ambos estados.
-- **Idea:** Ajusta \(A\) hacia una rotación y mira que la malla no se estira de forma desigual.
-- **Objetivo educativo:** Vas a ver que una matriz ortogonal rota/refleja sin cambiar longitudes.
-- **Interactividad sugerida:** control angular para una matriz de rotación y opción de reflexión; mostrar \(Q^{-1}=Q^T\).
+- **Idea:** Cambia \(\theta\) o activa una reflexión: el círculo sigue siendo círculo, el cuadrado no se deforma y \(Q^TQ=I\). Compara longitudes \(\|Qv\|=\|v\|\) y \(\det(Q)=\pm 1\).
+- **Objetivo educativo:** Vas a ver que una matriz ortogonal rota o refleja el plano sin estirarlo; sus columnas son ortonormales y \(Q^{-1}=Q^T\).
+- **Interactividad sugerida:** rotación/reflexión; vector arrastrable; verificar \(Q^TQ\); aplicar \(Q\) y deshacer con \(Q^T\).
 
 ### Fórmulas relacionadas
 
@@ -3499,9 +3499,9 @@ u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k)
 - **Tipo:** `vector_space`
 - **Concepto visual:** ortogonalización progresiva de un conjunto independiente.
 - **Elementos:** vectores originales \(v_1,v_2,\ldots\), proyecciones restadas y vectores ortogonales \(u_i\).
-- **Idea:** Avanza el **Gram-Schmidt paso** y observa la nueva dirección ortogonal.
-- **Objetivo educativo:** Vas a ver que Gram–Schmidt convierte vectores en una base ortogonal paso a paso.
-- **Interactividad sugerida:** avance por pasos y opción de normalizar al final para obtener una base ortonormal.
+- **Idea:** Sigue los pasos: \(u_1=v_1\), dibuja \(\operatorname{proj}_{u_1}(v_2)\), resta y obtén \(u_2\perp u_1\). El span se conserva; normalizar es opcional y produce una base ortonormal.
+- **Objetivo educativo:** Vas a ver que Gram–Schmidt convierte vectores independientes en una base ortogonal del mismo espacio, y que ortogonal no implica unitario.
+- **Interactividad sugerida:** stepper Vectores → Proyección → Restar → Ortogonal → Normalizar; presets dependientes/ya ortogonales; arrastrar \(v_1,v_2\).
 
 ### Fórmulas relacionadas
 

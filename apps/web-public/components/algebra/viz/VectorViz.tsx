@@ -18,6 +18,8 @@ import { DotProductViz } from './DotProductViz';
 import { AngleBetweenViz } from './AngleBetweenViz';
 import { EuclideanDistanceViz } from './EuclideanDistanceViz';
 import { LinearComboViz } from './LinearComboViz';
+import { OrthogonalityViz } from './OrthogonalityViz';
+import { OrthogonalProjectionViz } from './OrthogonalProjectionViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -64,6 +66,8 @@ export function VectorViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('VEC-005')) return <AngleBetweenViz />;
   if (formulaId.includes('VEC-006')) return <EuclideanDistanceViz />;
   if (formulaId.includes('VEC-007')) return <LinearComboViz />;
+  if (formulaId.includes('ORT-001')) return <OrthogonalityViz />;
+  if (formulaId.includes('ORT-002')) return <OrthogonalProjectionViz />;
 
   return <VectorVizInner formulaId={formulaId} mode={modeProp} />;
 }

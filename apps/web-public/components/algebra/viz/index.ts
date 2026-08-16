@@ -78,3 +78,7 @@ export { EigenspaceViz } from './EigenspaceViz';
 export { DiagonalizationViz } from './DiagonalizationViz';
 export { MatrixPowerDiagViz } from './MatrixPowerDiagViz';
 export { SpectralTheoremViz } from './SpectralTheoremViz';
+export { OrthogonalityViz } from './OrthogonalityViz';
+export { OrthogonalProjectionViz } from './OrthogonalProjectionViz';
+export { GramSchmidtViz } from './GramSchmidtViz';
+export { OrthogonalMatrixViz } from './OrthogonalMatrixViz';
