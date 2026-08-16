@@ -22,6 +22,8 @@ import { InverseMatrix2Viz } from './InverseMatrix2Viz';
 import { CramerRuleViz } from './CramerRuleViz';
 import { RankViz } from './RankViz';
 import { CharacteristicEquationViz } from './CharacteristicEquationViz';
+import { PseudoinverseViz } from './PseudoinverseViz';
+import { NormalEquationsViz } from './NormalEquationsViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -146,6 +148,8 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('DET-006')) return <CramerRuleViz />;
   if (formulaId.includes('ESP-005')) return <RankViz />;
   if (formulaId.includes('EIG-002')) return <CharacteristicEquationViz />;
+  if (formulaId.includes('LSQ-002')) return <NormalEquationsViz />;
+  if (formulaId.includes('LSQ-003')) return <PseudoinverseViz />;
 
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }

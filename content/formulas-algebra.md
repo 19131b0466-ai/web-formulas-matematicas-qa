@@ -3527,9 +3527,9 @@ u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k)
 - **Tipo:** `geometry`
 - **Concepto visual:** mínimos cuadrados como proyección de \(b\) sobre el espacio columna.
 - **Elementos:** subespacio \(\operatorname{Col}(A)\), vector \(b\), proyección \(\hat b=A\hat x\) y residuo \(r=b-\hat b\).
-- **Idea:** Mueve los vectores y el punto: la proyección es la mejor aproximación.
-- **Objetivo educativo:** Vas a ver que mínimos cuadrados busca el punto del subespacio más cercano al dato.
-- **Interactividad sugerida:** mover \(b\) y observar cómo cambian proyección, residuo y error cuadrático.
+- **Idea:** Mueve \(x\) sobre \(\operatorname{Col}(A)\): el error \(\|Ax-b\|\) es mínimo precisamente cuando el residuo es perpendicular al espacio columna.
+- **Objetivo educativo:** Vas a ver que mínimos cuadrados elige el punto de \(\operatorname{Col}(A)\) más cercano a \(b\), no un paralelogramo arbitrario.
+- **Interactividad sugerida:** controlar \(x\); comparar error actual vs mínimo; curva \(E(x)=\|Ax-b\|^2\); presets exacto/inexacto.
 
 ### Fórmulas relacionadas
 
@@ -3553,9 +3553,9 @@ A^TA\hat x=A^Tb
 - **Tipo:** `matrix`
 - **Concepto visual:** ecuaciones normales como condición de ortogonalidad del residuo.
 - **Elementos:** vectores/columnas de \(A\), residuo \(r=b-A\hat x\) y productos punto \(A^Tr\).
-- **Idea:** Edita \(A\) y \(b\) como datos del ajuste lineal por mínimos cuadrados.
-- **Objetivo educativo:** Vas a ver que las ecuaciones normales \(A^T Ax=A^T b\) resumen ese problema de proyección.
-- **Interactividad sugerida:** seleccionar un ejemplo pequeño y mostrar simultáneamente la geometría y las matrices de la ecuación normal.
+- **Idea:** Parte de un \(A\) \(3\times 2\) inconsistente: el residuo óptimo es perpendicular a \(\operatorname{Col}(A)\), y eso se escribe \(A^Tr=0\), de donde sale \(A^TA\hat x=A^Tb\).
+- **Objetivo educativo:** Vas a ver que las ecuaciones normales son la forma matricial de “el error es perpendicular a todas las columnas de \(A\)”.
+- **Interactividad sugerida:** proyección geométrica; derivación paso a paso; construcción de \(A^TA\) y \(A^Tb\); presets exacto/rango deficiente/regresión.
 
 ### Condiciones
 
@@ -3593,9 +3593,9 @@ y resolver después el sistema denso de tamaño \(n\) añade \(O(n^3)\). Aunque 
 - **Tipo:** `matrix`
 - **Concepto visual:** pseudoinversa como inversa generalizada para soluciones de mínimos cuadrados.
 - **Elementos:** pipeline SVD \(A=U\Sigma V^T\), inversión solo de valores singulares no nulos y recomposición \(A^+=V\Sigma^+U^T\).
-- **Idea:** Explora \(A\) rectangular/singular y piensa en la “mejor” solución aproximada.
-- **Objetivo educativo:** Vas a ver que la pseudoinversa generaliza la inversa cuando \(A\) no es invertible.
-- **Interactividad sugerida:** usar una matriz pequeña con rango reducido; permitir alternar entre \(A\), \(\Sigma\), \(\Sigma^+\) y \(A^+\).
+- **Idea:** Empieza con \(A\) rectangular \(3\times 2\): \(A^+b\) proyecta \(b\) sobre \(\operatorname{Col}(A)\). Si hay infinitas soluciones, elige la de menor norma. Construye \(A^+=V\Sigma^+U^T\) sin invertir ceros.
+- **Objetivo educativo:** Vas a ver cómo \(A^+\) encuentra la mejor solución cuando \(Ax=b\) no admite una inversa ordinaria.
+- **Interactividad sugerida:** presets sobredeterminado/subdeterminado/singular/invertible; modos mínimos cuadrados, norma mínima, SVD y Moore–Penrose.
 
 ### Fórmulas relacionadas
 

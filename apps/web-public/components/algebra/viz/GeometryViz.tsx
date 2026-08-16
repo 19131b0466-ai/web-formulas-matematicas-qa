@@ -8,6 +8,7 @@ import { ComplexRootsViz } from './ComplexRootsViz';
 import { Determinant2x2Viz } from './Determinant2x2Viz';
 import { DeterminantProductViz } from './DeterminantProductViz';
 import { InvertibilityCriterionViz } from './InvertibilityCriterionViz';
+import { LeastSquaresViz } from './LeastSquaresViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -23,6 +24,9 @@ export function GeometryViz({ formulaId, mode }: Props) {
   }
   if (formulaId.includes('DET-004')) {
     return <InvertibilityCriterionViz />;
+  }
+  if (formulaId.includes('LSQ-001')) {
+    return <LeastSquaresViz />;
   }
 
   return <GeometryVizInner formulaId={formulaId} mode={mode} />;

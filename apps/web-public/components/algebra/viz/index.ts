@@ -82,3 +82,6 @@ export { OrthogonalityViz } from './OrthogonalityViz';
 export { OrthogonalProjectionViz } from './OrthogonalProjectionViz';
 export { GramSchmidtViz } from './GramSchmidtViz';
 export { OrthogonalMatrixViz } from './OrthogonalMatrixViz';
+export { LeastSquaresViz } from './LeastSquaresViz';
+export { NormalEquationsViz } from './NormalEquationsViz';
+export { PseudoinverseViz } from './PseudoinverseViz';
