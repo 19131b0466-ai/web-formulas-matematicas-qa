@@ -85,3 +85,8 @@ export { OrthogonalMatrixViz } from './OrthogonalMatrixViz';
 export { LeastSquaresViz } from './LeastSquaresViz';
 export { NormalEquationsViz } from './NormalEquationsViz';
 export { PseudoinverseViz } from './PseudoinverseViz';
+export { QRDecompositionViz } from './QRDecompositionViz';
+export { LUDecompositionViz } from './LUDecompositionViz';
+export { SpectralDecompositionViz } from './SpectralDecompositionViz';
+export { SVDViz } from './SVDViz';
+export { LowRankApproxViz } from './LowRankApproxViz';

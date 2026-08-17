@@ -24,6 +24,7 @@ import { RankViz } from './RankViz';
 import { CharacteristicEquationViz } from './CharacteristicEquationViz';
 import { PseudoinverseViz } from './PseudoinverseViz';
 import { NormalEquationsViz } from './NormalEquationsViz';
+import { LUDecompositionViz } from './LUDecompositionViz';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -150,6 +151,7 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('EIG-002')) return <CharacteristicEquationViz />;
   if (formulaId.includes('LSQ-002')) return <NormalEquationsViz />;
   if (formulaId.includes('LSQ-003')) return <PseudoinverseViz />;
+  if (formulaId.includes('DEC-001') || modeProp === 'lu') return <LUDecompositionViz />;
 
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }

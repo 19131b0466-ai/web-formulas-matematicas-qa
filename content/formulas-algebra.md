@@ -3621,9 +3621,9 @@ PA=LU
 - **Modo:** `lu`
 - **Concepto visual:** LU como secuencia compacta de eliminación gaussiana.
 - **Elementos:** matriz \(A\), factores \(L\) y \(U\), y multiplicadores de eliminación almacenados en \(L\).
-- **Idea:** Pulsa **Paso LU** y aplica operaciones de fila: te acercas a la forma de la factorización LU.
-- **Objetivo educativo:** Vas a ver que LU parte \(A\) en triangular inferior y superior para resolver sistemas más fácil.
-- **Interactividad sugerida:** avance fila por fila y comprobación visual de que \(LU=A\) o \(PA=LU\).
+- **Idea:** Vas a ver cómo LU convierte \(A\) en triangular superior mediante eliminación gaussiana, guardando cada multiplicador en \(L\).
+- **Objetivo educativo:** Pruébalo — avanza pivote → multiplicador → eliminar y observa cómo aparecen \(L\), \(U\) y, cuando hace falta, \(P\). Forma general: \(PA=LU\).
+- **Interactividad sugerida:** modos Eliminación / Factores / Resolver \(Ax=b\); historial de operaciones; presets con y sin pivoteo; reutilizar \(LU\) al cambiar \(b\).
 
 ### Complejidad computacional
 
@@ -3657,9 +3657,9 @@ A=QR
 - **Modo:** `qr`
 - **Concepto visual:** QR como base ortonormal más coordenadas triangulares.
 - **Elementos:** columnas de \(A\), proceso que genera columnas ortonormales de \(Q\) y matriz triangular \(R\).
-- **Idea:** Observa la malla de \(A\) como composición de una parte ortogonal y otra triangular.
-- **Objetivo educativo:** Vas a ver que QR escribe \(A\) como rotación/ortogonal por triangular.
-- **Interactividad sugerida:** recorrer columnas una a una mostrando proyecciones, normalización y entradas de \(R\).
+- **Idea:** Vas a ver cómo las columnas de \(A\) se convierten en direcciones ortonormales \(q_1,q_2\) y cómo \(R\) indica cómo recombinarlas para recuperar \(A\).
+- **Objetivo educativo:** Pruébalo — avanza \(A\to q_1\to\) proyección \(\to q_2\to R\to QR\) y comprueba \(Q^\top Q\approx I\) y \(QR\approx A\).
+- **Interactividad sugerida:** modos Construcción / Factores / Transformación; presets columnas oblicuas, ortogonales, casi paralelas y dependientes.
 
 ### Complejidad computacional
 
@@ -3693,11 +3693,11 @@ A=Q\Lambda Q^T
 
 - **Tipo:** `matrix_transform`
 - **Modo:** `eigen`
-- **Concepto visual:** descomposición espectral de una matriz simétrica.
-- **Elementos:** ejes propios ortonormales, matriz \(Q\), escalas \(\Lambda\) y una elipse o cuadrícula transformada.
-- **Idea:** Activa **Eigenvectores**: son los ejes de esa descomposición.
-- **Objetivo educativo:** Vas a ver que la descomposición espectral usa autovalores y autovectores.
-- **Interactividad sugerida:** editar una matriz simétrica 2×2 y actualizar la descomposición y figura transformada.
+- **Concepto visual:** \(A=Q\Lambda Q^T\) y \(A=\sum_i\lambda_i q_i q_i^T\) para \(A=A^T\) real.
+- **Elementos:** autovectores ortonormales \(q_i\), espectro con eje cero (signo de \(\lambda\)), \(Q\), \(\Lambda\) y componentes espectrales.
+- **Idea:** Si \(A\) es simétrica real, el teorema espectral garantiza una base ortonormal de autovectores: \(A=Q\Lambda Q^T\).
+- **Objetivo educativo:** Pruébalo — sigue \(Aq_i=\lambda_i q_i\) (inversión si \(\lambda<0\)), recorre \(Q^\top\to\Lambda\to Q\) y construye \(A\) sumando \(\lambda_i q_i q_i^T\).
+- **Interactividad sugerida:** modos Direcciones propias / Diagonalización / Componentes; solo parámetros \(a,b,d\) (simetría forzada); presets definida/indefinida/semidefinida.
 
 ### Fórmulas relacionadas
 
@@ -3719,11 +3719,11 @@ A=U\Sigma V^T
 
 - **Tipo:** `matrix_transform`
 - **Modo:** `svd`
-- **Concepto visual:** SVD como rotación/reflexión → escalamiento → rotación/reflexión.
-- **Elementos:** círculo unitario, estado tras \(V^T\), elipse tras \(\Sigma\) y orientación final tras \(U\).
-- **Idea:** Pulsa el **Paso SVD/QR**: 1) orienta, 2) escala con \(\sigma\), 3) recomponer con \(A\).
-- **Objetivo educativo:** Vas a ver que SVD descompone \(A\) en rotar → escalar → rotar.
-- **Interactividad sugerida:** controles para una matriz 2×2; botones para avanzar por \(V^T\), \(\Sigma\) y \(U\).
+- **Concepto visual:** \(A=U\Sigma V^T\) como orientación ortogonal \(\to\) escalado \(\to\) reorientación (no QR).
+- **Elementos:** dominio/imagen, círculo unitario, \(v_i\), \(\sigma_i\), \(u_i\), y la relación \(Av_i=\sigma_i u_i\).
+- **Idea:** \(A=U\Sigma V^T\) separa orientación (\(V^T\)), escalado axial (\(\Sigma\)) y reorientación (\(U\)).
+- **Objetivo educativo:** Pruébalo — avanza Original \(\to V^T\to\Sigma\to U\). Tras \(V^T\) el círculo sigue círculo; \(\Sigma\) lo convierte en elipse; \(U\) la reorienta.
+- **Interactividad sugerida:** stepper SVD exclusivo; seguir \(v_i\) o un vector \(x\); modos Transformación / Direcciones / Matrices; presets estirar, rotar+estirar, rango 1.
 
 ### Aplicaciones
 
@@ -3766,11 +3766,11 @@ A_k=\sum_{i=1}^{k}\sigma_i u_i v_i^T
 ### Visualización sugerida
 
 - **Tipo:** `matrix_transform`
-- **Concepto visual:** aproximación de bajo rango eliminando componentes singulares pequeñas.
-- **Elementos:** matriz/imagen original, valores singulares ordenados y reconstrucciones \(A_k\) para varios valores de \(k\).
-- **Idea:** Baja \(k\) con **Rango bajo demo**: la malla usa solo el mayor valor singular.
-- **Objetivo educativo:** Vas a ver que quedarte con los \(\sigma\) grandes aproxima \(A\) con poco rango.
-- **Interactividad sugerida:** deslizador de \(k\); actualizar reconstrucción y porcentaje de energía/frobenius capturada cuando esté disponible.
+- **Concepto visual:** \(A_k=\sum_{i\le k}\sigma_i u_i v_i^T\) comparando \(A\), \(A_k\) y \(A-A_k\).
+- **Elementos:** barras \(\sigma_i\) con corte \(k\), capas rank-1, energía conservada, error de Frobenius/espectral y demo de compresión sintética.
+- **Idea:** Se conservan las \(k\) componentes singulares más grandes; el resto se descarta (Eckart–Young–Mirsky).
+- **Objetivo educativo:** Pruébalo — mueve \(k\), construye \(A_k\) por capas y compara energía frente a error. Distingue rango exacto de rango de aproximación.
+- **Interactividad sugerida:** modos Componentes / Geometría / Compresión; presets dos componentes, casi rango 1, espectro gradual; no confundir vectores singulares con autovectores.
 
 ### Fórmulas relacionadas
 
