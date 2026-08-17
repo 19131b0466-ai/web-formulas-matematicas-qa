@@ -527,6 +527,43 @@ export function LUDecompositionViz() {
     setPlaying(true);
   };
 
+  const goPrevStep = () => {
+    setMode('elim');
+    setPlaying(false);
+    setStepIdx((i) => Math.max(0, i - 1));
+  };
+
+  const goNextStep = () => {
+    setMode('elim');
+    setPlaying(false);
+    setStepIdx((i) => {
+      // En el último paso, reinicia (antes «Siguiente» no hacía nada).
+      if (i >= maxStep) return 0;
+      return i + 1;
+    });
+  };
+
+  const atLastStep = stepIdx >= maxStep && steps.length > 0;
+  const nextStep = atLastStep ? steps[0] : steps[Math.min(stepIdx + 1, maxStep)];
+  const nextStepShort = nextStep
+    ? nextStep.kind === 'pivot'
+      ? 'Pivote'
+      : nextStep.kind === 'swap'
+        ? 'Intercambio'
+        : nextStep.kind === 'eliminate'
+          ? 'Eliminar'
+          : 'Listo'
+    : '—';
+
+  const kindShort = (kind: LuStep['kind']) =>
+    kind === 'pivot'
+      ? 'Pivote'
+      : kind === 'swap'
+        ? 'Intercambio'
+        : kind === 'eliminate'
+          ? 'Eliminar'
+          : 'Listo';
+
   const n = rows(A);
   const displayU = mode === 'elim' ? working.U : Ufinal;
   const displayL = mode === 'elim' ? working.Lpartial : L;
@@ -555,7 +592,7 @@ export function LUDecompositionViz() {
         <div id={guideId}>
           <GuideBlock
             idea="U es el resultado de la eliminación gaussiana; L almacena los multiplicadores mᵢₖ bajo la diagonal (diag L = 1)."
-            tryIt="Recorre los pasos de pivote / intercambio / eliminación, o pulsa «Reproducir eliminación». Cambia b en Resolver sin refactorizar."
+            tryIt="En Eliminación: Paso k/N (pivote → eliminar → … → listo). Usa Siguiente o el reproductor. Cambia b en Resolver sin refactorizar."
             concept="PA = LU · P permuta filas · resolvemos Ly = Pb y luego Ux = y."
           />
         </div>
@@ -585,10 +622,16 @@ export function LUDecompositionViz() {
 
         {mode === 'elim' ? (
           <>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-medium text-[var(--fg-muted)]">
-                Paso {Math.min(stepIdx + 1, steps.length)} / {steps.length || 1}
-              </span>
+            <div className="space-y-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-sm font-medium text-[var(--fg)]">
+                  Paso {Math.min(stepIdx + 1, steps.length || 1)} de {steps.length || 1}:{' '}
+                  <span className="text-[var(--accent-strong)]">
+                    {currentStep ? kindShort(currentStep.kind) : '—'}
+                  </span>
+                </p>
+                <Badge tone="neutral">pivote → eliminar → L/U</Badge>
+              </div>
               <div className="flex flex-wrap gap-1">
                 {steps.map((s, i) => (
                   <button
@@ -598,30 +641,31 @@ export function LUDecompositionViz() {
                       setStepIdx(i);
                       setPlaying(false);
                     }}
-                    className={`rounded-md border px-2 py-0.5 text-[10px] font-mono transition-colors ${
+                    className={`rounded-md border px-2 py-1 text-[11px] font-medium transition-colors ${
                       i === stepIdx
                         ? 'border-[var(--accent-strong)] bg-[var(--accent-soft)] text-[var(--fg)]'
                         : 'border-[var(--border)] text-[var(--fg-muted)] hover:border-[var(--accent-strong)]/40'
                     }`}
                     title={s.message}
                   >
-                    {s.kind === 'pivot'
-                      ? 'piv'
-                      : s.kind === 'swap'
-                        ? 'swap'
-                        : s.kind === 'eliminate'
-                          ? 'elim'
-                          : 'done'}
+                    {i + 1}. {kindShort(s.kind)}
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-[var(--fg-muted)]">
+                Pulsa un paso del recorrido, o usa Anterior / Siguiente. U es la matriz de trabajo; L guarda
+                multiplicadores.
+              </p>
             </div>
 
-            <p className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--fg)]">
+            <p
+              className="rounded-md border border-[var(--accent-soft)] bg-[var(--accent-soft)]/40 px-3 py-2 text-sm leading-relaxed text-[var(--fg)]"
+              aria-live="polite"
+            >
               {stepLabel}
               {mik != null && currentStep?.kind === 'eliminate' ? (
-                <span className="ml-2 font-mono text-[var(--fg-muted)]">
-                  · m = {formatNum(mik)} · R{((currentStep.targetRow ?? 0) + 1)} ← R
+                <span className="mt-1 block font-mono text-xs text-[var(--fg-muted)]">
+                  m = {formatNum(mik)} · R{(currentStep.targetRow ?? 0) + 1} ← R
                   {(currentStep.targetRow ?? 0) + 1} − m R{(currentStep.pivotRow ?? 0) + 1}
                 </span>
               ) : null}
@@ -742,27 +786,37 @@ export function LUDecompositionViz() {
 
         <ControlsStack>
           <ButtonRow>
-            <VizButton active onClick={startPlay} disabled={playing}>
+            <VizButton active={playing} onClick={startPlay} disabled={playing}>
               {playing ? 'Reproduciendo…' : '▶ Reproducir eliminación'}
             </VizButton>
-            <VizButton
-              onClick={() => {
-                setMode('elim');
-                setStepIdx((i) => Math.min(i + 1, maxStep));
-                setPlaying(false);
-              }}
-            >
-              Siguiente paso
-            </VizButton>
-            <VizButton
-              onClick={() => {
-                setStepIdx(0);
-                setPlaying(false);
-              }}
-            >
-              Reiniciar
-            </VizButton>
+            {mode === 'elim' ? (
+              <>
+                <VizButton onClick={goPrevStep} disabled={stepIdx === 0 || playing}>
+                  Anterior
+                </VizButton>
+                <VizButton onClick={goNextStep} disabled={playing}>
+                  {atLastStep ? 'Reiniciar (paso 1)' : `Siguiente: ${nextStepShort}`}
+                </VizButton>
+              </>
+            ) : (
+              <VizButton
+                onClick={() => {
+                  setMode('elim');
+                  setStepIdx(0);
+                  setPlaying(false);
+                }}
+              >
+                Ir a Eliminación
+              </VizButton>
+            )}
           </ButtonRow>
+          {mode === 'elim' && !playing ? (
+            <p className="text-xs text-[var(--fg-muted)]">
+              {atLastStep
+                ? 'Ya estás en el último paso (Listo). «Reiniciar» vuelve al pivote inicial.'
+                : `«Siguiente» avanza al paso «${nextStepShort}» y actualiza U, L y P.`}
+            </p>
+          ) : null}
 
           <CollapsibleEdit
             label={`Editar A (${n}×${n})`}
