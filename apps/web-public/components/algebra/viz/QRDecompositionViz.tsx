@@ -81,6 +81,17 @@ const STEP_OPTS: Array<{ id: BuildStep; label: string }> = [
   { id: 'QR', label: 'QR' },
 ];
 
+const BUILD_ORDER: BuildStep[] = STEP_OPTS.map((o) => o.id);
+
+function stepIndex(step: BuildStep): number {
+  const i = BUILD_ORDER.indexOf(step);
+  return i < 0 ? 0 : i;
+}
+
+function stepLabel(step: BuildStep): string {
+  return STEP_OPTS.find((o) => o.id === step)?.label ?? step;
+}
+
 const TRANSFORM_OPTS: Array<{ id: TransformPhase; label: string }> = [
   { id: 'orig', label: 'Original' },
   { id: 'R', label: 'R' },
@@ -417,16 +428,15 @@ export function QRDecompositionViz() {
       setStep('QR');
       return;
     }
-    const order: BuildStep[] = ['A', 'q1', 'proj', 'q2', 'R', 'QR'];
-    let idx = Math.max(0, order.indexOf(step));
+    let idx = Math.max(0, stepIndex(step));
     playRef.current = setInterval(() => {
       idx += 1;
-      if (idx >= order.length) {
+      if (idx >= BUILD_ORDER.length) {
         setPlaying(false);
         setStep('QR');
         return;
       }
-      setStep(order[idx]!);
+      setStep(BUILD_ORDER[idx]!);
     }, 900);
     return () => {
       if (playRef.current) clearInterval(playRef.current);
@@ -439,6 +449,28 @@ export function QRDecompositionViz() {
     setStep('A');
     setPlaying(true);
   };
+
+  const goPrevStep = () => {
+    setMode('build');
+    setPlaying(false);
+    setStep((s) => BUILD_ORDER[Math.max(0, stepIndex(s) - 1)]!);
+  };
+
+  const goNextStep = () => {
+    setMode('build');
+    setPlaying(false);
+    setStep((s) => {
+      const i = stepIndex(s);
+      // En el último paso, reinicia el recorrido (antes «Siguiente» no hacía nada).
+      if (i >= BUILD_ORDER.length - 1) return 'A';
+      return BUILD_ORDER[i + 1]!;
+    });
+  };
+
+  const stepIdx = stepIndex(step);
+  const atLastStep = stepIdx >= BUILD_ORDER.length - 1;
+  const nextStepId = atLastStep ? 'A' : BUILD_ORDER[stepIdx + 1]!;
+  const nextStepName = stepLabel(nextStepId);
 
   const emphasize =
     hoverR === 'r11'
@@ -541,7 +573,7 @@ export function QRDecompositionViz() {
       <div className="space-y-3">
         <GuideBlock
           idea="QR construye una base ortonormal de Col(A); R guarda las coordenadas de las columnas de A en esa base."
-          tryIt="Avanza A → q₁ → proyección → q₂ → R → QR, o pulsa «Ver QR paso a paso». Prueba el preset Dependientes."
+          tryIt="En Construcción: Paso 1/6…6/6 (A → q₁ → proyección → q₂ → R → QR). Usa Siguiente o el reproductor. Prueba el preset Dependientes."
           concept="A = QR · Q tiene columnas ortonormales (no solo una «rotación») · R es triangular superior."
         />
 
@@ -569,14 +601,26 @@ export function QRDecompositionViz() {
         </ChipRow>
 
         {mode === 'build' ? (
-          <Segmented
-            options={STEP_OPTS}
-            value={step}
-            onChange={(id) => {
-              setStep(id as BuildStep);
-              setPlaying(false);
-            }}
-          />
+          <div className="space-y-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-sm font-medium text-[var(--fg)]">
+                Paso {stepIdx + 1} de {BUILD_ORDER.length}:{' '}
+                <span className="text-[var(--accent-strong)]">{stepLabel(step)}</span>
+              </p>
+              <Badge tone="neutral">A → q₁ → proyección → q₂ → R → QR</Badge>
+            </div>
+            <Segmented
+              options={STEP_OPTS}
+              value={step}
+              onChange={(id) => {
+                setStep(id as BuildStep);
+                setPlaying(false);
+              }}
+            />
+            <p className="text-xs text-[var(--fg-muted)]">
+              Pulsa un paso del recorrido, o usa Anterior / Siguiente. El gráfico cambia qué vectores se muestran.
+            </p>
+          </div>
         ) : null}
 
         {mode === 'transform' ? (
@@ -914,43 +958,80 @@ export function QRDecompositionViz() {
         ) : null}
 
         {stepHint ? (
-          <p className="text-sm leading-relaxed text-[var(--fg-muted)]">{stepHint}</p>
+          <p
+            className="rounded-md border border-[var(--accent-soft)] bg-[var(--accent-soft)]/40 px-3 py-2 text-sm leading-relaxed text-[var(--fg)]"
+            aria-live="polite"
+          >
+            {stepHint}
+          </p>
         ) : null}
 
-        <div className="flex flex-wrap gap-2 text-xs font-mono text-[var(--fg-muted)]">
-          <span>
+        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono text-[var(--fg-muted)]">
+          <span
+            className={
+              step === 'q1' || step === 'R' || step === 'QR' || hoverR === 'r11'
+                ? 'rounded px-1 text-[var(--fg)] ring-1 ring-[var(--accent-strong)]'
+                : undefined
+            }
+          >
             a₁ = r₁₁ q₁ → ({formatNum(r11)}) · q₁
           </span>
           <span className="opacity-40">·</span>
-          <span>
+          <span
+            className={
+              step === 'proj' || step === 'q2' || step === 'R' || step === 'QR' || hoverR === 'r12' || hoverR === 'r22'
+                ? 'rounded px-1 text-[var(--fg)] ring-1 ring-teal-600/50'
+                : undefined
+            }
+          >
             a₂ = r₁₂ q₁ + r₂₂ q₂
             {u2Zero ? ' (r₂₂≈0)' : ''}
           </span>
           <span className="opacity-40">·</span>
-          <span>
+          <span
+            className={
+              step === 'q2' || step === 'QR'
+                ? 'rounded px-1 text-[var(--fg)] ring-1 ring-[var(--border)]'
+                : undefined
+            }
+          >
             q₁·q₂ = {formatNum(vecDot(q1, q2))}
           </span>
         </div>
 
         <ControlsStack>
           <ButtonRow>
-            <VizButton active onClick={startPlay} disabled={playing}>
+            <VizButton active={playing} onClick={startPlay} disabled={playing}>
               {playing ? 'Reproduciendo…' : '▶ Ver QR paso a paso'}
             </VizButton>
-            <VizButton
-              onClick={() => {
-                setStep((s) => {
-                  const order: BuildStep[] = ['A', 'q1', 'proj', 'q2', 'R', 'QR'];
-                  const i = order.indexOf(s);
-                  return order[Math.min(i + 1, order.length - 1)]!;
-                });
-                setMode('build');
-                setPlaying(false);
-              }}
-            >
-              Siguiente
-            </VizButton>
+            {mode === 'build' ? (
+              <>
+                <VizButton onClick={goPrevStep} disabled={stepIdx === 0 || playing}>
+                  Anterior
+                </VizButton>
+                <VizButton onClick={goNextStep} disabled={playing}>
+                  {atLastStep ? 'Reiniciar (A)' : `Siguiente: ${nextStepName}`}
+                </VizButton>
+              </>
+            ) : (
+              <VizButton
+                onClick={() => {
+                  setMode('build');
+                  setStep('A');
+                  setPlaying(false);
+                }}
+              >
+                Ir a Construcción
+              </VizButton>
+            )}
           </ButtonRow>
+          {mode === 'build' && !playing ? (
+            <p className="text-xs text-[var(--fg-muted)]">
+              {atLastStep
+                ? 'Ya estás en el último paso (QR). «Reiniciar» vuelve a las columnas de A.'
+                : `«Siguiente» avanza al paso «${nextStepName}» y actualiza el gráfico.`}
+            </p>
+          ) : null}
 
           <CollapsibleEdit
             label="Editar matriz A (2×2)"
