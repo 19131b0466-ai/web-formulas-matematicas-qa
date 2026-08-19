@@ -436,28 +436,28 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Baja k: la malla usa solo el mayor valor singular (versión simplificada).",
     ),
     "ALG-NOR-001": (
-        "Una norma matricial mide cuánto puede estirar A a un vector.",
-        "Cambia A: σ grandes indican estiramientos fuertes en alguna dirección.",
+        "Vas a ver que una norma matricial inducida mide el mayor estiramiento que A puede producir sobre un vector.",
+        "Mueve x sobre la bola unitaria y observa cómo cambia ‖Ax‖_p. Busca la dirección donde el estiramiento es máximo.",
     ),
     "ALG-NOR-002": (
-        "Frobenius mide el “tamaño” de A sumando todas las entradas al cuadrado.",
-        "Edita A y relaciona entradas grandes con una norma más grande.",
+        "Vas a ver que la norma de Frobenius mide el tamaño global de una matriz: cada entrada aporta su magnitud al cuadrado.",
+        "Edita A y observa cómo cada entrada contribuye a la suma total antes de aplicar la raíz cuadrada.",
     ),
     "ALG-NOR-003": (
-        "La norma 1 se liga a sumas de columnas.",
-        "Haz una columna mucho mayor: esa norma crece con ella.",
+        "Vas a ver que la norma 1 de una matriz es la mayor suma absoluta de sus columnas.",
+        "Edita las entradas de A y observa cómo cambia la suma de cada columna. La columna con mayor suma determina ‖A‖₁.",
     ),
     "ALG-NOR-004": (
-        "La norma infinito se liga a sumas de filas.",
-        "Haz una fila dominante y observa el efecto sobre el tamaño de A.",
+        "Vas a ver que la norma infinito de una matriz es la mayor suma absoluta de sus filas.",
+        "Edita las entradas de A y observa cómo cambia la suma de cada fila. La fila con mayor suma determina ‖A‖∞.",
     ),
     "ALG-NOR-005": (
-        "La norma espectral es el mayor estiramiento (σ₁).",
-        "Mira la elipse de valores singulares: el eje largo es ese estiramiento.",
+        "Vas a ver que la norma espectral es el mayor estiramiento que A puede producir sobre un vector unitario.",
+        "Mueve x sobre el círculo unitario y compara ‖Ax‖₂. Encuentra la dirección donde el estiramiento es máximo.",
     ),
     "ALG-NOR-006": (
-        "‖AB‖ ≤ ‖A‖‖B‖: el tamaño del producto no supera el producto de tamaños.",
-        "Compara visualmente cuánto estira A frente a transformaciones encadenadas.",
+        "Vas a ver por qué encadenar dos transformaciones no puede amplificar más que el producto de sus máximos estiramientos.",
+        "Mueve el vector x o modifica A y B. Compara ‖ABx‖ con ‖A‖·‖B‖·‖x‖.",
     ),
     "ALG-NOR-007": (
         "El número de condición dice si un sistema es sensible a errores.",

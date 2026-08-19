@@ -13,6 +13,9 @@ import { QRDecompositionViz } from './QRDecompositionViz';
 import { SpectralDecompositionViz } from './SpectralDecompositionViz';
 import { SVDViz } from './SVDViz';
 import { LowRankApproxViz } from './LowRankApproxViz';
+import { InducedMatrixNormVisualizer } from './InducedMatrixNormVisualizer';
+import { SpectralNormVisualizer } from './SpectralNormVisualizer';
+import { SubmultiplicativityVisualizer } from './SubmultiplicativityVisualizer';
 import { MatrixTransformVizLegacy } from './MatrixTransformVizLegacy';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
@@ -36,6 +39,9 @@ export function MatrixTransformViz({ formulaId, idea, mode }: Props) {
   if (formulaId.includes('DEC-003')) return <SpectralDecompositionViz />;
   if (formulaId.includes('DEC-004') || mode === 'svd') return <SVDViz />;
   if (formulaId.includes('DEC-005') || mode === 'low_rank') return <LowRankApproxViz />;
+  if (formulaId.includes('NOR-001')) return <InducedMatrixNormVisualizer />;
+  if (formulaId.includes('NOR-005')) return <SpectralNormVisualizer />;
+  if (formulaId.includes('NOR-006')) return <SubmultiplicativityVisualizer />;
 
   return <MatrixTransformVizLegacy formulaId={formulaId} idea={idea} mode={mode} />;
 }

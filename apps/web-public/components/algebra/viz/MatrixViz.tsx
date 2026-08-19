@@ -25,6 +25,9 @@ import { CharacteristicEquationViz } from './CharacteristicEquationViz';
 import { PseudoinverseViz } from './PseudoinverseViz';
 import { NormalEquationsViz } from './NormalEquationsViz';
 import { LUDecompositionViz } from './LUDecompositionViz';
+import { FrobeniusNormVisualizer } from './FrobeniusNormVisualizer';
+import { MatrixOneNormVisualizer } from './MatrixOneNormVisualizer';
+import { InfinityMatrixNormVisualizer } from './MatrixOneNormVisualizer';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -152,6 +155,9 @@ export function MatrixViz({ formulaId, mode: modeProp }: Props) {
   if (formulaId.includes('LSQ-002')) return <NormalEquationsViz />;
   if (formulaId.includes('LSQ-003')) return <PseudoinverseViz />;
   if (formulaId.includes('DEC-001') || modeProp === 'lu') return <LUDecompositionViz />;
+  if (formulaId.includes('NOR-002')) return <FrobeniusNormVisualizer />;
+  if (formulaId.includes('NOR-003')) return <MatrixOneNormVisualizer />;
+  if (formulaId.includes('NOR-004')) return <InfinityMatrixNormVisualizer />;
 
   return <MatrixVizInner formulaId={formulaId} mode={modeProp} />;
 }
