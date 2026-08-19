@@ -520,8 +520,8 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Elige p y a, avanza potencia por potencia y observa dónde cae cada residuo.",
     ),
     "ALG-EST-006": (
-        "En un cuerpo finito, suma y producto se envuelven módulo p.",
-        "Elige p y abre las tablas + / ·; pulsa una celda para ver el resultado e inverso.",
+        "Vas a explorar cómo se comportan la suma y el producto dentro de 𝔽ₚ. Como p es primo, cada elemento distinto de 0 tiene inverso multiplicativo.",
+        "Selecciona una fila y una columna para calcular la operación, o busca el 0 y el 1 para descubrir opuestos e inversos.",
     ),
     "ALG-COD-001": (
         "Un código lineal es un subespacio: sumar palabras de código da otra palabra de código.",

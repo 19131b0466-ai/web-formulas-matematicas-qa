@@ -164,4 +164,31 @@ assert(mod(17 - 3, 7) === 0, '7|14');
 assert(mod(17, 7) !== mod(5, 7), '17≢5 mod7');
 assert(mod(-4, 7) === mod(3, 7), '-4≡3 mod7');
 
+// Finite field tests
+function addMod(a, b, p) { return mod(a + b, p); }
+function multiplyMod(a, b, p) { return mod(a * b, p); }
+function additiveInverse(a, p) { return mod(-a, p); }
+
+assert(addMod(2, 3, 5) === 0, 'F5 sum 2+3');
+assert(multiplyMod(2, 3, 5) === 1, 'F5 prod 2*3');
+assert(additiveInverse(2, 5) === 3, 'F5 opposite of 2');
+assert(modInverse(2, 5) === 3, 'F5 inv 2');
+assert(modInverse(1, 5) === 1, 'F5 inv 1');
+assert(modInverse(3, 5) === 2, 'F5 inv 3');
+assert(modInverse(4, 5) === 4, 'F5 inv 4');
+assert(modInverse(2, 6) === null, 'no inv 2 mod 6');
+assert(multiplyMod(2, 3, 6) === 0, '2*3 mod 6 zero divisor');
+
+for (let a = 0; a < 5; a++) {
+  for (let b = 0; b < 5; b++) {
+    assert(addMod(a, b, 5) >= 0 && addMod(a, b, 5) < 5, 'F5 add closure');
+    assert(multiplyMod(a, b, 5) >= 0 && multiplyMod(a, b, 5) < 5, 'F5 mul closure');
+  }
+}
+for (let a = 1; a < 5; a++) {
+  for (let b = 1; b < 5; b++) {
+    assert(multiplyMod(a, b, 5) !== 0, 'F5 no zero divisors');
+  }
+}
+
 console.log('\nAll modMath tests passed.');

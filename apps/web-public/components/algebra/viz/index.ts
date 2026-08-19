@@ -72,6 +72,7 @@ export { ModularOperationsVisualizer } from './ModularOperationsVisualizer';
 export { ModularInverseVisualizer } from './ModularInverseVisualizer';
 export { ChineseRemainderTheoremVisualizer } from './ChineseRemainderTheoremVisualizer';
 export { FermatLittleTheoremVisualizer } from './FermatLittleTheoremVisualizer';
+export { PrimeFiniteFieldVisualizer } from './PrimeFiniteFieldVisualizer';
 export { FiniteFieldViz } from './FiniteFieldViz';
 export { PolynomialSurfaceViz } from './PolynomialSurfaceViz';
 export { MultivariablePolyViz } from './MultivariablePolyViz';

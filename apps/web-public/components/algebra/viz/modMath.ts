@@ -2,6 +2,11 @@
 
 export const FERMAT_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19] as const;
 
+/** Primes used in finite-field Cayley table visualizations. */
+export const FIELD_PRIMES = [2, 3, 5, 7, 11, 13] as const;
+
+export type CayleyOp = 'add' | 'mul';
+
 export function mod(n: number, m: number): number {
   if (m <= 0) return 0;
   return ((n % m) + m) % m;
@@ -251,4 +256,60 @@ export function bezoutFromEuclid(a: number, m: number): { g: number; x: number; 
   const steps = buildEuclidSteps(m, mod(a, m));
   const { g, x, y } = extendedGCD(mod(a, m), m);
   return { g, x, y, steps };
+}
+
+export function addMod(a: number, b: number, p: number): number {
+  return mod(a + b, p);
+}
+
+export function multiplyMod(a: number, b: number, p: number): number {
+  return mod(a * b, p);
+}
+
+export function additiveInverse(a: number, p: number): number {
+  return mod(-a, p);
+}
+
+export function buildCayleyTable(op: CayleyOp, p: number): number[][] {
+  return Array.from({ length: p }, (_, i) =>
+    Array.from({ length: p }, (_, j) => (op === 'add' ? addMod(i, j, p) : multiplyMod(i, j, p))),
+  );
+}
+
+export type InversePair = { a: number; inv: number };
+
+export function buildMultiplicativeInverses(p: number): InversePair[] {
+  const pairs: InversePair[] = [];
+  for (let a = 1; a < p; a++) {
+    const inv = modInverse(a, p);
+    if (inv !== null) pairs.push({ a, inv });
+  }
+  return pairs;
+}
+
+/** Unique undirected pairs for visual mapping (a ≤ inv). */
+export function uniqueInversePairs(p: number): InversePair[] {
+  const pairs: InversePair[] = [];
+  for (let a = 1; a < p; a++) {
+    const inv = modInverse(a, p);
+    if (inv !== null && a <= inv) pairs.push({ a, inv });
+  }
+  return pairs;
+}
+
+export function fieldElements(p: number): number[] {
+  return Array.from({ length: p }, (_, i) => i);
+}
+
+export function formatFieldLabel(p: number): string {
+  const sub = String(p)
+    .split('')
+    .map((d) => '₀₁₂₃₄₅₆₇₈₉'[Number(d)] ?? d)
+    .join('');
+  return `𝔽${sub}`;
+}
+
+export function formatFieldSet(p: number): string {
+  const els = fieldElements(p).join(',');
+  return `${formatFieldLabel(p)} = {${els}}`;
 }
