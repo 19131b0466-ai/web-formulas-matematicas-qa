@@ -125,6 +125,17 @@ export function BooleanAbsorptionVisualizer() {
 
   const activeStep = tab === 'or' ? orStep : tab === 'and' ? andStep : 0;
   const steps = tab === 'and' ? AND_STEPS : OR_STEPS;
+  const atLastStep = activeStep >= steps.length - 1;
+
+  const advanceStep = () => {
+    if (tab === 'or') setOrStep((s) => Math.min(s + 1, OR_STEPS.length - 1));
+    else setAndStep((s) => Math.min(s + 1, AND_STEPS.length - 1));
+  };
+
+  const resetStep = () => {
+    if (tab === 'or') setOrStep(0);
+    else setAndStep(0);
+  };
 
   return (
     <VizPanel title="Absorción booleana" caption={caption}>
@@ -254,15 +265,10 @@ export function BooleanAbsorptionVisualizer() {
           />
           <ControlsStack>
             <ButtonRow>
-              <VizButton
-                onClick={() =>
-                  tab === 'or'
-                    ? setOrStep((s) => (s + 1) % OR_STEPS.length)
-                    : setAndStep((s) => (s + 1) % AND_STEPS.length)
-                }
-              >
+              <VizButton onClick={advanceStep} disabled={atLastStep}>
                 Siguiente paso
               </VizButton>
+              {activeStep > 0 ? <VizButton onClick={resetStep}>Reiniciar</VizButton> : null}
             </ButtonRow>
           </ControlsStack>
         </div>

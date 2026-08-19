@@ -500,24 +500,24 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Compara F y G fila por fila. Si aparece una sola diferencia, ya tienes un contraejemplo y las expresiones no son equivalentes.",
     ),
     "ALG-MOD-001": (
-        "a y b son congruentes módulo m si caen en el mismo “tick” del reloj.",
-        "Mueve a y b: el texto dice si a ≡ b (mod m) cuando comparten marca.",
+        "Vas a ver que dos enteros son congruentes módulo m cuando, al reducirlos, caen en el mismo residuo.",
+        "Cambia a y b: si ambos llegan al mismo punto del reloj, entonces a ≡ b (mod m).",
     ),
     "ALG-MOD-002": (
-        "Sumar y multiplicar módulo m es operar y volver al reloj 0…m−1.",
-        "Cambia a, b y m: las marcas muestran a+b y a·b en el círculo.",
+        "Vas a ver que operar módulo m significa hacer la operación y quedarte con el residuo al dividir entre m.",
+        "Cambia a, b y m y observa cómo la suma o el producto vuelven al reloj de residuos 0,…,m−1.",
     ),
     "ALG-MOD-003": (
-        "El inverso de a módulo m existe solo si gcd(a, m) = 1.",
-        "Prueba varios a: si no hay inverso, el texto lo indica.",
+        "Vas a buscar el residuo que, al multiplicarse por a, produce 1 módulo m. Ese residuo es el inverso modular de a.",
+        "Cambia el candidato y observa cuándo a·x mod m llega exactamente a 1.",
     ),
     "ALG-MOD-005": (
-        "El teorema chino combina dos relojes (m y m₂) en una solución x.",
-        "Ajusta a, b, m y m₂: cuando existe, aparece el x que cumple ambos restos.",
+        "Vas a sincronizar dos relojes modulares: buscamos un mismo x que deje el residuo a módulo m₁ y el residuo b módulo m₂.",
+        "Cambia los módulos y residuos y observa dónde coinciden ambas secuencias.",
     ),
     "ALG-MOD-006": (
-        "Fermat: si p es primo y p no divide a, entonces a^(p−1) ≡ 1 (mod p).",
-        "Con m primo, mira a^(p−1) en el caption; debería ser 1 si gcd(a,p)=1.",
+        "Vas a ver cómo las potencias de a recorren residuos módulo p. Si p es primo y a no es múltiplo de p, Fermat garantiza que en el exponente p−1 el resultado es 1.",
+        "Elige p y a, avanza potencia por potencia y observa dónde cae cada residuo.",
     ),
     "ALG-EST-006": (
         "En un cuerpo finito, suma y producto se envuelven módulo p.",

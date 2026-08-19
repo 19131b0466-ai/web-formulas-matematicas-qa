@@ -144,8 +144,21 @@ export function DeMorganVisualizer() {
     return null;
   }, [vectors, assignments]);
 
+  const showNegation = step >= 2;
   const showTransform = step >= 3;
   const showResult = step >= 4;
+
+  const advanceStep = () => {
+    if (tab === 'or') setOrStep((s) => Math.min(s + 1, OR_STEPS.length - 1));
+    else setAndStep((s) => Math.min(s + 1, AND_STEPS.length - 1));
+  };
+
+  const resetStep = () => {
+    if (tab === 'or') setOrStep(0);
+    else setAndStep(0);
+  };
+
+  const atLastStep = step >= steps.length - 1;
 
   const caption = joinCaption(
     `A=${A}, B=${B}`,
@@ -200,7 +213,13 @@ export function DeMorganVisualizer() {
                     : `¬(${step >= 1 ? `${A}∨${B}=${aOrB}` : 'A∨B'})`}
                 </span>
               }
-              subtitle={showResult ? `= ${live.left}` : law.orig}
+              subtitle={
+                showResult
+                  ? `= ${live.left}`
+                  : showNegation
+                    ? `= ${live.left}`
+                    : law.orig
+              }
               tone={showResult && live.ok ? 'ok' : 'neutral'}
             />
             <ResultBox
@@ -216,12 +235,12 @@ export function DeMorganVisualizer() {
                   law.trans
                 )
               }
-              subtitle={showResult ? `= ${live.right}` : 'Tras cruzar ¬'}
+              subtitle={showResult ? `= ${live.right}` : showTransform ? 'Literales negados' : 'Tras cruzar ¬'}
               tone={showResult && live.ok ? 'ok' : 'neutral'}
             />
           </div>
 
-          {step >= 2 ? (
+          {showTransform ? (
             <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-sm">
               <Badge tone="neutral">A → ¬A = {notA}</Badge>
               <Badge tone="neutral">B → ¬B = {notB}</Badge>
@@ -241,15 +260,10 @@ export function DeMorganVisualizer() {
           />
           <ControlsStack>
             <ButtonRow>
-              <VizButton
-                onClick={() =>
-                  tab === 'or'
-                    ? setOrStep((s) => (s + 1) % OR_STEPS.length)
-                    : setAndStep((s) => (s + 1) % AND_STEPS.length)
-                }
-              >
+              <VizButton onClick={advanceStep} disabled={atLastStep}>
                 Siguiente paso
               </VizButton>
+              {step > 0 ? <VizButton onClick={resetStep}>Reiniciar</VizButton> : null}
             </ButtonRow>
           </ControlsStack>
         </div>

@@ -167,7 +167,7 @@ export function StepperBar({
     <div className="flex flex-wrap gap-1">
       {steps.map((s, i) => (
         <button
-          key={s}
+          key={`step-${i}`}
           type="button"
           onClick={() => onStep?.(i)}
           className={`rounded-md border px-2 py-1 text-xs transition-colors ${
