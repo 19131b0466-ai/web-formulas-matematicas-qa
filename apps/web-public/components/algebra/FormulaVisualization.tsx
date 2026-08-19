@@ -23,6 +23,7 @@ import {
   VectorSpaceViz,
   VectorViz,
 } from './viz';
+import { DeMorganVisualizer } from './viz/DeMorganVisualizer';
 
 type Props = {
   formulaId: string;
@@ -72,7 +73,11 @@ export function FormulaVisualization({ formulaId, visual, title }: Props) {
       body = <TruthTableViz formulaId={formulaId} mode={mode} />;
       break;
     case 'logic_gate':
-      body = <LogicGateViz formulaId={formulaId} />;
+      body = formulaId.includes('BOO-004') ? (
+        <DeMorganVisualizer />
+      ) : (
+        <LogicGateViz formulaId={formulaId} />
+      );
       break;
     case 'modular_clock':
       body = <ModularClockViz formulaId={formulaId} mode={mode} />;
