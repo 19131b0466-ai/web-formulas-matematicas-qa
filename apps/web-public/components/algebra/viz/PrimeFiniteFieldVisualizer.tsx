@@ -28,13 +28,18 @@ type Tab = 'add' | 'mul' | 'inverses';
 type OpTab = 'add' | 'mul';
 
 const PRESETS = [
-  { p: 2, label: '𝔽₂' },
-  { p: 3, label: '𝔽₃' },
-  { p: 5, label: '𝔽₅' },
-  { p: 7, label: '𝔽₇' },
+  { p: 2, row: 1, col: 1, label: '𝔽₂' },
+  { p: 3, row: 1, col: 2, label: '𝔽₃' },
+  { p: 5, row: 2, col: 3, label: '𝔽₅' },
+  { p: 7, row: 3, col: 4, label: '𝔽₇' },
   { p: 5, row: 2, col: 3, tab: 'mul' as Tab, label: '2⁻¹=3' },
   { p: 5, row: 2, col: 3, tab: 'add' as Tab, label: 'opuesto e inverso' },
 ];
+
+function clampSelection(row: number, col: number, modulus: number): [number, number] {
+  const max = Math.max(0, modulus - 1);
+  return [Math.min(Math.max(0, row), max), Math.min(Math.max(0, col), max)];
+}
 
 export function PrimeFiniteFieldVisualizer() {
   const [p, setP] = useState(5);
@@ -56,9 +61,9 @@ export function PrimeFiniteFieldVisualizer() {
   const mulTable = useMemo(() => buildCayleyTable('mul', p), [p]);
   const table = tab === 'add' ? addTable : mulTable;
 
-  const [row, col] = sel;
+  const [row, col] = clampSelection(sel[0], sel[1], p);
   const raw = tab === 'add' ? row + col : row * col;
-  const result = table[row]![col]!;
+  const result = table[row]?.[col] ?? 0;
   const { q } = quotientRemainder(raw, p);
 
   const invPairs = useMemo(() => buildMultiplicativeInverses(p), [p]);
@@ -98,6 +103,13 @@ export function PrimeFiniteFieldVisualizer() {
     setIsSearching(false);
     setSearchCol(0);
   }, [tab, p]);
+
+  useEffect(() => {
+    setSel(([r, c]) => {
+      const next = clampSelection(r, c, p);
+      return r === next[0] && c === next[1] ? [r, c] : next;
+    });
+  }, [p]);
 
   useEffect(() => {
     if (!isSearching) return;
@@ -157,7 +169,11 @@ export function PrimeFiniteFieldVisualizer() {
             <select
               className="rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1 font-mono"
               value={p}
-              onChange={(e) => setP(Number(e.target.value))}
+              onChange={(e) => {
+                const next = Number(e.target.value);
+                setP(next);
+                setSel(([r, c]) => clampSelection(r, c, next));
+              }}
             >
               {FIELD_PRIMES.map((n) => (
                 <option key={n} value={n}>
@@ -188,7 +204,7 @@ export function PrimeFiniteFieldVisualizer() {
             p={p}
             table={table}
             tab={tab}
-            sel={sel}
+            sel={[row, col]}
             onSelect={setSel}
             identity={identity}
             showIdentity={showIdentity}
@@ -203,11 +219,17 @@ export function PrimeFiniteFieldVisualizer() {
             p={p}
             tab={tab}
             row={row}
-            col={isSearching ? searchCol : col}
-            raw={tab === 'add' ? row + (isSearching ? searchCol : col) : row * (isSearching ? searchCol : col)}
-            result={table[row]![isSearching ? searchCol : col]!}
+            col={isSearching ? Math.min(searchCol, p - 1) : col}
+            raw={
+              tab === 'add'
+                ? row + (isSearching ? Math.min(searchCol, p - 1) : col)
+                : row * (isSearching ? Math.min(searchCol, p - 1) : col)
+            }
+            result={table[row]?.[isSearching ? Math.min(searchCol, p - 1) : col] ?? 0}
             q={quotientRemainder(
-              tab === 'add' ? row + (isSearching ? searchCol : col) : row * (isSearching ? searchCol : col),
+              tab === 'add'
+                ? row + (isSearching ? Math.min(searchCol, p - 1) : col)
+                : row * (isSearching ? Math.min(searchCol, p - 1) : col),
               p,
             ).q}
             propertyNote={propertyNote}
@@ -240,7 +262,7 @@ export function PrimeFiniteFieldVisualizer() {
                 onClick={() => {
                   setP(pr.p);
                   if (pr.tab) setTab(pr.tab);
-                  if (pr.row !== undefined && pr.col !== undefined) setSel([pr.row, pr.col]);
+                  setSel(clampSelection(pr.row ?? sel[0], pr.col ?? sel[1], pr.p));
                 }}
               >
                 {pr.label}
