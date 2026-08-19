@@ -524,32 +524,32 @@ COPY_ES: dict[str, tuple[str, str]] = {
         "Selecciona una fila y una columna para calcular la operación, o busca el 0 y el 1 para descubrir opuestos e inversos.",
     ),
     "ALG-COD-001": (
-        "Un código lineal es un subespacio: sumar palabras de código da otra palabra de código.",
-        "Lee la lista de codewords: su suma permanece dentro del conjunto.",
+        "Vas a ver por qué un código lineal es un subespacio: contiene el vector cero y permanece cerrado al sumar palabras y multiplicarlas por escalares.",
+        "Pruébalo — Selecciona dos palabras del código y súmalas. El resultado seguirá perteneciendo a C.",
     ),
     "ALG-COD-002": (
-        "La matriz generadora G fabrica palabras de código a partir de mensajes.",
-        "Edita bits/entradas y piensa cada fila de G como un patrón base del código.",
+        "Vas a ver cómo la matriz generadora convierte un mensaje de k símbolos en una palabra código de n símbolos.",
+        "Pruébalo — Cambia los bits del mensaje y observa cómo cada 1 activa una fila de G. La suma de las filas seleccionadas produce la palabra código.",
     ),
     "ALG-COD-003": (
-        "H comprueba paridad: las palabras válidas cumplen H c = 0.",
-        "Invierte un bit y relaciona el fallo con un síndrome no nulo (en COD-004).",
+        "Vas a ver cómo cada fila de H define una comprobación de paridad. Una palabra código es válida cuando todas dan cero.",
+        "Pruébalo — Cambia los bits de la palabra y observa qué comprobaciones se cumplen, cuáles fallan y cómo cambia el síndrome.",
     ),
     "ALG-COD-004": (
-        "El síndrome señala (en códigos simples) dónde está el bit erróneo.",
-        "Elige la posición del error: el síndrome s cambia al instante.",
+        "Vas a ver cómo el síndrome resume qué comprobaciones de paridad incumple una palabra recibida.",
+        "Pruébalo — Introduce un error en un bit y observa qué columna de H aparece como síndrome. Para un único error, esa información permite localizarlo.",
     ),
     "ALG-COD-005": (
-        "La distancia de Hamming cuenta en cuántas posiciones difieren dos palabras.",
-        "Edita las dos cadenas: los bits distintos se resaltan y d_H se actualiza.",
+        "Vas a ver cómo la distancia de Hamming cuenta posición por posición dónde dos palabras son distintas, y cómo el peso cuenta sus símbolos no nulos.",
+        "Pruébalo — Cambia los bits de x e y: las diferencias se resaltan y la distancia se actualiza al instante.",
     ),
     "ALG-COD-006": (
-        "Con distancia mínima d puedes detectar/corregir una cantidad limitada de errores.",
-        "Mueve d_min: el radio de corrección t = ⌊(d−1)/2⌋ cambia con él.",
+        "Vas a ver cómo la separación mínima entre palabras código determina cuántos errores podemos detectar y corregir con garantía.",
+        "Pruébalo — Cambia d_min y observa cómo cambian el número de errores detectables y el radio de corrección.",
     ),
     "ALG-COD-007": (
-        "La tasa k/n mide cuánta información útil llevas frente a la longitud total.",
-        "Ajusta n y k: la barra muestra la parte de mensaje frente a la de redundancia.",
+        "Vas a ver qué fracción de una palabra codificada corresponde a información independiente.",
+        "Pruébalo — Cambia n y k: observa cómo se reparte la palabra entre k símbolos de información y n−k símbolos de redundancia.",
     ),
 }
 

@@ -28,6 +28,8 @@ import { LUDecompositionViz } from './LUDecompositionViz';
 import { FrobeniusNormVisualizer } from './FrobeniusNormVisualizer';
 import { MatrixOneNormVisualizer } from './MatrixOneNormVisualizer';
 import { InfinityMatrixNormVisualizer } from './MatrixOneNormVisualizer';
+import { GeneratorMatrixVisualizer } from './GeneratorMatrixVisualizer';
+import { ParityCheckMatrixVisualizer } from './ParityCheckMatrixVisualizer';
 
 type Props = { formulaId: string; idea?: string; mode?: string };
 
@@ -123,6 +125,8 @@ function lu2(m: Mat2): [Mat2, Mat2] | null {
 }
 
 export function MatrixViz({ formulaId, mode: modeProp }: Props) {
+  if (formulaId.includes('COD-002')) return <GeneratorMatrixVisualizer />;
+  if (formulaId.includes('COD-003')) return <ParityCheckMatrixVisualizer />;
   if (formulaId.includes('POL-011')) {
     return <SylvesterResultantViz />;
   }
