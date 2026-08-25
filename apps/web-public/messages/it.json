@@ -58,7 +58,8 @@
     "privacy": "Privacy",
     "terms": "Termini e condizioni",
     "about": "Chi siamo",
-    "contact": "Contatti"
+    "contact": "Contatti",
+    "reviews": "Recensioni"
   },
   "search": {
     "title": "Cerca",
@@ -176,7 +177,8 @@
     "terms": "Termini e condizioni",
     "contact": "Contatti",
     "menu": "Menu",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "reviews": "Recensioni"
   },
   "about": {
     "title": "Chi siamo",
@@ -197,7 +199,7 @@
     "s1Title": "1. Titolare",
     "s1Body": "Sito gestito dal team del progetto. Richieste dalla pagina Contatti.",
     "s2Title": "2. Quali dati",
-    "s2Body": "Nessun account richiesto. Preferenze lingua/tema locali. Le email di contatto sono trattate per rispondere.",
+    "s2Body": "Nessun account richiesto. Preferenze lingua/tema locali. Le email di contatto sono trattate per rispondere. Se invii una recensione, conserviamo il nome indicato (facoltativo), il voto e il testo per moderarli e, se approvati, mostrarli sul sito.",
     "s3Title": "3. Analitica",
     "s3Body": "Visite aggregate per migliorare i contenuti. Niente identificazione; niente IP nella telemetria client.",
     "s4Title": "4. Finalità",
@@ -237,5 +239,25 @@
     "mailFrom": "Nome",
     "mailReply": "Rispondi a",
     "anonymous": "visitatore"
+  },
+  "reviews": {
+    "title": "Recensioni",
+    "lead": "Dicci se il catalogo ti aiuta a studiare. Pubblichiamo le recensioni dopo averle lette.",
+    "writeTitle": "Scrivi una recensione",
+    "listTitle": "Cosa dicono chi studia qui",
+    "moderationNote": "Il testo non compare subito: un amministratore lo legge prima.",
+    "name": "Nome (facoltativo)",
+    "namePlaceholder": "Come vuoi firmare",
+    "rating": "Valutazione",
+    "stars": "{count, plural, one {# stella} other {# stelle}}",
+    "body": "Commento",
+    "website": "Sito web",
+    "submit": "Invia recensione",
+    "sending": "Invio…",
+    "thanks": "Grazie. Controlleremo la recensione prima di pubblicarla.",
+    "error": "Invio non riuscito. Riprova tra un attimo.",
+    "rateLimit": "Hai inviato più recensioni di seguito. Aspetta un po’.",
+    "empty": "Non ci sono ancora recensioni pubblicate. Puoi essere il primo.",
+    "summary": "Media {average} · {count, plural, one {# recensione} other {# recensioni}}"
   }
 }

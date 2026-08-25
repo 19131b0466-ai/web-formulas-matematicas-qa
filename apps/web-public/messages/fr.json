@@ -58,7 +58,8 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d’utilisation",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "reviews": "Avis"
   },
   "search": {
     "title": "Rechercher",
@@ -176,7 +177,8 @@
     "terms": "Conditions d’utilisation",
     "contact": "Contact",
     "menu": "Menu",
-    "close": "Fermer"
+    "close": "Fermer",
+    "reviews": "Avis"
   },
   "about": {
     "title": "À propos",
@@ -197,7 +199,7 @@
     "s1Title": "1. Responsable",
     "s1Body": "Site opéré par l’équipe du projet. Demandes via Contact.",
     "s2Title": "2. Données",
-    "s2Body": "Pas de compte requis. Préférences langue/thème locales. Les e-mails de contact sont traités pour répondre.",
+    "s2Body": "Pas de compte requis. Préférences langue/thème locales. Les e-mails de contact sont traités pour répondre. Si vous envoyez un avis, nous conservons le nom indiqué (facultatif), la note et le texte pour les modérer et, s’ils sont approuvés, les afficher.",
     "s3Title": "3. Analytique",
     "s3Body": "Visites agrégées pour améliorer le contenu. Pas d’identification ; pas d’IP dans la télémétrie client.",
     "s4Title": "4. Finalité",
@@ -237,5 +239,25 @@
     "mailFrom": "Nom",
     "mailReply": "Répondre à",
     "anonymous": "visiteur"
+  },
+  "reviews": {
+    "title": "Avis",
+    "lead": "Dites-nous si le catalogue vous aide à étudier. Nous publions les avis après relecture.",
+    "writeTitle": "Écrire un avis",
+    "listTitle": "Ce qu’en disent les lecteurs",
+    "moderationNote": "Votre texte n’apparaît pas tout de suite : un administrateur le lit d’abord.",
+    "name": "Nom (facultatif)",
+    "namePlaceholder": "Comment vous signer",
+    "rating": "Note",
+    "stars": "{count, plural, one {# étoile} other {# étoiles}}",
+    "body": "Commentaire",
+    "website": "Site web",
+    "submit": "Envoyer l’avis",
+    "sending": "Envoi…",
+    "thanks": "Merci. Nous relirons votre avis avant publication.",
+    "error": "Envoi impossible. Réessayez dans un instant.",
+    "rateLimit": "Vous avez envoyé plusieurs avis d’affilée. Attendez un peu.",
+    "empty": "Pas encore d’avis publiés. Vous pouvez être le premier.",
+    "summary": "Moyenne {average} · {count, plural, one {# avis} other {# avis}}"
   }
 }

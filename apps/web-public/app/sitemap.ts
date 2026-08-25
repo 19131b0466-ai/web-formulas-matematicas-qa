@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: alternatesFor('/'),
     });
 
-    for (const path of ['/acerca', '/contacto'] as const) {
+    for (const path of ['/acerca', '/contacto', '/resenas'] as const) {
       entries.push({
         url: localePath(locale, path),
         lastModified: new Date(),

@@ -5,6 +5,8 @@ import type { AuthUser } from '@repo/shared-types';
 import type { Database } from './db/client.js';
 import { getDb } from './db/index.js';
 import { createAdminAnalyticsRoutes } from './routes/admin-analytics.js';
+import { createAdminReviewsRoutes } from './routes/admin-reviews.js';
+import { createReviewsRoutes } from './routes/reviews.js';
 import { createAnalyticsRoutes } from './routes/analytics.js';
 import { createAuthRoutes } from './routes/auth.js';
 import { createCronRoutes } from './routes/cron.js';
@@ -33,7 +35,7 @@ export function createApp(dbProvider: () => Database = getDb) {
     '*',
     cors({
       origin: corsOrigins,
-      allowMethods: ['GET', 'POST', 'OPTIONS'],
+      allowMethods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
       allowHeaders: ['Content-Type', 'Authorization'],
     }),
   );
@@ -53,6 +55,8 @@ export function createApp(dbProvider: () => Database = getDb) {
   app.route('/tags', createTagsRoutes(dbProvider));
   app.route('/guide', createGuideRoutes(dbProvider));
   app.route('/analytics', createAnalyticsRoutes(dbProvider));
+  app.route('/reviews', createReviewsRoutes(dbProvider));
+  app.route('/admin/reviews', createAdminReviewsRoutes(dbProvider));
   app.route('/admin/analytics', createAdminAnalyticsRoutes(dbProvider));
 
   app.notFound((c) => c.json({ error: 'Not found' }, 404));

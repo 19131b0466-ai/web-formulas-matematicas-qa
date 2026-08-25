@@ -281,3 +281,39 @@ export interface GeoCityCount {
   city: string | null;
   count: number;
 }
+
+export type ReviewStatus = 'pending' | 'approved' | 'rejected';
+
+export interface PublicReview {
+  id: string;
+  displayName: string;
+  rating: number;
+  body: string;
+  createdAt: string;
+}
+
+export interface PublicReviewsResponse {
+  reviews: PublicReview[];
+  averageRating: number | null;
+  count: number;
+}
+
+export interface SubmitReviewResponse {
+  ok: true;
+}
+
+export interface AdminReview {
+  id: string;
+  displayName: string | null;
+  rating: number;
+  body: string;
+  locale: string;
+  status: ReviewStatus;
+  createdAt: string;
+  moderatedAt: string | null;
+}
+
+export interface AdminReviewsResponse {
+  reviews: AdminReview[];
+  pendingCount: number;
+}

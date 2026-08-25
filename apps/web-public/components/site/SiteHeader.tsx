@@ -9,6 +9,7 @@ import { Link } from '@/i18n/navigation';
 const NAV = [
   { href: '/', key: 'home' as const },
   { href: '/acerca', key: 'about' as const },
+  { href: '/resenas', key: 'reviews' as const },
   { href: '/contacto', key: 'contact' as const },
 ] as const;
 

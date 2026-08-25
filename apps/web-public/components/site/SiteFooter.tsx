@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 
 const FOOTER_LINKS = [
   { href: '/acerca', key: 'about' as const },
+  { href: '/resenas', key: 'reviews' as const },
   { href: '/contacto', key: 'contact' as const },
 ] as const;
 

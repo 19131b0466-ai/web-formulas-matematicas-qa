@@ -77,3 +77,16 @@ CREATE TABLE IF NOT EXISTS admin_users (
   role       TEXT DEFAULT 'superadmin',
   created_at TIMESTAMPTZ DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS reviews (
+  id           UUID PRIMARY KEY,
+  display_name TEXT,
+  rating       INT NOT NULL,
+  body         TEXT NOT NULL,
+  locale       TEXT NOT NULL DEFAULT 'es',
+  status       TEXT NOT NULL DEFAULT 'pending',
+  created_at   TIMESTAMPTZ DEFAULT now(),
+  moderated_at TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_reviews_status_created ON reviews(status, created_at);

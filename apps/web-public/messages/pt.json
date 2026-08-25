@@ -58,7 +58,8 @@
     "privacy": "Política de privacidade",
     "terms": "Termos e condições",
     "about": "Sobre",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "reviews": "Opiniões"
   },
   "search": {
     "title": "Buscar",
@@ -176,7 +177,8 @@
     "terms": "Termos e condições",
     "contact": "Contacto",
     "menu": "Menu",
-    "close": "Fechar"
+    "close": "Fechar",
+    "reviews": "Opiniões"
   },
   "about": {
     "title": "Sobre",
@@ -197,7 +199,7 @@
     "s1Title": "1. Responsável",
     "s1Body": "Site operado pela equipa do projeto. Pedidos na página de Contacto.",
     "s2Title": "2. Que dados",
-    "s2Body": "Sem conta obrigatória. Preferências de idioma/tema locais. Emails de contacto tratados para responder.",
+    "s2Body": "Sem conta obrigatória. Preferências de idioma/tema locais. Emails de contacto tratados para responder. Se enviares uma opinião, guardamos o nome que indicares (opcional), a avaliação e o texto para moderar e, se aprovados, mostrar no sítio.",
     "s3Title": "3. Analítica",
     "s3Body": "Visitas agregadas para melhorar conteúdo. Sem identificação; sem IP na telemetria do cliente.",
     "s4Title": "4. Finalidade",
@@ -237,5 +239,25 @@
     "mailFrom": "Nome",
     "mailReply": "Responder a",
     "anonymous": "visitante"
+  },
+  "reviews": {
+    "title": "Opiniões",
+    "lead": "Conta-nos se o catálogo te ajuda a estudar. Publicamos as opiniões depois de as rever.",
+    "writeTitle": "Escreve uma opinião",
+    "listTitle": "O que dizem quem estuda aqui",
+    "moderationNote": "O teu texto não aparece de imediato: um administrador lê-o antes.",
+    "name": "Nome (opcional)",
+    "namePlaceholder": "Como queres assinar",
+    "rating": "Avaliação",
+    "stars": "{count, plural, one {# estrela} other {# estrelas}}",
+    "body": "Comentário",
+    "website": "Sítio web",
+    "submit": "Enviar opinião",
+    "sending": "A enviar…",
+    "thanks": "Obrigado. Vamos rever a opinião antes de a publicar.",
+    "error": "Não foi possível enviar. Tenta de novo daqui a pouco.",
+    "rateLimit": "Enviaste várias opiniões seguidas. Espera um pouco.",
+    "empty": "Ainda não há opiniões publicadas. Podes ser o primeiro.",
+    "summary": "Média {average} · {count, plural, one {# opinião} other {# opiniões}}"
   }
 }

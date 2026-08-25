@@ -54,7 +54,8 @@
     "privacy": "Política de privacidad",
     "terms": "Términos y condiciones",
     "about": "Acerca de",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "reviews": "Reseñas"
   },
   "search": {
     "title": "Buscar",
@@ -153,6 +154,7 @@
     "privacy": "Política de privacidad",
     "terms": "Términos y condiciones",
     "contact": "Contacto",
+    "reviews": "Reseñas",
     "menu": "Menú",
     "close": "Cerrar"
   },
@@ -197,11 +199,11 @@
     "s1Title": "1. Responsable",
     "s1Body": "El sitio «Fórmulas matemáticas» es operado por el equipo del proyecto. Para ejercer derechos o hacer consultas sobre privacidad, usa la página de Contacto.",
     "s2Title": "2. Qué datos tratamos",
-    "s2Body": "No exigimos crear una cuenta para consultar el catálogo. Podemos guardar preferencias locales (idioma y tema) en tu navegador mediante cookies o almacenamiento local. Si contactas por correo, trataremos el contenido del mensaje y tu dirección para responderte.",
+    "s2Body": "No exigimos crear una cuenta para consultar el catálogo. Podemos guardar preferencias locales (idioma y tema) en tu navegador mediante cookies o almacenamiento local. Si contactas por correo, trataremos el contenido del mensaje y tu dirección para responderte. Si envías una reseña, guardamos el nombre que indiques (opcional), la valoración y el comentario para moderarlos y, si se aprueban, mostrarlos en el sitio.",
     "s3Title": "3. Analítica de uso",
     "s3Body": "Registramos visitas de página de forma agregada (ruta, materia o sección cuando aplica) para mejorar el contenido. No usamos esa telemetría para identificar personas y no enviamos tu dirección IP en el payload de analítica del cliente.",
     "s4Title": "4. Finalidad",
-    "s4Body": "Los datos se usan para prestar el servicio, recordar tu idioma/tema, responder mensajes de contacto y entender qué partes del catálogo se consultan más.",
+    "s4Body": "Los datos se usan para prestar el servicio, recordar tu idioma/tema, responder mensajes de contacto, publicar reseñas aprobadas y entender qué partes del catálogo se consultan más.",
     "s5Title": "5. Conservación y terceros",
     "s5Body": "Las preferencias viven en tu dispositivo hasta que las borres. Los mensajes de contacto se conservan el tiempo necesario para atenderlos. El alojamiento y la base de contenido pueden implicar proveedores de infraestructura bajo sus propias garantías.",
     "s6Title": "6. Tus derechos",
@@ -237,5 +239,25 @@
     "mailFrom": "Nombre",
     "mailReply": "Responder a",
     "anonymous": "visitante"
+  },
+  "reviews": {
+    "title": "Reseñas",
+    "lead": "Cuéntanos si el catálogo te sirve para estudiar. Publicamos las reseñas cuando las revisamos.",
+    "writeTitle": "Escribe una reseña",
+    "listTitle": "Lo que dicen quienes estudian aquí",
+    "moderationNote": "Tu comentario no aparece al instante: un administrador lo lee antes de publicarlo.",
+    "name": "Nombre (opcional)",
+    "namePlaceholder": "Cómo quieres firmar",
+    "rating": "Valoración",
+    "stars": "{count, plural, one {# estrella} other {# estrellas}}",
+    "body": "Comentario",
+    "website": "Sitio web",
+    "submit": "Enviar reseña",
+    "sending": "Enviando…",
+    "thanks": "Gracias. Revisaremos tu reseña antes de publicarla.",
+    "error": "No se pudo enviar. Inténtalo de nuevo en un momento.",
+    "rateLimit": "Has enviado varias reseñas seguidas. Espera un rato e inténtalo otra vez.",
+    "empty": "Aún no hay reseñas publicadas. Puedes ser el primero en dejar una.",
+    "summary": "Media {average} · {count, plural, one {# reseña} other {# reseñas}}"
   }
 }

@@ -58,7 +58,8 @@
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
     "about": "Über uns",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "reviews": "Bewertungen"
   },
   "search": {
     "title": "Suche",
@@ -176,7 +177,8 @@
     "terms": "Nutzungsbedingungen",
     "contact": "Kontakt",
     "menu": "Menü",
-    "close": "Schließen"
+    "close": "Schließen",
+    "reviews": "Bewertungen"
   },
   "about": {
     "title": "Über uns",
@@ -197,7 +199,7 @@
     "s1Title": "1. Verantwortliche",
     "s1Body": "Die Seite wird vom Projektteam betrieben. Anfragen über die Kontaktseite.",
     "s2Title": "2. Welche Daten",
-    "s2Body": "Kein Konto nötig. Sprache/Theme können lokal gespeichert werden. Bei E-Mail verarbeiten wir Inhalt und Adresse zur Antwort.",
+    "s2Body": "Kein Konto nötig. Sprache/Theme können lokal gespeichert werden. Bei E-Mail verarbeiten wir Inhalt und Adresse zur Antwort. Wenn du eine Bewertung sendest, speichern wir den angegebenen Namen (optional), die Sterne und den Text zur Moderation und, falls freigegeben, zur Anzeige.",
     "s3Title": "3. Nutzungsanalyse",
     "s3Body": "Aggregierte Seitenbesuche zur Verbesserung. Keine Identifikation von Personen; die Client-Telemetrie sendet keine IP.",
     "s4Title": "4. Zweck",
@@ -237,5 +239,25 @@
     "mailFrom": "Name",
     "mailReply": "Antwort an",
     "anonymous": "Besucher"
+  },
+  "reviews": {
+    "title": "Bewertungen",
+    "lead": "Sag uns, ob der Katalog dir beim Lernen hilft. Wir veröffentlichen Bewertungen nach einer Prüfung.",
+    "writeTitle": "Bewertung schreiben",
+    "listTitle": "Was andere schreiben",
+    "moderationNote": "Dein Text erscheint nicht sofort: ein Administrator liest ihn vorher.",
+    "name": "Name (optional)",
+    "namePlaceholder": "So möchtest du unterschreiben",
+    "rating": "Bewertung",
+    "stars": "{count, plural, one {# Stern} other {# Sterne}}",
+    "body": "Kommentar",
+    "website": "Website",
+    "submit": "Bewertung senden",
+    "sending": "Wird gesendet…",
+    "thanks": "Danke. Wir prüfen deinen Text, bevor er erscheint.",
+    "error": "Senden fehlgeschlagen. Versuche es gleich noch einmal.",
+    "rateLimit": "Du hast mehrere Bewertungen hintereinander gesendet. Warte kurz.",
+    "empty": "Noch keine veröffentlichten Bewertungen. Du kannst die erste schreiben.",
+    "summary": "Schnitt {average} · {count, plural, one {# Bewertung} other {# Bewertungen}}"
   }
 }

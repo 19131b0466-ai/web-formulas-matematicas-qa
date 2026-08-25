@@ -1,4 +1,5 @@
 import type {
+  AdminReviewsResponse,
   AnalyticsOverview,
   AuthTokenResponse,
   GeoCityCount,
@@ -169,6 +170,25 @@ export function fetchRecent(limit = 50) {
   return adminFetch<{ visits: VisitLogAdminDto[] }>(
     `/admin/analytics/recent?limit=${String(limit)}`,
   );
+}
+
+export function fetchAdminReviews(status?: 'pending' | 'approved' | 'rejected') {
+  const sp = new URLSearchParams();
+  if (status) sp.set('status', status);
+  const q = sp.toString();
+  return adminFetch<AdminReviewsResponse>(`/admin/reviews${q ? `?${q}` : ''}`);
+}
+
+export function moderateReview(id: string, status: 'pending' | 'approved' | 'rejected') {
+  return adminFetch<{ ok: true }>(`/admin/reviews/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status }),
+  });
+}
+
+export function deleteAdminReview(id: string) {
+  return adminFetch<{ ok: true }>(`/admin/reviews/${id}`, { method: 'DELETE' });
 }
 
 export async function downloadExportCsv(from?: string, to?: string): Promise<void> {

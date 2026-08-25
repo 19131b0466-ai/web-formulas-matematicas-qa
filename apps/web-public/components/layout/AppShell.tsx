@@ -101,6 +101,9 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
               <Link href="/acerca" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
                 {tf('about')}
               </Link>
+              <Link href="/resenas" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
+                {tf('reviews')}
+              </Link>
               <Link href="/contacto" className="underline-offset-2 hover:text-[var(--accent-strong)] hover:underline">
                 {tf('contact')}
               </Link>

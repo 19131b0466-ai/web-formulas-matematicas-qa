@@ -58,7 +58,8 @@
     "privacy": "Privacy policy",
     "terms": "Terms and conditions",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "reviews": "Reviews"
   },
   "search": {
     "title": "Search",
@@ -176,7 +177,8 @@
     "terms": "Terms and conditions",
     "contact": "Contact",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "reviews": "Reviews"
   },
   "about": {
     "title": "About",
@@ -197,11 +199,11 @@
     "s1Title": "1. Controller",
     "s1Body": "The «Mathematical Formulas» site is operated by the project team. For privacy requests, use the Contact page.",
     "s2Title": "2. What we process",
-    "s2Body": "No account is required to browse the catalog. We may store local preferences (language and theme) in your browser via cookies or local storage. If you email us, we process the message content and your address to reply.",
+    "s2Body": "No account is required to browse the catalog. We may store local preferences (language and theme) in your browser via cookies or local storage. If you email us, we process the message content and your address to reply. If you submit a review, we store the name you give (optional), the rating, and the comment so we can moderate them and, if approved, show them on the site.",
     "s3Title": "3. Usage analytics",
     "s3Body": "We record page visits in aggregate (path, subject or section when relevant) to improve content. That telemetry is not used to identify people, and the client analytics payload does not send your IP address.",
     "s4Title": "4. Purpose",
-    "s4Body": "Data is used to provide the service, remember language/theme, answer contact messages, and understand which parts of the catalog are used most.",
+    "s4Body": "Data is used to provide the service, remember language/theme, answer contact messages, publish approved reviews, and understand which parts of the catalog are used most.",
     "s5Title": "5. Retention and processors",
     "s5Body": "Preferences live on your device until you clear them. Contact messages are kept as long as needed to handle them. Hosting and content storage may involve infrastructure providers under their own terms.",
     "s6Title": "6. Your rights",
@@ -237,5 +239,25 @@
     "mailFrom": "Name",
     "mailReply": "Reply to",
     "anonymous": "visitor"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "lead": "Tell us if the catalog helps you study. We publish reviews after we read them.",
+    "writeTitle": "Write a review",
+    "listTitle": "What people say",
+    "moderationNote": "Your comment is not shown immediately: an administrator reads it before it goes live.",
+    "name": "Name (optional)",
+    "namePlaceholder": "How you want to sign",
+    "rating": "Rating",
+    "stars": "{count, plural, one {# star} other {# stars}}",
+    "body": "Comment",
+    "website": "Website",
+    "submit": "Submit review",
+    "sending": "Sending…",
+    "thanks": "Thanks. We’ll review your comment before publishing it.",
+    "error": "Could not send. Try again in a moment.",
+    "rateLimit": "You’ve sent several reviews in a row. Wait a bit and try again.",
+    "empty": "No published reviews yet. You can be the first.",
+    "summary": "Average {average} · {count, plural, one {# review} other {# reviews}}"
   }
 }

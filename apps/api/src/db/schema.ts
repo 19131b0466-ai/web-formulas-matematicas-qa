@@ -110,3 +110,18 @@ export const adminUsers = pgTable('admin_users', {
   role: text('role').default('superadmin'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
+
+export const reviews = pgTable(
+  'reviews',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    displayName: text('display_name'),
+    rating: integer('rating').notNull(),
+    body: text('body').notNull(),
+    locale: text('locale').notNull().default('es'),
+    status: text('status').notNull().default('pending'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    moderatedAt: timestamp('moderated_at', { withTimezone: true }),
+  },
+  (table) => [index('idx_reviews_status_created').on(table.status, table.createdAt)],
+);
