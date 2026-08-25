@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, joinCaption } from './controls';
+import { ButtonRow, ControlsStack, VizButton, VizPanel, joinCaption } from './controls';
 import { formatPercent, formatRate } from './codingMath';
-import { ArrowDown, BitCell, BitRow, ProportionalBar, SectionCard, StatCard } from './codingVizShared';
+import { ArrowDown, BitCell, BitRow, ProportionalBar, SectionCard, StackedSlider, StatCard } from './codingVizShared';
 import { Badge, CollapsibleEdit, GuideBlock } from './transformHelpers';
 
 const PRESETS = [
@@ -17,7 +17,7 @@ const PRESETS = [
 const IDEA =
   'Vas a ver qué fracción de una palabra codificada corresponde a información independiente.';
 const TRY_IT =
-  'Pruébalo — Cambia n y k: observa cómo se reparte la palabra entre k símbolos de información y n−k símbolos de redundancia.';
+  'Cambia n y k: observa cómo se reparte la palabra entre k símbolos de información y n−k símbolos de redundancia.';
 
 export function LinearCodeRateVisualizer() {
   const [n, setN] = useState(7);
@@ -142,33 +142,30 @@ export function LinearCodeRateVisualizer() {
         />
       </div>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <ControlsStack>
-        <SliderRow label="Longitud total · n" value={n} min={1} max={40} step={1} onChange={setN} />
-        <SliderRow
-          label="Dimensión · k"
-          value={k}
-          min={1}
-          max={n}
-          step={1}
-          onChange={(v) => setK(Math.min(v, n))}
-        />
-        <ButtonRow>
-          {PRESETS.map((p) => (
-            <VizButton
-              key={p.label}
-              onClick={() => {
-                setN(p.n);
-                setK(p.k);
-              }}
-            >
-              {p.label}
-            </VizButton>
-          ))}
-        </ButtonRow>
-        </ControlsStack>
-      </div>
-
+          <StackedSlider label="Longitud total · n" value={n} min={1} max={40} step={1} onChange={setN} />
+          <StackedSlider
+            label="Dimensión · k"
+            value={k}
+            min={1}
+            max={n}
+            step={1}
+            onChange={(v) => setK(Math.min(v, n))}
+          />
+          <ButtonRow>
+            {PRESETS.map((p) => (
+              <VizButton
+                key={p.label}
+                onClick={() => {
+                  setN(p.n);
+                  setK(p.k);
+                }}
+              >
+                {p.label}
+              </VizButton>
+            ))}
+          </ButtonRow>
       <CollapsibleEdit
         label="¿Qué implica cambiar la tasa?"
         open={tradeoffOpen}
@@ -199,10 +196,10 @@ export function LinearCodeRateVisualizer() {
       >
         <p className="mb-2 text-xs text-[var(--fg-muted)]">Ejemplo de codificación sistemática (conceptual).</p>
         {showSystematic ? (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <BitRow word={Array(k).fill(0) as never} label="Mensaje u" />
             <ArrowDown />
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-2">
               {Array.from({ length: k }, (_, i) => (
                 <BitCell key={i} value={0} tone="info" label={`u${sub(i + 1)}`} />
               ))}
@@ -224,33 +221,39 @@ export function LinearCodeRateVisualizer() {
 
       <CollapsibleEdit label="Comparar tasas" open={compareOpen} onToggle={() => setCompareOpen((o) => !o)}>
         {showCompare ? (
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div>
-              <p className="mb-1 font-mono text-sm">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <p className="font-mono text-sm">
                 [{n},{k}] · R≈{formatRate(n, k)}
               </p>
               <ProportionalBar infoFraction={rate} infoLabel="" parityLabel="" />
             </div>
-            <div>
-              <div className="mb-2 flex gap-2">
-                <input
-                  type="number"
-                  min={1}
-                  max={40}
-                  value={compareN}
-                  onChange={(e) => setCompareN(Number(e.target.value))}
-                  className="w-14 rounded border border-[var(--border)] bg-[var(--bg)] px-1 text-sm"
-                />
-                <input
-                  type="number"
-                  min={1}
-                  max={compareN}
-                  value={compareK}
-                  onChange={(e) => setCompareK(Math.min(Number(e.target.value), compareN))}
-                  className="w-14 rounded border border-[var(--border)] bg-[var(--bg)] px-1 text-sm"
-                />
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center gap-3">
+                <label className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
+                  n
+                  <input
+                    type="number"
+                    min={1}
+                    max={40}
+                    value={compareN}
+                    onChange={(e) => setCompareN(Number(e.target.value))}
+                    className="w-16 rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-sm"
+                  />
+                </label>
+                <label className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
+                  k
+                  <input
+                    type="number"
+                    min={1}
+                    max={compareN}
+                    value={compareK}
+                    onChange={(e) => setCompareK(Math.min(Number(e.target.value), compareN))}
+                    className="w-16 rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-sm"
+                  />
+                </label>
               </div>
-              <p className="mb-1 font-mono text-sm">
+              <p className="font-mono text-sm">
                 [{compareN},{compareK}] · R≈{formatRate(compareN, compareK)}
               </p>
               <ProportionalBar infoFraction={compareK / compareN} infoLabel="" parityLabel="" />
@@ -266,6 +269,8 @@ export function LinearCodeRateVisualizer() {
           </button>
         )}
       </CollapsibleEdit>
+        </ControlsStack>
+      </div>
     </VizPanel>
   );
 }

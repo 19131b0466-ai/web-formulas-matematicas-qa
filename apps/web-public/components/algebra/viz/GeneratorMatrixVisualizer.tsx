@@ -15,7 +15,7 @@ import {
   type BitVector,
 } from './codingMath';
 import { ArrowDown, BitCell, MatrixDisplay, SectionCard, StatCard } from './codingVizShared';
-import { Badge, CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
+import { Badge, BadgeRow, CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
 
 type Tab = 'generate' | 'rows' | 'code' | 'systematic';
 type CalcMode = 'rows' | 'columns';
@@ -25,7 +25,7 @@ const { G, H, n, k } = TOY_CODE;
 const IDEA =
   'Vas a ver cómo la matriz generadora convierte un mensaje de k símbolos en una palabra código de n símbolos.';
 const TRY_IT =
-  'Pruébalo — Cambia los bits del mensaje y observa cómo cada 1 activa una fila de G. La suma de las filas seleccionadas produce la palabra código.';
+  'Cambia los bits del mensaje y observa cómo cada 1 activa una fila de G. La suma de las filas seleccionadas produce la palabra código.';
 
 export function GeneratorMatrixVisualizer() {
   const [message, setMessage] = useState<BitVector>([1, 0]);
@@ -60,22 +60,24 @@ export function GeneratorMatrixVisualizer() {
     <VizPanel caption={joinCaption(`c=[${codeword.join(',')}]`, `[${n},${k}]`)}>
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-2 flex flex-wrap gap-2">
+      <BadgeRow>
         <Badge tone="neutral">F₂</Badge>
         <Badge tone="neutral">G: {k}×{n}</Badge>
         <Badge tone="neutral">rank(G)={rankG}</Badge>
-      </div>
+      </BadgeRow>
 
-      <Segmented
-        options={[
-          { id: 'generate', label: 'Generar' },
-          { id: 'rows', label: 'Ver filas' },
-          { id: 'code', label: 'Código completo' },
-          { id: 'systematic', label: 'Forma sistemática' },
-        ]}
-        value={tab}
-        onChange={(id) => setTab(id as Tab)}
-      />
+      <div className="mt-3">
+        <Segmented
+          options={[
+            { id: 'generate', label: 'Generar' },
+            { id: 'rows', label: 'Ver filas' },
+            { id: 'code', label: 'Código completo' },
+            { id: 'systematic', label: 'Forma sistemática' },
+          ]}
+          value={tab}
+          onChange={(id) => setTab(id as Tab)}
+        />
+      </div>
 
       {tab === 'generate' ? (
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -107,7 +109,7 @@ export function GeneratorMatrixVisualizer() {
               onChange={(id) => setCalcMode(id as CalcMode)}
             />
             {calcMode === 'rows' ? (
-              <div className="space-y-2 text-sm font-mono">
+              <div className="space-y-3 text-sm font-mono">
                 {message[0] === 1 ? (
                   <p className="text-emerald-800 dark:text-emerald-300">1·g₁ = [{G[0]!.join(', ')}] activa</p>
                 ) : (
@@ -189,7 +191,7 @@ export function GeneratorMatrixVisualizer() {
           <p className="font-mono text-sm">
             c = [m₁, m₂, m₁⊕m₂] = [{codeword.join(', ')}]
           </p>
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <BitCell value={message[0]!} tone="info" label="info" />
             <BitCell value={message[1]!} tone="info" label="info" />
             <BitCell value={codeword[2]!} tone="parity" label="paridad" />
@@ -208,15 +210,14 @@ export function GeneratorMatrixVisualizer() {
             </VizButton>
           ))}
         </ButtonRow>
-        </ControlsStack>
-      </div>
-
-      <CollapsibleEdit label="¿Cómo se relaciona con H?" open={hOpen} onToggle={() => setHOpen((o) => !o)}>
+        <CollapsibleEdit label="¿Cómo se relaciona con H?" open={hOpen} onToggle={() => setHOpen((o) => !o)}>
         <p className="text-sm text-[var(--fg-muted)]">
           G construye palabras. H comprueba restricciones. HGᵀ = 0.
           {ghOk ? ' Verificado.' : ' No verificado.'}
         </p>
       </CollapsibleEdit>
+        </ControlsStack>
+      </div>
     </VizPanel>
   );
 }

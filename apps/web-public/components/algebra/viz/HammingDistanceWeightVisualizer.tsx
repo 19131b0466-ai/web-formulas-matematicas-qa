@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, joinCaption } from './controls';
+import { ButtonRow, ControlsStack, VizButton, VizPanel, joinCaption } from './controls';
 import {
   getMismatchIndices,
   hammingDistance,
@@ -12,7 +12,7 @@ import {
   zeroWord,
   type BitVector,
 } from './codingMath';
-import { BitCell, BitRow, CompareIndicator, SectionCard, StatCard } from './codingVizShared';
+import { BitCell, BitRow, CompareIndicator, SectionCard, StackedSlider, StatCard } from './codingVizShared';
 import { CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
 
 type Tab = 'distance' | 'weight' | 'xor';
@@ -27,7 +27,7 @@ const PRESETS = [
 const IDEA =
   'Vas a ver cómo la distancia de Hamming cuenta posición por posición dónde dos palabras son distintas, y cómo el peso cuenta sus símbolos no nulos.';
 const TRY_IT =
-  'Pruébalo — Cambia los bits de x e y: las diferencias se resaltan y la distancia se actualiza al instante.';
+  'Cambia los bits de x e y: las diferencias se resaltan y la distancia se actualiza al instante.';
 
 export function HammingDistanceWeightVisualizer() {
   const [length, setLength] = useState(7);
@@ -82,14 +82,14 @@ export function HammingDistanceWeightVisualizer() {
     <VizPanel caption={joinCaption(`d_H=${distance}`, `${distance} de ${length} posiciones`)}>
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Longitud" value={`n = ${length}`} />
         <StatCard label="Coinciden" value={matches} />
         <StatCard label="Difieren" value={distance} />
         <StatCard label="d_H(x,y)" value={distance} />
       </div>
 
-      <div className="mt-3">
+      <div className="mt-5">
         <Segmented
         options={[
           { id: 'distance', label: 'Distancia' },
@@ -104,9 +104,9 @@ export function HammingDistanceWeightVisualizer() {
       {tab === 'distance' ? (
         <div className="mt-4 space-y-2">
           <div className="overflow-x-auto">
-            <div className="inline-block min-w-full">
+            <div className="inline-block min-w-full space-y-1.5">
               <PositionLabels n={length} />
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 <span className="w-6 text-xs text-[var(--fg-muted)]">x</span>
                 {x.map((b, i) => (
                   <BitCell
@@ -118,13 +118,13 @@ export function HammingDistanceWeightVisualizer() {
                   />
                 ))}
               </div>
-              <div className="flex items-center gap-1 py-0.5">
+              <div className="flex items-center gap-1.5 py-1">
                 <span className="w-6" />
                 {x.map((_, i) => (
                   <CompareIndicator key={i} same={!mismatchSet.has(i)} />
                 ))}
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 <span className="w-6 text-xs text-[var(--fg-muted)]">y</span>
                 {y.map((b, i) => (
                   <BitCell
@@ -208,34 +208,31 @@ export function HammingDistanceWeightVisualizer() {
         </div>
       ) : null}
 
-      <div className="mt-4">
-        <ControlsStack>
-        <SliderRow label="Longitud n" value={length} min={4} max={16} step={1} onChange={resize} />
-        <ButtonRow>
-          <VizButton onClick={swap}>Intercambiar x ↔ y</VizButton>
-          {PRESETS.map((p) => (
-            <VizButton
-              key={p.label}
-              onClick={() => {
-                resize(Math.max(p.x.length, p.y.length));
-                setX(parseBinaryWord(p.x, length));
-                setY(parseBinaryWord(p.y, length));
-              }}
-            >
-              {p.label}
-            </VizButton>
-          ))}
-        </ButtonRow>
-        </ControlsStack>
-      </div>
-
-      <CollapsibleEdit label="Propiedades" open={propsOpen} onToggle={() => setPropsOpen((o) => !o)}>
-        <ul className="list-inside list-disc text-sm text-[var(--fg-muted)]">
+      <ControlsStack>
+          <StackedSlider label="Longitud n" value={length} min={4} max={16} step={1} onChange={resize} />
+          <ButtonRow>
+            <VizButton onClick={swap}>Intercambiar x ↔ y</VizButton>
+            {PRESETS.map((p) => (
+              <VizButton
+                key={p.label}
+                onClick={() => {
+                  resize(Math.max(p.x.length, p.y.length));
+                  setX(parseBinaryWord(p.x, length));
+                  setY(parseBinaryWord(p.y, length));
+                }}
+              >
+                {p.label}
+              </VizButton>
+            ))}
+          </ButtonRow>
+        <CollapsibleEdit label="Propiedades" open={propsOpen} onToggle={() => setPropsOpen((o) => !o)}>
+        <ul className="list-inside list-disc space-y-1 text-sm text-[var(--fg-muted)]">
           <li>d_H(x,y) ≥ 0</li>
           <li>d_H(x,y) = 0 ⇔ x = y</li>
           <li>d_H(x,y) = d_H(y,x)</li>
         </ul>
       </CollapsibleEdit>
+      </ControlsStack>
 
       <p className="sr-only" aria-live="polite">
         x = {vectorToString(x)}, y = {vectorToString(y)}, distancia {distance}.
@@ -246,7 +243,7 @@ export function HammingDistanceWeightVisualizer() {
 
 function PositionLabels({ n }: { n: number }) {
   return (
-    <div className="mb-1 flex gap-1 pl-6">
+    <div className="mb-2 flex gap-1.5 pl-6">
       {Array.from({ length: n }, (_, i) => (
         <span key={i} className="flex h-10 w-10 items-center justify-center text-[10px] text-[var(--fg-muted)]">
           {i + 1}

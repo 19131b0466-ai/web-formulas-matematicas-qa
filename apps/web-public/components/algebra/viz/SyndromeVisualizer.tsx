@@ -12,7 +12,7 @@ import {
   type BitVector,
 } from './codingMath';
 import { BitRow, MatrixDisplay, SectionCard, StatusPill } from './codingVizShared';
-import { Badge, CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
+import { Badge, CollapsibleEdit, GuideBlock, Segmented, BadgeRow } from './transformHelpers';
 
 type Tab = 'syndrome' | 'checks' | 'locate';
 type ErrorMode = 'single' | 'multiple';
@@ -23,7 +23,7 @@ const CODeword: BitVector = [0, 0, 0, 0, 0, 0, 0];
 const IDEA =
   'Vas a ver cómo el síndrome resume qué comprobaciones de paridad incumple una palabra recibida.';
 const TRY_IT =
-  'Pruébalo — Introduce un error en un bit y observa qué columna de H aparece como síndrome. Para un único error, esa información permite localizarlo.';
+  'Introduce un error en un bit y observa qué columna de H aparece como síndrome. Para un único error, esa información permite localizarlo.';
 
 export function SyndromeVisualizer() {
   const [codeword] = useState<BitVector>(CODeword);
@@ -82,20 +82,22 @@ export function SyndromeVisualizer() {
     >
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-2 flex flex-wrap gap-2">
+      <BadgeRow>
         <Badge tone="neutral">Hamming (7,4)</Badge>
         <Badge tone="neutral">Modo: {errorMode === 'single' ? 'un error' : 'múltiples'}</Badge>
-      </div>
+      </BadgeRow>
 
-      <Segmented
-        options={[
-          { id: 'syndrome', label: 'Síndrome' },
-          { id: 'checks', label: 'Comprobaciones' },
-          { id: 'locate', label: 'Localizar error' },
-        ]}
-        value={tab}
-        onChange={(id) => setTab(id as Tab)}
-      />
+      <div className="mt-3">
+        <Segmented
+          options={[
+            { id: 'syndrome', label: 'Síndrome' },
+            { id: 'checks', label: 'Comprobaciones' },
+            { id: 'locate', label: 'Localizar error' },
+          ]}
+          value={tab}
+          onChange={(id) => setTab(id as Tab)}
+        />
+      </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <SectionCard title="Palabra recibida · r">
@@ -185,15 +187,11 @@ export function SyndromeVisualizer() {
         </div>
       ) : null}
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ControlsStack>
         {!corrected && matchCol !== null && errorMode === 'single' ? (
           <VizButton onClick={applyCorrection}>Corregir posición {uiMatchPos}</VizButton>
         ) : null}
         {corrected ? <VizButton onClick={resetCorrection}>Deshacer corrección</VizButton> : null}
-      </div>
-
-      <div className="mt-3">
-        <ControlsStack>
         <Segmented
           options={[
             { id: 'single', label: 'Un error' },
@@ -226,15 +224,13 @@ export function SyndromeVisualizer() {
             Dos errores
           </VizButton>
         </ButtonRow>
-        </ControlsStack>
-      </div>
-
-      <CollapsibleEdit label="¿Por qué funciona?" open={derivOpen} onToggle={() => setDerivOpen((o) => !o)}>
-        <div className="space-y-1 font-mono text-xs text-[var(--fg-muted)]">
-          <p>r = c + e → s = Hrᵀ = H(c+e)ᵀ = Hcᵀ + Heᵀ = Heᵀ</p>
-          <p>Si e = e_j, entonces s = h_j (columna j de H).</p>
-        </div>
-      </CollapsibleEdit>
+        <CollapsibleEdit label="¿Por qué funciona?" open={derivOpen} onToggle={() => setDerivOpen((o) => !o)}>
+          <div className="space-y-2 font-mono text-xs text-[var(--fg-muted)]">
+            <p>r = c + e → s = Hrᵀ = H(c+e)ᵀ = Hcᵀ + Heᵀ = Heᵀ</p>
+            <p>Si e = e_j, entonces s = h_j (columna j de H).</p>
+          </div>
+        </CollapsibleEdit>
+      </ControlsStack>
 
       <p className="sr-only" aria-live="polite">
         Palabra {vectorToString(receivedWord)}. Síndrome {syndrome.join(',')}.

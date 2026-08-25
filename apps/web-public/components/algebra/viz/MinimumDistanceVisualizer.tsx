@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, joinCaption } from './controls';
+import { ButtonRow, ControlsStack, VizButton, VizPanel, joinCaption } from './controls';
 import {
   correctableErrors,
   detectableErrors,
@@ -9,7 +9,7 @@ import {
   hammingDistance,
   type BitVector,
 } from './codingMath';
-import { BitCell, SectionCard, StatCard } from './codingVizShared';
+import { BitCell, SectionCard, StackedSlider, StatCard } from './codingVizShared';
 import { Badge, CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
 
 type Tab = 'separation' | 'detection' | 'correction';
@@ -20,7 +20,7 @@ const BINARY_C1: BitVector = [0, 0, 0];
 const IDEA =
   'Vas a ver cómo la separación mínima entre palabras código determina cuántos errores podemos detectar y corregir con garantía.';
 const TRY_IT =
-  'Pruébalo — Cambia d_min y observa cómo cambian el número de errores detectables y el radio de corrección.';
+  'Cambia d_min y observa cómo cambian el número de errores detectables y el radio de corrección.';
 
 export function MinimumDistanceVisualizer() {
   const [dMin, setDMin] = useState(3);
@@ -62,13 +62,13 @@ export function MinimumDistanceVisualizer() {
     <VizPanel caption={joinCaption(`d_min=${dMin}`, `detecta ${detect}`, `corrige ${correct}`)}>
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-3 grid grid-cols-3 gap-2">
+      <div className="mt-5 grid grid-cols-3 gap-3">
         <StatCard label="Distancia mínima" value={`d_min = ${dMin}`} />
         <StatCard label="Detección" value={`d_min−1 = ${detect}`} subtitle="errores garantizados" />
         <StatCard label="Corrección" value={`t = ${correct}`} subtitle={`⌊(${dMin}−1)/2⌋`} />
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-wrap gap-3">
         <Segmented
           options={[
             { id: 'general', label: 'Concepto general' },
@@ -122,10 +122,19 @@ export function MinimumDistanceVisualizer() {
               <p className="mb-2 text-sm text-[var(--fg-muted)]">
                 Con e ≤ {detect} errores, el resultado no puede ser otra palabra código.
               </p>
-              <SliderRow label="Errores introducidos · e" value={errorCount} min={0} max={dMin + 1} step={1} onChange={setErrorCount} />
-              <Badge tone={errorCount <= detect ? 'ok' : 'warn'}>
-                {errorCount <= detect ? 'Detección garantizada' : 'Detección no garantizada'}
-              </Badge>
+              <div className="space-y-4">
+                <StackedSlider
+                  label="Errores introducidos · e"
+                  value={errorCount}
+                  min={0}
+                  max={dMin + 1}
+                  step={1}
+                  onChange={setErrorCount}
+                />
+                <Badge tone={errorCount <= detect ? 'ok' : 'warn'}>
+                  {errorCount <= detect ? 'Detección garantizada' : 'Detección no garantizada'}
+                </Badge>
+              </div>
             </SectionCard>
           ) : null}
 
@@ -153,7 +162,14 @@ export function MinimumDistanceVisualizer() {
           ) : null}
 
           <ControlsStack>
-            <SliderRow label="Distancia mínima · d_min" value={dMin} min={1} max={9} step={1} onChange={setDMin} />
+            <StackedSlider
+              label="Distancia mínima · d_min"
+              value={dMin}
+              min={1}
+              max={9}
+              step={1}
+              onChange={setDMin}
+            />
             <ButtonRow>
               {[2, 3, 5, 7].map((d) => (
                 <VizButton key={d} active={dMin === d} onClick={() => setDMin(d)}>
@@ -306,6 +322,7 @@ export function MinimumDistanceVisualizer() {
         </div>
       )}
 
+      <ControlsStack>
       <CollapsibleEdit label="¿Por qué aparece el 1/2?" open={derivOpen} onToggle={() => setDerivOpen((o) => !o)}>
         <div className="space-y-1 font-mono text-sm text-[var(--fg-muted)]">
           <p>t + t &lt; d_min → 2t &lt; d_min → 2t ≤ d_min−1 → t ≤ (d_min−1)/2</p>
@@ -333,6 +350,7 @@ export function MinimumDistanceVisualizer() {
           </tbody>
         </table>
       </CollapsibleEdit>
+      </ControlsStack>
     </VizPanel>
   );
 }

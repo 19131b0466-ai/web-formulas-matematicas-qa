@@ -24,7 +24,7 @@ const { G, n, k, q } = TOY_CODE;
 const IDEA =
   'Vas a ver por qué un código lineal es un subespacio: contiene el vector cero y permanece cerrado al sumar palabras y multiplicarlas por escalares.';
 const TRY_IT =
-  'Pruébalo — Selecciona dos palabras del código y súmalas. El resultado seguirá perteneciendo a C.';
+  'Selecciona dos palabras del código y súmalas. El resultado seguirá perteneciendo a C.';
 
 export function LinearCodeVisualizer() {
   const [tab, setTab] = useState<Tab>('code');
@@ -55,28 +55,30 @@ export function LinearCodeVisualizer() {
     <VizPanel caption={joinCaption(`C ⊂ F₂³`, `|C|=${displayCodewords.length}`, `dim=${dim}`)}>
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <StatCard label="Espacio" value="F₂³" subtitle={`${ambient.length} vectores`} />
         <StatCard label="Código C" value={displayCodewords.length} subtitle="palabras" />
         <StatCard label="Dimensión" value={`k = ${dim}`} />
         <StatCard label="[n,k]₂" value={`[${n},${k}]`} />
       </div>
 
-      <Segmented
-        options={[
-          { id: 'code', label: 'Código' },
-          { id: 'closure', label: 'Comprobar cierre' },
-          { id: 'generation', label: 'Generación' },
-          { id: 'properties', label: 'Propiedades' },
-        ]}
-        value={tab}
-        onChange={(id) => setTab(id as Tab)}
-      />
+      <div className="mt-5">
+        <Segmented
+          options={[
+            { id: 'code', label: 'Código' },
+            { id: 'closure', label: 'Comprobar cierre' },
+            { id: 'generation', label: 'Generación' },
+            { id: 'properties', label: 'Propiedades' },
+          ]}
+          value={tab}
+          onChange={(id) => setTab(id as Tab)}
+        />
+      </div>
 
       {tab === 'code' ? (
         <div className="mt-4">
-          <p className="mb-2 text-xs text-[var(--fg-muted)]">Todas las palabras de F₂³</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <p className="mb-3 text-xs text-[var(--fg-muted)]">Todas las palabras de F₂³</p>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {ambient.map((w) => {
               const inC = codewordSet.has(vectorToString(w)) && (!experiment || vectorToString(w) !== '110');
               return (
@@ -84,19 +86,19 @@ export function LinearCodeVisualizer() {
                   key={vectorToString(w)}
                   type="button"
                   onClick={() => inC && setLeft(w)}
-                  className={`rounded-lg border px-2 py-2 text-center ${
+                  className={`rounded-lg border px-3 py-3 text-center ${
                     inC
                       ? 'border-emerald-700/50 bg-emerald-700/10'
                       : 'border-[var(--border)] opacity-50'
                   }`}
                 >
-                  <div className="flex justify-center gap-0.5">
+                  <div className="flex justify-center gap-1.5">
                     {w.map((b, i) => (
                       <BitCell key={i} value={b} size="sm" />
                     ))}
                   </div>
-                  <p className="mt-1 font-mono text-xs">{vectorToString(w)}</p>
-                  <p className="text-[10px]">{inC ? '✓ En C' : '○ Fuera'}</p>
+                  <p className="mt-2 font-mono text-xs">{vectorToString(w)}</p>
+                  <p className="mt-1 text-[10px] leading-4">{inC ? '✓ En C' : '○ Fuera'}</p>
                 </button>
               );
             })}
@@ -210,11 +212,13 @@ export function LinearCodeVisualizer() {
         </div>
       ) : null}
 
-      <CollapsibleEdit label="¿Por qué hay cuatro palabras?" open={cardOpen} onToggle={() => setCardOpen((o) => !o)}>
+      <div className="mt-5">
+        <CollapsibleEdit label="¿Por qué hay cuatro palabras?" open={cardOpen} onToggle={() => setCardOpen((o) => !o)}>
         <p className="text-sm text-[var(--fg-muted)]">
           dim(C) = {dim}, por tanto |C| = 2^{dim} = {codewords.length} sobre F₂.
         </p>
       </CollapsibleEdit>
+      </div>
     </VizPanel>
   );
 }

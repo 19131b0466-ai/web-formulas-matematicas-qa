@@ -168,7 +168,19 @@ export function polyPoints(
 }
 
 export function ChipRow({ children }: { children: ReactNode }) {
-  return <div className="flex flex-wrap gap-1.5">{children}</div>;
+  return (
+    <div className="flex flex-wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+      {children}
+    </div>
+  );
+}
+
+export function BadgeRow({ children }: { children: ReactNode }) {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 12, marginBottom: 12 }}>
+      {children}
+    </div>
+  );
 }
 
 export function Chip({
@@ -208,13 +220,16 @@ export function Segmented({
   onChange: (id: string) => void;
 }) {
   return (
-    <div className="inline-flex flex-wrap rounded-lg border border-[var(--border)] p-0.5">
+    <div
+      className="inline-flex max-w-full flex-wrap rounded-lg border border-[var(--border)]"
+      style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 6, padding: 6 }}
+    >
       {options.map((o) => (
         <button
           key={o.id}
           type="button"
           onClick={() => onChange(o.id)}
-          className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+          className={`rounded-md px-3 py-2 text-xs font-medium transition-colors ${
             value === o.id
               ? 'bg-[var(--accent-soft)] text-[var(--fg)]'
               : 'text-[var(--fg-muted)] hover:text-[var(--fg)]'
@@ -261,16 +276,16 @@ export function CollapsibleEdit({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-[var(--border)]">
+    <div className="viz-collapsible rounded-lg border border-[var(--border)]">
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between px-3 py-2 text-left text-sm font-medium text-[var(--fg)]"
+        className="flex w-full items-center justify-between px-3 py-3 text-left text-sm font-medium text-[var(--fg)]"
       >
         {label}
         <span className="text-[var(--fg-muted)]">{open ? '▾' : '▸'}</span>
       </button>
-      {open ? <div className="border-t border-[var(--border)] px-3 py-3">{children}</div> : null}
+      {open ? <div className="border-t border-[var(--border)] px-3 py-4">{children}</div> : null}
     </div>
   );
 }
@@ -284,12 +299,17 @@ export function GuideBlock({
   tryIt: string;
   concept?: string;
 }) {
+  let tryBody = tryIt.trim();
+  const prefix = /^(Pru[eé]balo)\s*[—–\-−:]\s*/i;
+  while (prefix.test(tryBody)) {
+    tryBody = tryBody.replace(prefix, '');
+  }
   return (
-    <div className="mb-3 space-y-1.5 text-sm leading-relaxed text-[var(--fg-muted)]">
+    <div className="mb-5 space-y-2 text-sm leading-relaxed text-[var(--fg-muted)]">
       <p>{idea}</p>
       <p>
         <span className="font-medium text-[var(--fg)]">Pruébalo — </span>
-        {tryIt}
+        {tryBody}
       </p>
       {concept ? <p className="italic">{concept}</p> : null}
     </div>

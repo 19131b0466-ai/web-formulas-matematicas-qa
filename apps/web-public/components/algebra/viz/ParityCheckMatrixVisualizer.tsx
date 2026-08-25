@@ -14,7 +14,7 @@ import {
   type BitVector,
 } from './codingMath';
 import { BitRow, MatrixDisplay, SectionCard, StatusPill, StatCard } from './codingVizShared';
-import { Badge, CollapsibleEdit, GuideBlock, Segmented } from './transformHelpers';
+import { Badge, CollapsibleEdit, GuideBlock, Segmented, BadgeRow } from './transformHelpers';
 
 type Tab = 'check' | 'matrix' | 'valid' | 'generator';
 
@@ -24,7 +24,7 @@ const DEFAULT_WORD: BitVector = [1, 0, 1];
 const IDEA =
   'Vas a ver cómo cada fila de H define una comprobación de paridad. Una palabra código es válida cuando todas dan cero.';
 const TRY_IT =
-  'Pruébalo — Cambia los bits de la palabra y observa qué comprobaciones se cumplen, cuáles fallan y cómo cambia el síndrome.';
+  'Cambia los bits de la palabra y observa qué comprobaciones se cumplen, cuáles fallan y cómo cambia el síndrome.';
 
 export function ParityCheckMatrixVisualizer() {
   const [word, setWord] = useState<BitVector>([...DEFAULT_WORD]);
@@ -60,13 +60,14 @@ export function ParityCheckMatrixVisualizer() {
     <VizPanel caption={joinCaption(`s=[${syndrome.join(',')}]`, valid ? 'válida' : 'no válida')}>
       <GuideBlock idea={IDEA} tryIt={TRY_IT} />
 
-      <div className="mt-2 flex flex-wrap gap-2">
+      <BadgeRow>
         <Badge tone="neutral">F₂</Badge>
         <Badge tone="neutral">H: {H.length}×{n}</Badge>
         {!ghOk ? <Badge tone="warn">HGᵀ ≠ 0</Badge> : null}
-      </div>
+      </BadgeRow>
 
-      <Segmented
+      <div className="mt-3">
+        <Segmented
         options={[
           { id: 'check', label: 'Comprobar' },
           { id: 'matrix', label: 'Ver H' },
@@ -76,6 +77,7 @@ export function ParityCheckMatrixVisualizer() {
         value={tab}
         onChange={(id) => setTab(id as Tab)}
       />
+      </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <SectionCard title="Palabra · r">
@@ -200,15 +202,14 @@ export function ParityCheckMatrixVisualizer() {
           <VizButton onClick={() => setWord([1, 1, 0])}>110 · válida</VizButton>
           <VizButton onClick={() => setWord([...DEFAULT_WORD])}>Restablecer 101</VizButton>
         </ButtonRow>
-        </ControlsStack>
-      </div>
-
-      <CollapsibleEdit label="¿Cómo se relaciona con G?" open={ghOpen} onToggle={() => setGhOpen((o) => !o)}>
+        <CollapsibleEdit label="¿Cómo se relaciona con G?" open={ghOpen} onToggle={() => setGhOpen((o) => !o)}>
         <p className="text-sm text-[var(--fg-muted)]">
           G construye palabras del código. H comprueba restricciones. Debe cumplirse HGᵀ = 0.
           {ghOk ? ' ✓ Verificado para este ejemplo.' : ' ⚠ Inconsistencia detectada.'}
         </p>
       </CollapsibleEdit>
+        </ControlsStack>
+      </div>
     </VizPanel>
   );
 }

@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react';
 import type { Bit, BitVector } from './codingMath';
+import { SliderRow } from './controls';
 import { Badge } from './transformHelpers';
 
 export function BitCell({
@@ -46,8 +47,8 @@ export function BitCell({
 
   if (!onClick) {
     return (
-      <div className="flex flex-col items-center gap-1" title={title}>
-        {label ? <span className="text-[10px] text-[var(--fg-muted)]">{label}</span> : null}
+      <div className="flex flex-col items-center gap-1.5" title={title}>
+        {label ? <span className="text-[10px] leading-none text-[var(--fg-muted)]">{label}</span> : null}
         {inner}
       </div>
     );
@@ -57,11 +58,11 @@ export function BitCell({
     <button
       type="button"
       onClick={onClick}
-      className="flex flex-col items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-strong)]"
+      className="flex flex-col items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-strong)]"
       title={title}
       aria-label={title ?? `Bit ${value}`}
     >
-      {label ? <span className="text-[10px] text-[var(--fg-muted)]">{label}</span> : null}
+      {label ? <span className="text-[10px] leading-none text-[var(--fg-muted)]">{label}</span> : null}
       {inner}
     </button>
   );
@@ -70,9 +71,9 @@ export function BitCell({
 export function PositionLabels({ n, size = 'md' }: { n: number; size?: 'sm' | 'md' }) {
   const w = size === 'sm' ? 'w-8' : 'w-10';
   return (
-    <div className="flex gap-1">
+    <div className="mb-1 flex gap-1.5">
       {Array.from({ length: n }, (_, i) => (
-        <span key={i} className={`${w} text-center text-[10px] text-[var(--fg-muted)]`}>
+        <span key={i} className={`${w} text-center text-[10px] leading-4 text-[var(--fg-muted)]`}>
           {i + 1}
         </span>
       ))}
@@ -96,10 +97,10 @@ export function BitRow({
   size?: 'sm' | 'md';
 }) {
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       {label ? <p className="text-xs font-medium text-[var(--fg-muted)]">{label}</p> : null}
       <PositionLabels n={word.length} size={size} />
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1.5">
         {word.map((b, i) => (
           <BitCell
             key={i}
@@ -119,13 +120,33 @@ export function BitRow({
 export function CompareIndicator({ same }: { same: boolean }) {
   return (
     <span
-      className={`inline-flex h-8 w-8 items-center justify-center text-sm font-medium ${
+      className={`inline-flex h-10 w-10 items-center justify-center text-sm font-medium ${
         same ? 'text-[var(--fg-muted)]' : 'text-orange-600 dark:text-orange-400'
       }`}
       aria-hidden
     >
       {same ? '=' : '≠'}
     </span>
+  );
+}
+
+export function StackedSlider({
+  label,
+  value,
+  min,
+  max,
+  step = 1,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step?: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <SliderRow label={label} value={value} min={min} max={max} step={step} onChange={onChange} />
   );
 }
 
@@ -139,9 +160,9 @@ export function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 ${className}`}>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--fg-muted)]">{title}</p>
-      {children}
+    <div className={`rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 ${className}`}>
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--fg-muted)]">{title}</p>
+      <div className="space-y-3">{children}</div>
     </div>
   );
 }
@@ -156,7 +177,7 @@ export function StatCard({
   subtitle?: string;
 }) {
   return (
-    <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-center">
+    <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-3 text-center">
       <p className="text-[10px] font-medium uppercase tracking-wide text-[var(--fg-muted)]">{label}</p>
       <p className="mt-0.5 font-mono text-lg font-semibold tabular-nums">{value}</p>
       {subtitle ? <p className="mt-0.5 text-[10px] text-[var(--fg-muted)]">{subtitle}</p> : null}
@@ -175,7 +196,7 @@ export function ProportionalBar({
 }) {
   const parityFraction = 1 - infoFraction;
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex h-10 overflow-hidden rounded-lg border border-[var(--border)]">
         <div
           className="flex items-center justify-center bg-emerald-800/80 px-2 text-[10px] font-medium text-white dark:bg-emerald-900/80"
@@ -206,7 +227,9 @@ export function StatusPill({
   badText: string;
 }) {
   return (
-    <Badge tone={ok ? 'ok' : 'warn'}>{ok ? okText : badText}</Badge>
+    <div className="pt-1">
+      <Badge tone={ok ? 'ok' : 'warn'}>{ok ? okText : badText}</Badge>
+    </div>
   );
 }
 
@@ -228,7 +251,7 @@ export function MatrixDisplay({
   const cols = matrix[0]?.length ?? 0;
   return (
     <div className="inline-block">
-      <div className="mb-1 flex gap-1 pl-12">
+      <div className="mb-2 flex gap-1.5 pl-12">
         {Array.from({ length: cols }, (_, j) => (
           <span
             key={j}
@@ -241,9 +264,9 @@ export function MatrixDisplay({
         ))}
       </div>
       {matrix.map((row, i) => (
-        <div key={i} className="flex items-center gap-1">
+        <div key={i} className="mb-1.5 flex items-center gap-1.5 last:mb-0">
           <span
-            className={`w-10 text-right text-[10px] ${
+            className={`w-10 shrink-0 pr-1 text-right text-[10px] ${
               rowHighlight === i ? 'font-semibold text-[var(--accent-strong)]' : 'text-[var(--fg-muted)]'
             }`}
             onMouseEnter={() => onRowHover?.(i)}
@@ -273,7 +296,7 @@ export function MatrixDisplay({
 
 export function ArrowDown({ label }: { label?: string }) {
   return (
-    <div className="flex flex-col items-center py-1 text-[var(--fg-muted)]">
+    <div className="flex flex-col items-center gap-1 py-2 text-[var(--fg-muted)]">
       <span className="text-lg leading-none">↓</span>
       {label ? <span className="text-[10px]">{label}</span> : null}
     </div>
