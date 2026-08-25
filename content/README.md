@@ -35,7 +35,7 @@ Secciones del MD que **no** se importan como catálogo: Índice, Notación gener
 
 ## Álgebra — capítulos → slugs
 
-Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30: fronteras con otras materias. Sin `/guia`.
+Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30 (fronteras con otras materias) es una nota editorial para el catálogo y **no se publica**. Sin `/guia`.
 
 | #  | Capítulo                                | Slug                         |
 | -- | --------------------------------------- | ---------------------------- |
@@ -68,7 +68,7 @@ Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30: fronteras con ot
 | 27 | Estructuras algebraicas                 | `estructuras-algebraicas`    |
 | 28 | Códigos lineales                        | `codigos-lineales`           |
 | 29 | Mapas de relaciones                     | `mapas-relaciones`           |
-| 30 | Fronteras con otras materias            | `fronteras-materias`         |
+| 30 | Fronteras con otras materias            | *(nota editorial, no se publica)* |
 
 ## Importación a Postgres
 

@@ -15,6 +15,7 @@ import type {
 } from '@repo/shared-types';
 import type { Database } from '../db/client.js';
 import { contentBlocks, sections, subjects } from '../db/schema.js';
+import { isHiddenPublicSectionSlug } from '../hidden-sections.js';
 
 const DEFAULT_SUBJECT = 'calculo-ii';
 
@@ -87,13 +88,15 @@ export async function listSectionsTree(
 
   function build(parentId: string | null): SectionSummary[] {
     const nodes = children.get(parentId) ?? [];
-    return nodes.map((row) => {
-      const parent = row.parentId ? (byId.get(row.parentId) ?? null) : null;
-      const summary = toSummary(row, parent?.slug ?? null);
-      const kids = build(row.id);
-      if (kids.length > 0) summary.children = kids;
-      return summary;
-    });
+    return nodes
+      .filter((row) => !isHiddenPublicSectionSlug(row.slug))
+      .map((row) => {
+        const parent = row.parentId ? (byId.get(row.parentId) ?? null) : null;
+        const summary = toSummary(row, parent?.slug ?? null);
+        const kids = build(row.id);
+        if (kids.length > 0) summary.children = kids;
+        return summary;
+      });
   }
 
   return build(null);
@@ -113,6 +116,7 @@ export async function getSectionBySlug(
     .where(and(eq(sections.slug, slug), eq(sections.subjectId, subjectId)))
     .limit(1);
   if (!section) return null;
+  if (isHiddenPublicSectionSlug(section.slug)) return null;
 
   const blocks = await db
     .select()

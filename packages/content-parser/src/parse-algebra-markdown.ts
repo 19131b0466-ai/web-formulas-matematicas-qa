@@ -3,7 +3,6 @@ import type {
   FormulaContent,
   FormulaVisual,
   ListContent,
-  NoteContent,
   TextContent,
 } from '@repo/shared-types';
 import { slugify } from './slugify.js';
@@ -343,7 +342,7 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
   let inIndex = false;
   let draft: FormulaDraft | null = null;
   let paragraph: string[] = [];
-  let chapterKind: 'catalog' | 'maps' | 'frontier' | 'skip' = 'skip';
+  let chapterKind: 'catalog' | 'maps' | 'skip' = 'skip';
   let mapHeading: string | null = null;
 
   const flushParagraph = () => {
@@ -428,14 +427,11 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
         sections.push(section);
         currentSection = section;
         mapHeading = null;
-      } else if (n === 30) {
-        chapterKind = 'frontier';
-        const section = createChapter(num, title, sortOrder++);
-        sections.push(section);
-        currentSection = section;
       } else {
+        // Cap. 30 (fronteras) and later headings are editorial notes, not public catalog.
         chapterKind = 'skip';
         currentSection = null;
+        mapHeading = null;
       }
       continue;
     }
@@ -455,11 +451,6 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
       const raw = h2[1]!.trim();
       if (chapterKind === 'maps') {
         mapHeading = raw;
-        continue;
-      }
-      if (chapterKind === 'frontier') {
-        const note: NoteContent = { variant: 'info', markdown: `**${raw}**` };
-        pushBlock(currentSection, 'note', note, [raw], raw);
         continue;
       }
 
@@ -613,17 +604,6 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
       }
       i = fence.end;
       continue;
-    }
-
-    if (!draft && chapterKind === 'frontier') {
-      const list = parseList(lines, i);
-      if (list) {
-        flushParagraph();
-        const content: ListContent = { items: list.items, ordered: list.ordered };
-        pushBlock(currentSection, 'list', content, list.items.map(stripInlineNoise), null);
-        i = list.end;
-        continue;
-      }
     }
 
     paragraph.push(trimmed);

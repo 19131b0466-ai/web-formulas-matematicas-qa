@@ -93,7 +93,7 @@ describe('parseAlgebraMarkdown', () => {
     const mapList = maps!.blocks.find((b) => b.blockType === 'list');
     expect(mapList?.title).toBe('Fundamentos');
     expect((mapList!.content as { items: string[] }).items).toContain('Distributiva → Factorización');
-    expect(result.sections.some((s) => s.slug === 'fronteras-materias')).toBe(true);
+    expect(result.sections.some((s) => s.slug === 'fronteras-materias')).toBe(false);
 
     const fnd = result.sections
       .flatMap((s) => s.blocks)
@@ -110,7 +110,7 @@ describe('parseAlgebraMarkdown', () => {
     const md = readFileSync(SOURCE_MD, 'utf8');
     const result = parseAlgebraMarkdown(md);
     expect(result.stats.formulaCount).toBe(183);
-    expect(result.stats.sectionCount).toBe(30);
+    expect(result.stats.sectionCount).toBe(29);
     for (const [num, slug] of Object.entries(ALGEBRA_SECTION_SLUG_OVERRIDES)) {
       if (Number(num) <= 28) {
         expect(result.sections.some((s) => s.number === num && s.slug === slug)).toBe(true);

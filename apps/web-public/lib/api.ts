@@ -10,6 +10,7 @@ import type {
 } from '@repo/shared-types';
 import type { SubjectSlug } from './subjects';
 import { sectionHref as subjectSectionHref } from './subjects';
+import { isHiddenPublicSectionSlug } from './hidden-sections';
 
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
@@ -135,7 +136,7 @@ export const fetchSections = cache(
         `/subjects/${encodeURIComponent(subject)}/sections`,
         { next: { revalidate: 300 } },
       );
-      return data?.sections ?? [];
+      return (data?.sections ?? []).filter((section) => !isHiddenPublicSectionSlug(section.slug));
     } catch (err) {
       console.error('[fetchSections]', subject, getApiBaseUrl(), err);
       return [];
@@ -149,6 +150,7 @@ export const fetchSection = cache(
     subject: SubjectSlug = 'calculo-ii',
   ): Promise<SectionDetailResponse | null> => {
     // Propagates ApiUnavailableError; returns null only for true 404.
+    if (isHiddenPublicSectionSlug(slug)) return null;
     return apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
       { next: { revalidate: 600 } },
