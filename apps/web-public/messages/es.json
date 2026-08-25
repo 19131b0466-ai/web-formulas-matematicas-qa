@@ -178,7 +178,12 @@
         "title": "Búsqueda directa",
         "body": "Encuentra por nombre, código o etiqueta y salta al detalle sin perder el hilo."
       }
-    }
+    },
+    "reviewsTitle": "Reseñas",
+    "reviewsLead": "Comentarios de quien usa el catálogo para estudiar, publicados después de revisión.",
+    "reviewsInvite": "Si el catálogo te sirve para estudiar, una reseña breve ayuda a mejorarlo. La leemos antes de publicarla.",
+    "reviewsCta": "Leer y escribir reseñas",
+    "reviewsSummary": "Media {average} · {count, plural, one {# reseña} other {# reseñas}}"
   },
   "about": {
     "title": "Acerca de",

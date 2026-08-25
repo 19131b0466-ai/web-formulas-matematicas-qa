@@ -2,6 +2,7 @@ import { cache } from 'react';
 import type {
   FormulaDetailResponse,
   MethodGuideResponse,
+  PublicReviewsResponse,
   SearchResponse,
   SectionDetailResponse,
   SectionSummary,
@@ -230,6 +231,20 @@ export const fetchMethodGuide = cache(
     }
   },
 );
+
+const EMPTY_REVIEWS: PublicReviewsResponse = { reviews: [], averageRating: null, count: 0 };
+
+export const fetchPublicReviews = cache(async (): Promise<PublicReviewsResponse> => {
+  try {
+    const data = await apiFetch<PublicReviewsResponse>('/reviews', {
+      next: { revalidate: 30 },
+    });
+    return data ?? EMPTY_REVIEWS;
+  } catch (err) {
+    console.error('[fetchPublicReviews]', getApiBaseUrl(), err);
+    return EMPTY_REVIEWS;
+  }
+});
 
 export function flattenSections(sections: SectionSummary[]): SectionSummary[] {
   const out: SectionSummary[] = [];

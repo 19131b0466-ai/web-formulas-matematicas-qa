@@ -48,7 +48,12 @@
         "title": "Direct search",
         "body": "Find by name, code, or tag and jump to the detail without losing the thread."
       }
-    }
+    },
+    "reviewsTitle": "Reviews",
+    "reviewsLead": "Comments from people who study with the catalog, published after we read them.",
+    "reviewsInvite": "If the catalog helps you study, a short review helps us improve it. We read it before it goes live.",
+    "reviewsCta": "Read and write reviews",
+    "reviewsSummary": "Average {average} · {count, plural, one {# review} other {# reviews}}"
   },
   "footer": {
     "line": "Mathematical formulas · API-served content ·",

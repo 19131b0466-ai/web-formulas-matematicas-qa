@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroMathPlane } from '@/components/site/HeroMathPlane';
 import { SiteShell } from '@/components/site/SiteShell';
 import { Link } from '@/i18n/navigation';
-import { fetchSubjects } from '@/lib/api';
+import { fetchPublicReviews, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import type { AppLocale } from '@/i18n/routing';
 
@@ -51,7 +51,11 @@ export default async function HubPage({ params }: PageProps) {
   const t = await getTranslations('home');
   const th = await getTranslations('hub');
   const ts = await getTranslations('site');
-  const subjects = await localizeContent(await fetchSubjects(), locale);
+  const [subjects, reviews] = await Promise.all([
+    localizeContent(await fetchSubjects(), locale),
+    fetchPublicReviews(),
+  ]);
+  const featuredReviews = reviews.reviews.slice(0, 2);
 
   return (
     <SiteShell>
@@ -138,6 +142,53 @@ export default async function HubPage({ params }: PageProps) {
               <p className="mt-2 text-sm leading-relaxed text-[var(--fg-muted)]">{t(`features.${key}.body`)}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--border)]">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-16">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-xl">
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-[var(--fg)] sm:text-3xl">
+                {t('reviewsTitle')}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--fg-muted)] sm:text-base">
+                {reviews.count > 0 ? t('reviewsLead') : t('reviewsInvite')}
+              </p>
+              {reviews.count > 0 && reviews.averageRating != null ? (
+                <p className="mt-2 text-sm text-[var(--accent-strong)]">
+                  {t('reviewsSummary', {
+                    count: reviews.count,
+                    average: reviews.averageRating.toFixed(1),
+                  })}
+                </p>
+              ) : null}
+            </div>
+            <Link
+              href="/resenas"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
+            >
+              {t('reviewsCta')}
+            </Link>
+          </div>
+          {featuredReviews.length > 0 ? (
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {featuredReviews.map((review) => (
+                <li
+                  key={review.id}
+                  className="rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg-elevated)_92%,transparent)] px-5 py-4"
+                >
+                  <p className="text-sm font-medium text-[var(--fg)]">
+                    {review.displayName}{' '}
+                    <span className="text-[var(--accent-strong)]" aria-hidden>
+                      {'★'.repeat(review.rating)}
+                    </span>
+                  </p>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--fg-muted)]">{review.body}</p>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </section>
     </SiteShell>

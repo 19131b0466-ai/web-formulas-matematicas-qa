@@ -1,10 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import type { PublicReviewsResponse } from '@repo/shared-types';
 import { ContentPage, ContentSection } from '@/components/site/ContentPage';
 import { ReviewForm } from '@/components/site/ReviewForm';
 import { SiteShell } from '@/components/site/SiteShell';
-import { getApiBaseUrl } from '@/lib/api';
+import { fetchPublicReviews } from '@/lib/api';
 import type { AppLocale } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string }> };
@@ -13,19 +12,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'reviews' });
   return { title: t('title'), description: t('lead') };
-}
-
-async function loadReviews(): Promise<PublicReviewsResponse> {
-  try {
-    const res = await fetch(`${getApiBaseUrl()}/reviews`, {
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 30 },
-    });
-    if (!res.ok) return { reviews: [], averageRating: null, count: 0 };
-    return (await res.json()) as PublicReviewsResponse;
-  } catch {
-    return { reviews: [], averageRating: null, count: 0 };
-  }
 }
 
 function stars(rating: number): string {
@@ -37,7 +23,7 @@ export default async function ReviewsPage({ params }: PageProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
   const t = await getTranslations('reviews');
-  const data = await loadReviews();
+  const data = await fetchPublicReviews();
 
   const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: 'medium' });
 

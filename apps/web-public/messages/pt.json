@@ -48,7 +48,12 @@
         "title": "Pesquisa direta",
         "body": "Encontra por nome, código ou etiqueta e salta para o detalhe."
       }
-    }
+    },
+    "reviewsTitle": "Opiniões",
+    "reviewsLead": "Comentários de quem estuda com o catálogo, publicados depois de os lermos.",
+    "reviewsInvite": "Se o catálogo te ajuda a estudar, uma opinião breve ajuda-nos a melhorá-lo. Lemos antes de publicar.",
+    "reviewsCta": "Ler e escrever opiniões",
+    "reviewsSummary": "Média {average} · {count, plural, one {# opinião} other {# opiniões}}"
   },
   "footer": {
     "line": "Fórmulas matemáticas · conteúdo via API ·",

@@ -48,7 +48,12 @@
         "title": "Direkte Suche",
         "body": "Finde nach Name, Code oder Tag und springe zum Detail."
       }
-    }
+    },
+    "reviewsTitle": "Bewertungen",
+    "reviewsLead": "Kommentare von Leuten, die mit dem Katalog lernen — nach Prüfung veröffentlicht.",
+    "reviewsInvite": "Wenn der Katalog dir beim Lernen hilft, hilft uns eine kurze Bewertung. Wir lesen sie, bevor sie erscheint.",
+    "reviewsCta": "Bewertungen lesen und schreiben",
+    "reviewsSummary": "Schnitt {average} · {count, plural, one {# Bewertung} other {# Bewertungen}}"
   },
   "footer": {
     "line": "Mathematische Formeln · Inhalt per API ·",

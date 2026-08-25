@@ -48,7 +48,12 @@
         "title": "Ricerca diretta",
         "body": "Trova per nome, codice o etichetta e apri il dettaglio."
       }
-    }
+    },
+    "reviewsTitle": "Recensioni",
+    "reviewsLead": "Commenti di chi studia con il catalogo, pubblicati dopo la revisione.",
+    "reviewsInvite": "Se il catalogo ti serve per studiare, una recensione breve ci aiuta a migliorarlo. La leggiamo prima di pubblicarla.",
+    "reviewsCta": "Leggere e scrivere recensioni",
+    "reviewsSummary": "Media {average} · {count, plural, one {# recensione} other {# recensioni}}"
   },
   "footer": {
     "line": "Formule matematiche · contenuto via API ·",

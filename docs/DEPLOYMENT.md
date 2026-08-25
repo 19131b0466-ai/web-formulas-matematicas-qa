@@ -20,6 +20,11 @@ Cada proyecto tiene su propio `vercel.json` con `installCommand` / `buildCommand
 2. Abre **SQL Editor** y ejecuta el contenido de:
    - [`supabase/migrations/20260730120000_initial_schema.sql`](../supabase/migrations/20260730120000_initial_schema.sql)
    - [`supabase/migrations/20260807130000_subjects_multi.sql`](../supabase/migrations/20260807130000_subjects_multi.sql)
+   - (si el proyecto ya existía, aplica también las migraciones posteriores en `supabase/migrations/`, p. ej. reseñas)
+
+**Vercel no aplica migraciones.** El deploy de la API solo arranca el código; el esquema de Postgres lo tienes que actualizar tú en Supabase (SQL Editor o `pnpm db:migrate` contra esa `DATABASE_URL`). Si el esquema de producción se creó pegando SQL en el editor, usa el mismo método para cambios nuevos — no el Drizzle journal, que puede intentar re-aplicar `0000`/`0001`.
+
+Para reseñas, ejecuta [`supabase/migrations/20260825003000_reviews.sql`](../supabase/migrations/20260825003000_reviews.sql).
 3. En **Project Settings → Database → Connection string**:
    - Usa el **pooler** en modo **Transaction**.
    - Puerto **`6543`** (no el directo `5432`).

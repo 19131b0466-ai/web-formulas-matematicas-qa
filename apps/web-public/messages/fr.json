@@ -48,7 +48,12 @@
         "title": "Recherche directe",
         "body": "Trouvez par nom, code ou étiquette et passez au détail."
       }
-    }
+    },
+    "reviewsTitle": "Avis",
+    "reviewsLead": "Commentaires de personnes qui étudient avec le catalogue, publiés après relecture.",
+    "reviewsInvite": "Si le catalogue vous aide à étudier, un avis court nous aide à l’améliorer. Nous le lisons avant publication.",
+    "reviewsCta": "Lire et écrire des avis",
+    "reviewsSummary": "Moyenne {average} · {count, plural, one {# avis} other {# avis}}"
   },
   "footer": {
     "line": "Formules mathématiques · contenu via API ·",
