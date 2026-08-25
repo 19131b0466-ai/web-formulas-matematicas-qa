@@ -21,7 +21,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
   );
 
   if (!hasIds) {
-    return <ContentBlocks blocks={blocks} sectionNumber="" />;
+    return <ContentBlocks blocks={blocks} sectionNumber="" subject={subject} />;
   }
 
   const labels = {
@@ -44,6 +44,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                 index={index}
                 sectionNumber=""
                 labels={labels}
+                subject={subject}
               />
             );
           }
@@ -154,6 +155,7 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
             index={index}
             sectionNumber=""
             labels={labels}
+            subject={subject}
           />
         );
       })}

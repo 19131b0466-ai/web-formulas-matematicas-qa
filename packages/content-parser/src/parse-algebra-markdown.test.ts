@@ -86,7 +86,13 @@ describe('parseAlgebraMarkdown', () => {
     const result = parseAlgebraMarkdown(FIXTURE);
     expect(result.stats.formulaCount).toBe(2);
     expect(result.sections.some((s) => s.slug === 'numeros-propiedades')).toBe(true);
-    expect(result.sections.some((s) => s.slug === 'mapas-relaciones')).toBe(true);
+    const maps = result.sections.find((s) => s.slug === 'mapas-relaciones');
+    expect(maps).toBeTruthy();
+    expect(maps!.description).toBeNull();
+    expect(maps!.blocks.some((b) => b.blockType === 'note')).toBe(false);
+    const mapList = maps!.blocks.find((b) => b.blockType === 'list');
+    expect(mapList?.title).toBe('Fundamentos');
+    expect((mapList!.content as { items: string[] }).items).toContain('Distributiva → Factorización');
     expect(result.sections.some((s) => s.slug === 'fronteras-materias')).toBe(true);
 
     const fnd = result.sections
@@ -110,6 +116,11 @@ describe('parseAlgebraMarkdown', () => {
         expect(result.sections.some((s) => s.number === num && s.slug === slug)).toBe(true);
       }
     }
+    const maps = result.sections.find((s) => s.slug === 'mapas-relaciones');
+    expect(maps?.description).toMatch(/grafo interactivo|Relacionadas/i);
+    const mapLists = maps?.blocks.filter((b) => b.blockType === 'list') ?? [];
+    expect(mapLists.length).toBe(4);
+    expect(maps?.blocks.some((b) => b.blockType === 'note')).toBe(false);
     const withVisual = result.sections
       .flatMap((s) => s.blocks)
       .filter((b) => b.blockType === 'formula' && (b.content as FormulaContent).visual);

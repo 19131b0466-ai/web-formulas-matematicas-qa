@@ -9,18 +9,26 @@ import type {
   TextContent,
 } from '@repo/shared-types';
 import { blockAnchorId } from '@/lib/anchors';
+import {
+  extractRelationPathLines,
+  isTitleOnlyNote,
+  listLooksLikeRelationMap,
+} from '@/lib/relation-maps';
+import type { SubjectSlug } from '@/lib/subjects';
 import { CopyLatexButton } from './CopyLatexButton';
 import { InlineMarkdown } from './InlineMarkdown';
 import { Katex } from './Katex';
+import { RelationPaths } from './RelationPaths';
 
 type ContentBlocksProps = {
   blocks: ContentBlockDto[];
   sectionNumber: string;
+  subject?: SubjectSlug;
 };
 
 export type ContentBlockLabels = { formula: string; signal: string; method: string };
 
-export async function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProps) {
+export async function ContentBlocks({ blocks, sectionNumber, subject }: ContentBlocksProps) {
   const t = await getTranslations('content');
   const labels: ContentBlockLabels = {
     formula: t('formula'),
@@ -37,6 +45,7 @@ export async function ContentBlocks({ blocks, sectionNumber }: ContentBlocksProp
           index={index}
           sectionNumber={sectionNumber}
           labels={labels}
+          subject={subject}
         />
       ))}
     </div>
@@ -48,11 +57,13 @@ export function ContentBlockItem({
   index,
   sectionNumber,
   labels,
+  subject,
 }: {
   block: ContentBlockDto;
   index: number;
   sectionNumber: string;
   labels: ContentBlockLabels;
+  subject?: SubjectSlug;
 }) {
   const anchor = blockAnchorId({
     sectionNumber,
@@ -79,7 +90,7 @@ export function ContentBlockItem({
           </a>
         </h3>
       ) : null}
-      <BlockBody block={block} labels={labels} />
+      <BlockBody block={block} labels={labels} subject={subject} />
     </section>
   );
 }
@@ -87,9 +98,11 @@ export function ContentBlockItem({
 function BlockBody({
   block,
   labels,
+  subject,
 }: {
   block: ContentBlockDto;
   labels: ContentBlockLabels;
+  subject?: SubjectSlug;
 }) {
   switch (block.type) {
     case 'formula': {
@@ -143,6 +156,10 @@ function BlockBody({
     }
     case 'text': {
       const content = block.content as TextContent;
+      const paths = extractRelationPathLines(content.markdown);
+      if (paths) {
+        return <RelationPaths lines={paths} subject={subject} />;
+      }
       return (
         <p className="text-base leading-relaxed text-[var(--fg)]">
           <InlineMarkdown text={content.markdown} />
@@ -151,6 +168,9 @@ function BlockBody({
     }
     case 'list': {
       const content = block.content as ListContent;
+      if (listLooksLikeRelationMap(content.items)) {
+        return <RelationPaths lines={content.items} subject={subject} />;
+      }
       const ListTag = content.ordered ? 'ol' : 'ul';
       return (
         <ListTag
@@ -205,6 +225,9 @@ function BlockBody({
     }
     case 'note': {
       const content = block.content as NoteContent;
+      if (isTitleOnlyNote(block.title, content.markdown)) {
+        return null;
+      }
       const tone =
         content.variant === 'warning'
           ? 'border-[var(--warning)]/40 bg-[color-mix(in_oklab,var(--warning)_12%,transparent)]'

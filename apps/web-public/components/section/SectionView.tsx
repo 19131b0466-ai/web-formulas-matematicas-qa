@@ -78,7 +78,7 @@ export async function SectionView({
       {catalog ? (
         <FormulaCatalog subject={subject} blocks={blocks} />
       ) : (
-        <ContentBlocks blocks={blocks} sectionNumber={section.number} />
+        <ContentBlocks blocks={blocks} sectionNumber={section.number} subject={subject} />
       )}
     </article>
   );

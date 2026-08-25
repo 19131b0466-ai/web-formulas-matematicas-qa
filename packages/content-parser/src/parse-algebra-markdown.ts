@@ -344,6 +344,7 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
   let draft: FormulaDraft | null = null;
   let paragraph: string[] = [];
   let chapterKind: 'catalog' | 'maps' | 'frontier' | 'skip' = 'skip';
+  let mapHeading: string | null = null;
 
   const flushParagraph = () => {
     const text = paragraph.join('\n').trim();
@@ -354,6 +355,10 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
       return;
     }
     if (!currentSection) return;
+    if (chapterKind === 'maps' && !currentSection.description) {
+      currentSection.description = stripInlineNoise(text);
+      return;
+    }
     const content: TextContent = { markdown: text };
     pushBlock(currentSection, 'text', content, [stripInlineNoise(text)], null);
   };
@@ -416,11 +421,13 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
         const section = createChapter(num, title, sortOrder++);
         sections.push(section);
         currentSection = section;
+        mapHeading = null;
       } else if (n === 29) {
         chapterKind = 'maps';
         const section = createChapter(num, title, sortOrder++);
         sections.push(section);
         currentSection = section;
+        mapHeading = null;
       } else if (n === 30) {
         chapterKind = 'frontier';
         const section = createChapter(num, title, sortOrder++);
@@ -446,8 +453,11 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
       }
 
       const raw = h2[1]!.trim();
-      if (chapterKind === 'maps' || chapterKind === 'frontier') {
-        // Subsection title as note header + following content
+      if (chapterKind === 'maps') {
+        mapHeading = raw;
+        continue;
+      }
+      if (chapterKind === 'frontier') {
         const note: NoteContent = { variant: 'info', markdown: `**${raw}**` };
         pushBlock(currentSection, 'note', note, [raw], raw);
         continue;
@@ -583,6 +593,18 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
     const fence = parseFence(lines, i);
     if (fence && currentSection) {
       flushParagraph();
+      if (chapterKind === 'maps') {
+        const items = fence.body
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean);
+        if (items.length) {
+          const list: ListContent = { items, ordered: false };
+          pushBlock(currentSection, 'list', list, items.map(stripInlineNoise), mapHeading);
+        }
+        i = fence.end;
+        continue;
+      }
       if (draft) {
         draft.notes.push(`\`\`\`\n${fence.body}\n\`\`\``);
       } else {
