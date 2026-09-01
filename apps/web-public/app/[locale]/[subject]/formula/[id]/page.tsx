@@ -8,7 +8,7 @@ import { getSiteUrl } from '@/lib/site';
 import { isSubjectSlug, subjectUsesFormulaCatalog, type SubjectSlug } from '@/lib/subjects';
 import { routing, type AppLocale } from '@/i18n/routing';
 
-export const revalidate = 600;
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 type PageProps = {

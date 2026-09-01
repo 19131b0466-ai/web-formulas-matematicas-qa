@@ -12,6 +12,7 @@ import type {
 import type { SubjectSlug } from './subjects';
 import { sectionHref as subjectSectionHref } from './subjects';
 import { isHiddenPublicSectionSlug } from './hidden-sections';
+import { CATALOG_REVALIDATE_SECONDS, REVIEWS_REVALIDATE_SECONDS } from './isr';
 
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
@@ -98,7 +99,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T | null> 
         Accept: 'application/json',
         ...init?.headers,
       },
-      next: init?.next ?? { revalidate: 300 },
+      next: init?.next ?? { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
 
     if (res.status === 404) return null;
@@ -120,7 +121,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T | null> 
 export const fetchSubjects = cache(async (): Promise<SubjectSummary[]> => {
   try {
     const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
-      next: { revalidate: 300 },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
     if (!data) return FALLBACK_SUBJECTS;
     return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
@@ -135,7 +136,7 @@ export const fetchSections = cache(
     try {
       const data = await apiFetch<{ sections: SectionSummary[] }>(
         `/subjects/${encodeURIComponent(subject)}/sections`,
-        { next: { revalidate: 300 } },
+        { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
       );
       return (data?.sections ?? []).filter((section) => !isHiddenPublicSectionSlug(section.slug));
     } catch (err) {
@@ -154,7 +155,7 @@ export const fetchSection = cache(
     if (isHiddenPublicSectionSlug(slug)) return null;
     return apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-      { next: { revalidate: 600 } },
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
     );
   },
 );
@@ -167,7 +168,7 @@ export const fetchFormula = cache(
     // Propagates ApiUnavailableError; returns null only for true 404.
     return apiFetch<FormulaDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
-      { next: { revalidate: 600 } },
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
     );
   },
 );
@@ -210,7 +211,7 @@ export async function fetchSearch(params: {
 export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> => {
   try {
     const data = await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
-      next: { revalidate: 600 },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
     return data ?? { tags: [] };
   } catch {
@@ -223,7 +224,7 @@ export const fetchMethodGuide = cache(
     try {
       const qs = new URLSearchParams({ subject });
       const data = await apiFetch<MethodGuideResponse>(`/guide/method-selection?${qs.toString()}`, {
-        next: { revalidate: 600 },
+        next: { revalidate: CATALOG_REVALIDATE_SECONDS },
       });
       return data ?? { strategies: [], checklist: [] };
     } catch {
@@ -237,7 +238,7 @@ const EMPTY_REVIEWS: PublicReviewsResponse = { reviews: [], averageRating: null,
 export const fetchPublicReviews = cache(async (): Promise<PublicReviewsResponse> => {
   try {
     const data = await apiFetch<PublicReviewsResponse>('/reviews', {
-      next: { revalidate: 30 },
+      next: { revalidate: REVIEWS_REVALIDATE_SECONDS },
     });
     return data ?? EMPTY_REVIEWS;
   } catch (err) {

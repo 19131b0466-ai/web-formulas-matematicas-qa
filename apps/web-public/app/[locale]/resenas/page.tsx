@@ -6,6 +6,8 @@ import { SiteShell } from '@/components/site/SiteShell';
 import { fetchPublicReviews } from '@/lib/api';
 import type { AppLocale } from '@/i18n/routing';
 
+export const revalidate = 3600;
+
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

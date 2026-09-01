@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-/** Short ISR window: avoids hung SSR if the API is slow, without sticking empty forever. */
-export const revalidate = 60;
+/** Catalog hub: long ISR to stay within Hobby write quota (was 60s). */
+export const revalidate = 86400;
 
 const SUBJECT_COPY: Record<string, { accent: string; tone: string }> = {
   'calculo-ii': {

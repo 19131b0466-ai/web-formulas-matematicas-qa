@@ -9,6 +9,9 @@ import { isSubjectSlug, sectionHref, subjectHasGuide, type SubjectSlug } from '@
 import { routing } from '@/i18n/routing';
 import type { SectionSummary } from '@repo/shared-types';
 
+/** Avoid rewriting sitemap.xml on every crawl (lastModified: new Date() counted as ISR writes). */
+export const revalidate = 86400;
+
 function localePath(locale: string, path: string): string {
   const base = getSiteUrl().replace(/\/$/, '');
   const normalized = path.startsWith('/') ? path : `/${path}`;
@@ -44,7 +47,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const locale of routing.locales) {
     entries.push({
       url: localePath(locale, '/'),
-      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
       alternates: alternatesFor('/'),
@@ -53,7 +55,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const path of ['/acerca', '/contacto', '/resenas'] as const) {
       entries.push({
         url: localePath(locale, path),
-        lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.5,
         alternates: alternatesFor(path),
@@ -70,7 +71,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const path of staticPaths) {
         entries.push({
           url: localePath(locale, path),
-          lastModified: new Date(),
           changeFrequency: 'weekly',
           priority: 0.85,
           alternates: alternatesFor(path),
@@ -83,7 +83,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const path = sectionHref(subject, section.slug);
         entries.push({
           url: localePath(locale, path),
-          lastModified: new Date(),
           changeFrequency: 'weekly',
           priority: section.parentSlug ? 0.6 : 0.8,
           alternates: alternatesFor(path),
