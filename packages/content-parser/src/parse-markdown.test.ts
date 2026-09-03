@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { extractConstraintsFromLatex } from './enrich-calculo.js';
 import { parseFormulasMarkdown } from './parse-markdown.js';
+import { CALCULO_VIZ_BY_FORMULA_ID } from '@repo/shared-types';
 import { SECTION_SLUG_OVERRIDES } from './tags.js';
 import { slugify } from './slugify.js';
 
@@ -272,15 +273,19 @@ describe('parseFormulasMarkdown (full document)', () => {
     );
   });
 
-  it('attaches interactive viz metadata to mapped subsections', () => {
+  it('attaches interactive viz to the defining formula only', () => {
     const riemann = result.sections.find((s) => s.number === '3.1');
-    const formula = riemann?.blocks.find((b) => b.blockType === 'formula');
-    expect((formula?.content as { visual?: { type: string } }).visual?.type).toBe('riemann_sum');
+    const formulas = (riemann?.blocks ?? []).filter((b) => b.blockType === 'formula');
+    expect((formulas[0]?.content as { visual?: { type: string } }).visual?.type).toBe('riemann_sum');
+    expect((formulas[1]?.content as { visual?: unknown }).visual).toBeUndefined();
 
     const withViz = result.sections.flatMap((s) =>
       s.blocks.filter((b) => b.blockType === 'formula' && Boolean((b.content as { visual?: unknown }).visual)),
     );
-    expect(withViz.length).toBeGreaterThan(20);
+    expect(withViz.map((b) => b.formulaCode)).toEqual(
+      expect.arrayContaining(['INT-014', 'INT-022', 'INT-030', 'INT-037']),
+    );
+    expect(withViz.length).toBe(Object.keys(CALCULO_VIZ_BY_FORMULA_ID).length);
   });
 });
 

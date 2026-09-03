@@ -1,5 +1,7 @@
 export {
+  CALCULO_VIZ_BY_FORMULA_ID,
   CALCULO_VIZ_BY_SECTION_NUMBER,
+  calculoVizForFormulaId,
   calculoVizForSectionNumber,
   type CalculoSectionViz,
 } from './calculo-viz.js';

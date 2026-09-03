@@ -54,13 +54,6 @@ export async function SectionView({
         ) : null}
       </header>
 
-      {calcViz ? (
-        <div className="mb-8">
-          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
-          <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
-        </div>
-      ) : null}
-
       {subsections.length > 0 ? (
         <nav
           aria-label={t('subsections')}
@@ -90,6 +83,13 @@ export async function SectionView({
       ) : (
         <ContentBlocks blocks={blocks} sectionNumber={section.number} subject={subject} />
       )}
+
+      {calcViz ? (
+        <div className="mt-8">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
+        </div>
+      ) : null}
     </article>
   );
 }

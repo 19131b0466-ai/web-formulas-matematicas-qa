@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForSectionNumber, type FormulaDetailResponse } from '@repo/shared-types';
+import { calculoVizForFormulaId, type FormulaDetailResponse } from '@repo/shared-types';
 import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
 import { FormulaVisualization } from '@/components/algebra/FormulaVisualization';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
@@ -24,11 +24,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const { content, related, section, formulaId, title } = detail;
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
-    subject === 'calculo-ii'
-      ? content.visual
-        ? { type: content.visual.type, concept: content.visual.concept }
-        : calculoVizForSectionNumber(section.number)
-      : undefined;
+    subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;
 
   const crumbs = [
     { label: tn('home'), href: '/' },

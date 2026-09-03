@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForSectionNumber, type ContentBlockDto, type FormulaContent } from '@repo/shared-types';
+import { calculoVizForFormulaId, type ContentBlockDto, type FormulaContent } from '@repo/shared-types';
 import { ContentBlockItem, ContentBlocks } from '@/components/content/ContentBlocks';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
@@ -14,11 +14,9 @@ type FormulaCatalogProps = {
   sectionNumber?: string;
 };
 
-export async function FormulaCatalog({ subject, blocks, sectionNumber }: FormulaCatalogProps) {
+export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
   const t = await getTranslations('formula');
   const tContent = await getTranslations('content');
-  const sectionHasViz =
-    subject === 'calculo-ii' && Boolean(sectionNumber && calculoVizForSectionNumber(sectionNumber));
   const hasIds = blocks.some(
     (b) => b.type === 'formula' && Boolean((b.content as FormulaContent).formulaId),
   );
@@ -76,10 +74,14 @@ export async function FormulaCatalog({ subject, blocks, sectionNumber }: Formula
                       {content.level}
                     </span>
                   ) : null}
-                  {content.visual || sectionHasViz ? (
+                  {(subject === 'calculo-ii' ? calculoVizForFormulaId(id) : content.visual) ? (
                     <span
                       className="rounded-md border border-[var(--border)] px-2 py-0.5 text-[10px] font-medium text-[var(--fg-muted)]"
-                      title={content.visual?.type ?? calculoVizForSectionNumber(sectionNumber ?? '')?.type}
+                      title={
+                        subject === 'calculo-ii'
+                          ? calculoVizForFormulaId(id)?.type
+                          : content.visual?.type
+                      }
                     >
                       viz
                     </span>

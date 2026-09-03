@@ -1,5 +1,5 @@
-import type { FormulaContent, FormulaVisual, NoteContent } from '@repo/shared-types';
-import { calculoVizForSectionNumber } from '@repo/shared-types';
+import type { FormulaContent, NoteContent } from '@repo/shared-types';
+import { calculoVizForFormulaId } from '@repo/shared-types';
 import type { ParsedSection } from './types.js';
 
 const MAX_RELATED = 8;
@@ -316,25 +316,24 @@ export function enrichCalculoFormulas(sections: ParsedSection[]): void {
     if (curatedOnly.length) ref.content.relatedIds = curatedOnly;
   }
 
-  attachSectionVisuals(sections);
+  attachFormulaVisuals(sections);
 }
 
-function attachSectionVisuals(sections: ParsedSection[]): void {
+function attachFormulaVisuals(sections: ParsedSection[]): void {
   for (const section of sections) {
-    const spec = calculoVizForSectionNumber(section.number);
-    if (!spec) continue;
-    const visual: FormulaVisual = {
-      type: spec.type,
-      concept: spec.concept,
-      elements: '',
-      idea: spec.concept,
-      learningObjective: '',
-    };
     for (const block of section.blocks) {
-      if (block.blockType !== 'formula') continue;
+      if (block.blockType !== 'formula' || !block.formulaCode) continue;
+      const spec = calculoVizForFormulaId(block.formulaCode);
+      if (!spec) continue;
       const content = block.content as FormulaContent;
       if (content.visual) continue;
-      content.visual = visual;
+      content.visual = {
+        type: spec.type,
+        concept: spec.concept,
+        elements: '',
+        idea: spec.concept,
+        learningObjective: '',
+      };
     }
   }
 }

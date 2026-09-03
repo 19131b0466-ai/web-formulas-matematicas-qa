@@ -13,7 +13,7 @@ import {
   titledWithSubject,
 } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, subjectUsesFormulaCatalog, type SubjectSlug } from '@/lib/subjects';
-import { calculoVizForSectionNumber } from '@repo/shared-types';
+import { calculoVizForFormulaId } from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 86400;
@@ -52,8 +52,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const concept = detail.title ?? t('primary');
     const title = titledWithSubject(concept, subjectTitle);
     const hasVisualization = Boolean(
-      detail.content.visual ||
-        (subject === 'calculo-ii' && calculoVizForSectionNumber(detail.section.number)),
+      (subject === 'calculo-ii' && calculoVizForFormulaId(detail.formulaId)) ||
+        (subject !== 'calculo-ii' && detail.content.visual),
     );
     const description = formulaSeoDescription({
       title: concept,
