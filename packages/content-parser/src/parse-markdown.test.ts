@@ -271,6 +271,17 @@ describe('parseFormulasMarkdown (full document)', () => {
       true,
     );
   });
+
+  it('attaches interactive viz metadata to mapped subsections', () => {
+    const riemann = result.sections.find((s) => s.number === '3.1');
+    const formula = riemann?.blocks.find((b) => b.blockType === 'formula');
+    expect((formula?.content as { visual?: { type: string } }).visual?.type).toBe('riemann_sum');
+
+    const withViz = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula' && Boolean((b.content as { visual?: unknown }).visual)),
+    );
+    expect(withViz.length).toBeGreaterThan(20);
+  });
 });
 
 describe('extractConstraintsFromLatex', () => {

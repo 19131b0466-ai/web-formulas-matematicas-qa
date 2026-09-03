@@ -4,6 +4,8 @@ import { ContentPage, ContentSection } from '@/components/site/ContentPage';
 import { ReviewForm } from '@/components/site/ReviewForm';
 import { SiteShell } from '@/components/site/SiteShell';
 import { fetchPublicReviews } from '@/lib/api';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 3600;
@@ -11,9 +13,17 @@ export const revalidate = 3600;
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: raw } = await params;
+  const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'reviews' });
-  return { title: t('title'), description: t('lead') };
+  const tsite = await getTranslations({ locale, namespace: 'site' });
+  return buildPageMetadata({
+    locale,
+    path: '/resenas',
+    title: t('title'),
+    description: t('lead'),
+    siteName: tsite('name'),
+  });
 }
 
 function stars(rating: number): string {
@@ -25,12 +35,19 @@ export default async function ReviewsPage({ params }: PageProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
   const t = await getTranslations('reviews');
+  const tn = await getTranslations('nav');
   const data = await fetchPublicReviews();
 
   const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: 'medium' });
 
   return (
     <SiteShell>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: t('title'), path: '/resenas' },
+        ])}
+      />
       <ContentPage title={t('title')} lead={t('lead')}>
         <ContentSection title={t('writeTitle')}>
           <p>{t('moderationNote')}</p>

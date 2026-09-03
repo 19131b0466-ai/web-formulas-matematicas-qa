@@ -94,6 +94,16 @@ export const visitLogs = pgTable(
     subjectSlug: text('subject_slug'),
     searchQuery: text('search_query'),
     isUniqueDay: boolean('is_unique_day').default(false),
+    isBot: boolean('is_bot').notNull().default(false),
+    trafficClass: text('traffic_class').notNull().default('unknown'),
+    botId: text('bot_id'),
+    botCategory: text('bot_category'),
+    botDetectionReason: text('bot_detection_reason'),
+    botConfidence: text('bot_confidence'),
+    ipHash: text('ip_hash'),
+    ipNetwork: text('ip_network'),
+    eventSource: text('event_source').notNull().default('web_client'),
+    classificationVersion: text('classification_version').notNull().default('v1'),
   },
   (table) => [
     index('idx_visit_logs_date').on(table.visitedAt),
@@ -101,6 +111,11 @@ export const visitLogs = pgTable(
     index('idx_visit_logs_path').on(table.path),
     index('idx_visit_logs_session').on(table.sessionId),
     index('idx_visit_logs_subject').on(table.subjectSlug),
+    index('idx_visit_logs_visited_traffic').on(table.visitedAt, table.trafficClass),
+    index('idx_visit_logs_visited_is_bot').on(table.visitedAt, table.isBot),
+    index('idx_visit_logs_bot_id_visited').on(table.botId, table.visitedAt),
+    index('idx_visit_logs_ip_hash_visited').on(table.ipHash, table.visitedAt),
+    index('idx_visit_logs_path_visited_traffic').on(table.path, table.visitedAt, table.trafficClass),
   ],
 );
 

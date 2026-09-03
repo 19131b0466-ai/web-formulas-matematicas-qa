@@ -102,6 +102,8 @@ En dos dimensiones:
 A_x=A\cos\theta,\qquad A_y=A\sin\theta
 \]
 
+**Detalle:** Expresa un vector mediante sus componentes cartesianas; en el plano, dichas componentes se obtienen a partir del módulo y del ángulo.
+
 **Relacionadas:** `VEC-001`, `VEC-004`, `MOV-006`, `NEW-008`.
 
 ---
@@ -120,6 +122,8 @@ R_x=\sum_i A_{ix},\qquad
 R_y=\sum_i A_{iy},\qquad
 R_z=\sum_i A_{iz}
 \]
+
+**Detalle:** El vector resultante es la suma de los vectores, equivalente a sumar sus componentes.
 
 **Relacionadas:** `VEC-003`, `NEW-002`.
 
@@ -180,6 +184,8 @@ v_{\text{med}}=\frac{\Delta x}{\Delta t}
 =\frac{x_f-x_i}{t_f-t_i}
 \]
 
+**Detalle:** Cociente entre el desplazamiento y el intervalo de tiempo transcurrido.
+
 **Relacionadas:** `CIN-001`, `CIN-003`.
 
 ---
@@ -204,6 +210,8 @@ v_{\text{rap,med}}=\frac{d_{\text{total}}}{\Delta t}
 v=\frac{dx}{dt}
 \]
 
+**Detalle:** Derivada de la posición respecto del tiempo.
+
 **Relacionadas:** `CIN-006`, `CIN-012`.
 
 ---
@@ -216,6 +224,8 @@ a_{\text{med}}=\frac{\Delta v}{\Delta t}
 =\frac{v_f-v_i}{t_f-t_i}
 \]
 
+**Detalle:** Cociente entre el cambio de velocidad y el intervalo de tiempo transcurrido.
+
 **Relacionadas:** `CIN-006`.
 
 ---
@@ -227,6 +237,8 @@ a_{\text{med}}=\frac{\Delta v}{\Delta t}
 a=\frac{dv}{dt}=\frac{d^2x}{dt^2}
 \]
 
+**Detalle:** Derivada de la velocidad respecto del tiempo, equivalente a la segunda derivada de la posición.
+
 **Relacionadas:** `CIN-004`, `CIN-013`.
 
 ---
@@ -237,6 +249,8 @@ a=\frac{dv}{dt}=\frac{d^2x}{dt^2}
 \[
 x=x_0+vt
 \]
+
+**Detalle:** En el movimiento rectilíneo uniforme, la posición varía linealmente con el tiempo a velocidad constante.
 
 **Condición:** \(v\) constante y \(a=0\).
 
@@ -250,6 +264,8 @@ x=x_0+vt
 \[
 v=v_0+at
 \]
+
+**Detalle:** En el movimiento rectilíneo uniformemente acelerado, la velocidad varía linealmente con el tiempo.
 
 **Condición:** aceleración constante.
 
@@ -269,6 +285,8 @@ Por tanto:
 \[
 \Delta x=v_0t+\frac12at^2
 \]
+
+**Detalle:** Posición en el movimiento rectilíneo con aceleración constante.
 
 **Nota:** \(\Delta x\) es desplazamiento; solo coincide con la distancia recorrida si no cambia el sentido del movimiento.
 
@@ -296,6 +314,8 @@ v_f^2=v_0^2+2a\Delta x
 \Delta x=\frac{v_0+v_f}{2}\,t
 \]
 
+**Detalle:** Con aceleración constante, el desplazamiento es el producto de la velocidad media por el tiempo.
+
 **Condición:** aceleración constante.
 
 **Relacionadas:** `CIN-002`, `CIN-008`.
@@ -309,6 +329,8 @@ v_f^2=v_0^2+2a\Delta x
 v(t)=v(t_0)+\int_{t_0}^{t}a(\tau)\,d\tau
 \]
 
+**Detalle:** La velocidad se obtiene integrando la aceleración a partir de un instante inicial.
+
 **Relacionadas:** `CIN-004`, `CIN-006`, `CIN-013`.
 
 ---
@@ -320,6 +342,8 @@ v(t)=v(t_0)+\int_{t_0}^{t}a(\tau)\,d\tau
 x(t)=x(t_0)+\int_{t_0}^{t}v(\tau)\,d\tau
 \]
 
+**Detalle:** La posición se obtiene integrando la velocidad a partir de un instante inicial.
+
 **Relacionadas:** `CIN-004`, `CIN-012`.
 
 ---
@@ -330,6 +354,8 @@ x(t)=x(t_0)+\int_{t_0}^{t}v(\tau)\,d\tau
 \[
 v_y=v_{0y}-gt
 \]
+
+**Detalle:** Velocidad vertical en caída libre con aceleración de módulo g hacia abajo.
 
 **Condición:** eje \(y\) positivo hacia arriba y resistencia del aire despreciable.
 
@@ -344,6 +370,8 @@ v_y=v_{0y}-gt
 y=y_0+v_{0y}t-\frac12gt^2
 \]
 
+**Detalle:** Posición vertical en caída libre con aceleración de módulo g hacia abajo.
+
 **Relacionadas:** `CIN-014`, `CIN-016`.
 
 ---
@@ -355,6 +383,8 @@ y=y_0+v_{0y}t-\frac12gt^2
 v_y^2=v_{0y}^2-2g(y-y_0)
 \]
 
+**Detalle:** Relación entre velocidad y desplazamiento vertical en caída libre, sin el tiempo explícito.
+
 **Relacionadas:** `CIN-010`, `CIN-014`, `CIN-017`.
 
 ---
@@ -365,6 +395,8 @@ v_y^2=v_{0y}^2-2g(y-y_0)
 \[
 \Delta h_{\max}=\frac{v_0^2}{2g}
 \]
+
+**Detalle:** Altura máxima alcanzada en un lanzamiento vertical respecto del punto de lanzamiento.
 
 **Condiciones:** lanzamiento estrictamente vertical; \(v_y=0\) en la altura máxima; resistencia del aire despreciable.
 
@@ -379,6 +411,8 @@ v_y^2=v_{0y}^2-2g(y-y_0)
 t_{\text{subida}}=\frac{v_0}{g}
 \]
 
+**Detalle:** Tiempo transcurrido hasta alcanzar la altura máxima en un lanzamiento vertical.
+
 **Relacionadas:** `CIN-017`, `CIN-019`.
 
 ---
@@ -389,6 +423,8 @@ t_{\text{subida}}=\frac{v_0}{g}
 \[
 t_{\text{vuelo}}=\frac{2v_0}{g}
 \]
+
+**Detalle:** Tiempo de ida y vuelta hasta la misma altura en un lanzamiento vertical.
 
 **Condición:** el objeto regresa a la misma altura desde la que fue lanzado.
 
@@ -405,6 +441,8 @@ t_{\text{vuelo}}=\frac{2v_0}{g}
 \vec r=x\hat i+y\hat j+z\hat k
 \]
 
+**Detalle:** El vector posición se expresa mediante sus coordenadas cartesianas.
+
 **Relacionadas:** `MOV-002`, `VEC-003`.
 
 ---
@@ -415,6 +453,8 @@ t_{\text{vuelo}}=\frac{2v_0}{g}
 \[
 \Delta\vec r=\vec r_f-\vec r_i
 \]
+
+**Detalle:** El desplazamiento vectorial es la diferencia entre las posiciones final e inicial.
 
 **Relacionadas:** `MOV-001`, `MOV-003`.
 
@@ -427,6 +467,8 @@ t_{\text{vuelo}}=\frac{2v_0}{g}
 \vec v_{\text{med}}=\frac{\Delta\vec r}{\Delta t}
 \]
 
+**Detalle:** Cociente entre el desplazamiento vectorial y el intervalo de tiempo transcurrido.
+
 **Relacionadas:** `MOV-002`, `MOV-004`.
 
 ---
@@ -437,6 +479,8 @@ t_{\text{vuelo}}=\frac{2v_0}{g}
 \[
 \vec v=\frac{d\vec r}{dt}
 \]
+
+**Detalle:** Derivada del vector posición respecto del tiempo.
 
 **Relacionadas:** `MOV-005`.
 
@@ -450,6 +494,8 @@ t_{\text{vuelo}}=\frac{2v_0}{g}
 =\frac{d^2\vec r}{dt^2}
 \]
 
+**Detalle:** Derivada del vector velocidad respecto del tiempo.
+
 **Relacionadas:** `MOV-004`, `NEW-002`.
 
 ---
@@ -462,6 +508,8 @@ v_{0x}=v_0\cos\theta,\qquad
 v_{0y}=v_0\sin\theta
 \]
 
+**Detalle:** Componentes horizontal y vertical de la velocidad inicial de un proyectil.
+
 **Relacionadas:** `VEC-003`, `MOV-007`, `MOV-008`.
 
 ---
@@ -472,6 +520,8 @@ v_{0y}=v_0\sin\theta
 \[
 x=x_0+(v_0\cos\theta)t
 \]
+
+**Detalle:** Posición horizontal de un proyectil con aceleración horizontal nula.
 
 **Condiciones:** sin resistencia del aire; \(a_x=0\).
 
@@ -486,6 +536,8 @@ x=x_0+(v_0\cos\theta)t
 y=y_0+(v_0\sin\theta)t-\frac12gt^2
 \]
 
+**Detalle:** Posición vertical de un proyectil con aceleración gravitatoria constante.
+
 **Relacionadas:** `MOV-006`, `MOV-009`.
 
 ---
@@ -496,6 +548,8 @@ y=y_0+(v_0\sin\theta)t-\frac12gt^2
 \[
 v_y=v_0\sin\theta-gt
 \]
+
+**Detalle:** Componente vertical de la velocidad de un proyectil en función del tiempo.
 
 **Nota:** esta corrige la expresión \(v_y=v_0\sin\theta\), que solo corresponde al valor inicial.
 
@@ -510,6 +564,8 @@ v_y=v_0\sin\theta-gt
 v_x=v_0\cos\theta
 \]
 
+**Detalle:** La componente horizontal de la velocidad de un proyectil permanece constante.
+
 **Condición:** sin resistencia del aire.
 
 **Relacionadas:** `MOV-006`, `MOV-007`.
@@ -522,6 +578,8 @@ v_x=v_0\cos\theta
 \[
 t_{\max}=\frac{v_0\sin\theta}{g}
 \]
+
+**Detalle:** Tiempo transcurrido hasta que la velocidad vertical del proyectil se anula.
 
 **Condición:** \(v_y=0\) en la cima.
 
@@ -549,6 +607,8 @@ H=\frac{v_0^2\sin^2\theta}{2g}
 t_{\text{vuelo}}=\frac{2v_0\sin\theta}{g}
 \]
 
+**Detalle:** Tiempo de vuelo de un proyectil que regresa a la misma altura de lanzamiento.
+
 **Condición:** punto de llegada a la misma altura que el punto de lanzamiento.
 
 **Relacionadas:** `MOV-011`, `MOV-014`.
@@ -562,6 +622,8 @@ t_{\text{vuelo}}=\frac{2v_0\sin\theta}{g}
 R=\frac{v_0^2\sin(2\theta)}{g}
 \]
 
+**Detalle:** Alcance horizontal de un proyectil que parte y llega a la misma altura.
+
 **Condiciones:** misma altura inicial y final, superficie horizontal y resistencia del aire despreciable.
 
 **Relacionadas:** `MOV-013`, `MOV-007`.
@@ -574,6 +636,8 @@ R=\frac{v_0^2\sin(2\theta)}{g}
 \[
 \vec v_{P/A}=\vec v_{P/B}+\vec v_{B/A}
 \]
+
+**Detalle:** La velocidad relativa se obtiene componiendo las velocidades respecto de marcos intermedios.
 
 **Relacionadas:** `MOV-003`, `VEC-004`.
 
@@ -611,6 +675,8 @@ Por componentes:
 \sum F_z=ma_z
 \]
 
+**Detalle:** La aceleración de un cuerpo es proporcional a la fuerza neta e inversamente proporcional a su masa.
+
 **Relacionadas:** `VEC-004`, `NEW-001`, `CIR-008`.
 
 ---
@@ -641,6 +707,8 @@ Magnitud:
 F_g=mg
 \]
 
+**Detalle:** El peso es el producto de la masa por la aceleración gravitatoria.
+
 **Relacionadas:** `GRA-002`, `ENE-004`.
 
 ---
@@ -651,6 +719,8 @@ F_g=mg
 \[
 f_k=\mu_kN
 \]
+
+**Detalle:** La fricción cinética es el producto del coeficiente de rozamiento cinético por la normal.
 
 **Relacionadas:** `NEW-006`, `ENE-012`.
 
@@ -668,6 +738,8 @@ Valor máximo:
 \[
 f_{s,\max}=\mu_sN
 \]
+
+**Detalle:** La fricción estática no supera el producto del coeficiente estático por la normal.
 
 **Relacionadas:** `NEW-005`.
 
@@ -705,6 +777,8 @@ Si no existen otras fuerzas perpendiculares:
 N=mg\cos\theta
 \]
 
+**Detalle:** En un plano inclinado, el peso se descompone en componentes paralela y perpendicular a la superficie.
+
 **Relacionadas:** `VEC-003`, `NEW-004`, `NEW-005`.
 
 ---
@@ -718,6 +792,8 @@ N=mg\cos\theta
 \Delta\theta=\theta_f-\theta_i
 \]
 
+**Detalle:** El desplazamiento angular es la diferencia entre los ángulos final e inicial.
+
 **Relacionadas:** `CIR-002`.
 
 ---
@@ -728,6 +804,8 @@ N=mg\cos\theta
 \[
 \omega_{\text{med}}=\frac{\Delta\theta}{\Delta t}
 \]
+
+**Detalle:** Cociente entre el desplazamiento angular y el intervalo de tiempo transcurrido.
 
 **Relacionadas:** `CIR-003`, `ROT-002`.
 
@@ -740,6 +818,8 @@ N=mg\cos\theta
 \omega=\frac{d\theta}{dt}
 \]
 
+**Detalle:** Derivada del ángulo respecto del tiempo.
+
 **Relacionadas:** `CIR-004`, `CIR-005`.
 
 ---
@@ -751,6 +831,8 @@ N=mg\cos\theta
 v=\omega r
 \]
 
+**Detalle:** La rapidez lineal en un movimiento circular es el producto de la rapidez angular por el radio.
+
 **Relacionadas:** `CIR-003`, `CIR-006`, `ROT-011`.
 
 ---
@@ -761,6 +843,8 @@ v=\omega r
 \[
 \omega=2\pi f=\frac{2\pi}{T}
 \]
+
+**Detalle:** La frecuencia angular es 2π veces la frecuencia, o 2π dividido por el periodo.
 
 **Relacionadas:** `OSC-002`, `OND-004`.
 
@@ -779,6 +863,8 @@ También:
 a_c=\frac{4\pi^2r}{T^2}
 \]
 
+**Detalle:** Aceleración dirigida hacia el centro, de módulo v²/r o ω²r.
+
 **Relacionadas:** `CIR-004`, `CIR-007`.
 
 ---
@@ -789,6 +875,8 @@ a_c=\frac{4\pi^2r}{T^2}
 \[
 F_c=ma_c=\frac{mv^2}{r}=m\omega^2r
 \]
+
+**Detalle:** Fuerza neta hacia el centro igual a m v²/r, requerida para el movimiento circular.
 
 **Nota:** no es una fuerza nueva; representa la componente radial de la fuerza neta.
 
@@ -802,6 +890,8 @@ F_c=ma_c=\frac{mv^2}{r}=m\omega^2r
 \[
 a_t=\alpha r
 \]
+
+**Detalle:** La aceleración tangencial es el producto de la aceleración angular por el radio.
 
 **Relacionadas:** `ROT-001`, `CIR-004`.
 
@@ -822,6 +912,8 @@ Caso paralelo:
 W=Fd
 \]
 
+**Detalle:** El trabajo de una fuerza constante es el producto escalar de la fuerza por el desplazamiento.
+
 **Relacionadas:** `VEC-005`, `ENE-002`, `ENE-003`.
 
 ---
@@ -839,6 +931,8 @@ En una dimensión:
 W=\int_{x_1}^{x_2}F_x(x)\,dx
 \]
 
+**Detalle:** El trabajo de una fuerza variable es la integral de la fuerza a lo largo de la trayectoria.
+
 **Relacionadas:** `ENE-001`, `ENE-003`, `ENE-008`.
 
 ---
@@ -849,6 +943,8 @@ W=\int_{x_1}^{x_2}F_x(x)\,dx
 \[
 K=\frac12mv^2
 \]
+
+**Detalle:** Energía asociada al movimiento, igual a la mitad del producto de la masa por el cuadrado de la rapidez.
 
 **Relacionadas:** `ENE-004`, `ENE-007`, `MOM-001`.
 
@@ -867,6 +963,8 @@ Cambio:
 \Delta U_g=mg(y_f-y_i)
 \]
 
+**Detalle:** Energía potencial gravitatoria cerca de la superficie, proporcional a la altura.
+
 **Condición:** \(g\) aproximadamente constante.
 
 **Relacionadas:** `NEW-004`, `ENE-006`, `GRA-003`.
@@ -880,6 +978,8 @@ Cambio:
 U_s=\frac12kx^2
 \]
 
+**Detalle:** Energía potencial de un resorte ideal, proporcional al cuadrado de la deformación.
+
 **Relacionadas:** `NEW-007`, `ENE-006`, `OSC-008`.
 
 ---
@@ -891,6 +991,8 @@ U_s=\frac12kx^2
 W_c=-\Delta U=U_i-U_f
 \]
 
+**Detalle:** El trabajo de una fuerza conservativa es menos el cambio de energía potencial.
+
 **Relacionadas:** `ENE-004`, `ENE-005`, `ENE-008`.
 
 ---
@@ -901,6 +1003,8 @@ W_c=-\Delta U=U_i-U_f
 \[
 W_{\text{neto}}=\Delta K=K_f-K_i
 \]
+
+**Detalle:** El trabajo neto realizado sobre un cuerpo es igual al cambio de su energía cinética.
 
 **Relacionadas:** `ENE-001`, `ENE-003`, `ENE-010`.
 
@@ -919,6 +1023,8 @@ En tres dimensiones:
 \vec F=-\nabla U
 \]
 
+**Detalle:** La fuerza conservativa es menos el gradiente de la energía potencial.
+
 **Relacionadas:** `ENE-002`, `ENE-006`.
 
 ---
@@ -930,6 +1036,8 @@ En tres dimensiones:
 E_{\text{mec}}=K+U
 \]
 
+**Detalle:** La energía mecánica es la suma de las energías cinética y potencial.
+
 **Relacionadas:** `ENE-010`, `ENE-011`.
 
 ---
@@ -940,6 +1048,8 @@ E_{\text{mec}}=K+U
 \[
 K_i+U_i=K_f+U_f
 \]
+
+**Detalle:** En un sistema conservativo, la energía mecánica inicial es igual a la final.
 
 **Condición:** solo fuerzas conservativas realizan trabajo.
 
@@ -960,6 +1070,8 @@ Equivalentemente:
 \Delta E_{\text{mec}}=W_{\text{nc}}
 \]
 
+**Detalle:** El trabajo de las fuerzas no conservativas es igual al cambio de energía mecánica.
+
 **Relacionadas:** `ENE-010`, `ENE-012`.
 
 ---
@@ -977,6 +1089,8 @@ Para movimiento en superficie plana con fricción constante:
 W_f=-\mu_kNd
 \]
 
+**Detalle:** El trabajo de la fricción cinética es menos el producto de la fricción por la distancia recorrida.
+
 **Relacionadas:** `NEW-005`, `ENE-011`.
 
 ---
@@ -988,6 +1102,8 @@ W_f=-\mu_kNd
 P_{\text{med}}=\frac{W}{\Delta t}
 \]
 
+**Detalle:** Cociente entre el trabajo realizado y el intervalo de tiempo transcurrido.
+
 **Relacionadas:** `ENE-014`.
 
 ---
@@ -998,6 +1114,8 @@ P_{\text{med}}=\frac{W}{\Delta t}
 \[
 P=\frac{dW}{dt}=\vec F\cdot\vec v
 \]
+
+**Detalle:** Derivada del trabajo respecto del tiempo, igual al producto escalar de la fuerza por la velocidad.
 
 **Relacionadas:** `ENE-013`, `VEC-005`, `ELE-012`.
 
@@ -1016,6 +1134,8 @@ o
 \eta=\frac{P_{\text{útil}}}{P_{\text{entrada}}}
 \]
 
+**Detalle:** Cociente entre la energía o potencia útil y la energía o potencia de entrada.
+
 **Relacionadas:** `TER-019`.
 
 ---
@@ -1028,6 +1148,8 @@ o
 \[
 \vec p=m\vec v
 \]
+
+**Detalle:** El momento lineal es el producto de la masa por la velocidad.
 
 **Relacionadas:** `MOM-002`, `MOM-003`, `ENE-003`.
 
@@ -1046,6 +1168,8 @@ Para masa constante:
 \sum\vec F=m\vec a
 \]
 
+**Detalle:** La fuerza neta es la derivada del momento lineal respecto del tiempo.
+
 **Relacionadas:** `NEW-002`, `MOM-001`, `MOM-003`.
 
 ---
@@ -1063,6 +1187,8 @@ Para fuerza constante:
 \vec J=\vec F\,\Delta t
 \]
 
+**Detalle:** El impulso es la integral de la fuerza respecto del tiempo.
+
 **Relacionadas:** `MOM-004`.
 
 ---
@@ -1075,6 +1201,8 @@ Para fuerza constante:
 =\vec p_f-\vec p_i
 \]
 
+**Detalle:** El impulso es igual al cambio de momento lineal.
+
 **Relacionadas:** `MOM-001`, `MOM-003`.
 
 ---
@@ -1085,6 +1213,8 @@ Para fuerza constante:
 \[
 \sum\vec p_i=\sum\vec p_f
 \]
+
+**Detalle:** El momento lineal total inicial es igual al momento lineal total final.
 
 **Condición:** impulso externo neto despreciable.
 
@@ -1124,6 +1254,8 @@ y la energía cinética:
 \frac12m_1v_{1f}^2+\frac12m_2v_{2f}^2
 \]
 
+**Detalle:** En una colisión elástica se conservan el momento lineal y la energía cinética.
+
 **Relacionadas:** `MOM-005`, `ENE-003`.
 
 ---
@@ -1143,6 +1275,8 @@ Para distribución continua:
 \vec r_{\text{CM}}=\frac{1}{M}\int\vec r\,dm
 \]
 
+**Detalle:** El centro de masa es el promedio de las posiciones ponderado por las masas.
+
 **Relacionadas:** `MOM-009`, `ROT-011`.
 
 ---
@@ -1157,6 +1291,8 @@ Para distribución continua:
 \frac{\vec P_{\text{total}}}{M}
 \]
 
+**Detalle:** La velocidad del centro de masa es el momento lineal total dividido por la masa total.
+
 **Relacionadas:** `MOM-005`, `MOM-008`.
 
 ---
@@ -1170,6 +1306,8 @@ Para distribución continua:
 \alpha=\frac{d\omega}{dt}
 \]
 
+**Detalle:** Derivada de la velocidad angular respecto del tiempo.
+
 **Relacionadas:** `CIR-003`, `ROT-002`.
 
 ---
@@ -1180,6 +1318,8 @@ Para distribución continua:
 \[
 \omega_f=\omega_0+\alpha t
 \]
+
+**Detalle:** Velocidad angular con aceleración angular constante.
 
 **Relacionadas:** `ROT-003`, `ROT-004`.
 
@@ -1192,6 +1332,8 @@ Para distribución continua:
 \theta=\theta_0+\omega_0t+\frac12\alpha t^2
 \]
 
+**Detalle:** Posición angular con aceleración angular constante.
+
 **Relacionadas:** `ROT-002`, `ROT-004`.
 
 ---
@@ -1202,6 +1344,8 @@ Para distribución continua:
 \[
 \omega_f^2=\omega_0^2+2\alpha\Delta\theta
 \]
+
+**Detalle:** Relación entre velocidades angulares y desplazamiento angular, sin el tiempo explícito.
 
 **Relacionadas:** `ROT-002`, `ROT-003`.
 
@@ -1214,6 +1358,8 @@ Para distribución continua:
 I=\sum_i m_ir_i^2
 \]
 
+**Detalle:** Suma de los productos de cada masa puntual por el cuadrado de su distancia al eje.
+
 **Relacionadas:** `ROT-006`, `ROT-009`.
 
 ---
@@ -1225,6 +1371,8 @@ I=\sum_i m_ir_i^2
 I=\int r^2\,dm
 \]
 
+**Detalle:** Integral del cuadrado de la distancia al eje respecto de la masa.
+
 **Relacionadas:** `ROT-005`, `ROT-007`.
 
 ---
@@ -1235,6 +1383,8 @@ I=\int r^2\,dm
 \[
 I=I_{\text{CM}}+Md^2
 \]
+
+**Detalle:** El momento de inercia respecto de un eje paralelo es el del centro de masa más Md².
 
 **Relacionadas:** `ROT-006`, `MOM-008`.
 
@@ -1253,6 +1403,8 @@ Magnitud:
 \tau=rF\sin\theta
 \]
 
+**Detalle:** El torque es el producto vectorial de la posición por la fuerza.
+
 **Relacionadas:** `VEC-006`, `ROT-009`, `EQU-002`.
 
 ---
@@ -1264,6 +1416,8 @@ Magnitud:
 \sum\tau=I\alpha
 \]
 
+**Detalle:** El torque neto es el producto del momento de inercia por la aceleración angular.
+
 **Relacionadas:** `ROT-001`, `ROT-005`, `ROT-008`.
 
 ---
@@ -1274,6 +1428,8 @@ Magnitud:
 \[
 K_{\text{rot}}=\frac12I\omega^2
 \]
+
+**Detalle:** Energía cinética asociada a la rotación, igual a la mitad de Iω².
 
 **Relacionadas:** `ROT-005`, `ENE-003`, `ROT-011`.
 
@@ -1296,6 +1452,8 @@ Energía cinética total:
 K=\frac12Mv_{\text{CM}}^2+\frac12I_{\text{CM}}\omega^2
 \]
 
+**Detalle:** En rodadura sin deslizamiento, la rapidez del centro de masa es Rω y la energía cinética incluye traslación y rotación.
+
 **Relacionadas:** `CIR-004`, `ROT-010`.
 
 ---
@@ -1307,6 +1465,8 @@ K=\frac12Mv_{\text{CM}}^2+\frac12I_{\text{CM}}\omega^2
 \vec L=\vec r\times\vec p
 \]
 
+**Detalle:** El momento angular de una partícula es el producto vectorial de la posición por el momento lineal.
+
 **Relacionadas:** `VEC-006`, `MOM-001`, `ROT-013`.
 
 ---
@@ -1317,6 +1477,8 @@ K=\frac12Mv_{\text{CM}}^2+\frac12I_{\text{CM}}\omega^2
 \[
 L=I\omega
 \]
+
+**Detalle:** El momento angular de un cuerpo rígido respecto de un eje fijo es Iω.
 
 **Relacionadas:** `ROT-005`, `ROT-012`, `ROT-014`.
 
@@ -1330,6 +1492,8 @@ L=I\omega
 =
 \frac{d\vec L}{dt}
 \]
+
+**Detalle:** El torque externo neto es la derivada del momento angular respecto del tiempo.
 
 **Relacionadas:** `ROT-008`, `ROT-013`, `ROT-015`.
 
@@ -1348,6 +1512,8 @@ Para un cuerpo que cambia su momento de inercia:
 I_i\omega_i=I_f\omega_f
 \]
 
+**Detalle:** El momento angular inicial es igual al momento angular final.
+
 **Condición:** torque externo neto cero.
 
 **Relacionadas:** `ROT-013`, `ROT-014`.
@@ -1363,6 +1529,8 @@ I_i\omega_i=I_f\omega_f
 \sum\vec F=0
 \]
 
+**Detalle:** La fuerza neta sobre un cuerpo en equilibrio traslacional es nula.
+
 **Relacionadas:** `NEW-001`, `EQU-002`.
 
 ---
@@ -1374,6 +1542,8 @@ I_i\omega_i=I_f\omega_f
 \sum\tau=0
 \]
 
+**Detalle:** El torque neto sobre un cuerpo en equilibrio rotacional es nulo.
+
 **Relacionadas:** `ROT-008`, `EQU-001`.
 
 ---
@@ -1384,6 +1554,8 @@ I_i\omega_i=I_f\omega_f
 \[
 \sigma=\frac{F_\perp}{A}
 \]
+
+**Detalle:** Cociente entre la fuerza perpendicular y el área sobre la que actúa.
 
 **Unidad:** Pa.
 
@@ -1413,6 +1585,8 @@ Y=\frac{\sigma}{\varepsilon}
 \frac{F_\perp L_0}{A\Delta L}
 \]
 
+**Detalle:** Cociente entre el esfuerzo normal y la deformación longitudinal.
+
 **Condición:** régimen elástico lineal.
 
 **Relacionadas:** `EQU-003`, `EQU-004`, `NEW-007`.
@@ -1426,6 +1600,8 @@ Y=\frac{\sigma}{\varepsilon}
 \tau_{\text{cort}}=\frac{F_\parallel}{A}
 \]
 
+**Detalle:** Cociente entre la fuerza paralela a la superficie y el área.
+
 **Relacionadas:** `EQU-007`.
 
 ---
@@ -1438,6 +1614,8 @@ G_s=
 \frac{F_\parallel/A}{\Delta x/h}
 \]
 
+**Detalle:** Cociente entre el esfuerzo cortante y la deformación de corte.
+
 **Relacionadas:** `EQU-006`.
 
 ---
@@ -1448,6 +1626,8 @@ G_s=
 \[
 B=-\frac{\Delta P}{\Delta V/V_0}
 \]
+
+**Detalle:** Cociente entre el aumento de presión y la disminución relativa de volumen.
 
 **Relacionadas:** `FLU-002`, `TER-006`.
 
@@ -1470,6 +1650,8 @@ Forma vectorial:
 -G\frac{m_1m_2}{r^2}\hat r
 \]
 
+**Detalle:** La fuerza gravitatoria entre dos masas es proporcional al producto de las masas e inversamente proporcional al cuadrado de la distancia.
+
 **Relacionadas:** `GRA-002`, `GRA-003`.
 
 ---
@@ -1481,6 +1663,8 @@ Forma vectorial:
 g=\frac{GM}{r^2}
 \]
 
+**Detalle:** Campo gravitatorio de una masa puntual, de módulo GM/r².
+
 **Relacionadas:** `NEW-004`, `GRA-001`.
 
 ---
@@ -1491,6 +1675,8 @@ g=\frac{GM}{r^2}
 \[
 U(r)=-G\frac{Mm}{r}
 \]
+
+**Detalle:** Energía potencial gravitatoria universal, inversamente proporcional a la distancia.
 
 **Relacionadas:** `ENE-004`, `GRA-001`, `GRA-006`.
 
@@ -1509,6 +1695,8 @@ y
 U=m\Phi
 \]
 
+**Detalle:** El potencial gravitatorio es menos GM/r; la energía potencial es mΦ.
+
 **Relacionadas:** `GRA-003`.
 
 ---
@@ -1519,6 +1707,8 @@ U=m\Phi
 \[
 v_{\text{orb}}=\sqrt{\frac{GM}{r}}
 \]
+
+**Detalle:** Rapidez de una órbita circular alrededor de una masa central.
 
 **Relacionadas:** `CIR-007`, `GRA-006`.
 
@@ -1537,6 +1727,8 @@ Equivalentemente:
 T^2=\frac{4\pi^2}{GM}r^3
 \]
 
+**Detalle:** Periodo de una órbita circular; el cuadrado del periodo es proporcional al cubo del radio.
+
 **Relacionadas:** `GRA-005`.
 
 ---
@@ -1548,6 +1740,8 @@ T^2=\frac{4\pi^2}{GM}r^3
 v_{\text{esc}}=\sqrt{\frac{2GM}{R}}
 \]
 
+**Detalle:** Rapidez de escape desde una distancia R de una masa M.
+
 **Relacionadas:** `GRA-003`, `ENE-010`.
 
 ---
@@ -1558,6 +1752,8 @@ v_{\text{esc}}=\sqrt{\frac{2GM}{R}}
 \[
 E=-\frac{GMm}{2r}
 \]
+
+**Detalle:** Energía mecánica total de una órbita circular, igual a menos GMm/(2r).
 
 **Relacionadas:** `GRA-003`, `GRA-005`.
 
@@ -1572,6 +1768,8 @@ E=-\frac{GMm}{2r}
 \rho=\frac{m}{V}
 \]
 
+**Detalle:** Masa por unidad de volumen.
+
 **Relacionadas:** `FLU-003`, `FLU-007`.
 
 ---
@@ -1582,6 +1780,8 @@ E=-\frac{GMm}{2r}
 \[
 P=\frac{F_\perp}{A}
 \]
+
+**Detalle:** Cociente entre la fuerza perpendicular y el área.
 
 **Unidad:** Pa = N/m².
 
@@ -1595,6 +1795,8 @@ P=\frac{F_\perp}{A}
 \[
 P=P_0+\rho gh
 \]
+
+**Detalle:** La presión en un fluido en reposo aumenta linealmente con la profundidad.
 
 **Relacionadas:** `FLU-001`, `FLU-002`, `FLU-004`.
 
@@ -1612,6 +1814,8 @@ Equivalentemente:
 \[
 P+\rho gy=\text{constante}
 \]
+
+**Detalle:** La diferencia de presión entre dos puntos de un fluido en reposo depende de la diferencia de altura.
 
 para un fluido estático homogéneo.
 
@@ -1632,6 +1836,8 @@ En una prensa hidráulica:
 \frac{F_1}{A_1}=\frac{F_2}{A_2}
 \]
 
+**Detalle:** Un cambio de presión se transmite por igual; las fuerzas se relacionan por el cociente de las áreas.
+
 **Relacionadas:** `FLU-002`.
 
 ---
@@ -1643,6 +1849,8 @@ En una prensa hidráulica:
 F_B=\rho_{\text{fluido}}gV_{\text{desplazado}}
 \]
 
+**Detalle:** La fuerza de flotación es el peso del fluido desplazado.
+
 **Relacionadas:** `FLU-001`, `NEW-004`.
 
 ---
@@ -1653,6 +1861,8 @@ F_B=\rho_{\text{fluido}}gV_{\text{desplazado}}
 \[
 Q=\frac{dV}{dt}=Av
 \]
+
+**Detalle:** Volumen de fluido que atraviesa una sección por unidad de tiempo, igual al producto del área por la rapidez.
 
 **Relacionadas:** `FLU-008`.
 
@@ -1670,6 +1880,8 @@ Forma general:
 \[
 \rho_1A_1v_1=\rho_2A_2v_2
 \]
+
+**Detalle:** El producto del área por la rapidez se conserva a lo largo de un conducto para un fluido incompresible.
 
 **Condición para la primera forma:** fluido incompresible.
 
@@ -1691,6 +1903,8 @@ P_1+\frac12\rho v_1^2+\rho gy_1
 =
 P_2+\frac12\rho v_2^2+\rho gy_2
 \]
+
+**Detalle:** A lo largo de una línea de corriente, la suma de presión, término cinético y término gravitatorio es constante.
 
 **Condiciones:** flujo estacionario, incompresible, no viscoso y aplicado a lo largo de una línea de corriente.
 
@@ -1718,6 +1932,8 @@ v=\sqrt{2gh}
 \dot m=\rho Q=\rho Av
 \]
 
+**Detalle:** Masa de fluido que atraviesa una sección por unidad de tiempo.
+
 **Relacionadas:** `FLU-001`, `FLU-007`.
 
 ---
@@ -1731,6 +1947,8 @@ v=\sqrt{2gh}
 f=\frac1T,\qquad T=\frac1f
 \]
 
+**Detalle:** La frecuencia es el inverso del periodo.
+
 **Relacionadas:** `OSC-002`, `OND-002`.
 
 ---
@@ -1742,6 +1960,8 @@ f=\frac1T,\qquad T=\frac1f
 \omega=2\pi f=\frac{2\pi}{T}
 \]
 
+**Detalle:** La frecuencia angular es 2π veces la frecuencia.
+
 **Relacionadas:** `OSC-001`, `CIR-005`.
 
 ---
@@ -1752,6 +1972,8 @@ f=\frac1T,\qquad T=\frac1f
 \[
 x(t)=A\cos(\omega t+\phi)
 \]
+
+**Detalle:** Posición en el movimiento armónico simple, de amplitud A y fase inicial φ.
 
 **Variables:** \(A\): amplitud; \(\phi\): fase inicial.
 
@@ -1772,6 +1994,8 @@ Para masa-resorte:
 a=-\frac{k}{m}x
 \]
 
+**Detalle:** En el MAS, la aceleración es opuesta al desplazamiento y proporcional a este.
+
 **Relacionadas:** `NEW-007`, `OSC-006`.
 
 ---
@@ -1789,6 +2013,8 @@ También:
 v^2=\omega^2(A^2-x^2)
 \]
 
+**Detalle:** Velocidad en el movimiento armónico simple; su cuadrado es ω²(A²−x²).
+
 **Relacionadas:** `OSC-003`, `OSC-006`, `OSC-007`.
 
 ---
@@ -1799,6 +2025,8 @@ v^2=\omega^2(A^2-x^2)
 \[
 \omega=\sqrt{\frac{k}{m}}
 \]
+
+**Detalle:** Frecuencia angular de un sistema masa-resorte, igual a la raíz de k/m.
 
 **Relacionadas:** `NEW-007`, `OSC-007`.
 
@@ -1815,6 +2043,8 @@ T=2\pi\sqrt{\frac{m}{k}}
 f=\frac1{2\pi}\sqrt{\frac{k}{m}}
 \]
 
+**Detalle:** Periodo y frecuencia de un oscilador masa-resorte.
+
 **Relacionadas:** `OSC-001`, `OSC-006`.
 
 ---
@@ -1827,6 +2057,8 @@ E=\frac12mv^2+\frac12kx^2
 =\frac12kA^2
 \]
 
+**Detalle:** La energía total del MAS es constante e igual a (1/2)kA².
+
 **Relacionadas:** `ENE-003`, `ENE-005`, `OSC-005`.
 
 ---
@@ -1837,6 +2069,8 @@ E=\frac12mv^2+\frac12kx^2
 \[
 v_{\max}=A\omega
 \]
+
+**Detalle:** La rapidez máxima en el MAS es el producto de la amplitud por la frecuencia angular.
 
 **Relacionadas:** `OSC-005`.
 
@@ -1849,6 +2083,8 @@ v_{\max}=A\omega
 a_{\max}=A\omega^2
 \]
 
+**Detalle:** La aceleración máxima en el MAS es el producto de la amplitud por el cuadrado de la frecuencia angular.
+
 **Relacionadas:** `OSC-004`.
 
 ---
@@ -1859,6 +2095,8 @@ a_{\max}=A\omega^2
 \[
 \omega=\sqrt{\frac{g}{L}}
 \]
+
+**Detalle:** Frecuencia angular de un péndulo simple, igual a la raíz de g/L.
 
 **Condición:** aproximación de ángulo pequeño, \(\sin\theta\approx\theta\).
 
@@ -1877,6 +2115,8 @@ T=2\pi\sqrt{\frac{L}{g}}
 f=\frac1{2\pi}\sqrt{\frac{g}{L}}
 \]
 
+**Detalle:** Periodo y frecuencia de un péndulo simple.
+
 **Condición:** pequeñas oscilaciones.
 
 **Relacionadas:** `OSC-011`, `OSC-001`.
@@ -1893,6 +2133,8 @@ f=\frac1{2\pi}\sqrt{\frac{g}{L}}
 \[
 T=2\pi\sqrt{\frac{I}{mgd}}
 \]
+
+**Detalle:** Periodo de un péndulo físico, determinado por el momento de inercia y la distancia al centro de masa.
 
 **Variables:** \(d\): distancia del pivote al centro de masa.
 
@@ -1915,6 +2157,8 @@ T=2\pi\sqrt{\frac{I}{mgd}}
 T=2\pi\sqrt{\frac{I}{\kappa}}
 \]
 
+**Detalle:** Oscilador cuyo torque restaurador es proporcional al ángulo; la frecuencia angular es la raíz de κ/I.
+
 **Nota:** se usa \(\kappa\) para la constante torsional, evitando confundirla con la constante \(k\) de un resorte lineal.
 
 **Relacionadas:** `ROT-009`, `OSC-006`.
@@ -1930,6 +2174,8 @@ T=2\pi\sqrt{\frac{I}{\kappa}}
 v=\lambda f
 \]
 
+**Detalle:** La rapidez de una onda es el producto de la longitud de onda por la frecuencia.
+
 **Relacionadas:** `OND-002`, `OND-003`, `OND-004`.
 
 ---
@@ -1941,6 +2187,8 @@ v=\lambda f
 T=\frac1f
 \]
 
+**Detalle:** El periodo de una onda es el inverso de su frecuencia.
+
 **Relacionadas:** `OSC-001`, `OND-001`.
 
 ---
@@ -1951,6 +2199,8 @@ T=\frac1f
 \[
 k=\frac{2\pi}{\lambda}
 \]
+
+**Detalle:** El número de onda es 2π dividido por la longitud de onda.
 
 **Relacionadas:** `OND-004`, `OND-005`.
 
@@ -1968,6 +2218,8 @@ Además:
 \[
 v=\frac{\omega}{k}
 \]
+
+**Detalle:** La frecuencia angular de una onda es 2π veces la frecuencia; la rapidez es ω/k.
 
 **Relacionadas:** `OND-001`, `OND-003`.
 
@@ -1988,6 +2240,8 @@ Para propagación hacia \(-x\):
 y(x,t)=A\sin(kx+\omega t+\phi)
 \]
 
+**Detalle:** Onda armónica que se propaga en un sentido u otro, con número de onda k y frecuencia angular ω.
+
 **Relacionadas:** `OND-003`, `OND-004`.
 
 ---
@@ -2004,6 +2258,8 @@ donde:
 \[
 \mu=\frac{m}{L}
 \]
+
+**Detalle:** Rapidez de una onda transversal en una cuerda, determinada por la tensión y la densidad lineal.
 
 **Relacionadas:** `OND-001`, `OND-007`.
 
@@ -2023,6 +2279,8 @@ Longitudes permitidas:
 \lambda_n=\frac{2L}{n}
 \]
 
+**Detalle:** Frecuencias naturales de una cuerda fija en ambos extremos, múltiplos enteros de v/(2L).
+
 **Relacionadas:** `OND-006`, `SON-007`.
 
 ---
@@ -2033,6 +2291,8 @@ Longitudes permitidas:
 \[
 y_{\text{total}}=\sum_i y_i
 \]
+
+**Detalle:** El desplazamiento total es la suma de los desplazamientos de las ondas individuales.
 
 **Relacionadas:** `OND-009`.
 
@@ -2053,6 +2313,8 @@ Destructiva:
 \Delta r=\left(m+\frac12\right)\lambda
 \]
 
+**Detalle:** La interferencia constructiva o destructiva depende de la diferencia de camino en múltiplos de la longitud de onda.
+
 **Relacionadas:** `OND-008`.
 
 ---
@@ -2070,6 +2332,8 @@ Para una fuente puntual isotrópica:
 I=\frac{P}{4\pi r^2}
 \]
 
+**Detalle:** La intensidad es la potencia por unidad de área; para una fuente puntual esférica, P/(4πr²).
+
 **Relacionadas:** `ENE-013`, `SON-002`.
 
 ---
@@ -2082,6 +2346,8 @@ I=\frac{P}{4\pi r^2}
 \[
 v=\lambda f
 \]
+
+**Detalle:** La rapidez del sonido es el producto de la longitud de onda por la frecuencia.
 
 **Relacionadas:** `OND-001`, `SON-006`.
 
@@ -2100,6 +2366,8 @@ Para propagación esférica:
 I=\frac{P}{4\pi r^2}
 \]
 
+**Detalle:** La intensidad sonora es la potencia acústica por unidad de área.
+
 **Relacionadas:** `OND-010`, `SON-003`.
 
 ---
@@ -2117,6 +2385,8 @@ con:
 I_0=10^{-12}\,\text{W/m}^2
 \]
 
+**Detalle:** El nivel de intensidad es diez veces el logaritmo decimal del cociente I/I₀.
+
 **Unidad:** decibel (dB).
 
 **Relacionadas:** `SON-002`.
@@ -2129,6 +2399,8 @@ I_0=10^{-12}\,\text{W/m}^2
 \[
 f'=f\frac{v\pm v_o}{v\mp v_s}
 \]
+
+**Detalle:** La frecuencia percibida depende de las velocidades de la fuente y del observador respecto del medio.
 
 **Convención:** el signo del numerador se elige según el movimiento del observador hacia/desde la fuente; el del denominador según el movimiento de la fuente hacia/desde el observador.
 
@@ -2143,6 +2415,8 @@ f'=f\frac{v\pm v_o}{v\mp v_s}
 f_{\text{bat}}=|f_1-f_2|
 \]
 
+**Detalle:** La frecuencia de batido es el valor absoluto de la diferencia de las dos frecuencias.
+
 **Relacionadas:** `OND-008`.
 
 ---
@@ -2154,6 +2428,8 @@ f_{\text{bat}}=|f_1-f_2|
 f_n=\frac{nv}{2L},
 \qquad n=1,2,3,\ldots
 \]
+
+**Detalle:** Frecuencias de resonancia de un tubo abierto en ambos extremos, múltiplos enteros de v/(2L).
 
 **Relacionadas:** `OND-007`, `SON-007`.
 
@@ -2167,6 +2443,8 @@ f_n=\frac{nv}{4L},
 \qquad n=1,3,5,\ldots
 \]
 
+**Detalle:** Frecuencias de resonancia de un tubo cerrado en un extremo, armónicos impares de v/(4L).
+
 **Relacionadas:** `SON-006`.
 
 ---
@@ -2179,6 +2457,8 @@ f_n=\frac{nv}{4L},
 \[
 T_K=T_C+273.15
 \]
+
+**Detalle:** La temperatura absoluta en kelvin se obtiene sumando 273,15 a la temperatura en Celsius.
 
 **Relacionadas:** `TER-002`.
 
@@ -2197,6 +2477,8 @@ Inversa:
 T_C=\frac59(T_F-32)
 \]
 
+**Detalle:** Relación lineal entre las escalas Celsius y Fahrenheit.
+
 **Relacionadas:** `TER-001`.
 
 ---
@@ -2208,6 +2490,8 @@ T_C=\frac59(T_F-32)
 \Delta L=\alpha L_0\Delta T
 \]
 
+**Detalle:** El cambio de longitud es proporcional a la longitud inicial y al cambio de temperatura.
+
 **Relacionadas:** `TER-004`, `TER-005`.
 
 ---
@@ -2218,6 +2502,8 @@ T_C=\frac59(T_F-32)
 \[
 \Delta A\approx2\alpha A_0\Delta T
 \]
+
+**Detalle:** El cambio de área es aproximadamente el doble del coeficiente lineal por el área inicial y ΔT.
 
 **Condición:** sólido isotrópico y cambios de temperatura moderados.
 
@@ -2238,6 +2524,8 @@ Para sólidos isotrópicos:
 \beta\approx3\alpha
 \]
 
+**Detalle:** El cambio de volumen es proporcional al volumen inicial y al cambio de temperatura.
+
 **Relacionadas:** `TER-003`, `TER-004`.
 
 ---
@@ -2248,6 +2536,8 @@ Para sólidos isotrópicos:
 \[
 Q=mc\Delta T
 \]
+
+**Detalle:** Calor requerido para cambiar la temperatura de una sustancia, sin cambio de fase.
 
 **Relacionadas:** `TER-007`, `TER-008`.
 
@@ -2265,6 +2555,8 @@ y
 \[
 C=mc
 \]
+
+**Detalle:** Cociente entre el calor transferido y el cambio de temperatura.
 
 **Relacionadas:** `TER-006`.
 
@@ -2292,6 +2584,8 @@ En un sistema térmicamente aislado:
 \sum_i Q_i=0
 \]
 
+**Detalle:** En un calorímetro aislado, la suma de los calores intercambiados es nula.
+
 **Relacionadas:** `TER-006`, `TER-008`.
 
 ---
@@ -2309,6 +2603,8 @@ También:
 PV=Nk_BT
 \]
 
+**Detalle:** El producto PV es proporcional a la cantidad de gas y a la temperatura absoluta.
+
 **Relacionadas:** `TER-011`, `TER-012`.
 
 ---
@@ -2324,6 +2620,8 @@ Para cantidad fija de gas ideal:
 \frac{P_2V_2}{T_2}
 \]
 
+**Detalle:** Para una cantidad fija de gas, PV/T se conserva entre dos estados.
+
 **Relacionadas:** `TER-010`.
 
 ---
@@ -2334,6 +2632,8 @@ Para cantidad fija de gas ideal:
 \[
 \langle K\rangle=\frac32k_BT
 \]
+
+**Detalle:** La energía cinética media de traslación de una molécula es proporcional a la temperatura absoluta.
 
 **Condición:** gas ideal monoatómico.
 
@@ -2354,6 +2654,8 @@ Equivalentemente:
 v_{\text{rms}}=\sqrt{\frac{3k_BT}{m}}
 \]
 
+**Detalle:** La rapidez cuadrática media de las moléculas es proporcional a la raíz de T.
+
 **Relacionadas:** `TER-012`.
 
 ---
@@ -2370,6 +2672,8 @@ Cambio:
 \[
 \Delta U=\frac32nR\Delta T
 \]
+
+**Detalle:** La energía interna de un gas ideal monoatómico es (3/2)nRT.
 
 **Relacionadas:** `TER-010`, `TER-015`.
 
@@ -2388,6 +2692,8 @@ Para presión constante:
 W=P(V_f-V_i)
 \]
 
+**Detalle:** El trabajo termodinámico es la integral de P dV; a presión constante, PΔV.
+
 **Convención:** \(W>0\) cuando el gas realiza trabajo sobre el entorno.
 
 **Relacionadas:** `TER-016`, `ENE-002`.
@@ -2400,6 +2706,8 @@ W=P(V_f-V_i)
 \[
 \Delta U=Q-W
 \]
+
+**Detalle:** El cambio de energía interna es el calor absorbido menos el trabajo realizado por el sistema.
 
 **Convención:** \(Q>0\) entra al sistema y \(W>0\) es trabajo realizado por el sistema.
 
@@ -2426,6 +2734,8 @@ Para gas ideal:
 \Delta U=0,\qquad Q=W
 \]
 
+**Detalle:** En un proceso isotérmico de gas ideal, PV es constante, ΔU=0 y Q=W.
+
 **Relacionadas:** `TER-010`, `TER-016`.
 
 ---
@@ -2449,6 +2759,8 @@ con
 \gamma=\frac{C_P}{C_V}
 \]
 
+**Detalle:** En un proceso adiabático de gas ideal, PV^γ es constante, con γ=C_P/C_V.
+
 **Relacionadas:** `TER-016`, `TER-017`.
 
 ---
@@ -2462,6 +2774,8 @@ con
 1-\frac{Q_C}{Q_H}
 \]
 
+**Detalle:** La eficiencia de una máquina térmica es el trabajo neto dividido por el calor absorbido de la fuente caliente.
+
 **Relacionadas:** `ENE-015`, `TER-020`.
 
 ---
@@ -2472,6 +2786,8 @@ con
 \[
 \eta_C=1-\frac{T_C}{T_H}
 \]
+
+**Detalle:** La eficiencia de Carnot depende solo del cociente de las temperaturas absolutas de los focos.
 
 **Condición:** temperaturas absolutas en kelvin.
 
@@ -2487,6 +2803,8 @@ con
 =
 kA\frac{T_H-T_C}{L}
 \]
+
+**Detalle:** El flujo de calor por conducción es proporcional al área y al gradiente de temperatura.
 
 **Relacionadas:** `TER-022`.
 
@@ -2507,6 +2825,8 @@ P_{\text{net}}
 e\sigma A(T^4-T_{\text{amb}}^4)
 \]
 
+**Detalle:** La potencia radiada es proporcional a la cuarta potencia de la temperatura absoluta.
+
 **Relacionadas:** `TER-021`.
 
 ---
@@ -2519,6 +2839,8 @@ e\sigma A(T^4-T_{\text{amb}}^4)
 \[
 q=ne
 \]
+
+**Detalle:** Toda carga es un múltiplo entero de la carga elemental.
 
 **Variables:** \(n\in\mathbb Z\); \(e\): carga elemental.
 
@@ -2539,6 +2861,8 @@ con:
 k_e=\frac{1}{4\pi\varepsilon_0}
 \]
 
+**Detalle:** La fuerza entre dos cargas puntuales es proporcional al producto de las cargas e inversamente proporcional al cuadrado de la distancia.
+
 **Relacionadas:** `ELE-003`, `GRA-001`.
 
 ---
@@ -2556,6 +2880,8 @@ Para una carga puntual:
 E=k_e\frac{|Q|}{r^2}
 \]
 
+**Detalle:** El campo eléctrico es la fuerza por unidad de carga; el de una carga puntual es k|Q|/r².
+
 **Relacionadas:** `ELE-002`, `ELE-004`, `ELE-005`.
 
 ---
@@ -2566,6 +2892,8 @@ E=k_e\frac{|Q|}{r^2}
 \[
 \vec F=q\vec E
 \]
+
+**Detalle:** La fuerza sobre una carga en un campo eléctrico es el producto de la carga por el campo.
 
 **Relacionadas:** `ELE-003`.
 
@@ -2584,6 +2912,8 @@ Para una carga puntual:
 V=k_e\frac{Q}{r}
 \]
 
+**Detalle:** El potencial eléctrico es la energía potencial por unidad de carga.
+
 **Relacionadas:** `ELE-006`, `ELE-003`.
 
 ---
@@ -2600,6 +2930,8 @@ Para dos cargas puntuales:
 \[
 U=k_e\frac{q_1q_2}{r}
 \]
+
+**Detalle:** La energía potencial eléctrica de una carga es el producto de la carga por el potencial.
 
 **Relacionadas:** `ELE-005`, `ENE-009`.
 
@@ -2618,6 +2950,8 @@ En un campo uniforme paralelo al desplazamiento:
 |\Delta V|=Ed
 \]
 
+**Detalle:** La diferencia de potencial es menos la integral de E; en un campo uniforme, Ed.
+
 **Relacionadas:** `ELE-003`, `ELE-005`.
 
 ---
@@ -2635,6 +2969,8 @@ Instantánea:
 I=\frac{dQ}{dt}
 \]
 
+**Detalle:** La corriente es la carga que atraviesa una sección por unidad de tiempo.
+
 **Relacionadas:** `ELE-009`, `ELE-010`.
 
 ---
@@ -2645,6 +2981,8 @@ I=\frac{dQ}{dt}
 \[
 V=IR
 \]
+
+**Detalle:** La diferencia de potencial en un conductor óhmico es el producto de la corriente por la resistencia.
 
 **Condición:** elemento óhmico en el régimen considerado.
 
@@ -2659,6 +2997,8 @@ V=IR
 R=\rho\frac{L}{A}
 \]
 
+**Detalle:** La resistencia de un conductor uniforme es proporcional a la longitud e inversamente proporcional al área.
+
 **Variables:** \(\rho\): resistividad eléctrica.
 
 **Relacionadas:** `ELE-009`, `ELE-011`.
@@ -2671,6 +3011,8 @@ R=\rho\frac{L}{A}
 \[
 R=R_0[1+\alpha(T-T_0)]
 \]
+
+**Detalle:** La resistencia varía linealmente con la temperatura respecto de un valor de referencia.
 
 **Condición:** aproximación lineal en el intervalo de temperatura considerado.
 
@@ -2691,6 +3033,8 @@ Usando la ley de Ohm:
 P=I^2R=\frac{V^2}{R}
 \]
 
+**Detalle:** La potencia eléctrica es el producto de la diferencia de potencial por la corriente.
+
 **Relacionadas:** `ELE-009`, `ENE-014`, `ELE-013`.
 
 ---
@@ -2704,6 +3048,8 @@ Para potencia constante:
 E=Pt=VIt
 \]
 
+**Detalle:** La energía eléctrica es el producto de la potencia por el tiempo.
+
 **Relacionadas:** `ELE-012`, `ENE-009`.
 
 ---
@@ -2714,6 +3060,8 @@ E=Pt=VIt
 \[
 R_{\text{eq}}=\sum_iR_i
 \]
+
+**Detalle:** La resistencia equivalente en serie es la suma de las resistencias.
 
 **Relacionadas:** `ELE-015`, `ELE-009`.
 
@@ -2734,6 +3082,8 @@ Para dos resistencias:
 R_{\text{eq}}=\frac{R_1R_2}{R_1+R_2}
 \]
 
+**Detalle:** El inverso de la resistencia equivalente en paralelo es la suma de los inversos.
+
 **Relacionadas:** `ELE-014`, `ELE-009`.
 
 ---
@@ -2751,6 +3101,8 @@ Equivalentemente:
 \sum I=0
 \]
 
+**Detalle:** En un nudo, la suma de corrientes que entran es igual a la suma de las que salen.
+
 en un nodo usando signos algebraicos.
 
 **Relacionadas:** `ELE-008`, `ELE-017`.
@@ -2763,6 +3115,8 @@ en un nodo usando signos algebraicos.
 \[
 \sum\Delta V=0
 \]
+
+**Detalle:** A lo largo de una malla cerrada, la suma de las diferencias de potencial es nula.
 
 al recorrer una malla cerrada.
 
@@ -2796,6 +3150,8 @@ Con dieléctrico:
 C=\kappa\varepsilon_0\frac{A}{d}
 \]
 
+**Detalle:** La capacitancia de un capacitor de placas paralelas es proporcional al área e inversamente proporcional a la separación.
+
 **Relacionadas:** `ELE-018`, `ELE-020`.
 
 ---
@@ -2808,6 +3164,8 @@ U_C=\frac12CV^2
 =\frac{Q^2}{2C}
 =\frac12QV
 \]
+
+**Detalle:** La energía almacenada en un capacitor es (1/2)CV².
 
 **Relacionadas:** `ELE-018`, `ELE-019`, `ENE-009`.
 

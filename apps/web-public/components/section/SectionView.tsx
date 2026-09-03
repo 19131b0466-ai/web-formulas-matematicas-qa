@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import type { SectionDetailResponse } from '@repo/shared-types';
+import { calculoVizForSectionNumber, type SectionDetailResponse } from '@repo/shared-types';
+import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
 import { ContentBlocks } from '@/components/content/ContentBlocks';
 import { FormulaCatalog } from '@/components/physics/FormulaCatalog';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
@@ -23,11 +24,13 @@ export async function SectionView({
 }: SectionViewProps) {
   const t = await getTranslations('section');
   const tn = await getTranslations('nav');
+  const tf = await getTranslations('formula');
   const { section, blocks, subsections } = detail;
   const catalog = subjectUsesFormulaCatalog(subject);
+  const calcViz = subject === 'calculo-ii' ? calculoVizForSectionNumber(section.number) : undefined;
 
   const crumbs = [
-    { label: tn('hub'), href: '/' },
+    { label: tn('home'), href: '/' },
     { label: subjectTitle, href: subjectHomeHref(subject) },
     ...(parent ? [{ label: parent.title, href: sectionHref(subject, parent.slug) }] : []),
     { label: section.title },
@@ -50,6 +53,13 @@ export async function SectionView({
           </p>
         ) : null}
       </header>
+
+      {calcViz ? (
+        <div className="mb-8">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
+        </div>
+      ) : null}
 
       {subsections.length > 0 ? (
         <nav
@@ -76,7 +86,7 @@ export async function SectionView({
       ) : null}
 
       {catalog ? (
-        <FormulaCatalog subject={subject} blocks={blocks} />
+        <FormulaCatalog subject={subject} blocks={blocks} sectionNumber={section.number} />
       ) : (
         <ContentBlocks blocks={blocks} sectionNumber={section.number} subject={subject} />
       )}

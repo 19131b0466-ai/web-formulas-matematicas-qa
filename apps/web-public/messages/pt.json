@@ -5,7 +5,8 @@
     "description": "Fórmulas matemáticas online: Cálculo Integral, Física Básica e Álgebra para engenharia e CS.",
     "shortName": "Fórmulas",
     "about": "Cálculo Integral, Física Básica e Álgebra",
-    "manifestDescription": "Fórmulas matemáticas online"
+    "manifestDescription": "Fórmulas matemáticas online",
+    "seoTitle": "Fórmulas matemáticas, teoria e recursos interativos"
   },
   "nav": {
     "home": "Início",
@@ -171,7 +172,19 @@
     "showComplexity": "Exibir (modo CS)",
     "hideComplexity": "Ocultar (modo básico)",
     "vizTeaches": "A ideia",
-    "vizTry": "Experimenta"
+    "vizTry": "Experimenta",
+    "intuitive": "Explicação intuitiva",
+    "formal": "Definição formal",
+    "workedExample": "Exemplo resolvido",
+    "commonErrors": "Erros comuns",
+    "equivalentNotations": "Notações equivalentes",
+    "references": "Referências",
+    "lastReviewed": "Última revisão",
+    "reviewedBy": "Revisão",
+    "sources": "Fontes",
+    "conventions": "Convenções",
+    "assumptions": "Hipóteses",
+    "reportError": "Encontrou um erro? Escreva-nos."
   },
   "siteNav": {
     "primary": "Navegação principal",
@@ -195,7 +208,11 @@
     "audienceTitle": "Para quem",
     "audienceBody": "Estudantes e docentes que precisam de uma referência estável.",
     "openTitle": "Como cresce",
-    "openBody": "Conteúdo curado por matéria e servido por API. Melhoramos visualizações e guias com o uso real."
+    "openBody": "Conteúdo curado por matéria e servido por API. Melhoramos visualizações e guias com o uso real.",
+    "howTitle": "Como o conteúdo é preparado",
+    "howBody": "O catálogo organiza-se por matérias e é servido por uma API. As fichas combinam enunciados, LaTeX e, quando a fonte inclui, um recurso interativo. Não publicamos autoria individual nem datas de revisão salvo se o próprio conteúdo as trouxer.",
+    "correctionsTitle": "Correções",
+    "correctionsBody": "Se encontrar um erro matemático, uma tradução incompleta ou um problema num recurso interativo, use a página de Contacto e indique a matéria, o código da ficha e o idioma."
   },
   "privacy": {
     "title": "Política de privacidade",
@@ -264,5 +281,59 @@
     "rateLimit": "Enviaste várias opiniões seguidas. Espera um pouco.",
     "empty": "Ainda não há opiniões publicadas. Podes ser o primeiro.",
     "summary": "Média {average} · {count, plural, one {# opinião} other {# opiniões}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject}: fórmulas e recursos interativos",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Inclui um recurso interativo.",
+    "formulaFallback": "Estude {concept} em {subject}: definição, fórmulas e recursos de estudo.",
+    "comingSoonViz": "Visualização {type} — em breve."
+  },
+  "vizDomain": {
+    "idea": "O domínio é o conjunto de valores de x para os quais a função está definida: Dom(f)={x∈ℝ : f(x) está definida}.",
+    "ideaNote": "Relaciona a expressão, o gráfico e os valores permitidos no eixo x. A reta do domínio (abaixo) mostra só entradas válidas, não o gráfico y=f(x).",
+    "functionType": "Tipo de função",
+    "poly": "Polinomial",
+    "rational": "Racional",
+    "radical": "Radical",
+    "log": "Logarítmica",
+    "paramB": "Parâmetro b",
+    "fromExpr": "Da expressão ao domínio",
+    "expression": "Expressão",
+    "condition": "Condição",
+    "restriction": "Restrição",
+    "domain": "Domínio",
+    "rationalHint": "Em f(x)=1/(x−b), x=b anula o denominador. Por isso esse valor fica excluído do domínio.",
+    "graphTitle": "Gráfico y=f(x)",
+    "graphAria": "Gráfico de {expr}",
+    "undefinedAt": "x={b}: função não definida",
+    "domainLine": "Reta do domínio (apenas valores de x permitidos)",
+    "openExcluded": "Círculo aberto em x={b}: valor excluído (assíntota vertical no gráfico).",
+    "closedIncluded": "Ponto fechado em x={b}: o extremo do domínio está incluído.",
+    "logOpen": "Círculo aberto em x={b}: ln(x−b) exige x>{b}.",
+    "hintMoveB": "Mova b e observe como o valor excluído, a assíntota e o domínio se deslocam juntos.",
+    "hintChangeKind": "Mude o tipo de função e compare como mudam a condição e o domínio.",
+    "polyCondition": "Definida para todo x real",
+    "polyRestriction": "Sem restrição"
+  },
+  "vizCopy": {
+    "tryPrefix": "Experimente —",
+    "showError": "Mostrar erro"
+  },
+  "vizRiemann": {
+    "idea": "A integral definida ∫ₐᵇ f(x) dx é o limite das somas de Riemann quando n → ∞.",
+    "ideaNote": "Mova n e observe como os retângulos preenchem a área com mais precisão. Mude o tipo de soma para ver como o ponto amostral afeta o erro.",
+    "left": "Esquerda",
+    "right": "Direita",
+    "midpoint": "Ponto médio",
+    "trapezoid": "Trapézio",
+    "nSubintervals": "n (subintervalos)",
+    "showError": "Mostrar erro",
+    "errorShrinks": "À medida que n aumenta, o erro diminui para 0.",
+    "exactI": "I exacta",
+    "error": "Erro",
+    "graphAria": "Soma de Riemann de f em [a, b]"
   }
 }

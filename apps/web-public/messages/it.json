@@ -5,7 +5,8 @@
     "description": "Formule matematiche online: calcolo integrale, fisica di base e algebra per ingegneria e informatica.",
     "shortName": "Formule",
     "about": "Calcolo integrale, Fisica di base e Algebra",
-    "manifestDescription": "Formule matematiche online"
+    "manifestDescription": "Formule matematiche online",
+    "seoTitle": "Formule matematiche, teoria e strumenti interattivi"
   },
   "nav": {
     "home": "Home",
@@ -171,7 +172,19 @@
     "showComplexity": "Mostra (modo CS)",
     "hideComplexity": "Nascondi (modo base)",
     "vizTeaches": "L’idea",
-    "vizTry": "Prova"
+    "vizTry": "Prova",
+    "intuitive": "Spiegazione intuitiva",
+    "formal": "Definizione formale",
+    "workedExample": "Esempio svolto",
+    "commonErrors": "Errori comuni",
+    "equivalentNotations": "Notazioni equivalenti",
+    "references": "Riferimenti",
+    "lastReviewed": "Ultima revisione",
+    "reviewedBy": "Revisione",
+    "sources": "Fonti",
+    "conventions": "Convenzioni",
+    "assumptions": "Ipotesi",
+    "reportError": "Hai trovato un errore? Scrivici."
   },
   "siteNav": {
     "primary": "Navigazione principale",
@@ -195,7 +208,11 @@
     "audienceTitle": "Per chi",
     "audienceBody": "Studenti e docenti che vogliono un riferimento stabile.",
     "openTitle": "Come cresce",
-    "openBody": "Contenuti curati per materia e serviti via API. Visualizzazioni e guide migliorano nel tempo."
+    "openBody": "Contenuti curati per materia e serviti via API. Visualizzazioni e guide migliorano nel tempo.",
+    "howTitle": "Come viene preparato il contenuto",
+    "howBody": "Il catalogo è organizzato per materie e servito da un’API. Le schede uniscono enunciati, LaTeX e, quando la fonte lo prevede, una risorsa interattiva. Non pubblichiamo autoria individuale né date di revisione se non sono presenti nel contenuto.",
+    "correctionsTitle": "Correzioni",
+    "correctionsBody": "Se trovi un errore matematico, una traduzione incompleta o un problema in una risorsa interattiva, usa la pagina Contatti e indica materia, codice della scheda e lingua."
   },
   "privacy": {
     "title": "Informativa sulla privacy",
@@ -264,5 +281,59 @@
     "rateLimit": "Hai inviato più recensioni di seguito. Aspetta un po’.",
     "empty": "Non ci sono ancora recensioni pubblicate. Puoi essere il primo.",
     "summary": "Media {average} · {count, plural, one {# recensione} other {# recensioni}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject}: formule e strumenti interattivi",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Include una risorsa interattiva.",
+    "formulaFallback": "Consulta {concept} in {subject}: definizione, formule e strumenti di studio.",
+    "comingSoonViz": "Visualizzazione {type} — in arrivo."
+  },
+  "vizDomain": {
+    "idea": "Il dominio è l’insieme dei valori di x per cui la funzione è definita: Dom(f)={x∈ℝ : f(x) è definita}.",
+    "ideaNote": "Collega l’espressione, il grafico e i valori ammessi sull’asse x. La retta del dominio (in basso) mostra solo gli ingressi validi, non il grafico y=f(x).",
+    "functionType": "Tipo di funzione",
+    "poly": "Polinomiale",
+    "rational": "Razionale",
+    "radical": "Radicale",
+    "log": "Logaritmica",
+    "paramB": "Parametro b",
+    "fromExpr": "Dall’espressione al dominio",
+    "expression": "Espressione",
+    "condition": "Condizione",
+    "restriction": "Restrizione",
+    "domain": "Dominio",
+    "rationalHint": "In f(x)=1/(x−b), x=b annulla il denominatore. Quel valore è quindi escluso dal dominio.",
+    "graphTitle": "Grafico y=f(x)",
+    "graphAria": "Grafico di {expr}",
+    "undefinedAt": "x={b}: funzione non definita",
+    "domainLine": "Retta del dominio (solo valori di x ammessi)",
+    "openExcluded": "Cerchio aperto in x={b}: valore escluso (asintoto verticale sul grafico).",
+    "closedIncluded": "Punto chiuso in x={b}: l’estremo del dominio è incluso.",
+    "logOpen": "Cerchio aperto in x={b}: ln(x−b) richiede x>{b}.",
+    "hintMoveB": "Sposta b e osserva come valore escluso, asintoto e dominio si spostano insieme.",
+    "hintChangeKind": "Cambia il tipo di funzione e confronta come variano condizione e dominio.",
+    "polyCondition": "Definita per ogni x reale",
+    "polyRestriction": "Nessuna restrizione"
+  },
+  "vizCopy": {
+    "tryPrefix": "Prova —",
+    "showError": "Mostra errore"
+  },
+  "vizRiemann": {
+    "idea": "L’integrale definito ∫ₐᵇ f(x) dx è il limite delle somme di Riemann per n → ∞.",
+    "ideaNote": "Sposta n e osserva come i rettangoli riempiono l’area con più precisione. Cambia il tipo di somma per vedere come il punto di campionamento influisce sull’errore.",
+    "left": "Sinistra",
+    "right": "Destra",
+    "midpoint": "Punto medio",
+    "trapezoid": "Trapezio",
+    "nSubintervals": "n (sottointervalli)",
+    "showError": "Mostra errore",
+    "errorShrinks": "Al crescere di n l’errore tende a 0.",
+    "exactI": "I esatta",
+    "error": "Errore",
+    "graphAria": "Somma di Riemann di f su [a, b]"
   }
 }

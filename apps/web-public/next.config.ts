@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   /** Sitemap + static pages may call the API several times during build. */
   staticPageGenerationTimeout: 180,
+  trailingSlash: false,
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

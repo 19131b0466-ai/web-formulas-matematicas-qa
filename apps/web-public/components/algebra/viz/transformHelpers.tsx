@@ -1,6 +1,8 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { localizeGuide } from '@/lib/viz-guide-copy';
 import { DET_EPS, Mat2Editor, cloneMat2, cols, matFromCols, rank2 } from './detHelpers';
 import {
   applyMat,
@@ -299,16 +301,19 @@ export function GuideBlock({
   tryIt: string;
   concept?: string;
 }) {
-  let tryBody = tryIt.trim();
-  const prefix = /^(Pru[eé]balo)\s*[—–\-−:]\s*/i;
+  const t = useTranslations('vizCopy');
+  const locale = useLocale();
+  const copy = localizeGuide(idea, tryIt, locale);
+  let tryBody = copy.tryIt.trim();
+  const prefix = /^(Pru[eé]balo|Try it|Probier|Experimente|Essaie|Prova)\s*[—–\-−:]\s*/i;
   while (prefix.test(tryBody)) {
     tryBody = tryBody.replace(prefix, '');
   }
   return (
     <div className="mb-5 space-y-2 text-sm leading-relaxed text-[var(--fg-muted)]">
-      <p>{idea}</p>
+      <p>{copy.idea}</p>
       <p>
-        <span className="font-medium text-[var(--fg)]">Pruébalo — </span>
+        <span className="font-medium text-[var(--fg)]">{t('tryPrefix')} </span>
         {tryBody}
       </p>
       {concept ? <p className="italic">{concept}</p> : null}

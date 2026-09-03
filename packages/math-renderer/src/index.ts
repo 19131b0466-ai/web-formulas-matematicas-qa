@@ -10,7 +10,7 @@ export function renderLatex(latex: string, options: RenderLatexOptions = {}): st
   return katex.renderToString(latex, {
     displayMode: options.displayMode ?? false,
     throwOnError: options.throwOnError ?? false,
-    output: 'html',
+    output: 'htmlAndMathml',
   });
 }
 

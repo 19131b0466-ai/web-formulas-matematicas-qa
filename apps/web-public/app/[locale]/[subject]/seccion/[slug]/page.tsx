@@ -3,13 +3,14 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { HashScroll } from '@/components/navigation/HashScroll';
 import { SectionView } from '@/components/section/SectionView';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { redirect } from '@/i18n/navigation';
 import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { resolveSectionSlugAlias } from '@/lib/section-slug-aliases';
-import { getSiteUrl } from '@/lib/site';
-import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
-import { routing, type AppLocale } from '@/i18n/routing';
+import { breadcrumbJsonLd, buildPageMetadata, learningResourceJsonLd } from '@/lib/seo';
+import { isSubjectSlug, sectionHref, subjectHomeHref, type SubjectSlug } from '@/lib/subjects';
+import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -30,30 +31,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const subject = subjectRaw as SubjectSlug;
   const slug = resolveSectionSlugAlias(subject, slugRaw);
   const t = await getTranslations({ locale, namespace: 'section' });
-  const ts = await getTranslations({ locale, namespace: 'site' });
+  const tseo = await getTranslations({ locale, namespace: 'seo' });
+  const tsite = await getTranslations({ locale, namespace: 'site' });
   try {
-    const detail = await localizeContent(await fetchSection(slug, subject), locale);
+    const [detail, subjects] = await Promise.all([
+      localizeContent(await fetchSection(slug, subject), locale),
+      localizeContent(await fetchSubjects(), locale),
+    ]);
     if (!detail) return { title: t('notFound') };
 
-    const title = detail.section.number
+    const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
+    const sectionName = detail.section.number
       ? `${detail.section.number}. ${detail.section.title}`
       : detail.section.title;
+    const title = tseo('sectionTitle', { section: sectionName, subject: subjectTitle });
     const description =
       detail.section.description ?? t('metaDescription', { title: detail.section.title });
-    const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-    const url = `${getSiteUrl()}${prefix}/${subject}/seccion/${slug}`;
 
-    return {
+    return buildPageMetadata({
+      locale,
+      path: `/${subject}/seccion/${slug}`,
       title,
       description,
-      openGraph: {
-        title: `${title} · ${ts('name')}`,
-        description,
-        url,
-        type: 'article',
-      },
-      alternates: { canonical: url },
-    };
+      siteName: tsite('name'),
+      ogType: 'article',
+    });
   } catch {
     return { title: t('content') };
   }
@@ -74,6 +76,7 @@ export default async function SectionPage({ params }: PageProps) {
 
   const t = await getTranslations('section');
   const ts = await getTranslations('site');
+  const tn = await getTranslations('nav');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
 
@@ -93,36 +96,39 @@ export default async function SectionPage({ params }: PageProps) {
     if (parentNode) parent = { slug: parentNode.slug, title: parentNode.title };
   }
 
-  const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: subjectTitle, path: subjectHomeHref(subject) },
+          ...(parent
+            ? [{ name: parent.title, path: sectionHref(subject, parent.slug) }]
+            : []),
+          { name: detail.section.title, path: sectionHref(subject, slug) },
+        ])}
+      />
+      <JsonLd
+        data={learningResourceJsonLd({
+          name: detail.section.title,
+          description:
+            detail.section.description ??
+            t('jsonDescription', {
+              number: detail.section.number,
+              title: detail.section.title,
+            }),
+          locale,
+          path: `/${subject}/seccion/${slug}`,
+          learningResourceType: 'Reference',
+          isPartOf: ts('name'),
+        })}
+      />
       <HashScroll />
       <SectionView
         subject={subject}
         subjectTitle={subjectTitle}
         detail={detail}
         parent={parent}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LearningResource',
-            name: detail.section.title,
-            description:
-              detail.section.description ??
-              t('jsonDescription', {
-                number: detail.section.number,
-                title: detail.section.title,
-              }),
-            learningResourceType: 'Reference',
-            inLanguage: locale,
-            isPartOf: ts('name'),
-            url: `${getSiteUrl()}${prefix}/${subject}/seccion/${slug}`,
-          }),
-        }}
       />
     </>
   );

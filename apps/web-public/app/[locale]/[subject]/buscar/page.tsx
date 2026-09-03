@@ -3,8 +3,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { SearchPanel } from '@/components/search/SearchPanel';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { fetchSearch, fetchSubjects, fetchTags } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import {
   isSubjectSlug,
   subjectHomeHref,
@@ -19,17 +21,22 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale, subject: subjectRaw } = await params;
+  const { locale: raw, subject: subjectRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) return {};
+  const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'search' });
-  return {
-    title: t('title'),
+  const tsite = await getTranslations({ locale, namespace: 'site' });
+  const subjects = await localizeContent(await fetchSubjects(), locale);
+  const subjectTitle = subjects.find((s) => s.slug === subjectRaw)?.title ?? subjectRaw;
+  return buildPageMetadata({
+    locale,
+    path: `/${subjectRaw}/buscar`,
+    title: `${t('title')} — ${subjectTitle}`,
     description: t('description'),
-    openGraph: {
-      title: t('ogTitle'),
-      description: t('description'),
-    },
-  };
+    siteName: tsite('name'),
+    index: false,
+    follow: true,
+  });
 }
 
 export default async function SearchPage({ params, searchParams }: PageProps) {
@@ -62,9 +69,16 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
 
   return (
     <div>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: subjectTitle, path: subjectHomeHref(subject) },
+          { name: t('title'), path: `/${subject}/buscar` },
+        ])}
+      />
       <Breadcrumbs
         items={[
-          { label: tn('hub'), href: '/' },
+          { label: tn('home'), href: '/' },
           { label: subjectTitle, href: subjectHomeHref(subject) },
           { label: t('title') },
         ]}

@@ -2,10 +2,13 @@ import type {
   AdminReviewsResponse,
   AnalyticsOverview,
   AuthTokenResponse,
+  BotsAnalytics,
   GeoCityCount,
   GeoCountryCount,
   NamedCount,
+  RpmStats,
   TimeseriesPoint,
+  TrafficAudience,
   VisitLogAdminDto,
 } from '@repo/shared-types';
 
@@ -109,67 +112,84 @@ async function adminFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+function rangeParams(
+  from?: string,
+  to?: string,
+  extra?: Record<string, string | undefined>,
+): string {
+  const sp = new URLSearchParams();
+  if (from) sp.set('from', from);
+  if (to) sp.set('to', to);
+  if (extra) {
+    for (const [key, value] of Object.entries(extra)) {
+      if (value) sp.set(key, value);
+    }
+  }
+  return sp.toString();
+}
+
 export function fetchOverview() {
   return adminFetch<AnalyticsOverview>('/admin/analytics/overview');
 }
 
-export function fetchTimeseries(from?: string, to?: string) {
-  const sp = new URLSearchParams();
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
-  return adminFetch<{ points: TimeseriesPoint[] }>(`/admin/analytics/timeseries?${sp}`);
+export function fetchTimeseries(from?: string, to?: string, audience: TrafficAudience = 'human') {
+  return adminFetch<{ points: TimeseriesPoint[] }>(
+    `/admin/analytics/timeseries?${rangeParams(from, to, { audience })}`,
+  );
 }
 
-export function fetchGeo(from?: string, to?: string) {
-  const sp = new URLSearchParams();
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
+export function fetchGeo(from?: string, to?: string, audience: TrafficAudience = 'human') {
   return adminFetch<{ countries: GeoCountryCount[]; cities: GeoCityCount[] }>(
-    `/admin/analytics/geo?${sp}`,
+    `/admin/analytics/geo?${rangeParams(from, to, { audience })}`,
   );
 }
 
-export function fetchPages(from?: string, to?: string) {
-  const sp = new URLSearchParams({ limit: '20' });
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
-  return adminFetch<{ pages: NamedCount[] }>(`/admin/analytics/pages?${sp}`);
+export function fetchPages(from?: string, to?: string, audience: TrafficAudience = 'human') {
+  return adminFetch<{ pages: NamedCount[] }>(
+    `/admin/analytics/pages?${rangeParams(from, to, { audience, limit: '20' })}`,
+  );
 }
 
-export function fetchSubjectsAnalytics(from?: string, to?: string) {
-  const sp = new URLSearchParams({ limit: '20' });
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
-  return adminFetch<{ subjects: NamedCount[] }>(`/admin/analytics/subjects?${sp}`);
+export function fetchSubjectsAnalytics(
+  from?: string,
+  to?: string,
+  audience: TrafficAudience = 'human',
+) {
+  return adminFetch<{ subjects: NamedCount[] }>(
+    `/admin/analytics/subjects?${rangeParams(from, to, { audience, limit: '20' })}`,
+  );
 }
 
-export function fetchReferrers(from?: string, to?: string) {
-  const sp = new URLSearchParams();
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
-  return adminFetch<{ referrers: NamedCount[] }>(`/admin/analytics/referrers?${sp}`);
+export function fetchReferrers(from?: string, to?: string, audience: TrafficAudience = 'human') {
+  return adminFetch<{ referrers: NamedCount[] }>(
+    `/admin/analytics/referrers?${rangeParams(from, to, { audience })}`,
+  );
 }
 
-export function fetchDevices(from?: string, to?: string) {
-  const sp = new URLSearchParams();
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
+export function fetchDevices(from?: string, to?: string, audience: TrafficAudience = 'human') {
   return adminFetch<{ devices: NamedCount[]; browsers: NamedCount[]; os: NamedCount[] }>(
-    `/admin/analytics/devices?${sp}`,
+    `/admin/analytics/devices?${rangeParams(from, to, { audience })}`,
   );
 }
 
-export function fetchLanguages(from?: string, to?: string) {
-  const sp = new URLSearchParams();
-  if (from) sp.set('from', from);
-  if (to) sp.set('to', to);
-  return adminFetch<{ languages: NamedCount[] }>(`/admin/analytics/languages?${sp}`);
+export function fetchLanguages(from?: string, to?: string, audience: TrafficAudience = 'human') {
+  return adminFetch<{ languages: NamedCount[] }>(
+    `/admin/analytics/languages?${rangeParams(from, to, { audience })}`,
+  );
 }
 
-export function fetchRecent(limit = 50) {
+export function fetchRecent(limit = 50, audience: TrafficAudience = 'all') {
   return adminFetch<{ visits: VisitLogAdminDto[] }>(
-    `/admin/analytics/recent?limit=${String(limit)}`,
+    `/admin/analytics/recent?limit=${String(limit)}&audience=${audience}`,
   );
+}
+
+export function fetchBotsAnalytics(from?: string, to?: string) {
+  return adminFetch<BotsAnalytics>(`/admin/analytics/bots?${rangeParams(from, to)}`);
+}
+
+export function fetchRpm(from?: string, to?: string, audience: TrafficAudience = 'all') {
+  return adminFetch<RpmStats>(`/admin/analytics/rpm?${rangeParams(from, to, { audience })}`);
 }
 
 export function fetchAdminReviews(status?: 'pending' | 'approved' | 'rejected') {
@@ -191,8 +211,13 @@ export function deleteAdminReview(id: string) {
   return adminFetch<{ ok: true }>(`/admin/reviews/${id}`, { method: 'DELETE' });
 }
 
-export async function downloadExportCsv(from?: string, to?: string): Promise<void> {
-  const sp = new URLSearchParams({ format: 'csv' });
+export async function downloadExportCsv(
+  from?: string,
+  to?: string,
+  audience: TrafficAudience = 'all',
+  format: 'csv' | 'json' = 'csv',
+): Promise<void> {
+  const sp = new URLSearchParams({ format, audience });
   if (from) sp.set('from', from);
   if (to) sp.set('to', to);
   const token = getAccessToken();
@@ -205,7 +230,7 @@ export async function downloadExportCsv(from?: string, to?: string): Promise<voi
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'visit-logs.csv';
+  a.download = format === 'json' ? 'visit-logs.json' : 'visit-logs.csv';
   a.click();
   URL.revokeObjectURL(url);
 }

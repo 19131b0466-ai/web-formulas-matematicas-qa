@@ -160,6 +160,18 @@ export const fetchSection = cache(
   },
 );
 
+export const fetchFormulaCodes = cache(async (subject: SubjectSlug): Promise<string[]> => {
+  try {
+    const data = await apiFetch<{ formulas: string[] }>(
+      `/subjects/${encodeURIComponent(subject)}/formulas`,
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
+    );
+    return data?.formulas ?? [];
+  } catch {
+    return [];
+  }
+});
+
 export const fetchFormula = cache(
   async (
     subject: SubjectSlug,

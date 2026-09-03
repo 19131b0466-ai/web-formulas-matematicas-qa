@@ -5,13 +5,23 @@ import type { Database } from '../db/client.js';
 import { extractIp } from '../lib/request-meta.js';
 import { recordVisit, type TrackVisitInput } from '../services/analytics.js';
 
-const FORBIDDEN_IP_KEYS = new Set([
+const FORBIDDEN_CLIENT_KEYS = new Set([
   'ip',
   'ipAddress',
   'ip_address',
   'clientIp',
   'client_ip',
   'xForwardedFor',
+  'isBot',
+  'is_bot',
+  'botId',
+  'bot_id',
+  'trafficClass',
+  'traffic_class',
+  'userAgent',
+  'user_agent',
+  'ipHash',
+  'ip_hash',
 ]);
 
 const trackVisitSchema = z
@@ -62,7 +72,7 @@ export function createAnalyticsRoutes(getDb: () => Database) {
 
     if (body && typeof body === 'object') {
       for (const key of Object.keys(body as Record<string, unknown>)) {
-        if (FORBIDDEN_IP_KEYS.has(key)) {
+        if (FORBIDDEN_CLIENT_KEYS.has(key)) {
           return c.json({ error: 'IP fields are not accepted from the client' }, 400);
         }
       }

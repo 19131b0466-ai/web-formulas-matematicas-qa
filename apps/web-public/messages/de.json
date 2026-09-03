@@ -5,7 +5,8 @@
     "description": "Mathematische Formeln online: Integralrechnung, Physik und Algebra für Ingenieurwesen & Informatik.",
     "shortName": "Formeln",
     "about": "Integralrechnung, Physik und Algebra",
-    "manifestDescription": "Mathematische Formeln online"
+    "manifestDescription": "Mathematische Formeln online",
+    "seoTitle": "Mathematische Formeln, Theorie und interaktive Werkzeuge"
   },
   "nav": {
     "home": "Start",
@@ -171,7 +172,19 @@
     "showComplexity": "Anzeigen (CS)",
     "hideComplexity": "Ausblenden (Basis)",
     "vizTeaches": "Die Idee",
-    "vizTry": "Probier’s"
+    "vizTry": "Probier’s",
+    "intuitive": "Anschauliche Erklärung",
+    "formal": "Formale Definition",
+    "workedExample": "Durchgerechnetes Beispiel",
+    "commonErrors": "Häufige Fehler",
+    "equivalentNotations": "Äquivalente Schreibweisen",
+    "references": "Literatur",
+    "lastReviewed": "Zuletzt geprüft",
+    "reviewedBy": "Prüfung",
+    "sources": "Quellen",
+    "conventions": "Konventionen",
+    "assumptions": "Annahmen",
+    "reportError": "Fehler gefunden? Schreiben Sie uns."
   },
   "siteNav": {
     "primary": "Hauptnavigation",
@@ -195,7 +208,11 @@
     "audienceTitle": "Für wen",
     "audienceBody": "Für Studierende und Lehrende, die eine stabile Referenz brauchen.",
     "openTitle": "Wie es wächst",
-    "openBody": "Inhalte werden fachweise gepflegt und per API ausgeliefert. Visualisierungen und Leitfäden werden laufend verbessert."
+    "openBody": "Inhalte werden fachweise gepflegt und per API ausgeliefert. Visualisierungen und Leitfäden werden laufend verbessert.",
+    "howTitle": "Wie die Inhalte entstehen",
+    "howBody": "Der Katalog ist nach Fächern gegliedert und wird über eine API ausgeliefert. Karten verbinden Aussagen, LaTeX und — sofern in der Quelle vorhanden — ein interaktives Werkzeug. Autorennamen und Prüfdaten erscheinen nur, wenn der Inhalt sie selbst enthält.",
+    "correctionsTitle": "Korrekturen",
+    "correctionsBody": "Bei einem mathematischen Fehler, einer unvollständigen Übersetzung oder einem Problem in einem interaktiven Werkzeug nutzen Sie die Kontaktseite und nennen Fach, Formelcode und Sprache."
   },
   "privacy": {
     "title": "Datenschutz",
@@ -264,5 +281,59 @@
     "rateLimit": "Du hast mehrere Bewertungen hintereinander gesendet. Warte kurz.",
     "empty": "Noch keine veröffentlichten Bewertungen. Du kannst die erste schreiben.",
     "summary": "Schnitt {average} · {count, plural, one {# Bewertung} other {# Bewertungen}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject}: Formeln und interaktive Werkzeuge",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Enthält ein interaktives Werkzeug.",
+    "formulaFallback": "{concept} in {subject}: Definition, Formeln und Lernhilfen.",
+    "comingSoonViz": "Visualisierung {type} — in Vorbereitung."
+  },
+  "vizDomain": {
+    "idea": "Der Definitionsbereich ist die Menge der x-Werte, für die die Funktion definiert ist: Dom(f)={x∈ℝ : f(x) ist definiert}.",
+    "ideaNote": "Verbinde Ausdruck, Graph und zulässige Werte auf der x-Achse. Die Definitionsgerade (unten) zeigt nur gültige Eingaben, nicht den Graphen y=f(x).",
+    "functionType": "Funktionstyp",
+    "poly": "Polynom",
+    "rational": "Rational",
+    "radical": "Wurzel",
+    "log": "Logarithmisch",
+    "paramB": "Parameter b",
+    "fromExpr": "Vom Ausdruck zum Definitionsbereich",
+    "expression": "Ausdruck",
+    "condition": "Bedingung",
+    "restriction": "Einschränkung",
+    "domain": "Definitionsbereich",
+    "rationalHint": "Bei f(x)=1/(x−b) wird der Nenner für x=b null. Dieser Wert gehört daher nicht zum Definitionsbereich.",
+    "graphTitle": "Graph y=f(x)",
+    "graphAria": "Graph von {expr}",
+    "undefinedAt": "x={b}: Funktion nicht definiert",
+    "domainLine": "Definitionsgerade (nur zulässige x-Werte)",
+    "openExcluded": "Offener Kreis bei x={b}: ausgeschlossener Wert (senkrechte Asymptote im Graphen).",
+    "closedIncluded": "Geschlossener Punkt bei x={b}: der Randpunkt gehört zum Definitionsbereich.",
+    "logOpen": "Offener Kreis bei x={b}: ln(x−b) verlangt x>{b}.",
+    "hintMoveB": "Verschiebe b und beobachte, wie ausgeschlossener Wert, Asymptote und Definitionsbereich gemeinsam wandern.",
+    "hintChangeKind": "Wechsle den Funktionstyp und vergleiche Bedingung und Definitionsbereich.",
+    "polyCondition": "Für jedes reelle x definiert",
+    "polyRestriction": "Keine Einschränkung"
+  },
+  "vizCopy": {
+    "tryPrefix": "Probier es —",
+    "showError": "Fehler anzeigen"
+  },
+  "vizRiemann": {
+    "idea": "Das bestimmte Integral ∫ₐᵇ f(x) dx ist der Grenzwert der Riemannschen Summen für n → ∞.",
+    "ideaNote": "Bewege n und beobachte, wie die Rechtecke die Fläche genauer füllen. Ändere den Summentyp, um den Einfluss des Stützpunkts auf den Fehler zu sehen.",
+    "left": "Links",
+    "right": "Rechts",
+    "midpoint": "Mittelpunkt",
+    "trapezoid": "Trapez",
+    "nSubintervals": "n (Teilintervalle)",
+    "showError": "Fehler anzeigen",
+    "errorShrinks": "Mit wachsendem n geht der Fehler gegen 0.",
+    "exactI": "Exaktes I",
+    "error": "Fehler",
+    "graphAria": "Riemann-Summe von f auf [a, b]"
   }
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useAuth } from './AuthProvider';
+import { TrafficAudienceSelector } from './TrafficFilter';
 
 const NAV = [
   { href: '/dashboard', label: 'Overview' },
@@ -12,6 +13,7 @@ const NAV = [
   { href: '/analytics/geo', label: 'Geo' },
   { href: '/analytics/content', label: 'Contenido' },
   { href: '/analytics/audience', label: 'Audiencia' },
+  { href: '/analytics/bots', label: 'Bots' },
   { href: '/analytics/logs', label: 'Logs' },
   { href: '/analytics/export', label: 'Exportar' },
 ];
@@ -93,7 +95,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
               );
             })}
           </div>
-          <div className="ml-auto flex items-center gap-3 text-xs tracking-[0.12em] text-[var(--fg-muted)] uppercase">
+          <div className="ml-auto flex flex-wrap items-center justify-end gap-3 text-xs tracking-[0.12em] text-[var(--fg-muted)] uppercase">
+            <TrafficAudienceSelector />
             <span className="hidden items-center gap-2 sm:inline-flex">
               <span className="hud-status-dot" aria-hidden />
               Systems nominal

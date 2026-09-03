@@ -6,21 +6,23 @@ import { HorizontalBars } from '@/components/charts';
 import { WorldChoroplethMap } from '@/components/WorldChoroplethMap';
 import { Card, ErrorBox, PageHeader } from '@/components/ui';
 import { defaultRange, fetchGeo } from '@/lib/api';
+import { useTrafficFilter } from '@/components/TrafficFilter';
 
 export default function GeoPage() {
+  const { audience } = useTrafficFilter();
   const [countries, setCountries] = useState<GeoCountryCount[]>([]);
   const [cities, setCities] = useState<GeoCityCount[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const { from, to } = defaultRange();
-    fetchGeo(from, to)
+    fetchGeo(from, to, audience)
       .then((res) => {
         setCountries(res.countries);
         setCities(res.cities);
       })
       .catch((err: unknown) => setError(err instanceof Error ? err.message : 'Error'));
-  }, []);
+  }, [audience]);
 
   const bars = useMemo(
     () =>
@@ -37,7 +39,7 @@ export default function GeoPage() {
     <div>
       <PageHeader
         title="Geografía"
-        subtitle="Distribución por país y ciudad a partir de headers Vercel (sin IPs)."
+        subtitle="Distribución por país y ciudad (headers Vercel, sin IPs). Por defecto audiencia humana. Geo de datacenters de bots no representa usuarios."
       />
       {error ? <ErrorBox message={error} /> : null}
 

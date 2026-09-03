@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Mono, Orbitron } from 'next/font/google';
 import { AdminShell } from '@/components/AdminShell';
 import { AuthProvider } from '@/components/AuthProvider';
+import { TrafficFilterProvider } from '@/components/TrafficFilter';
 import './globals.css';
 
 const body = IBM_Plex_Mono({
@@ -40,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className={`${body.variable} ${display.variable} antialiased`}>
         <AuthProvider>
-          <AdminShell>{children}</AdminShell>
+          <TrafficFilterProvider>
+            <AdminShell>{children}</AdminShell>
+          </TrafficFilterProvider>
         </AuthProvider>
       </body>
     </html>

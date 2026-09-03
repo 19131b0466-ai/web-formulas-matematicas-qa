@@ -5,8 +5,10 @@ import type { NamedCount } from '@repo/shared-types';
 import { DevicePie, HorizontalBars } from '@/components/charts';
 import { Card, ErrorBox, PageHeader } from '@/components/ui';
 import { defaultRange, fetchDevices, fetchLanguages, fetchReferrers } from '@/lib/api';
+import { useTrafficFilter } from '@/components/TrafficFilter';
 
 export default function AudiencePage() {
+  const { audience } = useTrafficFilter();
   const [devices, setDevices] = useState<NamedCount[]>([]);
   const [browsers, setBrowsers] = useState<NamedCount[]>([]);
   const [os, setOs] = useState<NamedCount[]>([]);
@@ -16,7 +18,11 @@ export default function AudiencePage() {
 
   useEffect(() => {
     const { from, to } = defaultRange();
-    Promise.all([fetchDevices(from, to), fetchLanguages(from, to), fetchReferrers(from, to)])
+    Promise.all([
+      fetchDevices(from, to, audience),
+      fetchLanguages(from, to, audience),
+      fetchReferrers(from, to, audience),
+    ])
       .then(([dv, lang, ref]) => {
         setDevices(dv.devices);
         setBrowsers(dv.browsers);
@@ -25,11 +31,11 @@ export default function AudiencePage() {
         setReferrers(ref.referrers.slice(0, 12));
       })
       .catch((err: unknown) => setError(err instanceof Error ? err.message : 'Error'));
-  }, []);
+  }, [audience]);
 
   return (
     <div>
-      <PageHeader title="Audiencia" subtitle="Dispositivos, idiomas y fuentes de tráfico." />
+      <PageHeader title="Audiencia" subtitle="Dispositivos, idiomas y referentes de tráfico humano probable (filtro aplicable)." />
       {error ? <ErrorBox message={error} /> : null}
 
       <div className="grid gap-6 lg:grid-cols-3">

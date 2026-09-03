@@ -2,14 +2,18 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
+import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Link } from '@/i18n/navigation';
 import { fetchSections, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import {
   isSubjectSlug,
   searchHref,
   sectionHref,
   subjectHasGuide,
+  subjectHomeHref,
   type SubjectSlug,
 } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
@@ -23,17 +27,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!isSubjectSlug(subjectRaw)) return {};
   const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'subjectHome' });
+  const tseo = await getTranslations({ locale, namespace: 'seo' });
+  const tsite = await getTranslations({ locale, namespace: 'site' });
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const meta = subjects.find((s) => s.slug === subjectRaw);
-  const title = meta?.title ?? subjectRaw;
-  return {
+  const title = tseo('subjectTitle', { subject: meta?.title ?? subjectRaw });
+  const description = meta?.description ?? t('fallbackDescription', { title: meta?.title ?? subjectRaw });
+  return buildPageMetadata({
+    locale,
+    path: `/${subjectRaw}`,
     title,
-    description: meta?.description ?? t('fallbackDescription', { title }),
-    openGraph: {
-      title,
-      description: meta?.description ?? t('fallbackDescription', { title }),
-    },
-  };
+    description,
+    siteName: tsite('name'),
+  });
 }
 
 export const revalidate = 86400;
@@ -46,6 +52,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
   setRequestLocale(locale);
 
   const t = await getTranslations('subjectHome');
+  const tn = await getTranslations('nav');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const meta = subjects.find((s) => s.slug === subject);
   const sections = await localizeContent(await fetchSections(subject), locale);
@@ -53,9 +60,22 @@ export default async function SubjectHomePage({ params }: PageProps) {
     (s) => !s.slug.startsWith('apendice-') && s.slug !== 'lista-comprobacion',
   );
   const appendices = sections.filter((s) => s.slug.startsWith('apendice-'));
+  const subjectTitle = meta?.title ?? subject;
 
   return (
     <div className="space-y-12">
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: subjectTitle, path: subjectHomeHref(subject) },
+        ])}
+      />
+      <Breadcrumbs
+        items={[
+          { label: tn('home'), href: '/' },
+          { label: subjectTitle },
+        ]}
+      />
       <section className="animate-rise relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg-elevated)_88%,transparent)] px-6 py-12 sm:px-10 sm:py-16">
         <div
           aria-hidden

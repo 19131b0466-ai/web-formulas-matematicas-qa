@@ -2,27 +2,29 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { HeroMathPlane } from '@/components/site/HeroMathPlane';
 import { SiteShell } from '@/components/site/SiteShell';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Link } from '@/i18n/navigation';
 import { fetchPublicReviews, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
-import type { AppLocale } from '@/i18n/routing';
+import { buildPageMetadata, websiteJsonLd } from '@/lib/seo';
+import { routing, type AppLocale } from '@/i18n/routing';
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: raw } = await params;
+  const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'site' });
-  const th = await getTranslations({ locale, namespace: 'home' });
-  return {
-    title: t('name'),
+  return buildPageMetadata({
+    locale,
+    path: '/',
+    title: t('seoTitle'),
     description: t('description'),
-    openGraph: {
-      title: t('name'),
-      description: th('headline'),
-    },
-  };
+    siteName: t('name'),
+    ogType: 'website',
+  });
 }
 
 /** Catalog hub: long ISR to stay within Hobby write quota (was 60s). */
@@ -59,7 +61,13 @@ export default async function HubPage({ params }: PageProps) {
 
   return (
     <SiteShell>
-      {/* First viewport: intro + subject cards together */}
+      <JsonLd
+        data={websiteJsonLd({
+          name: ts('name'),
+          description: ts('description'),
+          inLanguage: [...routing.locales],
+        })}
+      />
       <section className="relative isolate overflow-hidden border-b border-[var(--border)]">
         <HeroMathPlane />
         <div

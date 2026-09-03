@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from './controls';
 import { linspace } from './math2d';
 
@@ -84,6 +85,7 @@ function buildPaths(
  * Domain Dom(f) = {x : f(x) is defined} (ALG-FUN-001).
  */
 export function DomainViz() {
+  const t = useTranslations('vizDomain');
   const [kind, setKind] = useState<FunKind>('rational');
   const [b, setB] = useState(2);
   const guideId = useId();
@@ -96,17 +98,17 @@ export function DomainViz() {
     switch (kind) {
       case 'poly':
         return {
-          label: 'Polinómica',
+          label: t('poly'),
           expr: 'f(x)=x²+1',
-          condition: 'Siempre definida para todo x real',
-          restriction: 'Sin restricción',
+          condition: t('polyCondition'),
+          restriction: t('polyRestriction'),
           domainSet: 'ℝ',
           domainInterval: '(−∞,∞)',
           hasAsymptote: false,
         };
       case 'rational':
         return {
-          label: 'Racional',
+          label: t('rational'),
           expr: Math.abs(b) < ZERO_EPS ? 'f(x)=1/x' : `f(x)=1/(x${formatBSub(b)})`,
           condition: 'x−b≠0',
           restriction: `x≠${bL}`,
@@ -116,7 +118,7 @@ export function DomainViz() {
         };
       case 'radical':
         return {
-          label: 'Radical',
+          label: t('radical'),
           expr: Math.abs(b) < ZERO_EPS ? 'f(x)=√x' : `f(x)=√(x${formatBSub(b)})`,
           condition: 'x−b≥0',
           restriction: `x≥${bL}`,
@@ -126,7 +128,7 @@ export function DomainViz() {
         };
       case 'log':
         return {
-          label: 'Logarítmica',
+          label: t('log'),
           expr: Math.abs(b) < ZERO_EPS ? 'f(x)=ln(x)' : `f(x)=ln(x${formatBSub(b)})`,
           condition: 'x−b>0',
           restriction: `x>${bL}`,
@@ -135,7 +137,7 @@ export function DomainViz() {
           hasAsymptote: false,
         };
     }
-  }, [kind, b, bL]);
+  }, [kind, b, bL, t]);
 
   const view = useMemo(() => {
     const pad = 2.5;
@@ -194,31 +196,27 @@ export function DomainViz() {
       <div className="space-y-4">
         <div>
           <p id={guideId} className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            El dominio es el conjunto de valores de x para los cuales la función está definida:
-            Dom(f)=&#123;x∈ℝ : f(x) está definida&#125;.
+            {t('idea')}
           </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Relaciona la expresión, la gráfica y los valores permitidos sobre el eje x. La recta
-            del dominio (abajo) muestra solo entradas válidas, no la gráfica y=f(x).
-          </p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('ideaNote')}</p>
         </div>
 
         <section className="rounded-xl border border-[var(--border)] px-3 py-3">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--fg-muted)]">
-            Tipo de función
+            {t('functionType')}
           </p>
           <ButtonRow>
             <VizButton active={kind === 'poly'} onClick={() => setKind('poly')}>
-              Polinómica
+              {t('poly')}
             </VizButton>
             <VizButton active={kind === 'rational'} onClick={() => setKind('rational')}>
-              Racional
+              {t('rational')}
             </VizButton>
             <VizButton active={kind === 'radical'} onClick={() => setKind('radical')}>
-              Radical
+              {t('radical')}
             </VizButton>
             <VizButton active={kind === 'log'} onClick={() => setKind('log')}>
-              Logarítmica
+              {t('log')}
             </VizButton>
           </ButtonRow>
         </section>
@@ -226,7 +224,7 @@ export function DomainViz() {
         {needsB ? (
           <SliderRow
             label="b"
-            ariaLabel="Parámetro b"
+            ariaLabel={t('paramB')}
             value={b}
             min={-3}
             max={5}
@@ -237,35 +235,38 @@ export function DomainViz() {
 
         <section className="space-y-2 rounded-xl border border-[var(--border)] px-3 py-3 text-sm leading-relaxed">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--fg-muted)]">
-            De la expresión al dominio
+            {t('fromExpr')}
           </p>
-          <p className="font-mono">Expresión · {meta.expr}</p>
+          <p className="font-mono">
+            {t('expression')} · {meta.expr}
+          </p>
           <p className="text-[var(--fg-muted)]">↓</p>
-          <p className="font-mono">Condición · {meta.condition}</p>
+          <p className="font-mono">
+            {t('condition')} · {meta.condition}
+          </p>
           <p className="text-[var(--fg-muted)]">↓</p>
-          <p className="font-mono">Restricción · {meta.restriction}</p>
+          <p className="font-mono">
+            {t('restriction')} · {meta.restriction}
+          </p>
           <p className="text-[var(--fg-muted)]">↓</p>
           <p className="font-mono font-semibold text-[var(--accent-strong)]">
-            Dominio · Dom(f)={meta.domainSet}
+            {t('domain')} · Dom(f)={meta.domainSet}
           </p>
           {kind === 'rational' ? (
-            <p className="text-sm text-[var(--fg-muted)]">
-              En f(x)=1/(x−b), x=b hace cero el denominador. Por eso ese valor queda excluido del
-              dominio.
-            </p>
+            <p className="text-sm text-[var(--fg-muted)]">{t('rationalHint')}</p>
           ) : null}
         </section>
 
         <section className="rounded-xl border border-[var(--border)] px-3 py-3">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--fg-muted)]">
-            Gráfica y=f(x)
+            {t('graphTitle')}
           </p>
           <div className="mt-2 overflow-x-auto">
             <svg
               viewBox={`0 0 ${GRAPH_W} ${GRAPH_H}`}
               className="mx-auto h-auto w-full max-w-xl"
               role="img"
-              aria-label={`Gráfica de ${meta.expr}`}
+              aria-label={t('graphAria', { expr: meta.expr })}
             >
               <line
                 x1={padG}
@@ -303,7 +304,7 @@ export function DomainViz() {
                     fill="var(--accent-strong)"
                     fontWeight={600}
                   >
-                    x={bL}: función no definida
+                    {t('undefinedAt', { b: bL })}
                   </text>
                 </>
               ) : null}
@@ -322,7 +323,7 @@ export function DomainViz() {
 
         <section className="rounded-xl border border-[var(--border)] px-3 py-3">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--fg-muted)]">
-            Recta del dominio (solo valores de x permitidos)
+            {t('domainLine')}
           </p>
           <div className="mt-2 overflow-x-auto">
             <svg
@@ -390,17 +391,11 @@ export function DomainViz() {
             Dom(f)={meta.domainSet}={meta.domainInterval}
           </p>
           {kind === 'rational' ? (
-            <p className="mt-1 text-xs text-[var(--fg-muted)]">
-              Círculo abierto en x={bL}: valor excluido (asíntota vertical en la gráfica).
-            </p>
+            <p className="mt-1 text-xs text-[var(--fg-muted)]">{t('openExcluded', { b: bL })}</p>
           ) : kind === 'radical' ? (
-            <p className="mt-1 text-xs text-[var(--fg-muted)]">
-              Punto cerrado en x={bL}: el extremo del dominio está incluido.
-            </p>
+            <p className="mt-1 text-xs text-[var(--fg-muted)]">{t('closedIncluded', { b: bL })}</p>
           ) : kind === 'log' ? (
-            <p className="mt-1 text-xs text-[var(--fg-muted)]">
-              Círculo abierto en x={bL}: ln(x−b) requiere x&gt;{bL}.
-            </p>
+            <p className="mt-1 text-xs text-[var(--fg-muted)]">{t('logOpen', { b: bL })}</p>
           ) : null}
         </section>
 
@@ -415,9 +410,7 @@ export function DomainViz() {
 
         <ControlsStack>
           <p className="text-xs text-[var(--fg-muted)]">
-            {needsB
-              ? 'Mueve b y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos.'
-              : 'Cambia el tipo de función y compara cómo cambian la condición y el dominio.'}
+            {needsB ? t('hintMoveB') : t('hintChangeKind')}
           </p>
         </ControlsStack>
       </div>

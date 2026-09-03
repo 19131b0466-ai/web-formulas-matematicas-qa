@@ -16,6 +16,7 @@ describe('Admin auth + analytics (PGlite)', () => {
     process.env.JWT_SECRET = 'phase4-test-secret';
     process.env.ADMIN_EMAIL = ADMIN_EMAIL;
     process.env.ADMIN_PASSWORD = ADMIN_PASSWORD;
+    process.env.ANALYTICS_IP_HASH_SECRET = 'test-analytics-ip-hash-secret';
     delete process.env.SUPABASE_URL;
     delete process.env.SUPABASE_ANON_KEY;
 
@@ -106,6 +107,7 @@ describe('Admin auth + analytics (PGlite)', () => {
     expect(overviewRes.status).toBe(200);
     const overview = (await overviewRes.json()) as Record<string, unknown>;
     expect(overview.totalVisits).toBeGreaterThanOrEqual(2);
+    expect(overview.timezone).toBe('UTC');
     expect(JSON.stringify(overview)).not.toMatch(/190\.10\.20\.30/);
     expect(overview).not.toHaveProperty('ipAddress');
 

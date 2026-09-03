@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
-import type { FormulaDetailResponse } from '@repo/shared-types';
+import { calculoVizForSectionNumber, type FormulaDetailResponse } from '@repo/shared-types';
 import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
 import { FormulaVisualization } from '@/components/algebra/FormulaVisualization';
+import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
@@ -22,9 +23,15 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const tn = await getTranslations('nav');
   const { content, related, section, formulaId, title } = detail;
   const symbols = parseVariableSymbols(content.variables);
+  const calcViz =
+    subject === 'calculo-ii'
+      ? content.visual
+        ? { type: content.visual.type, concept: content.visual.concept }
+        : calculoVizForSectionNumber(section.number)
+      : undefined;
 
   const crumbs = [
-    { label: tn('hub'), href: '/' },
+    { label: tn('home'), href: '/' },
     { label: subjectTitle, href: subjectHomeHref(subject) },
     { label: section.title, href: sectionHref(subject, section.slug) },
     { label: title ?? t('primary') },
@@ -108,7 +115,12 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           </section>
         ) : null}
 
-        {content.visual && content.formulaId ? (
+        {calcViz ? (
+          <section className="animate-rise" style={{ animationDelay: '90ms' }}>
+            <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
+            <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
+          </section>
+        ) : content.visual && content.formulaId ? (
           <FormulaVisualization
             formulaId={content.formulaId}
             visual={content.visual}
@@ -170,6 +182,128 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
             </ul>
           </section>
         ) : null}
+
+        {content.intuitiveExplanation ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('intuitive')}</h2>
+            <p className="mt-3 text-base leading-relaxed">
+              <InlineMarkdown text={content.intuitiveExplanation} />
+            </p>
+          </section>
+        ) : null}
+
+        {content.formalDefinition ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('formal')}</h2>
+            <p className="mt-3 text-base leading-relaxed">
+              <InlineMarkdown text={content.formalDefinition} />
+            </p>
+          </section>
+        ) : null}
+
+        {content.workedExample ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('workedExample')}</h2>
+            <div className="mt-3 text-base leading-relaxed">
+              <InlineMarkdown text={content.workedExample} />
+            </div>
+          </section>
+        ) : null}
+
+        {content.commonErrors?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('commonErrors')}</h2>
+            <ul className="mt-3 list-disc space-y-2 pl-5">
+              {content.commonErrors.map((item) => (
+                <li key={item}>
+                  <InlineMarkdown text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.equivalentNotations?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('equivalentNotations')}</h2>
+            <ul className="mt-3 space-y-2">
+              {content.equivalentNotations.map((item) => (
+                <li key={item}>
+                  <InlineMarkdown text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.sources?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('sources')}</h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              {content.sources.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.conventions?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('conventions')}</h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              {content.conventions.map((item) => (
+                <li key={item}>
+                  <InlineMarkdown text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.assumptions?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('assumptions')}</h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              {content.assumptions.map((item) => (
+                <li key={item}>
+                  <InlineMarkdown text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.references?.length || content.referenceLinks?.length ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('references')}</h2>
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              {content.references?.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+              {content.referenceLinks?.map((item) => (
+                <li key={item.url}>
+                  <a href={item.url} className="text-[var(--accent-strong)] underline-offset-2 hover:underline">
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {content.lastReviewedAt || content.reviewedBy ? (
+          <p className="text-sm text-[var(--fg-muted)]">
+            {content.lastReviewedAt ? `${t('lastReviewed')}: ${content.lastReviewedAt}` : null}
+            {content.lastReviewedAt && content.reviewedBy ? ' · ' : null}
+            {content.reviewedBy ? `${t('reviewedBy')}: ${content.reviewedBy}` : null}
+          </p>
+        ) : null}
+
+        <p className="text-sm">
+          <Link href="/contacto" className="text-[var(--accent-strong)] underline-offset-2 hover:underline">
+            {t('reportError')}
+          </Link>
+        </p>
 
         {related.length > 0 ? (
           <section className="animate-rise" style={{ animationDelay: '140ms' }}>

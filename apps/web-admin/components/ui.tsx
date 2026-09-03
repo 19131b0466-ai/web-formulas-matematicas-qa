@@ -43,14 +43,27 @@ export function Kpi({
   label,
   value,
   hint,
+  tooltip,
 }: {
   label: string;
   value: string | number;
   hint?: string;
+  tooltip?: string;
 }) {
   return (
     <Card>
-      <p className="hud-label">{label}</p>
+      <p className="hud-label flex items-center gap-1.5">
+        {label}
+        {tooltip ? (
+          <span
+            className="cursor-help text-[var(--fg-muted)]"
+            title={tooltip}
+            aria-label={tooltip}
+          >
+            ⓘ
+          </span>
+        ) : null}
+      </p>
       <p className="font-display mt-2 text-2xl font-semibold text-[var(--accent-strong)] drop-shadow-[0_0_12px_rgba(0,240,255,0.45)] sm:text-3xl">
         {value}
       </p>

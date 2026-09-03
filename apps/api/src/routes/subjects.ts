@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import type { Database } from '../db/client.js';
 import {
+  listFormulaCodes,
   getFormulaByCode,
   getSectionBySlug,
   listSectionsTree,
@@ -50,6 +51,12 @@ export function createSubjectsRoutes(getDb: () => Database) {
     const subjectSlug = c.req.param('subjectSlug');
     const result = await listTags(getDb(), subjectSlug);
     return c.json(result);
+  });
+
+  routes.get('/:subjectSlug/formulas', async (c) => {
+    const subjectSlug = c.req.param('subjectSlug');
+    const formulas = await listFormulaCodes(getDb(), subjectSlug);
+    return c.json({ subjectSlug, formulas });
   });
 
   routes.get('/:subjectSlug/formulas/:formulaId', async (c) => {

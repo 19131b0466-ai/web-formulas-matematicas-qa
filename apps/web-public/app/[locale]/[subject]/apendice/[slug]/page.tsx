@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { SectionView } from '@/components/section/SectionView';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { redirect } from '@/i18n/navigation';
 import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
-import { getSiteUrl } from '@/lib/site';
-import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
-import { routing, type AppLocale } from '@/i18n/routing';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
+import { isSubjectSlug, sectionHref, subjectHomeHref, type SubjectSlug } from '@/lib/subjects';
+import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -26,26 +27,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale = raw as AppLocale;
   const subject = subjectRaw as SubjectSlug;
   const t = await getTranslations({ locale, namespace: 'appendix' });
-  const ts = await getTranslations({ locale, namespace: 'site' });
-  const detail = await localizeContent(await fetchSection(slug, subject), locale);
+  const tseo = await getTranslations({ locale, namespace: 'seo' });
+  const tsite = await getTranslations({ locale, namespace: 'site' });
+  const [detail, subjects] = await Promise.all([
+    localizeContent(await fetchSection(slug, subject), locale),
+    localizeContent(await fetchSubjects(), locale),
+  ]);
   if (!detail) return { title: t('notFound') };
 
-  const title = detail.section.title;
+  const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
+  const title = tseo('sectionTitle', { section: detail.section.title, subject: subjectTitle });
   const description = t('metaDescription', { title: detail.section.title });
-  const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-  const url = `${getSiteUrl()}${prefix}/${subject}/apendice/${slug}`;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: `/${subject}/apendice/${slug}`,
     title,
     description,
-    openGraph: {
-      title: `${title} · ${ts('name')}`,
-      description,
-      url,
-      type: 'article',
-    },
-    alternates: { canonical: url },
-  };
+    siteName: tsite('name'),
+    ogType: 'article',
+  });
 }
 
 export default async function AppendixPage({ params }: PageProps) {
@@ -55,6 +56,7 @@ export default async function AppendixPage({ params }: PageProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
+  const tn = await getTranslations('nav');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
 
@@ -75,11 +77,21 @@ export default async function AppendixPage({ params }: PageProps) {
   }
 
   return (
-    <SectionView
-      subject={subject}
-      subjectTitle={subjectTitle}
-      detail={detail}
-      parent={parent}
-    />
+    <>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: subjectTitle, path: subjectHomeHref(subject) },
+          ...(parent ? [{ name: parent.title, path: sectionHref(subject, parent.slug) }] : []),
+          { name: detail.section.title, path: `/${subject}/apendice/${slug}` },
+        ])}
+      />
+      <SectionView
+        subject={subject}
+        subjectTitle={subjectTitle}
+        detail={detail}
+        parent={parent}
+      />
+    </>
   );
 }

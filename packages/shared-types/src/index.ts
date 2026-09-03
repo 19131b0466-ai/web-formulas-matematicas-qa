@@ -1,3 +1,9 @@
+export {
+  CALCULO_VIZ_BY_SECTION_NUMBER,
+  calculoVizForSectionNumber,
+  type CalculoSectionViz,
+} from './calculo-viz.js';
+
 export type BlockType = 'formula' | 'text' | 'table' | 'list' | 'note' | 'strategy';
 
 export type FormulaLevel = 'fundamental' | 'intermedio' | 'avanzado';
@@ -56,6 +62,21 @@ export interface FormulaContent {
   additionalLatexLabels?: Array<string | null>;
   displayMode?: boolean;
   constraints?: string[];
+  /** Optional editorial fields — render only when the source provides them. */
+  intuitiveExplanation?: string;
+  formalDefinition?: string;
+  applicationConditions?: string[];
+  workedExample?: string;
+  commonErrors?: string[];
+  equivalentNotations?: string[];
+  references?: string[];
+  lastReviewedAt?: string;
+  reviewedBy?: string;
+  sources?: string[];
+  conventions?: string[];
+  assumptions?: string[];
+  referenceLinks?: Array<{ title: string; url: string }>;
+  visualAlt?: string;
   /** Stable formula code, e.g. VEC-001 (physics) or ALG-FND-001 (algebra). */
   formulaId?: string;
   detail?: string;
@@ -234,35 +255,62 @@ export interface VisitLogAdminDto {
   subjectSlug: string | null;
   searchQuery: string | null;
   isUniqueDay: boolean | null;
+  isBot: boolean;
+  trafficClass: TrafficClass;
+  botId: string | null;
+  botCategory: BotCategory | null;
+  botDetectionReason: string | null;
+  botConfidence: BotConfidence | null;
+  classificationVersion: string;
+  ipHash: string | null;
+  ipNetwork: string | null;
+  eventSource: EventSource;
+  userAgent: string | null;
 }
 
-export interface AuthUser {
-  id: string;
-  email: string;
-  role: string;
-}
-
-export interface AuthTokenResponse {
-  accessToken: string;
-  refreshToken: string;
-  expiresIn: number;
-  user: AuthUser;
-}
+export type TrafficAudience = 'human' | 'bot' | 'unknown' | 'all';
+export type TrafficClass = 'human' | 'bot' | 'unknown';
+export type BotConfidence = 'high' | 'medium' | 'low';
+export type EventSource = 'web_client' | 'server' | 'api' | 'internal' | 'unknown';
+export type BotCategory =
+  | 'search_engine'
+  | 'ai_crawler'
+  | 'social_preview'
+  | 'seo_crawler'
+  | 'advertising'
+  | 'browser_automation'
+  | 'monitoring'
+  | 'generic_crawler'
+  | 'unknown_bot';
 
 export interface AnalyticsOverview {
+  /** Human (probable) pageviews since UTC midnight. Primary “Visitas” KPI. */
   visitsToday: number;
   visitsWeek: number;
   visitsMonth: number;
+  /** Distinct human session_id values in the last 7 UTC days. Bot UUIDs excluded. */
   uniqueSessionsWeek: number;
   topCountry: { code: string | null; name: string | null; count: number } | null;
   topSection: { slug: string | null; count: number } | null;
   totalVisits: number;
+  timezone: 'UTC';
+  totalTrafficToday: number;
+  humanVisitsToday: number;
+  botRequestsToday: number;
+  unknownTrafficToday: number;
+  botPercentToday: number;
+  totalTrafficAll: number;
+  humanVisitsAll: number;
+  botRequestsAll: number;
+  unknownTrafficAll: number;
+  botPercentAll: number;
 }
 
 export interface TimeseriesPoint {
   date: string;
   visits: number;
   uniqueSessions: number;
+  uniqueIpHashes: number;
 }
 
 export interface NamedCount {
@@ -280,6 +328,54 @@ export interface GeoCityCount {
   countryCode: string | null;
   city: string | null;
   count: number;
+}
+
+export interface RpmStats {
+  maxPerMinute: number;
+  maxPerIpHash: number;
+  mean: number;
+  median: number;
+  p95: number;
+  series: Array<{ minute: string; human: number; bot: number; unknown: number; total: number }>;
+}
+
+export interface BotSummaryRow {
+  botId: string;
+  category: string | null;
+  requests: number;
+  uniquePaths: number;
+  uniqueIpHashes: number;
+  uniqueNetworks: number;
+  firstSeen: string | null;
+  lastSeen: string | null;
+  maxRpm: number;
+  percent: number;
+}
+
+export interface BotsAnalytics {
+  totalBotRequests: number;
+  totalTraffic: number;
+  botPercent: number;
+  topBotId: string | null;
+  categories: NamedCount[];
+  paths: NamedCount[];
+  countries: GeoCountryCount[];
+  cities: GeoCityCount[];
+  bots: BotSummaryRow[];
+  rpm: RpmStats;
+}
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  role: string;
+}
+
+export interface AuthTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+  user: AuthUser;
 }
 
 export type ReviewStatus = 'pending' | 'approved' | 'rejected';

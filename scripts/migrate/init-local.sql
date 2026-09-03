@@ -63,13 +63,28 @@ CREATE TABLE IF NOT EXISTS visit_logs (
   os               TEXT,
   section_slug     TEXT,
   search_query     TEXT,
-  is_unique_day    BOOLEAN DEFAULT false
+  is_unique_day    BOOLEAN DEFAULT false,
+  is_bot           BOOLEAN NOT NULL DEFAULT FALSE,
+  traffic_class    TEXT NOT NULL DEFAULT 'unknown',
+  bot_id           TEXT,
+  bot_category     TEXT,
+  bot_detection_reason TEXT,
+  bot_confidence   TEXT,
+  ip_hash          TEXT,
+  ip_network       TEXT,
+  event_source     TEXT NOT NULL DEFAULT 'web_client',
+  classification_version TEXT NOT NULL DEFAULT 'v1'
 );
 
 CREATE INDEX IF NOT EXISTS idx_visit_logs_date ON visit_logs(visited_at DESC);
 CREATE INDEX IF NOT EXISTS idx_visit_logs_country ON visit_logs(country_code);
 CREATE INDEX IF NOT EXISTS idx_visit_logs_path ON visit_logs(path);
 CREATE INDEX IF NOT EXISTS idx_visit_logs_session ON visit_logs(session_id);
+CREATE INDEX IF NOT EXISTS idx_visit_logs_visited_traffic ON visit_logs(visited_at, traffic_class);
+CREATE INDEX IF NOT EXISTS idx_visit_logs_visited_is_bot ON visit_logs(visited_at, is_bot);
+CREATE INDEX IF NOT EXISTS idx_visit_logs_bot_id_visited ON visit_logs(bot_id, visited_at);
+CREATE INDEX IF NOT EXISTS idx_visit_logs_ip_hash_visited ON visit_logs(ip_hash, visited_at);
+CREATE INDEX IF NOT EXISTS idx_visit_logs_path_visited_traffic ON visit_logs(path, visited_at, traffic_class);
 
 -- Admin users
 CREATE TABLE IF NOT EXISTS admin_users (

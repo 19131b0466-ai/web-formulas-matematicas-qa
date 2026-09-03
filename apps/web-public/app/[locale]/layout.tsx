@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { VisitTracker } from '@/components/analytics/VisitTracker';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
-import { getSiteUrl } from '@/lib/site';
+import { CANONICAL_ORIGIN } from '@/lib/seo';
 import { localeOgTags, routing, type AppLocale } from '@/i18n/routing';
 import '../globals.css';
 
@@ -52,13 +52,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   const { locale: raw } = await params;
   const locale = (hasLocale(routing.locales, raw) ? raw : routing.defaultLocale) as AppLocale;
   const t = await getTranslations({ locale, namespace: 'site' });
-  const siteUrl = getSiteUrl();
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(CANONICAL_ORIGIN),
     title: {
-      default: t('name'),
-      template: `%s · ${t('name')}`,
+      default: t('seoTitle'),
+      template: `%s`,
     },
     description: t('description'),
     applicationName: t('name'),
@@ -66,17 +65,22 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       type: 'website',
       locale: localeOgTags[locale],
       siteName: t('name'),
-      title: t('name'),
+      title: t('seoTitle'),
       description: t('description'),
+      images: [
+        {
+          url: '/og-default.png',
+          width: 1200,
+          height: 630,
+          alt: t('name'),
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('name'),
+      title: t('seoTitle'),
       description: t('description'),
-    },
-    robots: {
-      index: true,
-      follow: true,
+      images: ['/og-default.png'],
     },
     icons: {
       icon: [
@@ -85,14 +89,6 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
       ],
       apple: [{ url: '/icon-192.png', sizes: '192x192', type: 'image/png' }],
-    },
-    alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((code) => [
-          code,
-          code === routing.defaultLocale ? siteUrl : `${siteUrl}/${code}`,
-        ]),
-      ),
     },
   };
 }

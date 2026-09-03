@@ -4,8 +4,10 @@ import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Link } from '@/i18n/navigation';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { fetchMethodGuide, fetchSection, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
+import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import {
   isSubjectSlug,
   sectionHref,
@@ -21,18 +23,23 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale, subject: subjectRaw } = await params;
+  const { locale: raw, subject: subjectRaw } = await params;
   if (!isSubjectSlug(subjectRaw) || !subjectHasGuide(subjectRaw)) return {};
+  const locale = raw as AppLocale;
   const t = await getTranslations({ locale, namespace: 'guide' });
+  const tseo = await getTranslations({ locale, namespace: 'seo' });
+  const tsite = await getTranslations({ locale, namespace: 'site' });
+  const subjects = await localizeContent(await fetchSubjects(), locale);
+  const subjectTitle = subjects.find((s) => s.slug === subjectRaw)?.title ?? subjectRaw;
   const physics = subjectRaw === 'fisica-basica';
-  return {
-    title: physics ? t('titlePhysics') : t('title'),
+  const guideName = physics ? t('titlePhysics') : t('title');
+  return buildPageMetadata({
+    locale,
+    path: `/${subjectRaw}/guia`,
+    title: tseo('guideTitle', { guide: guideName, subject: subjectTitle }),
     description: physics ? t('descriptionPhysics') : t('description'),
-    openGraph: {
-      title: physics ? t('ogTitlePhysics') : t('ogTitle'),
-      description: physics ? t('descriptionPhysics') : t('description'),
-    },
-  };
+    siteName: tsite('name'),
+  });
 }
 
 export const revalidate = 86400;
@@ -55,9 +62,16 @@ export default async function GuidePage({ params }: PageProps) {
 
   return (
     <div>
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: tn('home'), path: '/' },
+          { name: subjectTitle, path: subjectHomeHref(subject) },
+          { name: tn('guide'), path: `/${subject}/guia` },
+        ])}
+      />
       <Breadcrumbs
         items={[
-          { label: tn('hub'), href: '/' },
+          { label: tn('home'), href: '/' },
           { label: subjectTitle, href: subjectHomeHref(subject) },
           { label: tn('guide') },
         ]}

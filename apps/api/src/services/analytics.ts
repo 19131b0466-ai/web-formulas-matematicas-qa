@@ -1,16 +1,26 @@
 import { randomUUID } from 'node:crypto';
 import { and, desc, eq, gte, sql } from 'drizzle-orm';
-import type { VisitLogAdminDto } from '@repo/shared-types';
+import type {
+  BotCategory,
+  BotConfidence,
+  EventSource,
+  TrafficClass,
+  VisitLogAdminDto,
+} from '@repo/shared-types';
 import type { Database } from '../db/client.js';
 import { visitLogs } from '../db/schema.js';
+import { audienceCondition, type TrafficAudience } from '../lib/analytics-audience.js';
+import { anonymizeIpNetwork, hashIp } from '../lib/ip-privacy.js';
 import {
   extractGeo,
   extractIp,
   parseUserAgent,
   primaryLanguageFromAccept,
 } from '../lib/request-meta.js';
+import { classifyTraffic } from '../lib/traffic-classifier.js';
 
 const DEDUPE_WINDOW_MS = 30 * 60 * 1000;
+const MAX_UA_LENGTH = 2000;
 
 export type TrackVisitInput = {
   sessionId: string;
@@ -33,7 +43,41 @@ export type TrackVisitResult = {
 
 type VisitRow = typeof visitLogs.$inferSelect;
 
-/** Map DB row → admin DTO. Explicitly omits ipAddress / userAgent raw if needed. */
+function asTrafficClass(value: string | null | undefined): TrafficClass {
+  if (value === 'human' || value === 'bot' || value === 'unknown') return value;
+  return 'unknown';
+}
+
+function asEventSource(value: string | null | undefined): EventSource {
+  if (value === 'web_client' || value === 'server' || value === 'api' || value === 'internal' || value === 'unknown') {
+    return value;
+  }
+  return 'unknown';
+}
+
+function asBotCategory(value: string | null | undefined): BotCategory | null {
+  if (
+    value === 'search_engine' ||
+    value === 'ai_crawler' ||
+    value === 'social_preview' ||
+    value === 'seo_crawler' ||
+    value === 'advertising' ||
+    value === 'browser_automation' ||
+    value === 'monitoring' ||
+    value === 'generic_crawler' ||
+    value === 'unknown_bot'
+  ) {
+    return value;
+  }
+  return null;
+}
+
+function asBotConfidence(value: string | null | undefined): BotConfidence | null {
+  if (value === 'high' || value === 'medium' || value === 'low') return value;
+  return null;
+}
+
+/** Map DB row → admin DTO. Explicitly omits ipAddress. */
 export function toVisitLogAdminDto(row: VisitRow): VisitLogAdminDto {
   return {
     id: row.id,
@@ -58,6 +102,17 @@ export function toVisitLogAdminDto(row: VisitRow): VisitLogAdminDto {
     subjectSlug: row.subjectSlug,
     searchQuery: row.searchQuery,
     isUniqueDay: row.isUniqueDay,
+    isBot: row.isBot,
+    trafficClass: asTrafficClass(row.trafficClass),
+    botId: row.botId,
+    botCategory: asBotCategory(row.botCategory),
+    botDetectionReason: row.botDetectionReason,
+    botConfidence: asBotConfidence(row.botConfidence),
+    classificationVersion: row.classificationVersion,
+    ipHash: row.ipHash,
+    ipNetwork: row.ipNetwork,
+    eventSource: asEventSource(row.eventSource),
+    userAgent: row.userAgent,
   };
 }
 
@@ -97,6 +152,17 @@ export const VISIT_CSV_COLUMNS = [
   'subjectSlug',
   'searchQuery',
   'isUniqueDay',
+  'trafficClass',
+  'isBot',
+  'botId',
+  'botCategory',
+  'botDetectionReason',
+  'botConfidence',
+  'classificationVersion',
+  'ipHash',
+  'ipNetwork',
+  'eventSource',
+  'userAgent',
 ] as const;
 
 export function visitsToCsv(rows: VisitLogAdminDto[]): string {
@@ -119,6 +185,7 @@ export async function recordVisit(
   db: Database,
   input: TrackVisitInput,
   headers: Headers,
+  eventSource: EventSource = 'web_client',
 ): Promise<TrackVisitResult> {
   const path = normalizePath(input.path);
   const since = new Date(Date.now() - DEDUPE_WINDOW_MS);
@@ -141,12 +208,15 @@ export async function recordVisit(
 
   const ipAddress = extractIp(headers);
   const geo = extractGeo(headers);
-  const userAgent = headers.get('user-agent');
+  const userAgentRaw = headers.get('user-agent');
+  const userAgent = userAgentRaw ? userAgentRaw.slice(0, MAX_UA_LENGTH) : null;
+  const classified = classifyTraffic(userAgent);
   const parsed = parseUserAgent(userAgent);
   const acceptLanguage = input.acceptLanguage ?? headers.get('accept-language');
   const referer = input.referer ?? headers.get('referer');
+  const ipHash = hashIp(ipAddress);
+  const ipNetwork = anonymizeIpNetwork(ipAddress);
 
-  // Unique for the calendar day per session (first path of the day counts)
   const startOfDay = new Date();
   startOfDay.setUTCHours(0, 0, 0, 0);
   const priorToday = await db
@@ -154,6 +224,8 @@ export async function recordVisit(
     .from(visitLogs)
     .where(and(eq(visitLogs.sessionId, input.sessionId), gte(visitLogs.visitedAt, startOfDay)))
     .limit(1);
+
+  const isUniqueDay = classified.trafficClass === 'human' && priorToday.length === 0;
 
   await db.insert(visitLogs).values({
     id: randomUUID(),
@@ -181,7 +253,17 @@ export async function recordVisit(
     sectionSlug: input.sectionSlug ?? null,
     subjectSlug: input.subjectSlug ?? null,
     searchQuery: input.searchQuery ?? null,
-    isUniqueDay: priorToday.length === 0,
+    isUniqueDay,
+    isBot: classified.isBot,
+    trafficClass: classified.trafficClass,
+    botId: classified.botId,
+    botCategory: classified.botCategory,
+    botDetectionReason: classified.reason,
+    botConfidence: classified.confidence,
+    ipHash,
+    ipNetwork,
+    eventSource,
+    classificationVersion: classified.classificationVersion,
   });
 
   return { ok: true, deduplicated: false, _internal: { ipAddress } };
@@ -190,8 +272,15 @@ export async function recordVisit(
 export async function listRecentVisitsAdmin(
   db: Database,
   limit: number,
+  audience: TrafficAudience = 'all',
 ): Promise<VisitLogAdminDto[]> {
-  const rows = await db.select().from(visitLogs).orderBy(desc(visitLogs.visitedAt)).limit(limit);
+  const filter = audienceCondition(audience);
+  const rows = await db
+    .select()
+    .from(visitLogs)
+    .where(filter ?? sql`true`)
+    .orderBy(desc(visitLogs.visitedAt))
+    .limit(limit);
 
   const dtos = rows.map(toVisitLogAdminDto);
   assertNoIpFields(dtos);

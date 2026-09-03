@@ -1,4 +1,5 @@
-import type { FormulaContent, NoteContent } from '@repo/shared-types';
+import type { FormulaContent, FormulaVisual, NoteContent } from '@repo/shared-types';
+import { calculoVizForSectionNumber } from '@repo/shared-types';
 import type { ParsedSection } from './types.js';
 
 const MAX_RELATED = 8;
@@ -313,5 +314,27 @@ export function enrichCalculoFormulas(sections: ParsedSection[]): void {
     if (ref.content.relatedIds?.length) continue;
     const curatedOnly = (curated.get(ref.code) ?? []).filter((c) => c !== ref.code).slice(0, MAX_RELATED);
     if (curatedOnly.length) ref.content.relatedIds = curatedOnly;
+  }
+
+  attachSectionVisuals(sections);
+}
+
+function attachSectionVisuals(sections: ParsedSection[]): void {
+  for (const section of sections) {
+    const spec = calculoVizForSectionNumber(section.number);
+    if (!spec) continue;
+    const visual: FormulaVisual = {
+      type: spec.type,
+      concept: spec.concept,
+      elements: '',
+      idea: spec.concept,
+      learningObjective: '',
+    };
+    for (const block of section.blocks) {
+      if (block.blockType !== 'formula') continue;
+      const content = block.content as FormulaContent;
+      if (content.visual) continue;
+      content.visual = visual;
+    }
   }
 }

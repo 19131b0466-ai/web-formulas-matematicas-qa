@@ -25,8 +25,8 @@ export const routing = defineRouting({
   locales,
   defaultLocale: 'es',
   localePrefix: 'as-needed',
-  /** Negotiate from Accept-Language / cookie; falls back to Spanish. */
-  localeDetection: true,
+  /** Stable URLs for crawlers: never redirect `/` from Accept-Language or cookies. */
+  localeDetection: false,
   /** Persist explicit language choice across navigations (not just the tab session). */
   localeCookie: {
     name: 'NEXT_LOCALE',

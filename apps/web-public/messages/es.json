@@ -5,7 +5,8 @@
     "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Integral, Física Básica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
     "shortName": "Fórmulas",
     "about": "Cálculo Integral, Física Básica y Álgebra",
-    "manifestDescription": "Fórmulas matemáticas en línea"
+    "manifestDescription": "Fórmulas matemáticas en línea",
+    "seoTitle": "Fórmulas matemáticas, teoría y recursos interactivos"
   },
   "nav": {
     "hub": "Materias",
@@ -129,7 +130,19 @@
     "vizTry": "Pruébalo",
     "complexity": "Complejidad computacional",
     "showComplexity": "Mostrar (modo CS)",
-    "hideComplexity": "Ocultar (modo básico)"
+    "hideComplexity": "Ocultar (modo básico)",
+    "intuitive": "Explicación intuitiva",
+    "formal": "Definición formal",
+    "workedExample": "Ejemplo resuelto",
+    "commonErrors": "Errores comunes",
+    "equivalentNotations": "Notaciones equivalentes",
+    "references": "Referencias",
+    "lastReviewed": "Última revisión",
+    "reviewedBy": "Revisión",
+    "sources": "Fuentes",
+    "conventions": "Convenciones",
+    "assumptions": "Supuestos",
+    "reportError": "¿Encontraste un error? Escríbenos."
   },
   "content": {
     "formula": "Fórmula",
@@ -195,7 +208,11 @@
     "audienceTitle": "Para quién",
     "audienceBody": "Está pensado para estudiantes y docentes que necesitan un referente estable: repasar, contrastar notación o recordar una identidad sin pelear con PDFs dispersos.",
     "openTitle": "Cómo crece",
-    "openBody": "El contenido se cura por materias y se sirve por API. Seguimos mejorando las visualizaciones y la claridad de las guías según el uso real en clase y en estudio."
+    "openBody": "El contenido se cura por materias y se sirve por API. Seguimos mejorando las visualizaciones y la claridad de las guías según el uso real en clase y en estudio.",
+    "howTitle": "Cómo se elabora el contenido",
+    "howBody": "El catálogo se organiza por materias y se sirve desde una API. Las fichas combinan enunciados, LaTeX y, cuando existe en la fuente, un recurso interactivo. No publicamos autoría individual ni fechas de revisión salvo que el propio contenido las incluya.",
+    "correctionsTitle": "Correcciones",
+    "correctionsBody": "Si detectas un error matemático, una traducción incompleta o un problema en un recurso interactivo, usa la página de Contacto e indica la materia, el código de la ficha y el idioma."
   },
   "privacy": {
     "title": "Política de privacidad",
@@ -264,5 +281,59 @@
     "rateLimit": "Has enviado varias reseñas seguidas. Espera un rato e inténtalo otra vez.",
     "empty": "Aún no hay reseñas publicadas. Puedes ser el primero en dejar una.",
     "summary": "Media {average} · {count, plural, one {# reseña} other {# reseñas}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject}: fórmulas y recursos interactivos",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Incluye un recurso interactivo.",
+    "formulaFallback": "Consulta {concept} en {subject}: definición, fórmulas y recursos de estudio.",
+    "comingSoonViz": "Visualización {type} — disponible próximamente."
+  },
+  "vizDomain": {
+    "idea": "El dominio es el conjunto de valores de x para los cuales la función está definida: Dom(f)={x∈ℝ : f(x) está definida}.",
+    "ideaNote": "Relaciona la expresión, la gráfica y los valores permitidos sobre el eje x. La recta del dominio (abajo) muestra solo entradas válidas, no la gráfica y=f(x).",
+    "functionType": "Tipo de función",
+    "poly": "Polinómica",
+    "rational": "Racional",
+    "radical": "Radical",
+    "log": "Logarítmica",
+    "paramB": "Parámetro b",
+    "fromExpr": "De la expresión al dominio",
+    "expression": "Expresión",
+    "condition": "Condición",
+    "restriction": "Restricción",
+    "domain": "Dominio",
+    "rationalHint": "En f(x)=1/(x−b), x=b hace cero el denominador. Por eso ese valor queda excluido del dominio.",
+    "graphTitle": "Gráfica y=f(x)",
+    "graphAria": "Gráfica de {expr}",
+    "undefinedAt": "x={b}: función no definida",
+    "domainLine": "Recta del dominio (solo valores de x permitidos)",
+    "openExcluded": "Círculo abierto en x={b}: valor excluido (asíntota vertical en la gráfica).",
+    "closedIncluded": "Punto cerrado en x={b}: el extremo del dominio está incluido.",
+    "logOpen": "Círculo abierto en x={b}: ln(x−b) requiere x>{b}.",
+    "hintMoveB": "Mueve b y observa cómo el valor excluido, la asíntota y el dominio se desplazan juntos.",
+    "hintChangeKind": "Cambia el tipo de función y compara cómo cambian la condición y el dominio.",
+    "polyCondition": "Siempre definida para todo x real",
+    "polyRestriction": "Sin restricción"
+  },
+  "vizCopy": {
+    "tryPrefix": "Pruébalo —",
+    "showError": "Mostrar error"
+  },
+  "vizRiemann": {
+    "idea": "La integral definida ∫ₐᵇ f(x) dx es el límite de las sumas de Riemann cuando n → ∞.",
+    "ideaNote": "Mueve el control de n y observa cómo los rectángulos llenan el área con mayor precisión. Cambia el tipo de suma para ver cómo la elección del punto de muestra afecta el error.",
+    "left": "Izquierda",
+    "right": "Derecha",
+    "midpoint": "Pto. medio",
+    "trapezoid": "Trapecio",
+    "nSubintervals": "n (subintervalos)",
+    "showError": "Mostrar error",
+    "errorShrinks": "Conforme n aumenta, el error disminuye hacia 0.",
+    "exactI": "I exacta",
+    "error": "Error",
+    "graphAria": "Suma de Riemann de f en [a, b]"
   }
 }

@@ -19,6 +19,10 @@ export default function middleware(request: NextRequest) {
     const { pathname, search } = request.nextUrl;
     return NextResponse.redirect(`${CANONICAL_ORIGIN}${pathname}${search}`, 308);
   }
+  if (host === 'maththeoryandtools.com') {
+    const { pathname, search } = request.nextUrl;
+    return NextResponse.redirect(`${CANONICAL_ORIGIN}${pathname}${search}`, 308);
+  }
   return intlMiddleware(request);
 }
 

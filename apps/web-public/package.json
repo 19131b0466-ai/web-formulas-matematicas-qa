@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test lib/seo.test.ts"
   },
   "dependencies": {
     "@repo/math-renderer": "workspace:*",
@@ -28,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.22",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "tsx": "^4.20.3"
   }
 }

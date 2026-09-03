@@ -5,7 +5,8 @@
     "description": "Formules mathématiques en ligne : calcul intégral, physique de base et algèbre pour l'ingénierie et l'informatique.",
     "shortName": "Formules",
     "about": "Calcul intégral, Physique de base et Algèbre",
-    "manifestDescription": "Formules mathématiques en ligne"
+    "manifestDescription": "Formules mathématiques en ligne",
+    "seoTitle": "Formules mathématiques, théorie et outils interactifs"
   },
   "nav": {
     "home": "Accueil",
@@ -171,7 +172,19 @@
     "showComplexity": "Afficher (mode CS)",
     "hideComplexity": "Masquer (mode basique)",
     "vizTeaches": "L’idée",
-    "vizTry": "Essaie"
+    "vizTry": "Essaie",
+    "intuitive": "Explication intuitive",
+    "formal": "Définition formelle",
+    "workedExample": "Exemple résolu",
+    "commonErrors": "Erreurs fréquentes",
+    "equivalentNotations": "Notations équivalentes",
+    "references": "Références",
+    "lastReviewed": "Dernière révision",
+    "reviewedBy": "Relecture",
+    "sources": "Sources",
+    "conventions": "Conventions",
+    "assumptions": "Hypothèses",
+    "reportError": "Vous avez trouvé une erreur ? Contactez-nous."
   },
   "siteNav": {
     "primary": "Navigation principale",
@@ -195,7 +208,11 @@
     "audienceTitle": "Pour qui",
     "audienceBody": "Étudiants et enseignants qui veulent une référence stable.",
     "openTitle": "Comment ça grandit",
-    "openBody": "Contenu soigné par matière, servi par API. Visualisations et guides s’améliorent en continu."
+    "openBody": "Contenu soigné par matière, servi par API. Visualisations et guides s’améliorent en continu.",
+    "howTitle": "Comment le contenu est préparé",
+    "howBody": "Le catalogue est organisé par matières et servi par une API. Les fiches associent énoncés, LaTeX et, lorsque la source en contient un, un outil interactif. Nous ne publions ni auteur individuel ni date de relecture sauf si le contenu les fournit.",
+    "correctionsTitle": "Corrections",
+    "correctionsBody": "En cas d’erreur mathématique, de traduction incomplète ou de problème dans un outil interactif, utilisez la page Contact et indiquez la matière, le code de la fiche et la langue."
   },
   "privacy": {
     "title": "Politique de confidentialité",
@@ -264,5 +281,59 @@
     "rateLimit": "Vous avez envoyé plusieurs avis d’affilée. Attendez un peu.",
     "empty": "Pas encore d’avis publiés. Vous pouvez être le premier.",
     "summary": "Moyenne {average} · {count, plural, one {# avis} other {# avis}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject} : formules et outils interactifs",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Comprend une ressource interactive.",
+    "formulaFallback": "Étudiez {concept} en {subject} : définition, formules et outils d’apprentissage.",
+    "comingSoonViz": "Visualisation {type} — bientôt disponible."
+  },
+  "vizDomain": {
+    "idea": "Le domaine est l’ensemble des valeurs de x pour lesquelles la fonction est définie : Dom(f)={x∈ℝ : f(x) est définie}.",
+    "ideaNote": "Reliez l’expression, le graphe et les valeurs autorisées sur l’axe des x. La droite du domaine (ci-dessous) n’affiche que les entrées valides, pas le graphe y=f(x).",
+    "functionType": "Type de fonction",
+    "poly": "Polynomiale",
+    "rational": "Rationnelle",
+    "radical": "Radicale",
+    "log": "Logarithmique",
+    "paramB": "Paramètre b",
+    "fromExpr": "De l’expression au domaine",
+    "expression": "Expression",
+    "condition": "Condition",
+    "restriction": "Restriction",
+    "domain": "Domaine",
+    "rationalHint": "Pour f(x)=1/(x−b), x=b annule le dénominateur. Cette valeur est donc exclue du domaine.",
+    "graphTitle": "Graphe y=f(x)",
+    "graphAria": "Graphe de {expr}",
+    "undefinedAt": "x={b} : fonction non définie",
+    "domainLine": "Droite du domaine (valeurs de x autorisées uniquement)",
+    "openExcluded": "Cercle ouvert en x={b} : valeur exclue (asymptote verticale sur le graphe).",
+    "closedIncluded": "Point fermé en x={b} : l’extrémité du domaine est incluse.",
+    "logOpen": "Cercle ouvert en x={b} : ln(x−b) exige x>{b}.",
+    "hintMoveB": "Déplacez b et observez comment la valeur exclue, l’asymptote et le domaine se déplacent ensemble.",
+    "hintChangeKind": "Changez le type de fonction et comparez la condition et le domaine.",
+    "polyCondition": "Définie pour tout x réel",
+    "polyRestriction": "Aucune restriction"
+  },
+  "vizCopy": {
+    "tryPrefix": "Essaie —",
+    "showError": "Afficher l’erreur"
+  },
+  "vizRiemann": {
+    "idea": "L’intégrale définie ∫ₐᵇ f(x) dx est la limite des sommes de Riemann lorsque n → ∞.",
+    "ideaNote": "Déplace n et observe comment les rectangles remplissent la surface plus précisément. Change le type de somme pour voir l’effet du point d’échantillon sur l’erreur.",
+    "left": "Gauche",
+    "right": "Droite",
+    "midpoint": "Milieu",
+    "trapezoid": "Trapèze",
+    "nSubintervals": "n (sous-intervalles)",
+    "showError": "Afficher l’erreur",
+    "errorShrinks": "Lorsque n augmente, l’erreur tend vers 0.",
+    "exactI": "I exacte",
+    "error": "Erreur",
+    "graphAria": "Somme de Riemann de f sur [a, b]"
   }
 }

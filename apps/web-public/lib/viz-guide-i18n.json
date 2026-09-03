@@ -1,0 +1,1124 @@
+{
+  "BooleanAbsorptionVisualizer": {
+    "en": {
+      "idea": "Absorption removes redundant terms: A already covers everything that AB contributes.",
+      "tryIt": "Toggle A and B and follow the evaluation flow; the redundant column disappears upon simplification."
+    },
+    "de": {
+      "idea": "Absorption beseitigt redundante Terme: A deckt bereits alles ab, was AB beiträgt.",
+      "tryIt": "Schalte A und B um und folge dem Auswertungsfluss; die redundante Spalte verschwindet beim Vereinfachen."
+    },
+    "pt": {
+      "idea": "A absorção elimina termos redundantes: A já cobre tudo o que AB contribui.",
+      "tryIt": "Alterne A e B e siga o fluxo de avaliação; a coluna redundante desaparece ao simplificar."
+    },
+    "fr": {
+      "idea": "L’absorption élimine les termes redondants : A couvre déjà tout ce qu’apporte AB.",
+      "tryIt": "Alterne A et B et suis le flux d’évaluation ; la colonne redondante disparaît à la simplification."
+    },
+    "it": {
+      "idea": "L’assorbimento elimina i termini ridondanti: A copre già tutto ciò che AB apporta.",
+      "tryIt": "Alterna A e B e segui il flusso di valutazione; la colonna ridondante scompare nella semplificazione."
+    }
+  },
+  "BooleanDistributivityVisualizer": {
+    "en": {
+      "idea": "AND distributes over OR and OR distributes over AND — like the area a(b+c), but with bits.",
+      "tryIt": "Change A, B, and C and step through: both sides always agree."
+    },
+    "de": {
+      "idea": "AND distributiert über OR und OR über AND — wie die Fläche a(b+c), nur mit Bits.",
+      "tryIt": "Ändere A, B und C und gehe die Schritte durch: beide Seiten stimmen stets überein."
+    },
+    "pt": {
+      "idea": "AND distribui-se sobre OR e OR sobre AND — como a área a(b+c), mas com bits.",
+      "tryIt": "Altere A, B e C e percorra os passos: ambos os lados coincidem sempre."
+    },
+    "fr": {
+      "idea": "AND se distribue sur OR et OR se distribue sur AND — comme l’aire a(b+c), mais avec des bits.",
+      "tryIt": "Modifie A, B et C et parcours les étapes : les deux côtés coïncident toujours."
+    },
+    "it": {
+      "idea": "AND si distribuisce su OR e OR su AND — come l’area a(b+c), ma con i bit.",
+      "tryIt": "Cambia A, B e C e percorri i passi: i due lati coincidono sempre."
+    }
+  },
+  "BooleanEquivalenceVisualizer": {
+    "en": {
+      "idea": "Two Boolean expressions are equivalent if they produce the same output on every row of the truth table.",
+      "tryIt": "Edit F and G, or pick an identity, and check whether the output columns match row by row."
+    },
+    "de": {
+      "idea": "Zwei boolesche Ausdrücke sind äquivalent, wenn sie in jeder Zeile der Wahrheitstabelle dieselbe Ausgabe liefern.",
+      "tryIt": "Bearbeite F und G oder wähle eine Identität und prüfe, ob die Ausgabespalten zeilenweise übereinstimmen."
+    },
+    "pt": {
+      "idea": "Duas expressões booleanas são equivalentes se produzem a mesma saída em todas as linhas da tabela de verdade.",
+      "tryIt": "Edite F e G, ou escolha uma identidade, e verifique se as colunas de saída coincidem linha a linha."
+    },
+    "fr": {
+      "idea": "Deux expressions booléennes sont équivalentes si elles donnent la même sortie sur chaque ligne de la table de vérité.",
+      "tryIt": "Édite F et G, ou choisis une identité, et vérifie si les colonnes de sortie coïncident ligne par ligne."
+    },
+    "it": {
+      "idea": "Due espressioni booleane sono equivalenti se producono la stessa uscita in ogni riga della tavola di verità.",
+      "tryIt": "Modifica F e G, oppure scegli un’identità, e verifica se le colonne di uscita coincidono riga per riga."
+    }
+  },
+  "BooleanIdentityVisualizer": {
+    "en": {
+      "idea": "Identity elements let A through unchanged; dominating elements fix the result regardless of A.",
+      "tryIt": "Toggle A and watch which expressions still follow A and which become constant."
+    },
+    "de": {
+      "idea": "Neutrale Elemente lassen A unverändert durch; dominante Elemente legen das Ergebnis unabhängig von A fest.",
+      "tryIt": "Schalte A um und beobachte, welche Ausdrücke A folgen und welche konstant werden."
+    },
+    "pt": {
+      "idea": "Os elementos neutros deixam A passar inalterado; os dominantes fixam o resultado independentemente de A.",
+      "tryIt": "Alterne A e observe quais expressões acompanham A e quais se tornam constantes."
+    },
+    "fr": {
+      "idea": "Les éléments neutres laissent passer A inchangé ; les éléments dominants figent le résultat, quel que soit A.",
+      "tryIt": "Alterne A et observe quelles expressions suivent A et lesquelles deviennent constantes."
+    },
+    "it": {
+      "idea": "Gli elementi neutri lasciano passare A inalterato; quelli dominanti fissano il risultato indipendentemente da A.",
+      "tryIt": "Alterna A e osserva quali espressioni seguono A e quali diventano costanti."
+    }
+  },
+  "ChangeOfBasisViz": {
+    "en": {
+      "idea": "It is the same vector x with different coordinates: [x]_E vs [x]_B. [x]_E = B [x]_B and [x]_B = B⁻¹ [x]_E.",
+      "tryIt": "Switch bases with the button: the geometry of x does not move; only the coordinate system changes."
+    },
+    "de": {
+      "idea": "Es ist derselbe Vektor x mit anderen Koordinaten: [x]_E vs [x]_B. [x]_E = B [x]_B und [x]_B = B⁻¹ [x]_E.",
+      "tryIt": "Wechsle die Basis mit der Schaltfläche: die Geometrie von x bleibt; nur das Koordinatensystem ändert sich."
+    },
+    "pt": {
+      "idea": "É o mesmo vetor x com coordenadas distintas: [x]_E vs [x]_B. [x]_E = B [x]_B e [x]_B = B⁻¹ [x]_E.",
+      "tryIt": "Mude de base com o botão: a geometria de x não se move; só muda o sistema de coordenadas."
+    },
+    "fr": {
+      "idea": "C’est le même vecteur x avec des coordonnées différentes : [x]_E vs [x]_B. [x]_E = B [x]_B et [x]_B = B⁻¹ [x]_E.",
+      "tryIt": "Change de base avec le bouton : la géométrie de x ne bouge pas ; seul le système de coordonnées change."
+    },
+    "it": {
+      "idea": "È lo stesso vettore x con coordinate diverse: [x]_E vs [x]_B. [x]_E = B [x]_B e [x]_B = B⁻¹ [x]_E.",
+      "tryIt": "Cambia base con il pulsante: la geometria di x non si sposta; cambia solo il sistema di coordinate."
+    }
+  },
+  "CharacteristicEquationViz": {
+    "en": {
+      "idea": "Eigenvalues are the roots of p_A(λ) = det(A − λI) = 0.",
+      "tryIt": "Move λ: when p_A(λ) ≈ 0, A−λI is singular and the eigenvalue badge appears."
+    },
+    "de": {
+      "idea": "Eigenwerte sind die Wurzeln von p_A(λ) = det(A − λI) = 0.",
+      "tryIt": "Bewege λ: wenn p_A(λ) ≈ 0, ist A−λI singulär und das Eigenwert-Badge erscheint."
+    },
+    "pt": {
+      "idea": "Os valores próprios são as raízes de p_A(λ) = det(A − λI) = 0.",
+      "tryIt": "Mova λ: quando p_A(λ) ≈ 0, A−λI é singular e aparece o distintivo de valor próprio."
+    },
+    "fr": {
+      "idea": "Les valeurs propres sont les racines de p_A(λ) = det(A − λI) = 0.",
+      "tryIt": "Déplace λ : lorsque p_A(λ) ≈ 0, A−λI est singulière et le badge de valeur propre apparaît."
+    },
+    "it": {
+      "idea": "Gli autovalori sono le radici di p_A(λ) = det(A − λI) = 0.",
+      "tryIt": "Sposta λ: quando p_A(λ) ≈ 0, A−λI è singolare e compare il distintivo di autovalore."
+    }
+  },
+  "ChineseRemainderTheoremVisualizer": {
+    "en": {
+      "idea": "You will synchronize two modular clocks: we seek a single x that leaves remainder a modulo m₁ and remainder b modulo m₂.",
+      "tryIt": "Change the moduli and remainders and watch where the two sequences coincide."
+    },
+    "de": {
+      "idea": "Du synchronisierst zwei modulare Uhren: gesucht ist ein x, das Rest a modulo m₁ und Rest b modulo m₂ lässt.",
+      "tryIt": "Ändere die Moduln und Reste und beobachte, wo beide Folgen übereinstimmen."
+    },
+    "pt": {
+      "idea": "Vais sincronizar dois relógios modulares: procuramos um mesmo x que deixe o resto a módulo m₁ e o resto b módulo m₂.",
+      "tryIt": "Altere os módulos e os restos e observe onde as duas sequências coincidem."
+    },
+    "fr": {
+      "idea": "Tu vas synchroniser deux horloges modulaires : on cherche un même x qui laisse le reste a modulo m₁ et le reste b modulo m₂.",
+      "tryIt": "Modifie les modules et les restes et observe où les deux suites coïncident."
+    },
+    "it": {
+      "idea": "Sincronizzerai due orologi modulari: cerchiamo uno stesso x che lasci il resto a modulo m₁ e il resto b modulo m₂.",
+      "tryIt": "Cambia i moduli e i resti e osserva dove le due sequenze coincidono."
+    }
+  },
+  "CompositionLinearViz": {
+    "en": {
+      "idea": "You will see that composing transformations means applying one after the other: x → Ax → B(Ax).",
+      "tryIt": "Pick a preset (it changes A and B and shows the composition). Then Reset and use Apply A → Apply B to see the intermediate step."
+    },
+    "de": {
+      "idea": "Du siehst, dass das Hintereinanderschalten von Transformationen bedeutet, eine nach der anderen anzuwenden: x → Ax → B(Ax).",
+      "tryIt": "Wähle ein Preset (es ändert A und B und zeigt die Komposition). Dann Zurücksetzen und mit A anwenden → B anwenden den Zwischenschritt sehen."
+    },
+    "pt": {
+      "idea": "Vais ver que compor transformações é aplicá-las uma a seguir à outra: x → Ax → B(Ax).",
+      "tryIt": "Escolha um preset (altera A e B e mostra a composição). Depois Redefinir e use Aplicar A → Aplicar B para ver o passo intermédio."
+    },
+    "fr": {
+      "idea": "Tu vas voir que composer des transformations, c’est les appliquer l’une après l’autre : x → Ax → B(Ax).",
+      "tryIt": "Choisis un préréglage (il change A et B et montre la composition). Puis Réinitialiser et utilise Appliquer A → Appliquer B pour voir l’étape intermédiaire."
+    },
+    "it": {
+      "idea": "Vedrai che comporre trasformazioni significa applicarle una dopo l’altra: x → Ax → B(Ax).",
+      "tryIt": "Scegli un preset (cambia A e B e mostra la composizione). Poi Reimposta e usa Applica A → Applica B per vedere il passo intermedio."
+    }
+  },
+  "DeMorganVisualizer": {
+    "en": {
+      "idea": "De Morgan: negating an AND is like an OR of negations (and vice versa).",
+      "tryIt": "Change A and B: the two expressions of each law always yield the same result."
+    },
+    "de": {
+      "idea": "De Morgan: ein AND zu negieren ist wie ein OR von Negationen (und umgekehrt).",
+      "tryIt": "Ändere A und B: die beiden Ausdrücke jedes Gesetzes liefern stets dasselbe Ergebnis."
+    },
+    "pt": {
+      "idea": "De Morgan: negar um AND é como um OR de negações (e vice-versa).",
+      "tryIt": "Altere A e B: as duas expressões de cada lei dão sempre o mesmo resultado."
+    },
+    "fr": {
+      "idea": "De Morgan : nier un AND, c’est comme un OR de négations (et inversement).",
+      "tryIt": "Modifie A et B : les deux expressions de chaque loi donnent toujours le même résultat."
+    },
+    "it": {
+      "idea": "De Morgan: negare un AND è come un OR di negazioni (e viceversa).",
+      "tryIt": "Cambia A e B: le due espressioni di ciascuna legge danno sempre lo stesso risultato."
+    }
+  },
+  "DiagonalizationViz": {
+    "en": {
+      "idea": "We seek an eigenbasis in which A only scales: in those coordinates, A looks like a diagonal D.",
+      "tryIt": "Try «Oblique basis»: P is not orthogonal — coordinates use P⁻¹x, not inner products."
+    },
+    "de": {
+      "idea": "Gesucht ist eine Eigenbasis, in der A nur skaliert: in diesen Koordinaten sieht A diagonal aus, als D.",
+      "tryIt": "Probiere «Schiefe Basis»: P ist nicht orthogonal — die Koordinaten nutzen P⁻¹x, nicht Skalarprodukte."
+    },
+    "pt": {
+      "idea": "Procuramos uma base de autovetores em que A apenas escala: nessas coordenadas, A aparece diagonal D.",
+      "tryIt": "Experimente «Base oblíqua»: P não é ortogonal — as coordenadas usam P⁻¹x, não produtos internos."
+    },
+    "fr": {
+      "idea": "On cherche une base de vecteurs propres où A ne fait que scaler : dans ces coordonnées, A apparaît diagonale D.",
+      "tryIt": "Essaie « Base oblique » : P n’est pas orthogonale — les coordonnées utilisent P⁻¹x, pas des produits scalaires."
+    },
+    "it": {
+      "idea": "Cerchiamo una base di autovettori in cui A scala soltanto: in quelle coordinate A appare diagonale D.",
+      "tryIt": "Prova «Base obliqua»: P non è ortogonale — le coordinate usano P⁻¹x, non prodotti scalari."
+    }
+  },
+  "EigenEquationViz": {
+    "en": {
+      "idea": "An eigenvector is only stretched or shrunk: Av = λv with v ≠ 0. It does not rotate aside.",
+      "tryIt": "Drag v: when it is collinear with Av (orange), you will see the AUTOVECTOR badge and λ."
+    },
+    "de": {
+      "idea": "Ein Eigenvektor wird nur gestreckt oder gestaucht: Av = λv mit v ≠ 0. Er dreht nicht zur Seite.",
+      "tryIt": "Ziehe v: wenn er kollinear zu Av (orange) liegt, siehst du das Badge AUTOVECTOR und λ."
+    },
+    "pt": {
+      "idea": "Um autovetor apenas se estica ou se contrai: Av = λv com v ≠ 0. Não gira para outro lado.",
+      "tryIt": "Arraste v: quando ficar colinear com Av (laranja), verá o distintivo AUTOVECTOR e λ."
+    },
+    "fr": {
+      "idea": "Un vecteur propre n’est que dilaté ou contracté : Av = λv avec v ≠ 0. Il ne tourne pas de côté.",
+      "tryIt": "Fais glisser v : lorsqu’il est colinéaire à Av (orange), tu verras le badge AUTOVECTOR et λ."
+    },
+    "it": {
+      "idea": "Un autovettore viene solo stirato o contratto: Av = λv con v ≠ 0. Non ruota da un’altra parte.",
+      "tryIt": "Trascina v: quando è collineare con Av (arancione), vedrai il distintivo AUTOVECTOR e λ."
+    }
+  },
+  "EigenspaceViz": {
+    "en": {
+      "idea": "E_λ collects the vectors that A only scales by λ: they stay on the same eigen-direction (or go to 0 if λ=0).",
+      "tryIt": "Pick λ on the chips and drag v onto the line/plane. Turn on «free test» to leave the eigenspace."
+    },
+    "de": {
+      "idea": "E_λ sammelt die Vektoren, die A nur um λ skaliert: sie bleiben in derselben Eigenrichtung (oder gehen nach 0, falls λ=0).",
+      "tryIt": "Wähle λ auf den Chips und ziehe v auf die Gerade/Ebene. Aktiviere «freier Test», um den Eigenraum zu verlassen."
+    },
+    "pt": {
+      "idea": "E_λ reúne os vetores que A apenas escala por λ: permanecem na mesma direção própria (ou vão a 0 se λ=0).",
+      "tryIt": "Escolha λ nos chips e arraste v sobre a reta/plano. Ative «teste livre» para sair do autoespaço."
+    },
+    "fr": {
+      "idea": "E_λ rassemble les vecteurs que A ne fait que scaler par λ : ils restent dans la même direction propre (ou vont en 0 si λ=0).",
+      "tryIt": "Choisis λ sur les puces et fais glisser v sur la droite/le plan. Active « essai libre » pour quitter l’espace propre."
+    },
+    "it": {
+      "idea": "E_λ raccoglie i vettori che A scala soltanto per λ: restano nella stessa direzione propria (o vanno a 0 se λ=0).",
+      "tryIt": "Scegli λ sui chip e trascina v sulla retta/piano. Attiva «prova libera» per uscire dall’autospazio."
+    }
+  },
+  "FermatLittleTheoremVisualizer": {
+    "en": {
+      "idea": "You will see how the powers of a traverse residues modulo p. If p is prime and a is not a multiple of p, Fermat guarantees that at exponent p−1 the result is 1.",
+      "tryIt": "Choose p and a, step power by power, and watch where each residue lands."
+    },
+    "de": {
+      "idea": "Du siehst, wie die Potenzen von a Reste modulo p durchlaufen. Ist p prim und a kein Vielfaches von p, garantiert Fermat, dass beim Exponenten p−1 das Ergebnis 1 ist.",
+      "tryIt": "Wähle p und a, gehe Potenz für Potenz vor und beobachte, wo jeder Rest landet."
+    },
+    "pt": {
+      "idea": "Vais ver como as potências de a percorrem resíduos módulo p. Se p é primo e a não é múltiplo de p, Fermat garante que no expoente p−1 o resultado é 1.",
+      "tryIt": "Escolha p e a, avance potência a potência e observe onde cai cada resíduo."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment les puissances de a parcourent les restes modulo p. Si p est premier et a n’est pas multiple de p, Fermat garantit qu’à l’exposant p−1 le résultat vaut 1.",
+      "tryIt": "Choisis p et a, avance puissance par puissance et observe où tombe chaque reste."
+    },
+    "it": {
+      "idea": "Vedrai come le potenze di a percorrono i residui modulo p. Se p è primo e a non è multiplo di p, Fermat garantisce che all’esponente p−1 il risultato è 1.",
+      "tryIt": "Scegli p e a, avanza potenza per potenza e osserva dove cade ciascun residuo."
+    }
+  },
+  "FrobeniusNormVisualizer": {
+    "en": {
+      "idea": "You will see that the Frobenius norm measures a matrix’s overall size: each entry contributes its squared magnitude.",
+      "tryIt": "Edit A and watch how each entry contributes to the total sum before the square root is applied."
+    },
+    "de": {
+      "idea": "Du siehst, dass die Frobenius-Norm die globale Größe einer Matrix misst: jeder Eintrag trägt sein Quadrat bei.",
+      "tryIt": "Bearbeite A und beobachte, wie jeder Eintrag zur Gesamtsumme beiträgt, bevor die Quadratwurzel gezogen wird."
+    },
+    "pt": {
+      "idea": "Vais ver que a norma de Frobenius mede o tamanho global de uma matriz: cada entrada contribui com o quadrado da sua magnitude.",
+      "tryIt": "Edite A e observe como cada entrada contribui para a soma total antes de aplicar a raiz quadrada."
+    },
+    "fr": {
+      "idea": "Tu vas voir que la norme de Frobenius mesure la taille globale d’une matrice : chaque entrée apporte le carré de sa magnitude.",
+      "tryIt": "Édite A et observe comment chaque entrée contribue à la somme totale avant d’appliquer la racine carrée."
+    },
+    "it": {
+      "idea": "Vedrai che la norma di Frobenius misura la dimensione globale di una matrice: ogni voce contribuisce con il quadrato della sua magnitudine.",
+      "tryIt": "Modifica A e osserva come ciascuna voce contribuisce alla somma totale prima di applicare la radice quadrata."
+    }
+  },
+  "GeneratorMatrixVisualizer": {
+    "en": {
+      "idea": "You will see how the generator matrix turns a message of k symbols into a codeword of n symbols.",
+      "tryIt": "Change the message bits and watch how each 1 activates a row of G. The sum of the selected rows produces the codeword."
+    },
+    "de": {
+      "idea": "Du siehst, wie die Generatormatrix eine Nachricht aus k Symbolen in ein Codewort aus n Symbolen verwandelt.",
+      "tryIt": "Ändere die Nachrichtenbits und beobachte, wie jede 1 eine Zeile von G aktiviert. Die Summe der gewählten Zeilen ergibt das Codewort."
+    },
+    "pt": {
+      "idea": "Vais ver como a matriz geradora converte uma mensagem de k símbolos numa palavra código de n símbolos.",
+      "tryIt": "Altere os bits da mensagem e observe como cada 1 ativa uma linha de G. A soma das linhas selecionadas produz a palavra código."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment la matrice génératrice convertit un message de k symboles en un mot de code de n symboles.",
+      "tryIt": "Modifie les bits du message et observe comment chaque 1 active une ligne de G. La somme des lignes sélectionnées produit le mot de code."
+    },
+    "it": {
+      "idea": "Vedrai come la matrice generatrice converte un messaggio di k simboli in una parola codice di n simboli.",
+      "tryIt": "Cambia i bit del messaggio e osserva come ciascun 1 attiva una riga di G. La somma delle righe selezionate produce la parola codice."
+    }
+  },
+  "GramSchmidtViz": {
+    "en": {
+      "idea": "Gram–Schmidt turns vectors into an orthogonal basis (same span, directions at 90°).",
+      "tryIt": "Step through: project v₂ onto u₁, subtract the residual and, if u₂ ≠ 0, normalize."
+    },
+    "de": {
+      "idea": "Gram–Schmidt macht aus Vektoren eine Orthogonalbasis (derselbe Spann, Richtungen unter 90°).",
+      "tryIt": "Gehe die Schritte durch: projiziere v₂ auf u₁, subtrahiere das Residual und, falls u₂ ≠ 0, normalisiere."
+    },
+    "pt": {
+      "idea": "Gram–Schmidt converte vetores numa base ortogonal (o mesmo span, direções a 90°).",
+      "tryIt": "Avance os passos: projete v₂ sobre u₁, subtraia o residual e, se u₂ ≠ 0, normalize."
+    },
+    "fr": {
+      "idea": "Gram–Schmidt transforme des vecteurs en une base orthogonale (même span, directions à 90°).",
+      "tryIt": "Avance les étapes : projette v₂ sur u₁, soustrais le résidu et, si u₂ ≠ 0, normalise."
+    },
+    "it": {
+      "idea": "Gram–Schmidt converte i vettori in una base ortogonale (stesso span, direzioni a 90°).",
+      "tryIt": "Avanza i passi: proietta v₂ su u₁, sottrai il residuo e, se u₂ ≠ 0, normalizza."
+    }
+  },
+  "HammingDistanceWeightVisualizer": {
+    "en": {
+      "idea": "You will see how Hamming distance counts, position by position, where two words differ, and how the weight counts their nonzero symbols.",
+      "tryIt": "Change the bits of x and y: differences are highlighted and the distance updates instantly."
+    },
+    "de": {
+      "idea": "Du siehst, wie die Hamming-Distanz positionweise zählt, wo zwei Wörter verschieden sind, und wie das Gewicht ihre von Null verschiedenen Symbole zählt.",
+      "tryIt": "Ändere die Bits von x und y: die Differenzen werden hervorgehoben und die Distanz aktualisiert sich sofort."
+    },
+    "pt": {
+      "idea": "Vais ver como a distância de Hamming conta, posição a posição, onde duas palavras diferem, e como o peso conta os seus símbolos não nulos.",
+      "tryIt": "Altere os bits de x e y: as diferenças são destacadas e a distância atualiza-se de imediato."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment la distance de Hamming compte, position par position, où deux mots diffèrent, et comment le poids compte leurs symboles non nuls.",
+      "tryIt": "Modifie les bits de x et y : les différences sont mises en évidence et la distance se met à jour instantanément."
+    },
+    "it": {
+      "idea": "Vedrai come la distanza di Hamming conta, posizione per posizione, dove due parole differiscono, e come il peso conta i loro simboli non nulli.",
+      "tryIt": "Cambia i bit di x e y: le differenze vengono evidenziate e la distanza si aggiorna all’istante."
+    }
+  },
+  "IdempotenceComplementVisualizer": {
+    "en": {
+      "idea": "Repeating A does not change the value (idempotence); A with its complement always yields 1 or 0.",
+      "tryIt": "Toggle A: ¬A updates instantly and the complement laws do not change."
+    },
+    "de": {
+      "idea": "A zu wiederholen ändert den Wert nicht (Idempotenz); A mit seinem Komplement ergibt stets 1 oder 0.",
+      "tryIt": "Schalte A um: ¬A aktualisiert sich sofort und die Komplementgesetze bleiben unverändert."
+    },
+    "pt": {
+      "idea": "Repetir A não altera o valor (idempotência); A com o seu complemento dá sempre 1 ou 0.",
+      "tryIt": "Alterne A: ¬A atualiza-se de imediato e as leis do complemento não mudam."
+    },
+    "fr": {
+      "idea": "Répéter A ne change pas la valeur (idempotence) ; A avec son complément donne toujours 1 ou 0.",
+      "tryIt": "Alterne A : ¬A se met à jour instantanément et les lois du complément ne changent pas."
+    },
+    "it": {
+      "idea": "Ripetere A non cambia il valore (idempotenza); A con il suo complemento dà sempre 1 o 0.",
+      "tryIt": "Alterna A: ¬A si aggiorna all’istante e le leggi del complemento non cambiano."
+    }
+  },
+  "ImageViz": {
+    "en": {
+      "idea": "The image is the set of all possible outputs: Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+      "tryIt": "Switch mode: one point, many points, or the whole image. Drag Ae₁/Ae₂ to edit columns."
+    },
+    "de": {
+      "idea": "Das Bild ist die Menge aller möglichen Ausgaben: Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+      "tryIt": "Wechsle den Modus: ein Punkt, viele Punkte oder das ganze Bild. Ziehe Ae₁/Ae₂, um Spalten zu bearbeiten."
+    },
+    "pt": {
+      "idea": "A imagem é o conjunto de todas as saídas possíveis: Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+      "tryIt": "Mude de modo: um ponto, muitos pontos ou toda a imagem. Arraste Ae₁/Ae₂ para editar colunas."
+    },
+    "fr": {
+      "idea": "L’image est l’ensemble de toutes les sorties possibles : Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+      "tryIt": "Change de mode : un point, plusieurs points ou toute l’image. Fais glisser Ae₁/Ae₂ pour éditer les colonnes."
+    },
+    "it": {
+      "idea": "L’immagine è l’insieme di tutte le uscite possibili: Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+      "tryIt": "Cambia modalità: un punto, molti punti o l’intera immagine. Trascina Ae₁/Ae₂ per modificare le colonne."
+    }
+  },
+  "InducedMatrixNormVisualizer": {
+    "en": {
+      "idea": "You will see that an induced matrix norm measures the greatest stretch A can produce on a vector.",
+      "tryIt": "Move x on the unit ball and watch how ‖Ax‖_p changes. Seek the direction of maximal stretch."
+    },
+    "de": {
+      "idea": "Du siehst, dass eine induzierte Matrixnorm die größte Streckung misst, die A einem Vektor erteilen kann.",
+      "tryIt": "Bewege x auf der Einheitskugel und beobachte, wie sich ‖Ax‖_p ändert. Suche die Richtung maximaler Streckung."
+    },
+    "pt": {
+      "idea": "Vais ver que uma norma matricial induzida mede o maior estiramento que A pode produzir sobre um vetor.",
+      "tryIt": "Mova x sobre a bola unitária e observe como muda ‖Ax‖_p. Procure a direção em que o estiramento é máximo."
+    },
+    "fr": {
+      "idea": "Tu vas voir qu’une norme matricielle induite mesure le plus grand étirement qu’A peut produire sur un vecteur.",
+      "tryIt": "Déplace x sur la boule unité et observe comment ‖Ax‖_p change. Cherche la direction où l’étirement est maximal."
+    },
+    "it": {
+      "idea": "Vedrai che una norma matriciale indotta misura il massimo stiramento che A può produrre su un vettore.",
+      "tryIt": "Sposta x sulla palla unitaria e osserva come cambia ‖Ax‖_p. Cerca la direzione in cui lo stiramento è massimo."
+    }
+  },
+  "InverseTransformViz": {
+    "en": {
+      "idea": "You will see that A pushes the figure and, if it is invertible, A⁻¹ recovers it.",
+      "tryIt": "Press Apply A and then Undo with A⁻¹. Also try a singular preset."
+    },
+    "de": {
+      "idea": "Du siehst, dass A die Figur verschiebt und, falls invertierbar, A⁻¹ sie zurückholt.",
+      "tryIt": "Drücke A anwenden und dann Rückgängig mit A⁻¹. Probiere auch ein singuläres Preset."
+    },
+    "pt": {
+      "idea": "Vais ver que A empurra a figura e, se for invertível, A⁻¹ a recupera.",
+      "tryIt": "Prima Aplicar A e depois Desfazer com A⁻¹. Experimente também um preset singular."
+    },
+    "fr": {
+      "idea": "Tu vas voir qu’A pousse la figure et, si elle est inversible, A⁻¹ la retrouve.",
+      "tryIt": "Appuie sur Appliquer A puis Annuler avec A⁻¹. Essaie aussi un préréglage singulier."
+    },
+    "it": {
+      "idea": "Vedrai che A spinge la figura e, se è invertibile, A⁻¹ la recupera.",
+      "tryIt": "Premi Applica A e poi Annulla con A⁻¹. Prova anche un preset singolare."
+    }
+  },
+  "KernelViz": {
+    "en": {
+      "idea": "The kernel consists of the domain vectors that A sends to zero: ker(A) = {x : Ax = 0}.",
+      "tryIt": "Move x until Ax ≈ 0, or switch to «View full kernel» to see the entire subspace."
+    },
+    "de": {
+      "idea": "Der Kern sind die Vektoren des Definitionsbereichs, die A auf null schickt: ker(A) = {x : Ax = 0}.",
+      "tryIt": "Bewege x, bis Ax ≈ 0, oder wechsle zu «Vollen Kern anzeigen», um den ganzen Unterraum zu sehen."
+    },
+    "pt": {
+      "idea": "O núcleo são os vetores do domínio que A envia para zero: ker(A) = {x : Ax = 0}.",
+      "tryIt": "Mova x até Ax ≈ 0, ou mude para «Ver núcleo completo» para ver o subespaço inteiro."
+    },
+    "fr": {
+      "idea": "Le noyau est formé des vecteurs du domaine que A envoie à zéro : ker(A) = {x : Ax = 0}.",
+      "tryIt": "Déplace x jusqu’à Ax ≈ 0, ou passe à « Voir le noyau complet » pour voir tout le sous-espace."
+    },
+    "it": {
+      "idea": "Il nucleo è costituito dai vettori del dominio che A manda a zero: ker(A) = {x : Ax = 0}.",
+      "tryIt": "Sposta x finché Ax ≈ 0, oppure passa a «Vedi il nucleo completo» per vedere l’intero sottospazio."
+    }
+  },
+  "LUDecompositionViz": {
+    "en": {
+      "idea": "U is the result of Gaussian elimination; L stores the multipliers mᵢₖ below the diagonal (diag L = 1).",
+      "tryIt": "In Elimination: Step k/N (pivot → eliminate → … → done). Use Next or the player. Change b in Solve without refactorizing."
+    },
+    "de": {
+      "idea": "U ist das Ergebnis der Gauß-Elimination; L speichert die Multiplikatoren mᵢₖ unter der Diagonalen (diag L = 1).",
+      "tryIt": "In Elimination: Schritt k/N (Pivot → eliminieren → … → fertig). Nutze Weiter oder den Player. Ändere b in Lösen ohne neu zu faktorisieren."
+    },
+    "pt": {
+      "idea": "U é o resultado da eliminação gaussiana; L armazena os multiplicadores mᵢₖ abaixo da diagonal (diag L = 1).",
+      "tryIt": "Em Eliminação: Passo k/N (pivô → eliminar → … → pronto). Use Seguinte ou o reprodutor. Altere b em Resolver sem refatorizar."
+    },
+    "fr": {
+      "idea": "U est le résultat de l’élimination de Gauss ; L stocke les multiplicateurs mᵢₖ sous la diagonale (diag L = 1).",
+      "tryIt": "Dans Élimination : Étape k/N (pivot → éliminer → … → terminé). Utilise Suivant ou le lecteur. Change b dans Résoudre sans refactoriser."
+    },
+    "it": {
+      "idea": "U è il risultato dell’eliminazione gaussiana; L memorizza i moltiplicatori mᵢₖ sotto la diagonale (diag L = 1).",
+      "tryIt": "In Eliminazione: Passo k/N (pivot → eliminare → … → fatto). Usa Avanti o il lettore. Cambia b in Risolvi senza rifattorizzare."
+    }
+  },
+  "LeastSquaresViz": {
+    "en": {
+      "idea": "You will see that all candidates Ax are confined to Col(A), and that least squares picks the one closest to b.",
+      "tryIt": "Move x and watch the error. The minimum occurs when b−Ax is perpendicular to the column space."
+    },
+    "de": {
+      "idea": "Du siehst, dass alle Kandidaten Ax auf Col(A) beschränkt sind und dass Kleinste Quadrate den zu b nächsten wählen.",
+      "tryIt": "Bewege x und beobachte den Fehler. Das Minimum erscheint, wenn b−Ax senkrecht zum Spaltenraum steht."
+    },
+    "pt": {
+      "idea": "Vais ver que todos os candidatos Ax estão restritos a Col(A), e que mínimos quadrados escolhe o mais próximo de b.",
+      "tryIt": "Mova x e observe o erro. O mínimo aparece quando b−Ax é perpendicular ao espaço coluna."
+    },
+    "fr": {
+      "idea": "Tu vas voir que tous les candidats Ax sont confinés à Col(A), et que les moindres carrés choisissent le plus proche de b.",
+      "tryIt": "Déplace x et observe l’erreur. Le minimum apparaît lorsque b−Ax est perpendiculaire à l’espace des colonnes."
+    },
+    "it": {
+      "idea": "Vedrai che tutti i candidati Ax sono confinati in Col(A), e che i minimi quadrati scelgono il più vicino a b.",
+      "tryIt": "Sposta x e osserva l’errore. Il minimo compare quando b−Ax è perpendicolare allo spazio delle colonne."
+    }
+  },
+  "LinearCodeRateVisualizer": {
+    "en": {
+      "idea": "You will see what fraction of an encoded word corresponds to independent information.",
+      "tryIt": "Change n and k: watch how the word splits into k information symbols and n−k redundancy symbols."
+    },
+    "de": {
+      "idea": "Du siehst, welcher Anteil eines kodierten Wortes unabhängiger Information entspricht.",
+      "tryIt": "Ändere n und k: beobachte, wie sich das Wort in k Informationssymbole und n−k Redundanzsymbole teilt."
+    },
+    "pt": {
+      "idea": "Vais ver que fração de uma palavra codificada corresponde a informação independente.",
+      "tryIt": "Altere n e k: observe como a palavra se reparte entre k símbolos de informação e n−k símbolos de redundância."
+    },
+    "fr": {
+      "idea": "Tu vas voir quelle fraction d’un mot encodé correspond à de l’information indépendante.",
+      "tryIt": "Modifie n et k : observe comment le mot se partage entre k symboles d’information et n−k symboles de redondance."
+    },
+    "it": {
+      "idea": "Vedrai quale frazione di una parola codificata corrisponde a informazione indipendente.",
+      "tryIt": "Cambia n e k: osserva come la parola si ripartisce tra k simboli di informazione e n−k simboli di ridondanza."
+    }
+  },
+  "LinearCodeVisualizer": {
+    "en": {
+      "idea": "You will see why a linear code is a subspace: it contains the zero vector and stays closed under adding words and multiplying by scalars.",
+      "tryIt": "Select two codewords and add them. The result will still belong to C."
+    },
+    "de": {
+      "idea": "Du siehst, warum ein linearer Code ein Unterraum ist: er enthält den Nullvektor und bleibt abgeschlossen unter Addition von Wörtern und Skalarmultiplikation.",
+      "tryIt": "Wähle zwei Codewörter und addiere sie. Das Ergebnis gehört weiterhin zu C."
+    },
+    "pt": {
+      "idea": "Vais ver por que um código linear é um subespaço: contém o vetor nulo e permanece fechado à soma de palavras e à multiplicação por escalares.",
+      "tryIt": "Selecione duas palavras do código e some-as. O resultado continuará a pertencer a C."
+    },
+    "fr": {
+      "idea": "Tu vas voir pourquoi un code linéaire est un sous-espace : il contient le vecteur nul et reste stable par addition de mots et multiplication par des scalaires.",
+      "tryIt": "Sélectionne deux mots du code et additionne-les. Le résultat appartiendra encore à C."
+    },
+    "it": {
+      "idea": "Vedrai perché un codice lineare è un sottospazio: contiene il vettore nullo e resta chiuso rispetto alla somma di parole e alla moltiplicazione per scalari.",
+      "tryIt": "Seleziona due parole del codice e sommale. Il risultato apparterrà ancora a C."
+    }
+  },
+  "LinearityViz": {
+    "en": {
+      "idea": "You will see that a linear transformation takes two paths to the same result: transform then combine, or combine then transform.",
+      "tryIt": "Drag u and v. Compare A(u+v) with Au+Av. Try negative λ or 0. Turn on translation as a counterexample."
+    },
+    "de": {
+      "idea": "Du siehst, dass eine lineare Transformation zwei Wege zum selben Ergebnis nimmt: erst transformieren, dann kombinieren — oder umgekehrt.",
+      "tryIt": "Ziehe u und v. Vergleiche A(u+v) mit Au+Av. Probiere negatives λ oder 0. Aktiviere die Translation als Gegenbeispiel."
+    },
+    "pt": {
+      "idea": "Vais ver que uma transformação linear leva dois caminhos ao mesmo resultado: transformar e depois combinar, ou combinar e depois transformar.",
+      "tryIt": "Arraste u e v. Compare A(u+v) com Au+Av. Experimente λ negativo ou 0. Ative a translação como contraexemplo."
+    },
+    "fr": {
+      "idea": "Tu vas voir qu’une transformation linéaire mène deux chemins au même résultat : transformer puis combiner, ou combiner puis transformer.",
+      "tryIt": "Fais glisser u et v. Compare A(u+v) avec Au+Av. Essaie λ négatif ou 0. Active la translation comme contre-exemple."
+    },
+    "it": {
+      "idea": "Vedrai che una trasformazione lineare porta due cammini allo stesso risultato: trasformare e poi combinare, oppure combinare e poi trasformare.",
+      "tryIt": "Trascina u e v. Confronta A(u+v) con Au+Av. Prova λ negativo o 0. Attiva la traslazione come controesempio."
+    }
+  },
+  "LowRankApproxViz": {
+    "en": {
+      "idea": "Small singular components are truncated: A_k = Σ_{i≤k} σ_i u_i v_iᵀ keeps the dominant energy and discards the rest.",
+      "tryIt": "Move k and watch the bars, A_k, and the residual. In Compression compare storage mn vs k(m+n+1)."
+    },
+    "de": {
+      "idea": "Kleine Singulärkomponenten werden abgeschnitten: A_k = Σ_{i≤k} σ_i u_i v_iᵀ behält die dominante Energie und verwirft den Rest.",
+      "tryIt": "Bewege k und beobachte Balken, A_k und das Residual. Unter Kompression vergleiche Speicher mn vs k(m+n+1)."
+    },
+    "pt": {
+      "idea": "As componentes singulares pequenas são truncadas: A_k = Σ_{i≤k} σ_i u_i v_iᵀ conserva a energia dominante e descarta o resto.",
+      "tryIt": "Mova k e observe as barras, A_k e o residual. Em Compressão compare o armazenamento mn vs k(m+n+1)."
+    },
+    "fr": {
+      "idea": "On tronque les petites composantes singulières : A_k = Σ_{i≤k} σ_i u_i v_iᵀ conserve l’énergie dominante et écarte le reste.",
+      "tryIt": "Déplace k et observe les barres, A_k et le résidu. Dans Compression compare le stockage mn vs k(m+n+1)."
+    },
+    "it": {
+      "idea": "Si troncano le componenti singolari piccole: A_k = Σ_{i≤k} σ_i u_i v_iᵀ conserva l’energia dominante e scarta il resto.",
+      "tryIt": "Sposta k e osserva le barre, A_k e il residuo. In Compressione confronta lo spazio mn vs k(m+n+1)."
+    }
+  },
+  "MatrixMapViz": {
+    "en": {
+      "idea": "You will see that a matrix A pushes every point of the plane: x → Ax.",
+      "tryIt": "Change the preset or drag x. Compare the original grid (faint) with the transformed one."
+    },
+    "de": {
+      "idea": "Du siehst, dass eine Matrix A jeden Punkt der Ebene verschiebt: x → Ax.",
+      "tryIt": "Ändere das Preset oder ziehe x. Vergleiche das originale Gitter (blass) mit dem transformierten."
+    },
+    "pt": {
+      "idea": "Vais ver que uma matriz A empurra cada ponto do plano: x → Ax.",
+      "tryIt": "Altere o preset ou arraste x. Compare a grelha original (ténue) com a transformada."
+    },
+    "fr": {
+      "idea": "Tu vas voir qu’une matrice A pousse chaque point du plan : x → Ax.",
+      "tryIt": "Change le préréglage ou fais glisser x. Compare la grille d’origine (pâle) avec la transformée."
+    },
+    "it": {
+      "idea": "Vedrai che una matrice A spinge ogni punto del piano: x → Ax.",
+      "tryIt": "Cambia il preset o trascina x. Confronta la griglia originale (tenue) con quella trasformata."
+    }
+  },
+  "MatrixPowerDiagViz": {
+    "en": {
+      "idea": "Diagonalize once; raise the diagonal to a power. Aⁿ = P Dⁿ P⁻¹ — no need to multiply A · A · … n times.",
+      "tryIt": "Increase n under growth/decay: one direction GROWS and the other DECAYS."
+    },
+    "de": {
+      "idea": "Einmal diagonalisieren; die Diagonale potenzieren. Aⁿ = P Dⁿ P⁻¹ — A · A · … n-mal zu multiplizieren ist unnötig.",
+      "tryIt": "Erhöhe n unter Wachstum/Abklingen: eine Richtung WÄCHST, die andere KLINGT AB."
+    },
+    "pt": {
+      "idea": "Diagonalize uma vez; potencie a diagonal. Aⁿ = P Dⁿ P⁻¹ — não é preciso multiplicar A · A · … n vezes.",
+      "tryIt": "Aumente n em crescimento/decadência: uma direção CRESCE e a outra DECAI."
+    },
+    "fr": {
+      "idea": "Diagonalise une fois ; élève la diagonale à la puissance. Aⁿ = P Dⁿ P⁻¹ — inutile de multiplier A · A · … n fois.",
+      "tryIt": "Augmente n en croissance/décroissance : une direction CROÎT et l’autre DÉCROÎT."
+    },
+    "it": {
+      "idea": "Diagonalizza una volta; eleva la diagonale a potenza. Aⁿ = P Dⁿ P⁻¹ — non serve moltiplicare A · A · … n volte.",
+      "tryIt": "Aumenta n in crescita/decadimento: una direzione CRESCE e l’altra DECADE."
+    }
+  },
+  "MinimumDistanceVisualizer": {
+    "en": {
+      "idea": "You will see how the minimum separation between codewords determines how many errors we can detect and correct with a guarantee.",
+      "tryIt": "Change d_min and watch how the number of detectable errors and the correction radius change."
+    },
+    "de": {
+      "idea": "Du siehst, wie der minimale Abstand zwischen Codewörtern bestimmt, wie viele Fehler wir garantiert erkennen und korrigieren können.",
+      "tryIt": "Ändere d_min und beobachte, wie sich die Zahl erkennbarer Fehler und der Korrekturradius ändern."
+    },
+    "pt": {
+      "idea": "Vais ver como a separação mínima entre palavras código determina quantos erros podemos detetar e corrigir com garantia.",
+      "tryIt": "Altere d_min e observe como mudam o número de erros detetáveis e o raio de correção."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment la séparation minimale entre mots de code détermine combien d’erreurs on peut détecter et corriger avec garantie.",
+      "tryIt": "Modifie d_min et observe comment changent le nombre d’erreurs détectables et le rayon de correction."
+    },
+    "it": {
+      "idea": "Vedrai come la separazione minima tra parole codice determina quanti errori possiamo rilevare e correggere con garanzia.",
+      "tryIt": "Cambia d_min e osserva come variano il numero di errori rilevabili e il raggio di correzione."
+    }
+  },
+  "ModularCongruenceVisualizer": {
+    "en": {
+      "idea": "You will see that two integers are congruent modulo m when, reduced, they land on the same remainder.",
+      "tryIt": "Change a and b: if both reach the same point on the clock, then a ≡ b (mod m)."
+    },
+    "de": {
+      "idea": "Du siehst, dass zwei ganze Zahlen modulo m kongruent sind, wenn sie reduziert auf denselben Rest fallen.",
+      "tryIt": "Ändere a und b: landen beide am selben Punkt der Uhr, so gilt a ≡ b (mod m)."
+    },
+    "pt": {
+      "idea": "Vais ver que dois inteiros são congruentes módulo m quando, ao reduzi-los, caem no mesmo resto.",
+      "tryIt": "Altere a e b: se ambos chegam ao mesmo ponto do relógio, então a ≡ b (mod m)."
+    },
+    "fr": {
+      "idea": "Tu vas voir que deux entiers sont congrus modulo m lorsqu’en les réduisant ils tombent sur le même reste.",
+      "tryIt": "Modifie a et b : s’ils arrivent au même point de l’horloge, alors a ≡ b (mod m)."
+    },
+    "it": {
+      "idea": "Vedrai che due interi sono congrui modulo m quando, ridotti, cadono sullo stesso resto.",
+      "tryIt": "Cambia a e b: se entrambi arrivano allo stesso punto dell’orologio, allora a ≡ b (mod m)."
+    }
+  },
+  "ModularInverseVisualizer": {
+    "en": {
+      "idea": "You will look for the residue that, multiplied by a, yields 1 modulo m. That residue is the modular inverse of a.",
+      "tryIt": "Change the candidate and watch when a·x mod m lands exactly on 1."
+    },
+    "de": {
+      "idea": "Du suchst den Rest, der mit a multipliziert 1 modulo m ergibt. Dieser Rest ist das modulare Inverse von a.",
+      "tryIt": "Ändere den Kandidaten und beobachte, wann a·x mod m genau bei 1 ankommt."
+    },
+    "pt": {
+      "idea": "Vais procurar o resíduo que, multiplicado por a, produz 1 módulo m. Esse resíduo é o inverso modular de a.",
+      "tryIt": "Altere o candidato e observe quando a·x mod m chega exatamente a 1."
+    },
+    "fr": {
+      "idea": "Tu vas chercher le reste qui, multiplié par a, donne 1 modulo m. Ce reste est l’inverse modulaire de a.",
+      "tryIt": "Modifie le candidat et observe quand a·x mod m arrive exactement à 1."
+    },
+    "it": {
+      "idea": "Cercherai il residuo che, moltiplicato per a, produce 1 modulo m. Quel residuo è l’inverso modulare di a.",
+      "tryIt": "Cambia il candidato e osserva quando a·x mod m arriva esattamente a 1."
+    }
+  },
+  "ModularOperationsVisualizer": {
+    "en": {
+      "idea": "You will see that operating modulo m means performing the operation and keeping the remainder on division by m.",
+      "tryIt": "Change a, b, and m and watch how the sum or product returns to the residue clock 0,…,m−1."
+    },
+    "de": {
+      "idea": "Du siehst, dass modulo m zu rechnen heißt: die Operation ausführen und den Rest bei Division durch m behalten.",
+      "tryIt": "Ändere a, b und m und beobachte, wie Summe oder Produkt auf die Restuhr 0,…,m−1 zurückkehren."
+    },
+    "pt": {
+      "idea": "Vais ver que operar módulo m significa efetuar a operação e ficar com o resto da divisão por m.",
+      "tryIt": "Altere a, b e m e observe como a soma ou o produto regressam ao relógio de resíduos 0,…,m−1."
+    },
+    "fr": {
+      "idea": "Tu vas voir qu’opérer modulo m, c’est effectuer l’opération et garder le reste de la division par m.",
+      "tryIt": "Modifie a, b et m et observe comment la somme ou le produit reviennent à l’horloge des restes 0,…,m−1."
+    },
+    "it": {
+      "idea": "Vedrai che operare modulo m significa eseguire l’operazione e tenersi il resto della divisione per m.",
+      "tryIt": "Cambia a, b e m e osserva come la somma o il prodotto tornano all’orologio dei residui 0,…,m−1."
+    }
+  },
+  "NormalEquationsViz": {
+    "en": {
+      "idea": "The normal equations appear because, at the best approximation, the error is perpendicular to every column of A.",
+      "tryIt": "Project b or try another x: only at the optimum is Aᵀr = 0 and AᵀA x̂ = Aᵀb holds."
+    },
+    "de": {
+      "idea": "Die Normalgleichungen entstehen, weil beim besten Approximanten der Fehler senkrecht zu allen Spalten von A steht.",
+      "tryIt": "Projiziere b oder probiere ein anderes x: nur im Optimum gilt Aᵀr = 0 und AᵀA x̂ = Aᵀb."
+    },
+    "pt": {
+      "idea": "As equações normais aparecem porque, na melhor aproximação, o erro é perpendicular a todas as colunas de A.",
+      "tryIt": "Projete b ou experimente outra x: só no ótimo Aᵀr = 0 e se cumpre AᵀA x̂ = Aᵀb."
+    },
+    "fr": {
+      "idea": "Les équations normales apparaissent parce que, à la meilleure approximation, l’erreur est perpendiculaire à toutes les colonnes de A.",
+      "tryIt": "Projette b ou essaie un autre x : seulement à l’optimum Aᵀr = 0 et AᵀA x̂ = Aᵀb est vérifiée."
+    },
+    "it": {
+      "idea": "Le equazioni normali compaiono perché, nella migliore approssimazione, l’errore è perpendicolare a tutte le colonne di A.",
+      "tryIt": "Proietta b o prova un’altra x: solo all’ottimo Aᵀr = 0 e vale AᵀA x̂ = Aᵀb."
+    }
+  },
+  "OrthogonalMatrixViz": {
+    "en": {
+      "idea": "An orthogonal matrix rotates or reflects without deforming: it preserves lengths and angles.",
+      "tryIt": "Rotate θ or choose a reflection. Drag v: ∥v∥ = ∥Qv∥ and the unit circle remains a circle."
+    },
+    "de": {
+      "idea": "Eine orthogonale Matrix rotiert oder spiegelt ohne zu verformen: Längen und Winkel bleiben erhalten.",
+      "tryIt": "Drehe θ oder wähle eine Spiegelung. Ziehe v: ∥v∥ = ∥Qv∥ und der Einheitskreis bleibt ein Kreis."
+    },
+    "pt": {
+      "idea": "Uma matriz ortogonal roda ou reflete sem deformar: preserva comprimentos e ângulos.",
+      "tryIt": "Rode θ ou escolha uma reflexão. Arraste v: ∥v∥ = ∥Qv∥ e o círculo unitário continua a ser um círculo."
+    },
+    "fr": {
+      "idea": "Une matrice orthogonale tourne ou réfléchit sans déformer : elle préserve longueurs et angles.",
+      "tryIt": "Tourne θ ou choisis une réflexion. Fais glisser v : ∥v∥ = ∥Qv∥ et le cercle unité reste un cercle."
+    },
+    "it": {
+      "idea": "Una matrice ortogonale ruota o riflette senza deformare: preserva lunghezze e angoli.",
+      "tryIt": "Ruota θ o scegli una riflessione. Trascina v: ∥v∥ = ∥Qv∥ e il cerchio unitario resta un cerchio."
+    }
+  },
+  "OrthogonalProjectionViz": {
+    "en": {
+      "idea": "Orthogonal projection is the shadow of u along the direction of v: proj_v(u) = ((u·v)/(v·v)) · v.",
+      "tryIt": "Drag u (teal) and v (green). The orange point P is the projection onto the line span(v); the dashed segment is the residual r ⊥ v."
+    },
+    "de": {
+      "idea": "Die Orthogonalprojektion ist der Schatten von u auf die Richtung von v: proj_v(u) = ((u·v)/(v·v)) · v.",
+      "tryIt": "Ziehe u (teal) und v (grün). Der orange Punkt P ist die Projektion auf die Gerade span(v); das gestrichelte Segment ist das Residual r ⊥ v."
+    },
+    "pt": {
+      "idea": "A projeção ortogonal é a sombra de u sobre a direção de v: proj_v(u) = ((u·v)/(v·v)) · v.",
+      "tryIt": "Arraste u (teal) e v (verde). O ponto laranja P é a projeção sobre a reta span(v); o segmento tracejado é o residual r ⊥ v."
+    },
+    "fr": {
+      "idea": "La projection orthogonale est l’ombre de u sur la direction de v : proj_v(u) = ((u·v)/(v·v)) · v.",
+      "tryIt": "Fais glisser u (teal) et v (vert). Le point orange P est la projection sur la droite span(v) ; le segment en pointillés est le résidu r ⊥ v."
+    },
+    "it": {
+      "idea": "La proiezione ortogonale è l’ombra di u sulla direzione di v: proj_v(u) = ((u·v)/(v·v)) · v.",
+      "tryIt": "Trascina u (teal) e v (verde). Il punto arancione P è la proiezione sulla retta span(v); il segmento tratteggiato è il residuo r ⊥ v."
+    }
+  },
+  "OrthogonalityViz": {
+    "en": {
+      "idea": "Two vectors are perpendicular (orthogonal) if and only if their dot product is zero: u⊥v ⇔ u·v=0.",
+      "tryIt": "Drag u and v until the angle is right. Notice that u·v hits 0 exactly then — not before."
+    },
+    "de": {
+      "idea": "Zwei Vektoren sind senkrecht (orthogonal) genau dann, wenn ihr Skalarprodukt null ist: u⊥v ⇔ u·v=0.",
+      "tryIt": "Ziehe u und v, bis der Winkel recht ist. Beobachte, dass u·v genau dann 0 erreicht — nicht früher."
+    },
+    "pt": {
+      "idea": "Dois vetores são perpendiculares (ortogonais) se e só se o seu produto interno é zero: u⊥v ⇔ u·v=0.",
+      "tryIt": "Arraste u e v até o ângulo ser reto. Observe que u·v chega a 0 exatamente então — não antes."
+    },
+    "fr": {
+      "idea": "Deux vecteurs sont perpendiculaires (orthogonaux) si et seulement si leur produit scalaire est nul : u⊥v ⇔ u·v=0.",
+      "tryIt": "Fais glisser u et v jusqu’à l’angle droit. Observe que u·v atteint 0 exactement alors — pas avant."
+    },
+    "it": {
+      "idea": "Due vettori sono perpendicolari (ortogonali) se e solo se il loro prodotto scalare è zero: u⊥v ⇔ u·v=0.",
+      "tryIt": "Trascina u e v finché l’angolo è retto. Osserva che u·v arriva a 0 esattamente allora — non prima."
+    }
+  },
+  "ParityCheckMatrixVisualizer": {
+    "en": {
+      "idea": "You will see how each row of H defines a parity check. A codeword is valid when all of them yield zero.",
+      "tryIt": "Change the word bits and watch which checks hold, which fail, and how the syndrome changes."
+    },
+    "de": {
+      "idea": "Du siehst, wie jede Zeile von H eine Paritätsprüfung definiert. Ein Codewort ist gültig, wenn alle null ergeben.",
+      "tryIt": "Ändere die Bits des Wortes und beobachte, welche Prüfungen gelten, welche fehlschlagen und wie sich das Syndrom ändert."
+    },
+    "pt": {
+      "idea": "Vais ver como cada linha de H define uma verificação de paridade. Uma palavra código é válida quando todas dão zero.",
+      "tryIt": "Altere os bits da palavra e observe quais verificações se cumprem, quais falham e como muda o síndroma."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment chaque ligne de H définit un contrôle de parité. Un mot de code est valide lorsque tous donnent zéro.",
+      "tryIt": "Modifie les bits du mot et observe quels contrôles tiennent, lesquels échouent et comment le syndrome change."
+    },
+    "it": {
+      "idea": "Vedrai come ciascuna riga di H definisce un controllo di parità. Una parola codice è valida quando tutte danno zero.",
+      "tryIt": "Cambia i bit della parola e osserva quali controlli sono soddisfatti, quali falliscono e come cambia la sindrome."
+    }
+  },
+  "PrimeFiniteFieldVisualizer": {
+    "en": {
+      "idea": "You will explore how addition and multiplication behave inside 𝔽ₚ. Since p is prime, every nonzero element has a multiplicative inverse.",
+      "tryIt": "Select a row and a column to compute the operation, or look for 0 and 1 to discover opposites and inverses."
+    },
+    "de": {
+      "idea": "Du erkundest, wie Addition und Multiplikation in 𝔽ₚ wirken. Da p prim ist, hat jedes von 0 verschiedene Element ein multiplikatives Inverses.",
+      "tryIt": "Wähle eine Zeile und eine Spalte, um die Operation zu berechnen, oder suche 0 und 1, um Gegenelemente und Inverse zu finden."
+    },
+    "pt": {
+      "idea": "Vais explorar como se comportam a soma e o produto em 𝔽ₚ. Como p é primo, cada elemento distinto de 0 tem inverso multiplicativo.",
+      "tryIt": "Selecione uma linha e uma coluna para calcular a operação, ou procure o 0 e o 1 para descobrir opostos e inversos."
+    },
+    "fr": {
+      "idea": "Tu vas explorer le comportement de l’addition et de la multiplication dans 𝔽ₚ. Comme p est premier, tout élément distinct de 0 a un inverse multiplicatif.",
+      "tryIt": "Sélectionne une ligne et une colonne pour calculer l’opération, ou cherche le 0 et le 1 pour découvrir opposés et inverses."
+    },
+    "it": {
+      "idea": "Esplorerai come si comportano somma e prodotto in 𝔽ₚ. Poiché p è primo, ogni elemento distinto da 0 ha inverso moltiplicativo.",
+      "tryIt": "Seleziona una riga e una colonna per calcolare l’operazione, oppure cerca lo 0 e l’1 per scoprire opposti e inversi."
+    }
+  },
+  "ProductOfSumsVisualizer": {
+    "en": {
+      "idea": "Canonical POS form is a product (AND) of maxterms: each maxterm corresponds to a row where F = 0.",
+      "tryIt": "Mark zeros in column F and see how each maxterm is a sum (A+¬B) that vanishes on that row."
+    },
+    "de": {
+      "idea": "Die kanonische POS-Form ist ein Produkt (AND) von Maxtermen: jeder Maxterm gehört zu einer Zeile mit F = 0.",
+      "tryIt": "Markiere Nullen in der Spalte F und sieh, wie jeder Maxterm eine Summe (A+¬B) ist, die in dieser Zeile verschwindet."
+    },
+    "pt": {
+      "idea": "A forma canónica POS é um produto (AND) de maxtermos: cada maxtermo corresponde a uma linha onde F = 0.",
+      "tryIt": "Marque zeros na coluna F e observe como cada maxtermo é uma soma (A+¬B) que se anula nessa linha."
+    },
+    "fr": {
+      "idea": "La forme canonique POS est un produit (AND) de maxtermes : chaque maxterme correspond à une ligne où F = 0.",
+      "tryIt": "Marque des zéros dans la colonne F et observe comment chaque maxterme est une somme (A+¬B) qui s’annule sur cette ligne."
+    },
+    "it": {
+      "idea": "La forma canonica POS è un prodotto (AND) di maxtermini: ciascun maxtermine corrisponde a una riga in cui F = 0.",
+      "tryIt": "Segna zeri nella colonna F e osserva come ogni maxtermine è una somma (A+¬B) che si annulla su quella riga."
+    }
+  },
+  "PseudoinverseViz": {
+    "en": {
+      "idea": "You will see how A⁺ finds the best solution when Ax=b cannot be solved with an ordinary inverse.",
+      "tryIt": "Change the preset or edit A,b and watch how Ax̂ is the point of Col(A) closest to b."
+    },
+    "de": {
+      "idea": "Du siehst, wie A⁺ die beste Lösung findet, wenn Ax=b nicht mit einer gewöhnlichen Inversen lösbar ist.",
+      "tryIt": "Ändere das Preset oder bearbeite A,b und beobachte, wie Ax̂ der zu b nächste Punkt von Col(A) ist."
+    },
+    "pt": {
+      "idea": "Vais ver como A⁺ encontra a melhor solução quando Ax=b não se pode resolver com uma inversa ordinária.",
+      "tryIt": "Altere o preset ou edite A,b e observe como Ax̂ é o ponto de Col(A) mais próximo de b."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment A⁺ trouve la meilleure solution lorsque Ax=b ne peut pas se résoudre avec une inverse ordinaire.",
+      "tryIt": "Change le préréglage ou édite A,b et observe comment Ax̂ est le point de Col(A) le plus proche de b."
+    },
+    "it": {
+      "idea": "Vedrai come A⁺ trova la soluzione migliore quando Ax=b non si può risolvere con un’inversa ordinaria.",
+      "tryIt": "Cambia il preset o modifica A,b e osserva come Ax̂ è il punto di Col(A) più vicino a b."
+    }
+  },
+  "QRDecompositionViz": {
+    "en": {
+      "idea": "QR builds an orthonormal basis of Col(A); R stores the coordinates of A’s columns in that basis.",
+      "tryIt": "In Construction: Step 1/6…6/6 (A → q₁ → projection → q₂ → R → QR). Use Next or the player. Try the Dependent preset."
+    },
+    "de": {
+      "idea": "QR baut eine Orthonormalbasis von Col(A); R speichert die Koordinaten der Spalten von A in dieser Basis.",
+      "tryIt": "In Konstruktion: Schritt 1/6…6/6 (A → q₁ → Projektion → q₂ → R → QR). Nutze Weiter oder den Player. Probiere das Preset Abhängig."
+    },
+    "pt": {
+      "idea": "QR constrói uma base ortonormal de Col(A); R guarda as coordenadas das colunas de A nessa base.",
+      "tryIt": "Em Construção: Passo 1/6…6/6 (A → q₁ → projeção → q₂ → R → QR). Use Seguinte ou o reprodutor. Experimente o preset Dependentes."
+    },
+    "fr": {
+      "idea": "QR construit une base orthonormée de Col(A) ; R stocke les coordonnées des colonnes de A dans cette base.",
+      "tryIt": "Dans Construction : Étape 1/6…6/6 (A → q₁ → projection → q₂ → R → QR). Utilise Suivant ou le lecteur. Essaie le préréglage Dépendantes."
+    },
+    "it": {
+      "idea": "QR costruisce una base ortonormale di Col(A); R memorizza le coordinate delle colonne di A in quella base.",
+      "tryIt": "In Costruzione: Passo 1/6…6/6 (A → q₁ → proiezione → q₂ → R → QR). Usa Avanti o il lettore. Prova il preset Dipendenti."
+    }
+  },
+  "SVDViz": {
+    "en": {
+      "idea": "A = UΣVᵀ separates orientation (Vᵀ), axial scaling (Σ), and reorientation (U).",
+      "tryIt": "Step Original → Vᵀ → Σ → U. The circle stays a circle after Vᵀ; Σ turns it into an ellipse; U rotates it."
+    },
+    "de": {
+      "idea": "A = UΣVᵀ trennt Orientierung (Vᵀ), axiale Skalierung (Σ) und Neuorientierung (U).",
+      "tryIt": "Gehe Original → Vᵀ → Σ → U. Der Kreis bleibt Kreis nach Vᵀ; Σ macht daraus eine Ellipse; U dreht sie."
+    },
+    "pt": {
+      "idea": "A = UΣVᵀ separa orientação (Vᵀ), escalamento axial (Σ) e reorientação (U).",
+      "tryIt": "Avance Original → Vᵀ → Σ → U. O círculo permanece círculo após Vᵀ; Σ converte-o em elipse; U a roda."
+    },
+    "fr": {
+      "idea": "A = UΣVᵀ sépare l’orientation (Vᵀ), le scaling axial (Σ) et la réorientation (U).",
+      "tryIt": "Avance Original → Vᵀ → Σ → U. Le cercle reste un cercle après Vᵀ ; Σ le transforme en ellipse ; U la tourne."
+    },
+    "it": {
+      "idea": "A = UΣVᵀ separa orientamento (Vᵀ), scalatura assiale (Σ) e riorientamento (U).",
+      "tryIt": "Avanza Originale → Vᵀ → Σ → U. Il cerchio resta un cerchio dopo Vᵀ; Σ lo converte in ellisse; U la ruota."
+    }
+  },
+  "SpectralDecompositionViz": {
+    "en": {
+      "idea": "If A is real and symmetric (A = Aᵀ), the spectral theorem guarantees an orthonormal eigenbasis: A = QΛQᵀ.",
+      "tryIt": "Try presets (definite / indefinite / semidefinite). In Eigendirections drag x; in Diagonalization play Original → Qᵀ → Λ → Q → A."
+    },
+    "de": {
+      "idea": "Ist A reell und symmetrisch (A = Aᵀ), garantiert der Spektralsatz eine orthonormale Eigenbasis: A = QΛQᵀ.",
+      "tryIt": "Probiere Presets (definit / indefinit / semidefinit). Unter Eigenrichtungen ziehe x; unter Diagonalisierung spiele Original → Qᵀ → Λ → Q → A."
+    },
+    "pt": {
+      "idea": "Se A é real e simétrica (A = Aᵀ), o teorema espectral garante uma base ortonormal de autovetores: A = QΛQᵀ.",
+      "tryIt": "Experimente presets (definida / indefinida / semidefinida). Em Direções próprias arraste x; em Diagonalização reproduza Original → Qᵀ → Λ → Q → A."
+    },
+    "fr": {
+      "idea": "Si A est réelle et symétrique (A = Aᵀ), le théorème spectral garantit une base orthonormée de vecteurs propres : A = QΛQᵀ.",
+      "tryIt": "Essaie les préréglages (définie / indéfinie / semi-définie). Dans Directions propres fais glisser x ; dans Diagonalisation rejoue Original → Qᵀ → Λ → Q → A."
+    },
+    "it": {
+      "idea": "Se A è reale e simmetrica (A = Aᵀ), il teorema spettrale garantisce una base ortonormale di autovettori: A = QΛQᵀ.",
+      "tryIt": "Prova i preset (definita / indefinita / semidefinita). In Direzioni proprie trascina x; in Diagonalizzazione riproduci Originale → Qᵀ → Λ → Q → A."
+    }
+  },
+  "SpectralNormVisualizer": {
+    "en": {
+      "idea": "You will see that the spectral norm is the greatest stretch A can produce on a unit vector.",
+      "tryIt": "Move x on the unit circle and compare ‖Ax‖₂. Find the direction of maximal stretch."
+    },
+    "de": {
+      "idea": "Du siehst, dass die Spektralnorm die größte Streckung ist, die A einem Einheitsvektor erteilen kann.",
+      "tryIt": "Bewege x auf dem Einheitskreis und vergleiche ‖Ax‖₂. Finde die Richtung maximaler Streckung."
+    },
+    "pt": {
+      "idea": "Vais ver que a norma espectral é o maior estiramento que A pode produzir sobre um vetor unitário.",
+      "tryIt": "Mova x sobre o círculo unitário e compare ‖Ax‖₂. Encontre a direção em que o estiramento é máximo."
+    },
+    "fr": {
+      "idea": "Tu vas voir que la norme spectrale est le plus grand étirement qu’A peut produire sur un vecteur unitaire.",
+      "tryIt": "Déplace x sur le cercle unité et compare ‖Ax‖₂. Trouve la direction où l’étirement est maximal."
+    },
+    "it": {
+      "idea": "Vedrai che la norma spettrale è il massimo stiramento che A può produrre su un vettore unitario.",
+      "tryIt": "Sposta x sul cerchio unitario e confronta ‖Ax‖₂. Trova la direzione in cui lo stiramento è massimo."
+    }
+  },
+  "SpectralTheoremViz": {
+    "en": {
+      "idea": "If A is symmetric (A = Aᵀ), there exists an orthonormal eigenbasis: A = QΛQᵀ.",
+      "tryIt": "Change a, b, d or try a preset: the unit circle becomes an ellipse aligned with q₁, q₂."
+    },
+    "de": {
+      "idea": "Ist A symmetrisch (A = Aᵀ), existiert eine orthonormale Eigenbasis: A = QΛQᵀ.",
+      "tryIt": "Ändere a, b, d oder probiere ein Preset: der Einheitskreis wird zur Ellipse, ausgerichtet an q₁, q₂."
+    },
+    "pt": {
+      "idea": "Se A é simétrica (A = Aᵀ), existe uma base ortonormal de autovetores: A = QΛQᵀ.",
+      "tryIt": "Altere a, b, d ou experimente um preset: o círculo unitário torna-se uma elipse alinhada com q₁, q₂."
+    },
+    "fr": {
+      "idea": "Si A est symétrique (A = Aᵀ), il existe une base orthonormée de vecteurs propres : A = QΛQᵀ.",
+      "tryIt": "Modifie a, b, d ou essaie un préréglage : le cercle unité devient une ellipse alignée avec q₁, q₂."
+    },
+    "it": {
+      "idea": "Se A è simmetrica (A = Aᵀ), esiste una base ortonormale di autovettori: A = QΛQᵀ.",
+      "tryIt": "Cambia a, b, d oppure prova un preset: il cerchio unitario diventa un’ellisse allineata con q₁, q₂."
+    }
+  },
+  "SubmultiplicativityVisualizer": {
+    "en": {
+      "idea": "You will see why chaining two transformations cannot amplify more than the product of their maximal stretches.",
+      "tryIt": "Move the vector x or edit A and B. Compare ‖ABx‖ with ‖A‖·‖B‖·‖x‖."
+    },
+    "de": {
+      "idea": "Du siehst, warum das Hintereinanderschalten zweier Transformationen nicht stärker verstärken kann als das Produkt ihrer maximalen Streckungen.",
+      "tryIt": "Bewege den Vektor x oder ändere A und B. Vergleiche ‖ABx‖ mit ‖A‖·‖B‖·‖x‖."
+    },
+    "pt": {
+      "idea": "Vais ver por que encadear duas transformações não pode amplificar mais do que o produto dos seus estiramentos máximos.",
+      "tryIt": "Mova o vetor x ou modifique A e B. Compare ‖ABx‖ com ‖A‖·‖B‖·‖x‖."
+    },
+    "fr": {
+      "idea": "Tu vas voir pourquoi enchaîner deux transformations ne peut pas amplifier plus que le produit de leurs étirements maximaux.",
+      "tryIt": "Déplace le vecteur x ou modifie A et B. Compare ‖ABx‖ avec ‖A‖·‖B‖·‖x‖."
+    },
+    "it": {
+      "idea": "Vedrai perché concatenare due trasformazioni non può amplificare più del prodotto dei loro stiramenti massimi.",
+      "tryIt": "Sposta il vettore x oppure modifica A e B. Confronta ‖ABx‖ con ‖A‖·‖B‖·‖x‖."
+    }
+  },
+  "SumOfProductsVisualizer": {
+    "en": {
+      "idea": "Canonical SOP form is a sum (OR) of minterms: each minterm corresponds to a row where F = 1.",
+      "tryIt": "Edit column F with the 0/1 switches and watch how the minterms ¬A¬B, ¬AB, AB… are generated."
+    },
+    "de": {
+      "idea": "Die kanonische SOP-Form ist eine Summe (OR) von Mintermen: jeder Minterm gehört zu einer Zeile mit F = 1.",
+      "tryIt": "Bearbeite die Spalte F mit den Schaltern 0/1 und beobachte, wie die Minterme ¬A¬B, ¬AB, AB… entstehen."
+    },
+    "pt": {
+      "idea": "A forma canónica SOP é uma soma (OR) de mintermos: cada mintermo corresponde a uma linha onde F = 1.",
+      "tryIt": "Edite a coluna F com os interruptores 0/1 e observe como se geram os mintermos ¬A¬B, ¬AB, AB…"
+    },
+    "fr": {
+      "idea": "La forme canonique SOP est une somme (OR) de mintermes : chaque minterme correspond à une ligne où F = 1.",
+      "tryIt": "Édite la colonne F avec les interrupteurs 0/1 et observe comment se génèrent les mintermes ¬A¬B, ¬AB, AB…"
+    },
+    "it": {
+      "idea": "La forma canonica SOP è una somma (OR) di mintermini: ciascun mintermine corrisponde a una riga in cui F = 1.",
+      "tryIt": "Modifica la colonna F con gli interruttori 0/1 e osserva come si generano i mintermini ¬A¬B, ¬AB, AB…"
+    }
+  },
+  "SyndromeVisualizer": {
+    "en": {
+      "idea": "You will see how the syndrome summarizes which parity checks a received word fails.",
+      "tryIt": "Introduce a one-bit error and watch which column of H appears as the syndrome. For a single error, that information locates it."
+    },
+    "de": {
+      "idea": "Du siehst, wie das Syndrom zusammenfasst, welche Paritätsprüfungen ein empfangenes Wort verletzt.",
+      "tryIt": "Füge einen Ein-Bit-Fehler ein und beobachte, welche Spalte von H als Syndrom erscheint. Bei einem einzelnen Fehler lokalisiert das den Fehler."
+    },
+    "pt": {
+      "idea": "Vais ver como o síndroma resume quais verificações de paridade uma palavra recebida incumpre.",
+      "tryIt": "Introduza um erro num bit e observe que coluna de H aparece como síndroma. Para um único erro, essa informação permite localizá-lo."
+    },
+    "fr": {
+      "idea": "Tu vas voir comment le syndrome résume quels contrôles de parité un mot reçu enfreint.",
+      "tryIt": "Introduis une erreur sur un bit et observe quelle colonne de H apparaît comme syndrome. Pour une erreur unique, cette information permet de la localiser."
+    },
+    "it": {
+      "idea": "Vedrai come la sindrome riassume quali controlli di parità una parola ricevuta viola.",
+      "tryIt": "Introduci un errore su un bit e osserva quale colonna di H compare come sindrome. Per un errore singolo, quell’informazione permette di localizzarlo."
+    }
+  },
+  "XorVisualizer": {
+    "en": {
+      "idea": "XOR is true when A and B differ: exactly one input is active.",
+      "tryIt": "Toggle A and B or click the grid; watch when ⊕ equals 1 compared with OR."
+    },
+    "de": {
+      "idea": "XOR ist wahr, wenn A und B verschieden sind: genau ein Eingang ist aktiv.",
+      "tryIt": "Schalte A und B um oder klicke ins Gitter; beobachte, wann ⊕ den Wert 1 hat im Vergleich zu OR."
+    },
+    "pt": {
+      "idea": "XOR é verdadeiro quando A e B são distintos: exatamente uma entrada está ativa.",
+      "tryIt": "Alterne A e B ou clique na grelha; observe quando ⊕ vale 1 em comparação com OR."
+    },
+    "fr": {
+      "idea": "XOR est vrai lorsque A et B sont distincts : exactement une entrée est active.",
+      "tryIt": "Alterne A et B ou clique sur la grille ; observe quand ⊕ vaut 1 par rapport à OR."
+    },
+    "it": {
+      "idea": "XOR è vero quando A e B sono distinti: esattamente un ingresso è attivo.",
+      "tryIt": "Alterna A e B oppure fai clic sulla griglia; osserva quando ⊕ vale 1 rispetto a OR."
+    }
+  }
+}

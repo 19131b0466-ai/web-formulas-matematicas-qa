@@ -5,7 +5,8 @@
     "description": "Multi-subject online mathematical formulas: Integral Calculus, Basic Physics and Algebra for engineering & CS, with search, visualizations and LaTeX.",
     "shortName": "Formulas",
     "about": "Integral Calculus, Basic Physics and Algebra",
-    "manifestDescription": "Online mathematical formulas"
+    "manifestDescription": "Online mathematical formulas",
+    "seoTitle": "Math Formulas, Theory and Interactive Tools"
   },
   "nav": {
     "home": "Home",
@@ -171,7 +172,19 @@
     "showComplexity": "Show (CS mode)",
     "hideComplexity": "Hide (basic mode)",
     "vizTeaches": "The idea",
-    "vizTry": "Try it"
+    "vizTry": "Try it",
+    "intuitive": "Intuitive explanation",
+    "formal": "Formal definition",
+    "workedExample": "Worked example",
+    "commonErrors": "Common mistakes",
+    "equivalentNotations": "Equivalent notations",
+    "references": "References",
+    "lastReviewed": "Last reviewed",
+    "reviewedBy": "Reviewer",
+    "sources": "Sources",
+    "conventions": "Conventions",
+    "assumptions": "Assumptions",
+    "reportError": "Found an error? Contact us."
   },
   "siteNav": {
     "primary": "Main navigation",
@@ -195,7 +208,11 @@
     "audienceTitle": "Who it’s for",
     "audienceBody": "Built for students and teachers who need a stable reference: review, compare notation, or recall an identity without hunting through scattered PDFs.",
     "openTitle": "How it grows",
-    "openBody": "Content is curated by subject and served by API. We keep improving visualizations and guide clarity based on real classroom and study use."
+    "openBody": "Content is curated by subject and served by API. We keep improving visualizations and guide clarity based on real classroom and study use.",
+    "howTitle": "How the content is prepared",
+    "howBody": "The catalog is organized by subject and served from an API. Cards combine statements, LaTeX and, when the source includes one, an interactive resource. We do not publish individual authorship or review dates unless the content itself provides them.",
+    "correctionsTitle": "Corrections",
+    "correctionsBody": "If you find a mathematical error, an incomplete translation, or a problem in an interactive resource, use the Contact page and include the subject, formula code, and language."
   },
   "privacy": {
     "title": "Privacy policy",
@@ -264,5 +281,59 @@
     "rateLimit": "You’ve sent several reviews in a row. Wait a bit and try again.",
     "empty": "No published reviews yet. You can be the first.",
     "summary": "Average {average} · {count, plural, one {# review} other {# reviews}}"
+  },
+  "seo": {
+    "subjectTitle": "{subject}: formulas and interactive tools",
+    "sectionTitle": "{section} — {subject}",
+    "formulaTitle": "{concept} — {subject}",
+    "guideTitle": "{guide} — {subject}",
+    "withVisualization": "Includes an interactive resource.",
+    "formulaFallback": "Study {concept} in {subject}: definition, formulas, and learning tools.",
+    "comingSoonViz": "Visualization {type} — coming soon."
+  },
+  "vizDomain": {
+    "idea": "The domain is the set of x-values for which the function is defined: Dom(f)={x∈ℝ : f(x) is defined}.",
+    "ideaNote": "Connect the expression, the graph, and the allowed values on the x-axis. The domain line (below) shows valid inputs only, not the graph y=f(x).",
+    "functionType": "Function type",
+    "poly": "Polynomial",
+    "rational": "Rational",
+    "radical": "Radical",
+    "log": "Logarithmic",
+    "paramB": "Parameter b",
+    "fromExpr": "From expression to domain",
+    "expression": "Expression",
+    "condition": "Condition",
+    "restriction": "Restriction",
+    "domain": "Domain",
+    "rationalHint": "In f(x)=1/(x−b), x=b makes the denominator zero. That value is therefore excluded from the domain.",
+    "graphTitle": "Graph y=f(x)",
+    "graphAria": "Graph of {expr}",
+    "undefinedAt": "x={b}: function undefined",
+    "domainLine": "Domain line (allowed x-values only)",
+    "openExcluded": "Open circle at x={b}: excluded value (vertical asymptote on the graph).",
+    "closedIncluded": "Closed endpoint at x={b}: the domain includes this endpoint.",
+    "logOpen": "Open circle at x={b}: ln(x−b) requires x>{b}.",
+    "hintMoveB": "Move b and watch the excluded value, the asymptote, and the domain shift together.",
+    "hintChangeKind": "Change the function type and compare how the condition and the domain change.",
+    "polyCondition": "Defined for every real x",
+    "polyRestriction": "No restriction"
+  },
+  "vizCopy": {
+    "tryPrefix": "Try it —",
+    "showError": "Show error"
+  },
+  "vizRiemann": {
+    "idea": "The definite integral ∫ₐᵇ f(x) dx is the limit of Riemann sums as n → ∞.",
+    "ideaNote": "Move the n control and watch the rectangles fill the area more accurately. Change the sum type to see how the sample point affects the error.",
+    "left": "Left",
+    "right": "Right",
+    "midpoint": "Midpoint",
+    "trapezoid": "Trapezoid",
+    "nSubintervals": "n (subintervals)",
+    "showError": "Show error",
+    "errorShrinks": "As n increases, the error decreases toward 0.",
+    "exactI": "Exact I",
+    "error": "Error",
+    "graphAria": "Riemann sum of f on [a, b]"
   }
 }

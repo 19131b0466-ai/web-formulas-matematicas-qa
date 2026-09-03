@@ -1,0 +1,206 @@
+{
+  "BooleanAbsorptionVisualizer": {
+    "idea": "La absorción elimina términos redundantes: A ya cubre todo lo que aporta AB.",
+    "tryIt": "Alterna A y B y sigue el flujo de evaluación; la columna redundante desaparece al simplificar."
+  },
+  "BooleanDistributivityVisualizer": {
+    "idea": "AND se distribuye sobre OR y OR se distribuye sobre AND — como el área a(b+c), pero con bits.",
+    "tryIt": "Cambia A, B y C y recorre los pasos: ambos lados coinciden siempre."
+  },
+  "BooleanEquivalenceVisualizer": {
+    "idea": "Dos expresiones booleanas son equivalentes si producen la misma salida en todas las filas de la tabla de verdad.",
+    "tryIt": "Edita F y G, o elige una identidad, y comprueba si las columnas de salida coinciden fila a fila."
+  },
+  "BooleanIdentityVisualizer": {
+    "idea": "Los elementos neutros dejan pasar A; los dominantes fijan el resultado sin importar A.",
+    "tryIt": "Alterna A y observa qué expresiones siguen a A y cuáles se vuelven constantes."
+  },
+  "ChangeOfBasisViz": {
+    "idea": "Es el mismo vector x con distintas coordenadas: [x]_E vs [x]_B. [x]_E = B [x]_B y [x]_B = B⁻¹ [x]_E.",
+    "tryIt": "Cambia de base con el botón: la geometría de x no se mueve; solo cambia el sistema de coordenadas."
+  },
+  "CharacteristicEquationViz": {
+    "idea": "Los valores propios son las raíces de p_A(λ) = det(A − λI) = 0.",
+    "tryIt": "Mueve λ: cuando p_A(λ) ≈ 0, A−λI es singular y aparece el badge de valor propio."
+  },
+  "ChineseRemainderTheoremVisualizer": {
+    "idea": "Vas a sincronizar dos relojes modulares: buscamos un mismo x que deje el residuo a módulo m₁ y el residuo b módulo m₂.",
+    "tryIt": "Cambia los módulos y residuos y observa dónde coinciden ambas secuencias."
+  },
+  "CompositionLinearViz": {
+    "idea": "Vas a ver que componer transformaciones es aplicar una después de la otra: x → Ax → B(Ax).",
+    "tryIt": "Elige un preset (cambia A y B y muestra la composición). Luego Restablecer y usa Aplicar A → Aplicar B para ver el paso intermedio."
+  },
+  "DeMorganVisualizer": {
+    "idea": "De Morgan: negar un AND es como un OR de negaciones (y al revés).",
+    "tryIt": "Cambia A y B: las dos expresiones de cada ley siempre dan el mismo resultado."
+  },
+  "DiagonalizationViz": {
+    "idea": "Buscamos una base de autovectores donde A solo escala: en esas coordenadas, A se ve diagonal D.",
+    "tryIt": "Prueba «Base oblicua»: P no es ortogonal — las coordenadas usan P⁻¹x, no productos escalares."
+  },
+  "EigenEquationViz": {
+    "idea": "Un autovector solo se estira o se encoge: Av = λv con v ≠ 0. No gira hacia otro lado.",
+    "tryIt": "Arrastra v: cuando quede colineal con Av (naranja), verás el badge AUTOVECTOR y λ."
+  },
+  "EigenspaceViz": {
+    "idea": "E_λ reúne los vectores que A solo escala por λ: quedan en la misma dirección propia (o van a 0 si λ=0).",
+    "tryIt": "Elige λ en los chips y arrastra v sobre la recta/plano. Activa «prueba libre» para salir del autoespacio."
+  },
+  "FermatLittleTheoremVisualizer": {
+    "idea": "Vas a ver cómo las potencias de a recorren residuos módulo p. Si p es primo y a no es múltiplo de p, Fermat garantiza que en el exponente p−1 el resultado es 1.",
+    "tryIt": "Elige p y a, avanza potencia por potencia y observa dónde cae cada residuo."
+  },
+  "FrobeniusNormVisualizer": {
+    "idea": "Vas a ver que la norma de Frobenius mide el tamaño global de una matriz: cada entrada aporta su magnitud al cuadrado.",
+    "tryIt": "Edita A y observa cómo cada entrada contribuye a la suma total antes de aplicar la raíz cuadrada."
+  },
+  "GeneratorMatrixVisualizer": {
+    "idea": "Vas a ver cómo la matriz generadora convierte un mensaje de k símbolos en una palabra código de n símbolos.",
+    "tryIt": "Cambia los bits del mensaje y observa cómo cada 1 activa una fila de G. La suma de las filas seleccionadas produce la palabra código."
+  },
+  "GramSchmidtViz": {
+    "idea": "Gram–Schmidt convierte vectores en una base ortogonal (mismo span, direcciones a 90°).",
+    "tryIt": "Avanza los pasos: proyecta v₂ sobre u₁, resta el residual y, si u₂ ≠ 0, normaliza."
+  },
+  "HammingDistanceWeightVisualizer": {
+    "idea": "Vas a ver cómo la distancia de Hamming cuenta posición por posición dónde dos palabras son distintas, y cómo el peso cuenta sus símbolos no nulos.",
+    "tryIt": "Cambia los bits de x e y: las diferencias se resaltan y la distancia se actualiza al instante."
+  },
+  "IdempotenceComplementVisualizer": {
+    "idea": "Repetir A no cambia el valor (idempotencia); A con su complemento da siempre 1 u 0.",
+    "tryIt": "Alterna A: ¬A se actualiza al instante y las leyes de complemento no cambian."
+  },
+  "ImageViz": {
+    "idea": "La imagen es el conjunto de todas las salidas posibles: Im(A) = {Ax : x ∈ ℝ²} = span{Ae₁, Ae₂}.",
+    "tryIt": "Cambia de modo: un punto, muchos puntos o toda la imagen. Arrastra Ae₁/Ae₂ para editar columnas."
+  },
+  "InducedMatrixNormVisualizer": {
+    "idea": "Vas a ver que una norma matricial inducida mide el mayor estiramiento que A puede producir sobre un vector.",
+    "tryIt": "Mueve x sobre la bola unitaria y observa cómo cambia ‖Ax‖_p. Busca la dirección donde el estiramiento es máximo."
+  },
+  "InverseTransformViz": {
+    "idea": "Vas a ver que A empuja la figura y, si es invertible, A⁻¹ la recupera.",
+    "tryIt": "Pulsa Aplicar A y luego Deshacer con A⁻¹. Prueba también un preset singular."
+  },
+  "KernelViz": {
+    "idea": "El núcleo son los vectores del dominio que A manda al cero: ker(A) = {x : Ax = 0}.",
+    "tryIt": "Mueve x hasta que Ax ≈ 0, o cambia a «Ver núcleo completo» para ver el subespacio entero."
+  },
+  "LUDecompositionViz": {
+    "idea": "U es el resultado de la eliminación gaussiana; L almacena los multiplicadores mᵢₖ bajo la diagonal (diag L = 1).",
+    "tryIt": "En Eliminación: Paso k/N (pivote → eliminar → … → listo). Usa Siguiente o el reproductor. Cambia b en Resolver sin refactorizar."
+  },
+  "LeastSquaresViz": {
+    "idea": "Vas a ver que todos los candidatos Ax están restringidos a Col(A), y que mínimos cuadrados elige el más cercano a b.",
+    "tryIt": "Mueve x y observa el error. El mínimo aparece cuando b−Ax es perpendicular al espacio columna."
+  },
+  "LinearCodeRateVisualizer": {
+    "idea": "Vas a ver qué fracción de una palabra codificada corresponde a información independiente.",
+    "tryIt": "Cambia n y k: observa cómo se reparte la palabra entre k símbolos de información y n−k símbolos de redundancia."
+  },
+  "LinearCodeVisualizer": {
+    "idea": "Vas a ver por qué un código lineal es un subespacio: contiene el vector cero y permanece cerrado al sumar palabras y multiplicarlas por escalares.",
+    "tryIt": "Selecciona dos palabras del código y súmalas. El resultado seguirá perteneciendo a C."
+  },
+  "LinearityViz": {
+    "idea": "Vas a ver que una transformación lineal lleva dos caminos al mismo resultado: transformar y luego combinar, o combinar y luego transformar.",
+    "tryIt": "Arrastra u y v. Compara A(u+v) con Au+Av. Prueba λ negativo o 0. Activa la traslación como contraejemplo."
+  },
+  "LowRankApproxViz": {
+    "idea": "Se truncan las componentes singulares pequeñas: A_k = Σ_{i≤k} σ_i u_i v_iᵀ conserva la energía dominante y descarta el resto.",
+    "tryIt": "Mueve k y observa barras, A_k y el residual. En Compresión compara almacenamiento mn vs k(m+n+1)."
+  },
+  "MatrixMapViz": {
+    "idea": "Vas a ver que una matriz A empuja cada punto del plano: x → Ax.",
+    "tryIt": "Cambia el preset o arrastra x. Compara la cuadrícula original (tenue) con la transformada."
+  },
+  "MatrixPowerDiagViz": {
+    "idea": "Diagonaliza una vez; potencia la diagonal. Aⁿ = P Dⁿ P⁻¹ — no hace falta multiplicar A · A · … n veces.",
+    "tryIt": "Sube n con crecimiento/decadencia: una dirección CRECE y la otra DECAE."
+  },
+  "MinimumDistanceVisualizer": {
+    "idea": "Vas a ver cómo la separación mínima entre palabras código determina cuántos errores podemos detectar y corregir con garantía.",
+    "tryIt": "Cambia d_min y observa cómo cambian el número de errores detectables y el radio de corrección."
+  },
+  "ModularCongruenceVisualizer": {
+    "idea": "Vas a ver que dos enteros son congruentes módulo m cuando, al reducirlos, caen en el mismo residuo.",
+    "tryIt": "Cambia a y b: si ambos llegan al mismo punto del reloj, entonces a ≡ b (mod m)."
+  },
+  "ModularInverseVisualizer": {
+    "idea": "Vas a buscar el residuo que, al multiplicarse por a, produce 1 módulo m. Ese residuo es el inverso modular de a.",
+    "tryIt": "Cambia el candidato y observa cuándo a·x mod m llega exactamente a 1."
+  },
+  "ModularOperationsVisualizer": {
+    "idea": "Vas a ver que operar módulo m significa hacer la operación y quedarte con el residuo al dividir entre m.",
+    "tryIt": "Cambia a, b y m y observa cómo la suma o el producto vuelven al reloj de residuos 0,…,m−1."
+  },
+  "NormalEquationsViz": {
+    "idea": "Las ecuaciones normales aparecen porque, en la mejor aproximación, el error es perpendicular a todas las columnas de A.",
+    "tryIt": "Proyecta b o prueba otra x: solo en el óptimo Aᵀr = 0 y se cumple AᵀA x̂ = Aᵀb."
+  },
+  "OrthogonalMatrixViz": {
+    "idea": "Una matriz ortogonal rota o refleja sin deformar: preserva longitudes y ángulos.",
+    "tryIt": "Gira θ o elige una reflexión. Arrastra v: ∥v∥ = ∥Qv∥ y el círculo unitario sigue siendo círculo."
+  },
+  "OrthogonalProjectionViz": {
+    "idea": "La proyección ortogonal es la sombra de u sobre la dirección de v: proj_v(u) = ((u·v)/(v·v)) · v.",
+    "tryIt": "Arrastra u (teal) y v (verde). El punto naranja P es la proyección sobre la recta span(v); el segmento discontinuo es el residuo r ⊥ v."
+  },
+  "OrthogonalityViz": {
+    "idea": "Dos vectores son perpendiculares (ortogonales) si y solo si su producto punto es cero: u⊥v ⇔ u·v=0.",
+    "tryIt": "Arrastra u y v hasta que el ángulo sea recto. Observa que u·v llega a 0 exactamente entonces — no antes."
+  },
+  "ParityCheckMatrixVisualizer": {
+    "idea": "Vas a ver cómo cada fila de H define una comprobación de paridad. Una palabra código es válida cuando todas dan cero.",
+    "tryIt": "Cambia los bits de la palabra y observa qué comprobaciones se cumplen, cuáles fallan y cómo cambia el síndrome."
+  },
+  "PrimeFiniteFieldVisualizer": {
+    "idea": "Vas a explorar cómo se comportan la suma y el producto dentro de 𝔽ₚ. Como p es primo, cada elemento distinto de 0 tiene inverso multiplicativo.",
+    "tryIt": "Selecciona una fila y una columna para calcular la operación, o busca el 0 y el 1 para descubrir opuestos e inversos."
+  },
+  "ProductOfSumsVisualizer": {
+    "idea": "La forma canónica POS es un producto (AND) de maxterms: cada maxterm corresponde a una fila donde F = 0.",
+    "tryIt": "Marca ceros en la columna F y observa cómo cada maxterm es una suma (A+¬B) que se anula en esa fila."
+  },
+  "PseudoinverseViz": {
+    "idea": "Vas a ver cómo A⁺ encuentra la mejor solución cuando Ax=b no puede resolverse con una inversa ordinaria.",
+    "tryIt": "Cambia el preset o edita A,b y observa cómo Ax̂ es el punto de Col(A) más cercano a b."
+  },
+  "QRDecompositionViz": {
+    "idea": "QR construye una base ortonormal de Col(A); R guarda las coordenadas de las columnas de A en esa base.",
+    "tryIt": "En Construcción: Paso 1/6…6/6 (A → q₁ → proyección → q₂ → R → QR). Usa Siguiente o el reproductor. Prueba el preset Dependientes."
+  },
+  "SVDViz": {
+    "idea": "A = UΣVᵀ separa orientación (Vᵀ), escalado axial (Σ) y reorientación (U).",
+    "tryIt": "Avanza Original → Vᵀ → Σ → U. El círculo permanece círculo tras Vᵀ; Σ lo convierte en elipse; U la gira."
+  },
+  "SpectralDecompositionViz": {
+    "idea": "Si A es real y simétrica (A = Aᵀ), el teorema espectral garantiza una base ortonormal de autovectores: A = QΛQᵀ.",
+    "tryIt": "Prueba presets (definida / indefinida / semidefinida). En Direcciones propias arrastra x; en Diagonalización reproduce Original → Qᵀ → Λ → Q → A."
+  },
+  "SpectralNormVisualizer": {
+    "idea": "Vas a ver que la norma espectral es el mayor estiramiento que A puede producir sobre un vector unitario.",
+    "tryIt": "Mueve x sobre el círculo unitario y compara ‖Ax‖₂. Encuentra la dirección donde el estiramiento es máximo."
+  },
+  "SpectralTheoremViz": {
+    "idea": "Si A es simétrica (A = Aᵀ), existe una base ortonormal de autovectores: A = QΛQᵀ.",
+    "tryIt": "Cambia a, b, d o prueba un preset: el círculo unitario se convierte en elipse alineada con q₁, q₂."
+  },
+  "SubmultiplicativityVisualizer": {
+    "idea": "Vas a ver por qué encadenar dos transformaciones no puede amplificar más que el producto de sus máximos estiramientos.",
+    "tryIt": "Mueve el vector x o modifica A y B. Compara ‖ABx‖ con ‖A‖·‖B‖·‖x‖."
+  },
+  "SumOfProductsVisualizer": {
+    "idea": "La forma canónica SOP es una suma (OR) de minterms: cada minterm corresponde a una fila donde F = 1.",
+    "tryIt": "Edita la columna F con los interruptores 0/1 y observa cómo se generan los minterms ¬A¬B, ¬AB, AB…"
+  },
+  "SyndromeVisualizer": {
+    "idea": "Vas a ver cómo el síndrome resume qué comprobaciones de paridad incumple una palabra recibida.",
+    "tryIt": "Introduce un error en un bit y observa qué columna de H aparece como síndrome. Para un único error, esa información permite localizarlo."
+  },
+  "XorVisualizer": {
+    "idea": "XOR es verdadero cuando A y B son distintos: exactamente una entrada activa.",
+    "tryIt": "Alterna A y B o haz clic en la cuadrícula; observa cuándo ⊕ vale 1 frente a OR."
+  }
+}

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --env-file=../../.env src/server.ts",
     "build": "tsc",
     "lint": "eslint src/ --ignore-pattern 'src/**/*.test.ts' --ignore-pattern 'src/test/**'",
     "typecheck": "tsc --noEmit",
@@ -13,7 +13,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "pnpm --filter @repo/content-parser build && tsx src/seed/import-markdown.ts"
+    "db:seed": "pnpm --filter @repo/content-parser build && tsx --env-file=../../.env src/seed/import-markdown.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.4",
