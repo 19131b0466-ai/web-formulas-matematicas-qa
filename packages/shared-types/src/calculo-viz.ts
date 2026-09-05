@@ -1,10 +1,8 @@
 /**
  * Interactive viz for Cálculo II.
  *
- * Formula-hosted: one defining INT-### (same idea as algebra: the graphic lives on
- * the related formula detail, not on every sibling card).
- * Section-hosted: only when the graphic is a topic overview with no single formula
- * (EDO slope field, integration method guide). Rendered after the formulas.
+ * Formula-hosted: one defining INT-### (same idea as algebra).
+ * Section-hosted: only when there is no single formula (trig-sub table 7.1, method guide 17).
  */
 export type CalculoSectionViz = {
   type: string;
@@ -113,20 +111,28 @@ export const CALCULO_VIZ_BY_FORMULA_ID: Record<string, CalculoSectionViz> = {
     concept: 'Polinomios de Taylor',
   },
   'INT-161': {
+    type: 'direction_field',
+    concept: 'Campo de pendientes de dy/dx = g(x)h(y)',
+  },
+  'INT-162': {
     type: 'separable_ode',
-    concept: 'Ecuaciones de variables separables',
+    concept: 'Separación de variables: dy/h(y) = g(x) dx',
   },
   'INT-163': {
     type: 'population_model',
     concept: 'Crecimiento y decaimiento exponencial',
   },
+  'INT-165': {
+    type: 'population_model',
+    concept: 'Modelo logístico',
+  },
 };
 
 /** Topic overviews with no single defining formula. */
 export const CALCULO_VIZ_BY_SECTION_NUMBER: Record<string, CalculoSectionViz> = {
-  '16': {
-    type: 'direction_field',
-    concept: 'Campo de pendientes de una EDO',
+  '7.1': {
+    type: 'trig_substitution',
+    concept: 'Triángulos de referencia para la sustitución trigonométrica',
   },
   '17': {
     type: 'integration_decision_tree',

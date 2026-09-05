@@ -1,11 +1,12 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { findZeros, fmt } from './calcMath';
 
 type Curve = {
-  label: string;
+  id: 'cycloid' | 'lissajous' | 'ellipse' | 'cardioid';
   x: (t: number) => number;
   y: (t: number) => number;
   dx: (t: number) => number;
@@ -15,10 +16,10 @@ type Curve = {
 };
 
 const CURVES: Curve[] = [
-  { label: 'Cicloide', x: (t) => t - Math.sin(t), y: (t) => 1 - Math.cos(t), dx: (t) => 1 - Math.cos(t), dy: (t) => Math.sin(t), tMin: 0.05, tMax: 4 * Math.PI - 0.05 },
-  { label: 'Lissajous 3:2', x: (t) => Math.sin(3 * t), y: (t) => Math.sin(2 * t), dx: (t) => 3 * Math.cos(3 * t), dy: (t) => 2 * Math.cos(2 * t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Elipse', x: (t) => 3 * Math.cos(t), y: (t) => 2 * Math.sin(t), dx: (t) => -3 * Math.sin(t), dy: (t) => 2 * Math.cos(t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Cardioide', x: (t) => 2 * Math.cos(t) - Math.cos(2 * t), y: (t) => 2 * Math.sin(t) - Math.sin(2 * t), dx: (t) => -2 * Math.sin(t) + 2 * Math.sin(2 * t), dy: (t) => 2 * Math.cos(t) - 2 * Math.cos(2 * t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'cycloid', x: (t) => t - Math.sin(t), y: (t) => 1 - Math.cos(t), dx: (t) => 1 - Math.cos(t), dy: (t) => Math.sin(t), tMin: 0.05, tMax: 4 * Math.PI - 0.05 },
+  { id: 'lissajous', x: (t) => Math.sin(3 * t), y: (t) => Math.sin(2 * t), dx: (t) => 3 * Math.cos(3 * t), dy: (t) => 2 * Math.cos(2 * t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'ellipse', x: (t) => 3 * Math.cos(t), y: (t) => 2 * Math.sin(t), dx: (t) => -3 * Math.sin(t), dy: (t) => 2 * Math.cos(t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'cardioid', x: (t) => 2 * Math.cos(t) - Math.cos(2 * t), y: (t) => 2 * Math.sin(t) - Math.sin(2 * t), dx: (t) => -2 * Math.sin(t) + 2 * Math.sin(2 * t), dy: (t) => 2 * Math.cos(t) - 2 * Math.cos(2 * t), tMin: 0, tMax: 2 * Math.PI },
 ];
 
 const W = 380;
@@ -34,6 +35,7 @@ function mapY(v: number, min: number, max: number, Hh = H) {
 
 export function ParametricTangentViz() {
   const statusId = useId();
+  const tv = useTranslations('vizCalc');
   const [idx, setIdx] = useState(2);
   const [showSpec, setShowSpec] = useState(true);
   const [showDer, setShowDer] = useState(true);
@@ -93,13 +95,11 @@ export function ParametricTangentViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          dy/dx = (dy/dt)/(dx/dt). Si dy/dt = 0 la tangente es horizontal; si dx/dt = 0, vertical.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{tv('paramTangent.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {CURVES.map((opt, i) => (
             <button
-              key={opt.label}
+              key={opt.id}
               type="button"
               onClick={() => handle(i)}
               className={`rounded-md border px-2 py-1 text-xs transition ${
@@ -108,7 +108,7 @@ export function ParametricTangentViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {opt.label}
+              {tv(`paramTangent.${opt.id}`)}
             </button>
           ))}
         </div>
@@ -151,12 +151,12 @@ export function ParametricTangentViz() {
         </div>
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
           t = {fmt(t, 2)} · (x,y)=({fmt(xt)}, {fmt(yt)}) · dx/dt={fmt(dxt)} · dy/dt={fmt(dyt)} · dy/dx=
-          {isFinite(slope) ? fmt(slope) : 'indefinida (vertical)'}
+          {isFinite(slope) ? fmt(slope) : tv('paramTangent.vertical')}
         </div>
         <ControlsStack>
           <SliderRow label={`t = ${fmt(t, 2)}`} value={t} min={c.tMin} max={c.tMax} step={(c.tMax - c.tMin) / 300} onChange={setT} />
-          <ToggleRow label="Mostrar puntos horizontales/verticales" checked={showSpec} onChange={setShowSpec} />
-          <ToggleRow label="Mostrar panel de derivadas" checked={showDer} onChange={setShowDer} />
+          <ToggleRow label={tv('paramTangent.showSpec')} checked={showSpec} onChange={setShowSpec} />
+          <ToggleRow label={tv('paramTangent.showDer')} checked={showDer} onChange={setShowDer} />
         </ControlsStack>
       </div>
     </VizPanel>

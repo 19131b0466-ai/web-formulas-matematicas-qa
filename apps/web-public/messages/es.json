@@ -335,5 +335,77 @@
     "exactI": "I exacta",
     "error": "Error",
     "graphAria": "Suma de Riemann de f en [a, b]"
+  },
+  "vizCalc": {
+    "common": {
+      "play": "Reproducir",
+      "pause": "Pausar"
+    },
+    "polar": {
+      "idea": "En polares, cada punto es (r, θ): distancia al origen y ángulo respecto al eje polar. La rosa de 3 pétalos es r = cos(3θ); la de 4 pétalos es r = cos(2θ).",
+      "note": "La curva completa aparece en gris; el trazo naranja sigue θ. r negativo se dibuja en la dirección opuesta.",
+      "rose3": "Rosa 3 pétalos  r=cos(3θ)",
+      "rose4": "Rosa 4 pétalos  r=cos(2θ)",
+      "cardioid": "Cardioide  r=1+cos(θ)",
+      "lemniscate": "Lemniscata  r²=cos(2θ)",
+      "spiral": "Espiral de Arquímedes  r=θ/π",
+      "circle": "Circunferencia  r=2",
+      "limacon": "Limaçon  r=1+2cos(θ)",
+      "showAxes": "Mostrar ejes cartesianos",
+      "showConv": "Mostrar conversión (r,θ) → (x,y)"
+    },
+    "direction": {
+      "idea": "La fórmula dy/dx = g(x)h(y) da la pendiente de la solución en cada punto. El campo dibuja esa pendiente; <strong>haz clic en el plano</strong> para trazar la curva que pasa por ese punto.",
+      "note": "Puedes trazar hasta 5 soluciones. Prueba <strong>y(1−y)</strong>: todas convergen a y = 1.",
+      "clear": "Limpiar soluciones ({n}/5)",
+      "click": "Haz clic para trazar una solución particular",
+      "colorByMag": "Colorear por magnitud"
+    },
+    "work": {
+      "idea": "Si F es constante, W = F·d. Si varía, W = ∫ F(x) dx: el área bajo la curva es el trabajo acumulado.",
+      "hooke": "Resorte",
+      "quad": "Fuerza x²",
+      "const": "Constante",
+      "tank": "Tanque",
+      "showUnits": "Mostrar unidades (N, J)"
+    },
+    "population": {
+      "idea": "El exponencial crece o decae sin cota. El logístico se frena en la capacidad K: todas las soluciones van a K.",
+      "grow": "Crecimiento",
+      "decay": "Decaimiento",
+      "logistic": "Logístico",
+      "showPhase": "Mostrar diagrama de fase"
+    },
+    "trig": {
+      "idea": "La sustitución trigonométrica elimina el radical con identidades de Pitágoras. El triángulo de referencia sirve para volver a la variable x.",
+      "note": "Elige un radical y mueve θ: los lados y la simplificación se actualizan a la vez.",
+      "subst": "Sustitución",
+      "restriction": "Restricción",
+      "showAngle": "Mostrar ángulo θ",
+      "showAlgebra": "Mostrar simplificación algebraica"
+    },
+    "solids": {
+      "idea": "Al rotar la región bajo f(x) alrededor del <strong>eje x</strong>, cada punto describe un círculo. La pila de discos forma el sólido; su volumen es V = π ∫ [f(x)]² dx.",
+      "note": "Mueve el slider de <strong>ángulo</strong> para ver cómo el sólido se forma por rotación. Aumenta <strong>n discos</strong> para una mejor visualización.",
+      "disk": "Discos (eje x)",
+      "washer": "Arandelas",
+      "axisY": "Eje y (cascarón)",
+      "highlightDisk": "Resaltar disco central"
+    },
+    "arc": {
+      "idea": "La longitud de arco se aproxima con n segmentos de longitud √(Δx²+Δy²). El límite es ∫ √(1+[f′(x)]²) dx.",
+      "showConv": "Mostrar panel de convergencia",
+      "highlightSegs": "Resaltar segmentos al pasar el cursor"
+    },
+    "paramTangent": {
+      "idea": "dy/dx = (dy/dt)/(dx/dt). Si dy/dt = 0 la tangente es horizontal; si dx/dt = 0, vertical.",
+      "showSpec": "Mostrar puntos horizontales/verticales",
+      "showDer": "Mostrar panel de derivadas",
+      "vertical": "indefinida (vertical)",
+      "cycloid": "Cicloide",
+      "lissajous": "Lissajous 3:2",
+      "ellipse": "Elipse",
+      "cardioid": "Cardioide"
+    }
   }
 }

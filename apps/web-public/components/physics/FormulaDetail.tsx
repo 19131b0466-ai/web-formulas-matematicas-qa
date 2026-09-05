@@ -114,7 +114,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         {calcViz ? (
           <section className="animate-rise" style={{ animationDelay: '90ms' }}>
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
-            <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
+            <CalculoVisualization type={calcViz.type} concept={calcViz.concept} formulaId={formulaId} />
           </section>
         ) : content.visual && content.formulaId ? (
           <FormulaVisualization

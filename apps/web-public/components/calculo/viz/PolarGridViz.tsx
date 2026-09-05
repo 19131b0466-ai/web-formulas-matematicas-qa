@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
 type PolarCurve = {
-  label: string;
+  id: 'rose3' | 'rose4' | 'cardioid' | 'lemniscate' | 'spiral' | 'circle' | 'limacon';
   r: (th: number) => number;
   tMin: number;
   tMax: number;
@@ -13,11 +14,11 @@ type PolarCurve = {
 };
 
 const CURVES: PolarCurve[] = [
-  { label: 'Rosa 3 pétalos', r: (th) => Math.cos(3 * th), tMin: 0, tMax: Math.PI, rMax: 1.2 },
-  { label: 'Rosa 4 pétalos', r: (th) => Math.cos(2 * th), tMin: 0, tMax: 2 * Math.PI, rMax: 1.2 },
-  { label: 'Cardioide', r: (th) => 1 + Math.cos(th), tMin: 0, tMax: 2 * Math.PI, rMax: 2.4 },
+  { id: 'rose3', r: (th) => Math.cos(3 * th), tMin: 0, tMax: Math.PI, rMax: 1.2 },
+  { id: 'rose4', r: (th) => Math.cos(2 * th), tMin: 0, tMax: 2 * Math.PI, rMax: 1.2 },
+  { id: 'cardioid', r: (th) => 1 + Math.cos(th), tMin: 0, tMax: 2 * Math.PI, rMax: 2.4 },
   {
-    label: 'Lemniscata',
+    id: 'lemniscate',
     r: (th) => {
       const c = Math.cos(2 * th);
       return c >= 0 ? Math.sqrt(c) : NaN;
@@ -26,9 +27,9 @@ const CURVES: PolarCurve[] = [
     tMax: (5 * Math.PI) / 4,
     rMax: 1.2,
   },
-  { label: 'Espiral de Arquímedes', r: (th) => th / Math.PI, tMin: 0, tMax: 4 * Math.PI, rMax: 4.2 },
-  { label: 'Circunferencia', r: () => 2, tMin: 0, tMax: 2 * Math.PI, rMax: 2.6 },
-  { label: 'Limaçon', r: (th) => 1 + 2 * Math.cos(th), tMin: 0, tMax: 2 * Math.PI, rMax: 3.4 },
+  { id: 'spiral', r: (th) => th / Math.PI, tMin: 0, tMax: 4 * Math.PI, rMax: 4.2 },
+  { id: 'circle', r: () => 2, tMin: 0, tMax: 2 * Math.PI, rMax: 2.6 },
+  { id: 'limacon', r: (th) => 1 + 2 * Math.cos(th), tMin: 0, tMax: 2 * Math.PI, rMax: 3.4 },
 ];
 
 const W = 480;
@@ -41,6 +42,23 @@ function polarToCart(r: number, th: number) {
 }
 function toSvg(x: number, y: number) {
   return { sx: CX + x * SCALE, sy: CY - y * SCALE };
+}
+
+function polarPath(curve: PolarCurve, thEnd: number): string {
+  const pts: string[] = [];
+  let on = false;
+  for (let th = curve.tMin; th <= thEnd + 1e-9; th += 0.008) {
+    const r = curve.r(th);
+    if (!isFinite(r)) {
+      on = false;
+      continue;
+    }
+    const { x, y } = polarToCart(r, th);
+    const p = toSvg(x, y);
+    pts.push(`${on ? 'L' : 'M'}${p.sx},${p.sy}`);
+    on = true;
+  }
+  return pts.join(' ');
 }
 
 const RAYS = [0, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, (2 * Math.PI) / 3, (3 * Math.PI) / 4, (5 * Math.PI) / 6, Math.PI];
@@ -62,8 +80,9 @@ function angleLabel(th: number): string {
 
 export function PolarGridViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
-  const [theta, setTheta] = useState(0);
+  const [theta, setTheta] = useState(CURVES[0]!.tMax);
   const [playing, setPlaying] = useState(false);
   const [showAxes, setShowAxes] = useState(true);
   const [showConv, setShowConv] = useState(true);
@@ -71,9 +90,9 @@ export function PolarGridViz() {
   const curve = CURVES[idx]!;
 
   useEffect(() => {
-    setTheta(curve.tMin);
+    setTheta(curve.tMax);
     setPlaying(false);
-  }, [idx, curve.tMin]);
+  }, [idx, curve.tMax]);
 
   useEffect(() => {
     if (!playing) return;
@@ -91,22 +110,8 @@ export function PolarGridViz() {
     };
   }, [playing, curve.tMax, curve.tMin]);
 
-  const path = useMemo(() => {
-    const pts: string[] = [];
-    let on = false;
-    for (let th = curve.tMin; th <= theta + 1e-9; th += 0.01) {
-      const r = curve.r(th);
-      if (!isFinite(r)) {
-        on = false;
-        continue;
-      }
-      const { x, y } = polarToCart(r, th);
-      const p = toSvg(x, y);
-      pts.push(`${on ? 'L' : 'M'}${p.sx},${p.sy}`);
-      on = true;
-    }
-    return pts.join(' ');
-  }, [curve, theta]);
+  const fullPath = useMemo(() => polarPath(curve, curve.tMax), [curve]);
+  const path = useMemo(() => polarPath(curve, theta), [curve, theta]);
 
   const rNow = curve.r(theta);
   const cart = isFinite(rNow) ? polarToCart(rNow, theta) : { x: NaN, y: NaN };
@@ -118,18 +123,14 @@ export function PolarGridViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            En polares, cada punto es (r, θ): distancia al origen y ángulo respecto al eje polar. Rosas y cardioides tienen ecuaciones muy simples.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            En r = cos(3θ) basta barrer [0, π] para los 3 pétalos (r negativo dibuja en la dirección opuesta).
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('polar.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('polar.note')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
           {CURVES.map((c, i) => (
             <button
-              key={c.label}
+              key={c.id}
               type="button"
               onClick={() => setIdx(i)}
               className={`rounded-md border px-2 py-1 text-xs transition ${
@@ -138,7 +139,7 @@ export function PolarGridViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {c.label}
+              {t(`polar.${c.id}`)}
             </button>
           ))}
         </div>
@@ -173,6 +174,7 @@ export function PolarGridViz() {
                 </text>
               </>
             ) : null}
+            <path d={fullPath} fill="none" stroke="var(--accent-strong)" strokeWidth={2.2} opacity={0.28} />
             <path d={path} fill="none" stroke="var(--accent-strong)" strokeWidth={2.2} />
             {isFinite(rNow) ? (
               <>
@@ -208,7 +210,7 @@ export function PolarGridViz() {
 
         <ButtonRow>
           <VizButton active={playing} onClick={() => setPlaying((v) => !v)}>
-            {playing ? 'Pausar' : 'Reproducir'}
+            {playing ? t('common.pause') : t('common.play')}
           </VizButton>
         </ButtonRow>
 
@@ -224,8 +226,8 @@ export function PolarGridViz() {
               setTheta(v);
             }}
           />
-          <ToggleRow label="Mostrar ejes cartesianos" checked={showAxes} onChange={setShowAxes} />
-          <ToggleRow label="Mostrar conversión (r,θ) → (x,y)" checked={showConv} onChange={setShowConv} />
+          <ToggleRow label={t('polar.showAxes')} checked={showAxes} onChange={setShowAxes} />
+          <ToggleRow label={t('polar.showConv')} checked={showConv} onChange={setShowConv} />
         </ControlsStack>
       </div>
     </VizPanel>

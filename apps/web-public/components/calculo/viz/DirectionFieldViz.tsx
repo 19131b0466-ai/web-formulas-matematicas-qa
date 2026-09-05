@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useId, useMemo, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { solveODE } from './calcMath';
 
@@ -48,6 +49,7 @@ type Solution = { x0: number; y0: number; color: string };
 
 export function DirectionFieldViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const svgRef = useRef<SVGSVGElement>(null);
 
   const [odeIdx, setOdeIdx]     = useState(0);
@@ -174,10 +176,10 @@ export function DirectionFieldViz() {
         {/* Header */}
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            El campo de pendientes muestra la dirección de la solución en cada punto (x, y). <strong>Haz clic en el plano</strong> para trazar la solución particular que pasa por ese punto.
+            {t.rich('direction.idea', { strong: (chunks) => <strong>{chunks}</strong> })}
           </p>
           <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Puedes trazar hasta 5 soluciones distintas. Prueba el <strong>modelo logístico y(1−y)</strong>: todas las soluciones convergen a y = 1.
+            {t.rich('direction.note', { strong: (chunks) => <strong>{chunks}</strong> })}
           </p>
         </div>
 
@@ -200,7 +202,7 @@ export function DirectionFieldViz() {
         {/* Action buttons */}
         <ButtonRow>
           <VizButton onClick={clearSolutions}>
-            Limpiar soluciones ({solutions.length}/5)
+            {t('direction.clear', { n: solutions.length })}
           </VizButton>
         </ButtonRow>
 
@@ -276,7 +278,7 @@ export function DirectionFieldViz() {
             {/* Click instruction if no solutions */}
             {solutions.length === 0 && (
               <text x={W / 2} y={H - M.b - 8} textAnchor="middle" fontSize={10} opacity={0.4} fill="currentColor">
-                Haz clic para trazar una solución particular
+                {t('direction.click')}
               </text>
             )}
           </svg>
@@ -303,7 +305,7 @@ export function DirectionFieldViz() {
           <SliderRow label="Longitud de flecha"
             value={arrowLen} min={0.2} max={0.9} step={0.05}
             onChange={v => setArrowLen(v)} />
-          <ToggleRow label="Colorear por magnitud" checked={colorByMag} onChange={setColorByMag} />
+          <ToggleRow label={t('direction.colorByMag')} checked={colorByMag} onChange={setColorByMag} />
         </ControlsStack>
       </div>
     </VizPanel>

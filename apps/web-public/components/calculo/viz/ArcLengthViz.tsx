@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { derivative, fmt, integrate, safeEval } from './calcMath';
 
@@ -48,6 +49,7 @@ function polylineLength(f: (x: number) => number, a: number, b: number, n: numbe
 
 export function ArcLengthViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [n, setN] = useState(6);
   const [showConv, setShowConv] = useState(true);
@@ -125,9 +127,7 @@ export function ArcLengthViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            La longitud de arco se aproxima con n segmentos de longitud √(Δx²+Δy²). El límite es ∫ √(1+[f′(x)]²) dx.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('arc.idea')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -151,19 +151,39 @@ export function ArcLengthViz() {
           <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto h-auto w-full max-w-2xl" role="img" aria-labelledby={statusId}>
             <path d={`${curve} L${toX(b, a, b, W, M)},${y0} L${toX(a, a, b, W, M)},${y0} Z`} fill="var(--accent-strong)" fillOpacity={0.08} />
             <path d={curve} fill="none" stroke="#3b82f6" strokeWidth={2.2} />
-            {segs.map((s, i) => (
-              <g key={i} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} style={{ cursor: 'pointer' }}>
-                <line
-                  x1={toX(s.x0, a, b, W, M)}
-                  y1={toY(s.y0, yMin, yMax, H, M)}
-                  x2={toX(s.x1, a, b, W, M)}
-                  y2={toY(s.y1, yMin, yMax, H, M)}
-                  stroke="orange"
-                  strokeWidth={highlight && hover === i ? 3.5 : 2}
-                  opacity={0.95}
-                />
-              </g>
-            ))}
+            {segs.map((s, i) => {
+              const x1 = toX(s.x0, a, b, W, M);
+              const y1 = toY(s.y0, yMin, yMax, H, M);
+              const x2 = toX(s.x1, a, b, W, M);
+              const y2 = toY(s.y1, yMin, yMax, H, M);
+              const active = hover === i;
+              const dim = highlight && hover !== null && !active;
+              return (
+                <g key={i}>
+                  <line
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="transparent"
+                    strokeWidth={18}
+                    style={{ cursor: 'pointer' }}
+                    onMouseEnter={() => setHover(i)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                  <line
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="orange"
+                    strokeWidth={highlight && active ? 4 : 2}
+                    opacity={dim ? 0.25 : 0.95}
+                    pointerEvents="none"
+                  />
+                </g>
+              );
+            })}
             {hover !== null && segs[hover] ? (
               <text
                 x={toX((segs[hover].x0 + segs[hover].x1) / 2, a, b, W, M)}
@@ -213,8 +233,8 @@ export function ArcLengthViz() {
           <SliderRow label={`n = ${n}`} value={n} min={2} max={50} step={1} onChange={(v) => setN(Math.round(v))} />
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={fn.label === 'ln(x)' ? 0.5 : -3} max={b - 0.5} step={0.5} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.5} max={6} step={0.5} onChange={setB} />
-          <ToggleRow label="Mostrar panel de convergencia" checked={showConv} onChange={setShowConv} />
-          <ToggleRow label="Resaltar segmentos al pasar el cursor" checked={highlight} onChange={setHighlight} />
+          <ToggleRow label={t('arc.showConv')} checked={showConv} onChange={setShowConv} />
+          <ToggleRow label={t('arc.highlightSegs')} checked={highlight} onChange={setHighlight} />
         </ControlsStack>
       </div>
     </VizPanel>

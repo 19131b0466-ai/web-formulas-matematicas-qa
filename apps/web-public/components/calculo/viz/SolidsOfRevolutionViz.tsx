@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -51,6 +52,7 @@ type Mode = 'disk' | 'washer' | 'axisY';
 
 export function SolidsOfRevolutionViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [fnIdx, setFnIdx]     = useState(0);
   const [mode, setMode]       = useState<Mode>('disk');
   const [angle, setAngle]     = useState(360);     // degrees of rotation shown
@@ -194,10 +196,10 @@ export function SolidsOfRevolutionViz() {
         {/* Header */}
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            Al rotar la región bajo f(x) alrededor del <strong>eje x</strong>, cada punto describe un círculo. La pila de discos forma el sólido; su volumen es V = π ∫<sub>a</sub><sup>b</sup> [f(x)]² dx.
+            {t.rich('solids.idea', { strong: (chunks) => <strong>{chunks}</strong> })}
           </p>
           <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Mueve el slider de <strong>ángulo</strong> para ver cómo el sólido se forma por rotación. Aumenta <strong>n discos</strong> para una mejor visualización.
+            {t.rich('solids.note', { strong: (chunks) => <strong>{chunks}</strong> })}
           </p>
         </div>
 
@@ -218,9 +220,9 @@ export function SolidsOfRevolutionViz() {
 
         {/* Mode buttons */}
         <ButtonRow>
-          <VizButton active={mode === 'disk'} onClick={() => setMode('disk')}>Discos (eje x)</VizButton>
-          <VizButton active={mode === 'washer'} onClick={() => setMode('washer')}>Arandelas</VizButton>
-          <VizButton active={mode === 'axisY'} onClick={() => setMode('axisY')}>Eje y (cascarón)</VizButton>
+          <VizButton active={mode === 'disk'} onClick={() => setMode('disk')}>{t('solids.disk')}</VizButton>
+          <VizButton active={mode === 'washer'} onClick={() => setMode('washer')}>{t('solids.washer')}</VizButton>
+          <VizButton active={mode === 'axisY'} onClick={() => setMode('axisY')}>{t('solids.axisY')}</VizButton>
         </ButtonRow>
 
         {/* SVG */}
@@ -307,7 +309,7 @@ export function SolidsOfRevolutionViz() {
             onChange={v => setA(v)} />
           <SliderRow label={`b = ${fmt(b,2)}`} value={b} min={a + 0.5} max={5} step={0.5}
             onChange={v => setB(v)} />
-          <ToggleRow label="Resaltar disco central" checked={showCut} onChange={setShowCut} />
+          <ToggleRow label={t('solids.highlightDisk')} checked={showCut} onChange={setShowCut} />
         </ControlsStack>
       </div>
     </VizPanel>

@@ -283,7 +283,7 @@ describe('parseFormulasMarkdown (full document)', () => {
       s.blocks.filter((b) => b.blockType === 'formula' && Boolean((b.content as { visual?: unknown }).visual)),
     );
     expect(withViz.map((b) => b.formulaCode)).toEqual(
-      expect.arrayContaining(['INT-014', 'INT-022', 'INT-030', 'INT-037']),
+      expect.arrayContaining(['INT-014', 'INT-022', 'INT-096', 'INT-071', 'INT-161', 'INT-163', 'INT-165']),
     );
     expect(withViz.length).toBe(Object.keys(CALCULO_VIZ_BY_FORMULA_ID).length);
   });

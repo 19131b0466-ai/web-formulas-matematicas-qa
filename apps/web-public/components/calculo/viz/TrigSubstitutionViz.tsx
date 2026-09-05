@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
@@ -17,6 +18,7 @@ const H = 300;
 
 export function TrigSubstitutionViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [caseId, setCaseId] = useState<CaseId>('asin');
   const [a, setA] = useState(2);
   const [theta, setTheta] = useState(0.7);
@@ -94,12 +96,8 @@ export function TrigSubstitutionViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            La sustitución trigonométrica elimina el radical con identidades de Pitágoras. El triángulo de referencia sirve para volver a la variable x.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Elige un radical y mueve θ: los lados y la simplificación se actualizan a la vez.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('trig.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('trig.note')}</p>
         </div>
 
         <ButtonRow>
@@ -164,10 +162,10 @@ export function TrigSubstitutionViz() {
           className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs"
           aria-live="polite"
         >
-          <p>Sustitución: {model.subst}</p>
+          <p>{t('trig.subst')}: {model.subst}</p>
           <p>dx = {model.dx}</p>
           <p>√radical = {model.radical}</p>
-          <p className="text-[var(--fg-muted)]">Restricción: {model.restriction}</p>
+          <p className="text-[var(--fg-muted)]">{t('trig.restriction')}: {model.restriction}</p>
           <p className="mt-1">
             a = {fmt(a, 2)} · θ = {fmt(th, 2)} rad ({fmt(thetaDeg, 1)}°) · x = {fmt(model.x)}
           </p>
@@ -189,8 +187,8 @@ export function TrigSubstitutionViz() {
             step={0.02}
             onChange={setTheta}
           />
-          <ToggleRow label="Mostrar ángulo θ" checked={showAngle} onChange={setShowAngle} />
-          <ToggleRow label="Mostrar simplificación algebraica" checked={showAlgebra} onChange={setShowAlgebra} />
+          <ToggleRow label={t('trig.showAngle')} checked={showAngle} onChange={setShowAngle} />
+          <ToggleRow label={t('trig.showAlgebra')} checked={showAlgebra} onChange={setShowAlgebra} />
         </ControlsStack>
       </div>
     </VizPanel>

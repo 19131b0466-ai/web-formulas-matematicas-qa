@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate } from './calcMath';
 
@@ -15,6 +16,7 @@ const MODES: { id: Mode; label: string }[] = [
 
 export function WorkIntegralViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [mode, setMode] = useState<Mode>('hooke');
   const [k, setK] = useState(4);
   const [b, setB] = useState(3);
@@ -60,9 +62,7 @@ export function WorkIntegralViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          Si F es constante, W = F·d. Si varía, W = ∫ F(x) dx: el área bajo la curva es el trabajo acumulado.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('work.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {MODES.map((m) => (
             <button
@@ -75,7 +75,7 @@ export function WorkIntegralViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {m.label}
+              {t(`work.${m.id}`)}
             </button>
           ))}
         </div>
@@ -116,7 +116,7 @@ export function WorkIntegralViz() {
           <SliderRow label={`x = ${fmt(xb, 2)}`} value={xb} min={0.1} max={b} step={0.1} onChange={setX} />
           <SliderRow label={`b = ${fmt(b, 1)}`} value={b} min={1} max={6} step={0.5} onChange={setB} />
           <SliderRow label={`k = ${fmt(k, 1)}`} value={k} min={1} max={10} step={0.5} onChange={setK} />
-          <ToggleRow label="Mostrar unidades (N, J)" checked={units} onChange={setUnits} />
+          <ToggleRow label={t('work.showUnits')} checked={units} onChange={setUnits} />
         </ControlsStack>
       </div>
     </VizPanel>

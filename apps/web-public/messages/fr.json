@@ -335,5 +335,77 @@
     "exactI": "I exacte",
     "error": "Erreur",
     "graphAria": "Somme de Riemann de f sur [a, b]"
+  },
+  "vizCalc": {
+    "common": {
+      "play": "Lire",
+      "pause": "Pause"
+    },
+    "polar": {
+      "idea": "In polar coordinates each point is (r, θ): distance from the origin and angle from the polar axis. The 3-petal rose is r = cos(3θ); the 4-petal rose is r = cos(2θ).",
+      "note": "The full curve is shown in grey; the orange stroke follows θ. Negative r is drawn in the opposite direction.",
+      "rose3": "Rose à 3 pétales  r=cos(3θ)",
+      "rose4": "Rose à 4 pétales  r=cos(2θ)",
+      "cardioid": "Cardioid  r=1+cos(θ)",
+      "lemniscate": "Lemniscate  r²=cos(2θ)",
+      "spiral": "Archimedean spiral  r=θ/π",
+      "circle": "Circle  r=2",
+      "limacon": "Limaçon  r=1+2cos(θ)",
+      "showAxes": "Show Cartesian axes",
+      "showConv": "Show conversion (r,θ) → (x,y)"
+    },
+    "direction": {
+      "idea": "The formula dy/dx = g(x)h(y) is the slope of the solution at each point. The field draws that slope; <strong>click the plane</strong> to trace the curve through that point.",
+      "note": "You can trace up to 5 solutions. Try <strong>y(1−y)</strong>: they all converge to y = 1.",
+      "clear": "Effacer les solutions ({n}/5)",
+      "click": "Cliquez pour tracer une solution particulière",
+      "colorByMag": "Color by magnitude"
+    },
+    "work": {
+      "idea": "If F is constant, W = F·d. If it varies, W = ∫ F(x) dx: the area under the curve is the accumulated work.",
+      "hooke": "Ressort",
+      "quad": "Force x²",
+      "const": "Constant",
+      "tank": "Réservoir",
+      "showUnits": "Show units (N, J)"
+    },
+    "population": {
+      "idea": "The exponential grows or decays without bound. The logistic model levels off at capacity K: every solution tends to K.",
+      "grow": "Croissance",
+      "decay": "Décroissance",
+      "logistic": "Logistique",
+      "showPhase": "Show phase diagram"
+    },
+    "trig": {
+      "idea": "Trigonometric substitution removes the radical with Pythagorean identities. The reference triangle converts back to x.",
+      "note": "Pick a radical and move θ: the sides and the simplification update together.",
+      "subst": "Substitution",
+      "restriction": "Restriction",
+      "showAngle": "Show angle θ",
+      "showAlgebra": "Show algebraic simplification"
+    },
+    "solids": {
+      "idea": "Rotating the region under f(x) about the <strong>x-axis</strong>, each point traces a circle. The stack of disks is the solid; its volume is V = π ∫ [f(x)]² dx.",
+      "note": "Move the <strong>angle</strong> slider to see the solid form by rotation. Increase <strong>n disks</strong> for a finer view.",
+      "disk": "Disques (axe x)",
+      "washer": "Rondelles",
+      "axisY": "y-axis (shell)",
+      "highlightDisk": "Highlight center disk"
+    },
+    "arc": {
+      "idea": "Arc length is approximated by n segments of length √(Δx²+Δy²). The limit is ∫ √(1+[f′(x)]²) dx.",
+      "showConv": "Show convergence panel",
+      "highlightSegs": "Surligner les segments au survol"
+    },
+    "paramTangent": {
+      "idea": "dy/dx = (dy/dt)/(dx/dt). If dy/dt = 0 the tangent is horizontal; if dx/dt = 0, vertical.",
+      "showSpec": "Show horizontal/vertical points",
+      "showDer": "Show derivative panel",
+      "vertical": "undefined (vertical)",
+      "cycloid": "Cycloïde",
+      "lissajous": "Lissajous 3:2",
+      "ellipse": "Ellipse",
+      "cardioid": "Cardioid"
+    }
   }
 }

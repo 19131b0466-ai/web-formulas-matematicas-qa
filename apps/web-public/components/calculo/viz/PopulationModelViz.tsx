@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
@@ -11,9 +12,10 @@ const HS = 240;
 const HP = 180;
 const M = { l: 52, r: 16, t: 12, b: 32 };
 
-export function PopulationModelViz() {
+export function PopulationModelViz({ initialMode = 'logistic' }: { initialMode?: Mode }) {
   const statusId = useId();
-  const [mode, setMode] = useState<Mode>('logistic');
+  const t = useTranslations('vizCalc');
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [K, setK] = useState(4);
   const [y0, setY0] = useState(0.6);
   const [r, setR] = useState(0.8);
@@ -60,18 +62,16 @@ export function PopulationModelViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          El exponencial crece o decae sin cota. El logístico se frena en la capacidad K: todas las soluciones van a K.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('population.idea')}</p>
         <ButtonRow>
           <VizButton active={mode === 'grow'} onClick={() => setMode('grow')}>
-            Crecimiento
+            {t('population.grow')}
           </VizButton>
           <VizButton active={mode === 'decay'} onClick={() => setMode('decay')}>
-            Decaimiento
+            {t('population.decay')}
           </VizButton>
           <VizButton active={mode === 'logistic'} onClick={() => setMode('logistic')}>
-            Logístico
+            {t('population.logistic')}
           </VizButton>
         </ButtonRow>
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
@@ -105,7 +105,7 @@ export function PopulationModelViz() {
           {mode === 'logistic' ? <SliderRow label={`K = ${fmt(K, 1)}`} value={K} min={0.5} max={10} step={0.5} onChange={setK} /> : null}
           <SliderRow label={`T = ${fmt(T, 0)}`} value={T} min={1} max={20} step={1} onChange={setT} />
           <SliderRow label={`t₀ = ${fmt(t0, 1)}`} value={t0} min={0} max={T} step={0.1} onChange={setT0} />
-          <ToggleRow label="Mostrar diagrama de fase" checked={phase} onChange={setPhase} />
+          <ToggleRow label={t('population.showPhase')} checked={phase} onChange={setPhase} />
         </ControlsStack>
       </div>
     </VizPanel>

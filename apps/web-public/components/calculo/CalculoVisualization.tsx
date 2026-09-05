@@ -40,6 +40,7 @@ export type CalcVizType =
 type Props = {
   type: CalcVizType | string;
   concept?: string;
+  formulaId?: string;
 };
 
 function viz(loader: () => Promise<{ default: ComponentType }>) {
@@ -133,11 +134,16 @@ const RadiusOfConvergenceViz = viz(() =>
 const SeparableODEViz = viz(() =>
   import('./viz/SeparableODEViz').then((m) => ({ default: m.SeparableODEViz })),
 );
-const PopulationModelViz = viz(() =>
-  import('./viz/PopulationModelViz').then((m) => ({ default: m.PopulationModelViz })),
+const PopulationModelViz = dynamic(
+  () => import('./viz/PopulationModelViz').then((m) => ({ default: m.PopulationModelViz })),
+  {
+    loading: () => (
+      <div className="min-h-[280px] rounded-xl border border-[var(--border)] bg-[var(--formula-bg)]" />
+    ),
+  },
 );
 
-export function CalculoVisualization({ type, concept }: Props) {
+export function CalculoVisualization({ type, concept, formulaId }: Props) {
   const t = useTranslations('seo');
   let body: ReactNode;
 
@@ -224,7 +230,9 @@ export function CalculoVisualization({ type, concept }: Props) {
       body = <SeparableODEViz />;
       break;
     case 'population_model':
-      body = <PopulationModelViz />;
+      body = (
+        <PopulationModelViz initialMode={formulaId === 'INT-163' ? 'grow' : 'logistic'} />
+      );
       break;
     default:
       body = (
