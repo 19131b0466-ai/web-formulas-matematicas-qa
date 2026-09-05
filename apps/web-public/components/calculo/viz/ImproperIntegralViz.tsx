@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -39,18 +40,19 @@ function exactA(mode: Mode, p: number, b: number): number {
   return integrate(f, Math.max(X0, 1.001), b);
 }
 
-function limitInfo(mode: Mode, p: number): { converges: boolean; value: number; label: string } {
+function limitInfo(mode: Mode, p: number, diverge: string): { converges: boolean; value: number; label: string } {
   if (mode === 'p') {
     const converges = p > 1;
-    return { converges, value: converges ? 1 / (p - 1) : Infinity, label: converges ? `1/(p−1) = ${fmt(1 / (p - 1))}` : 'diverge' };
+    return { converges, value: converges ? 1 / (p - 1) : Infinity, label: converges ? `1/(p−1) = ${fmt(1 / (p - 1))}` : diverge };
   }
   if (mode === 'exp') return { converges: true, value: Math.exp(-1), label: 'e⁻¹ ≈ 0.3679' };
   if (mode === 'gauss') return { converges: true, value: 0.5 * Math.exp(-1), label: '½ e⁻¹ ≈ 0.1839' };
-  return { converges: false, value: Infinity, label: 'diverge' };
+  return { converges: false, value: Infinity, label: diverge };
 }
 
 export function ImproperIntegralViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [mode, setMode] = useState<Mode>('p');
   const [p, setP] = useState(2);
   const [b, setB] = useState(8);
@@ -59,7 +61,7 @@ export function ImproperIntegralViz() {
   const playRef = useRef<number | null>(null);
 
   const f = useMemo(() => integrand(mode, p), [mode, p]);
-  const info = limitInfo(mode, p);
+  const info = limitInfo(mode, p, t('common.diverge'));
   const area = exactA(mode, p, b);
   const xMax = Math.max(b, 6);
 
@@ -156,11 +158,9 @@ export function ImproperIntegralViz() {
       <div className="space-y-4">
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            ∫₁^∞ f(x) dx se define como lim<sub>b→∞</sub> ∫₁<sup>b</sup> f. Si el área se estabiliza, <strong>converge</strong>; si crece sin límite, <strong>diverge</strong>.
+            {t.rich('improper.idea', { strong: (c) => <strong>{c}</strong> })}
           </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Para 1/xᵖ: p &gt; 1 converge a 1/(p−1). La curva 1/x se aplasta, pero su área acumulada no para de crecer.
-          </p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('improper.note')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -235,13 +235,13 @@ export function ImproperIntegralViz() {
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
           <p>f(x) = {fnLabel}</p>
           <p>
-            ∫₁<sup>{fmt(b, 1)}</sup> f = {fmt(area)} · límite b→∞: {info.label}
+            ∫₁<sup>{fmt(b, 1)}</sup> f = {fmt(area)} · lim b→∞: {info.label}
           </p>
         </div>
 
         <ButtonRow>
           <VizButton active={playing} onClick={() => setPlaying((v) => !v)}>
-            {playing ? 'Pausar' : 'Animar b → ∞'}
+            {playing ? t('common.pause') : t('improper.animateB')}
           </VizButton>
         </ButtonRow>
 
@@ -250,7 +250,7 @@ export function ImproperIntegralViz() {
           {mode === 'p' ? (
             <SliderRow label={`p = ${fmt(p, 1)}`} value={p} min={0.5} max={3} step={0.1} onChange={setP} />
           ) : null}
-          <ToggleRow label="Mostrar valor límite" checked={showLimit} onChange={setShowLimit} />
+          <ToggleRow label={t('improper.showLimit')} checked={showLimit} onChange={setShowLimit} />
         </ControlsStack>
       </div>
     </VizPanel>

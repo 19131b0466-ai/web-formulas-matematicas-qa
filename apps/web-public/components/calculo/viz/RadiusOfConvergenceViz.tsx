@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, safeEval } from './calcMath';
 
@@ -12,6 +13,7 @@ function fact(n: number) {
 
 type Series = {
   label: string;
+  nameKey?: 'sinTaylor';
   f: (x: number) => number;
   Sn: (x: number, n: number) => number;
   R: number;
@@ -61,7 +63,8 @@ const SERIES: Series[] = [
     xMax: 3,
   },
   {
-    label: 'sen(x) Taylor',
+    label: 'sin(x)',
+    nameKey: 'sinTaylor',
     f: (x) => Math.sin(x),
     Sn: (x, n) => {
       let s = 0;
@@ -97,6 +100,7 @@ const M = { l: 44, r: 16, t: 16, b: 36 };
 
 export function RadiusOfConvergenceViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [n, setN] = useState(6);
   const s = SERIES[idx]!;
@@ -155,9 +159,7 @@ export function RadiusOfConvergenceViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          Una serie de potencias converge en un intervalo de radio R centrado en a. Fuera, las sumas parciales divergen.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('radius.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {SERIES.map((opt, i) => (
             <button
@@ -170,7 +172,7 @@ export function RadiusOfConvergenceViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {opt.label}
+              {opt.nameKey ? t(`radius.${opt.nameKey}`) : opt.label}
             </button>
           ))}
         </div>
@@ -193,17 +195,17 @@ export function RadiusOfConvergenceViz() {
         </div>
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
           <p>
-            {s.label} · a = {fmt(center, 1)} · R = {isFinite(R) ? fmt(R) : '∞'} · intervalo ({isFinite(R) ? `${fmt(left)}, ${fmt(right)}` : 'ℝ'})
+            {s.nameKey ? t(`radius.${s.nameKey}`) : s.label} · a = {fmt(center, 1)} · R = {isFinite(R) ? fmt(R) : '∞'} · {t('radius.interval')} ({isFinite(R) ? `${fmt(left)}, ${fmt(right)}` : 'ℝ'})
           </p>
           <p>
-            x = {fmt(x, 2)}: {inside ? 'converge' : 'diverge'} · Sₙ(x) = {fmt(Snx)} · f(x) = {fmt(fx)}
+            x = {fmt(x, 2)}: {inside ? t('common.converge') : t('common.diverge')} · Sₙ(x) = {fmt(Snx)} · f(x) = {fmt(fx)}
           </p>
         </div>
         <ControlsStack>
           <SliderRow label={`n = ${n}`} value={n} min={1} max={15} step={1} onChange={(v) => setN(Math.round(v))} />
           <SliderRow label={`x = ${fmt(x, 2)}`} value={x} min={s.xMin} max={s.xMax} step={0.05} onChange={setX} />
           {s.label.includes('x−1') ? (
-            <SliderRow label={`centro a = ${fmt(center, 1)}`} value={center} min={0} max={2} step={0.25} onChange={setCenter} />
+            <SliderRow label={`${t('radius.center')} = ${fmt(center, 1)}`} value={center} min={0} max={2} step={0.25} onChange={setCenter} />
           ) : null}
         </ControlsStack>
       </div>

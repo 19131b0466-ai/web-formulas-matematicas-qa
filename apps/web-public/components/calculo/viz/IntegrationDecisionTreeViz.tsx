@@ -1,116 +1,143 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 
 type TreeNode = {
   id: string;
-  question?: string;
-  technique?: string;
   section?: string;
   formula?: string;
+  formulaKey?: 'formTrigint' | 'formNumeric';
   example?: string;
   yes?: string;
   no?: string;
 };
 
+const Q_KEYS: Record<string, 'qRoot' | 'qUsub' | 'qProduct' | 'qTrig' | 'qRadical' | 'qRational'> = {
+  root: 'qRoot',
+  'u-sub': 'qUsub',
+  product: 'qProduct',
+  trig: 'qTrig',
+  radical: 'qRadical',
+  rational: 'qRational',
+};
+
+const TECH_KEYS: Record<
+  string,
+  'techDirect' | 'techSubst' | 'techParts' | 'techTrigint' | 'techTrigsub' | 'techPartial' | 'techNumeric'
+> = {
+  direct: 'techDirect',
+  subst: 'techSubst',
+  parts: 'techParts',
+  trigint: 'techTrigint',
+  trigsub: 'techTrigsub',
+  partial: 'techPartial',
+  numeric: 'techNumeric',
+};
+
 const NODES: Record<string, TreeNode> = {
   root: {
     id: 'root',
-    question: '¿Es inmediata (tabla básica)?',
     yes: 'direct',
     no: 'u-sub',
   },
   direct: {
     id: 'direct',
-    technique: 'Fórmula directa',
     section: '§2.2',
     formula: '∫ xⁿ dx = xⁿ⁺¹/(n+1) + C   (n ≠ −1)',
     example: '∫ eˣ dx,  ∫ cos(x) dx',
   },
   'u-sub': {
     id: 'u-sub',
-    question: '¿Hay u = g(x) con g′(x) visible?',
     yes: 'subst',
     no: 'product',
   },
   subst: {
     id: 'subst',
-    technique: 'Sustitución u',
     section: '§4',
     formula: '∫ f(g(x)) g′(x) dx = ∫ f(u) du',
     example: '∫ x cos(x²) dx',
   },
   product: {
     id: 'product',
-    question: '¿Es un producto de dos tipos distintos?',
     yes: 'parts',
     no: 'trig',
   },
   parts: {
     id: 'parts',
-    technique: 'Integración por partes (LIATE)',
     section: '§5',
     formula: '∫ u dv = uv − ∫ v du',
     example: '∫ x² eˣ dx',
   },
   trig: {
     id: 'trig',
-    question: '¿Contiene potencias de sen/cos?',
     yes: 'trigint',
     no: 'radical',
   },
   trigint: {
     id: 'trigint',
-    technique: 'Integrales trigonométricas',
     section: '§6',
-    formula: 'Identidades de reducción / paridad de exponentes',
+    formulaKey: 'formTrigint',
     example: '∫ sen³(x) cos²(x) dx',
   },
   radical: {
     id: 'radical',
-    question: '¿Contiene √(a²±x²) o √(x²−a²)?',
     yes: 'trigsub',
     no: 'rational',
   },
   trigsub: {
     id: 'trigsub',
-    technique: 'Sustitución trigonométrica',
     section: '§7',
     formula: 'x = a senθ, a tanθ o a secθ',
     example: '∫ √(a² − x²) dx',
   },
+  numeric: {
+    id: 'numeric',
+    section: '§11',
+    formulaKey: 'formNumeric',
+    example: '∫ e^(−x²) dx',
+  },
   rational: {
     id: 'rational',
-    question: '¿Es una fracción polinomial (racional)?',
     yes: 'partial',
     no: 'numeric',
   },
   partial: {
     id: 'partial',
-    technique: 'Fracciones parciales',
     section: '§8',
     formula: 'P(x)/Q(x) = A/(x−r) + …',
     example: '∫ (x+1)/(x²−1) dx',
-  },
-  numeric: {
-    id: 'numeric',
-    technique: 'Numérica / combinación de métodos',
-    section: '§11',
-    formula: 'Trapecio o Simpson si no hay antiderivada elemental',
-    example: '∫ e^(−x²) dx',
   },
 };
 
 const ORDER = ['root', 'u-sub', 'product', 'trig', 'radical', 'rational'] as const;
 
 export function IntegrationDecisionTreeViz() {
+  const t = useTranslations('vizCalc');
   const [path, setPath] = useState<string[]>(['root']);
   const [full, setFull] = useState(false);
 
   const currentId = path[path.length - 1]!;
   const current = NODES[currentId]!;
-  const leaf = Boolean(current.technique);
+  const leaf = Boolean(TECH_KEYS[current.id]);
+
+  const questionOf = (n: TreeNode) => {
+    const key = Q_KEYS[n.id];
+    return key ? t(`tree.${key}`) : undefined;
+  };
+  const techniqueOf = (n: TreeNode) => {
+    const key = TECH_KEYS[n.id];
+    return key ? t(`tree.${key}`) : undefined;
+  };
+  const formulaOf = (n: TreeNode) => {
+    if (n.formulaKey) return t(`tree.${n.formulaKey}`);
+    return n.formula;
+  };
+  const nodeText = (n: TreeNode | null | undefined) => {
+    if (!n) return '';
+    return techniqueOf(n) ?? questionOf(n) ?? '';
+  };
 
   const visible = useMemo(() => {
     if (full) return Object.keys(NODES);
@@ -132,18 +159,14 @@ export function IntegrationDecisionTreeViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            No hay una técnica universal: lo importante es reconocer la forma del integrando. El árbol replica las preguntas que uno se hace al integrar.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Practica con ∫ x² eˣ dx: ¿qué responderías en cada paso?
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('tree.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('tree.note')}</p>
         </div>
 
         <ButtonRow>
-          <VizButton onClick={reset}>Reiniciar</VizButton>
+          <VizButton onClick={reset}>{t('tree.reset')}</VizButton>
           <VizButton active={full} onClick={() => setFull((v) => !v)}>
-            {full ? 'Vista guiada' : 'Ver árbol completo'}
+            {full ? t('tree.guided') : t('tree.full')}
           </VizButton>
         </ButtonRow>
 
@@ -155,18 +178,20 @@ export function IntegrationDecisionTreeViz() {
               const no = n.no ? NODES[n.no] : null;
               return (
                 <div key={id} className="rounded-lg border border-[var(--border)] px-3 py-2">
-                  <p className="font-medium">{n.question}</p>
+                  <p className="font-medium">{questionOf(n)}</p>
                   <p className="mt-1 text-xs text-[var(--fg-muted)]">
-                    <span className="text-green-600">SÍ → {yes?.technique ?? yes?.question}</span>
+                    <span className="text-green-600">
+                      {t('common.yes')} → {nodeText(yes)}
+                    </span>
                     {' · '}
-                    <span className="text-orange-500">NO → {no?.technique ?? no?.question}</span>
+                    <span className="text-orange-500">
+                      {t('common.no')} → {nodeText(no)}
+                    </span>
                   </p>
                 </div>
               );
             })}
-            <p className="text-xs text-[var(--fg-muted)]">
-              Hojas: fórmula directa §2.2 · sustitución §4 · partes §5 · trig §6 · sust. trig. §7 · parciales §8 · numérica §11
-            </p>
+            <p className="text-xs text-[var(--fg-muted)]">{t('tree.leaves')}</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -174,6 +199,7 @@ export function IntegrationDecisionTreeViz() {
               {visible.map((id, i) => {
                 const n = NODES[id]!;
                 const active = id === currentId;
+                const technique = techniqueOf(n);
                 return (
                   <li
                     key={`${id}-${i}`}
@@ -183,13 +209,15 @@ export function IntegrationDecisionTreeViz() {
                         : 'border-[var(--border)] bg-[var(--formula-bg)]'
                     }`}
                   >
-                    {n.question ? <p className="font-medium">{n.question}</p> : null}
-                    {n.technique ? (
+                    {questionOf(n) ? <p className="font-medium">{questionOf(n)}</p> : null}
+                    {technique ? (
                       <div className="space-y-1">
-                        <p className="font-semibold text-[var(--accent-strong)]">{n.technique}</p>
-                        <p className="font-mono text-xs">{n.formula}</p>
-                        <p className="text-xs text-[var(--fg-muted)]">Ver sección {n.section} del formulario</p>
-                        <p className="text-xs">Ejemplo: {n.example}</p>
+                        <p className="font-semibold text-[var(--accent-strong)]">{technique}</p>
+                        <p className="font-mono text-xs">{formulaOf(n)}</p>
+                        <p className="text-xs text-[var(--fg-muted)]">{t('tree.seeSection', { section: n.section ?? '' })}</p>
+                        <p className="text-xs">
+                          {t('tree.example')} {n.example}
+                        </p>
                       </div>
                     ) : null}
                   </li>
@@ -198,11 +226,11 @@ export function IntegrationDecisionTreeViz() {
             </ol>
             {!leaf ? (
               <ButtonRow>
-                <VizButton onClick={() => answer(true)}>SÍ</VizButton>
-                <VizButton onClick={() => answer(false)}>NO</VizButton>
+                <VizButton onClick={() => answer(true)}>{t('common.yes')}</VizButton>
+                <VizButton onClick={() => answer(false)}>{t('common.no')}</VizButton>
               </ButtonRow>
             ) : (
-              <p className="text-sm text-[var(--fg-muted)]">Llegaste a una técnica. Reinicia para otro integrando.</p>
+              <p className="text-sm text-[var(--fg-muted)]">{t('tree.arrived')}</p>
             )}
           </div>
         )}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -14,6 +15,7 @@ const FNS: FnOpt[] = [
 
 export function ShellMethodViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [dx, setDx] = useState(0.2);
   const [full, setFull] = useState(false);
@@ -64,9 +66,7 @@ export function ShellMethodViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          Cada rodaja vertical se enrolla en un cascarón cilíndrico de volumen 2π · radio · altura · grosor. La integral suma todos los cascarones.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('shell.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {FNS.map((opt, i) => (
             <button
@@ -85,18 +85,18 @@ export function ShellMethodViz() {
         </div>
         <ButtonRow>
           <VizButton active={axisY} onClick={() => setAxisY(true)}>
-            Eje y
+            {t('shell.axisY')}
           </VizButton>
           <VizButton active={!axisY} onClick={() => setAxisY(false)}>
-            Eje x
+            {t('shell.axisX')}
           </VizButton>
           <VizButton active={full} onClick={() => setFull((v) => !v)}>
-            {full ? 'Un cascarón' : 'Ver sólido completo'}
+            {full ? t('shell.one') : t('shell.full')}
           </VizButton>
         </ButtonRow>
         <div className="flex flex-wrap gap-3">
           <div className="min-w-[240px] flex-1 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
-            <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">Perfil xy</p>
+            <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">{t('shell.profile')}</p>
             <svg viewBox={`0 0 ${WL} ${HL}`} className="h-auto w-full">
               <path d={curve} fill="none" stroke="var(--accent-strong)" strokeWidth={2} />
               <rect
@@ -112,7 +112,7 @@ export function ShellMethodViz() {
           </div>
           <div className="min-w-[240px] flex-1 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
             <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-              Cascarón {axisY ? '(eje y)' : '(eje x)'}
+              {t('shell.shell')} {axisY ? `(${t('shell.axisY')})` : `(${t('shell.axisX')})`}
             </p>
             <svg viewBox={`0 0 ${WR} ${HR}`} className="h-auto w-full">
               {shells.map((xi) => {

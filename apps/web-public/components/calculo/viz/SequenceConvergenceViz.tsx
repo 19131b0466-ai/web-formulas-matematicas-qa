@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
@@ -28,6 +29,7 @@ const M = { l: 52, r: 16, t: 16, b: 36 };
 
 export function SequenceConvergenceViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [N, setN] = useState(25);
   const [eps, setEps] = useState(0.2);
@@ -61,9 +63,7 @@ export function SequenceConvergenceViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          aₙ → L significa: para todo ε &gt; 0 existe N tal que si n &gt; N entonces |aₙ − L| &lt; ε. La banda verde es el ε-entorno.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('seq.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {SEQS.map((opt, i) => (
             <button
@@ -107,14 +107,14 @@ export function SequenceConvergenceViz() {
           </svg>
         </div>
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
-          aₙ = {s.label} · L = {s.L === null ? 'no converge' : fmt(s.L, 4)} · ε = {fmt(eps, 2)} · N(ε) = {Neps ?? '—'}
-          {Neps ? ` · a partir de n = ${Neps} todos están en el ε-entorno (en la muestra)` : ''}
+          aₙ = {s.label} · L = {s.L === null ? t('seq.diverges') : fmt(s.L, 4)} · ε = {fmt(eps, 2)} · N(ε) = {Neps ?? '—'}
+          {Neps ? ` · ${t('seq.inBand', { n: Neps })}` : ''}
         </div>
         <ControlsStack>
           <SliderRow label={`N = ${N}`} value={N} min={5} max={60} step={1} onChange={(v) => setN(Math.round(v))} />
           <SliderRow label={`ε = ${fmt(eps, 2)}`} value={eps} min={0.01} max={1} step={0.01} onChange={setEps} />
-          <ToggleRow label="Mostrar banda ε" checked={showBand} onChange={setShowBand} />
-          <ToggleRow label="Mostrar L" checked={showL} onChange={setShowL} />
+          <ToggleRow label={t('seq.showBand')} checked={showBand} onChange={setShowBand} />
+          <ToggleRow label={t('seq.showL')} checked={showL} onChange={setShowL} />
         </ControlsStack>
       </div>
     </VizPanel>

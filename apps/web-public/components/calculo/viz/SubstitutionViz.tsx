@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -115,6 +116,7 @@ function curveAndShade(
 }
 
 export function SubstitutionViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [idx, setIdx] = useState(0);
   const [showDu, setShowDu] = useState(true);
@@ -151,9 +153,7 @@ export function SubstitutionViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            La sustitución u = g(x) simplifica el integrando. Los límites también cambian: de [a, b] en x a [g(a), g(b)] en u. El área sombreada es la misma.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('subst.idea')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -230,14 +230,14 @@ export function SubstitutionViz() {
 
         <ButtonRow>
           <VizButton active={transformed} onClick={() => setTransformed((v) => !v)}>
-            {transformed ? 'Ver original' : 'Transformar'}
+            {transformed ? t('subst.seeOriginal') : t('subst.transform')}
           </VizButton>
         </ButtonRow>
 
         <ControlsStack>
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={ex.aDefault - 0.5} max={b - 0.1} step={0.1} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.1} max={ex.bDefault + 0.8} step={0.1} onChange={setB} />
-          <ToggleRow label="Mostrar du = g'(x) dx" checked={showDu} onChange={setShowDu} />
+          <ToggleRow label={t('subst.showDu')} checked={showDu} onChange={setShowDu} />
         </ControlsStack>
       </div>
     </VizPanel>

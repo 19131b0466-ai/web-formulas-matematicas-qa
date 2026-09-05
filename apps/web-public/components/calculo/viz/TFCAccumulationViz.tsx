@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { derivative, fmt, integrate, linspace, safeEval } from './calcMath';
 
@@ -75,6 +76,7 @@ function computeYRange(f: (x: number) => number, a: number, b: number, extra = 0
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export function TFCAccumulationViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [fnIdx, setFnIdx] = useState(0);
   const [showTangent, setShowTangent] = useState(true);
@@ -267,10 +269,10 @@ export function TFCAccumulationViz() {
         {/* Educational header */}
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            <strong>TFC Parte I:</strong> Si G(x) = ∫<sub>a</sub><sup>x</sup> f(t) dt, entonces G′(x) = f(x).
+            {t.rich('tfc.idea', { strong: (c) => <strong>{c}</strong> })}
           </p>
           <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Mueve el slider de <strong>x</strong>. El área sombreada en el panel superior crece o decrece con G(x). La pendiente de la tangente en G (panel inferior) siempre iguala a f(x).
+            {t.rich('tfc.note', { strong: (c) => <strong>{c}</strong> })}
           </p>
         </div>
 
@@ -295,7 +297,7 @@ export function TFCAccumulationViz() {
 
         {/* Panel 1: f(t) with shaded area */}
         {renderPanel(
-          `f(t) — área acumulada hasta x = ${fmt(x, 2)}`,
+          t('tfc.accumUntil', { x: fmt(x, 2) }),
           fPath,
           fYMin, fYMax, fTicks,
           <>
@@ -320,7 +322,7 @@ export function TFCAccumulationViz() {
 
         {/* Panel 2: G(x) */}
         {renderPanel(
-          `G(x) = ∫₍ₐ₎ˣ f(t) dt — función acumulada`,
+          t('tfc.accumFn'),
           GPath,
           gYMin, gYMax, gTicks,
           <>
@@ -360,8 +362,8 @@ export function TFCAccumulationViz() {
             value={x} min={a} max={b} step={(b - a) / 200}
             onChange={v => setX(v)}
           />
-          <ToggleRow label="Mostrar recta tangente en G(x)" checked={showTangent} onChange={setShowTangent} />
-          <ToggleRow label="Mostrar área negativa en rojo" checked={showNegativeRed} onChange={setShowNegativeRed} />
+          <ToggleRow label={t('tfc.showTangent')} checked={showTangent} onChange={setShowTangent} />
+          <ToggleRow label={t('tfc.showNeg')} checked={showNegativeRed} onChange={setShowNegativeRed} />
         </ControlsStack>
       </div>
     </VizPanel>

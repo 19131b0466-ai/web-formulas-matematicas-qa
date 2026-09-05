@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -48,6 +49,7 @@ function quadBezier(p0: { x: number; y: number }, p1: { x: number; y: number }, 
 }
 
 export function NumericalIntegrationViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [idx, setIdx] = useState(0);
   const [mode, setMode] = useState<Mode>('trap');
@@ -128,9 +130,7 @@ export function NumericalIntegrationViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            El trapecio usa segmentos rectos (error O(h²)); Simpson usa parábolas (error O(h⁴)) y converge mucho más rápido.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('numeric.idea')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -152,13 +152,13 @@ export function NumericalIntegrationViz() {
 
         <ButtonRow>
           <VizButton active={mode === 'trap'} onClick={() => setMode('trap')}>
-            Trapecio
+            {t('numeric.trap')}
           </VizButton>
           <VizButton active={mode === 'simp'} onClick={() => setMode('simp')}>
-            Simpson
+            {t('numeric.simp')}
           </VizButton>
           <VizButton active={mode === 'both'} onClick={() => setMode('both')}>
-            Comparar
+            {t('numeric.both')}
           </VizButton>
         </ButtonRow>
 
@@ -229,10 +229,10 @@ export function NumericalIntegrationViz() {
                     <path d={dT} fill="none" stroke="#3b82f6" strokeWidth={2} />
                     <path d={dS} fill="none" stroke="orange" strokeWidth={2} />
                     <text x="400" y="22" fontSize="10" fill="#3b82f6">
-                      Trapecio
+                      {t('numeric.trap')}
                     </text>
                     <text x="400" y="36" fontSize="10" fill="orange">
-                      Simpson
+                      {t('numeric.simp')}
                     </text>
                   </>
                 );
@@ -243,7 +243,7 @@ export function NumericalIntegrationViz() {
 
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
           <p>
-            Método: {mode === 'trap' ? 'Trapecio' : mode === 'simp' ? 'Simpson' : 'Comparar'} · n = {nEven}
+            {t('numeric.method')}: {mode === 'trap' ? t('numeric.trap') : mode === 'simp' ? t('numeric.simp') : t('numeric.both')} · n = {nEven}
           </p>
           <p>
             {mode === 'both'
@@ -256,7 +256,7 @@ export function NumericalIntegrationViz() {
           <SliderRow label={`n = ${nEven} (par)`} value={nEven} min={2} max={30} step={2} onChange={(v) => setN(Math.round(v))} />
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={-2} max={b - 0.2} step={0.1} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.2} max={5} step={0.1} onChange={setB} />
-          <ToggleRow label="Mostrar convergencia del error" checked={showErr} onChange={setShowErr} />
+          <ToggleRow label={t('numeric.showErr')} checked={showErr} onChange={setShowErr} />
         </ControlsStack>
       </div>
     </VizPanel>

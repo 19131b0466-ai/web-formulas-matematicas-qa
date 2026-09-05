@@ -339,7 +339,12 @@
   "vizCalc": {
     "common": {
       "play": "Reproducir",
-      "pause": "Pausar"
+      "pause": "Pausar",
+      "animate": "Animar",
+      "yes": "SÍ",
+      "no": "NO",
+      "converge": "converge",
+      "diverge": "diverge"
     },
     "polar": {
       "idea": "En polares, cada punto es (r, θ): distancia al origen y ángulo respecto al eje polar. La rosa de 3 pétalos es r = cos(3θ); la de 4 pétalos es r = cos(2θ).",
@@ -390,7 +395,10 @@
       "disk": "Discos (eje x)",
       "washer": "Arandelas",
       "axisY": "Eje y (cascarón)",
-      "highlightDisk": "Resaltar disco central"
+      "highlightDisk": "Resaltar disco central",
+      "angle": "Ángulo de rotación (°)",
+      "nDisks": "n discos visibles",
+      "diskFormula": "Fórmula de discos: V = π ∫ [f(x)]² dx"
     },
     "arc": {
       "idea": "La longitud de arco se aproxima con n segmentos de longitud √(Δx²+Δy²). El límite es ∫ √(1+[f′(x)]²) dx.",
@@ -406,6 +414,184 @@
       "lissajous": "Lissajous 3:2",
       "ellipse": "Elipse",
       "cardioid": "Cardioide"
+    },
+    "taylor": {
+      "idea": "El polinomio de Taylor Pₙ(x) es la mejor aproximación polinomial de f cerca de x = a. Cada término añade una corrección que reduce el error.",
+      "note": "Mueve <strong>n</strong> y observa cómo el polinomio naranja abraza a la curva azul. La zona verde indica dónde el error es < 0.05.",
+      "showZone": "Mostrar zona de buena aproximación (error < 0.05)",
+      "showTerms": "Mostrar términos del polinomio",
+      "approx": "Aproximación — f(x) vs P",
+      "probe": "Punto de inspección x₀",
+      "radiusWarn": "Radio de convergencia R = {R}. Para |x − {center}| ≥ {R} la serie diverge sin importar el grado n."
+    },
+    "tfc": {
+      "idea": "<strong>TFC Parte I:</strong> Si G(x) = ∫ₐˣ f(t) dt, entonces G′(x) = f(x).",
+      "note": "Mueve el slider de <strong>x</strong>. El área sombreada en el panel superior crece o decrece con G(x). La pendiente de la tangente en G (panel inferior) siempre iguala a f(x).",
+      "showTangent": "Mostrar recta tangente en G(x)",
+      "showNeg": "Mostrar área negativa en rojo",
+      "accumUntil": "f(t) — área acumulada hasta x = {x}",
+      "accumFn": "G(x) = ∫ₐˣ f(t) dt — función acumulada"
+    },
+    "signed": {
+      "idea": "La integral definida mide <strong>área con signo</strong>: las zonas bajo el eje x restan. Dos regiones iguales de signos opuestos se cancelan aunque el área geométrica sea positiva.",
+      "note": "Prueba sen(x) de 0 a 2π: la integral vale 0 y el área geométrica vale 4. Luego reduce el intervalo a [0, π].",
+      "showParts": "Separar zonas positivas y negativas",
+      "relation": "Relación"
+    },
+    "subst": {
+      "idea": "La sustitución u = g(x) simplifica el integrando. Los límites también cambian: de [a, b] en x a [g(a), g(b)] en u. El área sombreada es la misma.",
+      "showDu": "Mostrar du = g'(x) dx",
+      "seeOriginal": "Ver original",
+      "transform": "Transformar"
+    },
+    "parts": {
+      "idea": "∫ u dv = uv − ∫ v du: el rectángulo de lados u y v se parte en la región bajo la curva (∫ v du) y la de la izquierda (∫ u dv).",
+      "showLabels": "Mostrar etiquetas de área"
+    },
+    "area": {
+      "idea": "El área entre curvas es ∫ (superior − inferior). Si se cruzan, hay que partir el intervalo en los ceros de f − g.",
+      "note": "En x³ y x, ∫(x³−x) dx en [−1,1] vale 0; el área geométrica no.",
+      "abs": "Usar |f−g| (área geométrica)",
+      "showX": "Mostrar intersecciones",
+      "wrtX": "Respecto a x",
+      "wrtY": "Respecto a y"
+    },
+    "improper": {
+      "idea": "∫₁^∞ f(x) dx se define como lim_{b→∞} ∫₁ᵇ f. Si el área se estabiliza, <strong>converge</strong>; si crece sin límite, <strong>diverge</strong>.",
+      "note": "Para 1/xᵖ: p > 1 converge a 1/(p−1). La curva 1/x se aplasta, pero su área acumulada no para de crecer.",
+      "animateB": "Animar b → ∞",
+      "showLimit": "Mostrar valor límite"
+    },
+    "paramCurve": {
+      "idea": "En una curva paramétrica, x e y dependen de un parámetro t. El plano xy no muestra t; las gráficas laterales sí.",
+      "note": "En la cicloide el punto rueda como un punto de una llanta. En Lissajous, la razón de frecuencias fija los lóbulos.",
+      "showArrows": "Mostrar flechas de dirección",
+      "showTrail": "Mostrar estela",
+      "speedSlow": "Velocidad: lenta",
+      "speedNormal": "Velocidad: normal",
+      "speedFast": "Velocidad: rápida",
+      "cycloid": "Cicloide",
+      "lissajous32": "Lissajous 3:2",
+      "lissajous54": "Lissajous 5:4",
+      "cardioid": "Cardioide",
+      "ellipse": "Elipse",
+      "spiral": "Espiral",
+      "rose4": "Rosa 4 pétalos"
+    },
+    "polarArea": {
+      "idea": "Un sector polar infinitesimal tiene área ½ r² dθ. La integral ½ ∫ r(θ)² dθ suma esos sectores.",
+      "twoCurves": "Área entre dos curvas (r y r=1)",
+      "rose3": "Rosa 3",
+      "rose4": "Rosa 4",
+      "cardioid": "Cardioide",
+      "r2": "r = 2",
+      "limacon": "Limaçon"
+    },
+    "series": {
+      "idea": "Una serie converge si las sumas parciales Sₙ se acercan a un valor fijo. Que aₙ → 0 es <strong>necesario pero no suficiente</strong>.",
+      "note": "Compara la armónica con 1/n²: ambas tienen términos que van a 0, pero solo la segunda converge.",
+      "showCrit": "Mostrar criterio aplicado",
+      "showSum": "Mostrar suma exacta",
+      "applied": "Criterio aplicado:",
+      "result": "Resultado:",
+      "converges": "Converge",
+      "diverges": "Diverge",
+      "terms": "Términos aₙ",
+      "partials": "Sumas parciales Sₙ",
+      "geom12": "Geométrica r=1/2",
+      "geom09": "Geométrica r=0.9",
+      "geom11": "Geométrica r=1.1",
+      "harmonic": "Armónica",
+      "p2": "Serie p (p=2)",
+      "altHarmonic": "Alternada armónica",
+      "telescoping": "Telescópica",
+      "cGeom": "Serie geométrica |r|<1",
+      "cTerm": "Término general: aₙ ↛ 0",
+      "cHarmonic": "Criterio integral / serie p con p=1",
+      "cP2": "Serie p con p=2 > 1",
+      "cLeibniz": "Criterio de Leibniz (alternada)",
+      "cTelescoping": "Serie telescópica",
+      "aLimitNeeded": "0 (necesario, no suficiente)"
+    },
+    "numeric": {
+      "idea": "El trapecio usa segmentos rectos (error O(h²)); Simpson usa parábolas (error O(h⁴)) y converge mucho más rápido.",
+      "trap": "Trapecio",
+      "simp": "Simpson",
+      "both": "Comparar",
+      "method": "Método",
+      "showErr": "Mostrar convergencia del error"
+    },
+    "tree": {
+      "idea": "No hay una técnica universal: lo importante es reconocer la forma del integrando. El árbol replica las preguntas que uno se hace al integrar.",
+      "note": "Practica con ∫ x² eˣ dx: ¿qué responderías en cada paso?",
+      "reset": "Reiniciar",
+      "guided": "Vista guiada",
+      "full": "Ver árbol completo",
+      "leaves": "Hojas: fórmula directa §2.2 · sustitución §4 · partes §5 · trig §6 · sust. trig. §7 · parciales §8 · numérica §11",
+      "seeSection": "Ver sección {section} del formulario",
+      "example": "Ejemplo:",
+      "arrived": "Llegaste a una técnica. Reinicia para otro integrando.",
+      "qRoot": "¿Es inmediata (tabla básica)?",
+      "qUsub": "¿Hay u = g(x) con g′(x) visible?",
+      "qProduct": "¿Es un producto de dos tipos distintos?",
+      "qTrig": "¿Contiene potencias de sen/cos?",
+      "qRadical": "¿Contiene √(a²±x²) o √(x²−a²)?",
+      "qRational": "¿Es una fracción polinomial (racional)?",
+      "techDirect": "Fórmula directa",
+      "techSubst": "Sustitución u",
+      "techParts": "Integración por partes (LIATE)",
+      "techTrigint": "Integrales trigonométricas",
+      "techTrigsub": "Sustitución trigonométrica",
+      "techPartial": "Fracciones parciales",
+      "techNumeric": "Numérica / combinación de métodos",
+      "formNumeric": "Trapecio o Simpson si no hay antiderivada elemental",
+      "formTrigint": "Identidades de reducción / paridad de exponentes"
+    },
+    "antideriv": {
+      "idea": "F es antiderivada de f si F′(x) = f(x). La pendiente de la tangente a F coincide con el valor de f en el mismo punto.",
+      "showT": "Mostrar recta tangente"
+    },
+    "average": {
+      "idea": "El valor promedio es la altura del rectángulo con la misma área que la región bajo f. El TVM para integrales garantiza un punto c con f(c) = f_prom.",
+      "showRect": "Mostrar rectángulo equivalente",
+      "showC": "Mostrar puntos c",
+      "areaEq": "Área bajo f = área del rectángulo"
+    },
+    "shell": {
+      "idea": "Cada rodaja vertical se enrolla en un cascarón cilíndrico de volumen 2π · radio · altura · grosor. La integral suma todos los cascarones.",
+      "axisY": "Eje y",
+      "axisX": "Eje x",
+      "one": "Un cascarón",
+      "full": "Ver sólido completo",
+      "profile": "Perfil xy",
+      "shell": "Cascarón"
+    },
+    "seq": {
+      "idea": "aₙ → L significa: para todo ε > 0 existe N tal que si n > N entonces |aₙ − L| < ε. La banda verde es el ε-entorno.",
+      "showBand": "Mostrar banda ε",
+      "showL": "Mostrar L",
+      "diverges": "no converge",
+      "inBand": "a partir de n = {n} todos están en el ε-entorno (en la muestra)"
+    },
+    "intTest": {
+      "idea": "Si f es continua, positiva y decreciente, los rectángulos de altura f(n) acotan la integral. Σ aₙ y ∫ f convergen o divergen juntas.",
+      "critYes": "converge (p>1 o decrecimiento rápido)",
+      "critNo": "diverge",
+      "criterion": "Criterio:",
+      "upper": "Acotación superior (rectángulos a la izquierda)"
+    },
+    "radius": {
+      "idea": "Una serie de potencias converge en un intervalo de radio R centrado en a. Fuera, las sumas parciales divergen.",
+      "interval": "intervalo",
+      "center": "centro a",
+      "sinTaylor": "sen(x) Taylor"
+    },
+    "separable": {
+      "idea": "En una EDO separable, x e y se van a lados opuestos y se integran. Las soluciones forman una familia parametrizada por C.",
+      "showSep": "Mostrar proceso de separación",
+      "logistic": "logística",
+      "sepTitle": "Separación",
+      "solTitle": "Solución"
     }
   }
 }

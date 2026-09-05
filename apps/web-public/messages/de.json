@@ -339,7 +339,12 @@
   "vizCalc": {
     "common": {
       "play": "Abspielen",
-      "pause": "Pause"
+      "pause": "Pause",
+      "animate": "Animieren",
+      "yes": "JA",
+      "no": "NEIN",
+      "converge": "konvergiert",
+      "diverge": "divergiert"
     },
     "polar": {
       "idea": "In polar coordinates each point is (r, θ): distance from the origin and angle from the polar axis. The 3-petal rose is r = cos(3θ); the 4-petal rose is r = cos(2θ).",
@@ -390,7 +395,10 @@
       "disk": "Scheiben (x-Achse)",
       "washer": "Unterlegscheiben",
       "axisY": "y-axis (shell)",
-      "highlightDisk": "Highlight center disk"
+      "highlightDisk": "Highlight center disk",
+      "angle": "Drehwinkel (°)",
+      "nDisks": "n visible disks",
+      "diskFormula": "Disk formula: V = π ∫ [f(x)]² dx"
     },
     "arc": {
       "idea": "Arc length is approximated by n segments of length √(Δx²+Δy²). The limit is ∫ √(1+[f′(x)]²) dx.",
@@ -406,6 +414,184 @@
       "lissajous": "Lissajous 3:2",
       "ellipse": "Ellipse",
       "cardioid": "Cardioid"
+    },
+    "taylor": {
+      "idea": "The Taylor polynomial Pₙ(x) is the best polynomial approximation of f near x = a. Each extra term reduces the error.",
+      "note": "Move <strong>n</strong> and watch the orange polynomial hug the blue curve. The green band is where the error is < 0.05.",
+      "showZone": "Show good-approximation zone (error < 0.05)",
+      "showTerms": "Show polynomial terms",
+      "approx": "Approximation — f(x) vs P",
+      "probe": "Inspection point x₀",
+      "radiusWarn": "Radius of convergence R = {R}. For |x − {center}| ≥ {R} the series diverges regardless of n."
+    },
+    "tfc": {
+      "idea": "<strong>FTC Part I:</strong> If G(x) = ∫ₐˣ f(t) dt, then G′(x) = f(x).",
+      "note": "Move the <strong>x</strong> slider. The shaded area in the top panel grows or shrinks with G(x). The slope of the tangent to G (bottom panel) always equals f(x).",
+      "showTangent": "Show tangent line on G(x)",
+      "showNeg": "Show negative area in red",
+      "accumUntil": "f(t) — accumulated area up to x = {x}",
+      "accumFn": "G(x) = ∫ₐˣ f(t) dt — accumulation function"
+    },
+    "signed": {
+      "idea": "The definite integral measures <strong>signed area</strong>: regions below the x-axis subtract. Two equal opposite regions cancel even if the geometric area is positive.",
+      "note": "Try sin(x) from 0 to 2π: the integral is 0 and the geometric area is 4. Then shrink the interval to [0, π].",
+      "showParts": "Separate positive and negative regions",
+      "relation": "Relation"
+    },
+    "subst": {
+      "idea": "The substitution u = g(x) simplifies the integrand. The limits change too: from [a, b] in x to [g(a), g(b)] in u. The shaded area is the same.",
+      "showDu": "Show du = g'(x) dx",
+      "seeOriginal": "Original zeigen",
+      "transform": "Transformieren"
+    },
+    "parts": {
+      "idea": "∫ u dv = uv − ∫ v du: the rectangle with sides u and v splits into the region under the curve (∫ v du) and the one on the left (∫ u dv).",
+      "showLabels": "Show area labels"
+    },
+    "area": {
+      "idea": "The area between curves is ∫ (upper − lower). If they cross, split the interval at the zeros of f − g.",
+      "note": "For x³ and x, ∫(x³−x) dx on [−1,1] is 0; the geometric area is not.",
+      "abs": "Use |f−g| (geometric area)",
+      "showX": "Show intersections",
+      "wrtX": "With respect to x",
+      "wrtY": "With respect to y"
+    },
+    "improper": {
+      "idea": "∫₁^∞ f(x) dx is defined as lim_{b→∞} ∫₁ᵇ f. If the area settles, it <strong>converges</strong>; if it grows without bound, it <strong>diverges</strong>.",
+      "note": "For 1/xᵖ: p > 1 converges to 1/(p−1). The curve 1/x flattens, but its accumulated area keeps growing.",
+      "animateB": "Animate b → ∞",
+      "showLimit": "Show limiting value"
+    },
+    "paramCurve": {
+      "idea": "On a parametric curve, x and y depend on a parameter t. The xy-plane does not show t; the side graphs do.",
+      "note": "On the cycloid the point rolls like a point on a wheel. On Lissajous curves, the frequency ratio sets the lobes.",
+      "showArrows": "Show direction arrows",
+      "showTrail": "Show trail",
+      "speedSlow": "Speed: slow",
+      "speedNormal": "Speed: normal",
+      "speedFast": "Speed: fast",
+      "cycloid": "Cycloid",
+      "lissajous32": "Lissajous 3:2",
+      "lissajous54": "Lissajous 5:4",
+      "cardioid": "Cardioid",
+      "ellipse": "Ellipse",
+      "spiral": "Spiral",
+      "rose4": "4-petal rose"
+    },
+    "polarArea": {
+      "idea": "An infinitesimal polar sector has area ½ r² dθ. The integral ½ ∫ r(θ)² dθ adds those sectors.",
+      "twoCurves": "Area between two curves (r and r=1)",
+      "rose3": "Rose 3",
+      "rose4": "Rose 4",
+      "cardioid": "Cardioid",
+      "r2": "r = 2",
+      "limacon": "Limaçon"
+    },
+    "series": {
+      "idea": "A series converges if the partial sums Sₙ approach a fixed value. aₙ → 0 is <strong>necessary but not sufficient</strong>.",
+      "note": "Compare the harmonic series with 1/n²: both terms go to 0, but only the second converges.",
+      "showCrit": "Show applied test",
+      "showSum": "Show exact sum",
+      "applied": "Test applied:",
+      "result": "Result:",
+      "converges": "Konvergiert",
+      "diverges": "Divergiert",
+      "terms": "Terms aₙ",
+      "partials": "Partial sums Sₙ",
+      "geom12": "Geometric r=1/2",
+      "geom09": "Geometric r=0.9",
+      "geom11": "Geometric r=1.1",
+      "harmonic": "Harmonisch",
+      "p2": "p-series (p=2)",
+      "altHarmonic": "Alternating harmonic",
+      "telescoping": "Teleskopisch",
+      "cGeom": "Geometric series |r|<1",
+      "cTerm": "General term: aₙ ↛ 0",
+      "cHarmonic": "Integral test / p-series with p=1",
+      "cP2": "p-series with p=2 > 1",
+      "cLeibniz": "Leibniz test (alternating)",
+      "cTelescoping": "Telescoping series",
+      "aLimitNeeded": "0 (necessary, not sufficient)"
+    },
+    "numeric": {
+      "idea": "The trapezoid rule uses straight segments (error O(h²)); Simpson uses parabolas (error O(h⁴)) and converges much faster.",
+      "trap": "Trapez",
+      "simp": "Simpson",
+      "both": "Vergleichen",
+      "method": "Verfahren",
+      "showErr": "Show error convergence"
+    },
+    "tree": {
+      "idea": "There is no universal technique: what matters is recognizing the form of the integrand. The tree follows the questions one asks while integrating.",
+      "note": "Practice with ∫ x² eˣ dx: what would you answer at each step?",
+      "reset": "Zurücksetzen",
+      "guided": "Geführte Ansicht",
+      "full": "Ganzen Baum zeigen",
+      "leaves": "Leaves: direct formula §2.2 · substitution §4 · parts §5 · trig §6 · trig sub. §7 · partial fractions §8 · numerical §11",
+      "seeSection": "See section {section} of the catalog",
+      "example": "Example:",
+      "arrived": "You reached a technique. Reset for another integrand.",
+      "qRoot": "Is it immediate (basic table)?",
+      "qUsub": "Is there u = g(x) with g′(x) visible?",
+      "qProduct": "Is it a product of two different types?",
+      "qTrig": "Does it contain powers of sin/cos?",
+      "qRadical": "Does it contain √(a²±x²) or √(x²−a²)?",
+      "qRational": "Is it a rational polynomial fraction?",
+      "techDirect": "Direct formula",
+      "techSubst": "u-substitution",
+      "techParts": "Integration by parts (LIATE)",
+      "techTrigint": "Trigonometric integrals",
+      "techTrigsub": "Trigonometric substitution",
+      "techPartial": "Partial fractions",
+      "techNumeric": "Numerical / mix of methods",
+      "formNumeric": "Trapezoid or Simpson if there is no elementary antiderivative",
+      "formTrigint": "Reduction identities / parity of exponents"
+    },
+    "antideriv": {
+      "idea": "F is an antiderivative of f if F′(x) = f(x). The slope of the tangent to F matches the value of f at the same point.",
+      "showT": "Show tangent line"
+    },
+    "average": {
+      "idea": "The average value is the height of the rectangle with the same area as the region under f. The MVT for integrals guarantees a point c with f(c) = f_avg.",
+      "showRect": "Show equivalent rectangle",
+      "showC": "Show points c",
+      "areaEq": "Area under f = area of the rectangle"
+    },
+    "shell": {
+      "idea": "Each vertical strip wraps into a cylindrical shell of volume 2π · radius · height · thickness. The integral adds all the shells.",
+      "axisY": "y-Achse",
+      "axisX": "x-Achse",
+      "one": "Eine Schale",
+      "full": "Vollen Körper zeigen",
+      "profile": "xy-Profil",
+      "shell": "Schale"
+    },
+    "seq": {
+      "idea": "aₙ → L means: for every ε > 0 there is N such that if n > N then |aₙ − L| < ε. The green band is the ε-neighborhood.",
+      "showBand": "Show ε-band",
+      "showL": "Show L",
+      "diverges": "does not converge",
+      "inBand": "from n = {n} all terms lie in the ε-neighborhood (in the sample)"
+    },
+    "intTest": {
+      "idea": "If f is continuous, positive and decreasing, rectangles of height f(n) bound the integral. Σ aₙ and ∫ f converge or diverge together.",
+      "critYes": "converges (p>1 or fast decay)",
+      "critNo": "diverges",
+      "criterion": "Test:",
+      "upper": "Upper bound (left rectangles)"
+    },
+    "radius": {
+      "idea": "A power series converges on an interval of radius R centered at a. Outside it, the partial sums diverge.",
+      "interval": "interval",
+      "center": "center a",
+      "sinTaylor": "sin(x) Taylor"
+    },
+    "separable": {
+      "idea": "In a separable ODE, x and y move to opposite sides and are integrated. Solutions form a family parameterized by C.",
+      "showSep": "Trennprozess zeigen",
+      "logistic": "logistisch",
+      "sepTitle": "Trennung",
+      "solTitle": "Lösung"
     }
   }
 }

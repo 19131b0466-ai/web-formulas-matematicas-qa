@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { findZeros, fmt, integrate, safeEval } from './calcMath';
 
@@ -77,6 +78,7 @@ function toY(y: number, yMin: number, yMax: number) {
 }
 
 export function AreaBetweenCurvesViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [idx, setIdx] = useState(0);
   const [axisY, setAxisY] = useState(false);
@@ -180,12 +182,8 @@ export function AreaBetweenCurvesViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            El área entre curvas es ∫ (superior − inferior). Si se cruzan, hay que partir el intervalo en los ceros de f − g.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            En x³ y x, ∫(x³−x) dx en [−1,1] vale 0; el área geométrica no.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('area.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('area.note')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -207,10 +205,10 @@ export function AreaBetweenCurvesViz() {
 
         <ButtonRow>
           <VizButton active={!axisY} onClick={() => setAxisY(false)}>
-            Respecto a x
+            {t('area.wrtX')}
           </VizButton>
           <VizButton active={axisY} disabled={!canY} onClick={() => canY && setAxisY(true)}>
-            Respecto a y
+            {t('area.wrtY')}
           </VizButton>
         </ButtonRow>
 
@@ -268,8 +266,8 @@ export function AreaBetweenCurvesViz() {
         <ControlsStack>
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={pair.aDefault - 1} max={b - 0.1} step={0.1} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.1} max={pair.bDefault + 1} step={0.1} onChange={setB} />
-          <ToggleRow label="Usar |f−g| (área geométrica)" checked={absArea} onChange={setAbsArea} />
-          <ToggleRow label="Mostrar intersecciones" checked={showX} onChange={setShowX} />
+          <ToggleRow label={t('area.abs')} checked={absArea} onChange={setAbsArea} />
+          <ToggleRow label={t('area.showX')} checked={showX} onChange={setShowX} />
         </ControlsStack>
       </div>
     </VizPanel>

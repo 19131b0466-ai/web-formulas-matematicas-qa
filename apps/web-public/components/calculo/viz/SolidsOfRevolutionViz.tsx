@@ -295,15 +295,15 @@ export function SolidsOfRevolutionViz() {
             <span className="text-[var(--fg-muted)]">[{fmt(a,1)}, {fmt(b,1)}]</span>
           </div>
           <p className="mt-1 text-xs text-[var(--fg-muted)]">
-            Fórmula de discos: V = π ∫ [f(x)]² dx
+            {t('solids.diskFormula')}
           </p>
         </div>
 
         {/* Controls */}
         <ControlsStack>
-          <SliderRow label="Ángulo de rotación (°)" value={angle} min={10} max={360} step={5}
+          <SliderRow label={t('solids.angle')} value={angle} min={10} max={360} step={5}
             onChange={v => setAngle(Math.round(v))} />
-          <SliderRow label="n discos visibles" value={nDisks} min={3} max={20} step={1}
+          <SliderRow label={t('solids.nDisks')} value={nDisks} min={3} max={20} step={1}
             onChange={v => setNDisks(Math.round(v))} />
           <SliderRow label={`a = ${fmt(a,2)}`} value={a} min={0} max={b - 0.5} step={0.5}
             onChange={v => setA(v)} />

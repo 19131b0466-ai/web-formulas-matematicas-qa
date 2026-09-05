@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
@@ -32,6 +33,7 @@ function toY(v: number, vMin: number, vMax: number) {
 }
 
 export function IntegrationByPartsViz() {
+  const tv = useTranslations('vizCalc');
   const statusId = useId();
   const [idx, setIdx] = useState(0);
   const [showLabels, setShowLabels] = useState(true);
@@ -92,9 +94,7 @@ export function IntegrationByPartsViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            ∫ u dv = uv − ∫ v du: el rectángulo de lados u y v se parte en la región bajo la curva (∫ v du) y la de la izquierda (∫ u dv).
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{tv('parts.idea')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -189,7 +189,7 @@ export function IntegrationByPartsViz() {
             step={(ex.b - ex.a) / 200}
             onChange={setT}
           />
-          <ToggleRow label="Mostrar etiquetas de área" checked={showLabels} onChange={setShowLabels} />
+          <ToggleRow label={tv('parts.showLabels')} checked={showLabels} onChange={setShowLabels} />
         </ControlsStack>
       </div>
     </VizPanel>

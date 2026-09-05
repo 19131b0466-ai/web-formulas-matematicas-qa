@@ -1,18 +1,19 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate } from './calcMath';
 
-type Curve = { label: string; r: (th: number) => number; tMin: number; tMax: number };
+type Curve = { id: 'rose3' | 'rose4' | 'cardioid' | 'r2' | 'limacon'; r: (th: number) => number; tMin: number; tMax: number };
 const CURVES: Curve[] = [
-  { label: 'Rosa 3', r: (th) => Math.cos(3 * th), tMin: 0, tMax: Math.PI },
-  { label: 'Rosa 4', r: (th) => Math.cos(2 * th), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Cardioide', r: (th) => 1 + Math.cos(th), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'r = 2', r: () => 2, tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Limaçon', r: (th) => 1 + 2 * Math.cos(th), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'rose3', r: (th) => Math.cos(3 * th), tMin: 0, tMax: Math.PI },
+  { id: 'rose4', r: (th) => Math.cos(2 * th), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'cardioid', r: (th) => 1 + Math.cos(th), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'r2', r: () => 2, tMin: 0, tMax: 2 * Math.PI },
+  { id: 'limacon', r: (th) => 1 + 2 * Math.cos(th), tMin: 0, tMax: 2 * Math.PI },
 ];
-const INNER: Curve = { label: 'r=1', r: () => 1, tMin: 0, tMax: 2 * Math.PI };
+const INNER: Curve = { id: 'r2', r: () => 1, tMin: 0, tMax: 2 * Math.PI };
 
 const CX = 200;
 const CY = 200;
@@ -24,6 +25,7 @@ function toSvg(r: number, th: number) {
 
 export function PolarAreaViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(2);
   const [playing, setPlaying] = useState(false);
   const [two, setTwo] = useState(false);
@@ -118,13 +120,11 @@ export function PolarAreaViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          Un sector polar infinitesimal tiene área ½ r² dθ. La integral ½ ∫ r(θ)² dθ suma esos sectores.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('polarArea.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {CURVES.map((opt, i) => (
             <button
-              key={opt.label}
+              key={opt.id}
               type="button"
               onClick={() => handle(i)}
               className={`rounded-md border px-2 py-1 text-xs transition ${
@@ -133,7 +133,7 @@ export function PolarAreaViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {opt.label}
+              {t(`polarArea.${opt.id}`)}
             </button>
           ))}
         </div>
@@ -178,7 +178,7 @@ export function PolarAreaViz() {
         </div>
         <ButtonRow>
           <VizButton active={playing} onClick={() => setPlaying((v) => !v)}>
-            {playing ? 'Pausar' : 'Animar'}
+            {playing ? t('common.pause') : t('common.animate')}
           </VizButton>
         </ButtonRow>
         <ControlsStack>
@@ -194,7 +194,7 @@ export function PolarAreaViz() {
               setBeta(v);
             }}
           />
-          <ToggleRow label="Área entre dos curvas (r y r=1)" checked={two} onChange={setTwo} />
+          <ToggleRow label={t('polarArea.twoCurves')} checked={two} onChange={setTwo} />
         </ControlsStack>
       </div>
     </VizPanel>

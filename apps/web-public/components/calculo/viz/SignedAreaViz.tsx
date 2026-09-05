@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { findZeros, fmt, integrate, safeEval } from './calcMath';
 
@@ -71,6 +72,7 @@ function shadePath(
 }
 
 export function SignedAreaViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [fnIdx, setFnIdx] = useState(0);
   const [showParts, setShowParts] = useState(true);
@@ -133,11 +135,9 @@ export function SignedAreaViz() {
       <div className="space-y-4">
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            La integral definida mide <strong>área con signo</strong>: las zonas bajo el eje x restan. Dos regiones iguales de signos opuestos se cancelan aunque el área geométrica sea positiva.
+            {t.rich('signed.idea', { strong: (c) => <strong>{c}</strong> })}
           </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Prueba sen(x) de 0 a 2π: la integral vale 0 y el área geométrica vale 4. Luego reduce el intervalo a [0, π].
-          </p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('signed.note')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -204,7 +204,7 @@ export function SignedAreaViz() {
           </div>
           {showParts ? (
             <p className="mt-1 text-xs text-[var(--fg-muted)]">
-              Relación: ∫f = A⁺ − A⁻ = {fmt(positive)} − {fmt(negative)}
+              {t('signed.relation')}: ∫f = A⁺ − A⁻ = {fmt(positive)} − {fmt(negative)}
             </p>
           ) : null}
         </div>
@@ -212,7 +212,7 @@ export function SignedAreaViz() {
         <ControlsStack>
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={-Math.PI} max={b - 0.1} step={0.1} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.1} max={Math.PI + 4} step={0.1} onChange={setB} />
-          <ToggleRow label="Separar zonas positivas y negativas" checked={showParts} onChange={setShowParts} />
+          <ToggleRow label={t('signed.showParts')} checked={showParts} onChange={setShowParts} />
         </ControlsStack>
       </div>
     </VizPanel>

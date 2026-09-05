@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { findZeros, fmt, integrate, safeEval } from './calcMath';
 
@@ -25,6 +26,7 @@ function toY(y: number, yMin: number, yMax: number) {
 }
 
 export function AverageValueViz() {
+  const t = useTranslations('vizCalc');
   const statusId = useId();
   const [idx, setIdx] = useState(0);
   const [showRect, setShowRect] = useState(true);
@@ -80,9 +82,7 @@ export function AverageValueViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          El valor promedio es la altura del rectángulo con la misma área que la región bajo f. El TVM para integrales garantiza un punto c con f(c) = f_prom.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('average.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {FNS.map((opt, i) => (
             <button
@@ -129,13 +129,13 @@ export function AverageValueViz() {
           <p>
             f_prom = {fmt(avg)} · c ≈ {cs.length ? cs.map((c) => fmt(c, 2)).join(', ') : '—'}
           </p>
-          <p>Área bajo f = área del rectángulo = {fmt(area)}</p>
+          <p>{t('average.areaEq')} = {fmt(area)}</p>
         </div>
         <ControlsStack>
           <SliderRow label={`a = ${fmt(a, 2)}`} value={a} min={-3} max={b - 0.5} step={0.25} onChange={setA} />
           <SliderRow label={`b = ${fmt(b, 2)}`} value={b} min={a + 0.5} max={5} step={0.25} onChange={setB} />
-          <ToggleRow label="Mostrar rectángulo equivalente" checked={showRect} onChange={setShowRect} />
-          <ToggleRow label="Mostrar puntos c" checked={showC} onChange={setShowC} />
+          <ToggleRow label={t('average.showRect')} checked={showRect} onChange={setShowRect} />
+          <ToggleRow label={t('average.showC')} checked={showC} onChange={setShowC} />
         </ControlsStack>
       </div>
     </VizPanel>

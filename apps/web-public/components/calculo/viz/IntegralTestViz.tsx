@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, integrate, safeEval } from './calcMath';
 
@@ -11,6 +12,7 @@ const M = { l: 44, r: 16, t: 16, b: 36 };
 
 export function IntegralTestViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [mode, setMode] = useState<Mode>('p');
   const [p, setP] = useState(2);
   const [N, setN] = useState(8);
@@ -53,9 +55,7 @@ export function IntegralTestViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          Si f es continua, positiva y decreciente, los rectángulos de altura f(n) acotan la integral. Σ aₙ y ∫ f convergen o divergen juntas.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('intTest.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {[
             { id: 'p' as const, label: '1/xᵖ' },
@@ -99,12 +99,12 @@ export function IntegralTestViz() {
           <p>
             Σ f(n) = {fmt(sum)} · ∫₁ᴺ f = {fmt(I)} · {upper ? 'Σ f(n) ≥ ∫ f' : 'Σ f(n+1) ≤ ∫ f'}
           </p>
-          <p>Criterio: {conv ? 'converge (p>1 o decrecimiento rápido)' : 'diverge'}</p>
+          <p>{t('intTest.criterion')} {conv ? t('intTest.critYes') : t('intTest.critNo')}</p>
         </div>
         <ControlsStack>
           <SliderRow label={`N = ${N}`} value={N} min={3} max={30} step={1} onChange={(v) => setN(Math.round(v))} />
           {mode === 'p' ? <SliderRow label={`p = ${fmt(p, 1)}`} value={p} min={0.5} max={3} step={0.1} onChange={setP} /> : null}
-          <ToggleRow label="Acotación superior (rectángulos a la izquierda)" checked={upper} onChange={setUpper} />
+          <ToggleRow label={t('intTest.upper')} checked={upper} onChange={setUpper} />
         </ControlsStack>
       </div>
     </VizPanel>

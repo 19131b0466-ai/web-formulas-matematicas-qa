@@ -1,75 +1,78 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
 type SeriesOpt = {
-  label: string;
+  id: 'geom12' | 'geom09' | 'geom11' | 'harmonic' | 'p2' | 'altHarmonic' | 'telescoping';
   a: (n: number) => number;
   converges: boolean;
   sum: number | null;
-  criterion: string;
+  criterion: 'cGeom' | 'cTerm' | 'cHarmonic' | 'cP2' | 'cLeibniz' | 'cTelescoping';
   aLimit: string;
+  aLimitKey?: 'aLimitNeeded';
   alternating?: boolean;
 };
 
 const SERIES: SeriesOpt[] = [
   {
-    label: 'Geométrica r=1/2',
+    id: 'geom12',
     a: (n) => Math.pow(0.5, n),
     converges: true,
     sum: 1,
-    criterion: 'Serie geométrica |r|<1',
+    criterion: 'cGeom',
     aLimit: '0',
   },
   {
-    label: 'Geométrica r=0.9',
+    id: 'geom09',
     a: (n) => Math.pow(0.9, n),
     converges: true,
     sum: 9,
-    criterion: 'Serie geométrica |r|<1',
+    criterion: 'cGeom',
     aLimit: '0',
   },
   {
-    label: 'Geométrica r=1.1',
+    id: 'geom11',
     a: (n) => Math.pow(1.1, n),
     converges: false,
     sum: null,
-    criterion: 'Término general: aₙ ↛ 0',
+    criterion: 'cTerm',
     aLimit: '∞',
   },
   {
-    label: 'Armónica',
+    id: 'harmonic',
     a: (n) => 1 / n,
     converges: false,
     sum: null,
-    criterion: 'Criterio integral / serie p con p=1',
-    aLimit: '0 (necesario, no suficiente)',
+    criterion: 'cHarmonic',
+    aLimit: '0',
+    aLimitKey: 'aLimitNeeded',
   },
   {
-    label: 'Serie p (p=2)',
+    id: 'p2',
     a: (n) => 1 / (n * n),
     converges: true,
     sum: Math.PI ** 2 / 6,
-    criterion: 'Serie p con p=2 > 1',
+    criterion: 'cP2',
     aLimit: '0',
   },
   {
-    label: 'Alternada armónica',
+    id: 'altHarmonic',
     a: (n) => ((n % 2 === 1 ? 1 : -1) / n),
     converges: true,
     sum: Math.log(2),
-    criterion: 'Criterio de Leibniz (alternada)',
+    criterion: 'cLeibniz',
     aLimit: '0',
     alternating: true,
   },
   {
-    label: 'Telescópica',
+    id: 'telescoping',
     a: (n) => 1 / n - 1 / (n + 1),
     converges: true,
     sum: 1,
-    criterion: 'Serie telescópica',
+    criterion: 'cTelescoping',
     aLimit: '0',
   },
 ];
@@ -89,6 +92,7 @@ function toY(y: number, yMin: number, yMax: number, H: number, m: { t: number; b
 
 export function SeriesPartialSumsViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [N, setN] = useState(12);
   const [showCrit, setShowCrit] = useState(true);
@@ -132,17 +136,15 @@ export function SeriesPartialSumsViz() {
       <div className="space-y-4">
         <div>
           <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            Una serie converge si las sumas parciales Sₙ se acercan a un valor fijo. Que aₙ → 0 es <strong>necesario pero no suficiente</strong>.
+            {t.rich('series.idea', { strong: (c) => <strong>{c}</strong> })}
           </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Compara la armónica con 1/n²: ambas tienen términos que van a 0, pero solo la segunda converge.
-          </p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{t('series.note')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
           {SERIES.map((opt, i) => (
             <button
-              key={opt.label}
+              key={opt.id}
               type="button"
               onClick={() => setIdx(i)}
               className={`rounded-md border px-2 py-1 text-xs transition ${
@@ -151,14 +153,14 @@ export function SeriesPartialSumsViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {opt.label}
+              {t(`series.${opt.id}`)}
             </button>
           ))}
         </div>
 
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
           <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-            Términos aₙ {goesToZero ? '· aₙ → 0' : ''}
+            {t('series.terms')} {goesToZero ? '· aₙ → 0' : ''}
           </p>
           <svg viewBox={`0 0 ${WA} ${HA}`} className="mx-auto h-auto w-full max-w-2xl" role="img">
             <line
@@ -187,7 +189,7 @@ export function SeriesPartialSumsViz() {
 
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
           <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-            Sumas parciales Sₙ {s.converges ? '' : '· → ∞'}
+            {t('series.partials')} {s.converges ? '' : '· → ∞'}
           </p>
           <svg viewBox={`0 0 ${WA} ${HS}`} className="mx-auto h-auto w-full max-w-2xl" role="img">
             {s.converges && s.sum !== null && showSum ? (
@@ -227,13 +229,13 @@ export function SeriesPartialSumsViz() {
         {showCrit ? (
           <div className="rounded-lg border border-[var(--border)] px-3 py-2 text-xs">
             <p>
-              <strong>Criterio aplicado:</strong> {s.criterion}
+              <strong>{t('series.applied')}</strong> {t(`series.${s.criterion}`)}
             </p>
             <p>
-              aₙ → {s.aLimit}
+              aₙ → {s.aLimitKey ? t(`series.${s.aLimitKey}`) : s.aLimit}
             </p>
             <p>
-              Resultado: {s.converges ? 'Converge' : 'Diverge'}
+              {t('series.result')} {s.converges ? t('series.converges') : t('series.diverges')}
               {showSum && s.sum !== null ? ` · S = ${fmt(s.sum, 4)}` : ''}
             </p>
           </div>
@@ -241,13 +243,13 @@ export function SeriesPartialSumsViz() {
 
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
           N = {N} · a<sub>N</sub> = {fmt(aN, 4)} · S<sub>N</sub> = {fmt(SN, 4)} ·{' '}
-          {s.converges && s.sum !== null ? `converge a S = ${fmt(s.sum, 4)}` : 'diverge'}
+          {s.converges && s.sum !== null ? `${t('series.converges')} S = ${fmt(s.sum, 4)}` : t('series.diverges')}
         </div>
 
         <ControlsStack>
           <SliderRow label={`N = ${N}`} value={N} min={1} max={50} step={1} onChange={(v) => setN(Math.round(v))} />
-          <ToggleRow label="Mostrar criterio aplicado" checked={showCrit} onChange={setShowCrit} />
-          <ToggleRow label="Mostrar suma exacta" checked={showSum} onChange={setShowSum} />
+          <ToggleRow label={t('series.showCrit')} checked={showCrit} onChange={setShowCrit} />
+          <ToggleRow label={t('series.showSum')} checked={showSum} onChange={setShowSum} />
         </ControlsStack>
       </div>
     </VizPanel>

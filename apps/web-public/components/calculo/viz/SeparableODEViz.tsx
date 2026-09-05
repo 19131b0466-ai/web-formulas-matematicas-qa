@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, solveODE } from './calcMath';
 
@@ -10,14 +11,14 @@ type Eq = {
   sep: string;
   sol: string;
   f: (x: number, y: number) => number;
-  GminusF?: (x: number, y: number) => number;
+  solKey?: 'logistic';
 };
 
 const EQS: Eq[] = [
   { label: 'y', ode: 'dy/dx = y', sep: 'dy/y = dx', sol: 'y = A eˣ', f: (_x, y) => y },
   { label: '−y', ode: 'dy/dx = −y', sep: 'dy/y = −dx', sol: 'y = A e⁻ˣ', f: (_x, y) => -y },
   { label: 'xy', ode: 'dy/dx = xy', sep: 'dy/y = x dx', sol: 'y = A e^(x²/2)', f: (x, y) => x * y },
-  { label: 'y(1−y)', ode: 'dy/dx = y(1−y)', sep: 'dy/[y(1−y)] = dx', sol: 'logística', f: (_x, y) => y * (1 - y) },
+  { label: 'y(1−y)', ode: 'dy/dx = y(1−y)', sep: 'dy/[y(1−y)] = dx', sol: 'logística', solKey: 'logistic', f: (_x, y) => y * (1 - y) },
   { label: 'x/y', ode: 'dy/dx = x/y', sep: 'y dy = x dx', sol: 'y² − x² = C', f: (x, y) => (y !== 0 ? x / y : NaN) },
   { label: '−x/y', ode: 'dy/dx = −x/y', sep: 'y dy = −x dx', sol: 'x² + y² = C', f: (x, y) => (y !== 0 ? -x / y : NaN) },
 ];
@@ -39,6 +40,7 @@ function toY(y: number) {
 
 export function SeparableODEViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [C, setC] = useState(0.4);
   const [x0, setX0] = useState(0);
@@ -83,9 +85,7 @@ export function SeparableODEViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          En una EDO separable, x e y se van a lados opuestos y se integran. Las soluciones forman una familia parametrizada por C.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('separable.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {EQS.map((e, i) => (
             <button
@@ -115,24 +115,24 @@ export function SeparableODEViz() {
           {sides ? (
             <div className="flex min-w-[160px] flex-1 flex-col gap-2 text-xs text-[var(--fg-muted)]">
               <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 py-2">
-                <p className="font-semibold text-[var(--fg)]">Separación</p>
+                <p className="font-semibold text-[var(--fg)]">{t('separable.sepTitle')}</p>
                 <p className="mt-1 font-mono">{eq.sep}</p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 py-2">
-                <p className="font-semibold text-[var(--fg)]">Solución</p>
-                <p className="mt-1 font-mono">{eq.sol}</p>
+                <p className="font-semibold text-[var(--fg)]">{t('separable.solTitle')}</p>
+                <p className="mt-1 font-mono">{eq.solKey ? t(`separable.${eq.solKey}`) : eq.sol}</p>
               </div>
             </div>
           ) : null}
         </div>
         <div id={statusId} className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 font-mono text-xs" aria-live="polite">
-          {eq.ode} · {eq.sep} · {eq.sol} · C≈{fmt(C, 2)} · y({fmt(x0, 1)})={fmt(y0, 2)}
+          {eq.ode} · {eq.sep} · {eq.solKey ? t(`separable.${eq.solKey}`) : eq.sol} · C≈{fmt(C, 2)} · y({fmt(x0, 1)})={fmt(y0, 2)}
         </div>
         <ControlsStack>
           <SliderRow label={`C = ${fmt(C, 2)}`} value={C} min={-3} max={3} step={0.1} onChange={setC} />
           <SliderRow label={`x₀ = ${fmt(x0, 2)}`} value={x0} min={-2} max={2} step={0.1} onChange={setX0} />
           <SliderRow label={`y₀ = ${fmt(y0, 2)}`} value={y0} min={-2} max={2} step={0.1} onChange={setY0} />
-          <ToggleRow label="Mostrar proceso de separación" checked={sides} onChange={setSides} />
+          <ToggleRow label={t('separable.showSep')} checked={sides} onChange={setSides} />
         </ControlsStack>
       </div>
     </VizPanel>

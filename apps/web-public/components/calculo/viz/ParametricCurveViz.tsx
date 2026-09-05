@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ButtonRow, ControlsStack, SliderRow, ToggleRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt } from './calcMath';
 
 type Curve = {
-  label: string;
+  id: 'cycloid' | 'lissajous32' | 'lissajous54' | 'cardioid' | 'ellipse' | 'spiral' | 'rose4';
   x: (t: number) => number;
   y: (t: number) => number;
   tMin: number;
@@ -13,13 +14,13 @@ type Curve = {
 };
 
 const CURVES: Curve[] = [
-  { label: 'Cicloide', x: (t) => t - Math.sin(t), y: (t) => 1 - Math.cos(t), tMin: 0, tMax: 4 * Math.PI },
-  { label: 'Lissajous 3:2', x: (t) => Math.sin(3 * t), y: (t) => Math.sin(2 * t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Lissajous 5:4', x: (t) => Math.sin(5 * t), y: (t) => Math.sin(4 * t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Cardioide', x: (t) => 2 * Math.cos(t) - Math.cos(2 * t), y: (t) => 2 * Math.sin(t) - Math.sin(2 * t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Elipse', x: (t) => 3 * Math.cos(t), y: (t) => 2 * Math.sin(t), tMin: 0, tMax: 2 * Math.PI },
-  { label: 'Espiral', x: (t) => t * Math.cos(t), y: (t) => t * Math.sin(t), tMin: 0, tMax: 4 * Math.PI },
-  { label: 'Rosa 4 pétalos', x: (t) => Math.cos(2 * t) * Math.cos(t), y: (t) => Math.cos(2 * t) * Math.sin(t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'cycloid', x: (t) => t - Math.sin(t), y: (t) => 1 - Math.cos(t), tMin: 0, tMax: 4 * Math.PI },
+  { id: 'lissajous32', x: (t) => Math.sin(3 * t), y: (t) => Math.sin(2 * t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'lissajous54', x: (t) => Math.sin(5 * t), y: (t) => Math.sin(4 * t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'cardioid', x: (t) => 2 * Math.cos(t) - Math.cos(2 * t), y: (t) => 2 * Math.sin(t) - Math.sin(2 * t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'ellipse', x: (t) => 3 * Math.cos(t), y: (t) => 2 * Math.sin(t), tMin: 0, tMax: 2 * Math.PI },
+  { id: 'spiral', x: (t) => t * Math.cos(t), y: (t) => t * Math.sin(t), tMin: 0, tMax: 4 * Math.PI },
+  { id: 'rose4', x: (t) => Math.cos(2 * t) * Math.cos(t), y: (t) => Math.cos(2 * t) * Math.sin(t), tMin: 0, tMax: 2 * Math.PI },
 ];
 
 const SPEED = [0.01, 0.03, 0.08];
@@ -36,6 +37,7 @@ function mapY(v: number, min: number, max: number, H: number, m: { t: number; b:
 
 export function ParametricCurveViz() {
   const statusId = useId();
+  const tv = useTranslations('vizCalc');
   const [idx, setIdx] = useState(0);
   const [t, setT] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -164,18 +166,14 @@ export function ParametricCurveViz() {
     <VizPanel>
       <div className="space-y-4">
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            En una curva paramétrica, x e y dependen de un parámetro t. El plano xy no muestra t; las gráficas laterales sí.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            En la cicloide el punto rueda como un punto de una llanta. En Lissajous, la razón de frecuencias fija los lóbulos.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{tv('paramCurve.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{tv('paramCurve.note')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
           {CURVES.map((c, i) => (
             <button
-              key={c.label}
+              key={c.id}
               type="button"
               onClick={() => setIdx(i)}
               className={`rounded-md border px-2 py-1 text-xs transition ${
@@ -184,7 +182,7 @@ export function ParametricCurveViz() {
                   : 'border-[var(--border)] bg-[var(--bg)] text-[var(--fg)] hover:bg-[var(--accent-soft)]'
               }`}
             >
-              {c.label}
+              {tv(`paramCurve.${c.id}`)}
             </button>
           ))}
         </div>
@@ -249,7 +247,7 @@ export function ParametricCurveViz() {
 
         <ButtonRow>
           <VizButton active={playing} onClick={() => setPlaying((v) => !v)}>
-            {playing ? 'Pausar' : 'Reproducir'}
+            {playing ? tv('common.pause') : tv('common.play')}
           </VizButton>
         </ButtonRow>
 
@@ -265,9 +263,9 @@ export function ParametricCurveViz() {
               setT(v);
             }}
           />
-          <SliderRow label={['Velocidad: lenta', 'Velocidad: normal', 'Velocidad: rápida'][speed]!} value={speed} min={0} max={2} step={1} onChange={(v) => setSpeed(Math.round(v))} />
-          <ToggleRow label="Mostrar flechas de dirección" checked={showArrows} onChange={setShowArrows} />
-          <ToggleRow label="Mostrar estela" checked={showTrail} onChange={setShowTrail} />
+          <SliderRow label={[tv('paramCurve.speedSlow'), tv('paramCurve.speedNormal'), tv('paramCurve.speedFast')][speed]!} value={speed} min={0} max={2} step={1} onChange={(v) => setSpeed(Math.round(v))} />
+          <ToggleRow label={tv('paramCurve.showArrows')} checked={showArrows} onChange={setShowArrows} />
+          <ToggleRow label={tv('paramCurve.showTrail')} checked={showTrail} onChange={setShowTrail} />
         </ControlsStack>
       </div>
     </VizPanel>

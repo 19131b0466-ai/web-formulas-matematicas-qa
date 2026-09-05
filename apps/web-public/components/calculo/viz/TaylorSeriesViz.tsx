@@ -147,6 +147,7 @@ function buildCurvePath(
 
 export function TaylorSeriesViz() {
   const t = useTranslations('vizCopy');
+  const tv = useTranslations('vizCalc');
   const statusId = useId();
   const [fnIdx, setFnIdx]         = useState(0);
   const [degree, setDegree]       = useState(4);
@@ -274,12 +275,8 @@ export function TaylorSeriesViz() {
       <div className="space-y-4">
         {/* Header */}
         <div>
-          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-            El polinomio de Taylor P<sub>n</sub>(x) es la mejor aproximación polinomial de f cerca de x = a. Cada término añade una corrección que reduce el error.
-          </p>
-          <p className="mt-1 text-sm text-[var(--fg-muted)]">
-            Mueve <strong>n</strong> y observa cómo el polinomio naranja abraza a la curva azul. La zona verde indica dónde el error es &lt; 0.05.
-          </p>
+          <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{tv('taylor.idea')}</p>
+          <p className="mt-1 text-sm text-[var(--fg-muted)]">{tv.rich('taylor.note', { strong: (c) => <strong>{c}</strong> })}</p>
         </div>
 
         {/* Function selector */}
@@ -300,14 +297,14 @@ export function TaylorSeriesViz() {
         {/* Convergence radius note */}
         {R !== undefined && (
           <p className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 text-xs text-[var(--fg-muted)]">
-            ⚠ Radio de convergencia R = {R}. Para |x − {center}| ≥ {R} la serie diverge sin importar el grado n.
+            ⚠ {tv('taylor.radiusWarn', { R, center })}
           </p>
         )}
 
         {/* Approximation panel */}
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
           <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-            Aproximación — f(x) vs P<sub>{degree}</sub>(x)
+            {tv('taylor.approx')}<sub>{degree}</sub>(x)
           </p>
           <svg viewBox={`0 0 ${W} ${H_APPROX}`} className="mx-auto h-auto w-full max-w-2xl" role="img">
             {/* Good zone */}
@@ -450,13 +447,13 @@ export function TaylorSeriesViz() {
           <SliderRow label={`Centro a = ${center}`} value={center} min={-2} max={2} step={0.25}
             onChange={v => setCenter(v)} />
           <SliderRow
-            label={`Punto de inspección x₀ = ${fmt(xProbe, 2)}`}
+            label={`${tv('taylor.probe')} = ${fmt(xProbe, 2)}`}
             value={xProbe} min={xMin} max={xMax} step={(xMax - xMin) / 200}
             onChange={v => setXProbe(v)}
           />
           <ToggleRow label={t('showError')} checked={showError} onChange={setShowError} />
-          <ToggleRow label="Mostrar zona de buena aproximación (error < 0.05)" checked={showGoodZone} onChange={setShowGoodZone} />
-          <ToggleRow label="Mostrar términos del polinomio" checked={showTerms} onChange={setShowTerms} />
+          <ToggleRow label={tv('taylor.showZone')} checked={showGoodZone} onChange={setShowGoodZone} />
+          <ToggleRow label={tv('taylor.showTerms')} checked={showTerms} onChange={setShowTerms} />
         </ControlsStack>
       </div>
     </VizPanel>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { ControlsStack, SliderRow, ToggleRow, VizPanel } from '@/components/algebra/viz/controls';
 import { fmt, safeEval } from './calcMath';
 
@@ -65,6 +66,7 @@ function yRange(fn: (x: number) => number, a: number, b: number) {
 
 export function AntiderivativeExplorerViz() {
   const statusId = useId();
+  const t = useTranslations('vizCalc');
   const [idx, setIdx] = useState(2);
   const [C, setC] = useState(0);
   const [showT, setShowT] = useState(true);
@@ -93,9 +95,7 @@ export function AntiderivativeExplorerViz() {
   return (
     <VizPanel>
       <div className="space-y-4">
-        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">
-          F es antiderivada de f si F′(x) = f(x). La pendiente de la tangente a F coincide con el valor de f en el mismo punto.
-        </p>
+        <p className="text-sm font-medium leading-relaxed text-[var(--fg)]">{t('antideriv.idea')}</p>
         <div className="flex flex-wrap gap-2">
           {PAIRS.map((p, i) => (
             <button
@@ -141,7 +141,7 @@ export function AntiderivativeExplorerViz() {
         <ControlsStack>
           <SliderRow label={`x₀ = ${fmt(x0, 2)}`} value={x0} min={pair.xMin} max={pair.xMax} step={0.05} onChange={setX0} />
           <SliderRow label={`C = ${fmt(C, 1)}`} value={C} min={-3} max={3} step={0.5} onChange={setC} />
-          <ToggleRow label="Mostrar recta tangente" checked={showT} onChange={setShowT} />
+          <ToggleRow label={t('antideriv.showT')} checked={showT} onChange={setShowT} />
         </ControlsStack>
       </div>
     </VizPanel>
