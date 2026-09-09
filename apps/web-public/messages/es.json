@@ -607,6 +607,684 @@
     "closed": "Cerrado",
     "reset": "Reiniciar",
     "showUnits": "Mostrar unidades",
-    "both": "Ambos"
+    "both": "Ambos",
+    "l1": {
+      "vec001": {
+        "aria": "Módulo de un vector",
+        "badge2d": "Representación 2D: Az = {az}",
+        "preset345": "3-4-5",
+        "presetNeg": "Componentes negativas",
+        "preset3d": "Proyección 3D",
+        "zeroVector": "El módulo es 0; no hay dirección definida.",
+        "status": "|A| = {mag} · A = ({pair})",
+        "ax": "Componente Ax",
+        "ay": "Componente Ay",
+        "az": "Componente Az"
+      },
+      "mom001": {
+        "aria": "Momento lineal en una recta",
+        "preset2m": "Doble masa",
+        "preset2v": "Doble velocidad",
+        "presetNeg": "Sentido contrario",
+        "scales": "Escalas visuales: v×{vScale}, p×{pScale}",
+        "status": "m = {m} kg · v = {v} m/s · p = {p}",
+        "mass": "m = {m} kg",
+        "massLabel": "Masa",
+        "velocity": "v = {v} m/s",
+        "velocityLabel": "Velocidad"
+      },
+      "ene003": {
+        "presetV": "v",
+        "preset2v": "2v",
+        "presetNeg": "−v",
+        "aria": "Energía cinética",
+        "sameSpeed": "A igual rapidez |v|: K = {K0}",
+        "status": "m = {m} kg · v = {v} m/s · K = {K}",
+        "mass": "m = {m} kg",
+        "massLabel": "Masa",
+        "velocity": "v = {v} m/s",
+        "velocityLabel": "Velocidad"
+      },
+      "flu007": {
+        "preset2v": "Misma A, doble v",
+        "preset2A": "Misma v, doble A",
+        "aria": "Caudal volumétrico",
+        "volume1s": "Volumen en 1 s: {vol} m³",
+        "derived": "A = {A} m² · v = {v} m/s",
+        "status": "Q = {Q}",
+        "area": "A = {A} m²",
+        "areaLabel": "Área",
+        "speed": "v = {v} m/s",
+        "speedLabel": "Velocidad"
+      },
+      "ter010": {
+        "chipP": "P fija",
+        "chipV": "V fijo",
+        "chipT": "T fija",
+        "aria": "Gas ideal en un cilindro",
+        "state": "P = {P} · V = {V} · T = {T} · n = {n} · U = {U}",
+        "lockP": "Experimento: P fija → al cambiar V se recalcula T.",
+        "lockV": "Experimento: V fijo → al cambiar T se recalcula P.",
+        "lockT": "Experimento: T fija → al cambiar V se recalcula P.",
+        "status": "Estado del gas: PV = nRT",
+        "n": "n = {n} mol",
+        "T": "T = {T} K",
+        "V": "V = {V} m³"
+      },
+      "ele018": {
+        "presetLowC": "C menor",
+        "presetHighC": "C mayor",
+        "aria": "Capacitancia C = Q/V",
+        "slope": "Q = {Q} · V = {V}",
+        "status": "La pendiente de Q(V) es la capacitancia.",
+        "C": "C = {C}",
+        "V": "V = {V}"
+      },
+      "ele019": {
+        "qFixed": "Q fija",
+        "vFixed": "V fija",
+        "aria": "Capacitor de placas paralelas",
+        "secondary": "Q = {Q} · V = {V} · κ = {kappa}",
+        "A": "A = {A} m²",
+        "d": "d = {d} m",
+        "kappa": "κ = {kappa}",
+        "Q": "Q = {Q}",
+        "V": "V = {V}"
+      },
+      "rot013": {
+        "presetSkater": "Patinador",
+        "direct": "Relación directa",
+        "redistribute": "Redistribución de masa",
+        "aria": "Momento angular L = Iω",
+        "values": "I = {I} · ω = {omega} · {state}",
+        "Lconstant": "L constante",
+        "Lvariable": "L variable",
+        "conservation": "Sin torque externo: al reducir r, ω aumenta para conservar L.",
+        "directStatus": "Cambia I o ω directamente en L = Iω.",
+        "I": "I = {I}",
+        "omega": "ω = {omega}",
+        "r": "r = {r} m"
+      },
+      "rot010": {
+        "tabFormula": "Fórmula directa",
+        "tabRolling": "Rodadura",
+        "ariaRolling": "Rodadura sin deslizamiento",
+        "rollingSub": "I = βmR² = {I} · ω = vCM/R = {omega} · β = {beta}",
+        "formulaStatus": "Krot = ½Iω² con I y ω independientes.",
+        "rollingStatus": "vCM = {vcm} m/s · ω = {omega} rad/s",
+        "I": "I = {I}",
+        "omega": "ω = {omega}"
+      },
+      "ter019": {
+        "presetLow": "Baja eficiencia",
+        "presetHigh": "Alta eficiencia",
+        "aria": "Eficiencia de máquina térmica",
+        "work": "W = {W} · QH = {QH} · QC = {QC}",
+        "invalid": "Estado inválido: QC no puede superar QH.",
+        "status": "η compara trabajo útil con calor absorbido del foco caliente.",
+        "QH": "QH = {QH} J",
+        "QC": "QC = {QC} J"
+      }
+    },
+    "l2": {
+      "cin004": {
+        "presetPos": "Pendiente +",
+        "presetZero": "Pendiente 0",
+        "presetNeg": "Pendiente −",
+        "tangent": "Pendiente de la tangente = v(t)",
+        "time": "t = {t} s",
+        "showAdvanced": "Parámetros avanzados",
+        "hideAdvanced": "Ocultar avanzados",
+        "status": "v(t) = {v} m/s en t = {t} s"
+      },
+      "cin006": {
+        "presetPos": "a > 0",
+        "presetZero": "a = 0",
+        "presetNeg": "a < 0",
+        "signs": "v = {v} m/s · a = {a} m/s²",
+        "time": "t = {t} s",
+        "showAdvanced": "Parámetros avanzados",
+        "hideAdvanced": "Ocultar avanzados",
+        "status": "a(t) = {a} m/s² · v = {v} m/s"
+      },
+      "cin012": {
+        "readout": "v0 + Δv = {v0} + {dv} = {v} m/s",
+        "status": "Δv = área bajo a(t) = {dv} m/s",
+        "time": "t = {t} s",
+        "t0": "t0 = {t0} s"
+      },
+      "cin013": {
+        "readout": "x0 + Δx = {x0} + {dx} = {x} m",
+        "distance": "Distancia recorrida = {dist} m",
+        "status": "Δx = {dx} m · distancia = {dist} m",
+        "time": "t = {t} s",
+        "t0": "t0 = {t0} s"
+      },
+      "mov014": {
+        "aria": "Comparación de alcances",
+        "max45": "45° maximiza R con misma altura inicial y final.",
+        "notMax45": "30° y 60° comparten alcance; 45° es máximo solo bajo las condiciones ideales.",
+        "status": "R = {R} m con θ = {theta}°"
+      },
+      "new001": {
+        "aria": "Primera ley: equilibrio",
+        "presetRest": "Reposo",
+        "presetMru": "MRU",
+        "presetAccel": "Acelerado",
+        "static": "Equilibrio estático",
+        "dynamic": "Equilibrio dinámico",
+        "accelerated": "Acelerado",
+        "v0": "v0 = {v0} m/s",
+        "status": "ΣF = {Fx} N · a = {a} m/s² · v = {v} m/s"
+      },
+      "new003": {
+        "interaction": "Interacción",
+        "dclA": "DCL A",
+        "dclB": "DCL B",
+        "contact": "Contacto",
+        "attract": "Atracción",
+        "fOnA": "F de B sobre A",
+        "fOnB": "F de A sobre B",
+        "aria": "Tercera ley",
+        "card": "|F| = {F} N en ambos cuerpos",
+        "note": "Iguales y opuestas, pero actúan sobre cuerpos distintos.",
+        "magnitude": "|F| = {F} N",
+        "status": "Acción-reacción: {F} N"
+      },
+      "new005": {
+        "aria": "Fricción cinética",
+        "opposes": "Se opone al movimiento hacia la {dir}",
+        "left": "izquierda",
+        "right": "derecha",
+        "status": "fk = {fk} N · Fapl = {Fapl} N"
+      },
+      "new006": {
+        "aria": "Fricción estática",
+        "presetBelow": "Bajo umbral",
+        "presetAt": "En umbral",
+        "presetAbove": "Sobre umbral",
+        "sliding": "Deslizando",
+        "rest": "En reposo",
+        "kinetic": "fk = {fk} N · a = {a} m/s²",
+        "static": "fs = {fs} N ≤ {max} N",
+        "status": "fs = {fs} N · fs,max = {max} N · N = {N} N"
+      },
+      "cir006": {
+        "aria": "Aceleración centrípeta",
+        "preset2v": "Doble v",
+        "preset2r": "Doble r",
+        "also": "ω = {omega} rad/s · ω²r = {ac2} m/s²",
+        "status": "v = {v} m/s · r = {r} m · ac = {ac} m/s²"
+      }
+    },
+    "l3": {
+      "cir008": {
+        "aria": "Aceleración tangencial y centrípeta",
+        "presetA0": "α = 0",
+        "presetW0": "ω0 = 0",
+        "presetBoth": "ω0 + α",
+        "also": "ac = {ac} m/s² · v = {v} m/s",
+        "status": "at = {at} m/s² · ac = {ac} m/s²"
+      },
+      "ene010": {
+        "ramp": "Pendiente",
+        "spring": "Resorte",
+        "aria": "Conservación de energía mecánica",
+        "constant": "Deriva E = {drift} J",
+        "status": "E = {E}"
+      },
+      "ene011": {
+        "withFriction": "Con fricción",
+        "noFriction": "Sin fricción",
+        "aria": "Energía mecánica con fuerzas no conservativas",
+        "balance": "Wnc = {Wnc} J · ΔEmec = {dEmec} J",
+        "status": "Wnc = {Wnc} J"
+      },
+      "mom005": {
+        "aria": "Conservación del momento lineal",
+        "elastic": "Elástica",
+        "inelastic": "Inelástica",
+        "conserved": "pi = {pi} · pf = {pf}",
+        "status": "p1i + p2i = {p1i} + {p2i} → p1f + p2f = {p1f} + {p2f}"
+      },
+      "mom006": {
+        "aria": "Choque inelástico perfecto",
+        "oneVf": "vf = {vf} m/s (cuerpos unidos)",
+        "kLost": "Ki = {Ki} J → Kf = {Kf} J · Q = {Q} J",
+        "status": "vf = {vf} m/s · pi = pf = {pi}"
+      },
+      "mom007": {
+        "aria": "Choque elástico 1D",
+        "presetSwap": "Intercambio (m iguales)",
+        "presetBounce": "Rebote",
+        "kConserved": "K: {Ki} → {Kf} J (conservada)",
+        "velocities": "v1f = {v1f} · v2f = {v2f} m/s",
+        "status": "K: {Ki} → {Kf} J · p: {pi} → {pf}"
+      },
+      "equ002": {
+        "pivotLeft": "Pivote izq.",
+        "pivotRight": "Pivote der.",
+        "pivotCm": "Pivote CM",
+        "aria": "Viga en equilibrio",
+        "forces": "N1 = {N1} N · N2 = {N2} N · W = {W} N",
+        "torque": "Στ (pivote) = {tau} N·m",
+        "status": "ΣF = {Nsum} N · Στ = {tau} N·m"
+      },
+      "equ005": {
+        "aria": "Módulo de Young",
+        "steel": "acero",
+        "rubber": "goma",
+        "caption": "alargamiento exagerado (régimen lineal)",
+        "young": "Y = σ/ε = {Y} Pa",
+        "readout": "σ = {sigma} Pa · ε = {eps} · ΔL = {dL} m",
+        "stressOnly": "σ = F/A = {sigma} Pa",
+        "strainOnly": "ε = ΔL/L0 = {eps}",
+        "stressStatus": "σ = {sigma} Pa",
+        "strainStatus": "ε = {eps} · ΔL = {dL} m",
+        "status": "Y = σ/ε · σ = {sigma} Pa · ε = {eps} · ΔL = {dL} m"
+      },
+      "flu009": {
+        "aria": "Ecuación de Bernoulli",
+        "constant": "P + ½ρv² + ρgy = {B} Pa",
+        "compare": "B1 = {B1} · B2 = {B2} · |ΔB| = {drift}",
+        "status": "v1 = {v1} · v2 = {v2} m/s · P2 = {P2} Pa"
+      },
+      "ele016": {
+        "aria": "Primera ley de Kirchhoff en un nudo",
+        "balance": "I1 = I2 + I3 · {I1} = {I2} + {I3} A",
+        "status": "ΣI = 0 · I1 = {I1} · I2 = {I2} · I3 = {I3} A"
+      }
+    },
+    "l4": {
+      "ele017": {
+        "aria": "Segunda ley de Kirchhoff en una malla",
+        "cw": "Sentido horario",
+        "ccw": "Sentido antihorario",
+        "sum": "ΣΔV = {sum} V · I = {I} A",
+        "table": "+ε − IR1 − IR2 = {emf} − {vr1} − {vr2}",
+        "status": "ΣΔV ≈ {sum} V · I = {I} A"
+      },
+      "vec005": {
+        "aria": "Producto escalar y proyección",
+        "acute": "Agudo",
+        "right": "90°",
+        "obtuse": "Obtuso",
+        "positive": "Producto escalar positivo",
+        "negative": "Producto escalar negativo",
+        "zero": "Producto escalar cero (perpendiculares)",
+        "proj": "|B|cosθ = {val}",
+        "dot": "A·B = |A||B|cosθ = {dot}",
+        "status": "A·B = {dot} · θ = {theta} · verificación = {check}"
+      },
+      "vec006": {
+        "aria": "Producto vectorial",
+        "out": "⊙ hacia +z",
+        "in": "⊗ hacia −z",
+        "hand": "Regla de la mano derecha (paso {step}/3)",
+        "mag": "|A×B| = AB senθ = {mag} · área = {area}",
+        "dir": "Dirección: {dir}",
+        "status": "|A×B| = {mag} · AxBy−AyBx = {cz} · θ = {theta}°"
+      },
+      "new008": {
+        "aria": "Peso en plano inclinado",
+        "planeAxes": "Ejes ∥ y ⊥",
+        "globalAxes": "Ejes XY globales",
+        "components": "mg sinθ = {par} N · mg cosθ = {perp} N",
+        "note": "Escenario básico sin otras fuerzas ⊥: N = mg cosθ = {N} N",
+        "status": "θ = {theta}° · paralela = {par} N · ⊥ = {perp} N · N = {N} N"
+      },
+      "ene002": {
+        "spring": "Resorte F=kx",
+        "linear": "F lineal",
+        "constant": "F constante",
+        "title": "Área bajo F(x) = trabajo",
+        "work": "W = ∫ F dx = {W} J",
+        "springWork": "½k(x2²−x1²) = {tri} J",
+        "rects": "Aproximación con {n} rectángulos",
+        "nRects": "Rectángulos",
+        "status": "W = {W} J entre x1 = {x1} m y x2 = {x2} m"
+      },
+      "ene008": {
+        "spring": "Resorte",
+        "grav": "Gravitatorio",
+        "well": "Pozo",
+        "title": "U(x) y fuerza conservativa",
+        "force": "Fx = −dU/dx = {F} N · dU/dx = {dU}",
+        "status": "F = {F} N en x = {x} m"
+      },
+      "mom004": {
+        "presetRect": "Pulso rectangular",
+        "presetTri": "Pulso triangular (misma área)",
+        "rect": "Rectangular",
+        "tri": "Triangular",
+        "forceTitle": "F(t)",
+        "momentumTitle": "p(t)",
+        "impulse": "J = área = Δp = {J} · p actual = {dp}",
+        "matched": "Misma área: rect {Jrect} · tri {Jtri} N·s",
+        "status": "J = {J} N·s · Δv = {v} m/s con m = {m} kg"
+      },
+      "rot005": {
+        "aria": "Momento de inercia de partículas",
+        "axis": "eje",
+        "presetEqR": "Igual m, distinto r",
+        "presetEqM": "Igual r, distinto m",
+        "total": "I = Σ mi ri² = {I} kg·m²",
+        "contrib": "I1 = {I1} · I2 = {I2} · I3 = {I3}",
+        "status": "I total = {I} kg·m²"
+      },
+      "gra001": {
+        "aria": "Ley de gravitación universal",
+        "notToScale": "Ilustración no a escala",
+        "chartTitle": "F ∝ 1/r²",
+        "presetR": "r",
+        "preset2R": "2r (F/4)",
+        "preset3R": "3r (F/9)",
+        "force": "F = G m1 m2 / r² = {F} N",
+        "ratio": "Al duplicar r: F pasa de {F0} a {Fr} (×{factor})",
+        "status": "F = {F} N a r = {r}×10⁶ m"
+      },
+      "gra003": {
+        "title": "U(r) = −GMm/r",
+        "ariaMini": "Órbita esquemática al radio seleccionado",
+        "potential": "U = −GMm/r = {U} J",
+        "note": "U = 0 en el infinito; más cerca ⇒ U más negativa",
+        "status": "U = {U} J · r = {r}×10⁶ m"
+      }
+    },
+    "l5": {
+      "gra005": {
+        "aria": "Órbita circular ideal",
+        "ideal": "Órbita circular ideal (no a escala)",
+        "presetR1": "r menor",
+        "presetR2": "r mayor",
+        "vChart": "v(r) = √(GM/r)",
+        "vorb": "vorb = √(GM/r) = {v} m/s",
+        "ratio": "r = {r}×10⁶ m · v = {v} m/s",
+        "status": "v = {v} m/s · T = {T} s"
+      },
+      "gra006": {
+        "aria": "Periodo orbital",
+        "accelTime": "Tiempo acelerado (pedagógico)",
+        "presetKepler": "Kepler T²∝r³",
+        "tChart": "T(r) = 2π√(r³/GM)",
+        "periods": "T1 = {T1} s · T2 = {T2} s",
+        "kepler": "T2²/T1² ÷ (r2/r1)³ ≈ {ratio}",
+        "status": "t = {t} s · T1 = {T1} s · T2 = {T2} s"
+      },
+      "gra007": {
+        "aria": "Velocidad de escape",
+        "bound": "E < 0 (ligado)",
+        "limit": "E ≈ 0 (límite)",
+        "escape": "E > 0 (escape)",
+        "vesc": "vesc = {vesc} m/s · v0 = {v0} m/s",
+        "sqrt2": "vesc = √2 vorb = {vorb} m/s (mismo radio)",
+        "status": "{state} · E = {E} J"
+      },
+      "flu003": {
+        "aria": "Presión hidrostática",
+        "water": "Agua",
+        "oil": "Aceite",
+        "mercury": "Mercurio",
+        "pChart": "P(h) = P0 + ρgh",
+        "total": "P = {P}",
+        "parts": "P0 = {P0} · ρgh = {Ph}",
+        "status": "P = {P} · h = {h} m · ρ = {rho} kg/m³"
+      },
+      "osc003": {
+        "aria": "Posición en MAS",
+        "circle": "Círculo de referencia",
+        "position": "x = {x} m · A = {A} m",
+        "period": "T = {T} s",
+        "status": "x = {x} m · φ = {phi}°"
+      },
+      "osc004": {
+        "aria": "Aceleración en MAS",
+        "center": "Centro",
+        "right": "Extremo derecho",
+        "left": "Extremo izquierdo",
+        "accel": "a = −ω²x = {a} m/s² · x = {x} m",
+        "status": "a = {a} m/s² · ω = {omega} rad/s"
+      },
+      "osc005": {
+        "aria": "Velocidad en MAS",
+        "extreme": "Extremo (v=0)",
+        "eqRight": "Equilibrio →",
+        "eqLeft": "Equilibrio ←",
+        "velocity": "v = {v} m/s · x = {x} m",
+        "phase": "v y x desfasados π/2",
+        "status": "v = {v} m/s · vmax = {vmax} m/s"
+      },
+      "osc008": {
+        "aria": "Energía del MAS",
+        "energyChart": "U(x) y K(x)",
+        "total": "E = ½kA² = {E} J",
+        "balance": "K+U = {sum} J · deriva = {drift} J",
+        "status": "K = {K} J · U = {U} J · E = {E} J"
+      },
+      "ond005": {
+        "aria": "Onda armónica viajera",
+        "plusX": "+x",
+        "minusX": "−x",
+        "particle": "medio",
+        "speed": "v = λf = {v} m/s",
+        "status": "v = {v} m/s · dirección {dir}"
+      },
+      "ond008": {
+        "title": "y1 + y2",
+        "inPhase": "En fase",
+        "opposition": "Oposición",
+        "partial": "Desfase parcial",
+        "phase": "desfase (rad)",
+        "sum": "y1 + y2 = {y1} + {y2} = {y}",
+        "check": "verificación = {calc}",
+        "status": "φ = {phase} rad · y(t) = {y}"
+      }
+    },
+    "l6": {
+      "ond009": {
+        "aria": "Interferencia por diferencia de camino",
+        "dr0": "Δr = 0",
+        "drHalf": "Δr = λ/2",
+        "dr1": "Δr = λ",
+        "drThreeHalf": "Δr = 3λ/2",
+        "constructive": "constructiva",
+        "destructive": "destructiva",
+        "partial": "intermedia",
+        "paths": "r1 = {r1} m · r2 = {r2} m · Δr = {dr} m",
+        "lambda": "Δr/λ = {ratio} · interferencia {kind}",
+        "status": "Δr = {dr} m · Δr/λ = {ratio} · {kind}"
+      },
+      "son004": {
+        "aria": "Efecto Doppler",
+        "source": "fuente",
+        "observer": "observador",
+        "srcApproach": "fuente se acerca",
+        "obsApproach": "observador se acerca",
+        "bothAway": "ambos se alejan",
+        "srcToward": "fuente → obs.",
+        "srcAway": "fuente se aleja",
+        "obsToward": "obs. → fuente",
+        "obsAway": "obs. se aleja",
+        "fEmit": "f emitida (Hz)",
+        "vs": "vs (m/s)",
+        "vo": "vo (m/s)",
+        "observed": "f′ = {fp} Hz · f = {f} Hz",
+        "formula": "f′ = f (v {signNum} vo)/(v {signDen} vs) · v = {v} m/s",
+        "status": "f′ = {fp} Hz · vs = {vs} · vo = {vo} m/s"
+      },
+      "son005": {
+        "title": "Batidos",
+        "equal": "f1 = f2",
+        "smallDiff": "Δf pequeña",
+        "largeDiff": "Δf mayor",
+        "beat": "fbat = |f1 − f2| = {fbat} Hz",
+        "peaks": "≈ {n} máximos de amplitud por segundo",
+        "f1": "f1 (Hz)",
+        "f2": "f2 (Hz)",
+        "volume": "volumen",
+        "playAudio": "Reproducir audio",
+        "mute": "Silenciar",
+        "status": "f1 = {f1} Hz · f2 = {f2} Hz · fbat = {fbat} Hz"
+      },
+      "son006": {
+        "aria": "Tubo abierto en ambos extremos",
+        "displacement": "desplazamiento",
+        "pressure": "presión",
+        "harmonic": "n = {n}",
+        "antinodesOpen": "vientres en las bocas (desplazamiento)",
+        "nodesOpenP": "nodos de presión en las bocas",
+        "freq": "fn = nv/(2L) = {f} Hz · n = {n}",
+        "lambda": "λn = 2L/n = {lambda} m · L = {L} m",
+        "L": "L (m)",
+        "v": "v (m/s)",
+        "status": "n = {n} · f = {f} Hz · modo: {kind}"
+      },
+      "son007": {
+        "aria": "Tubo cerrado en un extremo",
+        "displacement": "desplazamiento",
+        "pressure": "presión",
+        "harmonic": "n = {n}",
+        "closedEnd": "cerrado (nodo)",
+        "openEnd": "abierto",
+        "oddOnly": "solo armónicos impares",
+        "freq": "fn = nv/(4L) = {f} Hz · n = {n}",
+        "lambda": "λn = 4L/n = {lambda} m · L = {L} m",
+        "L": "L (m)",
+        "v": "v (m/s)",
+        "evenBlocked": "n par no permitido",
+        "status": "n = {n} · f = {f} Hz {note}"
+      },
+      "ter015": {
+        "aria": "Trabajo termodinámico",
+        "pvTitle": "Diagrama P–V",
+        "isobar": "isobárico",
+        "variable": "trayectoria variable",
+        "work": "W = ∫P dV = {W}",
+        "conv": "Convención: trabajo {sign}",
+        "byGas": "realizado por el gas (expansión)",
+        "onGas": "sobre el gas (compresión)",
+        "Pi": "P (Pa)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "W = {W} J · proceso {proc}"
+      },
+      "ter017": {
+        "aria": "Proceso isotérmico",
+        "pvTitle": "Isoterma PV = cte",
+        "expand": "expansión",
+        "compress": "compresión",
+        "sameV": "Vi = Vf",
+        "refOn": "isoterma de referencia",
+        "refOff": "ocultar referencia",
+        "isothermal": "T = {T} K constante · W = {W}",
+        "deltaU": "ΔU = {dU} J",
+        "n": "n (mol)",
+        "T": "T (K)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "Pi = {P0} · Pf = {Pf} · W = {W} J"
+      },
+      "ter018": {
+        "aria": "Proceso adiabático",
+        "pvTitle": "PV^γ = cte",
+        "mono": "monoatómico γ=5/3",
+        "di": "diatómico γ=7/5",
+        "expand": "expansión",
+        "adiabatic": "Q = {Q} · γ = {gamma}",
+        "energy": "ΔU = {dU} J · W = {W} J · Tf = {Tf} K",
+        "Ti": "Ti (K)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "Ti = {Ti} K → Tf = {Tf} K · W = {W} J"
+      },
+      "ele002": {
+        "aria": "Ley de Coulomb",
+        "equal": "cargas iguales",
+        "opposite": "cargas opuestas",
+        "doubleQ": "q1 duplicada",
+        "attract": "atracción",
+        "repel": "repulsión",
+        "fChart": "F(r) = ke|q1q2|/r²",
+        "force": "F = {F}",
+        "inverse": "F ∝ 1/r²",
+        "q1": "q1 (μC)",
+        "q2": "q2 (μC)",
+        "r": "r (m)",
+        "status": "F = {F} N · {kind} · r = {r} m"
+      },
+      "ele003": {
+        "aria": "Campo eléctrico",
+        "posSource": "fuente +",
+        "negSource": "fuente −",
+        "eChart": "E(r) = ke|Q|/r²",
+        "field": "E = {E}",
+        "forceTest": "F = qE con q = {q} μC → {F}",
+        "qSource": "Q fuente (μC)",
+        "rObs": "r observación (m)",
+        "qTest": "q prueba (μC)",
+        "status": "E = {E} N/C · r = {r} m"
+      }
+    },
+    "l7": {
+      "ele014": {
+        "aria": "Resistencias en serie",
+        "equal": "R1 = R2",
+        "req": "Req = R1+R2 = {Req} Ω · I = {I} A",
+        "drops": "V1 = {V1} V · V2 = {V2} V · V1+V2 = ε",
+        "status": "Req = {Req} Ω · I = {I} A · V1 = {V1} V · V2 = {V2} V"
+      },
+      "ele015": {
+        "aria": "Resistencias en paralelo",
+        "equal": "R1 = R2",
+        "parallelOnly": "solo paralelo",
+        "compareSeries": "comparar con serie",
+        "req": "1/Req = 1/R1+1/R2 · Req = {Req} Ω · Itotal = {Itotal} A",
+        "branches": "I1 = {I1} A · I2 = {I2} A · misma V",
+        "vsSeries": "serie: Req = {ReqS} Ω · Req < min(R1,R2) = {minR} Ω",
+        "status": "Req = {Req} Ω · I1 = {I1} A · I2 = {I2} A · Itotal = {Itotal} A"
+      },
+      "ele020": {
+        "aria": "Energía del capacitor",
+        "qFixed": "Q fija",
+        "vFixed": "V fija",
+        "chart": "Energía almacenada",
+        "cv": "½CV²",
+        "qc": "Q²/(2C)",
+        "qv": "½QV",
+        "active": "U = {formula} = {U}",
+        "equiv": "½CV² = {cv} · Q²/(2C) = {qc} · ½QV = {qv}",
+        "A": "A (m²)",
+        "d": "d (m)",
+        "kappa": "κ",
+        "Q": "Q (C)",
+        "V": "V (V)",
+        "qNote": "si aumentas C con Q fija, V baja y U baja",
+        "vNote": "si aumentas C con V fija, Q sube y U sube",
+        "status": "C = {C} · Q = {Q} · V = {V} · {note}"
+      },
+      "guia": {
+        "prompt": "¿Qué aparece en el enunciado?",
+        "choices": "Opciones de la guía",
+        "back": "Atrás",
+        "reset": "Reiniciar",
+        "start": "Inicio",
+        "keywords": "Palabras clave",
+        "section": "Sección",
+        "pickTopic": "Elige un bloque: movimiento, fuerzas, conservación, rotación, fluidos, ondas, calor o circuitos.",
+        "pickSection": "Elige la sección que mejor coincide con el enunciado.",
+        "textVersion": "Versión textual accesible",
+        "textHelp": "Ruta actual y fórmulas candidatas. Usa flechas y Enter para navegar; Escape para volver; Home para reiniciar.",
+        "branch": {
+          "motion": "Movimiento",
+          "forces": "Fuerzas",
+          "conservation": "Conservación",
+          "rotation": "Rotación",
+          "fluids": "Fluidos",
+          "waves": "Ondas",
+          "heat": "Calor",
+          "circuits": "Circuitos"
+        }
+      }
+    }
   }
 }

@@ -14,10 +14,67 @@ import {
   projectileTmax,
 } from './physMath';
 import { PlayRow, PhysGuide, PhysStatus, useRafPlay } from './physChrome';
+import { PhysPresets, PhysResult } from './physPanel';
 import { ACCENT, ChartFrame, MUTED, ORANGE, TEAL, fnPath, makePlot, padRange } from './physPlot';
 
 const W = 420;
 const H = 240;
+
+function RangeMode({ mode }: { mode?: string }) {
+  const tr = useTranslations('vizFisica.l2.mov014');
+  const uid = useId();
+  const [v0, setV0] = useState(22);
+  const [theta, setTheta] = useState(45);
+  const [g, setG] = useState(G);
+  const angles = [30, 45, 60] as const;
+  const colors: Record<number, string> = { 30: TEAL, 45: ORANGE, 60: ACCENT };
+  const ranges = angles.map((a) => ({ a, R: projectileRange(v0, a, g) }));
+  const xScale = Math.max(...ranges.map((r) => r.R), 8);
+  const yScale = Math.max(projectileH(v0, 45, g), 4);
+  const toX = (x: number) => 28 + (x / xScale) * (W - 48);
+  const toY = (y: number) => H - 28 - (y / yScale) * (H - 48);
+  const R = projectileRange(v0, theta, g);
+  const isMax45 = Math.abs(theta - 45) < 0.5;
+
+  return (
+    <div className="space-y-4">
+      <PhysGuide type="projectile_motion" mode={mode} />
+      <PhysPresets items={angles.map((a) => ({ id: String(a), label: `${a}°`, onSelect: () => setTheta(a) }))} />
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={tr('aria')}>
+        <line x1={20} y1={H - 28} x2={W - 12} y2={H - 28} stroke={MUTED} />
+        {angles.map((a) => {
+          const tf = projectileTflight(v0, a, g);
+          const traj = Array.from({ length: 50 }, (_, i) => projectileState(v0, a, (i / 49) * tf, g));
+          const active = a === theta;
+          return (
+            <g key={a} opacity={active ? 1 : 0.45}>
+              <path
+                d={traj.map((p, i) => `${i ? 'L' : 'M'}${toX(p.x)},${toY(p.y)}`).join(' ')}
+                fill="none"
+                stroke={colors[a]}
+                strokeWidth={active ? 2.4 : 1.4}
+              />
+              <line x1={toX(projectileRange(v0, a, g))} y1={H - 28} x2={toX(projectileRange(v0, a, g))} y2={H - 34} stroke={colors[a]} strokeWidth={2} />
+              <text x={toX(projectileRange(v0, a, g))} y={H - 8} textAnchor="middle" fontSize={9} fill={colors[a]}>{a}°</text>
+            </g>
+          );
+        })}
+      </svg>
+      <div className="flex flex-wrap gap-3 text-xs text-[var(--fg-muted)]">
+        {angles.map((a) => (
+          <span key={a} style={{ color: colors[a] }}>{a}°: R = {present(projectileRange(v0, a, g))} m</span>
+        ))}
+      </div>
+      <PhysResult primary={`R = ${present(R)} m`} secondary={isMax45 ? tr('max45') : tr('notMax45')} />
+      <PhysStatus id={uid}>{tr('status', { R: present(R), theta: present(theta) })}</PhysStatus>
+      <ControlsStack>
+        <SliderRow label="v0 (m/s)" value={v0} min={5} max={40} step={0.5} onChange={setV0} />
+        <SliderRow label="θ (°)" value={theta} min={5} max={85} step={1} onChange={setTheta} />
+        <SliderRow label="g (m/s²)" value={g} min={9.8} max={10} step={0.01} onChange={setG} />
+      </ControlsStack>
+    </div>
+  );
+}
 
 export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
   const tr = useTranslations('vizFisica');
@@ -28,6 +85,10 @@ export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
   const [t, setT] = useState(0.6);
   const [playing, setPlaying] = useState(false);
   const [graphs, setGraphs] = useState(mode === 'x' || mode === 'y' || mode === 'vx' || mode === 'vy');
+
+  if (mode === 'range') {
+    return <VizPanel><RangeMode mode={mode} /></VizPanel>;
+  }
 
   const tmax = projectileTmax(v0, theta, g);
   const Hmax = projectileH(v0, theta, g);

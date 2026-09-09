@@ -607,6 +607,684 @@
     "closed": "Chiuso",
     "reset": "Reimposta",
     "showUnits": "Mostra unità",
-    "both": "Entrambi"
+    "both": "Entrambi",
+    "l1": {
+      "vec001": {
+        "aria": "Vector magnitude",
+        "badge2d": "2D view: Az = {az}",
+        "preset345": "3-4-5",
+        "presetNeg": "Negative components",
+        "preset3d": "3D projection",
+        "zeroVector": "Magnitude is 0; direction is undefined.",
+        "status": "|A| = {mag} · A = ({pair})",
+        "ax": "Component Ax",
+        "ay": "Component Ay",
+        "az": "Component Az"
+      },
+      "mom001": {
+        "aria": "Linear momentum on a line",
+        "preset2m": "Double mass",
+        "preset2v": "Double speed",
+        "presetNeg": "Opposite direction",
+        "scales": "Visual scales: v×{vScale}, p×{pScale}",
+        "status": "m = {m} kg · v = {v} m/s · p = {p}",
+        "mass": "m = {m} kg",
+        "massLabel": "Mass",
+        "velocity": "v = {v} m/s",
+        "velocityLabel": "Velocity"
+      },
+      "ene003": {
+        "presetV": "v",
+        "preset2v": "2v",
+        "presetNeg": "−v",
+        "aria": "Kinetic energy",
+        "sameSpeed": "At same speed |v|: K = {K0}",
+        "status": "m = {m} kg · v = {v} m/s · K = {K}",
+        "mass": "m = {m} kg",
+        "massLabel": "Mass",
+        "velocity": "v = {v} m/s",
+        "velocityLabel": "Velocity"
+      },
+      "flu007": {
+        "preset2v": "Same A, double v",
+        "preset2A": "Same v, double A",
+        "aria": "Volumetric flow rate",
+        "volume1s": "Volume in 1 s: {vol} m³",
+        "derived": "A = {A} m² · v = {v} m/s",
+        "status": "Q = {Q}",
+        "area": "A = {A} m²",
+        "areaLabel": "Area",
+        "speed": "v = {v} m/s",
+        "speedLabel": "Speed"
+      },
+      "ter010": {
+        "chipP": "Fixed P",
+        "chipV": "Fixed V",
+        "chipT": "Fixed T",
+        "aria": "Ideal gas in a cylinder",
+        "state": "P = {P} · V = {V} · T = {T} · n = {n} · U = {U}",
+        "lockP": "Experiment: fixed P → changing V recalculates T.",
+        "lockV": "Experiment: fixed V → changing T recalculates P.",
+        "lockT": "Experiment: fixed T → changing V recalculates P.",
+        "status": "Gas state: PV = nRT",
+        "n": "n = {n} mol",
+        "T": "T = {T} K",
+        "V": "V = {V} m³"
+      },
+      "ele018": {
+        "presetLowC": "Lower C",
+        "presetHighC": "Higher C",
+        "aria": "Capacitance C = Q/V",
+        "slope": "Q = {Q} · V = {V}",
+        "status": "The slope of Q(V) is capacitance.",
+        "C": "C = {C}",
+        "V": "V = {V}"
+      },
+      "ele019": {
+        "qFixed": "Fixed Q",
+        "vFixed": "Fixed V",
+        "aria": "Parallel-plate capacitor",
+        "secondary": "Q = {Q} · V = {V} · κ = {kappa}",
+        "A": "A = {A} m²",
+        "d": "d = {d} m",
+        "kappa": "κ = {kappa}",
+        "Q": "Q = {Q}",
+        "V": "V = {V}"
+      },
+      "rot013": {
+        "presetSkater": "Skater",
+        "direct": "Direct relation",
+        "redistribute": "Mass redistribution",
+        "aria": "Angular momentum L = Iω",
+        "values": "I = {I} · ω = {omega} · {state}",
+        "Lconstant": "L constant",
+        "Lvariable": "L variable",
+        "conservation": "No external torque: shrinking r increases ω to conserve L.",
+        "directStatus": "Change I or ω directly in L = Iω.",
+        "I": "I = {I}",
+        "omega": "ω = {omega}",
+        "r": "r = {r} m"
+      },
+      "rot010": {
+        "tabFormula": "Direct formula",
+        "tabRolling": "Rolling",
+        "ariaRolling": "Rolling without slipping",
+        "rollingSub": "I = βmR² = {I} · ω = vCM/R = {omega} · β = {beta}",
+        "formulaStatus": "Krot = ½Iω² with independent I and ω.",
+        "rollingStatus": "vCM = {vcm} m/s · ω = {omega} rad/s",
+        "I": "I = {I}",
+        "omega": "ω = {omega}"
+      },
+      "ter019": {
+        "presetLow": "Low efficiency",
+        "presetHigh": "High efficiency",
+        "aria": "Heat engine efficiency",
+        "work": "W = {W} · QH = {QH} · QC = {QC}",
+        "invalid": "Invalid state: QC cannot exceed QH.",
+        "status": "η compares useful work to heat absorbed from the hot reservoir.",
+        "QH": "QH = {QH} J",
+        "QC": "QC = {QC} J"
+      }
+    },
+    "l2": {
+      "cin004": {
+        "presetPos": "Positive slope",
+        "presetZero": "Zero slope",
+        "presetNeg": "Negative slope",
+        "tangent": "Tangent slope = v(t)",
+        "time": "t = {t} s",
+        "showAdvanced": "Advanced parameters",
+        "hideAdvanced": "Hide advanced",
+        "status": "v(t) = {v} m/s at t = {t} s"
+      },
+      "cin006": {
+        "presetPos": "a > 0",
+        "presetZero": "a = 0",
+        "presetNeg": "a < 0",
+        "signs": "v = {v} m/s · a = {a} m/s²",
+        "time": "t = {t} s",
+        "showAdvanced": "Advanced parameters",
+        "hideAdvanced": "Hide advanced",
+        "status": "a(t) = {a} m/s² · v = {v} m/s"
+      },
+      "cin012": {
+        "readout": "v0 + Δv = {v0} + {dv} = {v} m/s",
+        "status": "Δv = area under a(t) = {dv} m/s",
+        "time": "t = {t} s",
+        "t0": "t0 = {t0} s"
+      },
+      "cin013": {
+        "readout": "x0 + Δx = {x0} + {dx} = {x} m",
+        "distance": "Distance traveled = {dist} m",
+        "status": "Δx = {dx} m · distance = {dist} m",
+        "time": "t = {t} s",
+        "t0": "t0 = {t0} s"
+      },
+      "mov014": {
+        "aria": "Range comparison",
+        "max45": "45° maximizes R with equal start/end height.",
+        "notMax45": "30° and 60° share range; 45° is max only under ideal conditions.",
+        "status": "R = {R} m at θ = {theta}°"
+      },
+      "new001": {
+        "aria": "First law equilibrium",
+        "presetRest": "At rest",
+        "presetMru": "Uniform motion",
+        "presetAccel": "Accelerating",
+        "static": "Static equilibrium",
+        "dynamic": "Dynamic equilibrium",
+        "accelerated": "Accelerating",
+        "v0": "v0 = {v0} m/s",
+        "status": "ΣF = {Fx} N · a = {a} m/s² · v = {v} m/s"
+      },
+      "new003": {
+        "interaction": "Interaction",
+        "dclA": "FBD A",
+        "dclB": "FBD B",
+        "contact": "Contact",
+        "attract": "Attraction",
+        "fOnA": "F on A by B",
+        "fOnB": "F on B by A",
+        "aria": "Tercera ley",
+        "card": "|F| = {F} N on both bodies",
+        "note": "Equal and opposite, on different bodies.",
+        "magnitude": "|F| = {F} N",
+        "status": "Action-reaction: {F} N"
+      },
+      "new005": {
+        "aria": "Kinetic friction",
+        "opposes": "Opposes motion to the {dir}",
+        "left": "left",
+        "right": "right",
+        "status": "fk = {fk} N · Fapl = {Fapl} N"
+      },
+      "new006": {
+        "aria": "Static friction",
+        "presetBelow": "Below threshold",
+        "presetAt": "At threshold",
+        "presetAbove": "Above threshold",
+        "sliding": "Sliding",
+        "rest": "At rest",
+        "kinetic": "fk = {fk} N · a = {a} m/s²",
+        "static": "fs = {fs} N ≤ {max} N",
+        "status": "fs = {fs} N · fs,max = {max} N · N = {N} N"
+      },
+      "cir006": {
+        "aria": "Centripetal acceleration",
+        "preset2v": "Double v",
+        "preset2r": "Double r",
+        "also": "ω = {omega} rad/s · ω²r = {ac2} m/s²",
+        "status": "v = {v} m/s · r = {r} m · ac = {ac} m/s²"
+      }
+    },
+    "l3": {
+      "cir008": {
+        "aria": "Tangential and centripetal acceleration",
+        "presetA0": "α = 0",
+        "presetW0": "ω0 = 0",
+        "presetBoth": "ω0 + α",
+        "also": "ac = {ac} m/s² · v = {v} m/s",
+        "status": "at = {at} m/s² · ac = {ac} m/s²"
+      },
+      "ene010": {
+        "ramp": "Ramp",
+        "spring": "Spring",
+        "aria": "Mechanical energy conservation",
+        "constant": "E drift = {drift} J",
+        "status": "E = {E}"
+      },
+      "ene011": {
+        "withFriction": "With friction",
+        "noFriction": "No friction",
+        "aria": "Mechanical energy with non-conservative forces",
+        "balance": "Wnc = {Wnc} J · ΔEmec = {dEmec} J",
+        "status": "Wnc = {Wnc} J"
+      },
+      "mom005": {
+        "aria": "Linear momentum conservation",
+        "elastic": "Elastic",
+        "inelastic": "Inelastic",
+        "conserved": "pi = {pi} · pf = {pf}",
+        "status": "p1i + p2i = {p1i} + {p2i} → p1f + p2f = {p1f} + {p2f}"
+      },
+      "mom006": {
+        "aria": "Perfectly inelastic collision",
+        "oneVf": "vf = {vf} m/s (stuck together)",
+        "kLost": "Ki = {Ki} J → Kf = {Kf} J · Q = {Q} J",
+        "status": "vf = {vf} m/s · pi = pf = {pi}"
+      },
+      "mom007": {
+        "aria": "1D elastic collision",
+        "presetSwap": "Swap (equal m)",
+        "presetBounce": "Bounce",
+        "kConserved": "K: {Ki} → {Kf} J (conserved)",
+        "velocities": "v1f = {v1f} · v2f = {v2f} m/s",
+        "status": "K: {Ki} → {Kf} J · p: {pi} → {pf}"
+      },
+      "equ002": {
+        "pivotLeft": "Left pivot",
+        "pivotRight": "Right pivot",
+        "pivotCm": "CM pivot",
+        "aria": "Beam equilibrium",
+        "forces": "N1 = {N1} N · N2 = {N2} N · W = {W} N",
+        "torque": "Στ (pivot) = {tau} N·m",
+        "status": "ΣF = {Nsum} N · Στ = {tau} N·m"
+      },
+      "equ005": {
+        "aria": "Young's modulus",
+        "steel": "steel",
+        "rubber": "rubber",
+        "caption": "exaggerated elongation (linear regime)",
+        "young": "Y = σ/ε = {Y} Pa",
+        "readout": "σ = {sigma} Pa · ε = {eps} · ΔL = {dL} m",
+        "stressOnly": "σ = F/A = {sigma} Pa",
+        "strainOnly": "ε = ΔL/L0 = {eps}",
+        "stressStatus": "σ = {sigma} Pa",
+        "strainStatus": "ε = {eps} · ΔL = {dL} m",
+        "status": "Y = σ/ε · σ = {sigma} Pa · ε = {eps} · ΔL = {dL} m"
+      },
+      "flu009": {
+        "aria": "Bernoulli equation",
+        "constant": "P + ½ρv² + ρgy = {B} Pa",
+        "compare": "B1 = {B1} · B2 = {B2} · |ΔB| = {drift}",
+        "status": "v1 = {v1} · v2 = {v2} m/s · P2 = {P2} Pa"
+      },
+      "ele016": {
+        "aria": "Kirchhoff's first law at a junction",
+        "balance": "I1 = I2 + I3 · {I1} = {I2} + {I3} A",
+        "status": "ΣI = 0 · I1 = {I1} · I2 = {I2} · I3 = {I3} A"
+      }
+    },
+    "l4": {
+      "ele017": {
+        "aria": "Kirchhoff's second law in a loop",
+        "cw": "Clockwise",
+        "ccw": "Counter-clockwise",
+        "sum": "ΣΔV = {sum} V · I = {I} A",
+        "table": "+ε − IR1 − IR2 = {emf} − {vr1} − {vr2}",
+        "status": "ΣΔV ≈ {sum} V · I = {I} A"
+      },
+      "vec005": {
+        "aria": "Dot product and projection",
+        "acute": "Acute",
+        "right": "90°",
+        "obtuse": "Obtuse",
+        "positive": "Positive dot product",
+        "negative": "Negative dot product",
+        "zero": "Zero dot product (perpendicular)",
+        "proj": "|B|cosθ = {val}",
+        "dot": "A·B = |A||B|cosθ = {dot}",
+        "status": "A·B = {dot} · θ = {theta} · check = {check}"
+      },
+      "vec006": {
+        "aria": "Cross product",
+        "out": "⊙ out of plane (+z)",
+        "in": "⊗ into plane (−z)",
+        "hand": "Right-hand rule (step {step}/3)",
+        "mag": "|A×B| = AB sinθ = {mag} · area = {area}",
+        "dir": "Direction: {dir}",
+        "status": "|A×B| = {mag} · AxBy−AyBx = {cz} · θ = {theta}°"
+      },
+      "new008": {
+        "aria": "Weight on an inclined plane",
+        "planeAxes": "Parallel ⊥ axes",
+        "globalAxes": "Global XY axes",
+        "components": "mg sinθ = {par} N · mg cosθ = {perp} N",
+        "note": "Basic case with no other ⊥ forces: N = mg cosθ = {N} N",
+        "status": "θ = {theta}° · parallel = {par} N · ⊥ = {perp} N · N = {N} N"
+      },
+      "ene002": {
+        "spring": "Spring F=kx",
+        "linear": "Linear F",
+        "constant": "Constant F",
+        "title": "Area under F(x) = work",
+        "work": "W = ∫ F dx = {W} J",
+        "springWork": "½k(x2²−x1²) = {tri} J",
+        "rects": "Approximation with {n} rectangles",
+        "nRects": "Rectangles",
+        "status": "W = {W} J from x1 = {x1} m to x2 = {x2} m"
+      },
+      "ene008": {
+        "spring": "Spring",
+        "grav": "Gravitational",
+        "well": "Well",
+        "title": "U(x) and conservative force",
+        "force": "Fx = −dU/dx = {F} N · dU/dx = {dU}",
+        "status": "F = {F} N at x = {x} m"
+      },
+      "mom004": {
+        "presetRect": "Rectangular pulse",
+        "presetTri": "Triangular pulse (same area)",
+        "rect": "Rectangular",
+        "tri": "Triangular",
+        "forceTitle": "F(t)",
+        "momentumTitle": "p(t)",
+        "impulse": "J = area = Δp = {J} · current p = {dp}",
+        "matched": "Same area: rect {Jrect} · tri {Jtri} N·s",
+        "status": "J = {J} N·s · Δv = {v} m/s with m = {m} kg"
+      },
+      "rot005": {
+        "aria": "Moment of inertia of particles",
+        "axis": "axis",
+        "presetEqR": "Equal m, different r",
+        "presetEqM": "Equal r, different m",
+        "total": "I = Σ mi ri² = {I} kg·m²",
+        "contrib": "I1 = {I1} · I2 = {I2} · I3 = {I3}",
+        "status": "Total I = {I} kg·m²"
+      },
+      "gra001": {
+        "aria": "Universal gravitation",
+        "notToScale": "Illustration not to scale",
+        "chartTitle": "F ∝ 1/r²",
+        "presetR": "r",
+        "preset2R": "2r (F/4)",
+        "preset3R": "3r (F/9)",
+        "force": "F = G m1 m2 / r² = {F} N",
+        "ratio": "Doubling r: F from {F0} to {Fr} (×{factor})",
+        "status": "F = {F} N at r = {r}×10⁶ m"
+      },
+      "gra003": {
+        "title": "U(r) = −GMm/r",
+        "ariaMini": "Schematic orbit at selected radius",
+        "potential": "U = −GMm/r = {U} J",
+        "note": "U = 0 at infinity; closer ⇒ more negative U",
+        "status": "U = {U} J · r = {r}×10⁶ m"
+      }
+    },
+    "l5": {
+      "gra005": {
+        "aria": "Ideal circular orbit",
+        "ideal": "Ideal circular orbit (not to scale)",
+        "presetR1": "smaller r",
+        "presetR2": "larger r",
+        "vChart": "v(r) = √(GM/r)",
+        "vorb": "vorb = √(GM/r) = {v} m/s",
+        "ratio": "r = {r}×10⁶ m · v = {v} m/s",
+        "status": "v = {v} m/s · T = {T} s"
+      },
+      "gra006": {
+        "aria": "Orbital period",
+        "accelTime": "Accelerated time (pedagogical)",
+        "presetKepler": "Kepler T²∝r³",
+        "tChart": "T(r) = 2π√(r³/GM)",
+        "periods": "T1 = {T1} s · T2 = {T2} s",
+        "kepler": "T2²/T1² ÷ (r2/r1)³ ≈ {ratio}",
+        "status": "t = {t} s · T1 = {T1} s · T2 = {T2} s"
+      },
+      "gra007": {
+        "aria": "Escape velocity",
+        "bound": "E < 0 (bound)",
+        "limit": "E ≈ 0 (limit)",
+        "escape": "E > 0 (escape)",
+        "vesc": "vesc = {vesc} m/s · v0 = {v0} m/s",
+        "sqrt2": "vesc = √2 vorb = {vorb} m/s (same radius)",
+        "status": "{state} · E = {E} J"
+      },
+      "flu003": {
+        "aria": "Hydrostatic pressure",
+        "water": "Water",
+        "oil": "Oil",
+        "mercury": "Mercury",
+        "pChart": "P(h) = P0 + ρgh",
+        "total": "P = {P}",
+        "parts": "P0 = {P0} · ρgh = {Ph}",
+        "status": "P = {P} · h = {h} m · ρ = {rho} kg/m³"
+      },
+      "osc003": {
+        "aria": "SHM position",
+        "circle": "Reference circle",
+        "position": "x = {x} m · A = {A} m",
+        "period": "T = {T} s",
+        "status": "x = {x} m · φ = {phi}°"
+      },
+      "osc004": {
+        "aria": "SHM acceleration",
+        "center": "Center",
+        "right": "Right extreme",
+        "left": "Left extreme",
+        "accel": "a = −ω²x = {a} m/s² · x = {x} m",
+        "status": "a = {a} m/s² · ω = {omega} rad/s"
+      },
+      "osc005": {
+        "aria": "SHM velocity",
+        "extreme": "Extreme (v=0)",
+        "eqRight": "Equilibrium →",
+        "eqLeft": "Equilibrium ←",
+        "velocity": "v = {v} m/s · x = {x} m",
+        "phase": "v and x are π/2 out of phase",
+        "status": "v = {v} m/s · vmax = {vmax} m/s"
+      },
+      "osc008": {
+        "aria": "SHM energy",
+        "energyChart": "U(x) and K(x)",
+        "total": "E = ½kA² = {E} J",
+        "balance": "K+U = {sum} J · drift = {drift} J",
+        "status": "K = {K} J · U = {U} J · E = {E} J"
+      },
+      "ond005": {
+        "aria": "Traveling harmonic wave",
+        "plusX": "+x",
+        "minusX": "−x",
+        "particle": "medium",
+        "speed": "v = λf = {v} m/s",
+        "status": "v = {v} m/s · direction {dir}"
+      },
+      "ond008": {
+        "title": "y1 + y2",
+        "inPhase": "In phase",
+        "opposition": "Opposition",
+        "partial": "Partial phase",
+        "phase": "phase (rad)",
+        "sum": "y1 + y2 = {y1} + {y2} = {y}",
+        "check": "check = {calc}",
+        "status": "φ = {phase} rad · y(t) = {y}"
+      }
+    },
+    "l6": {
+      "ond009": {
+        "aria": "Path-difference interference",
+        "dr0": "Δr = 0",
+        "drHalf": "Δr = λ/2",
+        "dr1": "Δr = λ",
+        "drThreeHalf": "Δr = 3λ/2",
+        "constructive": "constructive",
+        "destructive": "destructive",
+        "partial": "partial",
+        "paths": "r1 = {r1} m · r2 = {r2} m · Δr = {dr} m",
+        "lambda": "Δr/λ = {ratio} · {kind} interference",
+        "status": "Δr = {dr} m · Δr/λ = {ratio} · {kind}"
+      },
+      "son004": {
+        "aria": "Doppler effect",
+        "source": "source",
+        "observer": "observer",
+        "srcApproach": "source approaching",
+        "obsApproach": "observer approaching",
+        "bothAway": "both receding",
+        "srcToward": "source → obs.",
+        "srcAway": "source receding",
+        "obsToward": "obs. → source",
+        "obsAway": "obs. receding",
+        "fEmit": "emitted f (Hz)",
+        "vs": "vs (m/s)",
+        "vo": "vo (m/s)",
+        "observed": "f′ = {fp} Hz · f = {f} Hz",
+        "formula": "f′ = f (v {signNum} vo)/(v {signDen} vs) · v = {v} m/s",
+        "status": "f′ = {fp} Hz · vs = {vs} · vo = {vo} m/s"
+      },
+      "son005": {
+        "title": "Beats",
+        "equal": "f1 = f2",
+        "smallDiff": "small Δf",
+        "largeDiff": "larger Δf",
+        "beat": "fbat = |f1 − f2| = {fbat} Hz",
+        "peaks": "≈ {n} amplitude maxima per second",
+        "f1": "f1 (Hz)",
+        "f2": "f2 (Hz)",
+        "volume": "volume",
+        "playAudio": "Play audio",
+        "mute": "Mute",
+        "status": "f1 = {f1} Hz · f2 = {f2} Hz · fbat = {fbat} Hz"
+      },
+      "son006": {
+        "aria": "Open-open resonance tube",
+        "displacement": "displacement",
+        "pressure": "pressure",
+        "harmonic": "n = {n}",
+        "antinodesOpen": "antinodes at both ends (displacement)",
+        "nodesOpenP": "pressure nodes at both ends",
+        "freq": "fn = nv/(2L) = {f} Hz · n = {n}",
+        "lambda": "λn = 2L/n = {lambda} m · L = {L} m",
+        "L": "L (m)",
+        "v": "v (m/s)",
+        "status": "n = {n} · f = {f} Hz · mode: {kind}"
+      },
+      "son007": {
+        "aria": "Closed-open resonance tube",
+        "displacement": "displacement",
+        "pressure": "pressure",
+        "harmonic": "n = {n}",
+        "closedEnd": "closed (node)",
+        "openEnd": "open",
+        "oddOnly": "odd harmonics only",
+        "freq": "fn = nv/(4L) = {f} Hz · n = {n}",
+        "lambda": "λn = 4L/n = {lambda} m · L = {L} m",
+        "L": "L (m)",
+        "v": "v (m/s)",
+        "evenBlocked": "even n not allowed",
+        "status": "n = {n} · f = {f} Hz {note}"
+      },
+      "ter015": {
+        "aria": "Thermodynamic work",
+        "pvTitle": "P–V diagram",
+        "isobar": "isobaric",
+        "variable": "variable path",
+        "work": "W = ∫P dV = {W}",
+        "conv": "Convention: work {sign}",
+        "byGas": "by the gas (expansion)",
+        "onGas": "on the gas (compression)",
+        "Pi": "P (Pa)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "W = {W} J · process {proc}"
+      },
+      "ter017": {
+        "aria": "Isothermal process",
+        "pvTitle": "Isotherm PV = const",
+        "expand": "expansion",
+        "compress": "compression",
+        "sameV": "Vi = Vf",
+        "refOn": "reference isotherm",
+        "refOff": "hide reference",
+        "isothermal": "T = {T} K constant · W = {W}",
+        "deltaU": "ΔU = {dU} J",
+        "n": "n (mol)",
+        "T": "T (K)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "Pi = {P0} · Pf = {Pf} · W = {W} J"
+      },
+      "ter018": {
+        "aria": "Adiabatic process",
+        "pvTitle": "PV^γ = const",
+        "mono": "monatomic γ=5/3",
+        "di": "diatomic γ=7/5",
+        "expand": "expansion",
+        "adiabatic": "Q = {Q} · γ = {gamma}",
+        "energy": "ΔU = {dU} J · W = {W} J · Tf = {Tf} K",
+        "Ti": "Ti (K)",
+        "Vi": "Vi (m³)",
+        "Vf": "Vf (m³)",
+        "status": "Ti = {Ti} K → Tf = {Tf} K · W = {W} J"
+      },
+      "ele002": {
+        "aria": "Coulomb's law",
+        "equal": "like charges",
+        "opposite": "opposite charges",
+        "doubleQ": "double q1",
+        "attract": "attraction",
+        "repel": "repulsion",
+        "fChart": "F(r) = ke|q1q2|/r²",
+        "force": "F = {F}",
+        "inverse": "F ∝ 1/r²",
+        "q1": "q1 (μC)",
+        "q2": "q2 (μC)",
+        "r": "r (m)",
+        "status": "F = {F} N · {kind} · r = {r} m"
+      },
+      "ele003": {
+        "aria": "Electric field",
+        "posSource": "positive source",
+        "negSource": "negative source",
+        "eChart": "E(r) = ke|Q|/r²",
+        "field": "E = {E}",
+        "forceTest": "F = qE with q = {q} μC → {F}",
+        "qSource": "Q source (μC)",
+        "rObs": "r (m)",
+        "qTest": "test q (μC)",
+        "status": "E = {E} N/C · r = {r} m"
+      }
+    },
+    "l7": {
+      "ele014": {
+        "aria": "Series resistors",
+        "equal": "R1 = R2",
+        "req": "Req = R1+R2 = {Req} Ω · I = {I} A",
+        "drops": "V1 = {V1} V · V2 = {V2} V · V1+V2 = ε",
+        "status": "Req = {Req} Ω · I = {I} A · V1 = {V1} V · V2 = {V2} V"
+      },
+      "ele015": {
+        "aria": "Parallel resistors",
+        "equal": "R1 = R2",
+        "parallelOnly": "parallel only",
+        "compareSeries": "compare with series",
+        "req": "1/Req = 1/R1+1/R2 · Req = {Req} Ω · Itotal = {Itotal} A",
+        "branches": "I1 = {I1} A · I2 = {I2} A · same V",
+        "vsSeries": "series: Req = {ReqS} Ω · Req < min(R1,R2) = {minR} Ω",
+        "status": "Req = {Req} Ω · I1 = {I1} A · I2 = {I2} A · Itotal = {Itotal} A"
+      },
+      "ele020": {
+        "aria": "Capacitor energy",
+        "qFixed": "fixed Q",
+        "vFixed": "fixed V",
+        "chart": "Stored energy",
+        "cv": "½CV²",
+        "qc": "Q²/(2C)",
+        "qv": "½QV",
+        "active": "U = {formula} = {U}",
+        "equiv": "½CV² = {cv} · Q²/(2C) = {qc} · ½QV = {qv}",
+        "A": "A (m²)",
+        "d": "d (m)",
+        "kappa": "κ",
+        "Q": "Q (C)",
+        "V": "V (V)",
+        "qNote": "with fixed Q, increasing C lowers V and U",
+        "vNote": "with fixed V, increasing C raises Q and U",
+        "status": "C = {C} · Q = {Q} · V = {V} · {note}"
+      },
+      "guia": {
+        "prompt": "What does the problem statement mention?",
+        "choices": "Guide options",
+        "back": "Back",
+        "reset": "Reset",
+        "start": "Start",
+        "keywords": "Keywords",
+        "section": "Section",
+        "pickTopic": "Pick a block: motion, forces, conservation, rotation, fluids, waves, heat, or circuits.",
+        "pickSection": "Pick the section that best matches the statement.",
+        "textVersion": "Accessible text version",
+        "textHelp": "Current path and candidate formulas. Use arrows and Enter to navigate; Escape to go back; Home to reset.",
+        "branch": {
+          "motion": "Motion",
+          "forces": "Forces",
+          "conservation": "Conservation",
+          "rotation": "Rotation",
+          "fluids": "Fluids",
+          "waves": "Waves",
+          "heat": "Heat",
+          "circuits": "Circuits"
+        }
+      }
+    }
   }
 }

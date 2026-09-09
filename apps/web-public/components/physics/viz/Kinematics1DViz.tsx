@@ -7,6 +7,12 @@ import { present } from '@/components/algebra/viz/vectorPlane';
 import { G, clamp, xMrua, vMrua } from './physMath';
 import { PlayRow, PhysGuide, PhysStatus, useRafPlay } from './physChrome';
 import {
+  InstAccelMode,
+  InstVelocityMode,
+  VarAccelerationMode,
+  VarVelocityMode,
+} from './KinematicsModesL2';
+import {
   ACCENT,
   ChartFrame,
   LinearTrackTicks,
@@ -154,6 +160,19 @@ function Graph({
 }
 
 export function Kinematics1DViz({ mode }: { mode?: string }) {
+  if (mode === 'inst_velocity') {
+    return <VizPanel><InstVelocityMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'inst_accel') {
+    return <VizPanel><InstAccelMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'var_a') {
+    return <VizPanel><VarAccelerationMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'var_v') {
+    return <VizPanel><VarVelocityMode mode={mode} /></VizPanel>;
+  }
+
   const m = (mode ?? 'mrua_x') as Mode;
   const tr = useTranslations('vizFisica');
   const uid = useId();
