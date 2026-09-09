@@ -6,7 +6,18 @@ import { ButtonRow, ControlsStack, SliderRow, VizButton, VizPanel, fmt } from '@
 import { present } from '@/components/algebra/viz/vectorPlane';
 import { G, clamp, xMrua, vMrua } from './physMath';
 import { PlayRow, PhysGuide, PhysStatus, useRafPlay } from './physChrome';
-import { ACCENT, ChartFrame, MUTED, ORANGE, TEAL, areaToAxis, fnPath, makePlot, padRange } from './physPlot';
+import {
+  ACCENT,
+  ChartFrame,
+  LinearTrackTicks,
+  MUTED,
+  ORANGE,
+  TEAL,
+  areaToAxis,
+  fnPath,
+  makePlot,
+  padRange,
+} from './physPlot';
 
 const TMAX = 6;
 const W = 420;
@@ -230,6 +241,7 @@ export function Kinematics1DViz({ mode }: { mode?: string }) {
           }
         />
         <svg viewBox={`0 0 ${W} ${TRACK_H}`} className="h-auto w-full" role="img" aria-label="Móvil sobre una recta">
+          <LinearTrackTicks min={xMin} max={xMax} toX={toPx} y={40} />
           <line x1={24} y1={40} x2={W - 24} y2={40} stroke={MUTED} strokeWidth={2} />
           {m === 'displacement' || m === 'avg_velocity' ? (
             <>

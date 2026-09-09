@@ -21,6 +21,32 @@ export type PlotMap = {
   yMax: number;
 };
 
+/** Nice tick positions for axis labels (≈4–6 marks per axis). */
+export function tickValues(min: number, max: number, target = 5): number[] {
+  if (!Number.isFinite(min) || !Number.isFinite(max)) return [];
+  if (min === max) return [min];
+  const span = max - min;
+  if (span <= 0) return [min];
+  const rawStep = span / target;
+  const pow = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const norm = rawStep / pow;
+  const niceNorm = norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 5 ? 5 : 10;
+  const step = niceNorm * pow;
+  const start = Math.ceil(min / step) * step;
+  const ticks: number[] = [];
+  for (let v = start; v <= max + step * 0.001; v += step) {
+    ticks.push(Math.round(v / step) * step);
+  }
+  return ticks;
+}
+
+export function formatTickValue(v: number, step: number): string {
+  if (Math.abs(v) < 1e-10) return '0';
+  if (step >= 1) return String(Math.round(v));
+  const decimals = step >= 0.1 ? 1 : 2;
+  return parseFloat(v.toFixed(decimals)).toString();
+}
+
 export function makePlot(opts: {
   W?: number;
   H?: number;
@@ -35,10 +61,10 @@ export function makePlot(opts: {
 }): PlotMap {
   const W = opts.W ?? 420;
   const H = opts.H ?? 128;
-  const ml = opts.ml ?? 40;
+  const ml = opts.ml ?? 46;
   const mr = opts.mr ?? 12;
   const mt = opts.mt ?? 10;
-  const mb = opts.mb ?? 22;
+  const mb = opts.mb ?? 26;
   const { xMin, xMax, yMin, yMax } = opts;
   const pw = W - ml - mr;
   const ph = H - mt - mb;
@@ -111,22 +137,110 @@ export function ChartFrame({
   children: ReactNode;
   title?: string;
 }) {
+  const xTicks = tickValues(plot.xMin, plot.xMax);
+  const yTicks = tickValues(plot.yMin, plot.yMax);
+  const xStep = xTicks.length > 1 ? xTicks[1] - xTicks[0] : 1;
+  const yStep = yTicks.length > 1 ? yTicks[1] - yTicks[0] : 1;
+  const yAxisX =
+    plot.xMin <= 0 && plot.xMax >= 0 ? plot.X(0) : plot.X(plot.xMin);
+  const hasOrigin =
+    plot.xMin <= 0 && plot.xMax >= 0 && plot.yMin <= 0 && plot.yMax >= 0;
+
   return (
     <svg viewBox={`0 0 ${plot.W} ${plot.H}`} className="h-auto w-full" role="img" aria-label={title ?? yLabel ?? 'gráfica'}>
+      <g opacity={0.35} aria-hidden>
+        {yTicks.map((v) => (
+          <line
+            key={`gy${v}`}
+            x1={plot.X(plot.xMin)}
+            y1={plot.Y(v)}
+            x2={plot.X(plot.xMax)}
+            y2={plot.Y(v)}
+            stroke={BORDER}
+            strokeDasharray={v === 0 ? undefined : '2 4'}
+          />
+        ))}
+        {xTicks.map((v) => (
+          <line
+            key={`gx${v}`}
+            x1={plot.X(v)}
+            y1={plot.Y(plot.yMax)}
+            x2={plot.X(v)}
+            y2={plot.Y(plot.yMin)}
+            stroke={BORDER}
+            strokeDasharray={v === 0 ? undefined : '2 4'}
+          />
+        ))}
+      </g>
       <line x1={plot.X(plot.xMin)} y1={plot.y0} x2={plot.X(plot.xMax)} y2={plot.y0} stroke={BORDER} />
-      <line x1={plot.X(0) >= plot.X(plot.xMin) && plot.X(0) <= plot.X(plot.xMax) ? plot.X(0) : plot.X(plot.xMin)} y1={plot.Y(plot.yMax)} x2={plot.X(0) >= plot.X(plot.xMin) && plot.X(0) <= plot.X(plot.xMax) ? plot.X(0) : plot.X(plot.xMin)} y2={plot.Y(plot.yMin)} stroke={BORDER} />
+      <line x1={yAxisX} y1={plot.Y(plot.yMax)} x2={yAxisX} y2={plot.Y(plot.yMin)} stroke={BORDER} />
+      <g aria-hidden>
+        {xTicks.map((v) => (
+          <g key={`xt${v}`}>
+            <line x1={plot.X(v)} y1={plot.y0 - 3} x2={plot.X(v)} y2={plot.y0 + 3} stroke={MUTED} />
+            {!(hasOrigin && v === 0) ? (
+              <text x={plot.X(v)} y={plot.H - 8} textAnchor="middle" fontSize={9} fill={MUTED}>
+                {formatTickValue(v, xStep)}
+              </text>
+            ) : null}
+          </g>
+        ))}
+        {yTicks.map((v) => (
+          <g key={`yt${v}`}>
+            <line x1={yAxisX - 3} y1={plot.Y(v)} x2={yAxisX + 3} y2={plot.Y(v)} stroke={MUTED} />
+            {!(hasOrigin && v === 0) ? (
+              <text x={yAxisX - 5} y={plot.Y(v) + 3} textAnchor="end" fontSize={9} fill={MUTED}>
+                {formatTickValue(v, yStep)}
+              </text>
+            ) : null}
+          </g>
+        ))}
+        {hasOrigin ? (
+          <text x={yAxisX - 5} y={plot.y0 + 12} textAnchor="end" fontSize={9} fill={MUTED}>
+            0
+          </text>
+        ) : null}
+      </g>
       {xLabel ? (
-        <text x={plot.X(plot.xMax)} y={plot.H - 4} textAnchor="end" fontSize={10} fill={MUTED}>
+        <text x={plot.X(plot.xMax)} y={plot.y0 + 14} textAnchor="end" fontSize={10} fill={MUTED}>
           {xLabel}
         </text>
       ) : null}
       {yLabel ? (
-        <text x={8} y={14} fontSize={10} fill={MUTED}>
+        <text x={8} y={plot.Y(plot.yMax) + 2} fontSize={10} fill={MUTED}>
           {yLabel}
         </text>
       ) : null}
       {children}
     </svg>
+  );
+}
+
+/** Tick marks on a 1D position track (kinematics number line). */
+export function LinearTrackTicks({
+  min,
+  max,
+  toX,
+  y,
+}: {
+  min: number;
+  max: number;
+  toX: (v: number) => number;
+  y: number;
+}) {
+  const ticks = tickValues(min, max, 6);
+  const step = ticks.length > 1 ? ticks[1] - ticks[0] : 1;
+  return (
+    <g aria-hidden>
+      {ticks.map((t) => (
+        <g key={t}>
+          <line x1={toX(t)} y1={y - 5} x2={toX(t)} y2={y + 5} stroke={MUTED} strokeWidth={1.2} />
+          <text x={toX(t)} y={y + 18} textAnchor="middle" fontSize={9} fill={MUTED}>
+            {formatTickValue(t, step)}
+          </text>
+        </g>
+      ))}
+    </g>
   );
 }
 
