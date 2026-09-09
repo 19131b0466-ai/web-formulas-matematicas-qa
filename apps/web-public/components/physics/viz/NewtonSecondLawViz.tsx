@@ -70,18 +70,22 @@ function InertiaMode({ mode }: { mode?: string }) {
 }
 
 function WeightMode({ mode }: { mode?: string }) {
+  const tr = useTranslations('vizFisica.l2.new004');
   const uid = useId();
   const [m, setM] = useState(2);
   const Fg = m * G;
+  const fgLen = clamp(Fg * 1.2, 24, 70);
 
   return (
     <div className="space-y-4">
       <PhysGuide type="newton_second" mode={mode} />
-      <svg viewBox={`0 0 ${W} 200`} className="h-auto w-full" role="img" aria-label="Peso y normal">
+      <svg viewBox={`0 0 ${W} 200`} className="h-auto w-full" role="img" aria-label={tr('aria')}>
         <rect x={80} y={140} width={260} height={12} fill={MUTED} opacity={0.4} />
         <rect x={180} y={100} width={60} height={40} fill={ORANGE} />
-        <line x1={210} y1={120} x2={210} y2={120 + clamp(Fg * 1.2, 24, 70)} stroke={ACCENT} strokeWidth={2.4} />
-        <line x1={210} y1={120} x2={210} y2={120 - clamp(Fg * 1.2, 24, 70)} stroke={TEAL} strokeWidth={2.4} />
+        <line x1={210} y1={120} x2={210} y2={120 + fgLen} stroke={ACCENT} strokeWidth={2.4} />
+        <text x={222} y={120 + fgLen + 4} fontSize={11} fill={ACCENT}>{tr('fg')}</text>
+        <line x1={210} y1={120} x2={210} y2={120 - fgLen} stroke={TEAL} strokeWidth={2.4} />
+        <text x={222} y={120 - fgLen - 2} fontSize={11} fill={TEAL}>{tr('normal')}</text>
       </svg>
       <PhysStatus id={uid}>Fg = m g = {present(Fg)} N</PhysStatus>
       <ControlsStack>
@@ -92,7 +96,8 @@ function WeightMode({ mode }: { mode?: string }) {
 }
 
 function DefaultNewtonMode({ mode }: { mode?: string }) {
-  const tr = useTranslations('vizFisica');
+  const tr = useTranslations('vizFisica.l2.new002');
+  const trBase = useTranslations('vizFisica');
   const uid = useId();
   const [m, setM] = useState(2);
   const [f1, setF1] = useState(12);
@@ -103,6 +108,9 @@ function DefaultNewtonMode({ mode }: { mode?: string }) {
   const ax = Fx / m;
   useRafPlay(playing, setT, { min: 0, max: 4, speed: 1, loop: true });
   const x = clamp(40 + 0.5 * ax * t * t * 28, 40, W - 60);
+  const f1Len = Math.sign(f1) * clamp(Math.abs(f1) * 3, 12, 70);
+  const f2Len = Math.sign(f2) * clamp(Math.abs(f2) * 3, 12, 70);
+  const fxLen = Math.sign(Fx || 1) * clamp(Math.abs(Fx) * 3, 0, 80);
 
   return (
     <div className="space-y-4">
@@ -110,14 +118,17 @@ function DefaultNewtonMode({ mode }: { mode?: string }) {
       <PlayRow
         playing={playing}
         onToggle={() => setPlaying((p) => !p)}
-        extra={<VizButton onClick={() => { setPlaying(false); setT(0); }}>{tr('reset')}</VizButton>}
+        extra={<VizButton onClick={() => { setPlaying(false); setT(0); }}>{trBase('reset')}</VizButton>}
       />
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Segunda ley">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={tr('aria')}>
         <line x1={20} y1={110} x2={W - 20} y2={110} stroke={MUTED} strokeWidth={2} />
         <rect x={x} y={78} width={44} height={32} rx={3} fill={ORANGE} />
-        <line x1={x + 22} y1={70} x2={x + 22 + Math.sign(f1) * clamp(Math.abs(f1) * 3, 12, 70)} y2={70} stroke={ACCENT} strokeWidth={2} />
-        <line x1={x + 22} y1={94} x2={x + 22 + Math.sign(f2) * clamp(Math.abs(f2) * 3, 12, 70)} y2={94} stroke={TEAL} strokeWidth={2} />
-        <line x1={x + 22} y1={50} x2={x + 22 + Math.sign(Fx || 1) * clamp(Math.abs(Fx) * 3, 0, 80)} y2={50} stroke={ORANGE} strokeWidth={2.6} />
+        <line x1={x + 22} y1={70} x2={x + 22 + f1Len} y2={70} stroke={ACCENT} strokeWidth={2} />
+        <text x={x + 22 + f1Len + (f1Len >= 0 ? 4 : -18)} y={74} fontSize={10} fill={ACCENT}>{tr('f1')}</text>
+        <line x1={x + 22} y1={94} x2={x + 22 + f2Len} y2={94} stroke={TEAL} strokeWidth={2} />
+        <text x={x + 22 + f2Len + (f2Len >= 0 ? 4 : -18)} y={98} fontSize={10} fill={TEAL}>{tr('f2')}</text>
+        <line x1={x + 22} y1={50} x2={x + 22 + fxLen} y2={50} stroke={ORANGE} strokeWidth={2.6} />
+        <text x={x + 22 + fxLen + (fxLen >= 0 ? 4 : -22)} y={54} fontSize={10} fill={ORANGE}>{tr('sumF')}</text>
       </svg>
       <PhysStatus id={uid}>ΣFx = {present(Fx)} N · a = {present(ax)} m/s²</PhysStatus>
       <ControlsStack>

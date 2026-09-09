@@ -777,6 +777,17 @@
         "v0": "v0 = {v0} m/s",
         "status": "ΣF = {Fx} N · a = {a} m/s² · v = {v} m/s"
       },
+      "new002": {
+        "aria": "Segunda ley de Newton",
+        "f1": "F₁",
+        "f2": "F₂",
+        "sumF": "ΣF"
+      },
+      "new004": {
+        "aria": "Peso y fuerza normal",
+        "fg": "Fg",
+        "normal": "N"
+      },
       "new003": {
         "interaction": "Interacción",
         "dclA": "DCL A",

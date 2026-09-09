@@ -815,6 +815,17 @@
         "preset2r": "Double r",
         "also": "ω = {omega} rad/s · ω²r = {ac2} m/s²",
         "status": "v = {v} m/s · r = {r} m · ac = {ac} m/s²"
+      },
+      "new002": {
+        "aria": "Newton's second law",
+        "f1": "F₁",
+        "f2": "F₂",
+        "sumF": "ΣF"
+      },
+      "new004": {
+        "aria": "Weight and normal force",
+        "fg": "Fg",
+        "normal": "N"
       }
     },
     "l3": {
