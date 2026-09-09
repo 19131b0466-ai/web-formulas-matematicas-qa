@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForFormulaId, type FormulaDetailResponse } from '@repo/shared-types';
+import { calculoVizForFormulaId, fisicaVizForFormulaId, type FormulaDetailResponse } from '@repo/shared-types';
 import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
 import { FormulaVisualization } from '@/components/algebra/FormulaVisualization';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
+import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
@@ -25,6 +26,8 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
     subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;
+  const physViz =
+    subject === 'fisica-basica' ? fisicaVizForFormulaId(formulaId) : undefined;
 
   const crumbs = [
     { label: tn('home'), href: '/' },
@@ -115,6 +118,11 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           <section className="animate-rise" style={{ animationDelay: '90ms' }}>
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
             <CalculoVisualization type={calcViz.type} concept={calcViz.concept} formulaId={formulaId} />
+          </section>
+        ) : physViz ? (
+          <section className="animate-rise" style={{ animationDelay: '90ms' }}>
+            <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
+            <PhysicsVisualization type={physViz.type} concept={physViz.concept} mode={physViz.mode} formulaId={formulaId} />
           </section>
         ) : content.visual && content.formulaId ? (
           <FormulaVisualization

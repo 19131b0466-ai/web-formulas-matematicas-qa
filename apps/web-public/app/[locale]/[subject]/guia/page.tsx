@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { Link } from '@/i18n/navigation';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { fetchMethodGuide, fetchSection, fetchSubjects } from '@/lib/api';
@@ -53,6 +54,7 @@ export default async function GuidePage({ params }: PageProps) {
 
   const t = await getTranslations('guide');
   const tn = await getTranslations('nav');
+  const tf = await getTranslations('formula');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const guide = await localizeContent(await fetchMethodGuide(subject), locale);
@@ -144,6 +146,16 @@ export default async function GuidePage({ params }: PageProps) {
               </li>
             ))}
           </ol>
+        </section>
+      ) : null}
+
+      {isPhysics ? (
+        <section className="mt-12">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <PhysicsVisualization
+            type="approach_guide"
+            concept="Elegir el bloque de fórmulas según la señal del enunciado"
+          />
         </section>
       ) : null}
     </div>

@@ -593,5 +593,20 @@
       "sepTitle": "Séparation",
       "solTitle": "Solution"
     }
+  },
+  "vizFisica": {
+    "play": "Lire",
+    "pause": "Pause",
+    "tailToTip": "Bout à bout",
+    "parallelogram": "Parallélogramme",
+    "elastic": "Élastique",
+    "inelastic": "Inélastique",
+    "series": "Série",
+    "parallel": "Parallèle",
+    "open": "Ouvert",
+    "closed": "Fermé",
+    "reset": "Réinitialiser",
+    "showUnits": "Afficher les unités",
+    "both": "Les deux"
   }
 }

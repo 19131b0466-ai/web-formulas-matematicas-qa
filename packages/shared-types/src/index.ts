@@ -6,6 +6,14 @@ export {
   type CalculoSectionViz,
 } from './calculo-viz.js';
 
+export {
+  FISICA_VIZ_BY_FORMULA_ID,
+  FISICA_VIZ_BY_SECTION_NUMBER,
+  fisicaVizForFormulaId,
+  fisicaVizForSectionNumber,
+  type FisicaSectionViz,
+} from './fisica-viz.js';
+
 export type BlockType = 'formula' | 'text' | 'table' | 'list' | 'note' | 'strategy';
 
 export type FormulaLevel = 'fundamental' | 'intermedio' | 'avanzado';

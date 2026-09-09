@@ -8,7 +8,7 @@
     "start": "next start --port 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test lib/seo.test.ts"
+    "test": "tsx --test lib/seo.test.ts components/physics/viz/physMath.test.ts"
   },
   "dependencies": {
     "@repo/math-renderer": "workspace:*",
