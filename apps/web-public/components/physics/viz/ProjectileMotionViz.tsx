@@ -76,7 +76,7 @@ function RangeMode({ mode }: { mode?: string }) {
   );
 }
 
-export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
+function GeneralProjectileMode({ mode }: { mode?: string }) {
   const tr = useTranslations('vizFisica');
   const uid = useId();
   const [v0, setV0] = useState(22);
@@ -85,10 +85,6 @@ export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
   const [t, setT] = useState(0.6);
   const [playing, setPlaying] = useState(false);
   const [graphs, setGraphs] = useState(mode === 'x' || mode === 'y' || mode === 'vx' || mode === 'vy');
-
-  if (mode === 'range') {
-    return <VizPanel><RangeMode mode={mode} /></VizPanel>;
-  }
 
   const tmax = projectileTmax(v0, theta, g);
   const Hmax = projectileH(v0, theta, g);
@@ -121,7 +117,6 @@ export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
   if (mode === 'range') status = `R = v0² sen(2θ)/g = ${present(R)} m · 45° es máximo; 30° y 60° igualan R`;
 
   return (
-    <VizPanel>
       <div className="space-y-4">
         <PhysGuide type="projectile_motion" mode={mode} />
         <PlayRow
@@ -196,6 +191,12 @@ export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
           <SliderRow label="g (m/s²)" value={g} min={9.8} max={10} step={0.01} onChange={setG} />
         </ControlsStack>
       </div>
-    </VizPanel>
   );
+}
+
+export function ProjectileMotionViz({ mode = 'range' }: { mode?: string }) {
+  if (mode === 'range') {
+    return <VizPanel><RangeMode mode={mode} /></VizPanel>;
+  }
+  return <VizPanel><GeneralProjectileMode mode={mode} /></VizPanel>;
 }

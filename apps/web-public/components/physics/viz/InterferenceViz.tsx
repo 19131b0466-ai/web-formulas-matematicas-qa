@@ -60,7 +60,7 @@ function SuperpositionMode({ mode }: { mode?: string }) {
 const S1 = { x: 1, y: 1.5 };
 const S2 = { x: 2.6, y: 1.5 };
 
-function findPxForDeltaR(targetDr: number, py: number, lambda: number): number {
+function findPxForDeltaR(targetDr: number, py: number): number {
   const mid = (S1.x + S2.x) / 2;
   if (targetDr <= 0.01) return mid;
   let lo = mid;
@@ -93,10 +93,10 @@ function InterferencePathMode({ mode }: { mode?: string }) {
   const pys = oy - (py - 1.5) * S;
 
   const presets = [
-    { id: '0', label: tr('dr0'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(0, 2.5, lambda)); } },
-    { id: 'h', label: tr('drHalf'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(lambda / 2, 2.5, lambda)); } },
-    { id: '1', label: tr('dr1'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(lambda, 2.5, lambda)); } },
-    { id: '3h', label: tr('drThreeHalf'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(1.5 * lambda, 2.5, lambda)); } },
+    { id: '0', label: tr('dr0'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(0, 2.5)); } },
+    { id: 'h', label: tr('drHalf'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(lambda / 2, 2.5)); } },
+    { id: '1', label: tr('dr1'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(lambda, 2.5)); } },
+    { id: '3h', label: tr('drThreeHalf'), onSelect: () => { setPy(2.5); setPx(findPxForDeltaR(1.5 * lambda, 2.5)); } },
   ];
 
   const intensity = kind === 'constructive' ? 1 : kind === 'destructive' ? 0.15 : 0.55;

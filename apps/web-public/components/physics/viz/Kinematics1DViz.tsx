@@ -159,20 +159,7 @@ function Graph({
   );
 }
 
-export function Kinematics1DViz({ mode }: { mode?: string }) {
-  if (mode === 'inst_velocity') {
-    return <VizPanel><InstVelocityMode mode={mode} /></VizPanel>;
-  }
-  if (mode === 'inst_accel') {
-    return <VizPanel><InstAccelMode mode={mode} /></VizPanel>;
-  }
-  if (mode === 'var_a') {
-    return <VizPanel><VarAccelerationMode mode={mode} /></VizPanel>;
-  }
-  if (mode === 'var_v') {
-    return <VizPanel><VarVelocityMode mode={mode} /></VizPanel>;
-  }
-
+function GeneralKinematicsMode({ mode }: { mode?: string }) {
   const m = (mode ?? 'mrua_x') as Mode;
   const tr = useTranslations('vizFisica');
   const uid = useId();
@@ -242,7 +229,6 @@ export function Kinematics1DViz({ mode }: { mode?: string }) {
   });
 
   return (
-    <VizPanel>
       <div className="space-y-4">
         <PhysGuide type="kinematics_1d" mode={mode} />
         <PlayRow
@@ -376,6 +362,21 @@ export function Kinematics1DViz({ mode }: { mode?: string }) {
           <p className="text-xs text-[var(--fg-muted)]">g = {G} solo aparece en caída libre; aquí a la fijas tú.</p>
         ) : null}
       </div>
-    </VizPanel>
   );
+}
+
+export function Kinematics1DViz({ mode }: { mode?: string }) {
+  if (mode === 'inst_velocity') {
+    return <VizPanel><InstVelocityMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'inst_accel') {
+    return <VizPanel><InstAccelMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'var_a') {
+    return <VizPanel><VarAccelerationMode mode={mode} /></VizPanel>;
+  }
+  if (mode === 'var_v') {
+    return <VizPanel><VarVelocityMode mode={mode} /></VizPanel>;
+  }
+  return <VizPanel><GeneralKinematicsMode mode={mode} /></VizPanel>;
 }
