@@ -109,6 +109,7 @@
     "content": "Contenuto",
     "subsections": "Sottosezioni",
     "inThisSection": "In questa sezione",
+    "formulasInSection": "Formule di questa sezione",
     "notFound": "Sezione non trovata",
     "metaDescription": "Formule e concetti di {title}.",
     "jsonDescription": "Sezione {number}: {title}",
@@ -149,7 +150,67 @@
     "empty": "Nessuna sezione disponibile. Avvia l’API ed esegui pnpm db:seed.",
     "view": "Vedi →",
     "appendices": "Appendici",
+    "ctaTopics": "Temi in evidenza",
     "fallbackDescription": "Formulario di {title}."
+  },
+  "topicHubs": {
+    "indexTitle": "Temi in evidenza",
+    "indexDescription": "Percorsi di studio per tema con formule chiave e sezioni correlate.",
+    "formulasHeading": "Formule chiave",
+    "sectionsHeading": "Sezioni correlate",
+    "backToTopics": "Torna ai temi",
+    "alsoKnownAs": "Conosciuto anche come",
+    "relatedTopics": "Temi correlati",
+    "youngModulus": {
+      "title": "Modulo di Young ed elasticità",
+      "description": "Modulo di Young, sforzo, deformazione e legge di Hooke.",
+      "intro": "Modulo di Young, sforzo normale, deformazione longitudinale e legge di Hooke con derivazioni, esempi e visualizzazioni interattive."
+    },
+    "pressureFluids": {
+      "title": "Pressione e meccanica dei fluidi",
+      "description": "Pressione, idrostatica, Bernoulli e flusso di massa.",
+      "intro": "Formule essenziali di pressione e fluidi: definizione, idrostatica, Bernoulli e flusso di massa con esempi svolti."
+    },
+    "newtonLaws": {
+      "title": "Leggi di Newton",
+      "description": "Prima, seconda e terza legge di Newton, peso e applicazioni vettoriali.",
+      "intro": "Le tre leggi di Newton e il peso come applicazione della seconda legge."
+    },
+    "circularMotion": {
+      "title": "Moto circolare e rotazione",
+      "description": "Spostamento angolare, velocità angolare e cinematica rotazionale.",
+      "intro": "Cinematica circolare e rotazionale: angoli, velocità angolare, accelerazione centripeta ed equazioni MRUA angolari."
+    },
+    "basicElectricity": {
+      "title": "Elettricità di base",
+      "description": "Legge di Ohm, potenza elettrica, capacità ed energia potenziale elettrica.",
+      "intro": "Legge di Ohm, potenza, condensatori ed energia elettrica con unità ed esempi numerici."
+    },
+    "trigIntegrals": {
+      "title": "Integrali trigonometrici",
+      "description": "Identità, strategie e primitive in Calcolo II.",
+      "intro": "Sezione integrali trigonometrici: identità, prodotti di seni e coseni e strategie di integrazione."
+    },
+    "fundamentalTheorem": {
+      "title": "Teorema fondamentale del calcolo",
+      "description": "Integrale definito, accumulazione e teorema fondamentale.",
+      "intro": "Integrali definiti e il teorema che collega derivazione e integrazione."
+    },
+    "polarCoordinates": {
+      "title": "Coordinate polari",
+      "description": "Conversione cartesiana–polare, aree e applicazioni.",
+      "intro": "Coordinate polari: conversione, grafici e calcolo delle aree."
+    },
+    "matrixNorms": {
+      "title": "Norme matriciali e distanze",
+      "description": "Norma indotta, norma di Frobenius, norma euclidea e matrici simmetriche.",
+      "intro": "Norme vettoriali e matriciali: norma indotta, Frobenius e matrici simmetriche con visualizzazioni interattive."
+    },
+    "algebraicStructures": {
+      "title": "Strutture algebriche",
+      "description": "Gruppi, anelli, campi e morfismi in algebra astratta.",
+      "intro": "Introduzione alle strutture algebriche: definizioni, esempi e relazioni tra gruppi, anelli e campi."
+    }
   },
   "formula": {
     "viewDetail": "Vedi dettaglio",
@@ -174,16 +235,20 @@
     "vizTeaches": "L’idea",
     "vizTry": "Prova",
     "intuitive": "Spiegazione intuitiva",
+    "derivation": "Derivazione",
+    "tags": "Etichette",
     "formal": "Definizione formale",
     "workedExample": "Esempio svolto",
     "commonErrors": "Errori comuni",
     "equivalentNotations": "Notazioni equivalenti",
+    "alsoKnownAs": "Conosciuto anche come",
     "references": "Riferimenti",
     "lastReviewed": "Ultima revisione",
     "reviewedBy": "Revisione",
     "sources": "Fonti",
     "conventions": "Convenzioni",
     "assumptions": "Ipotesi",
+    "faq": "Domande frequenti",
     "reportError": "Hai trovato un errore? Scrivici."
   },
   "siteNav": {
@@ -288,7 +353,10 @@
     "formulaTitle": "{concept} — {subject}",
     "guideTitle": "{guide} — {subject}",
     "withVisualization": "Include una risorsa interattiva.",
+    "unitsLabel": "Unità",
     "formulaFallback": "Consulta {concept} in {subject}: definizione, formule e strumenti di studio.",
+    "sectionTitleSearch": "{section} — formule e risorse — {subject}",
+    "topicTitleSearch": "{topic} — {subject}",
     "comingSoonViz": "Visualizzazione {type} — in arrivo."
   },
   "vizDomain": {

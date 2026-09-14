@@ -1,6 +1,6 @@
 # Rutas para revisión manual — visualizaciones de Física Básica
 
-Base: `https://www.maththeoryandtools.com/fisica-basica/formula/<ID>` (español sin prefijo `/es`; otros idiomas: `/en`, `/de`, `/pt`, `/fr`, `/it`)
+Base: `https://<tu-dominio>/fisica-basica/formula/<ID>` (español sin prefijo `/es`; otros idiomas: `/en`, `/de`, `/pt`, `/fr`, `/it`)
 
 **Total:** 166 fórmulas con viz + 1 guía de sección.
 

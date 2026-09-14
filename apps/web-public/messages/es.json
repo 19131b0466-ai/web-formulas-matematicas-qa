@@ -45,7 +45,67 @@
     "empty": "No hay secciones disponibles. Arranca la API y ejecuta pnpm db:seed.",
     "view": "Ver →",
     "appendices": "Apéndices",
+    "ctaTopics": "Temas destacados",
     "fallbackDescription": "Fórmulas de {title}."
+  },
+  "topicHubs": {
+    "indexTitle": "Temas destacados",
+    "indexDescription": "Rutas de estudio por tema con fórmulas clave y secciones relacionadas.",
+    "formulasHeading": "Fórmulas clave",
+    "sectionsHeading": "Secciones relacionadas",
+    "backToTopics": "Volver a temas",
+    "alsoKnownAs": "También conocido como",
+    "relatedTopics": "Temas relacionados",
+    "youngModulus": {
+      "title": "Módulo de Young y elasticidad",
+      "description": "Fórmulas del módulo de Young, esfuerzo, deformación y resortes en régimen elástico lineal.",
+      "intro": "Consulta las expresiones del módulo de Young, el esfuerzo normal, la deformación longitudinal y la ley de Hooke. Incluye derivaciones, ejemplos y visualizaciones interactivas."
+    },
+    "pressureFluids": {
+      "title": "Presión y mecánica de fluidos",
+      "description": "Fórmulas de presión, presión hidrostática, Bernoulli y flujo másico.",
+      "intro": "Encuentra las fórmulas esenciales de presión y fluidos: definición de presión, hidrostática, ecuación de Bernoulli y flujo másico, con ejemplos resueltos."
+    },
+    "newtonLaws": {
+      "title": "Leyes de Newton",
+      "description": "Primera, segunda y tercera ley de Newton, peso y aplicaciones vectoriales.",
+      "intro": "Repasa las tres leyes de Newton y el peso como aplicación de la segunda ley. Ideal para problemas de dinámica y equilibrio."
+    },
+    "circularMotion": {
+      "title": "Movimiento circular y rotación",
+      "description": "Desplazamiento angular, velocidad angular, cinemática rotacional y MRUA angular.",
+      "intro": "Fórmulas de cinemática circular y rotacional: ángulos, velocidad angular, aceleración centrípeta y ecuaciones análogas al MRUA."
+    },
+    "basicElectricity": {
+      "title": "Electricidad básica",
+      "description": "Ley de Ohm, potencia eléctrica, capacitancia y energía potencial eléctrica.",
+      "intro": "Ohm, potencia, capacitores y energía eléctrica explicadas con fórmulas, unidades y ejemplos numéricos."
+    },
+    "trigIntegrals": {
+      "title": "Integrales trigonométricas",
+      "description": "Identidades, estrategias y antiderivadas trigonométricas en Cálculo II.",
+      "intro": "Accede a la sección de integrales trigonométricas: identidades, productos de senos y cosenos, y estrategias de integración."
+    },
+    "fundamentalTheorem": {
+      "title": "Teorema fundamental del cálculo",
+      "description": "Integral definida, acumulación y el teorema fundamental del cálculo.",
+      "intro": "Repasa la integral definida y el teorema fundamental que conecta derivación e integración."
+    },
+    "polarCoordinates": {
+      "title": "Coordenadas polares",
+      "description": "Conversión cartesiana–polar, áreas y aplicaciones en Cálculo II.",
+      "intro": "Fórmulas y métodos en coordenadas polares: conversión, gráficas y cálculo de áreas."
+    },
+    "matrixNorms": {
+      "title": "Normas matriciales y distancias",
+      "description": "Norma inducida, norma de Frobenius, norma euclidiana y matrices simétricas.",
+      "intro": "Normas vectoriales y matriciales: norma inducida, Frobenius y matrices simétricas, con visualizaciones interactivas."
+    },
+    "algebraicStructures": {
+      "title": "Estructuras algebraicas",
+      "description": "Grupos, anillos, cuerpos y morfismos — teoría y fórmulas de álgebra abstracta.",
+      "intro": "Introducción a estructuras algebraicas: definiciones, ejemplos y relaciones entre grupos, anillos y cuerpos."
+    }
   },
   "footer": {
     "line": "Fórmulas matemáticas · contenido servido por API ·",
@@ -100,6 +160,7 @@
     "content": "Contenido",
     "subsections": "Subsecciones",
     "inThisSection": "En esta sección",
+    "formulasInSection": "Fórmulas de esta sección",
     "notFound": "Sección no encontrada",
     "metaDescription": "Fórmulas y conceptos de {title}.",
     "jsonDescription": "Sección {number}: {title}",
@@ -132,16 +193,20 @@
     "showComplexity": "Mostrar (modo CS)",
     "hideComplexity": "Ocultar (modo básico)",
     "intuitive": "Explicación intuitiva",
+    "derivation": "Derivación",
+    "tags": "Etiquetas",
     "formal": "Definición formal",
     "workedExample": "Ejemplo resuelto",
     "commonErrors": "Errores comunes",
     "equivalentNotations": "Notaciones equivalentes",
+    "alsoKnownAs": "También conocido como",
     "references": "Referencias",
     "lastReviewed": "Última revisión",
     "reviewedBy": "Revisión",
     "sources": "Fuentes",
     "conventions": "Convenciones",
     "assumptions": "Supuestos",
+    "faq": "Preguntas frecuentes",
     "reportError": "¿Encontraste un error? Escríbenos."
   },
   "content": {
@@ -285,9 +350,12 @@
   "seo": {
     "subjectTitle": "{subject}: fórmulas y recursos interactivos",
     "sectionTitle": "{section} — {subject}",
+    "sectionTitleSearch": "{section} — fórmulas y recursos — {subject}",
+    "topicTitleSearch": "{topic} — {subject}",
     "formulaTitle": "{concept} — {subject}",
     "guideTitle": "{guide} — {subject}",
     "withVisualization": "Incluye un recurso interactivo.",
+    "unitsLabel": "Unidades",
     "formulaFallback": "Consulta {concept} en {subject}: definición, fórmulas y recursos de estudio.",
     "comingSoonViz": "Visualización {type} — disponible próximamente."
   },

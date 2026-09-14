@@ -194,6 +194,19 @@ describe('parsePhysicsMarkdown (full document)', () => {
     }
   });
 
+  it('parses FAQ and unit metadata on high-traffic formulas', () => {
+    const formulas = result.sections.flatMap((s) =>
+      s.blocks.filter((b) => b.blockType === 'formula'),
+    );
+    const equ005 = formulas.find((b) => b.formulaCode === 'EQU-005');
+    const content = equ005!.content as FormulaContent;
+    expect(content.conventions?.[0]).toMatch(/Pa \(N\/m²\)/);
+    expect(content.faq?.length).toBeGreaterThanOrEqual(3);
+    expect(content.faq?.[0]?.question).toMatch(/fórmula/i);
+    expect(content.derivation).toMatch(/σ|sigma/i);
+    expect(content.lastReviewedAt).toBe('2026-09-14');
+  });
+
   it('does not store variant intros like "Caso paralelo" as detail', () => {
     const formulas = result.sections.flatMap((s) =>
       s.blocks.filter((b) => b.blockType === 'formula'),

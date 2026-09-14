@@ -35,3 +35,6 @@ drizzle/meta
 
 # test
 coverage
+
+# SEO / GSC generated reports
+reports/

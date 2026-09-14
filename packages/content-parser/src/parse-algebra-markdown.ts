@@ -5,6 +5,14 @@ import type {
   ListContent,
   TextContent,
 } from '@repo/shared-types';
+import {
+  absorbEditorialLine,
+  absorbFaqLine,
+  absorbUnitLine,
+  applyEditorialDraft,
+  createEditorialDraft,
+  createFaqAccumulator,
+} from './formula-meta.js';
 import { slugify } from './slugify.js';
 import { ALGEBRA_SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
@@ -144,10 +152,13 @@ type FormulaDraft = {
   pendingLabel: string | null;
   detail: string | null;
   constraints: string[];
+  conventions: string[];
   relatedIds: string[];
   visual: VisualDraft | null;
   computationalMarkdown: string[];
   notes: string[];
+  faq: ReturnType<typeof createFaqAccumulator>;
+  editorial: ReturnType<typeof createEditorialDraft>;
   mode:
     | 'body'
     | 'visual'
@@ -168,10 +179,13 @@ function createFormulaDraft(title: string): FormulaDraft {
     pendingLabel: null,
     detail: null,
     constraints: [],
+    conventions: [],
     relatedIds: [],
     visual: null,
     computationalMarkdown: [],
     notes: [],
+    faq: createFaqAccumulator(),
+    editorial: createEditorialDraft(),
     mode: 'body',
   };
 }
@@ -260,7 +274,10 @@ function flushFormula(section: ParsedSection, draft: FormulaDraft | null): void 
   if (draft.level) content.level = draft.level;
   if (draft.detail) content.detail = draft.detail;
   if (draft.constraints.length) content.constraints = draft.constraints;
+  if (draft.conventions.length) content.conventions = draft.conventions;
   if (draft.relatedIds.length) content.relatedIds = draft.relatedIds;
+  if (draft.faq.items.length) content.faq = [...draft.faq.items];
+  applyEditorialDraft(content, draft.editorial);
   const visual = finalizeVisual(draft.visual);
   if (visual) content.visual = visual;
   const cost = finalizeCost(draft.computationalMarkdown);
@@ -507,6 +524,18 @@ export function parseAlgebraMarkdown(markdown: string): ParseResult {
         flushParagraph();
         draft.detail = detailMatch[1]!.trim();
         draft.mode = 'body';
+        continue;
+      }
+      if (absorbUnitLine(draft.conventions, trimmed)) {
+        flushParagraph();
+        continue;
+      }
+      if (absorbFaqLine(draft.faq, trimmed)) {
+        flushParagraph();
+        continue;
+      }
+      if (absorbEditorialLine(draft.editorial, trimmed)) {
+        flushParagraph();
         continue;
       }
 

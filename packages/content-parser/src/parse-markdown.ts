@@ -7,6 +7,14 @@ import type {
   FormulaContent,
 } from '@repo/shared-types';
 import { enrichCalculoFormulas } from './enrich-calculo.js';
+import {
+  absorbEditorialLine,
+  absorbFaqLine,
+  absorbUnitLine,
+  applyEditorialDraft,
+  createEditorialDraft,
+  createFaqAccumulator,
+} from './formula-meta.js';
 import { slugify } from './slugify.js';
 import { SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
@@ -37,8 +45,11 @@ type FormulaMeta = {
   detail: string | null;
   variables: string | null;
   constraints: string[];
+  conventions: string[];
   relatedIds: string[] | null;
   explicitRelated: boolean;
+  faq: ReturnType<typeof createFaqAccumulator>;
+  editorial: ReturnType<typeof createEditorialDraft>;
 };
 
 function emptyFormulaMeta(): FormulaMeta {
@@ -47,8 +58,11 @@ function emptyFormulaMeta(): FormulaMeta {
     detail: null,
     variables: null,
     constraints: [],
+    conventions: [],
     relatedIds: null,
     explicitRelated: false,
+    faq: createFaqAccumulator(),
+    editorial: createEditorialDraft(),
   };
 }
 
@@ -91,6 +105,9 @@ function absorbMetaLine(meta: FormulaMeta, trimmed: string): boolean {
     meta.explicitRelated = true;
     return true;
   }
+  if (absorbUnitLine(meta.conventions, trimmed)) return true;
+  if (absorbFaqLine(meta.faq, trimmed)) return true;
+  if (absorbEditorialLine(meta.editorial, trimmed)) return true;
   return false;
 }
 
@@ -448,6 +465,9 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
       if (pendingMeta.explicitRelated && pendingMeta.relatedIds) {
         content.relatedIds = pendingMeta.relatedIds;
       }
+      if (pendingMeta.conventions.length) content.conventions = [...pendingMeta.conventions];
+      if (pendingMeta.faq.items.length) content.faq = [...pendingMeta.faq.items];
+      applyEditorialDraft(content, pendingMeta.editorial);
 
       pushBlock(
         currentSection,

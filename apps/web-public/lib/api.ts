@@ -6,6 +6,7 @@ import type {
   SearchResponse,
   SectionDetailResponse,
   SectionSummary,
+  SitemapEntriesResponse,
   SubjectSummary,
   TagsResponse,
 } from '@repo/shared-types';
@@ -167,6 +168,17 @@ export const fetchFormulaCodes = cache(async (subject: SubjectSlug): Promise<str
       { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
     );
     return data?.formulas ?? [];
+  } catch {
+    return [];
+  }
+});
+
+export const fetchSitemapEntries = cache(async (): Promise<SitemapEntriesResponse['entries']> => {
+  try {
+    const data = await apiFetch<SitemapEntriesResponse>('/sitemap/entries', {
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS },
+    });
+    return data?.entries ?? [];
   } catch {
     return [];
   }

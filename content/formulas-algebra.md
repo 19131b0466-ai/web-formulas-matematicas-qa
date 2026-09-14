@@ -2679,6 +2679,13 @@ A^T=A
 
 **Descripción corta:** Matriz cuadrada igual a su transpuesta.
 
+**Explicación intuitiva:** Una matriz simétrica se refleja respecto de su diagonal principal: cada entrada fuera de la diagonal tiene su pareja en la posición transuesta.
+**Derivación:** La condición $A^T=A$ equivale a $a_{ij}=a_{ji}$ para todo $i,j$. En particular, la diagonal puede tomar valores arbitrarios.
+**Ejemplo resuelto:** $A=\begin{pmatrix}4&1\\1&2\end{pmatrix}$ es simétrica porque $a_{12}=a_{21}=1$.
+**Notaciones equivalentes:** symmetric matrix; matriz simétrica definición
+**Alias de búsqueda:** symmetric matrix formula; matriz simétrica fórmula; condición de simetría matricial
+**Última revisión:** 2026-09-14
+
 ### Visualización sugerida
 
 - **Tipo:** `matrix`
@@ -3805,6 +3812,13 @@ Equivalentemente:
 
 **Descripción corta:** Mide el máximo factor con el que una matriz puede amplificar vectores según una norma determinada.
 
+**Explicación intuitiva:** La norma inducida responde a la pregunta «¿cuál es el vector unitario que más se estira al multiplicar por $A$?». Ese factor máximo es $\|A\|_p$.
+**Derivación:** Por definición $\|A\|_p=\max_{\mathbf x\neq\mathbf0}\|A\mathbf x\|_p/\|\mathbf x\|_p$. Homogeneidad de la norma permite restringir a $\|\mathbf x\|_p=1$, lo que da la forma equivalente del máximo sobre la esfera unidad.
+**Ejemplo resuelto:** Para $A=\begin{pmatrix}2&0\\0&3\end{pmatrix}$ y la norma euclidiana, $\|A\|_2=3$ porque el eje $y$ es la dirección de mayor estiramiento.
+**Notaciones equivalentes:** induced matrix norm; operator norm; norma de operador
+**Alias de búsqueda:** induced norm formula; matrix norm induced by vector norm; norma matricial inducida fórmula
+**Última revisión:** 2026-09-14
+
 ### Visualización sugerida
 - **Tipo:** `matrix_transform`
 - **Concepto visual:** amplificación máxima de vectores por una transformación matricial.
@@ -3843,6 +3857,13 @@ Mediante los valores singulares:
 \]
 
 **Descripción corta:** Extiende la norma euclidiana al conjunto de todas las entradas de una matriz.
+
+**Explicación intuitiva:** Trata la matriz como un vector largo formado por todas sus entradas y calcula su longitud euclidiana: suma de cuadrados y raíz.
+**Derivación:** $\|A\|_F=\sqrt{\sum_{i,j}|a_{ij}|^2}$ es la norma $\ell_2$ del vector $\mathrm{vec}(A)$. Con SVD, $\|A\|_F^2=\sum_i\sigma_i^2$.
+**Ejemplo resuelto:** Para $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ se tiene $\|A\|_F=\sqrt{1+4+9+16}=\sqrt{30}\approx5{,}48$.
+**Notaciones equivalentes:** Frobenius norm; norma euclidiana de matriz
+**Alias de búsqueda:** Frobenius norm formula; matrix Frobenius norm; norma de Frobenius fórmula
+**Última revisión:** 2026-09-14
 
 ### Visualización sugerida
 - **Tipo:** `matrix`

@@ -8,12 +8,14 @@ import { Link } from '@/i18n/navigation';
 import { fetchSections, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
+import { topicHubsForSubject } from '@/lib/topic-hubs';
 import {
   isSubjectSlug,
   searchHref,
   sectionHref,
   subjectHasGuide,
   subjectHomeHref,
+  topicsIndexHref,
   type SubjectSlug,
 } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
@@ -61,6 +63,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
   );
   const appendices = sections.filter((s) => s.slug.startsWith('apendice-'));
   const subjectTitle = meta?.title ?? subject;
+  const hasTopics = topicHubsForSubject(subject).length > 0;
 
   return (
     <div className="space-y-12">
@@ -103,6 +106,14 @@ export default async function SubjectHomePage({ params }: PageProps) {
               className="inline-flex min-h-12 items-center rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] px-5 text-sm font-semibold text-[var(--fg)] transition hover:border-[var(--accent)]"
             >
               {t('ctaGuide')}
+            </Link>
+          ) : null}
+          {hasTopics ? (
+            <Link
+              href={topicsIndexHref(subject) as '/'}
+              className="inline-flex min-h-12 items-center rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] px-5 text-sm font-semibold text-[var(--fg)] transition hover:border-[var(--accent)]"
+            >
+              {t('ctaTopics')}
             </Link>
           ) : null}
           <Link

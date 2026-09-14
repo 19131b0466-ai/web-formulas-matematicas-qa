@@ -59,6 +59,11 @@ export interface ComputationalCost {
   markdown?: string;
 }
 
+export interface FormulaFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface FormulaContent {
   latex: string;
   /** Optional label for the primary latex form (e.g. "Constructiva"). */
@@ -74,6 +79,8 @@ export interface FormulaContent {
   constraints?: string[];
   /** Optional editorial fields — render only when the source provides them. */
   intuitiveExplanation?: string;
+  /** Step-by-step derivation or “how to obtain” the expression. */
+  derivation?: string;
   formalDefinition?: string;
   applicationConditions?: string[];
   workedExample?: string;
@@ -98,6 +105,10 @@ export interface FormulaContent {
   visual?: FormulaVisual;
   /** Optional CS-oriented complexity block. */
   computationalCost?: ComputationalCost;
+  /** Optional FAQ pairs for on-page help and FAQPage structured data. */
+  faq?: FormulaFaqItem[];
+  /** Search-oriented aliases surfaced in metadata and on-page “also known as”. */
+  searchAliases?: string[];
 }
 
 export interface SubjectSummary {
@@ -213,6 +224,15 @@ export interface SearchResponse {
 
 export interface TagsResponse {
   tags: Array<{ tag: string; count: number }>;
+}
+
+export interface SitemapEntryDto {
+  path: string;
+  lastModified: string | null;
+}
+
+export interface SitemapEntriesResponse {
+  entries: SitemapEntryDto[];
 }
 
 export interface MethodGuideResponse {

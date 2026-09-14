@@ -109,6 +109,7 @@
     "content": "Inhalt",
     "subsections": "Unterabschnitte",
     "inThisSection": "In diesem Abschnitt",
+    "formulasInSection": "Formeln in diesem Abschnitt",
     "notFound": "Abschnitt nicht gefunden",
     "metaDescription": "Formeln und Konzepte zu {title}.",
     "jsonDescription": "Abschnitt {number}: {title}",
@@ -149,7 +150,67 @@
     "empty": "Keine Abschnitte verfügbar. Starte die API und führe pnpm db:seed aus.",
     "view": "Ansehen →",
     "appendices": "Anhänge",
+    "ctaTopics": "Themen im Überblick",
     "fallbackDescription": "Formelsammlung für {title}."
+  },
+  "topicHubs": {
+    "indexTitle": "Themen im Überblick",
+    "indexDescription": "Lernpfade nach Thema mit Schlüsselformeln und verwandten Abschnitten.",
+    "formulasHeading": "Schlüsselformeln",
+    "sectionsHeading": "Verwandte Abschnitte",
+    "backToTopics": "Zurück zu den Themen",
+    "alsoKnownAs": "Auch bekannt als",
+    "relatedTopics": "Verwandte Themen",
+    "youngModulus": {
+      "title": "Elastizitätsmodul und Elastizität",
+      "description": "Elastizitätsmodul, Spannung, Dehnung und Hookesches Gesetz.",
+      "intro": "Elastizitätsmodul, Normalspannung, Längendehnung und Hookesches Gesetz mit Herleitungen, Beispielen und interaktiven Visualisierungen."
+    },
+    "pressureFluids": {
+      "title": "Druck und Strömungsmechanik",
+      "description": "Druck, Hydrostatik, Bernoulli und Massenstrom.",
+      "intro": "Wesentliche Formeln zu Druck und Fluiden: Definition, Hydrostatik, Bernoulli und Massenstrom mit durchgerechneten Beispielen."
+    },
+    "newtonLaws": {
+      "title": "Newtonsche Gesetze",
+      "description": "Erstes, zweites und drittes Newtonsches Gesetz, Gewicht und Vektoranwendungen.",
+      "intro": "Die drei Newtonschen Gesetze und das Gewicht als Anwendung des zweiten Gesetzes."
+    },
+    "circularMotion": {
+      "title": "Kreisbewegung und Rotation",
+      "description": "Winkelverschiebung, Winkelgeschwindigkeit und Rotationskinematik.",
+      "intro": "Kreisbewegung und Rotation: Winkel, Winkelgeschwindigkeit, Zentripetalbeschleunigung und MRUA-Gleichungen."
+    },
+    "basicElectricity": {
+      "title": "Grundlagen der Elektrizität",
+      "description": "Ohmsches Gesetz, elektrische Leistung, Kapazität und elektrische Energie.",
+      "intro": "Ohmsches Gesetz, Leistung, Kondensatoren und elektrische Energie mit Einheiten und Beispielen."
+    },
+    "trigIntegrals": {
+      "title": "Trigonometrische Integrale",
+      "description": "Identitäten, Strategien und Stammfunktionen in Analysis II.",
+      "intro": "Trigonometrische Integration: Identitäten, Produkte von Sinus und Kosinus sowie Strategien."
+    },
+    "fundamentalTheorem": {
+      "title": "Fundamentalsatz der Analysis",
+      "description": "Bestimmtes Integral, Akkumulation und der Fundamentalsatz.",
+      "intro": "Bestimmte Integrale und der Satz, der Differentiation und Integration verbindet."
+    },
+    "polarCoordinates": {
+      "title": "Polarkoordinaten",
+      "description": "Kartesisch–polar, Flächen und Anwendungen.",
+      "intro": "Polarkoordinaten: Umrechnung, Graphen und Flächenberechnung."
+    },
+    "matrixNorms": {
+      "title": "Matrixnormen und Abstände",
+      "description": "Induzierte Norm, Frobeniusnorm, euklidische Norm und symmetrische Matrizen.",
+      "intro": "Vektor- und Matrixnormen: induzierte Norm, Frobenius und symmetrische Matrizen mit interaktiven Visualisierungen."
+    },
+    "algebraicStructures": {
+      "title": "Algebraische Strukturen",
+      "description": "Gruppen, Ringe, Körper und Morphismen in der abstrakten Algebra.",
+      "intro": "Einführung in algebraische Strukturen: Definitionen, Beispiele und Zusammenhänge zwischen Gruppen, Ringen und Körpern."
+    }
   },
   "formula": {
     "viewDetail": "Details ansehen",
@@ -174,16 +235,20 @@
     "vizTeaches": "Die Idee",
     "vizTry": "Probier’s",
     "intuitive": "Anschauliche Erklärung",
+    "derivation": "Herleitung",
+    "tags": "Schlagwörter",
     "formal": "Formale Definition",
     "workedExample": "Durchgerechnetes Beispiel",
     "commonErrors": "Häufige Fehler",
     "equivalentNotations": "Äquivalente Schreibweisen",
+    "alsoKnownAs": "Auch bekannt als",
     "references": "Literatur",
     "lastReviewed": "Zuletzt geprüft",
     "reviewedBy": "Prüfung",
     "sources": "Quellen",
     "conventions": "Konventionen",
     "assumptions": "Annahmen",
+    "faq": "Häufig gestellte Fragen",
     "reportError": "Fehler gefunden? Schreiben Sie uns."
   },
   "siteNav": {
@@ -288,7 +353,10 @@
     "formulaTitle": "{concept} — {subject}",
     "guideTitle": "{guide} — {subject}",
     "withVisualization": "Enthält ein interaktives Werkzeug.",
+    "unitsLabel": "Einheiten",
     "formulaFallback": "{concept} in {subject}: Definition, Formeln und Lernhilfen.",
+    "sectionTitleSearch": "{section} — Formeln und Ressourcen — {subject}",
+    "topicTitleSearch": "{topic} — {subject}",
     "comingSoonViz": "Visualisierung {type} — in Vorbereitung."
   },
   "vizDomain": {

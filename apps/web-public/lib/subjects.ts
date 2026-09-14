@@ -40,3 +40,11 @@ export function subjectGuideSectionSlug(subject: SubjectSlug): string {
 export function subjectUsesFormulaCatalog(subject: SubjectSlug): boolean {
   return subject === 'fisica-basica' || subject === 'calculo-ii' || subject === 'algebra';
 }
+
+export function topicHubHref(subject: SubjectSlug, slug: string): string {
+  return `/${subject}/temas/${slug}`;
+}
+
+export function topicsIndexHref(subject: SubjectSlug): string {
+  return `/${subject}/temas`;
+}

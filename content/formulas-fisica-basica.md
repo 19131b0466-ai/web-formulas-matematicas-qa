@@ -269,6 +269,13 @@ v=v_0+at
 
 **Condición:** aceleración constante.
 
+
+**Explicación intuitiva:** En MRUA la velocidad cambia de forma lineal con el tiempo, como una recta de pendiente $a$.
+**Derivación:** Integrando $a=\mathrm{d}v/\mathrm{d}t$ con aceleración constante se obtiene $v=v_0+at$.
+**Ejemplo resuelto:** Con $v_0=5\,\mathrm{m/s}$ y $a=2\,\mathrm{m/s}^2$, a los $3\,\mathrm{s}$ se tiene $v=11\,\mathrm{m/s}$.
+**Notaciones equivalentes:** MRUA velocidad; ecuación horaria de la velocidad
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `CIN-009`, `CIN-010`, `CIN-011`.
 
 ---
@@ -690,6 +697,19 @@ Por componentes:
 
 **Detalle:** las fuerzas de acción y reacción actúan sobre cuerpos distintos.
 
+**Pregunta:** ¿Qué dice la tercera ley de Newton?
+**Respuesta:** A toda acción le corresponde una reacción de igual magnitud y sentido opuesto, sobre cuerpos distintos.
+
+**Pregunta:** ¿Cuál es la fórmula de la tercera ley de Newton?
+**Respuesta:** $\vec F_{A\rightarrow B}=-\vec F_{B\rightarrow A}$.
+
+
+**Explicación intuitiva:** Las fuerzas siempre aparecen en pares: si $A$ empuja a $B$, $B$ empuja a $A$ con igual magnitud y sentido opuesto, pero sobre cuerpos distintos.
+**Ejemplo resuelto:** Al caminar, el pie empuja el suelo hacia atrás y el suelo empuja el pie hacia adelante con la misma intensidad.
+**Notaciones equivalentes:** Newton's third law; tercera ley de Newton
+**Alias de búsqueda:** Newton's third law formula; third law of motion equation; fórmula tercera ley de Newton
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `NEW-002`.
 
 ---
@@ -793,6 +813,13 @@ N=mg\cos\theta
 \]
 
 **Detalle:** El desplazamiento angular es la diferencia entre los ángulos final e inicial.
+
+
+**Explicación intuitiva:** El desplazamiento angular mide cuánto giró un cuerpo, igual que el desplazamiento lineal mide cuánto se movió en línea recta.
+**Derivación:** Se define como la diferencia entre el ángulo final y el inicial medido en la misma unidad angular.
+**Ejemplo resuelto:** De $\theta_i=30^\circ$ a $\theta_f=120^\circ$ resulta $\Delta\theta=90^\circ=\pi/2\,\mathrm{rad}$.
+**Notaciones equivalentes:** angular displacement; desplazamiento angular
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `CIR-002`.
 
@@ -1104,6 +1131,13 @@ P_{\text{med}}=\frac{W}{\Delta t}
 
 **Detalle:** Cociente entre el trabajo realizado y el intervalo de tiempo transcurrido.
 
+
+**Explicación intuitiva:** La potencia media indica cuánto trabajo se realiza por unidad de tiempo en un intervalo.
+**Derivación:** Por definición $P_{\text{med}}=W/\Delta t$.
+**Ejemplo resuelto:** Si se realiza $W=600\,\mathrm{J}$ en $\Delta t=30\,\mathrm{s}$, entonces $P_{\text{med}}=20\,\mathrm{W}$.
+**Notaciones equivalentes:** average power; potencia media
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `ENE-014`.
 
 ---
@@ -1320,6 +1354,13 @@ Para distribución continua:
 \]
 
 **Detalle:** Velocidad angular con aceleración angular constante.
+
+
+**Explicación intuitiva:** Con aceleración angular constante, la velocidad angular cambia linealmente con el tiempo, análoga a $v=v_0+at$ en línea recta.
+**Derivación:** Integrando $\alpha=\mathrm{d}\omega/\mathrm{d}t$ con $\alpha$ constante se obtiene $\omega_f=\omega_0+\alpha t$.
+**Ejemplo resuelto:** Un disco parte de $\omega_0=10\,\mathrm{rad/s}$ con $\alpha=3\,\mathrm{rad/s}^2$; a $t=4\,\mathrm{s}$, $\omega_f=22\,\mathrm{rad/s}$.
+**Notaciones equivalentes:** angular velocity formula; cinemática angular
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `ROT-003`, `ROT-004`.
 
@@ -1589,6 +1630,25 @@ Y=\frac{\sigma}{\varepsilon}
 
 **Condición:** régimen elástico lineal.
 
+**Unidad:** Pa (N/m²).
+
+**Pregunta:** ¿Cuál es la fórmula del módulo de Young?
+**Respuesta:** $Y=\sigma/\varepsilon$, equivalente a $Y=F_\perp L_0/(A\Delta L)$ en régimen elástico lineal.
+
+**Pregunta:** ¿Cuál es la unidad del módulo de Young?
+**Respuesta:** El pascal (Pa), equivalente a N/m².
+
+**Pregunta:** ¿Cómo se obtiene la expresión $F_\perp L_0/(A\Delta L)$?
+**Respuesta:** Sustituyendo $\sigma=F_\perp/A$ y $\varepsilon=\Delta L/L_0$ en $Y=\sigma/\varepsilon$.
+
+
+**Explicación intuitiva:** Mide la rigidez elástica de un material: a igual esfuerzo, un material más deformable tiene un módulo de Young menor.
+**Derivación:** Partiendo de $Y=\sigma/\varepsilon$, con $\sigma=F_\perp/A$ y $\varepsilon=\Delta L/L_0$ se obtiene $Y=F_\perp L_0/(A\Delta L)$.
+**Ejemplo resuelto:** Un alambre de $L_0=2\,\mathrm{m}$ y $A=1\,\mathrm{mm}^2$ se estira $\Delta L=0{,}2\,\mathrm{mm}$ con $F_\perp=100\,\mathrm{N}$: $Y\approx 10^{11}\,\mathrm{Pa}$.
+**Notaciones equivalentes:** módulo de elasticidad; módulo elástico; $E$ (en textos de ingeniería)
+**Alias de búsqueda:** Young's modulus formula; módulo de Young fórmula; formula for Young modulus
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `EQU-003`, `EQU-004`, `NEW-007`.
 
 ---
@@ -1677,6 +1737,13 @@ U(r)=-G\frac{Mm}{r}
 \]
 
 **Detalle:** Energía potencial gravitatoria universal, inversamente proporcional a la distancia.
+
+
+**Explicación intuitiva:** La energía potencial gravitatoria universal mide la energía asociada a la separación entre dos masas.
+**Derivación:** Se obtiene integrando el trabajo del campo gravitatorio conservativo entre dos posiciones radiales.
+**Ejemplo resuelto:** Dos masas de $1\,\mathrm{kg}$ separadas $1\,\mathrm{m}$ tienen $U\approx -6{,}67\times10^{-11}\,\mathrm{J}$.
+**Notaciones equivalentes:** gravitational potential energy; energía potencial gravitacional
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `ENE-004`, `GRA-001`, `GRA-006`.
 
@@ -1784,6 +1851,20 @@ P=\frac{F_\perp}{A}
 **Detalle:** Cociente entre la fuerza perpendicular y el área.
 
 **Unidad:** Pa = N/m².
+
+**Pregunta:** ¿Cuál es la fórmula de la presión?
+**Respuesta:** $P=F_\perp/A$, fuerza perpendicular dividida entre el área.
+
+**Pregunta:** ¿Cuál es la unidad de la presión?
+**Respuesta:** El pascal (Pa), igual a N/m².
+
+
+**Explicación intuitiva:** La presión indica cuánta fuerza normal actúa por unidad de área sobre una superficie.
+**Derivación:** Se define como el cociente entre la componente normal de la fuerza y el área sobre la que actúa: $P=F_\perp/A$.
+**Ejemplo resuelto:** Una fuerza de $500\,\mathrm{N}$ perpendicular sobre $0{,}25\,\mathrm{m}^2$ da $P=2000\,\mathrm{Pa}=2\,\mathrm{kPa}$.
+**Notaciones equivalentes:** pressure formula; fórmula de presión; equation for pressure
+**Alias de búsqueda:** pressure equation physics; formula for pressure; presión fórmula física
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `FLU-003`, `FLU-004`.
 
@@ -1934,6 +2015,13 @@ v=\sqrt{2gh}
 
 **Detalle:** Masa de fluido que atraviesa una sección por unidad de tiempo.
 
+
+**Explicación intuitiva:** El flujo másico cuenta cuánta masa de fluido atraviesa una sección por unidad de tiempo.
+**Derivación:** Como $\dot m=m/t$ y $Q=Av$, con densidad constante $\dot m=\rho Q=\rho Av$.
+**Ejemplo resuelto:** Agua con $\rho=1000\,\mathrm{kg/m}^3$ que fluye a $Q=0{,}02\,\mathrm{m}^3/\mathrm{s}$ transporta $\dot m=20\,\mathrm{kg/s}$.
+**Notaciones equivalentes:** mass flow; flujo de masa
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `FLU-001`, `FLU-007`.
 
 ---
@@ -1976,6 +2064,13 @@ x(t)=A\cos(\omega t+\phi)
 **Detalle:** Posición en el movimiento armónico simple, de amplitud A y fase inicial φ.
 
 **Variables:** \(A\): amplitud; \(\phi\): fase inicial.
+
+
+**Explicación intuitiva:** En MAS la posición oscila sinusoidalmente alrededor del equilibrio con amplitud $A$ y fase inicial $\phi$.
+**Derivación:** La solución de $\mathrm{d}^2x/\mathrm{d}t^2=-\omega^2x$ es $x(t)=A\cos(\omega t+\phi)$.
+**Ejemplo resuelto:** Con $A=0{,}10\,\mathrm{m}$, $\omega=4\,\mathrm{rad/s}$ y $\phi=0$, a $t=\pi/4\,\mathrm{s}$ se tiene $x\approx 0{,}071\,\mathrm{m}$.
+**Notaciones equivalentes:** simple harmonic motion position; movimiento armónico simple
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `OSC-004`, `OSC-005`.
 
@@ -2761,6 +2856,13 @@ con
 
 **Detalle:** En un proceso adiabático de gas ideal, PV^γ es constante, con γ=C_P/C_V.
 
+
+**Explicación intuitiva:** En un proceso adiabático de gas ideal no hay intercambio de calor y la presión y el volumen se relacionan mediante el exponente adiabático $\gamma$.
+**Derivación:** A partir de la primera ley con $Q=0$ y la ecuación de estado del gas ideal se obtiene $PV^\gamma=\text{constante}$.
+**Ejemplo resuelto:** Si un gas ideal duplica su volumen adiabáticamente, su presión disminuye según $P_2=P_1/2^\gamma$.
+**Notaciones equivalentes:** adiabatic process; proceso adiabático
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `TER-016`, `TER-017`.
 
 ---
@@ -2933,6 +3035,13 @@ U=k_e\frac{q_1q_2}{r}
 
 **Detalle:** La energía potencial eléctrica de una carga es el producto de la carga por el potencial.
 
+
+**Explicación intuitiva:** La energía potencial eléctrica mide la energía asociada a la posición de una carga en un campo eléctrico.
+**Derivación:** Para dos cargas puntuales, $U=k_e q_1q_2/r$ proviene del trabajo para traerlas desde el infinito.
+**Ejemplo resuelto:** Dos cargas de $1\,\mathrm{\mu C}$ separadas $0{,}10\,\mathrm{m}$ tienen $U\approx 0{,}090\,\mathrm{J}$.
+**Notaciones equivalentes:** electric potential energy; energía potencial eléctrica
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `ELE-005`, `ENE-009`.
 
 ---
@@ -2986,6 +3095,13 @@ V=IR
 
 **Condición:** elemento óhmico en el régimen considerado.
 
+
+**Explicación intuitiva:** En un conductor óhmico, a mayor diferencia de potencial circula mayor corriente si la resistencia se mantiene.
+**Derivación:** La ley de Ohm establece la proporcionalidad directa $V\propto I$ con constante de proporcionalidad $R$.
+**Ejemplo resuelto:** Una resistencia de $R=10\,\Omega$ con $V=12\,\mathrm{V}$ conduce $I=1{,}2\,\mathrm{A}$.
+**Notaciones equivalentes:** Ohm's law; ley de Ohm
+**Última revisión:** 2026-09-14
+
 **Relacionadas:** `ELE-008`, `ELE-010`, `ELE-012`.
 
 ---
@@ -3034,6 +3150,13 @@ P=I^2R=\frac{V^2}{R}
 \]
 
 **Detalle:** La potencia eléctrica es el producto de la diferencia de potencial por la corriente.
+
+
+**Explicación intuitiva:** La potencia eléctrica indica la rapidez con la que un dispositivo transforma energía eléctrica.
+**Derivación:** Como $P=\mathrm{d}W/\mathrm{d}t$ y $W=VQ$, con corriente constante $P=VI$; usando $V=IR$ también $P=I^2R=V^2/R$.
+**Ejemplo resuelto:** Un aparato de $120\,\mathrm{V}$ y $2\,\mathrm{A}$ disipa $P=240\,\mathrm{W}$.
+**Notaciones equivalentes:** electrical power formula; potencia eléctrica
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `ELE-009`, `ENE-014`, `ELE-013`.
 
@@ -3132,6 +3255,13 @@ C=\frac{Q}{V}
 \]
 
 **Detalle:** se incluye como concepto de Física General; el análisis detallado de circuitos capacitivos puede trasladarse a Física Electrónica.
+
+
+**Explicación intuitiva:** La capacitancia mide cuánta carga puede almacenar un conductor por cada volt de diferencia de potencial.
+**Derivación:** Por definición $C=Q/V$, de modo que a mayor carga almacenada para el mismo voltaje, mayor capacitancia.
+**Ejemplo resuelto:** Si un capacitor almacena $Q=2\,\mathrm{mC}$ con $V=10\,\mathrm{V}$, entonces $C=2\times10^{-4}\,\mathrm{F}=200\,\mathrm{\mu F}$.
+**Notaciones equivalentes:** capacitance formula; capacitance equation; fórmula de capacitancia
+**Última revisión:** 2026-09-14
 
 **Relacionadas:** `ELE-019`, `ELE-005`.
 

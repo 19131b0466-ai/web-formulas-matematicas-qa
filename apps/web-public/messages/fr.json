@@ -109,6 +109,7 @@
     "content": "Contenu",
     "subsections": "Sous-sections",
     "inThisSection": "Dans cette section",
+    "formulasInSection": "Formules de cette section",
     "notFound": "Section introuvable",
     "metaDescription": "Formules et concepts de {title}.",
     "jsonDescription": "Section {number} : {title}",
@@ -149,7 +150,67 @@
     "empty": "Aucune section disponible. Démarrez l’API et exécutez pnpm db:seed.",
     "view": "Voir →",
     "appendices": "Annexes",
+    "ctaTopics": "Thèmes à la une",
     "fallbackDescription": "Formulaire de {title}."
+  },
+  "topicHubs": {
+    "indexTitle": "Thèmes à la une",
+    "indexDescription": "Parcours d’étude par thème avec formules clés et sections associées.",
+    "formulasHeading": "Formules clés",
+    "sectionsHeading": "Sections associées",
+    "backToTopics": "Retour aux thèmes",
+    "alsoKnownAs": "Aussi connu sous",
+    "relatedTopics": "Thèmes associés",
+    "youngModulus": {
+      "title": "Module de Young et élasticité",
+      "description": "Module de Young, contrainte, déformation et loi de Hooke.",
+      "intro": "Module de Young, contrainte normale, déformation longitudinale et loi de Hooke avec dérivations, exemples et visualisations interactives."
+    },
+    "pressureFluids": {
+      "title": "Pression et mécanique des fluides",
+      "description": "Pression, hydrostatique, Bernoulli et débit massique.",
+      "intro": "Formules essentielles de pression et fluides : définition, hydrostatique, Bernoulli et débit massique avec exemples résolus."
+    },
+    "newtonLaws": {
+      "title": "Lois de Newton",
+      "description": "Première, deuxième et troisième loi de Newton, poids et applications vectorielles.",
+      "intro": "Les trois lois de Newton et le poids comme application de la deuxième loi."
+    },
+    "circularMotion": {
+      "title": "Mouvement circulaire et rotation",
+      "description": "Déplacement angulaire, vitesse angulaire et cinématique de rotation.",
+      "intro": "Cinématique circulaire et rotationnelle : angles, vitesse angulaire, accélération centripète et équations MRUA angulaires."
+    },
+    "basicElectricity": {
+      "title": "Électricité de base",
+      "description": "Loi d’Ohm, puissance électrique, capacité et énergie potentielle électrique.",
+      "intro": "Loi d’Ohm, puissance, condensateurs et énergie électrique avec unités et exemples numériques."
+    },
+    "trigIntegrals": {
+      "title": "Intégrales trigonométriques",
+      "description": "Identités, stratégies et primitives en Calcul II.",
+      "intro": "Section intégrales trigonométriques : identités, produits de sinus et cosinus, et stratégies d’intégration."
+    },
+    "fundamentalTheorem": {
+      "title": "Théorème fondamental du calcul",
+      "description": "Intégrale définie, accumulation et théorème fondamental.",
+      "intro": "Intégrales définies et le théorème qui relie dérivation et intégration."
+    },
+    "polarCoordinates": {
+      "title": "Coordonnées polaires",
+      "description": "Conversion cartésienne–polaire, aires et applications.",
+      "intro": "Coordonnées polaires : conversion, graphes et calcul d’aires."
+    },
+    "matrixNorms": {
+      "title": "Normes matricielles et distances",
+      "description": "Norme induite, norme de Frobenius, norme euclidienne et matrices symétriques.",
+      "intro": "Normes vectorielles et matricielles : norme induite, Frobenius et matrices symétriques avec visualisations interactives."
+    },
+    "algebraicStructures": {
+      "title": "Structures algébriques",
+      "description": "Groupes, anneaux, corps et morphismes en algèbre abstraite.",
+      "intro": "Introduction aux structures algébriques : définitions, exemples et liens entre groupes, anneaux et corps."
+    }
   },
   "formula": {
     "viewDetail": "Voir le détail",
@@ -174,16 +235,20 @@
     "vizTeaches": "L’idée",
     "vizTry": "Essaie",
     "intuitive": "Explication intuitive",
+    "derivation": "Dérivation",
+    "tags": "Étiquettes",
     "formal": "Définition formelle",
     "workedExample": "Exemple résolu",
     "commonErrors": "Erreurs fréquentes",
     "equivalentNotations": "Notations équivalentes",
+    "alsoKnownAs": "Aussi connu sous",
     "references": "Références",
     "lastReviewed": "Dernière révision",
     "reviewedBy": "Relecture",
     "sources": "Sources",
     "conventions": "Conventions",
     "assumptions": "Hypothèses",
+    "faq": "Questions fréquentes",
     "reportError": "Vous avez trouvé une erreur ? Contactez-nous."
   },
   "siteNav": {
@@ -288,7 +353,10 @@
     "formulaTitle": "{concept} — {subject}",
     "guideTitle": "{guide} — {subject}",
     "withVisualization": "Comprend une ressource interactive.",
+    "unitsLabel": "Unités",
     "formulaFallback": "Étudiez {concept} en {subject} : définition, formules et outils d’apprentissage.",
+    "sectionTitleSearch": "{section} — formules et ressources — {subject}",
+    "topicTitleSearch": "{topic} — {subject}",
     "comingSoonViz": "Visualisation {type} — bientôt disponible."
   },
   "vizDomain": {

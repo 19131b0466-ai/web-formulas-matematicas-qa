@@ -8,7 +8,7 @@ import { redirect } from '@/i18n/navigation';
 import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { resolveSectionSlugAlias } from '@/lib/section-slug-aliases';
-import { breadcrumbJsonLd, buildPageMetadata, learningResourceJsonLd } from '@/lib/seo';
+import { breadcrumbJsonLd, buildPageMetadata, learningResourceJsonLd, sectionSeoTitle } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, type SubjectSlug } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
 
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const sectionName = detail.section.number
       ? `${detail.section.number}. ${detail.section.title}`
       : detail.section.title;
-    const title = tseo('sectionTitle', { section: sectionName, subject: subjectTitle });
+    const title = sectionSeoTitle(sectionName, subjectTitle, locale);
     const description =
       detail.section.description ?? t('metaDescription', { title: detail.section.title });
 

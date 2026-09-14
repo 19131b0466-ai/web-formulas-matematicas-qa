@@ -5,9 +5,18 @@ import {
   breadcrumbJsonLd,
   buildPageMetadata,
   canonicalUrl,
+  definedTermJsonLd,
   detectUnexpectedSpanish,
+  faqPageJsonLd,
+  formulaOgImageUrl,
+  formulaSeoDescription,
+  formulaSeoTitle,
+  resolveFormulaSeoTitle,
+  itemListJsonLd,
   isSearchPath,
+  mergeSearchKeywords,
   languageAlternates,
+  latexToPlainSnippet,
   safeJsonLd,
   websiteJsonLd,
 } from './seo';
@@ -86,5 +95,132 @@ describe('SEO helpers', () => {
     );
     assert.ok(leaks.includes('el dominio es el conjunto'));
     assert.equal(detectUnexpectedSpanish('Domain of f(x) on ℝ for ALG-FUN-001').length, 0);
+  });
+
+  it('applies title experiment variant B when configured', () => {
+    const resolved = resolveFormulaSeoTitle({
+      concept: 'Módulo de Young',
+      subjectTitle: 'Física Básica',
+      locale: 'es',
+      formulaId: 'EQU-005',
+      subject: 'fisica-basica',
+      variant: 'b',
+    });
+    assert.equal(resolved.variant, 'b');
+    assert.match(resolved.title, /Módulo de Young: fórmula, unidades \(Pa\)/);
+    assert.match(resolved.title, /Física Básica/);
+  });
+
+  it('builds search-oriented formula titles by locale', () => {
+    assert.equal(
+      formulaSeoTitle('Módulo de Young', 'Física Básica', 'es'),
+      'Fórmula: Módulo de Young — Física Básica',
+    );
+    assert.equal(
+      formulaSeoTitle("Young's Modulus", 'Basic Physics', 'en'),
+      "Young's Modulus Formula — Basic Physics",
+    );
+  });
+
+  it('enriches formula descriptions with latex, units and visualization', () => {
+    const description = formulaSeoDescription({
+      title: 'Presión',
+      subjectTitle: 'Física Básica',
+      detail: 'Cociente entre la fuerza perpendicular y el área.',
+      latex: 'P=\\frac{F_\\perp}{A}',
+      conventions: ['Pa = N/m²'],
+      hasVisualization: true,
+      visualizationNote: 'Incluye un recurso interactivo.',
+      unitsLabel: 'Unidades',
+      fallback: 'fallback',
+    });
+    assert.match(description, /F_⊥\/A|F_\perp\/A|P=/);
+    assert.match(description, /Unidades: Pa/);
+    assert.match(description, /interactivo/);
+  });
+
+  it('strips latex to a plain snippet', () => {
+    const snippet = latexToPlainSnippet('Y=\\frac{\\sigma}{\\varepsilon}');
+    assert.match(snippet, /Y/);
+    assert.match(snippet, /σ\/ε|sigma\/varepsilon/i);
+  });
+
+  it('builds formula OG image URLs with locale', () => {
+    assert.equal(
+      formulaOgImageUrl('es', 'fisica-basica', 'EQU-005'),
+      `${CANONICAL_ORIGIN}/og/es/fisica-basica/formula/EQU-005`,
+    );
+  });
+
+  it('uses custom OG images in page metadata', () => {
+    const meta = buildPageMetadata({
+      locale: 'es',
+      path: '/fisica-basica/formula/EQU-005',
+      title: 'Test',
+      description: 'Desc',
+      siteName: 'Math',
+      ogImage: {
+        url: `${CANONICAL_ORIGIN}/og/es/fisica-basica/formula/EQU-005`,
+        alt: 'Young',
+      },
+    });
+    assert.ok(
+      JSON.stringify(meta.openGraph?.images).includes(
+        `${CANONICAL_ORIGIN}/og/es/fisica-basica/formula/EQU-005`,
+      ),
+    );
+  });
+
+  it('builds defined term and FAQ structured data', () => {
+    const term = definedTermJsonLd({
+      name: 'Módulo de Young',
+      description: 'Elasticidad',
+      locale: 'es',
+      path: '/fisica-basica/formula/EQU-005',
+      termCode: 'EQU-005',
+      termSetName: 'Física Básica',
+      latex: 'Y=\\sigma/\\varepsilon',
+    });
+    assert.equal(term['@type'], 'DefinedTerm');
+    assert.equal(term.termCode, 'EQU-005');
+
+    const faq = faqPageJsonLd({
+      items: [{ question: '¿Unidad?', answer: 'Pa' }],
+      locale: 'es',
+      path: '/fisica-basica/formula/EQU-005',
+    });
+    assert.equal(faq?.mainEntity.length, 1);
+  });
+
+  it('merges search keywords without duplicates', () => {
+    const merged = mergeSearchKeywords(
+      ['Young modulus', 'E'],
+      ['young modulus', 'Young modulus formula'],
+    );
+    assert.deepEqual(merged, ['Young modulus', 'E', 'Young modulus formula']);
+  });
+
+  it('builds ItemList JSON-LD for topic hubs', () => {
+    const list = itemListJsonLd({
+      name: 'Young modulus',
+      locale: 'es',
+      items: [
+        { name: 'EQU-005', path: '/fisica-basica/formula/EQU-005' },
+        { name: 'EQU-004', path: '/fisica-basica/formula/EQU-004' },
+      ],
+    });
+    assert.equal(list['@type'], 'ItemList');
+    assert.equal(list.itemListElement[0].position, 1);
+    assert.match(list.itemListElement[0].url, /EQU-005/);
+  });
+
+  it('adds SearchAction to website JSON-LD', () => {
+    const site = websiteJsonLd({
+      name: 'Math',
+      description: 'Catalog',
+      inLanguage: ['es'],
+    });
+    assert.equal(site.potentialAction['@type'], 'SearchAction');
+    assert.match(site.potentialAction.target.urlTemplate, /algebra\/buscar\?q=\{search_term_string\}/);
   });
 });

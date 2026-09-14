@@ -1,9 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import { calculoVizForFormulaId, fisicaVizForFormulaId, type FormulaDetailResponse } from '@repo/shared-types';
 import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
-import { FormulaVisualization } from '@/components/algebra/FormulaVisualization';
+import { FormulaVisualizationLazy } from '@/components/algebra/FormulaVisualizationLazy';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
+import { DeferredMount } from '@/components/perf/DeferredMount';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Katex } from '@/components/content/Katex';
@@ -11,7 +12,15 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { Link } from '@/i18n/navigation';
 import { parseVariableSymbols } from '@/lib/parse-variables';
 import type { SubjectSlug } from '@/lib/subjects';
-import { formulaHref, sectionHref, subjectHomeHref } from '@/lib/subjects';
+import { mergeSearchKeywords } from '@/lib/seo';
+import { topicHubsForFormula } from '@/lib/topic-hubs';
+import {
+  formulaHref,
+  searchHref,
+  sectionHref,
+  subjectHomeHref,
+  topicHubHref,
+} from '@/lib/subjects';
 
 type FormulaDetailProps = {
   subject: SubjectSlug;
@@ -22,12 +31,18 @@ type FormulaDetailProps = {
 export async function FormulaDetailView({ subject, subjectTitle, detail }: FormulaDetailProps) {
   const t = await getTranslations('formula');
   const tn = await getTranslations('nav');
-  const { content, related, section, formulaId, title } = detail;
+  const { content, related, section, formulaId, title, tags } = detail;
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
     subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;
   const physViz =
     subject === 'fisica-basica' ? fisicaVizForFormulaId(formulaId) : undefined;
+  const alsoKnownAs = mergeSearchKeywords(
+    content.equivalentNotations,
+    content.searchAliases,
+  );
+  const relatedTopics = topicHubsForFormula(subject, formulaId);
+  const tTopics = await getTranslations('topicHubs');
 
   const crumbs = [
     { label: tn('home'), href: '/' },
@@ -105,6 +120,24 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           </div>
         ))}
 
+        {tags.length > 0 ? (
+          <section className="animate-rise" style={{ animationDelay: '70ms' }}>
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('tags')}</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <li key={tag}>
+                  <Link
+                    href={`${searchHref(subject)}?tags=${encodeURIComponent(tag)}` as '/'}
+                    className="inline-flex rounded-full border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-1 text-sm text-[var(--accent-strong)] underline-offset-2 hover:underline"
+                  >
+                    {tag}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         {content.detail ? (
           <section className="animate-rise" style={{ animationDelay: '80ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('detail')}</h2>
@@ -117,19 +150,25 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
         {calcViz ? (
           <section className="animate-rise" style={{ animationDelay: '90ms' }}>
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
-            <CalculoVisualization type={calcViz.type} concept={calcViz.concept} formulaId={formulaId} />
+            <DeferredMount minHeight={320} label={t('visualization')}>
+              <CalculoVisualization type={calcViz.type} concept={calcViz.concept} formulaId={formulaId} />
+            </DeferredMount>
           </section>
         ) : physViz ? (
           <section className="animate-rise" style={{ animationDelay: '90ms' }}>
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
-            <PhysicsVisualization type={physViz.type} concept={physViz.concept} mode={physViz.mode} formulaId={formulaId} />
+            <DeferredMount minHeight={320} label={t('visualization')}>
+              <PhysicsVisualization type={physViz.type} concept={physViz.concept} mode={physViz.mode} formulaId={formulaId} />
+            </DeferredMount>
           </section>
         ) : content.visual && content.formulaId ? (
-          <FormulaVisualization
-            formulaId={content.formulaId}
-            visual={content.visual}
-            title={t('visualization')}
-          />
+          <DeferredMount minHeight={320} label={t('visualization')}>
+            <FormulaVisualizationLazy
+              formulaId={content.formulaId}
+              visual={content.visual}
+              title={t('visualization')}
+            />
+          </DeferredMount>
         ) : null}
 
         {content.computationalCost?.applicable ? (
@@ -196,6 +235,15 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           </section>
         ) : null}
 
+        {content.derivation ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('derivation')}</h2>
+            <div className="mt-3 text-base leading-relaxed">
+              <InlineMarkdown text={content.derivation} />
+            </div>
+          </section>
+        ) : null}
+
         {content.formalDefinition ? (
           <section className="animate-rise">
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('formal')}</h2>
@@ -227,13 +275,55 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           </section>
         ) : null}
 
-        {content.equivalentNotations?.length ? (
+        {content.faq?.length ? (
           <section className="animate-rise">
-            <h2 className="font-display text-xl font-semibold tracking-tight">{t('equivalentNotations')}</h2>
-            <ul className="mt-3 space-y-2">
-              {content.equivalentNotations.map((item) => (
-                <li key={item}>
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('faq')}</h2>
+            <dl className="mt-3 space-y-4">
+              {content.faq.map((item) => (
+                <div
+                  key={item.question}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-4 py-3"
+                >
+                  <dt className="font-semibold text-[var(--fg)]">
+                    <InlineMarkdown text={item.question} />
+                  </dt>
+                  <dd className="mt-2 text-base leading-relaxed text-[var(--fg-muted)]">
+                    <InlineMarkdown text={item.answer} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
+        {alsoKnownAs.length > 0 ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{t('alsoKnownAs')}</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {alsoKnownAs.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-1 text-sm"
+                >
                   <InlineMarkdown text={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {relatedTopics.length > 0 ? (
+          <section className="animate-rise">
+            <h2 className="font-display text-xl font-semibold tracking-tight">{tTopics('relatedTopics')}</h2>
+            <ul className="mt-3 space-y-2">
+              {relatedTopics.map((hub) => (
+                <li key={hub.slug}>
+                  <Link
+                    href={topicHubHref(subject, hub.slug) as '/'}
+                    className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
+                  >
+                    {tTopics(`${hub.messageKey}.title`)}
+                  </Link>
                 </li>
               ))}
             </ul>

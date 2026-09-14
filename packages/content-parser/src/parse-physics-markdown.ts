@@ -6,6 +6,14 @@ import type {
   TableContent,
   TextContent,
 } from '@repo/shared-types';
+import {
+  absorbEditorialLine,
+  absorbFaqLine,
+  absorbUnitLine,
+  applyEditorialDraft,
+  createEditorialDraft,
+  createFaqAccumulator,
+} from './formula-meta.js';
 import { slugify } from './slugify.js';
 import { PHYSICS_SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
@@ -180,8 +188,11 @@ type FormulaDraft = {
   detail: string | null;
   variables: string | null;
   constraints: string[];
+  conventions: string[];
   relatedIds: string[];
   notes: string[];
+  faq: ReturnType<typeof createFaqAccumulator>;
+  editorial: ReturnType<typeof createEditorialDraft>;
 };
 
 function createFormulaDraft(title: string): FormulaDraft {
@@ -194,8 +205,11 @@ function createFormulaDraft(title: string): FormulaDraft {
     detail: null,
     variables: null,
     constraints: [],
+    conventions: [],
     relatedIds: [],
     notes: [],
+    faq: createFaqAccumulator(),
+    editorial: createEditorialDraft(),
   };
 }
 
@@ -253,7 +267,10 @@ function flushFormula(section: ParsedSection, draft: FormulaDraft | null): void 
   if (draft.detail) content.detail = draft.detail;
   if (draft.variables) content.variables = draft.variables;
   if (draft.constraints.length) content.constraints = draft.constraints;
+  if (draft.conventions.length) content.conventions = draft.conventions;
   if (draft.relatedIds.length) content.relatedIds = draft.relatedIds;
+  if (draft.faq.items.length) content.faq = [...draft.faq.items];
+  applyEditorialDraft(content, draft.editorial);
 
   pushBlock(
     section,
@@ -453,6 +470,18 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
           ids.push(m[1]!);
         }
         draft.relatedIds = ids;
+        continue;
+      }
+      if (absorbUnitLine(draft.conventions, trimmed)) {
+        flushParagraphIntoDraftOrSection();
+        continue;
+      }
+      if (absorbFaqLine(draft.faq, trimmed)) {
+        flushParagraphIntoDraftOrSection();
+        continue;
+      }
+      if (absorbEditorialLine(draft.editorial, trimmed)) {
+        flushParagraphIntoDraftOrSection();
         continue;
       }
     }

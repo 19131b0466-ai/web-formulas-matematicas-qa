@@ -109,6 +109,7 @@
     "content": "Content",
     "subsections": "Subsections",
     "inThisSection": "In this section",
+    "formulasInSection": "Formulas in this section",
     "notFound": "Section not found",
     "metaDescription": "Formulas and concepts for {title}.",
     "jsonDescription": "Section {number}: {title}",
@@ -149,7 +150,67 @@
     "empty": "No sections available. Start the API and run pnpm db:seed.",
     "view": "View →",
     "appendices": "Appendices",
+    "ctaTopics": "Featured topics",
     "fallbackDescription": "Formula sheet for {title}."
+  },
+  "topicHubs": {
+    "indexTitle": "Featured topics",
+    "indexDescription": "Study paths by topic with key formulas and related sections.",
+    "formulasHeading": "Key formulas",
+    "sectionsHeading": "Related sections",
+    "backToTopics": "Back to topics",
+    "alsoKnownAs": "Also known as",
+    "relatedTopics": "Related topics",
+    "youngModulus": {
+      "title": "Young's modulus and elasticity",
+      "description": "Young's modulus, stress, strain and Hooke's law formulas.",
+      "intro": "Young's modulus, normal stress, longitudinal strain and Hooke's law with derivations, examples and interactive visuals."
+    },
+    "pressureFluids": {
+      "title": "Pressure and fluid mechanics",
+      "description": "Pressure, hydrostatics, Bernoulli and mass flow formulas.",
+      "intro": "Essential pressure and fluids formulas: definition, hydrostatics, Bernoulli and mass flow with worked examples."
+    },
+    "newtonLaws": {
+      "title": "Newton's laws",
+      "description": "First, second and third law of Newton, weight and vector applications.",
+      "intro": "Review Newton's three laws and weight as an application of the second law."
+    },
+    "circularMotion": {
+      "title": "Circular motion and rotation",
+      "description": "Angular displacement, angular velocity and rotational kinematics.",
+      "intro": "Circular and rotational kinematics: angles, angular velocity, centripetal acceleration and angular MRUA equations."
+    },
+    "basicElectricity": {
+      "title": "Basic electricity",
+      "description": "Ohm's law, electrical power, capacitance and electric potential energy.",
+      "intro": "Ohm's law, power, capacitors and electric energy with units and numeric examples."
+    },
+    "trigIntegrals": {
+      "title": "Trigonometric integrals",
+      "description": "Identities, strategies and antiderivatives in Calculus II.",
+      "intro": "Trigonometric integration section: identities, products of sines and cosines, and strategies."
+    },
+    "fundamentalTheorem": {
+      "title": "Fundamental theorem of calculus",
+      "description": "Definite integral, accumulation and the fundamental theorem.",
+      "intro": "Definite integrals and the theorem linking differentiation and integration."
+    },
+    "polarCoordinates": {
+      "title": "Polar coordinates",
+      "description": "Cartesian–polar conversion, areas and applications.",
+      "intro": "Polar coordinates: conversion, graphs and area calculation."
+    },
+    "matrixNorms": {
+      "title": "Matrix norms and distances",
+      "description": "Induced norm, Frobenius norm, Euclidean norm and symmetric matrices.",
+      "intro": "Vector and matrix norms: induced norm, Frobenius and symmetric matrices with interactive visuals."
+    },
+    "algebraicStructures": {
+      "title": "Algebraic structures",
+      "description": "Groups, rings, fields and morphisms in abstract algebra.",
+      "intro": "Introduction to algebraic structures: definitions, examples and relations between groups, rings and fields."
+    }
   },
   "formula": {
     "viewDetail": "View detail",
@@ -174,16 +235,20 @@
     "vizTeaches": "The idea",
     "vizTry": "Try it",
     "intuitive": "Intuitive explanation",
+    "derivation": "Derivation",
+    "tags": "Tags",
     "formal": "Formal definition",
     "workedExample": "Worked example",
     "commonErrors": "Common mistakes",
     "equivalentNotations": "Equivalent notations",
+    "alsoKnownAs": "Also known as",
     "references": "References",
     "lastReviewed": "Last reviewed",
     "reviewedBy": "Reviewer",
     "sources": "Sources",
     "conventions": "Conventions",
     "assumptions": "Assumptions",
+    "faq": "Frequently asked questions",
     "reportError": "Found an error? Contact us."
   },
   "siteNav": {
@@ -285,9 +350,12 @@
   "seo": {
     "subjectTitle": "{subject}: formulas and interactive tools",
     "sectionTitle": "{section} — {subject}",
+    "sectionTitleSearch": "{section} — formulas and resources — {subject}",
+    "topicTitleSearch": "{topic} — {subject}",
     "formulaTitle": "{concept} — {subject}",
     "guideTitle": "{guide} — {subject}",
     "withVisualization": "Includes an interactive resource.",
+    "unitsLabel": "Units",
     "formulaFallback": "Study {concept} in {subject}: definition, formulas, and learning tools.",
     "comingSoonViz": "Visualization {type} — coming soon."
   },

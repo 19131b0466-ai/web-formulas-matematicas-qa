@@ -10,6 +10,7 @@ import type {
   SearchResponse,
   SectionDetailResponse,
   SectionSummary,
+  SitemapEntryDto,
   SubjectSummary,
   TagsResponse,
 } from '@repo/shared-types';
@@ -404,6 +405,88 @@ export async function getMethodGuide(
   }
 
   return { strategies, checklist };
+}
+
+const STATIC_SITEMAP_PATHS = ['/', '/acerca', '/contacto', '/resenas', '/privacidad', '/terminos'];
+
+const GUIDE_SUBJECTS = new Set(['calculo-ii', 'fisica-basica']);
+
+function resolveContentLastModified(
+  content: FormulaContent | null,
+  createdAt: Date | null | undefined,
+): string | null {
+  const fromContent = content?.lastReviewedAt;
+  if (fromContent) {
+    const parsed = new Date(fromContent);
+    if (!Number.isNaN(parsed.getTime())) return parsed.toISOString();
+  }
+  if (createdAt) return createdAt.toISOString();
+  return null;
+}
+
+export async function listSitemapEntries(db: Database): Promise<SitemapEntryDto[]> {
+  const entries: SitemapEntryDto[] = STATIC_SITEMAP_PATHS.map((path) => ({
+    path,
+    lastModified: null,
+  }));
+
+  const subjectRows = await db.select().from(subjects).orderBy(asc(subjects.sortOrder));
+
+  for (const subject of subjectRows) {
+    entries.push({
+      path: `/${subject.slug}`,
+      lastModified: subject.createdAt?.toISOString() ?? null,
+    });
+
+    if (GUIDE_SUBJECTS.has(subject.slug)) {
+      entries.push({ path: `/${subject.slug}/guia`, lastModified: null });
+    }
+
+    const sectionRows = await db
+      .select()
+      .from(sections)
+      .where(eq(sections.subjectId, subject.id))
+      .orderBy(asc(sections.sortOrder));
+
+    for (const section of sectionRows) {
+      if (section.slug === 'lista-comprobacion' || isHiddenPublicSectionSlug(section.slug)) {
+        continue;
+      }
+      const path = section.slug.startsWith('apendice-')
+        ? `/${subject.slug}/apendice/${section.slug}`
+        : `/${subject.slug}/seccion/${section.slug}`;
+      entries.push({
+        path,
+        lastModified: section.createdAt?.toISOString() ?? null,
+      });
+    }
+
+    const formulaRows = await db
+      .select({
+        code: contentBlocks.formulaCode,
+        content: contentBlocks.content,
+        createdAt: contentBlocks.createdAt,
+      })
+      .from(contentBlocks)
+      .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+      .where(
+        and(
+          eq(sections.subjectId, subject.id),
+          eq(contentBlocks.blockType, 'formula'),
+          sql`${contentBlocks.formulaCode} IS NOT NULL`,
+        ),
+      );
+
+    for (const row of formulaRows) {
+      if (!row.code) continue;
+      entries.push({
+        path: `/${subject.slug}/formula/${row.code}`,
+        lastModified: resolveContentLastModified(row.content as FormulaContent, row.createdAt),
+      });
+    }
+  }
+
+  return entries;
 }
 
 export async function countTopLevelSections(

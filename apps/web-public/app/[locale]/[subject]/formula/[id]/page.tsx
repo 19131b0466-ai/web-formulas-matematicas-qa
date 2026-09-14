@@ -8,9 +8,13 @@ import { localizeContent } from '@/lib/localize-content';
 import {
   breadcrumbJsonLd,
   buildPageMetadata,
+  definedTermJsonLd,
+  faqPageJsonLd,
+  formulaOgImageUrl,
   formulaSeoDescription,
+  formulaSeoTitle,
   learningResourceJsonLd,
-  titledWithSubject,
+  mergeSearchKeywords,
 } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, subjectUsesFormulaCatalog, type SubjectSlug } from '@/lib/subjects';
 import { calculoVizForFormulaId, fisicaVizForFormulaId } from '@repo/shared-types';
@@ -50,20 +54,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
     const concept = detail.title ?? t('primary');
-    const title = titledWithSubject(concept, subjectTitle);
+    const title = formulaSeoTitle(concept, subjectTitle, locale, {
+      formulaId: detail.formulaId,
+      subject,
+    });
     const hasVisualization = Boolean(
       (subject === 'calculo-ii' && calculoVizForFormulaId(detail.formulaId)) ||
         (subject === 'fisica-basica' && fisicaVizForFormulaId(detail.formulaId)) ||
         (subject === 'algebra' && detail.content.visual),
     );
+    const keywords = mergeSearchKeywords(
+      detail.content.equivalentNotations,
+      detail.content.searchAliases,
+    );
     const description = formulaSeoDescription({
       title: concept,
       subjectTitle,
       detail: detail.content.detail,
+      latex: detail.content.latex,
+      variables: detail.content.variables,
+      conventions: detail.content.conventions,
+      equivalentNotations: detail.content.equivalentNotations,
+      searchAliases: detail.content.searchAliases,
       hasVisualization,
       visualizationNote: hasVisualization ? ts('withVisualization') : undefined,
+      unitsLabel: ts('unitsLabel'),
       fallback: ts('formulaFallback', { concept, subject: subjectTitle }),
     });
+    const ogImageUrl = formulaOgImageUrl(locale, subject, detail.formulaId);
 
     return buildPageMetadata({
       locale,
@@ -72,6 +90,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       siteName: tsite('name'),
       ogType: 'article',
+      ogImage: { url: ogImageUrl, alt: title },
+      keywords: keywords.length ? keywords : undefined,
     });
   } catch {
     return { title: t('loading') };
@@ -95,6 +115,8 @@ export default async function FormulaPage({ params }: PageProps) {
 
   const formulaPath = `/${subject}/formula/${detail.formulaId}`;
   const concept = detail.title ?? tformula('primary');
+  const faq = detail.content.faq ?? [];
+  const faqLd = faqPageJsonLd({ items: faq, locale, path: formulaPath });
 
   return (
     <>
@@ -116,6 +138,18 @@ export default async function FormulaPage({ params }: PageProps) {
           isPartOf: ts('name'),
         })}
       />
+      <JsonLd
+        data={definedTermJsonLd({
+          name: concept,
+          description: detail.content.detail ?? concept,
+          locale,
+          path: formulaPath,
+          termCode: detail.formulaId,
+          termSetName: subjectTitle,
+          latex: detail.content.latex,
+        })}
+      />
+      {faqLd ? <JsonLd data={faqLd} /> : null}
       <FormulaDetailView subject={subject} subjectTitle={subjectTitle} detail={detail} />
     </>
   );
