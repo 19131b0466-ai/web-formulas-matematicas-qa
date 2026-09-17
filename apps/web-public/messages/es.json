@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Fórmulas matemáticas",
-    "tagline": "Cálculo II, Física Básica y Álgebra",
-    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Integral, Física Básica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
+    "tagline": "Cálculo Diferencial, Cálculo II, Física Básica y Álgebra",
+    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Diferencial, Cálculo Integral, Física Básica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
     "shortName": "Fórmulas",
-    "about": "Cálculo Integral, Física Básica y Álgebra",
+    "about": "Cálculo Diferencial, Cálculo Integral, Física Básica y Álgebra",
     "manifestDescription": "Fórmulas matemáticas en línea",
     "seoTitle": "Fórmulas matemáticas, teoría y recursos interactivos"
   },
@@ -81,6 +81,31 @@
       "description": "Ley de Ohm, potencia eléctrica, capacitancia y energía potencial eléctrica.",
       "intro": "Ohm, potencia, capacitores y energía eléctrica explicadas con fórmulas, unidades y ejemplos numéricos."
     },
+    "chainRule": {
+      "title": "Regla de la cadena",
+      "description": "Derivada de composiciones, regla del producto y del cociente.",
+      "intro": "Repasa la regla de la cadena y las reglas básicas de derivación para funciones compuestas y productos."
+    },
+    "indeterminateLimits": {
+      "title": "Límites indeterminados y L'Hôpital",
+      "description": "Formas indeterminadas, regla de L'Hôpital y límites trigonométricos clásicos.",
+      "intro": "Resuelve límites con formas \\(0/0\\) o \\(\\infty/\\infty\\) usando L'Hôpital y límites fundamentales."
+    },
+    "optimization": {
+      "title": "Optimización",
+      "description": "Criterios de la primera y segunda derivada, puntos críticos y problemas de optimización.",
+      "intro": "Encuentra máximos y mínimos con la primera y segunda derivada, y aplica el método a problemas de optimización."
+    },
+    "meanValueTheorem": {
+      "title": "Teorema del valor medio",
+      "description": "Rolle, valor medio y su interpretación geométrica.",
+      "intro": "Teorema de Rolle, teorema del valor medio y corolarios que conectan derivadas con incrementos medios."
+    },
+    "taylorSeries": {
+      "title": "Series de Taylor",
+      "description": "Polinomios de Taylor, aproximaciones lineales y resto.",
+      "intro": "Aproxima funciones con polinomios de Taylor, diferenciales y el término de resto de Lagrange."
+    },
     "trigIntegrals": {
       "title": "Integrales trigonométricas",
       "description": "Identidades, estrategias y antiderivadas trigonométricas en Cálculo II.",
@@ -124,7 +149,7 @@
     "ogTitle": "Buscar · Fórmulas matemáticas",
     "subtitle": "Encuentra fórmulas por texto, código o etiquetas.",
     "label": "Buscar fórmulas",
-    "placeholder": "Ej. INT-001, VEC-001, por partes…",
+    "placeholder": "Ej. DIF-041, INT-001, VEC-001, por partes…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",
@@ -146,6 +171,10 @@
     "ogTitlePhysics": "Guía de enfoque · Física Básica",
     "sectionLabelPhysics": "Sección 18",
     "introPhysics": "Usa la señal del enunciado para decidir qué sección del catálogo conviene abrir primero.",
+    "titleDifferential": "Guía para derivar y analizar",
+    "descriptionDifferential": "Guía práctica para elegir la técnica de derivación o análisis adecuada según la forma de la función.",
+    "sectionLabelDifferential": "Sección 16",
+    "introDifferential": "Usa la señal en la función para decidir qué técnica conviene intentar primero.",
     "fullSection": "Ver sección completa en el índice →",
     "signalMethod": "Señal → método",
     "signalMethodPhysics": "Señal → enfoque",
@@ -269,7 +298,7 @@
     "missionTitle": "Para qué existe",
     "missionBody": "Queremos que encontrar una fórmula sea rápido y que entenderla sea posible: texto claro, LaTeX bien renderizado y, cuando aporta, un recurso gráfico que enseña la idea.",
     "whatTitle": "Qué encontrarás",
-    "whatBody": "Hoy el sitio cubre Cálculo II, Física Básica y Álgebra para ingeniería y ciencias de la computación. Cada materia tiene índice por secciones, búsqueda y fichas de fórmula.",
+    "whatBody": "Hoy el sitio cubre Cálculo Diferencial, Cálculo II, Física Básica y Álgebra para ingeniería y ciencias de la computación. Cada materia tiene índice por secciones, búsqueda y fichas de fórmula.",
     "audienceTitle": "Para quién",
     "audienceBody": "Está pensado para estudiantes y docentes que necesitan un referente estable: repasar, contrastar notación o recordar una identidad sin pelear con PDFs dispersos.",
     "openTitle": "Cómo crece",
@@ -660,6 +689,181 @@
       "logistic": "logística",
       "sepTitle": "Separación",
       "solTitle": "Solución"
+    }
+  },
+  "vizDif": {
+    "limit": {
+      "secantIdea": "La derivada es el límite del cociente incremental: cuando h → 0, la secante (naranja) se acerca a la tangente.",
+      "hLabel": "Incremento h",
+      "secantSlope": "Pendiente secante (f(a+h)−f(a))/h",
+      "derivative": "Derivada f′(a)",
+      "notableIdea": "Valores de sen(x)/x cuando x → 0: la tabla y la gráfica muestran la convergencia a 1.",
+      "note": "Mueve h hacia 0 para ver cómo la pendiente de la secante aproxima la derivada.",
+      "informalIdea": "Cuando x se acerca a a, los valores f(x) se acercan a L aunque f(a) no esté definido o sea distinto.",
+      "xLabel": "Valor de x",
+      "limitValue": "Límite L",
+      "epsilonDeltaIdea": "Para cada ε > 0 existe δ > 0: si 0 < |x−a| < δ, entonces |f(x)−L| < ε. Ajusta ε y δ para ver las bandas.",
+      "epsilonLabel": "ε (tolerancia en f)",
+      "deltaLabel": "δ (entorno en x)",
+      "epsilonDeltaOk": "Con este δ, los valores de f en (a−δ, a+δ) quedan dentro de la banda (L−ε, L+ε).",
+      "epsilonDeltaFail": "Amplía δ o reduce ε: hay puntos en el entorno que salen de la banda horizontal.",
+      "lateralIdea": "El límite bilateral existe solo si los límites por la izquierda y por la derecha coinciden.",
+      "leftLimit": "Límite por la izquierda",
+      "rightLimit": "Límite por la derecha",
+      "bilateralExists": "¿Límite bilateral?",
+      "yes": "Sí",
+      "no": "No",
+      "eDefinitionIdea": "La sucesión (1+x)^(1/x) se acerca al número e cuando x → 0⁺.",
+      "eValue": "e ≈"
+    },
+    "tangent": {
+      "idea": "La recta tangente en x = a tiene pendiente f′(a) y pasa por el punto (a, f(a)).",
+      "normalIdea": "La recta normal es perpendicular a la tangente en (a, f(a)); su pendiente es −1/f′(a).",
+      "aLabel": "Punto a",
+      "slope": "Pendiente f′(a)",
+      "normalSlope": "Pendiente normal −1/f′(a)",
+      "equation": "Ecuación tangente",
+      "normalEquation": "Ecuación normal",
+      "perpendicularNote": "Pendientes perpendiculares",
+      "horizontalTangent": "La tangente es horizontal (f′(a)=0): la normal es vertical y no se grafica en este panel."
+    },
+    "kinematics": {
+      "idea": "La velocidad es la derivada de la posición y la aceleración es la derivada de la velocidad.",
+      "ideaVelocity": "La velocidad instantánea v(t) es la derivada de la posición s(t): la pendiente de s en cada instante.",
+      "ideaAccel": "La aceleración a(t) es la segunda derivada de s(t): derivada de la velocidad.",
+      "timeLabel": "Tiempo t",
+      "position": "Posición s(t)",
+      "velocity": "Velocidad v(t)",
+      "acceleration": "Aceleración a(t)",
+      "note": "La línea vertical marca el instante t seleccionado. En s(t), la recta punteada tiene pendiente v(t).",
+      "slopeNumeric": "Pendiente numérica de s",
+      "slopeCheck": "Coherencia derivada",
+      "slopeMatch": "coincide con la fórmula",
+      "slopeMismatch": "revisa el instante (borde del dominio)"
+    },
+    "continuity": {
+      "definitionIdea": "f es continua en a cuando lim_{x→a} f(x) = f(a): el valor del límite coincide con el valor de la función.",
+      "discontinuityIdea": "Compara tres tipos: hueco removible, salto finito y asíntota vertical (discontinuidad infinita).",
+      "xNearA": "x cerca de a",
+      "continuous": "¿Continua en a?",
+      "yes": "Sí",
+      "typeRemovable": "Discontinuidad removible: existe el límite pero f(a) no coincide (o no está definido).",
+      "typeJump": "Discontinuidad de salto: los límites laterales existen pero son distintos.",
+      "typeInfinite": "Discontinuidad infinita: el límite diverge (asíntota vertical)."
+    },
+    "intermediateValue": {
+      "idea": "Si f es continua en [a, b], todo valor k entre f(a) y f(b) se alcanza en algún c ∈ (a, b).",
+      "kLabel": "Valor objetivo k",
+      "note": "Mueve k entre f(a) y f(b): siempre existe al menos un punto c donde f(c) = k."
+    },
+    "productRule": {
+      "idea": "La derivada del producto se reparte en dos términos: la derivada de f por g, más f por la derivada de g.",
+      "xLabel": "Punto x",
+      "term1": "f′g",
+      "term2": "fg′",
+      "numeric": "Derivada numérica de fg",
+      "match": "f′g + fg′ coincide con la derivada numérica de fg.",
+      "note": "Ajusta x para ver la descomposición en cada punto."
+    },
+    "chainRule": {
+      "idea": "Para una composición f(g(x)), la tasa de cambio exterior se multiplica por la tasa de la función interior.",
+      "xLabel": "Punto x",
+      "numeric": "Derivada numérica de f∘g",
+      "match": "f′(g(x))·g′(x) coincide con la derivada numérica.",
+      "note": "El diagrama muestra el flujo x → g(x) → f(g(x))."
+    },
+    "logDiff": {
+      "idea": "Para y = f(x)^g(x), primero se toma ln en ambos lados; luego se deriva implícitamente y se despeja y′.",
+      "xLabel": "Punto x",
+      "numeric": "Derivada numérica",
+      "check": "Verificación",
+      "match": "La fórmula logarítmica coincide con la derivada numérica.",
+      "note": "Requiere f(x) > 0 en el punto elegido."
+    },
+    "meanValueTheorem": {
+      "rolleIdea": "Si f(a)=f(b), existe un c en el interior donde la tangente es horizontal: f′(c)=0.",
+      "mvtIdea": "Existe un c donde la tangente a la curva es paralela a la secante que une (a,f(a)) y (b,f(b)).",
+      "aLabel": "Extremo a",
+      "bLabel": "Extremo b",
+      "secantSlope": "Pendiente secante",
+      "parallel": "¿Paralelas?",
+      "yes": "Sí",
+      "approx": "Aprox.",
+      "note": "La recta verde es la tangente en c; la azul punteada es la secante (solo en TVM)."
+    },
+    "concavity": {
+      "idea": "f′ indica crecimiento; f″ indica concavidad. Las bandas de color resumen el signo en cada tramo.",
+      "fLabel": "f(x)",
+      "fpLabel": "f′(x)",
+      "fppLabel": "f″(x)",
+      "increasing": "f′ > 0 (creciente)",
+      "decreasing": "f′ < 0 (decreciente)",
+      "concaveUp": "Cóncava arriba",
+      "concaveDown": "Cóncava abajo",
+      "critical": "Puntos críticos aprox. (f′≈0)"
+    },
+    "optimization": {
+      "rectangleIdea": "Con perímetro fijo, el área A(x)=x(C/2−x) es máxima cuando el rectángulo es un cuadrado.",
+      "cylinderIdea": "Con superficie fija, el volumen V(r)=Cr/2−πr³ alcanza su máximo en un radio óptimo.",
+      "widthLabel": "Ancho x",
+      "radiusLabel": "Radio r",
+      "area": "Área A",
+      "maxAt": "Máximo en",
+      "maxArea": "Área máx."
+    },
+    "linearApprox": {
+      "idea": "La recta L(x)=f(a)+f′(a)(x−a) aproxima f cerca de a; el error es f(x)−L(x).",
+      "xLabel": "Punto x",
+      "error": "Error f−L",
+      "note": "Naranja: aproximación lineal; verde: punto evaluado en f."
+    },
+    "lhopital": {
+      "idea": "Para 0/0 o ∞/∞, los cocientes f/g y f′/g′ tienden al mismo límite cuando se cumplen las hipótesis.",
+      "xLabel": "x (alejándose del punto)",
+      "note": "Observa cómo f′/g′ se estabiliza antes que f/g al acercarse a 0."
+    },
+    "implicit": {
+      "idea": "En la circunferencia x²+y²=r², la pendiente de la tangente es dy/dx=−x/y.",
+      "angleLabel": "Ángulo θ en el círculo"
+    },
+    "relatedRates": {
+      "idea": "Si el volumen cambia a razón dV/dt, el radio cambia según dr/dt=dV/dt÷(4πr²).",
+      "radiusLabel": "Radio r",
+      "dVdtLabel": "dV/dt"
+    },
+    "asymptote": {
+      "idea": "La gráfica de una racional se acerca a asíntotas verticales y oblicuas en el infinito.",
+      "windowLabel": "Ventana horizontal",
+      "oblique": "asíntota oblicua",
+      "vertical": "vertical"
+    },
+    "tree": {
+      "idea": "No hay una técnica universal: reconoce la señal en la expresión. El árbol replica las preguntas de la guía §16.",
+      "note": "Prueba con y = x^x: ¿qué responderías en cada paso?",
+      "reset": "Reiniciar",
+      "guided": "Vista guiada",
+      "full": "Ver árbol completo",
+      "leaves": "Hojas: L'Hôpital §12 · producto/cociente/cadena §5 · implícita §13 · logarítmica §5 · optimización §9 · linealización §10 · potencia §5",
+      "seeSection": "Ver sección {section} del formulario",
+      "example": "Ejemplo:",
+      "arrived": "Llegaste a una técnica. Reinicia para otra expresión.",
+      "qRoot": "¿Es un límite indeterminado (0/0 o ∞/∞)?",
+      "qProduct": "¿Es producto de dos funciones?",
+      "qQuotient": "¿Es cociente u/v?",
+      "qChain": "¿Es composición f(g(x))?",
+      "qImplicit": "¿Es ecuación implícita F(x,y)=0?",
+      "qLog": "¿Tiene exponente variable f(x)^g(x)?",
+      "qOptimize": "¿Hay que optimizar en un intervalo [a,b]?",
+      "qApprox": "¿Hay que aproximar f cerca de un punto a?",
+      "techLhopital": "Regla de L'Hôpital",
+      "techProduct": "Regla del producto",
+      "techQuotient": "Regla del cociente",
+      "techChain": "Regla de la cadena",
+      "techImplicit": "Derivación implícita",
+      "techLog": "Derivación logarítmica",
+      "techOptimize": "Críticos + extremos del intervalo",
+      "techLinear": "Aproximación lineal / Taylor grado 1",
+      "techPower": "Regla de la potencia"
     }
   },
   "vizFisica": {

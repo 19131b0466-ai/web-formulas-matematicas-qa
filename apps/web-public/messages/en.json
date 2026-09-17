@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Mathematical formulas",
-    "tagline": "Calculus II, Basic Physics and Algebra",
-    "description": "Multi-subject online mathematical formulas: Integral Calculus, Basic Physics and Algebra for engineering & CS, with search, visualizations and LaTeX.",
+    "tagline": "Differential Calculus, Calculus II, Basic Physics and Algebra",
+    "description": "Multi-subject online mathematical formulas: Differential Calculus, Integral Calculus, Basic Physics and Algebra for engineering & CS, with search, visualizations and LaTeX.",
     "shortName": "Formulas",
-    "about": "Integral Calculus, Basic Physics and Algebra",
+    "about": "Differential Calculus, Integral Calculus, Basic Physics and Algebra",
     "manifestDescription": "Online mathematical formulas",
     "seoTitle": "Math Formulas, Theory and Interactive Tools"
   },
@@ -73,7 +73,7 @@
     "ogTitle": "Search · Mathematical formulas",
     "subtitle": "Find formulas by text, code, or tags.",
     "label": "Search formulas",
-    "placeholder": "E.g. INT-001, VEC-001, integration by parts…",
+    "placeholder": "E.g. DIF-041, INT-001, VEC-001, integration by parts…",
     "submit": "Search",
     "all": "All",
     "results": "{count, plural, =1 {# result} other {# results}}",
@@ -101,6 +101,10 @@
     "ogTitlePhysics": "Approach guide · Basic Physics",
     "sectionLabelPhysics": "Section 18",
     "introPhysics": "Use the cue in the problem statement to decide which catalog section to open first.",
+    "titleDifferential": "Guide to differentiate and analyze",
+    "descriptionDifferential": "Practical guide to choose the right differentiation or analysis technique based on the function form.",
+    "sectionLabelDifferential": "Section 16",
+    "introDifferential": "Use cues in the function to decide which technique to try first.",
     "signalMethodPhysics": "Cue → approach",
     "methodPhysics": "Approach"
   },
@@ -186,6 +190,31 @@
       "description": "Ohm's law, electrical power, capacitance and electric potential energy.",
       "intro": "Ohm's law, power, capacitors and electric energy with units and numeric examples."
     },
+    "chainRule": {
+      "title": "Chain rule",
+      "description": "Derivatives of compositions, product rule and quotient rule.",
+      "intro": "Review the chain rule and basic differentiation rules for composed functions and products."
+    },
+    "indeterminateLimits": {
+      "title": "Indeterminate limits and L'Hôpital",
+      "description": "Indeterminate forms, L'Hôpital's rule and classic trigonometric limits.",
+      "intro": "Evaluate limits with \\(0/0\\) or \\(\\infty/\\infty\\) forms using L'Hôpital and fundamental limits."
+    },
+    "optimization": {
+      "title": "Optimization",
+      "description": "First and second derivative tests, critical points and optimization problems.",
+      "intro": "Find maxima and minima with derivative tests and apply the method to optimization problems."
+    },
+    "meanValueTheorem": {
+      "title": "Mean value theorem",
+      "description": "Rolle, mean value theorem and geometric interpretation.",
+      "intro": "Rolle's theorem, the mean value theorem and corollaries linking derivatives to average rates of change."
+    },
+    "taylorSeries": {
+      "title": "Taylor series",
+      "description": "Taylor polynomials, linear approximations and remainder.",
+      "intro": "Approximate functions with Taylor polynomials, differentials and Lagrange's remainder term."
+    },
     "trigIntegrals": {
       "title": "Trigonometric integrals",
       "description": "Identities, strategies and antiderivatives in Calculus II.",
@@ -269,7 +298,7 @@
     "missionTitle": "Why it exists",
     "missionBody": "We want finding a formula to be fast and understanding it to be possible: clear copy, well-rendered LaTeX, and—when it helps—a graphic that teaches the idea.",
     "whatTitle": "What you’ll find",
-    "whatBody": "Today the site covers Calculus II, Basic Physics, and Algebra for engineering and computer science. Each subject has a section index, search, and formula pages.",
+    "whatBody": "Today the site covers Differential Calculus, Calculus II, Basic Physics, and Algebra for engineering and computer science. Each subject has a section index, search, and formula pages.",
     "audienceTitle": "Who it’s for",
     "audienceBody": "Built for students and teachers who need a stable reference: review, compare notation, or recall an identity without hunting through scattered PDFs.",
     "openTitle": "How it grows",
@@ -660,6 +689,181 @@
       "logistic": "logistic",
       "sepTitle": "Separation",
       "solTitle": "Solution"
+    }
+  },
+  "vizDif": {
+    "limit": {
+      "secantIdea": "The derivative is the limit of the difference quotient: as h → 0, the secant (orange) approaches the tangent.",
+      "hLabel": "Increment h",
+      "secantSlope": "Secant slope (f(a+h)−f(a))/h",
+      "derivative": "Derivative f′(a)",
+      "notableIdea": "Values of sin(x)/x as x → 0: the table and graph show convergence to 1.",
+      "note": "Move h toward 0 to see how the secant slope approximates the derivative.",
+      "informalIdea": "As x approaches a, the values f(x) approach L even if f(a) is undefined or different.",
+      "xLabel": "x value",
+      "limitValue": "Limit L",
+      "epsilonDeltaIdea": "For every ε > 0 there exists δ > 0: if 0 < |x−a| < δ, then |f(x)−L| < ε. Adjust ε and δ to see the bands.",
+      "epsilonLabel": "ε (tolerance on f)",
+      "deltaLabel": "δ (neighborhood in x)",
+      "epsilonDeltaOk": "With this δ, values of f on (a−δ, a+δ) stay inside (L−ε, L+ε).",
+      "epsilonDeltaFail": "Widen δ or shrink ε: some points in the neighborhood leave the horizontal band.",
+      "lateralIdea": "The two-sided limit exists only when the left-hand and right-hand limits agree.",
+      "leftLimit": "Left-hand limit",
+      "rightLimit": "Right-hand limit",
+      "bilateralExists": "Two-sided limit?",
+      "yes": "Yes",
+      "no": "No",
+      "eDefinitionIdea": "The expression (1+x)^(1/x) approaches e as x → 0⁺.",
+      "eValue": "e ≈"
+    },
+    "tangent": {
+      "idea": "The tangent line at x = a has slope f′(a) and passes through (a, f(a)).",
+      "normalIdea": "The normal line is perpendicular to the tangent at (a, f(a)); its slope is −1/f′(a).",
+      "aLabel": "Point a",
+      "slope": "Slope f′(a)",
+      "normalSlope": "Normal slope −1/f′(a)",
+      "equation": "Tangent equation",
+      "normalEquation": "Normal equation",
+      "perpendicularNote": "Perpendicular slopes",
+      "horizontalTangent": "The tangent is horizontal (f′(a)=0): the normal is vertical and is not drawn in this panel."
+    },
+    "kinematics": {
+      "idea": "Velocity is the derivative of position and acceleration is the derivative of velocity.",
+      "ideaVelocity": "Instantaneous velocity v(t) is the derivative of position s(t): the slope of s at each instant.",
+      "ideaAccel": "Acceleration a(t) is the second derivative of s(t): the derivative of velocity.",
+      "timeLabel": "Time t",
+      "position": "Position s(t)",
+      "velocity": "Velocity v(t)",
+      "acceleration": "Acceleration a(t)",
+      "note": "The vertical line marks the selected time t. On s(t), the dashed line has slope v(t).",
+      "slopeNumeric": "Numerical slope of s",
+      "slopeCheck": "Derivative consistency",
+      "slopeMatch": "matches the formula",
+      "slopeMismatch": "check the instant (domain edge)"
+    },
+    "continuity": {
+      "definitionIdea": "f is continuous at a when lim_{x→a} f(x) = f(a): the limit matches the function value.",
+      "discontinuityIdea": "Compare three types: removable hole, jump, and vertical asymptote (infinite discontinuity).",
+      "xNearA": "x near a",
+      "continuous": "Continuous at a?",
+      "yes": "Yes",
+      "typeRemovable": "Removable discontinuity: the limit exists but f(a) does not match (or is undefined).",
+      "typeJump": "Jump discontinuity: one-sided limits exist but differ.",
+      "typeInfinite": "Infinite discontinuity: the limit diverges (vertical asymptote)."
+    },
+    "intermediateValue": {
+      "idea": "If f is continuous on [a, b], every value k between f(a) and f(b) is attained at some c ∈ (a, b).",
+      "kLabel": "Target value k",
+      "note": "Move k between f(a) and f(b): there is always at least one c with f(c) = k."
+    },
+    "productRule": {
+      "idea": "The derivative of a product splits into two terms: f′ times g, plus f times g′.",
+      "xLabel": "Point x",
+      "term1": "f′g",
+      "term2": "fg′",
+      "numeric": "Numerical derivative of fg",
+      "match": "f′g + fg′ matches the numerical derivative of fg.",
+      "note": "Adjust x to see the split at each point."
+    },
+    "chainRule": {
+      "idea": "For a composition f(g(x)), the outer rate of change multiplies the inner function's rate.",
+      "xLabel": "Point x",
+      "numeric": "Numerical derivative of f∘g",
+      "match": "f′(g(x))·g′(x) matches the numerical derivative.",
+      "note": "The diagram shows the flow x → g(x) → f(g(x))."
+    },
+    "logDiff": {
+      "idea": "For y = f(x)^g(x), take ln on both sides first; then differentiate implicitly and solve for y′.",
+      "xLabel": "Point x",
+      "numeric": "Numerical derivative",
+      "check": "Check",
+      "match": "The logarithmic formula matches the numerical derivative.",
+      "note": "Requires f(x) > 0 at the chosen point."
+    },
+    "meanValueTheorem": {
+      "rolleIdea": "If f(a)=f(b), there is an interior c where the tangent is horizontal: f′(c)=0.",
+      "mvtIdea": "There is a c where the tangent is parallel to the secant through (a,f(a)) and (b,f(b)).",
+      "aLabel": "Endpoint a",
+      "bLabel": "Endpoint b",
+      "secantSlope": "Secant slope",
+      "parallel": "Parallel?",
+      "yes": "Yes",
+      "approx": "Approx.",
+      "note": "Green is the tangent at c; dashed blue is the secant (MVT only)."
+    },
+    "concavity": {
+      "idea": "f′ shows growth; f″ shows concavity. Color bands summarize the sign on each interval.",
+      "fLabel": "f(x)",
+      "fpLabel": "f′(x)",
+      "fppLabel": "f″(x)",
+      "increasing": "f′ > 0 (increasing)",
+      "decreasing": "f′ < 0 (decreasing)",
+      "concaveUp": "Concave up",
+      "concaveDown": "Concave down",
+      "critical": "Approx. critical points (f′≈0)"
+    },
+    "optimization": {
+      "rectangleIdea": "With fixed perimeter, area A(x)=x(C/2−x) is maximized when the rectangle is a square.",
+      "cylinderIdea": "With fixed surface area, volume V(r)=Cr/2−πr³ peaks at an optimal radius.",
+      "widthLabel": "Width x",
+      "radiusLabel": "Radius r",
+      "area": "Area A",
+      "maxAt": "Maximum at",
+      "maxArea": "Max area"
+    },
+    "linearApprox": {
+      "idea": "The line L(x)=f(a)+f′(a)(x−a) approximates f near a; error is f(x)−L(x).",
+      "xLabel": "Point x",
+      "error": "Error f−L",
+      "note": "Orange: linear approximation; green: point on f."
+    },
+    "lhopital": {
+      "idea": "For 0/0 or ∞/∞, the quotients f/g and f′/g′ tend to the same limit when hypotheses hold.",
+      "xLabel": "x (approaching the point)",
+      "note": "Watch f′/g′ stabilize before f/g as x approaches 0."
+    },
+    "implicit": {
+      "idea": "On the circle x²+y²=r², the tangent slope is dy/dx=−x/y.",
+      "angleLabel": "Angle θ on the circle"
+    },
+    "relatedRates": {
+      "idea": "If volume changes at rate dV/dt, the radius changes as dr/dt=dV/dt÷(4πr²).",
+      "radiusLabel": "Radius r",
+      "dVdtLabel": "dV/dt"
+    },
+    "asymptote": {
+      "idea": "A rational graph approaches vertical and oblique asymptotes at infinity.",
+      "windowLabel": "Horizontal window",
+      "oblique": "oblique asymptote",
+      "vertical": "vertical"
+    },
+    "tree": {
+      "idea": "There is no universal technique: recognize the signal in the expression. The tree mirrors the §16 guide questions.",
+      "note": "Try y = x^x: what would you answer at each step?",
+      "reset": "Reset",
+      "guided": "Guided view",
+      "full": "Show full tree",
+      "leaves": "Leaves: L'Hôpital §12 · product/quotient/chain §5 · implicit §13 · log diff §5 · optimization §9 · linearization §10 · power §5",
+      "seeSection": "See section {section} of the course",
+      "example": "Example:",
+      "arrived": "You reached a technique. Reset for another expression.",
+      "qRoot": "Is it an indeterminate limit (0/0 or ∞/∞)?",
+      "qProduct": "Is it a product of two functions?",
+      "qQuotient": "Is it a quotient u/v?",
+      "qChain": "Is it a composition f(g(x))?",
+      "qImplicit": "Is it an implicit equation F(x,y)=0?",
+      "qLog": "Does it have a variable exponent f(x)^g(x)?",
+      "qOptimize": "Must you optimize on an interval [a,b]?",
+      "qApprox": "Must you approximate f near a point a?",
+      "techLhopital": "L'Hôpital's rule",
+      "techProduct": "Product rule",
+      "techQuotient": "Quotient rule",
+      "techChain": "Chain rule",
+      "techImplicit": "Implicit differentiation",
+      "techLog": "Logarithmic differentiation",
+      "techOptimize": "Critical points + interval endpoints",
+      "techLinear": "Linear approximation / degree-1 Taylor",
+      "techPower": "Power rule"
     }
   },
   "vizFisica": {

@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Formule matematiche",
-    "tagline": "Calcolo II, Fisica di base e Algebra",
-    "description": "Formule matematiche online: calcolo integrale, fisica di base e algebra per ingegneria e informatica.",
+    "tagline": "Calcolo differenziale, Calcolo II, Fisica di base e Algebra",
+    "description": "Formule matematiche online: calcolo differenziale, calcolo integrale, fisica di base e algebra per ingegneria e informatica.",
     "shortName": "Formule",
-    "about": "Calcolo integrale, Fisica di base e Algebra",
+    "about": "Calcolo differenziale, Calcolo integrale, Fisica di base e Algebra",
     "manifestDescription": "Formule matematiche online",
     "seoTitle": "Formule matematiche, teoria e strumenti interattivi"
   },
@@ -73,7 +73,7 @@
     "ogTitle": "Cerca · Formule matematiche",
     "subtitle": "Trova formule per testo, codice o tag.",
     "label": "Cerca formule",
-    "placeholder": "Es. INT-001, VEC-001, per parti…",
+    "placeholder": "Es. DIF-041, INT-001, VEC-001, per parti…",
     "submit": "Cerca",
     "all": "Tutti",
     "results": "{count, plural, =1 {# risultato} other {# risultati}}",
@@ -101,6 +101,10 @@
     "ogTitlePhysics": "Guida di approccio · Fisica di base",
     "sectionLabelPhysics": "Sezione 18",
     "introPhysics": "Usa il segnale nel testo per decidere quale sezione del catalogo aprire per prima.",
+    "titleDifferential": "Guida per derivare e analizzare",
+    "descriptionDifferential": "Guida pratica per scegliere la tecnica di derivazione o analisi adatta alla forma della funzione.",
+    "sectionLabelDifferential": "Sezione 16",
+    "introDifferential": "Usa gli indizi nella funzione per decidere quale tecnica provare per prima.",
     "signalMethodPhysics": "Segnale → approccio",
     "methodPhysics": "Approccio"
   },
@@ -186,6 +190,31 @@
       "description": "Legge di Ohm, potenza elettrica, capacità ed energia potenziale elettrica.",
       "intro": "Legge di Ohm, potenza, condensatori ed energia elettrica con unità ed esempi numerici."
     },
+    "chainRule": {
+      "title": "Regola della catena",
+      "description": "Derivata di composizioni, regola del prodotto e del quoziente.",
+      "intro": "Regola della catena e regole base di derivazione per funzioni composte e prodotti."
+    },
+    "indeterminateLimits": {
+      "title": "Limiti indeterminati e L'Hôpital",
+      "description": "Forme indeterminate, regola di L'Hôpital e limiti trigonometrici classici.",
+      "intro": "Calcola limiti con forme \\(0/0\\) o \\(\\infty/\\infty\\) usando L'Hôpital e i limiti fondamentali."
+    },
+    "optimization": {
+      "title": "Ottimizzazione",
+      "description": "Test della prima e seconda derivata, punti critici e problemi di ottimizzazione.",
+      "intro": "Trova massimi e minimi con i test di derivata e applicali a problemi di ottimizzazione."
+    },
+    "meanValueTheorem": {
+      "title": "Teorema del valore medio",
+      "description": "Rolle, valore medio e interpretazione geometrica.",
+      "intro": "Teorema di Rolle, del valore medio e corollari che collegano derivate e tassi medi di variazione."
+    },
+    "taylorSeries": {
+      "title": "Serie di Taylor",
+      "description": "Polinomi di Taylor, approssimazioni lineari e resto.",
+      "intro": "Approssima funzioni con polinomi di Taylor, differenziali e il resto di Lagrange."
+    },
     "trigIntegrals": {
       "title": "Integrali trigonometrici",
       "description": "Identità, strategie e primitive in Calcolo II.",
@@ -269,7 +298,7 @@
     "missionTitle": "Perché esiste",
     "missionBody": "Trovare una formula in fretta e capirla: testo chiaro, LaTeX curato e, quando serve, un grafico che insegna l’idea.",
     "whatTitle": "Cosa troverai",
-    "whatBody": "Oggi: Calcolo II, Fisica di base e Algebra per ingegneria e informatica.",
+    "whatBody": "Oggi: Calcolo differenziale, Calcolo II, Fisica di base e Algebra per ingegneria e informatica — indice per sezioni, ricerca e schede formula.",
     "audienceTitle": "Per chi",
     "audienceBody": "Studenti e docenti che vogliono un riferimento stabile.",
     "openTitle": "Come cresce",
@@ -660,6 +689,181 @@
       "logistic": "logistica",
       "sepTitle": "Separazione",
       "solTitle": "Soluzione"
+    }
+  },
+  "vizDif": {
+    "limit": {
+      "secantIdea": "La derivata è il limite del rapporto incrementale: quando h → 0, la secante (arancione) si avvicina alla tangente.",
+      "hLabel": "Incremento h",
+      "secantSlope": "Pendenza secante (f(a+h)−f(a))/h",
+      "derivative": "Derivata f′(a)",
+      "notableIdea": "Valori di sin(x)/x per x → 0: tabella e grafico mostrano la convergenza a 1.",
+      "note": "Riduci h per vedere come la pendenza della secante approssima la derivata.",
+      "informalIdea": "Quando x si avvicina ad a, i valori f(x) tendono a L anche se f(a) non è definito o è diverso.",
+      "xLabel": "Valore di x",
+      "limitValue": "Limite L",
+      "epsilonDeltaIdea": "Per ogni ε > 0 esiste δ > 0: se 0 < |x−a| < δ, allora |f(x)−L| < ε. Regola ε e δ.",
+      "epsilonLabel": "ε (tolleranza su f)",
+      "deltaLabel": "δ (intorno in x)",
+      "epsilonDeltaOk": "Con questo δ, i valori di f in (a−δ, a+δ) restano in (L−ε, L+ε).",
+      "epsilonDeltaFail": "Aumenta δ o riduci ε: alcuni punti escono dalla banda orizzontale.",
+      "lateralIdea": "Il limite bilaterale esiste solo se i limiti sinistro e destro coincidono.",
+      "leftLimit": "Limite sinistro",
+      "rightLimit": "Limite destro",
+      "bilateralExists": "Limite bilaterale?",
+      "yes": "Sì",
+      "no": "No",
+      "eDefinitionIdea": "L'espressione (1+x)^(1/x) tende a e per x → 0⁺.",
+      "eValue": "e ≈"
+    },
+    "tangent": {
+      "idea": "La retta tangente in x = a ha pendenza f′(a) e passa per (a, f(a)).",
+      "normalIdea": "La retta normale è perpendicolare alla tangente in (a, f(a)); la pendenza è −1/f′(a).",
+      "aLabel": "Punto a",
+      "slope": "Pendenza f′(a)",
+      "normalSlope": "Pendenza normale −1/f′(a)",
+      "equation": "Equazione tangente",
+      "normalEquation": "Equazione normale",
+      "perpendicularNote": "Pendenze perpendicolari",
+      "horizontalTangent": "La tangente è orizzontale (f′(a)=0): la normale è verticale e non viene disegnata qui."
+    },
+    "kinematics": {
+      "idea": "La velocità è la derivata della posizione e l'accelerazione la derivata della velocità.",
+      "ideaVelocity": "La velocità istantanea v(t) è la derivata di s(t): la pendenza di s in ogni istante.",
+      "ideaAccel": "L'accelerazione a(t) è la seconda derivata di s(t): derivata della velocità.",
+      "timeLabel": "Tempo t",
+      "position": "Posizione s(t)",
+      "velocity": "Velocità v(t)",
+      "acceleration": "Accelerazione a(t)",
+      "note": "La linea verticale segna t. Su s(t), la retta tratteggiata ha pendenza v(t).",
+      "slopeNumeric": "Pendenza numerica di s",
+      "slopeCheck": "Coerenza della derivata",
+      "slopeMatch": "coincide con la formula",
+      "slopeMismatch": "controlla l'istante (bordo del dominio)"
+    },
+    "continuity": {
+      "definitionIdea": "f è continua in a quando lim_{x→a} f(x) = f(a): il limite coincide con il valore della funzione.",
+      "discontinuityIdea": "Confronta tre tipi: discontinuità eliminabile, a salto e infinita.",
+      "xNearA": "x vicino ad a",
+      "continuous": "Continua in a?",
+      "yes": "Sì",
+      "typeRemovable": "Discontinuità eliminabile: esiste il limite ma f(a) non coincide (o non è definito).",
+      "typeJump": "Discontinuità a salto: i limiti unilaterali esistono ma sono diversi.",
+      "typeInfinite": "Discontinuità infinita: il limite diverge (asintoto verticale)."
+    },
+    "intermediateValue": {
+      "idea": "Se f è continua su [a, b], ogni valore k tra f(a) e f(b) è assunto in un c ∈ (a, b).",
+      "kLabel": "Valore obiettivo k",
+      "note": "Muovi k tra f(a) e f(b): esiste sempre un c con f(c) = k."
+    },
+    "productRule": {
+      "idea": "La derivata di un prodotto si divide in f′g + fg′.",
+      "xLabel": "Punto x",
+      "term1": "f′g",
+      "term2": "fg′",
+      "numeric": "Derivata numerica di fg",
+      "match": "f′g + fg′ coincide con la derivata numerica di fg.",
+      "note": "Regola x per vedere la scomposizione in ogni punto."
+    },
+    "chainRule": {
+      "idea": "Per f(g(x)), il tasso esterno si moltiplica per il tasso della funzione interna.",
+      "xLabel": "Punto x",
+      "numeric": "Derivata numerica di f∘g",
+      "match": "f′(g(x))·g′(x) coincide con la derivata numerica.",
+      "note": "Il diagramma mostra il flusso x → g(x) → f(g(x))."
+    },
+    "logDiff": {
+      "idea": "Per y = f(x)^g(x), prima ln su entrambi i lati; poi derivare implicitamente e isolare y′.",
+      "xLabel": "Punto x",
+      "numeric": "Derivata numerica",
+      "check": "Verifica",
+      "match": "La formula logaritmica coincide con la derivata numerica.",
+      "note": "Richiede f(x) > 0 nel punto scelto."
+    },
+    "meanValueTheorem": {
+      "rolleIdea": "Se f(a)=f(b), esiste un c interno dove la tangente è orizzontale: f′(c)=0.",
+      "mvtIdea": "Esiste un c dove la tangente è parallela alla secante tra (a,f(a)) e (b,f(b)).",
+      "aLabel": "Estremo a",
+      "bLabel": "Estremo b",
+      "secantSlope": "Pendenza secante",
+      "parallel": "Parallele?",
+      "yes": "Sì",
+      "approx": "Appross.",
+      "note": "Verde: tangente in c; blu tratteggiata: secante (solo TVM)."
+    },
+    "concavity": {
+      "idea": "f′ indica crescita; f″ concavità. Le bande colorate riassumono il segno su ogni intervallo.",
+      "fLabel": "f(x)",
+      "fpLabel": "f′(x)",
+      "fppLabel": "f″(x)",
+      "increasing": "f′ > 0 (crescente)",
+      "decreasing": "f′ < 0 (decrescente)",
+      "concaveUp": "Concava verso l'alto",
+      "concaveDown": "Concava verso il basso",
+      "critical": "Punti critici approx. (f′≈0)"
+    },
+    "optimization": {
+      "rectangleIdea": "Con perimetro fisso, l'area A(x)=x(C/2−x) è massima quando il rettangolo è un quadrato.",
+      "cylinderIdea": "Con superficie fissa, il volume V(r)=Cr/2−πr³ raggiunge il massimo a un raggio ottimale.",
+      "widthLabel": "Larghezza x",
+      "radiusLabel": "Raggio r",
+      "area": "Area A",
+      "maxAt": "Massimo in",
+      "maxArea": "Area max."
+    },
+    "linearApprox": {
+      "idea": "La retta L(x)=f(a)+f′(a)(x−a) approssima f vicino a a; l'errore è f(x)−L(x).",
+      "xLabel": "Punto x",
+      "error": "Errore f−L",
+      "note": "Arancione: approssimazione lineare; verde: punto su f."
+    },
+    "lhopital": {
+      "idea": "Per 0/0 o ∞/∞, i quozienti f/g e f′/g′ tendono allo stesso limite se valgono le ipotesi.",
+      "xLabel": "x (avvicinamento al punto)",
+      "note": "f′/g′ si stabilizza prima di f/g avvicinandosi a 0."
+    },
+    "implicit": {
+      "idea": "Sulla circonferenza x²+y²=r², la pendenza della tangente è dy/dx=−x/y.",
+      "angleLabel": "Angolo θ sulla circonferenza"
+    },
+    "relatedRates": {
+      "idea": "Se il volume cambia con velocità dV/dt, il raggio cambia come dr/dt=dV/dt÷(4πr²).",
+      "radiusLabel": "Raggio r",
+      "dVdtLabel": "dV/dt"
+    },
+    "asymptote": {
+      "idea": "Il grafico di una razionale si avvicina ad asintoti verticali e obliqui all'infinito.",
+      "windowLabel": "Finestra orizzontale",
+      "oblique": "asintoto obliquo",
+      "vertical": "verticale"
+    },
+    "tree": {
+      "idea": "Non esiste una tecnica universale: riconosci il segnale nell'espressione. L'albero replica le domande della guida §16.",
+      "note": "Prova y = x^x: cosa risponderesti a ogni passo?",
+      "reset": "Reimposta",
+      "guided": "Vista guidata",
+      "full": "Mostra albero completo",
+      "leaves": "Foglie: L'Hôpital §12 · prodotto/quoziente/catena §5 · implicita §13 · log §5 · ottimizzazione §9 · linearizzazione §10 · potenza §5",
+      "seeSection": "Vedi sezione {section} del corso",
+      "example": "Esempio:",
+      "arrived": "Hai raggiunto una tecnica. Reimposta per un'altra espressione.",
+      "qRoot": "È un limite indeterminato (0/0 o ∞/∞)?",
+      "qProduct": "È un prodotto di due funzioni?",
+      "qQuotient": "È un quoziente u/v?",
+      "qChain": "È una composizione f(g(x))?",
+      "qImplicit": "È un'equazione implicita F(x,y)=0?",
+      "qLog": "Ha esponente variabile f(x)^g(x)?",
+      "qOptimize": "Devi ottimizzare su un intervallo [a,b]?",
+      "qApprox": "Devi approssimare f vicino a un punto a?",
+      "techLhopital": "Regola di L'Hôpital",
+      "techProduct": "Regola del prodotto",
+      "techQuotient": "Regola del quoziente",
+      "techChain": "Regola della catena",
+      "techImplicit": "Derivazione implicita",
+      "techLog": "Derivazione logaritmica",
+      "techOptimize": "Punti critici + estremi dell'intervallo",
+      "techLinear": "Approssimazione lineare / Taylor grado 1",
+      "techPower": "Regola della potenza"
     }
   },
   "vizFisica": {

@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { CalculoDiferencialVisualization } from '@/components/calculo-diferencial/CalculoDiferencialVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { Link } from '@/i18n/navigation';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -33,12 +34,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subjectRaw)?.title ?? subjectRaw;
   const physics = subjectRaw === 'fisica-basica';
-  const guideName = physics ? t('titlePhysics') : t('title');
+  const differential = subjectRaw === 'calculo-diferencial';
+  const guideName = physics
+    ? t('titlePhysics')
+    : differential
+      ? t('titleDifferential')
+      : t('title');
   return buildPageMetadata({
     locale,
     path: `/${subjectRaw}/guia`,
     title: tseo('guideTitle', { guide: guideName, subject: subjectTitle }),
-    description: physics ? t('descriptionPhysics') : t('description'),
+    description: physics
+      ? t('descriptionPhysics')
+      : differential
+        ? t('descriptionDifferential')
+        : t('description'),
     siteName: tsite('name'),
   });
 }
@@ -61,6 +71,7 @@ export default async function GuidePage({ params }: PageProps) {
   const guideSectionSlug = subjectGuideSectionSlug(subject);
   const section = await fetchSection(guideSectionSlug, subject);
   const isPhysics = subject === 'fisica-basica';
+  const isDifferential = subject === 'calculo-diferencial';
 
   return (
     <div>
@@ -81,13 +92,17 @@ export default async function GuidePage({ params }: PageProps) {
 
       <header className="mb-8 animate-rise">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
-          {isPhysics ? t('sectionLabelPhysics') : t('sectionLabel')}
+          {isPhysics
+            ? t('sectionLabelPhysics')
+            : isDifferential
+              ? t('sectionLabelDifferential')
+              : t('sectionLabel')}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {isPhysics ? t('titlePhysics') : t('title')}
+          {isPhysics ? t('titlePhysics') : isDifferential ? t('titleDifferential') : t('title')}
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-[var(--fg-muted)]">
-          {isPhysics ? t('introPhysics') : t('intro')}
+          {isPhysics ? t('introPhysics') : isDifferential ? t('introDifferential') : t('intro')}
         </p>
         {section ? (
           <p className="mt-3 text-sm">
@@ -155,6 +170,16 @@ export default async function GuidePage({ params }: PageProps) {
           <PhysicsVisualization
             type="approach_guide"
             concept="Elegir el bloque de fórmulas según la señal del enunciado"
+          />
+        </section>
+      ) : null}
+
+      {isDifferential ? (
+        <section className="mt-12">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <CalculoDiferencialVisualization
+            type="derivation_decision_tree"
+            concept="Señal en la función → técnica de derivación o análisis"
           />
         </section>
       ) : null}

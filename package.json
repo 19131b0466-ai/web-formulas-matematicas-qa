@@ -15,7 +15,9 @@
     "test": "turbo test",
     "gsc:priority": "node scripts/gsc-prioritize.mjs",
     "seo:cwv-audit": "node scripts/cwv-audit.mjs",
-    "seo:sitemap-audit": "node scripts/seo-sitemap-audit.mjs"
+    "seo:sitemap-audit": "node scripts/seo-sitemap-audit.mjs",
+    "qa:calculo-diferencial": "pnpm --filter @repo/content-parser build && node scripts/verify-calculo-diferencial.mjs",
+    "docs:calculo-diferencial-rutas": "pnpm --filter @repo/content-parser build && node scripts/generate-calculo-diferencial-rutas-revision.mjs"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

@@ -1,18 +1,19 @@
 import { and, asc, eq, ilike, isNull, or, sql } from 'drizzle-orm';
-import type {
-  BlockType,
-  ContentBlockContent,
-  ContentBlockDto,
-  FormulaContent,
-  FormulaDetailResponse,
-  MethodGuideResponse,
-  RelatedFormulaRef,
-  SearchResponse,
-  SectionDetailResponse,
-  SectionSummary,
-  SitemapEntryDto,
-  SubjectSummary,
-  TagsResponse,
+import {
+  inferSubjectSlugForFormulaId,
+  type BlockType,
+  type ContentBlockContent,
+  type ContentBlockDto,
+  type FormulaContent,
+  type FormulaDetailResponse,
+  type MethodGuideResponse,
+  type RelatedFormulaRef,
+  type SearchResponse,
+  type SectionDetailResponse,
+  type SectionSummary,
+  type SitemapEntryDto,
+  type SubjectSummary,
+  type TagsResponse,
 } from '@repo/shared-types';
 import type { Database } from '../db/client.js';
 import { contentBlocks, sections, subjects } from '../db/schema.js';
@@ -277,36 +278,55 @@ export async function getFormulaByCode(
   const related: RelatedFormulaRef[] = [];
 
   if (relatedIds.length > 0) {
-    const relatedRows = await db
-      .select({
-        block: contentBlocks,
-        section: sections,
-      })
-      .from(contentBlocks)
-      .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
-      .where(
-        and(
-          eq(sections.subjectId, subjectId),
-          sql`${contentBlocks.formulaCode} = ANY(${sql`ARRAY[${sql.join(
-            relatedIds.map((id) => sql`${id}`),
-            sql`, `,
-          )}]::text[]`})`,
-        ),
-      );
-
-    const byCode = new Map(
-      relatedRows.map((r) => [r.block.formulaCode ?? '', r] as const),
-    );
+    const idsBySubject = new Map<string, string[]>();
     for (const id of relatedIds) {
-      const hit = byCode.get(id);
-      if (!hit) continue;
-      const relatedContent = hit.block.content as FormulaContent;
-      related.push({
-        formulaId: id,
-        title: hit.block.title,
-        sectionSlug: hit.section.slug,
-        latex: relatedContent.latex ?? null,
-      });
+      const targetSubject = inferSubjectSlugForFormulaId(id) ?? subjectSlug;
+      const bucket = idsBySubject.get(targetSubject) ?? [];
+      bucket.push(id);
+      idsBySubject.set(targetSubject, bucket);
+    }
+
+    const hitByKey = new Map<string, RelatedFormulaRef>();
+
+    for (const [targetSubject, ids] of idsBySubject) {
+      const targetSubjectId = await requireSubjectId(db, targetSubject);
+      if (!targetSubjectId) continue;
+
+      const relatedRows = await db
+        .select({
+          block: contentBlocks,
+          section: sections,
+        })
+        .from(contentBlocks)
+        .innerJoin(sections, eq(contentBlocks.sectionId, sections.id))
+        .where(
+          and(
+            eq(sections.subjectId, targetSubjectId),
+            sql`${contentBlocks.formulaCode} = ANY(${sql`ARRAY[${sql.join(
+              ids.map((id) => sql`${id}`),
+              sql`, `,
+            )}]::text[]`})`,
+          ),
+        );
+
+      for (const hit of relatedRows) {
+        const code = hit.block.formulaCode ?? '';
+        if (!code) continue;
+        const relatedContent = hit.block.content as FormulaContent;
+        hitByKey.set(`${targetSubject}:${code}`, {
+          formulaId: code,
+          subjectSlug: targetSubject,
+          title: hit.block.title,
+          sectionSlug: hit.section.slug,
+          latex: relatedContent.latex ?? null,
+        });
+      }
+    }
+
+    for (const id of relatedIds) {
+      const targetSubject = inferSubjectSlugForFormulaId(id) ?? subjectSlug;
+      const hit = hitByKey.get(`${targetSubject}:${id}`);
+      if (hit) related.push(hit);
     }
   }
 
@@ -347,6 +367,7 @@ export async function listFormulaCodes(
 }
 
 const GUIDE_SECTION_SLUG: Record<string, string> = {
+  'calculo-diferencial': 'guia-metodos',
   'calculo-ii': 'guia-metodos',
   'fisica-basica': 'guia-enfoque',
 };
@@ -404,12 +425,34 @@ export async function getMethodGuide(
     if (content?.items) checklist = content.items;
   }
 
+  if (checklist.length === 0) {
+    const childSections = await db
+      .select()
+      .from(sections)
+      .where(and(eq(sections.parentId, guide.id), eq(sections.subjectId, subjectId)))
+      .orderBy(asc(sections.sortOrder));
+
+    for (const child of childSections) {
+      const listBlocks = await db
+        .select()
+        .from(contentBlocks)
+        .where(and(eq(contentBlocks.sectionId, child.id), eq(contentBlocks.blockType, 'list')))
+        .orderBy(asc(contentBlocks.sortOrder))
+        .limit(1);
+      const content = listBlocks[0]?.content as { items?: string[] } | undefined;
+      if (content?.items?.length) {
+        checklist = content.items;
+        break;
+      }
+    }
+  }
+
   return { strategies, checklist };
 }
 
 const STATIC_SITEMAP_PATHS = ['/', '/acerca', '/contacto', '/resenas', '/privacidad', '/terminos'];
 
-const GUIDE_SUBJECTS = new Set(['calculo-ii', 'fisica-basica']);
+const GUIDE_SUBJECTS = new Set(['calculo-diferencial', 'calculo-ii', 'fisica-basica']);
 
 function resolveContentLastModified(
   content: FormulaContent | null,

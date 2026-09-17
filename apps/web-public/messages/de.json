@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Mathematische Formeln",
-    "tagline": "Analysis II, Physik und Algebra",
-    "description": "Mathematische Formeln online: Integralrechnung, Physik und Algebra für Ingenieurwesen & Informatik.",
+    "tagline": "Differentialrechnung, Analysis II, Physik und Algebra",
+    "description": "Mathematische Formeln online: Differentialrechnung, Integralrechnung, Physik und Algebra für Ingenieurwesen & Informatik.",
     "shortName": "Formeln",
-    "about": "Integralrechnung, Physik und Algebra",
+    "about": "Differentialrechnung, Integralrechnung, Physik und Algebra",
     "manifestDescription": "Mathematische Formeln online",
     "seoTitle": "Mathematische Formeln, Theorie und interaktive Werkzeuge"
   },
@@ -73,7 +73,7 @@
     "ogTitle": "Suche · Mathematische Formeln",
     "subtitle": "Finde Formeln nach Text, Code oder Tags.",
     "label": "Formeln suchen",
-    "placeholder": "Z. B. INT-001, VEC-001, partielle Integration…",
+    "placeholder": "Z. B. DIF-041, INT-001, VEC-001, partielle Integration…",
     "submit": "Suchen",
     "all": "Alle",
     "results": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",
@@ -101,6 +101,10 @@
     "ogTitlePhysics": "Ansatzleitfaden · Grundlagenphysik",
     "sectionLabelPhysics": "Abschnitt 18",
     "introPhysics": "Nutze das Signal in der Aufgabenstellung, um zuerst den passenden Katalogabschnitt zu öffnen.",
+    "titleDifferential": "Leitfaden zum Ableiten und Analysieren",
+    "descriptionDifferential": "Praktischer Leitfaden zur Wahl der passenden Ableitungs- oder Analysetechnik anhand der Funktionsform.",
+    "sectionLabelDifferential": "Abschnitt 16",
+    "introDifferential": "Nutze Hinweise in der Funktion, um zu entscheiden, welche Technik zuerst sinnvoll ist.",
     "signalMethodPhysics": "Signal → Ansatz",
     "methodPhysics": "Ansatz"
   },
@@ -186,6 +190,31 @@
       "description": "Ohmsches Gesetz, elektrische Leistung, Kapazität und elektrische Energie.",
       "intro": "Ohmsches Gesetz, Leistung, Kondensatoren und elektrische Energie mit Einheiten und Beispielen."
     },
+    "chainRule": {
+      "title": "Kettenregel",
+      "description": "Ableitung von Verkettungen, Produkt- und Quotientenregel.",
+      "intro": "Kettenregel und grundlegende Ableitungsregeln für zusammengesetzte Funktionen und Produkte."
+    },
+    "indeterminateLimits": {
+      "title": "Unbestimmte Grenzwerte und L'Hôpital",
+      "description": "Unbestimmte Formen, Regel von L'Hôpital und klassische trigonometrische Grenzwerte.",
+      "intro": "Grenzwerte mit \\(0/0\\)- oder \\(\\infty/\\infty\\)-Formen mit L'Hôpital und Grundgrenzwerten berechnen."
+    },
+    "optimization": {
+      "title": "Optimierung",
+      "description": "Erste und zweite Ableitungstest, kritische Punkte und Optimierungsprobleme.",
+      "intro": "Maxima und Minima mit Ableitungstests finden und auf Optimierungsaufgaben anwenden."
+    },
+    "meanValueTheorem": {
+      "title": "Mittelwertsatz",
+      "description": "Satz von Rolle, Mittelwertsatz und geometrische Interpretation.",
+      "intro": "Satz von Rolle, Mittelwertsatz und Folgerungen, die Ableitungen mit mittleren Änderungsraten verbinden."
+    },
+    "taylorSeries": {
+      "title": "Taylor-Reihen",
+      "description": "Taylor-Polynome, lineare Näherungen und Restglied.",
+      "intro": "Funktionen mit Taylor-Polynomen, Differenzialen und dem Restglied nach Lagrange approximieren."
+    },
     "trigIntegrals": {
       "title": "Trigonometrische Integrale",
       "description": "Identitäten, Strategien und Stammfunktionen in Analysis II.",
@@ -269,7 +298,7 @@
     "missionTitle": "Wozu es gibt",
     "missionBody": "Formeln schnell finden und verstehen: klarer Text, gutes LaTeX und — wenn sinnvoll — eine Grafik, die die Idee lehrt.",
     "whatTitle": "Was du findest",
-    "whatBody": "Heute: Analysis II, Basisphysik und Algebra für Ingenieurwesen und Informatik — mit Abschnittsindex, Suche und Formel-Seiten.",
+    "whatBody": "Heute: Differentialrechnung, Analysis II, Basisphysik und Algebra für Ingenieurwesen und Informatik — mit Abschnittsindex, Suche und Formel-Seiten.",
     "audienceTitle": "Für wen",
     "audienceBody": "Für Studierende und Lehrende, die eine stabile Referenz brauchen.",
     "openTitle": "Wie es wächst",
@@ -660,6 +689,181 @@
       "logistic": "logistisch",
       "sepTitle": "Trennung",
       "solTitle": "Lösung"
+    }
+  },
+  "vizDif": {
+    "limit": {
+      "secantIdea": "Die Ableitung ist der Grenzwert des Differenzenquotienten: wenn h → 0, nähert sich die Sekante (orange) der Tangente.",
+      "hLabel": "Inkrement h",
+      "secantSlope": "Sekantensteigung (f(a+h)−f(a))/h",
+      "derivative": "Ableitung f′(a)",
+      "notableIdea": "Werte von sin(x)/x für x → 0: Tabelle und Graph zeigen die Konvergenz zu 1.",
+      "note": "Verringere h, um zu sehen, wie die Sekantensteigung die Ableitung approximiert.",
+      "informalIdea": "Wenn x sich a nähert, nähern sich die Werte f(x) dem Grenzwert L, auch wenn f(a) nicht definiert oder anders ist.",
+      "xLabel": "x-Wert",
+      "limitValue": "Grenzwert L",
+      "epsilonDeltaIdea": "Zu jedem ε > 0 gibt es δ > 0: wenn 0 < |x−a| < δ, dann |f(x)−L| < ε. Passe ε und δ an.",
+      "epsilonLabel": "ε (Toleranz in f)",
+      "deltaLabel": "δ (Umgebung in x)",
+      "epsilonDeltaOk": "Mit diesem δ bleiben die f-Werte in (a−δ, a+δ) innerhalb von (L−ε, L+ε).",
+      "epsilonDeltaFail": "Vergrößere δ oder verkleinere ε: einige Punkte verlassen das horizontale Band.",
+      "lateralIdea": "Der zweiseitige Grenzwert existiert nur, wenn links- und rechtsseitiger Grenzwert übereinstimmen.",
+      "leftLimit": "Linksseitiger Grenzwert",
+      "rightLimit": "Rechtsseitiger Grenzwert",
+      "bilateralExists": "Zweiseitiger Grenzwert?",
+      "yes": "Ja",
+      "no": "Nein",
+      "eDefinitionIdea": "Der Ausdruck (1+x)^(1/x) nähert sich e für x → 0⁺.",
+      "eValue": "e ≈"
+    },
+    "tangent": {
+      "idea": "Die Tangente bei x = a hat Steigung f′(a) und verläuft durch (a, f(a)).",
+      "normalIdea": "Die Normale steht senkrecht zur Tangente in (a, f(a)); ihre Steigung ist −1/f′(a).",
+      "aLabel": "Punkt a",
+      "slope": "Steigung f′(a)",
+      "normalSlope": "Normalensteigung −1/f′(a)",
+      "equation": "Tangentengleichung",
+      "normalEquation": "Normalengleichung",
+      "perpendicularNote": "Senkrechte Steigungen",
+      "horizontalTangent": "Die Tangente ist horizontal (f′(a)=0): die Normale ist vertikal und wird hier nicht gezeichnet."
+    },
+    "kinematics": {
+      "idea": "Geschwindigkeit ist die Ableitung der Position, Beschleunigung die Ableitung der Geschwindigkeit.",
+      "ideaVelocity": "Die momentane Geschwindigkeit v(t) ist die Ableitung von s(t): die Steigung von s im jeweiligen Zeitpunkt.",
+      "ideaAccel": "Die Beschleunigung a(t) ist die zweite Ableitung von s(t): Ableitung der Geschwindigkeit.",
+      "timeLabel": "Zeit t",
+      "position": "Position s(t)",
+      "velocity": "Geschwindigkeit v(t)",
+      "acceleration": "Beschleunigung a(t)",
+      "note": "Die vertikale Linie markiert t. In s(t) hat die gestrichelte Linie die Steigung v(t).",
+      "slopeNumeric": "Numerische Steigung von s",
+      "slopeCheck": "Ableitungskonsistenz",
+      "slopeMatch": "stimmt mit der Formel überein",
+      "slopeMismatch": "Zeitpunkt prüfen (Rand des Definitionsbereichs)"
+    },
+    "continuity": {
+      "definitionIdea": "f ist stetig in a, wenn lim_{x→a} f(x) = f(a): Grenzwert und Funktionswert stimmen überein.",
+      "discontinuityIdea": "Vergleiche drei Typen: hebbare, Sprung- und unendliche Diskontinuität.",
+      "xNearA": "x nahe a",
+      "continuous": "Stetig in a?",
+      "yes": "Ja",
+      "typeRemovable": "Hebbare Diskontinuität: Grenzwert existiert, aber f(a) passt nicht (oder ist undefiniert).",
+      "typeJump": "Sprungdiskontinuität: einseitige Grenzwerte existieren, sind aber verschieden.",
+      "typeInfinite": "Unendliche Diskontinuität: Grenzwert divergiert (vertikale Asymptote)."
+    },
+    "intermediateValue": {
+      "idea": "Ist f stetig auf [a, b], nimmt f jeden Wert k zwischen f(a) und f(b) in einem c ∈ (a, b) an.",
+      "kLabel": "Zielwert k",
+      "note": "Bewege k zwischen f(a) und f(b): es gibt stets ein c mit f(c) = k."
+    },
+    "productRule": {
+      "idea": "Die Ableitung eines Produkts zerlegt sich in f′g + fg′.",
+      "xLabel": "Punkt x",
+      "term1": "f′g",
+      "term2": "fg′",
+      "numeric": "Numerische Ableitung von fg",
+      "match": "f′g + fg′ stimmt mit der numerischen Ableitung überein.",
+      "note": "Passe x an, um die Zerlegung im Punkt zu sehen."
+    },
+    "chainRule": {
+      "idea": "Bei f(g(x)) multipliziert sich die äußere Ableitungsrate mit der inneren.",
+      "xLabel": "Punkt x",
+      "numeric": "Numerische Ableitung von f∘g",
+      "match": "f′(g(x))·g′(x) stimmt mit der numerischen Ableitung überein.",
+      "note": "Das Diagramm zeigt den Fluss x → g(x) → f(g(x))."
+    },
+    "logDiff": {
+      "idea": "Für y = f(x)^g(x) zuerst ln auf beiden Seiten; dann implizit ableiten und y′ isolieren.",
+      "xLabel": "Punkt x",
+      "numeric": "Numerische Ableitung",
+      "check": "Prüfung",
+      "match": "Die logarithmische Formel stimmt mit der numerischen Ableitung überein.",
+      "note": "Erfordert f(x) > 0 im gewählten Punkt."
+    },
+    "meanValueTheorem": {
+      "rolleIdea": "Wenn f(a)=f(b), gibt es ein inneres c mit horizontaler Tangente: f′(c)=0.",
+      "mvtIdea": "Es gibt ein c, wo die Tangente parallel zur Sekante durch (a,f(a)) und (b,f(b)) ist.",
+      "aLabel": "Endpunkt a",
+      "bLabel": "Endpunkt b",
+      "secantSlope": "Sekantensteigung",
+      "parallel": "Parallel?",
+      "yes": "Ja",
+      "approx": "Ca.",
+      "note": "Grün: Tangente in c; blau gestrichelt: Sekante (nur TVM)."
+    },
+    "concavity": {
+      "idea": "f′ zeigt Wachstum; f″ zeigt Krümmung. Farbbänder fassen das Vorzeichen je Intervall zusammen.",
+      "fLabel": "f(x)",
+      "fpLabel": "f′(x)",
+      "fppLabel": "f″(x)",
+      "increasing": "f′ > 0 (wachsend)",
+      "decreasing": "f′ < 0 (fallend)",
+      "concaveUp": "Konvex nach oben",
+      "concaveDown": "Konvex nach unten",
+      "critical": "Ca. kritische Punkte (f′≈0)"
+    },
+    "optimization": {
+      "rectangleIdea": "Bei festem Umfang ist die Fläche A(x)=x(C/2−x) maximal, wenn das Rechteck ein Quadrat ist.",
+      "cylinderIdea": "Bei fester Oberfläche erreicht das Volumen V(r)=Cr/2−πr³ sein Maximum bei einem optimalen Radius.",
+      "widthLabel": "Breite x",
+      "radiusLabel": "Radius r",
+      "area": "Fläche A",
+      "maxAt": "Maximum bei",
+      "maxArea": "Max. Fläche"
+    },
+    "linearApprox": {
+      "idea": "Die Gerade L(x)=f(a)+f′(a)(x−a) approximiert f nahe a; der Fehler ist f(x)−L(x).",
+      "xLabel": "Punkt x",
+      "error": "Fehler f−L",
+      "note": "Orange: lineare Approximation; grün: Punkt auf f."
+    },
+    "lhopital": {
+      "idea": "Bei 0/0 oder ∞/∞ tendieren f/g und f′/g′ zum gleichen Grenzwert, wenn die Voraussetzungen gelten.",
+      "xLabel": "x (Annäherung an den Punkt)",
+      "note": "f′/g′ stabilisiert sich früher als f/g bei Annäherung an 0."
+    },
+    "implicit": {
+      "idea": "Auf dem Kreis x²+y²=r² ist die Tangentensteigung dy/dx=−x/y.",
+      "angleLabel": "Winkel θ auf dem Kreis"
+    },
+    "relatedRates": {
+      "idea": "Wenn sich das Volumen mit dV/dt ändert, ändert sich der Radius als dr/dt=dV/dt÷(4πr²).",
+      "radiusLabel": "Radius r",
+      "dVdtLabel": "dV/dt"
+    },
+    "asymptote": {
+      "idea": "Der Graph einer rationalen Funktion nähert sich vertikalen und schiefen Asymptoten im Unendlichen.",
+      "windowLabel": "Horizontales Fenster",
+      "oblique": "schiefe Asymptote",
+      "vertical": "vertikal"
+    },
+    "tree": {
+      "idea": "Es gibt keine universelle Technik: erkenne das Signal im Ausdruck. Der Baum folgt den Fragen der §16-Leitfaden.",
+      "note": "Probiere y = x^x: was würdest du in jedem Schritt antworten?",
+      "reset": "Zurücksetzen",
+      "guided": "Geführte Ansicht",
+      "full": "Gesamten Baum anzeigen",
+      "leaves": "Blätter: L'Hôpital §12 · Produkt/Quotient/Kette §5 · implizit §13 · logarithmisch §5 · Optimierung §9 · Linearisierung §10 · Potenz §5",
+      "seeSection": "Abschnitt {section} des Kurses ansehen",
+      "example": "Beispiel:",
+      "arrived": "Technik gefunden. Zurücksetzen für einen anderen Ausdruck.",
+      "qRoot": "Ist es ein unbestimmter Grenzwert (0/0 oder ∞/∞)?",
+      "qProduct": "Ist es ein Produkt zweier Funktionen?",
+      "qQuotient": "Ist es ein Quotient u/v?",
+      "qChain": "Ist es eine Verkettung f(g(x))?",
+      "qImplicit": "Ist es eine implizite Gleichung F(x,y)=0?",
+      "qLog": "Hat es einen variablen Exponenten f(x)^g(x)?",
+      "qOptimize": "Muss auf einem Intervall [a,b] optimiert werden?",
+      "qApprox": "Muss f nahe einem Punkt a approximiert werden?",
+      "techLhopital": "Regel von L'Hôpital",
+      "techProduct": "Produktregel",
+      "techQuotient": "Quotientenregel",
+      "techChain": "Kettenregel",
+      "techImplicit": "Implizite Differentiation",
+      "techLog": "Logarithmische Differentiation",
+      "techOptimize": "Kritische Punkte + Intervallenden",
+      "techLinear": "Lineare Approximation / Taylor Grad 1",
+      "techPower": "Potenzregel"
     }
   },
   "vizFisica": {

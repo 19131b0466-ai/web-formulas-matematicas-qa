@@ -47,6 +47,12 @@ export class ApiUnavailableError extends Error {
 /** Always-available catalog so the hub never renders empty if the API flakes. */
 const FALLBACK_SUBJECTS: SubjectSummary[] = [
   {
+    slug: 'calculo-diferencial',
+    title: 'Cálculo Diferencial',
+    description: 'Límites, continuidad, derivadas y aplicaciones',
+    sortOrder: 0,
+  },
+  {
     slug: 'calculo-ii',
     title: 'Cálculo II',
     description: 'Cálculo Integral — fórmulas, métodos y aplicaciones',

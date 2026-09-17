@@ -1,7 +1,13 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForFormulaId, fisicaVizForFormulaId, type FormulaDetailResponse } from '@repo/shared-types';
+import {
+  calculoDiferencialVizForFormulaId,
+  calculoVizForFormulaId,
+  fisicaVizForFormulaId,
+  type FormulaDetailResponse,
+} from '@repo/shared-types';
 import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPanel';
 import { FormulaVisualizationLazy } from '@/components/algebra/FormulaVisualizationLazy';
+import { CalculoDiferencialVisualization } from '@/components/calculo-diferencial/CalculoDiferencialVisualization';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { DeferredMount } from '@/components/perf/DeferredMount';
@@ -35,6 +41,8 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
     subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;
+  const difViz =
+    subject === 'calculo-diferencial' ? calculoDiferencialVizForFormulaId(formulaId) : undefined;
   const physViz =
     subject === 'fisica-basica' ? fisicaVizForFormulaId(formulaId) : undefined;
   const alsoKnownAs = mergeSearchKeywords(
@@ -152,6 +160,18 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
             <DeferredMount minHeight={320} label={t('visualization')}>
               <CalculoVisualization type={calcViz.type} concept={calcViz.concept} formulaId={formulaId} />
+            </DeferredMount>
+          </section>
+        ) : difViz ? (
+          <section className="animate-rise" style={{ animationDelay: '90ms' }}>
+            <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
+            <DeferredMount minHeight={320} label={t('visualization')}>
+              <CalculoDiferencialVisualization
+                type={difViz.type}
+                concept={difViz.concept}
+                mode={difViz.mode}
+                formulaId={formulaId}
+              />
             </DeferredMount>
           </section>
         ) : physViz ? (
@@ -409,7 +429,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
                   className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--formula-bg)]"
                 >
                   <Link
-                    href={formulaHref(subject, r.formulaId) as '/'}
+                    href={formulaHref(r.subjectSlug as SubjectSlug, r.formulaId) as '/'}
                     prefetch={false}
                     className="block px-4 pt-3 transition hover:bg-[color-mix(in_oklab,var(--accent-soft)_45%,transparent)]"
                   >
@@ -427,14 +447,14 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
                   </Link>
                   <div className="flex flex-wrap items-center gap-4 border-t border-[var(--border)] px-4 py-2.5 text-sm">
                     <Link
-                      href={formulaHref(subject, r.formulaId) as '/'}
+                      href={formulaHref(r.subjectSlug as SubjectSlug, r.formulaId) as '/'}
                       prefetch={false}
                       className="font-semibold text-[var(--accent-strong)] underline-offset-2 hover:underline"
                     >
                       {t('openFormula')}
                     </Link>
                     <Link
-                      href={sectionHref(subject, r.sectionSlug) as '/'}
+                      href={sectionHref(r.subjectSlug as SubjectSlug, r.sectionSlug) as '/'}
                       prefetch={false}
                       className="text-[var(--fg-muted)] underline-offset-2 hover:underline"
                     >

@@ -46,6 +46,41 @@ export const TOPIC_HUBS: TopicHubDefinition[] = [
     sectionSlugs: ['electricidad-basica'],
   },
   {
+    slug: 'regla-cadena',
+    subject: 'calculo-diferencial',
+    messageKey: 'chainRule',
+    formulaIds: ['DIF-054', 'DIF-055', 'DIF-051', 'DIF-053'],
+    sectionSlugs: ['reglas-derivacion'],
+  },
+  {
+    slug: 'limites-indeterminados',
+    subject: 'calculo-diferencial',
+    messageKey: 'indeterminateLimits',
+    formulaIds: ['DIF-114', 'DIF-115', 'DIF-116', 'DIF-019'],
+    sectionSlugs: ['lhopital', 'limites'],
+  },
+  {
+    slug: 'optimizacion',
+    subject: 'calculo-diferencial',
+    messageKey: 'optimization',
+    formulaIds: ['DIF-093', 'DIF-094', 'DIF-095', 'DIF-087'],
+    sectionSlugs: ['optimizacion', 'analisis-funciones'],
+  },
+  {
+    slug: 'teorema-valor-medio',
+    subject: 'calculo-diferencial',
+    messageKey: 'meanValueTheorem',
+    formulaIds: ['DIF-081', 'DIF-082', 'DIF-083', 'DIF-084'],
+    sectionSlugs: ['teorema-valor-medio'],
+  },
+  {
+    slug: 'series-taylor',
+    subject: 'calculo-diferencial',
+    messageKey: 'taylorSeries',
+    formulaIds: ['DIF-106', 'DIF-107', 'DIF-102', 'DIF-113'],
+    sectionSlugs: ['series-taylor', 'aproximaciones-diferenciales'],
+  },
+  {
     slug: 'integrales-trigonometricas',
     subject: 'calculo-ii',
     messageKey: 'trigIntegrals',
@@ -102,7 +137,7 @@ export function topicHubsForFormula(
 
 export function collectTopicHubPaths(): string[] {
   const paths = new Set<string>();
-  for (const subject of ['calculo-ii', 'fisica-basica', 'algebra'] as SubjectSlug[]) {
+  for (const subject of ['calculo-diferencial', 'calculo-ii', 'fisica-basica', 'algebra'] as SubjectSlug[]) {
     const hubs = topicHubsForSubject(subject);
     if (hubs.length > 0) paths.add(topicsIndexHref(subject));
     for (const hub of hubs) paths.add(topicHubHref(subject, hub.slug));

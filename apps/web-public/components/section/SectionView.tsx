@@ -1,5 +1,11 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForSectionNumber, fisicaVizForSectionNumber, type SectionDetailResponse } from '@repo/shared-types';
+import {
+  calculoDiferencialVizForSectionNumber,
+  calculoVizForSectionNumber,
+  fisicaVizForSectionNumber,
+  type SectionDetailResponse,
+} from '@repo/shared-types';
+import { CalculoDiferencialVisualization } from '@/components/calculo-diferencial/CalculoDiferencialVisualization';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { ContentBlocks } from '@/components/content/ContentBlocks';
@@ -29,6 +35,8 @@ export async function SectionView({
   const { section, blocks, subsections } = detail;
   const catalog = subjectUsesFormulaCatalog(subject);
   const calcViz = subject === 'calculo-ii' ? calculoVizForSectionNumber(section.number) : undefined;
+  const difViz =
+    subject === 'calculo-diferencial' ? calculoDiferencialVizForSectionNumber(section.number) : undefined;
   const physViz = subject === 'fisica-basica' ? fisicaVizForSectionNumber(section.number) : undefined;
 
   const crumbs = [
@@ -90,6 +98,12 @@ export async function SectionView({
         <div className="mt-8">
           <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
           <CalculoVisualization type={calcViz.type} concept={calcViz.concept} />
+        </div>
+      ) : null}
+      {difViz ? (
+        <div className="mt-8">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <CalculoDiferencialVisualization type={difViz.type} concept={difViz.concept} mode={difViz.mode} />
         </div>
       ) : null}
       {physViz ? (

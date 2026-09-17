@@ -1,5 +1,11 @@
 import { getTranslations } from 'next-intl/server';
-import { calculoVizForFormulaId, fisicaVizForFormulaId, type ContentBlockDto, type FormulaContent } from '@repo/shared-types';
+import {
+  calculoDiferencialVizForFormulaId,
+  calculoVizForFormulaId,
+  fisicaVizForFormulaId,
+  type ContentBlockDto,
+  type FormulaContent,
+} from '@repo/shared-types';
 import { ContentBlockItem, ContentBlocks } from '@/components/content/ContentBlocks';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
@@ -118,17 +124,21 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                   ) : null}
                   {(subject === 'calculo-ii'
                     ? calculoVizForFormulaId(id)
-                    : subject === 'fisica-basica'
-                      ? fisicaVizForFormulaId(id)
-                      : content.visual) ? (
+                    : subject === 'calculo-diferencial'
+                      ? calculoDiferencialVizForFormulaId(id)
+                      : subject === 'fisica-basica'
+                        ? fisicaVizForFormulaId(id)
+                        : content.visual) ? (
                     <span
                       className="rounded-md border border-[var(--border)] px-2 py-0.5 text-[10px] font-medium text-[var(--fg-muted)]"
                       title={
                         subject === 'calculo-ii'
                           ? calculoVizForFormulaId(id)?.type
-                          : subject === 'fisica-basica'
-                            ? fisicaVizForFormulaId(id)?.type
-                            : content.visual?.type
+                          : subject === 'calculo-diferencial'
+                            ? calculoDiferencialVizForFormulaId(id)?.type
+                            : subject === 'fisica-basica'
+                              ? fisicaVizForFormulaId(id)?.type
+                              : content.visual?.type
                       }
                     >
                       viz

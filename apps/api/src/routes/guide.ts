@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import type { Database } from '../db/client.js';
 import { getMethodGuide } from '../services/content.js';
 
-const GUIDE_SUBJECTS = new Set(['calculo-ii', 'fisica-basica']);
+const GUIDE_SUBJECTS = new Set(['calculo-diferencial', 'calculo-ii', 'fisica-basica']);
 
 export function createGuideRoutes(getDb: () => Database) {
   const routes = new Hono();

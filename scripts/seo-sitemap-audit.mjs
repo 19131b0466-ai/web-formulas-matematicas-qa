@@ -44,6 +44,12 @@ async function main() {
   const sample = [
     `${ORIGIN}/`,
     `${ORIGIN}/en`,
+    `${ORIGIN}/en/calculo-diferencial`,
+    `${ORIGIN}/en/calculo-diferencial/formula/DIF-041`,
+    `${ORIGIN}/en/calculo-diferencial/temas`,
+    `${ORIGIN}/en/calculo-diferencial/temas/regla-cadena`,
+    `${ORIGIN}/en/calculo-diferencial/seccion/limites`,
+    `${ORIGIN}/en/calculo-diferencial/guia`,
     `${ORIGIN}/en/algebra`,
     `${ORIGIN}/en/algebra/formula/ALG-FUN-001`,
     `${ORIGIN}/en/algebra/buscar`,

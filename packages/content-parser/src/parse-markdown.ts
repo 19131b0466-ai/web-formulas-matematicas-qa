@@ -7,6 +7,7 @@ import type {
   FormulaContent,
 } from '@repo/shared-types';
 import { enrichCalculoFormulas } from './enrich-calculo.js';
+import { enrichCalculoDiferencialFormulas } from './enrich-calculo-diferencial.js';
 import {
   absorbEditorialLine,
   absorbFaqLine,
@@ -16,8 +17,18 @@ import {
   createFaqAccumulator,
 } from './formula-meta.js';
 import { slugify } from './slugify.js';
-import { SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
+import {
+  DIFFERENTIAL_SECTION_SLUG_OVERRIDES,
+  SECTION_SLUG_OVERRIDES,
+  inferTags,
+} from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
+
+export type ParseFormulasOptions = {
+  sectionSlugOverrides?: Record<string, string>;
+  formulaIdPrefix?: string;
+  enrich?: (sections: ParsedSection[]) => void;
+};
 
 const HEADING_RE = /^(#{2,4})\s+(.+)$/;
 const HR_RE = /^---+$/;
@@ -111,8 +122,8 @@ function absorbMetaLine(meta: FormulaMeta, trimmed: string): boolean {
   return false;
 }
 
-function formatFormulaCode(n: number): string {
-  return `INT-${String(n).padStart(3, '0')}`;
+function formatFormulaCode(n: number, prefix = 'INT'): string {
+  return `${prefix}-${String(n).padStart(3, '0')}`;
 }
 
 /** Strip markup/delimiters for search indexing only — never mutate display content. */
@@ -151,7 +162,10 @@ function isStrategyTable(headers: string[]): boolean {
   return joined.includes('señal') || joined.includes('senal') || joined.includes('método');
 }
 
-function resolveSectionIdentity(rawTitle: string): { number: string; title: string; slug: string } {
+function resolveSectionIdentity(
+  rawTitle: string,
+  sectionSlugOverrides: Record<string, string>,
+): { number: string; title: string; slug: string } {
   const appendix = rawTitle.match(APPENDIX_RE);
   if (appendix) {
     const letter = appendix[1]!.toUpperCase();
@@ -159,7 +173,7 @@ function resolveSectionIdentity(rawTitle: string): { number: string; title: stri
     return {
       number: letter,
       title,
-      slug: SECTION_SLUG_OVERRIDES[letter] ?? slugify(title),
+      slug: sectionSlugOverrides[letter] ?? slugify(title),
     };
   }
 
@@ -168,10 +182,10 @@ function resolveSectionIdentity(rawTitle: string): { number: string; title: stri
     const number = numbered[1]!;
     const title = numbered[2]!.trim();
     const top = number.split('.')[0]!;
-    if (!number.includes('.') && SECTION_SLUG_OVERRIDES[top]) {
-      return { number, title, slug: SECTION_SLUG_OVERRIDES[top]! };
+    if (!number.includes('.') && sectionSlugOverrides[top]) {
+      return { number, title, slug: sectionSlugOverrides[top]! };
     }
-    const parentTop = SECTION_SLUG_OVERRIDES[top];
+    const parentTop = sectionSlugOverrides[top];
     const subSlug = slugify(title);
     return {
       number,
@@ -191,8 +205,9 @@ function createSection(
   rawTitle: string,
   sortOrder: number,
   parentSlug: string | null,
+  sectionSlugOverrides: Record<string, string>,
 ): ParsedSection {
-  const identity = resolveSectionIdentity(rawTitle);
+  const identity = resolveSectionIdentity(rawTitle, sectionSlugOverrides);
   return {
     slug: identity.slug,
     number: identity.number,
@@ -330,9 +345,17 @@ function parseBlockquote(lines: string[], start: number): { markdown: string; en
 }
 
 /**
- * Parse the Cálculo II formulas markdown into sections and typed content blocks.
+ * Parse a Cálculo-style formulas markdown into sections and typed content blocks.
+ * Defaults match Cálculo II (integral); pass options for Cálculo Diferencial.
  */
-export function parseFormulasMarkdown(markdown: string): ParseResult {
+export function parseFormulasMarkdown(
+  markdown: string,
+  options: ParseFormulasOptions = {},
+): ParseResult {
+  const sectionSlugOverrides = options.sectionSlugOverrides ?? SECTION_SLUG_OVERRIDES;
+  const formulaIdPrefix = options.formulaIdPrefix ?? 'INT';
+  const enrich = options.enrich ?? enrichCalculoFormulas;
+
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
   const sections: ParsedSection[] = [];
 
@@ -392,7 +415,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
 
       if (level === 2) {
         if (CHECKLIST_TITLE_RE.test(rawTitle)) {
-          const section = createSection(rawTitle, sortOrder++, null);
+          const section = createSection(rawTitle, sortOrder++, null, sectionSlugOverrides);
           section.slug = 'lista-comprobacion';
           section.number = '';
           sections.push(section);
@@ -401,14 +424,14 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
           pendingTitle = null;
           continue;
         }
-        const section = createSection(rawTitle, sortOrder++, null);
+        const section = createSection(rawTitle, sortOrder++, null, sectionSlugOverrides);
         sections.push(section);
         currentTop = section;
         currentSection = section;
         pendingTitle = null;
       } else if (level === 3) {
         const parentSlug = currentTop?.slug ?? null;
-        const section = createSection(rawTitle, sortOrder++, parentSlug);
+        const section = createSection(rawTitle, sortOrder++, parentSlug, sectionSlugOverrides);
         // Avoid slug collisions for subsections
         if (sections.some((s) => s.slug === section.slug)) {
           section.slug = `${parentSlug ?? 'sec'}-${section.slug}-${String(sortOrder)}`;
@@ -417,7 +440,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
         currentSection = section;
         pendingTitle = null;
       } else {
-        pendingTitle = resolveSectionIdentity(rawTitle).title;
+        pendingTitle = resolveSectionIdentity(rawTitle, sectionSlugOverrides).title;
       }
       continue;
     }
@@ -453,7 +476,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
       }
 
       formulaCounter += 1;
-      const formulaId = pendingMeta.formulaId ?? formatFormulaCode(formulaCounter);
+      const formulaId = pendingMeta.formulaId ?? formatFormulaCode(formulaCounter, formulaIdPrefix);
       const content: FormulaContent = {
         latex: math.latex,
         displayMode: true,
@@ -586,7 +609,7 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
   }
 
   flush();
-  enrichCalculoFormulas(sections);
+  enrich(sections);
 
   const blockCount = sections.reduce((n, s) => n + s.blocks.length, 0);
   const formulaCount = sections.reduce(
@@ -607,4 +630,13 @@ export function parseFormulasMarkdown(markdown: string): ParseResult {
       tableCount,
     },
   };
+}
+
+/** Parse Cálculo Diferencial markdown (`DIF-###` IDs, differential slugs). */
+export function parseCalculoDiferencialMarkdown(markdown: string): ParseResult {
+  return parseFormulasMarkdown(markdown, {
+    sectionSlugOverrides: DIFFERENTIAL_SECTION_SLUG_OVERRIDES,
+    formulaIdPrefix: 'DIF',
+    enrich: enrichCalculoDiferencialFormulas,
+  });
 }

@@ -1,12 +1,37 @@
 # Contenido canónico
 
-| Archivo                       | Materia (`subject`) | Descripción                                      |
-| ----------------------------- | ------------------- | ------------------------------------------------ |
-| `formulas-calculo-ii.md`      | `calculo-ii`        | Fórmulas de Cálculo II                           |
-| `formulas-fisica-basica.md`   | `fisica-basica`     | Fórmulas de Física Básica universitaria (~195)   |
-| `formulas-algebra.md`         | `algebra`           | Álgebra para Ingeniería y CS (~183) + viz specs  |
+| Archivo                          | Materia (`subject`)     | Descripción                                      |
+| -------------------------------- | ----------------------- | ------------------------------------------------ |
+| `formulas-calculo-diferencial.md`| `calculo-diferencial`   | Cálculo Diferencial (~161 fórmulas `DIF-###`)    |
+| `formulas-calculo-ii.md`         | `calculo-ii`            | Fórmulas de Cálculo II                           |
+| `formulas-fisica-basica.md`      | `fisica-basica`         | Fórmulas de Física Básica universitaria (~195)   |
+| `formulas-algebra.md`            | `algebra`               | Álgebra para Ingeniería y CS (~183) + viz specs  |
 
 El archivo raíz `FORMULAS_ALGEBRA_INGENIERIA_CS_V3.md` es la fuente de referencia; la copia canónica para seed es `content/formulas-algebra.md`.
+
+## Cálculo Diferencial — capítulos → slugs
+
+| #  | Capítulo                                | Slug                              |
+| -- | --------------------------------------- | --------------------------------- |
+| 1  | Notación, funciones y dominios          | `notacion-funciones`              |
+| 2  | Límites                                 | `limites`                         |
+| 3  | Continuidad                             | `continuidad`                     |
+| 4  | Derivada e interpretación geométrica    | `derivada-geometrica`             |
+| 5  | Reglas de derivación                    | `reglas-derivacion`               |
+| 6  | Derivadas de orden superior             | `derivadas-superiores`            |
+| 7  | Teorema del Valor Medio                 | `teorema-valor-medio`             |
+| 8  | Análisis de funciones                   | `analisis-funciones`              |
+| 9  | Optimización                            | `optimizacion`                    |
+| 10 | Aproximaciones lineales y diferenciales | `aproximaciones-diferenciales`    |
+| 11 | Series de Taylor (introducción)         | `series-taylor`                   |
+| 12 | L'Hôpital y límites indeterminados      | `lhopital`                        |
+| 13 | Funciones implícitas y relacionadas     | `funciones-implicitas`            |
+| 14 | Tasas relacionadas                      | `tasas-relacionadas`              |
+| 15 | Gráficas y comportamiento asintótico    | `graficas-asintotas`              |
+| 16 | Guía para derivar y analizar            | `guia-metodos`                    |
+| A  | Apéndice: tabla extensa de derivadas    | `apendice-tabla-derivadas`        |
+
+Secciones editoriales no importadas: Índice, notas introductorias de convenciones.
 
 ## Física Básica — capítulos → slugs
 
@@ -76,8 +101,10 @@ Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30 (fronteras con ot
 pnpm db:seed
 ```
 
-El seed importa las tres materias. Para una sola:
+El seed importa las cuatro materias. Para una sola:
 
 ```bash
-pnpm --filter @repo/api db:seed -- content/formulas-algebra.md
+pnpm --filter @repo/api db:seed -- ../../content/formulas-calculo-diferencial.md
+
+QA y rutas de revisión: `pnpm qa:calculo-diferencial` · `docs/calculo-diferencial-rutas-revision.md`
 ```

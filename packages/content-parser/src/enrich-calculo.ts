@@ -166,6 +166,16 @@ function buildCuratedRelations(index: FormulaRef[]): Map<string, string[]> {
   )?.code;
   link(map, appendixLn, oneOverX);
 
+  // Cálculo Diferencial (cross-subject)
+  const tfcDeriv = index.find((f) => f.code === 'INT-024')?.code;
+  const tfcAccum = index.find((f) => f.code === 'INT-022')?.code;
+  const logDeriv = index.find((f) => f.code === 'INT-001')?.code;
+  const taylorInt = index.find((f) => f.code === 'INT-163')?.code;
+  link(map, tfcDeriv, 'DIF-038');
+  link(map, tfcAccum, 'DIF-082');
+  link(map, logDeriv, 'DIF-073');
+  link(map, taylorInt, 'DIF-106');
+
   const arcsinCore = findByIncludes(index, /\\operatorname\{arcsen\}|\\arcsin/, 'notacion-dominios');
   const arcsinApp = index.find(
     (f) =>

@@ -1,4 +1,21 @@
 const SECTION_TAGS: Record<string, string[]> = {
+  // Cálculo Diferencial
+  'notacion-funciones': ['notacion', 'dominio', 'funciones', 'calculo-diferencial'],
+  limites: ['limite', 'calculo-diferencial'],
+  continuidad: ['continuidad', 'calculo-diferencial'],
+  'derivada-geometrica': ['derivada', 'calculo-diferencial'],
+  'reglas-derivacion': ['derivada', 'regla', 'calculo-diferencial'],
+  'derivadas-superiores': ['derivada', 'calculo-diferencial'],
+  'teorema-valor-medio': ['derivada', 'teorema', 'calculo-diferencial'],
+  'analisis-funciones': ['derivada', 'analisis', 'calculo-diferencial'],
+  optimizacion: ['derivada', 'optimizacion', 'calculo-diferencial'],
+  'aproximaciones-diferenciales': ['derivada', 'diferencial', 'calculo-diferencial'],
+  'series-taylor': ['derivada', 'taylor', 'calculo-diferencial'],
+  lhopital: ['limite', 'derivada', 'calculo-diferencial'],
+  'funciones-implicitas': ['derivada', 'implicita', 'calculo-diferencial'],
+  'tasas-relacionadas': ['derivada', 'aplicacion', 'calculo-diferencial'],
+  'graficas-asintotas': ['derivada', 'grafica', 'calculo-diferencial'],
+  'apendice-tabla-derivadas': ['derivada', 'tabla', 'calculo-diferencial'],
   // Cálculo II
   'notacion-dominios': ['notacion', 'dominio', 'restriccion-dominio'],
   'integral-indefinida': ['antiderivada', 'propiedad', 'integral-indefinida'],
@@ -90,6 +107,11 @@ const KEYWORD_TAGS: Array<[RegExp, string]> = [
   [/\bBernoulli\b/i, 'fluidos'],
   [/\bOhm\b/i, 'electricidad'],
   [/\bKirchhoff\b/i, 'electricidad'],
+  [/\bl[ií]mite\b/i, 'limite'],
+  [/\bderivad/i, 'derivada'],
+  [/\bcontinu/i, 'continuidad'],
+  [/\bL'H[oô]pital\b/i, 'lhopital'],
+  [/\boptimiz/i, 'optimizacion'],
 ];
 
 export function tagsForSection(slug: string): string[] {
@@ -103,7 +125,9 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
   if (blockType === 'formula') {
     if (tags.has('fisica')) tags.add('formula-fisica');
     else if (tags.has('algebra')) tags.add('formula-algebra');
-    else tags.add('antiderivada');
+    else if (tags.has('calculo-diferencial') || tags.has('derivada') || tags.has('limite')) {
+      tags.add('formula-derivada');
+    } else tags.add('antiderivada');
   }
   if (blockType === 'strategy') tags.add('estrategia');
   if (blockType === 'note') tags.add('restriccion-dominio');
@@ -114,6 +138,27 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
 
   return [...tags].sort();
 }
+
+/** Canonical slug overrides for top-level sections — Cálculo Diferencial. */
+export const DIFFERENTIAL_SECTION_SLUG_OVERRIDES: Record<string, string> = {
+  '1': 'notacion-funciones',
+  '2': 'limites',
+  '3': 'continuidad',
+  '4': 'derivada-geometrica',
+  '5': 'reglas-derivacion',
+  '6': 'derivadas-superiores',
+  '7': 'teorema-valor-medio',
+  '8': 'analisis-funciones',
+  '9': 'optimizacion',
+  '10': 'aproximaciones-diferenciales',
+  '11': 'series-taylor',
+  '12': 'lhopital',
+  '13': 'funciones-implicitas',
+  '14': 'tasas-relacionadas',
+  '15': 'graficas-asintotas',
+  '16': 'guia-metodos',
+  A: 'apendice-tabla-derivadas',
+};
 
 /** Canonical slug overrides for top-level sections — Cálculo II. */
 export const SECTION_SLUG_OVERRIDES: Record<string, string> = {

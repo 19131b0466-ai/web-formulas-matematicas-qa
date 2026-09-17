@@ -1,3 +1,5 @@
+export { inferSubjectSlugForFormulaId } from './formula-subject.js';
+
 export {
   CALCULO_VIZ_BY_FORMULA_ID,
   CALCULO_VIZ_BY_SECTION_NUMBER,
@@ -13,6 +15,14 @@ export {
   fisicaVizForSectionNumber,
   type FisicaSectionViz,
 } from './fisica-viz.js';
+
+export {
+  CALCULO_DIFERENCIAL_VIZ_BY_FORMULA_ID,
+  CALCULO_DIFERENCIAL_VIZ_BY_SECTION_NUMBER,
+  calculoDiferencialVizForFormulaId,
+  calculoDiferencialVizForSectionNumber,
+  type CalculoDiferencialSectionViz,
+} from './calculo-diferencial-viz.js';
 
 export type BlockType = 'formula' | 'text' | 'table' | 'list' | 'note' | 'strategy';
 
@@ -120,6 +130,8 @@ export interface SubjectSummary {
 
 export interface RelatedFormulaRef {
   formulaId: string;
+  /** Subject that owns the related formula (defaults to the current page subject). */
+  subjectSlug: string;
   title: string | null;
   sectionSlug: string;
   /** Primary latex for related-card preview (physics detail). */

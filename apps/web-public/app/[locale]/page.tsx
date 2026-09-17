@@ -31,6 +31,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export const revalidate = 86400;
 
 const SUBJECT_COPY: Record<string, { accent: string; tone: string }> = {
+  'calculo-diferencial': {
+    accent: 'from-violet-600/25 via-transparent to-transparent',
+    tone: 'text-violet-800 dark:text-violet-300',
+  },
   'calculo-ii': {
     accent: 'from-[var(--accent)]/30 via-transparent to-transparent',
     tone: 'text-[var(--accent-strong)]',

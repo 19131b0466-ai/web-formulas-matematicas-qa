@@ -17,7 +17,11 @@ import {
   mergeSearchKeywords,
 } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, subjectUsesFormulaCatalog, type SubjectSlug } from '@/lib/subjects';
-import { calculoVizForFormulaId, fisicaVizForFormulaId } from '@repo/shared-types';
+import {
+  calculoDiferencialVizForFormulaId,
+  calculoVizForFormulaId,
+  fisicaVizForFormulaId,
+} from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 86400;
@@ -60,6 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
     const hasVisualization = Boolean(
       (subject === 'calculo-ii' && calculoVizForFormulaId(detail.formulaId)) ||
+        (subject === 'calculo-diferencial' && calculoDiferencialVizForFormulaId(detail.formulaId)) ||
         (subject === 'fisica-basica' && fisicaVizForFormulaId(detail.formulaId)) ||
         (subject === 'algebra' && detail.content.visual),
     );

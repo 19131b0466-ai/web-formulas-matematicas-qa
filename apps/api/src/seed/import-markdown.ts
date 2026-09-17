@@ -4,6 +4,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseAlgebraMarkdown,
+  parseCalculoDiferencialMarkdown,
   parseFormulasMarkdown,
   parsePhysicsMarkdown,
 } from '@repo/content-parser';
@@ -14,6 +15,14 @@ import { contentBlocks, sections, subjects } from '../db/schema.js';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../');
 
 export const SUBJECT_CATALOG = [
+  {
+    slug: 'calculo-diferencial',
+    title: 'Cálculo Diferencial',
+    description: 'Límites, continuidad, derivadas y aplicaciones',
+    sortOrder: 0,
+    markdownPath: resolve(ROOT, 'content/formulas-calculo-diferencial.md'),
+    parser: 'calculo-diferencial' as const,
+  },
   {
     slug: 'calculo-ii',
     title: 'Cálculo II',
@@ -84,7 +93,7 @@ export async function seedSubjectFromMarkdown(
   db: Database,
   subjectSlug: string,
   markdownPath: string,
-  parser: 'calculo' | 'fisica' | 'algebra',
+  parser: 'calculo' | 'calculo-diferencial' | 'fisica' | 'algebra',
   subjectIds?: Map<string, string>,
 ): Promise<SeedStats> {
   const idBySlug = subjectIds ?? (await ensureSubjects(db));
@@ -99,7 +108,9 @@ export async function seedSubjectFromMarkdown(
       ? parsePhysicsMarkdown(markdown)
       : parser === 'algebra'
         ? parseAlgebraMarkdown(markdown)
-        : parseFormulasMarkdown(markdown);
+        : parser === 'calculo-diferencial'
+          ? parseCalculoDiferencialMarkdown(markdown)
+          : parseFormulasMarkdown(markdown);
 
   // SAFETY: only wipe this subject's sections/blocks.
   // NEVER delete/truncate visit_logs, admin_users, or other subjects here.
