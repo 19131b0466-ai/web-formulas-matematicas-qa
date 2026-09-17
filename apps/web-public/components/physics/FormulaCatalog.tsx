@@ -31,56 +31,14 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
     return <ContentBlocks blocks={blocks} sectionNumber="" subject={subject} />;
   }
 
-  const ts = await getTranslations('section');
   const labels = {
     formula: tContent('formula'),
     signal: tContent('signal'),
     method: tContent('method'),
   };
 
-  const formulaBlocks = blocks.filter(
-    (b) => b.type === 'formula' && Boolean((b.content as FormulaContent).formulaId),
-  );
-
   return (
     <div className="prose-math space-y-5">
-      {formulaBlocks.length >= 3 ? (
-        <nav
-          aria-label={ts('formulasInSection')}
-          className="rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4"
-        >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-            {ts('formulasInSection')}
-          </p>
-          <ol className="space-y-2">
-            {formulaBlocks.map((block) => {
-              const content = block.content as FormulaContent;
-              const id = content.formulaId!;
-              const href = formulaHref(subject, id);
-              const anchor = block.title ?? id;
-              const snippet = content.detail?.trim();
-              return (
-                <li key={block.id}>
-                  <Link
-                    href={href as '/'}
-                    prefetch={false}
-                    className="group block rounded-lg px-2 py-1.5 transition hover:bg-[var(--accent-soft)]"
-                  >
-                    <span className="font-medium text-[var(--accent-strong)] group-hover:underline">
-                      <InlineMarkdown text={anchor} />
-                    </span>
-                    {snippet ? (
-                      <span className="mt-0.5 block text-sm leading-snug text-[var(--fg-muted)]">
-                        <InlineMarkdown text={snippet} />
-                      </span>
-                    ) : null}
-                  </Link>
-                </li>
-              );
-            })}
-          </ol>
-        </nav>
-      ) : null}
       {blocks.map((block, index) => {
         if (block.type === 'formula') {
           const content = block.content as FormulaContent;
