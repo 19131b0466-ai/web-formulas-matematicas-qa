@@ -1,7 +1,9 @@
 import type { AppLocale } from '@/i18n/routing';
 
-/** Spanish \\text{...} fragments in formulas-calculo-diferencial.md → locale. */
+/** Spanish \\text{...} fragments in formulas-calculo-diferencial.md → locale. Longest keys first at runtime. */
 const EN: Record<string, string> = {
+  'Para ': 'For ',
+  'para ': 'for ',
   ' está definido': ' is defined',
   ' es continua en ': ' is continuous at ',
   ' alcanza todo valor entre ': ' attains every value between ',
@@ -32,25 +34,34 @@ const EN: Record<string, string> = {
   ' entre ': ' between ',
   ' y ': ' and ',
   ' cuando ': ' when ',
+  'cuando ': 'when ',
+  ' o no existe, y ': ' or does not exist, and ',
   ' o ': ' or ',
-  ' o': ' or',
   ' en ': ' on ',
   ' a ': ' to ',
+  ' si ': ' if ',
+  'si ': 'if ',
   'Dominio': 'Domain',
   'asíntotas': 'asymptotes',
   'asíntota horizontal': 'horizontal asymptote',
   'asíntota oblicua': 'oblique asymptote',
-  'asíntota vertical de ': 'vertical asymptote at ',
+  'asíntota vertical de ': 'vertical asymptote of ',
   'combinar algebraicamente o usar conjugados/logaritmos': 'combine algebraically or use conjugates/logarithms',
   'esquema': 'sketch',
   'intersecciones': 'intercepts',
   'usar ': 'use ',
-  'o no existe, y ': ' or does not exist, and ',
   ' no existe': ' does not exist',
   ' cambia de ': ' changes from ',
+  'derivables en un entorno perforado de ': 'differentiable on a punctured neighborhood of ',
+  'derivables en un entorno de ': 'differentiable on a neighborhood of ',
+  ' en ese entorno': ' on that neighborhood',
+  'existe (finito o ': 'exists (finite or ',
+  'existe y es continua en el intervalo abierto entre ': 'exists and is continuous on the open interval between ',
 };
 
 const DE: Record<string, string> = {
+  'Para ': 'Für ',
+  'para ': 'für ',
   ' está definido': ' ist definiert',
   ' es continua en ': ' ist stetig in ',
   ' alcanza todo valor entre ': ' nimmt jeden Wert zwischen ',
@@ -81,26 +92,36 @@ const DE: Record<string, string> = {
   ' entre ': ' zwischen ',
   ' y ': ' und ',
   ' cuando ': ' wenn ',
+  'cuando ': 'wenn ',
+  ' o no existe, y ': ' oder existiert nicht, und ',
   ' o ': ' oder ',
-  ' o': ' oder',
   ' en ': ' auf ',
   ' a ': ' zu ',
+  ' si ': ' wenn ',
+  'si ': 'wenn ',
   'Dominio': 'Definitionsbereich',
   'asíntotas': 'Asymptoten',
   'asíntota horizontal': 'horizontale Asymptote',
   'asíntota oblicua': 'schräge Asymptote',
-  'asíntota vertical de ': 'vertikale Asymptote bei ',
+  'asíntota vertical de ': 'vertikale Asymptote von ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'algebraisch kombinieren oder Konjugierte/Logarithmen verwenden',
   'esquema': 'Skizze',
   'intersecciones': 'Schnittpunkte',
   'usar ': 'verwende ',
-  'o no existe, y ': ' oder existiert nicht, und ',
   ' no existe': ' existiert nicht',
   ' cambia de ': ' wechselt von ',
+  'derivables en un entorno perforado de ': 'differenzierbar in einer punktierten Umgebung von ',
+  'derivables en un entorno de ': 'differenzierbar in einer Umgebung von ',
+  ' en ese entorno': ' in dieser Umgebung',
+  'existe (finito o ': 'existiert (endlich oder ',
+  'existe y es continua en el intervalo abierto entre ':
+    'existiert und ist stetig im offenen Intervall zwischen ',
 };
 
 const FR: Record<string, string> = {
+  'Para ': 'Pour ',
+  'para ': 'pour ',
   ' está definido': ' est défini',
   ' es continua en ': ' est continue en ',
   ' alcanza todo valor entre ': ' atteint toute valeur entre ',
@@ -120,7 +141,7 @@ const FR: Record<string, string> = {
   ' máximo local en ': ' maximum local en ',
   ' mínimo local en ': ' minimum local en ',
   ' cambia de signo en ': ' change de signe en ',
-  ' punto de inflexión': ' point d\'inflexion',
+  ' punto de inflexión': " point d'inflexion",
   ' creciente en ': ' croissante sur ',
   ' decreciente en ': ' décroissante sur ',
   ' estrictamente creciente en ': ' strictement croissante sur ',
@@ -131,26 +152,36 @@ const FR: Record<string, string> = {
   ' entre ': ' entre ',
   ' y ': ' et ',
   ' cuando ': ' quand ',
+  'cuando ': 'quand ',
+  ' o no existe, y ': " ou n'existe pas, et ",
   ' o ': ' ou ',
-  ' o': ' ou',
   ' en ': ' sur ',
   ' a ': ' à ',
+  ' si ': ' si ',
+  'si ': 'si ',
   'Dominio': 'Domaine',
   'asíntotas': 'asymptotes',
   'asíntota horizontal': 'asymptote horizontale',
   'asíntota oblicua': 'asymptote oblique',
-  'asíntota vertical de ': 'asymptote verticale en ',
+  'asíntota vertical de ': 'asymptote verticale de ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combiner algébriquement ou utiliser conjugués/logarithmes',
   'esquema': 'schéma',
   'intersecciones': 'intersections',
   'usar ': 'utiliser ',
-  'o no existe, y ': ' ou n\'existe pas, et ',
-  ' no existe': ' n\'existe pas',
+  ' no existe': " n'existe pas",
   ' cambia de ': ' passe de ',
+  'derivables en un entorno perforado de ': 'dérivables dans un voisinage épointé de ',
+  'derivables en un entorno de ': 'dérivables dans un voisinage de ',
+  ' en ese entorno': ' dans ce voisinage',
+  'existe (finito o ': 'existe (fini ou ',
+  'existe y es continua en el intervalo abierto entre ':
+    "existe et est continue sur l'intervalle ouvert entre ",
 };
 
 const IT: Record<string, string> = {
+  'Para ': 'Per ',
+  'para ': 'per ',
   ' está definido': ' è definito',
   ' es continua en ': ' è continua in ',
   ' alcanza todo valor entre ': ' assume ogni valore tra ',
@@ -181,26 +212,36 @@ const IT: Record<string, string> = {
   ' entre ': ' tra ',
   ' y ': ' e ',
   ' cuando ': ' quando ',
+  'cuando ': 'quando ',
+  ' o no existe, y ': ' o non esiste, e ',
   ' o ': ' o ',
-  ' o': ' o',
   ' en ': ' su ',
   ' a ': ' a ',
+  ' si ': ' se ',
+  'si ': 'se ',
   'Dominio': 'Dominio',
   'asíntotas': 'asintoti',
   'asíntota horizontal': 'asintoto orizzontale',
   'asíntota oblicua': 'asintoto obliquo',
-  'asíntota vertical de ': 'asintoto verticale in ',
+  'asíntota vertical de ': 'asintoto verticale di ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combinare algebricamente o usare coniugati/logaritmi',
   'esquema': 'schema',
   'intersecciones': 'intersezioni',
   'usar ': 'usa ',
-  'o no existe, y ': ' o non esiste, e ',
   ' no existe': ' non esiste',
   ' cambia de ': ' passa da ',
+  'derivables en un entorno perforado de ': 'derivabili in un intorno forato di ',
+  'derivables en un entorno de ': 'derivabili in un intorno di ',
+  ' en ese entorno': ' in tale intorno',
+  'existe (finito o ': 'esiste (finito o ',
+  'existe y es continua en el intervalo abierto entre ':
+    "esiste ed è continua nell'intervallo aperto tra ",
 };
 
 const PT: Record<string, string> = {
+  'Para ': 'Para ',
+  'para ': 'para ',
   ' está definido': ' está definido',
   ' es continua en ': ' é contínua em ',
   ' alcanza todo valor entre ': ' atinge todo valor entre ',
@@ -231,23 +272,31 @@ const PT: Record<string, string> = {
   ' entre ': ' entre ',
   ' y ': ' e ',
   ' cuando ': ' quando ',
+  'cuando ': 'quando ',
+  ' o no existe, y ': ' ou não existe, e ',
   ' o ': ' ou ',
-  ' o': ' ou',
   ' en ': ' em ',
   ' a ': ' a ',
+  ' si ': ' se ',
+  'si ': 'se ',
   'Dominio': 'Domínio',
   'asíntotas': 'assíntotas',
   'asíntota horizontal': 'assíntota horizontal',
   'asíntota oblicua': 'assíntota oblíqua',
-  'asíntota vertical de ': 'assíntota vertical em ',
+  'asíntota vertical de ': 'assíntota vertical de ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combinar algebricamente ou usar conjugados/logaritmos',
   'esquema': 'esquema',
   'intersecciones': 'interseções',
   'usar ': 'usar ',
-  'o no existe, y ': ' ou não existe, e ',
   ' no existe': ' não existe',
   ' cambia de ': ' muda de ',
+  'derivables en un entorno perforado de ': 'deriváveis em uma vizinhança perfurada de ',
+  'derivables en un entorno de ': 'deriváveis em uma vizinhança de ',
+  ' en ese entorno': ' nessa vizinhança',
+  'existe (finito o ': 'existe (finito ou ',
+  'existe y es continua en el intervalo abierto entre ':
+    'existe e é contínua no intervalo aberto entre ',
 };
 
 const MAPS: Partial<Record<AppLocale, Record<string, string>>> = {
@@ -280,6 +329,13 @@ const VARIABLE_MEANINGS: Record<string, Partial<Record<AppLocale, string>>> = {
     it: 'Funzione',
     pt: 'Função',
   },
+  'Segunda función o composición interna': {
+    en: 'Second function or inner composition',
+    de: 'Zweite Funktion oder innere Verkettung',
+    fr: 'Deuxième fonction ou composition interne',
+    it: 'Seconda funzione o composizione interna',
+    pt: 'Segunda função ou composição interna',
+  },
   'Derivada de \\(f\\)': {
     en: 'Derivative of \\(f\\)',
     de: 'Ableitung von \\(f\\)',
@@ -300,6 +356,13 @@ const VARIABLE_MEANINGS: Record<string, Partial<Record<AppLocale, string>>> = {
     fr: 'Différentielle de \\(x\\)',
     it: 'Differenziale di \\(x\\)',
     pt: 'Diferencial de \\(x\\)',
+  },
+  'Diferencial de \\(u\\)': {
+    en: 'Differential of \\(u\\)',
+    de: 'Differential von \\(u\\)',
+    fr: 'Différentielle de \\(u\\)',
+    it: 'Differenziale di \\(u\\)',
+    pt: 'Diferencial de \\(u\\)',
   },
   'Orden de derivada o exponente': {
     en: 'Derivative order or exponent',
@@ -329,18 +392,46 @@ const VARIABLE_MEANINGS: Record<string, Partial<Record<AppLocale, string>>> = {
     it: 'Variabile dipendente',
     pt: 'Variável dependente',
   },
+  'Constante real': {
+    en: 'Real constant',
+    de: 'Reelle Konstante',
+    fr: 'Constante réelle',
+    it: 'Costante reale',
+    pt: 'Constante real',
+  },
+  'Base del logaritmo natural': {
+    en: 'Base of the natural logarithm',
+    de: 'Basis des natürlichen Logarithmus',
+    fr: 'Base du logarithme naturel',
+    it: 'Base del logaritmo naturale',
+    pt: 'Base do logaritmo natural',
+  },
+  'Logaritmo natural': {
+    en: 'Natural logarithm',
+    de: 'Natürlicher Logarithmus',
+    fr: 'Logarithme naturel',
+    it: 'Logaritmo naturale',
+    pt: 'Logaritmo natural',
+  },
 };
 
-function translateTextFragment(inner: string, map: Record<string, string>): string {
-  if (inner.trim() === 'o') {
-    const connector = map[' o ']?.trim();
-    if (connector) return connector;
-  }
+const SORTED_KEYS_CACHE = new Map<AppLocale, string[]>();
+
+function sortedKeys(locale: AppLocale): string[] {
+  const cached = SORTED_KEYS_CACHE.get(locale);
+  if (cached) return cached;
+  const map = MAPS[locale] ?? EN;
+  const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+  SORTED_KEYS_CACHE.set(locale, keys);
+  return keys;
+}
+
+function translateTextFragment(inner: string, locale: AppLocale): string {
+  const map = MAPS[locale] ?? EN;
   const exact = map[inner] ?? map[inner.trim()];
   if (exact !== undefined) return exact;
-  const keys = Object.keys(map).sort((a, b) => b.length - a.length);
   let out = inner;
-  for (const key of keys) {
+  for (const key of sortedKeys(locale)) {
     if (!out.includes(key)) continue;
     out = out.split(key).join(map[key]!);
   }
@@ -349,9 +440,8 @@ function translateTextFragment(inner: string, map: Record<string, string>): stri
 
 export function localizeCalculoDiferencialLatexText(latex: string, locale: AppLocale): string {
   if (locale === 'es') return latex;
-  const map = MAPS[locale] ?? EN;
   return latex.replace(/\\text\{([^}]*)\}/g, (match, inner: string) => {
-    const translated = translateTextFragment(inner, map);
+    const translated = translateTextFragment(inner, locale);
     return translated !== inner ? `\\text{${translated}}` : match;
   });
 }
@@ -366,4 +456,11 @@ export function localizeCalculoDiferencialVariables(
     const localized = VARIABLE_MEANINGS[trimmed]?.[locale];
     return localized ? `${symbol}: ${localized}` : full;
   });
+}
+
+/** Patterns that indicate corrupted partial translation (QA regression guard). */
+export const CORRUPT_LATEX_PATTERNS = [/orr/i, /oderder/i, /\bouu\b/i, /si el cociente/i];
+
+export function hasCorruptLocalizedLatex(latex: string): boolean {
+  return CORRUPT_LATEX_PATTERNS.some((re) => re.test(latex));
 }

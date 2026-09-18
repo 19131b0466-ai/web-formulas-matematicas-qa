@@ -7,12 +7,28 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { execSync } from 'node:child_process';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 
 const parser = require(resolve(ROOT, 'packages/content-parser/dist/parse-markdown.js'));
+const enrich = require(resolve(ROOT, 'packages/content-parser/dist/enrich-calculo.js'));
 const shared = require(resolve(ROOT, 'packages/shared-types/dist/index.js'));
+
+const SUBTOPIC_TITLES = JSON.parse(
+  readFileSync(resolve(ROOT, 'scripts/calculo-diferencial-subtopic-titles.json'), 'utf8'),
+);
+const CONSTRAINT_IDS = ['DIF-019', 'DIF-048', 'DIF-113', 'DIF-114', 'DIF-115', 'DIF-129', 'DIF-159'];
+const CONSTRAINT_LATEX_HINTS = {
+  'DIF-019': [/n\\in\\mathbb\{Z\}/, /n<0/],
+  'DIF-048': [/x>0/, /n\\notin\\mathbb\{Z\}/],
+  'DIF-113': [/f\^\{\(n\+1\)\}.*continua/i],
+  'DIF-114': [/0\/0/, /g'\(x\)\\neq\s*0/, /derivables/i],
+  'DIF-115': [/0\/0/, /g'\(x\)\\neq\s*0/, /x\\to\\infty/],
+  'DIF-129': [/m_\+/, /m_-/],
+  'DIF-159': [/n\\in\\mathbb\{Z\}/],
+};
 
 const MD = resolve(ROOT, 'content/formulas-calculo-diferencial.md');
 const LOCALES = ['en', 'de', 'fr', 'it', 'pt'];
@@ -296,6 +312,48 @@ for (const locale of LOCALES) {
 if (missingI18n > 0) {
   fail(`content-i18n: ${missingI18n} EN-only phrase(s) in de/fr/it/pt (run merge-calculo-diferencial-i18n.py)`);
 } else pass('content-i18n parity for Cálculo Diferencial phrases');
+
+// --- Subtopic title parity (must not equal Spanish key in de/fr/it/pt) ---
+let badSubtopicTitles = 0;
+for (const locale of LOCALES.filter((l) => l !== 'en')) {
+  const dict = loadContentI18n(locale);
+  const expected = SUBTOPIC_TITLES[locale] ?? {};
+  for (const [es, translated] of Object.entries(expected)) {
+    const actual = dict[es];
+    if (!actual || actual === es) badSubtopicTitles += 1;
+  }
+}
+if (badSubtopicTitles > 0) {
+  fail(`content-i18n: ${badSubtopicTitles} subtopic title(s) still Spanish in de/fr/it/pt`);
+} else pass('subtopic title parity in content-i18n');
+
+// --- Formal constraints in LaTeX (7 QA fichas) ---
+for (const id of CONSTRAINT_IDS) {
+  const f = formulaById.get(id);
+  if (!f) {
+    fail(`constraints: missing formula ${id}`);
+    continue;
+  }
+  const extracted = enrich.extractConstraintsFromLatex(f.latex);
+  if (!extracted.length) fail(`${id}: no constraints extracted from LaTeX`);
+  for (const re of CONSTRAINT_LATEX_HINTS[id] ?? []) {
+    if (!re.test(f.latex)) fail(`${id}: LaTeX missing required condition pattern ${re}`);
+  }
+}
+if (CONSTRAINT_IDS.every((id) => formulaById.has(id))) {
+  pass('formal constraints present for DIF-019, 048, 113, 114, 115, 129, 159');
+}
+
+// --- LaTeX localization anti-corruption (unit tests + residue scan) ---
+try {
+  execSync('pnpm --filter web-public exec tsx --test lib/calculo-diferencial-latex-text.test.ts', {
+    cwd: ROOT,
+    stdio: 'pipe',
+  });
+  pass('calculo-diferencial-latex-text unit tests');
+} catch (e) {
+  fail(`calculo-diferencial-latex-text tests failed: ${e.stderr?.toString() || e.message}`);
+}
 
 // --- Parser build artifact ---
 if (!existsSync(resolve(ROOT, 'packages/content-parser/dist/parse-markdown.js'))) {

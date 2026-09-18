@@ -11,10 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 I18N_DIR = ROOT / "apps" / "web-public" / "content-i18n"
 SUBTOPIC_TITLES_PATH = ROOT / "scripts" / "calculo-diferencial-subtopic-titles.json"
+LOCALE_PHRASES_PATH = ROOT / "scripts" / "calculo-diferencial-locale-phrases.json"
 LOCALES = ("en", "de", "fr", "it", "pt")
 SUBTOPIC_TITLES: dict[str, dict[str, str]] = json.loads(
     SUBTOPIC_TITLES_PATH.read_text(encoding="utf-8")
 ) if SUBTOPIC_TITLES_PATH.exists() else {}
+LOCALE_PHRASES: dict[str, dict[str, str]] = json.loads(
+    LOCALE_PHRASES_PATH.read_text(encoding="utf-8")
+) if LOCALE_PHRASES_PATH.exists() else {}
 
 SUBJECT = {
     "en": {
@@ -301,6 +305,11 @@ for (const s of r.sections) {
   for (const b of s.blocks) {
     if (b.blockType==='formula' && b.content.detail) details.add(b.content.detail);
     if (b.title) titles.add(b.title);
+    if (b.blockType==='strategy') {
+      details.add(b.content.signal);
+      details.add(b.content.method);
+    }
+    if (b.blockType==='checklist') details.add(b.content.text);
   }
 }
 console.log(JSON.stringify({titles:[...titles].sort(), details:[...details].sort()}));
@@ -321,33 +330,8 @@ def build_locale_map(locale: str, titles: list[str], details: list[str]) -> dict
     en_extra = EXTRA.get("en", {})
     loc_details = DETAILS.get(locale, {})
     loc_extra = EXTRA.get(locale, {})
+    loc_phrases = LOCALE_PHRASES.get(locale, {})
 
-    for title in titles:
-        if title in merged:
-            continue
-        if locale == "en" and title in en_titles:
-            merged[title] = en_titles[title]
-        elif locale != "en":
-            if title in en_titles:
-                merged[title] = en_titles[title]
-
-    for detail in details:
-        if detail in loc_details:
-            merged[detail] = loc_details[detail]
-        elif locale == "en" and detail in en_details:
-            merged[detail] = en_details[detail]
-        elif locale != "en" and detail in en_details:
-            merged[detail] = en_details[detail]
-
-    for key, value in en_extra.items():
-        if key in loc_extra:
-            merged[key] = loc_extra[key]
-        elif locale == "en":
-            merged[key] = value
-        else:
-            merged[key] = value
-
-    en_titles = TITLES.get("en", {})
     loc_titles = TITLES.get(locale, {})
     for title in titles:
         if title in merged:
@@ -356,6 +340,28 @@ def build_locale_map(locale: str, titles: list[str], details: list[str]) -> dict
             merged[title] = en_titles[title]
         elif locale != "en":
             merged[title] = loc_titles.get(title, en_titles.get(title, title))
+
+    for detail in details:
+        if detail in loc_phrases:
+            merged[detail] = loc_phrases[detail]
+        elif detail in loc_details:
+            merged[detail] = loc_details[detail]
+        elif locale == "en" and detail in en_details:
+            merged[detail] = en_details[detail]
+        elif locale != "en" and detail in en_details:
+            merged[detail] = en_details[detail]
+
+    for key, value in en_extra.items():
+        if key in loc_phrases:
+            merged[key] = loc_phrases[key]
+        elif key in loc_extra:
+            merged[key] = loc_extra[key]
+        elif locale == "en":
+            merged[key] = value
+
+    # Subtopic titles and locale phrases win over generic EN fallbacks (e.g. Product rule vs Produktregel).
+    merged.update(SUBTOPIC_TITLES.get(locale, {}))
+    merged.update(loc_phrases)
 
     return {k: v for k, v in merged.items() if k != v}
 
@@ -382,11 +388,14 @@ def merge_locale(locale: str, phrases: dict[str, str], force_keys: set[str] | No
 
 def main() -> None:
     titles, details = extract_phrases()
-    force_title_keys = set(SUBTOPIC_TITLES.get("de", {})) | set(TITLES.get("en", {}))
+    force_keys: set[str] = set(TITLES.get("en", {})) | set(EXTRA.get("en", {}))
+    for loc in LOCALES:
+        force_keys |= set(SUBTOPIC_TITLES.get(loc, {}))
+        force_keys |= set(LOCALE_PHRASES.get(loc, {}))
     total = 0
     for locale in LOCALES:
         phrases = build_locale_map(locale, titles, details)
-        n = merge_locale(locale, phrases, force_keys=force_title_keys if locale != "en" else None)
+        n = merge_locale(locale, phrases, force_keys=force_keys if locale != "en" else None)
         print(f"{locale}: merged {n} keys ({len(phrases)} candidates)")
         total += n
     print(f"done, {total} new/updated keys across locales")

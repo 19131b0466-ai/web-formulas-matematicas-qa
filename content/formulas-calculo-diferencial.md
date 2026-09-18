@@ -202,7 +202,7 @@ a^x=e^{x\ln a},\qquad a>0
 **Detalle:** Válido si el límite de \(f\) existe. Si \(n<0\), además se requiere \(\lim_{x\to a}f(x)\neq0\).
 
 \[
-\lim_{x\to a}[f(x)]^n=\left[\lim_{x\to a}f(x)\right]^n,\qquad n\in\mathbb{Z}
+\lim_{x\to a}[f(x)]^n=\left[\lim_{x\to a}f(x)\right]^n,\qquad n\in\mathbb{Z},\ \lim_{x\to a}f(x)\neq 0\ \text{si }n<0
 \]
 
 ---
@@ -318,7 +318,7 @@ f\text{ es continua en }[a,b] \Rightarrow f\text{ alcanza todo valor entre }f(a)
 **ID:** `DIF-032`
 
 \[
-\text{Discontinuidad removible en }a:\ \lim_{x\to a}f(x)=L\neq f(a)\ \text{o }f(a)\text{ no definido}
+\text{Discontinuidad removible en }a:\ \lim_{x\to a}f(x)=L\neq f(a)\ \text{ o }f(a)\text{ no definido}
 \]
 
 ---
@@ -461,7 +461,7 @@ f'(a)\text{ existe } \Leftrightarrow \lim_{h\to0}\frac{f(a+h)-f(a)}{h}\text{ exi
 **Detalle:** Para \(n\in\mathbb{R}\) no entero, válida en cada intervalo donde \(x>0\) (o donde \(x^n\) está definida y es diferenciable).
 
 \[
-\frac{d}{dx}[x^n]=nx^{n-1},\qquad n\in\mathbb{R}
+\frac{d}{dx}[x^n]=nx^{n-1},\qquad n\in\mathbb{R},\ x>0\ \text{si }n\notin\mathbb{Z}
 \]
 
 ---
@@ -1021,7 +1021,7 @@ e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
 **Detalle:** Requiere que \(f^{(n+1)}\) exista y sea continua en el intervalo abierto entre \(a\) y \(x\).
 
 \[
-R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x
+R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x,\ f^{(n+1)}\text{ existe y es continua en el intervalo abierto entre }a\text{ y }x
 \]
 
 ---
@@ -1035,7 +1035,7 @@ R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x
 **Detalle:** Cuando el límite original es \(0/0\) o \(\infty/\infty\) y se cumplen las hipótesis de derivabilidad.
 
 \[
-\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}\quad\text{si el cociente es }0/0\text{ o }\infty/\infty
+\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)},\qquad \frac{f(x)}{g(x)}\to 0/0\text{ o }\infty/\infty,\ f,g\text{ derivables en un entorno perforado de }a,\ g'(x)\neq 0\text{ en ese entorno},\ \lim_{x\to a}\frac{f'(x)}{g'(x)}\ \text{existe (finito o }\pm\infty\text{)}
 \]
 
 ---
@@ -1043,7 +1043,7 @@ R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x
 **Detalle:** Misma regla que DIF-114 en el límite al infinito; requiere forma \(0/0\) o \(\infty/\infty\).
 
 \[
-\lim_{x\to\infty}\frac{f(x)}{g(x)}=\lim_{x\to\infty}\frac{f'(x)}{g'(x)}\quad\text{si el cociente es }0/0\text{ o }\infty/\infty
+\lim_{x\to\infty}\frac{f(x)}{g(x)}=\lim_{x\to\infty}\frac{f'(x)}{g'(x)},\qquad \frac{f(x)}{g(x)}\to 0/0\text{ o }\infty/\infty,\ f,g\text{ derivables en un entorno de }\infty,\ g'(x)\neq 0\text{ en ese entorno},\ \lim_{x\to\infty}\frac{f'(x)}{g'(x)}\ \text{existe (finito o }\pm\infty\text{)}
 \]
 
 ---
@@ -1185,7 +1185,7 @@ y=mx+b\text{ asíntota oblicua} \Leftrightarrow \lim_{x\to+\infty}[f(x)-(mx+b)]=
 **Detalle:** Cálculo de pendiente e intercepto para asíntotas oblicuas (aplicar por separado en \(+\infty\) y \(-\infty\)).
 
 \[
-m=\lim_{x\to+\infty}\frac{f(x)}{x}\ \text{o}\ \lim_{x\to-\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to+\infty}[f(x)-mx]\ \text{o}\ \lim_{x\to-\infty}[f(x)-mx]
+\text{Para }x\to+\infty:\ m_+=\lim_{x\to+\infty}\frac{f(x)}{x},\ b_+=\lim_{x\to+\infty}[f(x)-m_+x];\quad \text{para }x\to-\infty:\ m_-=\lim_{x\to-\infty}\frac{f(x)}{x},\ b_-=\lim_{x\to-\infty}[f(x)-m_-x]
 \]
 
 ---
@@ -1439,7 +1439,7 @@ m=\lim_{x\to+\infty}\frac{f(x)}{x}\ \text{o}\ \lim_{x\to-\infty}\frac{f(x)}{x},\
 **ID:** `DIF-159`
 
 \[
-\frac{d}{dx}((g(x))^n)=n(g(x))^{n-1}g'(x)
+\frac{d}{dx}((g(x))^n)=n(g(x))^{n-1}g'(x),\qquad n\in\mathbb{Z}
 \]
 
 ---
