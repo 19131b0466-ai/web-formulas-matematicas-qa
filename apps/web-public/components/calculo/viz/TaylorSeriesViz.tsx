@@ -281,7 +281,7 @@ export function TaylorSeriesViz() {
 
         {/* Function selector */}
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-[var(--fg-muted)]">f(x) =</span>
+          <span className="text-[var(--fg-muted)]">{tv('taylor.fnPrefix')}</span>
           {TAYLOR_FNS.map((opt, i) => (
             <button key={opt.label} type="button" onClick={() => { setFnIdx(i); setCenter(0); setXProbe(0.5); }}
               className={`rounded-md border px-2 py-1 text-xs font-mono transition ${
@@ -303,9 +303,9 @@ export function TaylorSeriesViz() {
 
         {/* Approximation panel */}
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
-          <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-            {tv('taylor.approx')}<sub>{degree}</sub>(x)
-          </p>
+            <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+              {tv('taylor.approxLabel', { degree })}
+            </p>
           <svg viewBox={`0 0 ${W} ${H_APPROX}`} className="mx-auto h-auto w-full max-w-2xl" role="img">
             {/* Good zone */}
             {goodZone && showGoodZone && (
@@ -382,7 +382,7 @@ export function TaylorSeriesViz() {
         {showError && (
           <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)]">
             <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-              Error |f(x) − P<sub>{degree}</sub>(x)|
+              {tv('taylor.errorTitle', { degree })}
             </p>
             <svg viewBox={`0 0 ${W} ${H_ERROR}`} className="mx-auto h-auto w-full max-w-2xl" role="img">
               {/* Reference lines */}
@@ -442,9 +442,9 @@ export function TaylorSeriesViz() {
 
         {/* Controls */}
         <ControlsStack>
-          <SliderRow label={`Grado n = ${degree}`} value={degree} min={1} max={12} step={1}
+          <SliderRow label={tv('taylor.degreeLabel', { degree })} value={degree} min={1} max={12} step={1}
             onChange={v => setDegree(Math.round(v))} />
-          <SliderRow label={`Centro a = ${center}`} value={center} min={-2} max={2} step={0.25}
+          <SliderRow label={tv('taylor.centerLabel', { center })} value={center} min={-2} max={2} step={0.25}
             onChange={v => setCenter(v)} />
           <SliderRow
             label={`${tv('taylor.probe')} = ${fmt(xProbe, 2)}`}

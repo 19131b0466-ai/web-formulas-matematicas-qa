@@ -1,5 +1,8 @@
 import type { AppLocale } from '@/i18n/routing';
-import { localizeCalculoDiferencialLatexText } from './calculo-diferencial-latex-text';
+import {
+  localizeCalculoDiferencialLatexText,
+  localizeCalculoDiferencialVariables,
+} from './calculo-diferencial-latex-text';
 
 type ContentDict = Record<string, string>;
 
@@ -70,6 +73,8 @@ function walk(value: unknown, dict: ContentDict, locale: AppLocale, parentKey?: 
       }
       if (key === 'latex' && typeof child === 'string') {
         out[key] = localizeLatexField(child, locale);
+      } else if (key === 'variables' && typeof child === 'string') {
+        out[key] = localizeCalculoDiferencialVariables(localizeString(child, dict, locale), locale);
       } else if (key === 'additionalLatex' && Array.isArray(child)) {
         out[key] = child.map((item) =>
           typeof item === 'string' ? localizeLatexField(item, locale) : walk(item, dict, locale, key),

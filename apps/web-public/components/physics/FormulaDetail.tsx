@@ -42,9 +42,10 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
   const tn = await getTranslations('nav');
   const locale = (await getLocale()) as AppLocale;
   const { content, related, section, formulaId, title, tags } = detail;
-  const displayTags = tags.filter(
-    (tag) => tag !== 'antiderivada' || !tags.includes('formula-derivada'),
-  );
+  const displayTags =
+    subject === 'calculo-diferencial'
+      ? tags.filter((tag) => tag !== 'antiderivada')
+      : tags.filter((tag) => tag !== 'antiderivada' || !tags.includes('formula-derivada'));
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
     subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;

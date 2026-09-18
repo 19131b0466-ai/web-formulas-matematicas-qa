@@ -518,6 +518,11 @@
       "showZone": "Show good-approximation zone (error < 0.05)",
       "showTerms": "Show polynomial terms",
       "approx": "Approximation — f(x) vs P",
+      "approxLabel": "Approximation — f(x) vs P{degree}(x)",
+      "fnPrefix": "f(x) =",
+      "errorTitle": "Error |f(x) − P{degree}(x)|",
+      "degreeLabel": "Degree n = {degree}",
+      "centerLabel": "Center a = {center}",
       "probe": "Inspection point x₀",
       "radiusWarn": "Radius of convergence R = {R}. For |x − {center}| ≥ {R} the series diverges regardless of n."
     },
@@ -713,7 +718,7 @@
       "bilateralExists": "Two-sided limit?",
       "yes": "Yes",
       "no": "No",
-      "eDefinitionIdea": "The expression (1+x)^(1/x) approaches e as x → 0⁺.",
+      "eDefinitionIdea": "The expression (1+x)^(1/x) approaches e as x → 0 (values on both sides of zero illustrate the two-sided limit).",
       "eValue": "e ≈"
     },
     "tangent": {

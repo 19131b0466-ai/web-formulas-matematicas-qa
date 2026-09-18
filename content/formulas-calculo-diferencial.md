@@ -885,7 +885,7 @@ Q_{\max}=\max\{Q(a),Q(b),Q(c_1),\ldots,Q(c_k)\}
 
 ---
 **ID:** `DIF-098`
-**Detalle:** Ejemplo tipo: área máxima con perímetro fijo (rectángulo → cuadrado).
+**Detalle:** Ejemplo tipo: área máxima con perímetro fijo (rectángulo → cuadrado). Aquí \(P\) es el perímetro completo (\(P=2x+2y\)); el semiperímetro es \(C=P/2=x+y\).
 
 \[
 A=xy,\quad 2x+2y=P \Rightarrow A(x)=x\left(\frac{P}{2}-x\right)
@@ -1235,42 +1235,42 @@ m=\lim_{x\to+\infty}\frac{f(x)}{x}\ \text{o}\ \lim_{x\to-\infty}\frac{f(x)}{x},\
 **ID:** `DIF-131`
 
 \[
-\frac{d}{dx}(x^n)=nx^{n-1},\qquad n\in\mathbb{R}
+\frac{d}{dx}[x^n]=nx^{n-1},\qquad n\in\mathbb{R}
 \]
 
 ---
 **ID:** `DIF-132`
 
 \[
-\frac{d}{dx}(e^x)=e^x
+\frac{d}{dx}[e^x]=e^x
 \]
 
 ---
 **ID:** `DIF-133`
 
 \[
-\frac{d}{dx}(a^x)=a^x\ln a,\qquad a>0
+\frac{d}{dx}[a^x]=a^x\ln a,\qquad a>0
 \]
 
 ---
 **ID:** `DIF-134`
 
 \[
-\frac{d}{dx}(\ln x)=\frac{1}{x},\qquad x>0
+\frac{d}{dx}[\ln x]=\frac{1}{x},\qquad x>0
 \]
 
 ---
 **ID:** `DIF-135`
 
 \[
-\frac{d}{dx}(\ln|x|)=\frac{1}{x},\qquad x\neq0
+\frac{d}{dx}[\ln|x|]=\frac{1}{x},\qquad x\neq0
 \]
 
 ---
 **ID:** `DIF-136`
 
 \[
-\frac{d}{dx}(\log_a x)=\frac{1}{x\ln a},\qquad a>0,a\neq1,x>0
+\frac{d}{dx}[\log_a x]=\frac{1}{x\ln a},\qquad a>0,\ a\neq1,\ x>0
 \]
 
 ---

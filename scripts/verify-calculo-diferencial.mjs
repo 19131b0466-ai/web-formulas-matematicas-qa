@@ -60,6 +60,7 @@ for (const section of parsed.sections) {
       detail: block.content.detail ?? null,
       latex: block.content.latex ?? '',
       related: block.content.relatedIds ?? [],
+      tags: block.tags ?? [],
     });
     ids.push(block.formulaCode);
   }
@@ -202,6 +203,13 @@ const truncatedLatex = formulas.filter((f) => f.latex.includes('\\frac{d}{dx}(,'
 if (truncatedLatex.length) {
   fail(`${truncatedLatex.length} appendix formulas with truncated LaTeX (DIF-131+)`);
 } else pass('no truncated \\frac{d}{dx}(, LaTeX in appendix');
+
+const badTags = formulas.filter(
+  (f) => f.tags.includes('antiderivada') && !f.tags.includes('formula-derivada'),
+);
+if (badTags.length) {
+  fail(`${badTags.length} formulas tagged antiderivada without formula-derivada`);
+} else pass('no orphan antiderivada tags on DIF formulas');
 
 // --- Topic hubs ---
 const idSet = new Set(ids);

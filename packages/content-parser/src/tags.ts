@@ -15,7 +15,7 @@ const SECTION_TAGS: Record<string, string[]> = {
   'funciones-implicitas': ['derivada', 'implicita', 'calculo-diferencial'],
   'tasas-relacionadas': ['derivada', 'aplicacion', 'calculo-diferencial'],
   'graficas-asintotas': ['derivada', 'grafica', 'calculo-diferencial'],
-  'apendice-tabla-derivadas': ['derivada', 'tabla', 'calculo-diferencial'],
+  'apendice-tabla-derivadas': ['derivada', 'tabla', 'calculo-diferencial', 'formula-derivada'],
   // Cálculo II
   'notacion-dominios': ['notacion', 'dominio', 'restriccion-dominio'],
   'integral-indefinida': ['antiderivada', 'propiedad', 'integral-indefinida'],
@@ -114,12 +114,37 @@ const KEYWORD_TAGS: Array<[RegExp, string]> = [
   [/\boptimiz/i, 'optimizacion'],
 ];
 
+function isCalculoDiferencialSection(slug: string): boolean {
+  if (slug.startsWith('a-') || slug.startsWith('apendice-tabla-derivadas')) return true;
+  const prefixes = [
+    'notacion',
+    'limites',
+    'continuidad',
+    'derivada',
+    'reglas',
+    'teorema',
+    'analisis',
+    'optimizacion',
+    'aproximaciones',
+    'series',
+    'lhopital',
+    'funciones',
+    'tasas',
+    'graficas',
+    'guia-metodos',
+  ];
+  return prefixes.some((p) => slug === p || slug.startsWith(`${p}-`));
+}
+
 export function tagsForSection(slug: string): string[] {
   const direct = SECTION_TAGS[slug];
   if (direct) return direct;
   // Subsections inherit chapter tags: continuidad-definicion → continuidad
   for (const [parentSlug, tags] of Object.entries(SECTION_TAGS)) {
     if (slug === parentSlug || slug.startsWith(`${parentSlug}-`)) return tags;
+  }
+  if (isCalculoDiferencialSection(slug)) {
+    return SECTION_TAGS['apendice-tabla-derivadas'] ?? ['derivada', 'tabla', 'calculo-diferencial'];
   }
   return [];
 }
@@ -132,6 +157,7 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
     if (tags.has('fisica')) tags.add('formula-fisica');
     else if (tags.has('algebra')) tags.add('formula-algebra');
     else if (
+      isCalculoDiferencialSection(sectionSlug) ||
       tags.has('calculo-diferencial') ||
       tags.has('derivada') ||
       tags.has('limite') ||
@@ -143,6 +169,7 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
       tags.has('grafica')
     ) {
       tags.add('formula-derivada');
+      tags.delete('antiderivada');
     } else tags.add('antiderivada');
   }
   if (blockType === 'strategy') tags.add('estrategia');
@@ -151,6 +178,8 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
   for (const [pattern, tag] of KEYWORD_TAGS) {
     if (pattern.test(text)) tags.add(tag);
   }
+
+  if (tags.has('formula-derivada')) tags.delete('antiderivada');
 
   return [...tags].sort();
 }

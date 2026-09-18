@@ -47,6 +47,7 @@ const EN: Record<string, string> = {
   'usar ': 'use ',
   'o no existe, y ': ' or does not exist, and ',
   ' no existe': ' does not exist',
+  ' cambia de ': ' changes from ',
 };
 
 const DE: Record<string, string> = {
@@ -96,6 +97,7 @@ const DE: Record<string, string> = {
   'usar ': 'verwende ',
   'o no existe, y ': ' oder existiert nicht, und ',
   ' no existe': ' existiert nicht',
+  ' cambia de ': ' wechselt von ',
 };
 
 const FR: Record<string, string> = {
@@ -145,6 +147,7 @@ const FR: Record<string, string> = {
   'usar ': 'utiliser ',
   'o no existe, y ': ' ou n\'existe pas, et ',
   ' no existe': ' n\'existe pas',
+  ' cambia de ': ' passe de ',
 };
 
 const IT: Record<string, string> = {
@@ -194,6 +197,7 @@ const IT: Record<string, string> = {
   'usar ': 'usa ',
   'o no existe, y ': ' o non esiste, e ',
   ' no existe': ' non esiste',
+  ' cambia de ': ' passa da ',
 };
 
 const PT: Record<string, string> = {
@@ -243,6 +247,7 @@ const PT: Record<string, string> = {
   'usar ': 'usar ',
   'o no existe, y ': ' ou não existe, e ',
   ' no existe': ' não existe',
+  ' cambia de ': ' muda de ',
 };
 
 const MAPS: Partial<Record<AppLocale, Record<string, string>>> = {
@@ -253,11 +258,112 @@ const MAPS: Partial<Record<AppLocale, Record<string, string>>> = {
   pt: PT,
 };
 
+const VARIABLE_MEANINGS: Record<string, Partial<Record<AppLocale, string>>> = {
+  'Variable independiente': {
+    en: 'Independent variable',
+    de: 'Unabhängige Variable',
+    fr: 'Variable indépendante',
+    it: 'Variabile indipendente',
+    pt: 'Variável independente',
+  },
+  'Punto o constante real': {
+    en: 'Point or real constant',
+    de: 'Punkt oder reelle Konstante',
+    fr: 'Point ou constante réelle',
+    it: 'Punto o costante reale',
+    pt: 'Ponto ou constante real',
+  },
+  'Función': {
+    en: 'Function',
+    de: 'Funktion',
+    fr: 'Fonction',
+    it: 'Funzione',
+    pt: 'Função',
+  },
+  'Derivada de \\(f\\)': {
+    en: 'Derivative of \\(f\\)',
+    de: 'Ableitung von \\(f\\)',
+    fr: 'Dérivée de \\(f\\)',
+    it: 'Derivata di \\(f\\)',
+    pt: 'Derivada de \\(f\\)',
+  },
+  'Diferencial de \\(y\\)': {
+    en: 'Differential of \\(y\\)',
+    de: 'Differential von \\(y\\)',
+    fr: 'Différentielle de \\(y\\)',
+    it: 'Differenziale di \\(y\\)',
+    pt: 'Diferencial de \\(y\\)',
+  },
+  'Diferencial de \\(x\\)': {
+    en: 'Differential of \\(x\\)',
+    de: 'Differential von \\(x\\)',
+    fr: 'Différentielle de \\(x\\)',
+    it: 'Differenziale di \\(x\\)',
+    pt: 'Diferencial de \\(x\\)',
+  },
+  'Orden de derivada o exponente': {
+    en: 'Derivative order or exponent',
+    de: 'Ableitungsordnung oder Exponent',
+    fr: 'Ordre de dérivée ou exposant',
+    it: 'Ordine di derivata o esponente',
+    pt: 'Ordem de derivada ou expoente',
+  },
+  'Segunda derivada de \\(f\\)': {
+    en: 'Second derivative of \\(f\\)',
+    de: 'Zweite Ableitung von \\(f\\)',
+    fr: 'Dérivée seconde de \\(f\\)',
+    it: 'Seconda derivata di \\(f\\)',
+    pt: 'Segunda derivada de \\(f\\)',
+  },
+  'Valor del límite': {
+    en: 'Limit value',
+    de: 'Grenzwert',
+    fr: 'Valeur de la limite',
+    it: 'Valore del limite',
+    pt: 'Valor do limite',
+  },
+  'Variable dependiente': {
+    en: 'Dependent variable',
+    de: 'Abhängige Variable',
+    fr: 'Variable dépendante',
+    it: 'Variabile dipendente',
+    pt: 'Variável dependente',
+  },
+};
+
+function translateTextFragment(inner: string, map: Record<string, string>): string {
+  if (inner.trim() === 'o') {
+    const connector = map[' o ']?.trim();
+    if (connector) return connector;
+  }
+  const exact = map[inner] ?? map[inner.trim()];
+  if (exact !== undefined) return exact;
+  const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+  let out = inner;
+  for (const key of keys) {
+    if (!out.includes(key)) continue;
+    out = out.split(key).join(map[key]!);
+  }
+  return out;
+}
+
 export function localizeCalculoDiferencialLatexText(latex: string, locale: AppLocale): string {
   if (locale === 'es') return latex;
   const map = MAPS[locale] ?? EN;
   return latex.replace(/\\text\{([^}]*)\}/g, (match, inner: string) => {
-    const translated = map[inner] ?? map[inner.trim()];
-    return translated !== undefined ? `\\text{${translated}}` : match;
+    const translated = translateTextFragment(inner, map);
+    return translated !== inner ? `\\text{${translated}}` : match;
+  });
+}
+
+export function localizeCalculoDiferencialVariables(
+  variables: string,
+  locale: AppLocale,
+): string {
+  if (locale === 'es') return variables;
+  return variables.replace(/([^:;]+):\s*([^;]+)/g, (full, symbol: string, meaning: string) => {
+    const trimmed = meaning.trim();
+    const localized = VARIABLE_MEANINGS[trimmed]?.[locale];
+    return localized ? `${symbol}: ${localized}` : full;
   });
 }

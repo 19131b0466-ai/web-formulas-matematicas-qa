@@ -1352,11 +1352,11 @@ appendix_basic = [
     (r"\log_a x", r"\frac{1}{x\ln a}", r"a>0,a\neq1,x>0"),
 ]
 for fn, deriv, cond in appendix_basic:
-    arg = f"{fn},\\qquad {cond}" if cond else fn
+    tail = f",\\qquad {cond}" if cond else ""
     sections.append(
         formula_block(
             rf"""\[
-\frac{{d}}{{dx}}({arg})={deriv}
+\frac{{d}}{{dx}}[{fn}]={deriv}{tail}
 \]""",
         )
     )
@@ -1412,11 +1412,11 @@ compositions = [
 for item in compositions:
     fn, deriv = item[0], item[1]
     cond = item[2] if len(item) > 2 else None
-    arg = f"{fn},\\qquad {cond}" if cond else fn
+    tail = f",\\qquad {cond}" if cond else ""
     sections.append(
         formula_block(
             rf"""\[
-\frac{{d}}{{dx}}({arg})={deriv}
+\frac{{d}}{{dx}}[{fn}]={deriv}{tail}
 \]""",
         )
     )

@@ -513,13 +513,18 @@
       "cardioid": "Cardioid"
     },
     "taylor": {
-      "idea": "The Taylor polynomial Pₙ(x) is the best polynomial approximation of f near x = a. Each extra term reduces the error.",
-      "note": "Move <strong>n</strong> and watch the orange polynomial hug the blue curve. The green band is where the error is < 0.05.",
-      "showZone": "Show good-approximation zone (error < 0.05)",
-      "showTerms": "Show polynomial terms",
-      "approx": "Approximation — f(x) vs P",
-      "probe": "Inspection point x₀",
-      "radiusWarn": "Radius of convergence R = {R}. For |x − {center}| ≥ {R} the series diverges regardless of n."
+      "idea": "Il polinomio di Taylor Pₙ(x) è la migliore approssimazione polinomiale di f vicino a x = a. Ogni termine aggiuntivo riduce l'errore.",
+      "note": "Modifica <strong>n</strong> e osserva il polinomio arancione avvicinarsi alla curva blu. La fascia verde indica errore < 0,05.",
+      "showZone": "Mostra zona di buona approssimazione (errore < 0,05)",
+      "showTerms": "Mostra i termini del polinomio",
+      "approx": "Approssimazione — f(x) vs P",
+      "approxLabel": "Approssimazione — f(x) vs P{degree}(x)",
+      "fnPrefix": "f(x) =",
+      "errorTitle": "Errore |f(x) − P{degree}(x)|",
+      "degreeLabel": "Grado n = {degree}",
+      "centerLabel": "Centro a = {center}",
+      "probe": "Punto di ispezione x₀",
+      "radiusWarn": "Raggio di convergenza R = {R}. Per |x − {center}| ≥ {R} la serie diverge indipendentemente da n."
     },
     "tfc": {
       "idea": "<strong>FTC Part I:</strong> If G(x) = ∫ₐˣ f(t) dt, then G′(x) = f(x).",
@@ -713,7 +718,7 @@
       "bilateralExists": "Limite bilaterale?",
       "yes": "Sì",
       "no": "No",
-      "eDefinitionIdea": "L'espressione (1+x)^(1/x) tende a e per x → 0⁺.",
+      "eDefinitionIdea": "L'espressione (1+x)^(1/x) tende a e per x → 0 (valori su entrambi i lati di zero illustrano il limite bilaterale).",
       "eValue": "e ≈"
     },
     "tangent": {

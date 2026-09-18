@@ -198,7 +198,12 @@ export const fetchFormula = cache(
     // Propagates ApiUnavailableError; returns null only for true 404.
     return apiFetch<FormulaDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
-      { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
+      {
+        next: {
+          revalidate: CATALOG_REVALIDATE_SECONDS,
+          tags: ['formulas', `formula-${subject}-${formulaId.trim().toUpperCase()}`],
+        },
+      },
     );
   },
 );

@@ -10,7 +10,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 I18N_DIR = ROOT / "apps" / "web-public" / "content-i18n"
+SUBTOPIC_TITLES_PATH = ROOT / "scripts" / "calculo-diferencial-subtopic-titles.json"
 LOCALES = ("en", "de", "fr", "it", "pt")
+SUBTOPIC_TITLES: dict[str, dict[str, str]] = json.loads(
+    SUBTOPIC_TITLES_PATH.read_text(encoding="utf-8")
+) if SUBTOPIC_TITLES_PATH.exists() else {}
 
 SUBJECT = {
     "en": {
@@ -311,6 +315,7 @@ def build_locale_map(locale: str, titles: list[str], details: list[str]) -> dict
     merged: dict[str, str] = {}
     merged.update(SUBJECT.get(locale, {}))
     merged.update(TITLES.get(locale, {}))
+    merged.update(SUBTOPIC_TITLES.get(locale, {}))
     en_titles = TITLES.get("en", {})
     en_details = DETAILS.get("en", {})
     en_extra = EXTRA.get("en", {})
@@ -355,11 +360,16 @@ def build_locale_map(locale: str, titles: list[str], details: list[str]) -> dict
     return {k: v for k, v in merged.items() if k != v}
 
 
-def merge_locale(locale: str, phrases: dict[str, str]) -> int:
+def merge_locale(locale: str, phrases: dict[str, str], force_keys: set[str] | None = None) -> int:
     path = I18N_DIR / f"{locale}.json"
     data = json.loads(path.read_text(encoding="utf-8"))
     added = 0
+    force = force_keys or set()
     for key, value in phrases.items():
+        if key in force and data.get(key) != value:
+            data[key] = value
+            added += 1
+            continue
         if key not in data:
             data[key] = value
             added += 1
@@ -372,10 +382,11 @@ def merge_locale(locale: str, phrases: dict[str, str]) -> int:
 
 def main() -> None:
     titles, details = extract_phrases()
+    force_title_keys = set(SUBTOPIC_TITLES.get("de", {})) | set(TITLES.get("en", {}))
     total = 0
     for locale in LOCALES:
         phrases = build_locale_map(locale, titles, details)
-        n = merge_locale(locale, phrases)
+        n = merge_locale(locale, phrases, force_keys=force_title_keys if locale != "en" else None)
         print(f"{locale}: merged {n} keys ({len(phrases)} candidates)")
         total += n
     print(f"done, {total} new/updated keys across locales")

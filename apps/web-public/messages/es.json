@@ -713,7 +713,7 @@
       "bilateralExists": "¿Límite bilateral?",
       "yes": "Sí",
       "no": "No",
-      "eDefinitionIdea": "La sucesión (1+x)^(1/x) se acerca al número e cuando x → 0⁺.",
+      "eDefinitionIdea": "La expresión (1+x)^(1/x) se acerca al número e cuando x → 0 (la tabla incluye valores a ambos lados de cero para ilustrar el límite bilateral).",
       "eValue": "e ≈"
     },
     "tangent": {
