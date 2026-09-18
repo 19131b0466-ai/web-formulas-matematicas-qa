@@ -800,10 +800,12 @@
       "decreasing": "f′ < 0 (fallend)",
       "concaveUp": "Konvex nach oben",
       "concaveDown": "Konvex nach unten",
+      "concaveUpInterval": "Konvex nach oben: f″ > 0 auf dem Intervall",
+      "concaveDownInterval": "Konvex nach unten: f″ < 0 auf dem Intervall",
       "critical": "Ca. kritische Punkte (f′≈0)"
     },
     "optimization": {
-      "rectangleIdea": "Bei festem Umfang ist die Fläche A(x)=x(C/2−x) maximal, wenn das Rechteck ein Quadrat ist.",
+      "rectangleIdea": "Bei festem Umfang P (2x+2y=P) ist die Fläche A(x)=x(P/2−x) maximal, wenn das Rechteck ein Quadrat ist.",
       "cylinderIdea": "Bei fester Oberfläche erreicht das Volumen V(r)=Cr/2−πr³ sein Maximum bei einem optimalen Radius.",
       "widthLabel": "Breite x",
       "radiusLabel": "Radius r",

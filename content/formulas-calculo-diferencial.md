@@ -199,6 +199,7 @@ a^x=e^{x\ln a},\qquad a>0
 
 ---
 **ID:** `DIF-019`
+**Detalle:** Válido si el límite de \(f\) existe. Si \(n<0\), además se requiere \(\lim_{x\to a}f(x)\neq0\).
 
 \[
 \lim_{x\to a}[f(x)]^n=\left[\lim_{x\to a}f(x)\right]^n,\qquad n\in\mathbb{Z}
@@ -259,14 +260,14 @@ a^x=e^{x\ln a},\qquad a>0
 
 ---
 **ID:** `DIF-027`
-**Detalle:** Comportamiento de cocientes de polinomios cuando \(x	o\infty\).
+**Detalle:** Comportamiento de cocientes de polinomios cuando \(x\to\infty\) (mismo resultado para \(x\to-\infty\) si los grados difieren; si \(n>m\), el signo depende de \(a_n/b_m\) y del sentido).
 
 \[
 \lim_{x\to\infty}\frac{a_nx^n+\cdots+a_0}{b_mx^m+\cdots+b_0}=
 \begin{cases}
 0, & n<m\\
 \frac{a_n}{b_m}, & n=m\\
-\pm\infty, & n>m
+\operatorname{sgn}\!\left(\frac{a_n}{b_m}\right)\cdot\infty, & n>m
 \end{cases}
 \]
 
@@ -356,7 +357,7 @@ f\text{ continua en }[a,b] \Rightarrow f\text{ tiene máximo y mínimo absolutos
 **Detalle:** Para todo \(k\) entre \(f(a)\) y \(f(b)\) (TVI).
 
 \[
-f\text{ continua en }[a,b],\ f(a)\neq f(b) \Rightarrow \exists c\in(a,b): f(c)=k
+f\text{ continua en }[a,b],\ f(a)\neq f(b) \Rightarrow \forall k\in(\min\{f(a),f(b)\},\max\{f(a),f(b)\})\ \exists c\in(a,b): f(c)=k
 \]
 
 ---
@@ -457,6 +458,7 @@ f'(a)\text{ existe } \Leftrightarrow \lim_{h\to0}\frac{f(a+h)-f(a)}{h}\text{ exi
 
 ---
 **ID:** `DIF-048`
+**Detalle:** Para \(n\in\mathbb{R}\) no entero, válida en cada intervalo donde \(x>0\) (o donde \(x^n\) está definida y es diferenciable).
 
 \[
 \frac{d}{dx}[x^n]=nx^{n-1},\qquad n\in\mathbb{R}
@@ -657,10 +659,10 @@ f'(a)\text{ existe } \Leftrightarrow \lim_{h\to0}\frac{f(a+h)-f(a)}{h}\text{ exi
 
 ---
 **ID:** `DIF-074`
-**Detalle:** Paso inicial para derivar \(f^g\) con exponente variable.
+**Detalle:** Paso inicial para derivar \(f^g\) con exponente variable (requiere \(f(x)>0\) donde se aplica \(\ln\)).
 
 \[
-y=f(x)^{g(x)} \Rightarrow \ln y=g(x)\ln f(x)
+y=f(x)^{g(x)} \Rightarrow \ln y=g(x)\ln f(x),\qquad f(x)>0
 \]
 
 ---
@@ -811,6 +813,7 @@ f''(x)<0\text{ en }I \Rightarrow f\text{ cóncava hacia abajo en }I
 ### 8.3 Puntos críticos y extremos
 
 **ID:** `DIF-091`
+**Detalle:** \(c\) pertenece al dominio de \(f\) y al interior del intervalo considerado.
 
 \[
 f'(c)=0\ \text{o}\ f'(c)\text{ no existe} \Rightarrow c\text{ es punto crítico}
@@ -885,7 +888,7 @@ Q_{\max}=\max\{Q(a),Q(b),Q(c_1),\ldots,Q(c_k)\}
 **Detalle:** Ejemplo tipo: área máxima con perímetro fijo (rectángulo → cuadrado).
 
 \[
-A=xy,\quad x+y=C \Rightarrow A(x)=x(C-x)
+A=xy,\quad 2x+2y=P \Rightarrow A(x)=x\left(\frac{P}{2}-x\right)
 \]
 
 ---
@@ -1015,6 +1018,7 @@ e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots
 ### 11.3 Resto de Lagrange
 
 **ID:** `DIF-113`
+**Detalle:** Requiere que \(f^{(n+1)}\) exista y sea continua en el intervalo abierto entre \(a\) y \(x\).
 
 \[
 R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x
@@ -1028,17 +1032,18 @@ R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},\qquad c\text{ entre }a\text{ y }x
 ### 12.1 Regla de L'Hôpital
 
 **ID:** `DIF-114`
-**Detalle:** Cuando el límite original es \(0/0\) o \(\infty/\infty\) y se cumplen las hipótesis.
+**Detalle:** Cuando el límite original es \(0/0\) o \(\infty/\infty\) y se cumplen las hipótesis de derivabilidad.
 
 \[
-\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}
+\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}\quad\text{si el cociente es }0/0\text{ o }\infty/\infty
 \]
 
 ---
 **ID:** `DIF-115`
+**Detalle:** Misma regla que DIF-114 en el límite al infinito; requiere forma \(0/0\) o \(\infty/\infty\).
 
 \[
-\lim_{x\to\infty}\frac{f(x)}{g(x)}=\lim_{x\to\infty}\frac{f'(x)}{g'(x)}
+\lim_{x\to\infty}\frac{f(x)}{g(x)}=\lim_{x\to\infty}\frac{f'(x)}{g'(x)}\quad\text{si el cociente es }0/0\text{ o }\infty/\infty
 \]
 
 ---
@@ -1159,26 +1164,28 @@ x=a\text{ asíntota vertical de }f \Leftrightarrow \lim_{x\to a^+}f(x)=\pm\infty
 ### 15.2 Asíntotas horizontales
 
 **ID:** `DIF-127`
+**Detalle:** Puede existir solo al tender a \(+\infty\) o a \(-\infty\); no exige simultáneamente ambos.
 
 \[
-y=L\text{ asíntota horizontal} \Leftrightarrow \lim_{x\to\pm\infty}f(x)=L
+y=L\text{ asíntota horizontal} \Leftrightarrow \lim_{x\to+\infty}f(x)=L\ \text{o}\ \lim_{x\to-\infty}f(x)=L
 \]
 
 ---
 ### 15.3 Asíntotas oblicuas
 
 **ID:** `DIF-128`
+**Detalle:** La asíntota oblicua puede existir solo en \(+\infty\) o en \(-\infty\).
 
 \[
-y=mx+b\text{ asíntota oblicua} \Leftrightarrow \lim_{x\to\pm\infty}[f(x)-(mx+b)]=0
+y=mx+b\text{ asíntota oblicua} \Leftrightarrow \lim_{x\to+\infty}[f(x)-(mx+b)]=0\ \text{o}\ \lim_{x\to-\infty}[f(x)-(mx+b)]=0
 \]
 
 ---
 **ID:** `DIF-129`
-**Detalle:** Cálculo de pendiente e intercepto para asíntotas oblicuas.
+**Detalle:** Cálculo de pendiente e intercepto para asíntotas oblicuas (aplicar por separado en \(+\infty\) y \(-\infty\)).
 
 \[
-m=\lim_{x\to\pm\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to\pm\infty}[f(x)-mx]
+m=\lim_{x\to+\infty}\frac{f(x)}{x}\ \text{o}\ \lim_{x\to-\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to+\infty}[f(x)-mx]\ \text{o}\ \lim_{x\to-\infty}[f(x)-mx]
 \]
 
 ---
@@ -1425,7 +1432,7 @@ m=\lim_{x\to\pm\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to\pm\infty}[f(x)-mx]
 **ID:** `DIF-158`
 
 \[
-\frac{d}{dx}(\ln(g(x)),\qquad g(x)>0)=\frac{g'(x)}{g(x)}
+\frac{d}{dx}[\ln(g(x))]=\frac{g'(x)}{g(x)},\qquad g(x)>0
 \]
 
 ---
@@ -1446,7 +1453,7 @@ m=\lim_{x\to\pm\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to\pm\infty}[f(x)-mx]
 **ID:** `DIF-161`
 
 \[
-\frac{d}{dx}(\operatorname{arcsen}(g(x)),\qquad |g(x)|<1)=\frac{g'(x)}{\sqrt{1-(g(x))^2}}
+\frac{d}{dx}[\operatorname{arcsen}(g(x))]=\frac{g'(x)}{\sqrt{1-(g(x))^2}},\qquad |g(x)|<1
 \]
 
 ---

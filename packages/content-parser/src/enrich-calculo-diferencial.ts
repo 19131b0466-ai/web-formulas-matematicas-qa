@@ -298,9 +298,12 @@ function attachFormulaVisuals(sections: ParsedSection[]): void {
   for (const section of sections) {
     for (const block of section.blocks) {
       if (block.blockType !== 'formula' || !block.formulaCode) continue;
-      const spec = calculoDiferencialVizForFormulaId(block.formulaCode);
-      if (!spec) continue;
       const content = block.content as FormulaContent;
+      const spec = calculoDiferencialVizForFormulaId(block.formulaCode);
+      if (!spec) {
+        delete content.visual;
+        continue;
+      }
       if (content.visual) continue;
       content.visual = {
         type: spec.type,

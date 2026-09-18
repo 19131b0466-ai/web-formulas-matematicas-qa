@@ -276,6 +276,7 @@ EXTRA: dict[str, dict[str, str]] = {
         "f'': concavidad y puntos de inflexión.": "f'': concavity and inflection points.",
         "Tabla de signos y esquema final.": "Sign chart and final sketch.",
         "Guía para derivar y analizar": "Guide to differentiate and analyze",
+        "> **Regla de uso:** aplicar solo donde las expresiones estén definidas; denominadores distintos de cero.": "> **Usage rule:** apply only where expressions are defined; denominators must be nonzero.",
     },
 }
 
@@ -340,6 +341,16 @@ def build_locale_map(locale: str, titles: list[str], details: list[str]) -> dict
             merged[key] = value
         else:
             merged[key] = value
+
+    en_titles = TITLES.get("en", {})
+    loc_titles = TITLES.get(locale, {})
+    for title in titles:
+        if title in merged:
+            continue
+        if locale == "en" and title in en_titles:
+            merged[title] = en_titles[title]
+        elif locale != "en":
+            merged[title] = loc_titles.get(title, en_titles.get(title, title))
 
     return {k: v for k, v in merged.items() if k != v}
 

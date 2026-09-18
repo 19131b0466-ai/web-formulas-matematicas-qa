@@ -289,12 +289,16 @@ function NotableMode() {
 
 function EDefinitionMode() {
   const t = useTranslations('vizDif.limit');
-  const xs = [0.5, 0.2, 0.1, 0.05, 0.02, 0.01, 0.005];
+  const xs = [-0.2, -0.1, -0.05, -0.02, -0.01, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5];
   const e = Math.E;
   const rows = xs.map((x) => ({ x, y: (1 + x) ** (1 / x) }));
-  const range = { yMin: 2.5, yMax: 3.2, xMin: 0, xMax: 0.55 };
-  const f = (x: number) => (x <= 0 ? e : (1 + x) ** (1 / x));
-  const curve = pathOf(f, 0.005, 0.55, range.yMin, range.yMax);
+  const range = { yMin: 2.5, yMax: 3.2, xMin: -0.25, xMax: 0.55 };
+  const f = (x: number) => {
+    if (x <= -1) return NaN;
+    if (Math.abs(x) < 1e-6) return e;
+    return (1 + x) ** (1 / x);
+  };
+  const curve = pathOf(f, -0.22, 0.55, range.yMin, range.yMax);
 
   return (
     <div className="space-y-4">

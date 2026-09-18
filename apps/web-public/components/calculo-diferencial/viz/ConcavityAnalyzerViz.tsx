@@ -189,8 +189,8 @@ export function ConcavityAnalyzerViz() {
         <div className="flex flex-wrap gap-3 text-xs text-[var(--fg-muted)]">
           <span><span className="inline-block h-2 w-4 rounded bg-[#22c55e]/40" /> {t('increasing')}</span>
           <span><span className="inline-block h-2 w-4 rounded bg-[#ef4444]/40" /> {t('decreasing')}</span>
-          <span>{t('concaveUp')}: f″ &gt; 0 en f</span>
-          <span>{t('concaveDown')}: f″ &lt; 0 en f</span>
+          <span>{t('concaveUpInterval')}</span>
+          <span>{t('concaveDownInterval')}</span>
         </div>
         {critical.length > 0 ? (
           <p className="text-sm text-[var(--fg-muted)]">

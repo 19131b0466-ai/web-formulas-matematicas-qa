@@ -135,7 +135,7 @@ const VIZ_SEMANTIC = {
   'DIF-081': { type: 'mean_value_theorem', mode: 'rolle' },
   'DIF-082': { type: 'mean_value_theorem', mode: 'mvt' },
   'DIF-089': { type: 'concavity_analyzer' },
-  'DIF-098': { type: 'optimization_scenario', mode: 'rectangle', detailIncludes: ['área', 'perímetro'] },
+  'DIF-098': { type: 'optimization_scenario', mode: 'rectangle', detailIncludes: ['área', 'perímetro', 'rectángulo'] },
   'DIF-099': { type: 'optimization_scenario', mode: 'cylinder', detailIncludes: ['cilindro', 'superficie'] },
   'DIF-102': { type: 'linear_approximation', detailIncludes: ['aproximación lineal'] },
   'DIF-106': { type: 'taylor_approximation', detailIncludes: ['Taylor', 'polinomio'] },

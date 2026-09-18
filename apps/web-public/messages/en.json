@@ -800,10 +800,12 @@
       "decreasing": "f′ < 0 (decreasing)",
       "concaveUp": "Concave up",
       "concaveDown": "Concave down",
+      "concaveUpInterval": "Concave up: f″ > 0 on the interval",
+      "concaveDownInterval": "Concave down: f″ < 0 on the interval",
       "critical": "Approx. critical points (f′≈0)"
     },
     "optimization": {
-      "rectangleIdea": "With fixed perimeter, area A(x)=x(C/2−x) is maximized when the rectangle is a square.",
+      "rectangleIdea": "With fixed perimeter P (2x+2y=P), area A(x)=x(P/2−x) is maximized when the rectangle is a square.",
       "cylinderIdea": "With fixed surface area, volume V(r)=Cr/2−πr³ peaks at an optimal radius.",
       "widthLabel": "Width x",
       "radiusLabel": "Radius r",

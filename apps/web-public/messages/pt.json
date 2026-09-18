@@ -801,10 +801,12 @@
       "decreasing": "f′ < 0 (decrescente)",
       "concaveUp": "Côncava para cima",
       "concaveDown": "Côncava para baixo",
+      "concaveUpInterval": "Côncava para cima: f″ > 0 no intervalo",
+      "concaveDownInterval": "Côncava para baixo: f″ < 0 no intervalo",
       "critical": "Pontos críticos aprox. (f′≈0)"
     },
     "optimization": {
-      "rectangleIdea": "Com perímetro fixo, a área A(x)=x(C/2−x) é máxima quando o retângulo é um quadrado.",
+      "rectangleIdea": "Com perímetro P fixo (2x+2y=P), a área A(x)=x(P/2−x) é máxima quando o retângulo é um quadrado.",
       "cylinderIdea": "Com superfície fixa, o volume V(r)=Cr/2−πr³ atinge o máximo num raio ótimo.",
       "widthLabel": "Largura x",
       "radiusLabel": "Raio r",

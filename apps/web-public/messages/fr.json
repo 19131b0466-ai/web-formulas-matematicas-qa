@@ -800,10 +800,12 @@
       "decreasing": "f′ < 0 (décroissante)",
       "concaveUp": "Concave vers le haut",
       "concaveDown": "Concave vers le bas",
+      "concaveUpInterval": "Concave vers le haut : f″ > 0 sur l'intervalle",
+      "concaveDownInterval": "Concave vers le bas : f″ < 0 sur l'intervalle",
       "critical": "Points critiques approx. (f′≈0)"
     },
     "optimization": {
-      "rectangleIdea": "À périmètre fixe, l'aire A(x)=x(C/2−x) est maximale quand le rectangle est un carré.",
+      "rectangleIdea": "À périmètre P fixe (2x+2y=P), l'aire A(x)=x(P/2−x) est maximale quand le rectangle est un carré.",
       "cylinderIdea": "À surface fixe, le volume V(r)=Cr/2−πr³ atteint son maximum pour un rayon optimal.",
       "widthLabel": "Largeur x",
       "radiusLabel": "Rayon r",

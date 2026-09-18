@@ -682,7 +682,6 @@
   "Aceleración gravitatoria estándar": "Standardfallbeschleunigung",
   "C": "C",
   "Carga elemental": "Elementarladung",
-  "con": "mit",
   "Constante": "Konstante",
   "Constante de Boltzmann": "Boltzmann-Konstante",
   "Constante de Coulomb": "Coulomb-Konstante",
@@ -2333,5 +2332,6 @@
   "Asíntotas verticales, horizontales y oblicuas.": "Vertical, horizontal and oblique asymptotes.",
   "f': intervalos de crecimiento/decrecimiento y puntos críticos.": "f': intervals of increase/decrease and critical points.",
   "f'': concavidad y puntos de inflexión.": "f'': concavity and inflection points.",
-  "Tabla de signos y esquema final.": "Sign chart and final sketch."
+  "Tabla de signos y esquema final.": "Sign chart and final sketch.",
+  "> **Regla de uso:** aplicar solo donde las expresiones estén definidas; denominadores distintos de cero.": "> **Usage rule:** apply only where expressions are defined; denominators must be nonzero."
 }

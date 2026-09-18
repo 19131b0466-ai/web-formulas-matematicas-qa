@@ -10,8 +10,8 @@ type Props = { mode?: string };
 
 function RectangleMode() {
   const t = useTranslations('vizDif.optimization');
-  const C = 20;
-  const half = C / 2;
+  const P = 20;
+  const half = P / 2;
   const [x, setX] = useState(4);
   const y = half - x;
   const area = x * y;
@@ -21,6 +21,7 @@ function RectangleMode() {
   const a = (v: number) => v * (half - v);
   const range = yRange(a, 0.5, half - 0.5);
   const curve = pathOf(a, 0.5, half - 0.5, range.yMin, range.yMax);
+  // P = 2x + 2y fixed perimeter → A(x) = x(P/2 − x)
 
   const rectW = 120;
   const rectH = Math.max(20, (y / half) * 80);

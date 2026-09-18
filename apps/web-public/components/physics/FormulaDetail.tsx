@@ -19,7 +19,10 @@ import { Link } from '@/i18n/navigation';
 import { parseVariableSymbols } from '@/lib/parse-variables';
 import type { SubjectSlug } from '@/lib/subjects';
 import { mergeSearchKeywords } from '@/lib/seo';
+import { localizeTagLabel } from '@/lib/tag-labels';
 import { topicHubsForFormula } from '@/lib/topic-hubs';
+import type { AppLocale } from '@/i18n/routing';
+import { getLocale } from 'next-intl/server';
 import {
   formulaHref,
   searchHref,
@@ -37,7 +40,11 @@ type FormulaDetailProps = {
 export async function FormulaDetailView({ subject, subjectTitle, detail }: FormulaDetailProps) {
   const t = await getTranslations('formula');
   const tn = await getTranslations('nav');
+  const locale = (await getLocale()) as AppLocale;
   const { content, related, section, formulaId, title, tags } = detail;
+  const displayTags = tags.filter(
+    (tag) => tag !== 'antiderivada' || !tags.includes('formula-derivada'),
+  );
   const symbols = parseVariableSymbols(content.variables);
   const calcViz =
     subject === 'calculo-ii' ? calculoVizForFormulaId(formulaId) : undefined;
@@ -128,17 +135,17 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
           </div>
         ))}
 
-        {tags.length > 0 ? (
+        {displayTags.length > 0 ? (
           <section className="animate-rise" style={{ animationDelay: '70ms' }}>
             <h2 className="font-display text-xl font-semibold tracking-tight">{t('tags')}</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
-              {tags.map((tag) => (
+              {displayTags.map((tag) => (
                 <li key={tag}>
                   <Link
                     href={`${searchHref(subject)}?tags=${encodeURIComponent(tag)}` as '/'}
                     className="inline-flex rounded-full border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-1 text-sm text-[var(--accent-strong)] underline-offset-2 hover:underline"
                   >
-                    {tag}
+                    {localizeTagLabel(tag, locale)}
                   </Link>
                 </li>
               ))}
@@ -181,7 +188,7 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
               <PhysicsVisualization type={physViz.type} concept={physViz.concept} mode={physViz.mode} formulaId={formulaId} />
             </DeferredMount>
           </section>
-        ) : content.visual && content.formulaId ? (
+        ) : subject !== 'calculo-diferencial' && content.visual && content.formulaId ? (
           <DeferredMount minHeight={320} label={t('visualization')}>
             <FormulaVisualizationLazy
               formulaId={content.formulaId}

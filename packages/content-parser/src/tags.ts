@@ -115,7 +115,13 @@ const KEYWORD_TAGS: Array<[RegExp, string]> = [
 ];
 
 export function tagsForSection(slug: string): string[] {
-  return SECTION_TAGS[slug] ?? [];
+  const direct = SECTION_TAGS[slug];
+  if (direct) return direct;
+  // Subsections inherit chapter tags: continuidad-definicion → continuidad
+  for (const [parentSlug, tags] of Object.entries(SECTION_TAGS)) {
+    if (slug === parentSlug || slug.startsWith(`${parentSlug}-`)) return tags;
+  }
+  return [];
 }
 
 export function inferTags(sectionSlug: string, text: string, blockType: string): string[] {
@@ -125,7 +131,17 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
   if (blockType === 'formula') {
     if (tags.has('fisica')) tags.add('formula-fisica');
     else if (tags.has('algebra')) tags.add('formula-algebra');
-    else if (tags.has('calculo-diferencial') || tags.has('derivada') || tags.has('limite')) {
+    else if (
+      tags.has('calculo-diferencial') ||
+      tags.has('derivada') ||
+      tags.has('limite') ||
+      tags.has('continuidad') ||
+      tags.has('optimizacion') ||
+      tags.has('diferencial') ||
+      tags.has('taylor') ||
+      tags.has('implicita') ||
+      tags.has('grafica')
+    ) {
       tags.add('formula-derivada');
     } else tags.add('antiderivada');
   }
