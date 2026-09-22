@@ -669,7 +669,7 @@ x(t)=x(\infty)+[x(0^+)-x(\infty)]e^{-t/\tau}
 **Relacionadas:** `TRN-012`, `TRN-002`, `REA-007`, `REA-008`.
 
 **Explicación intuitiva:** Para «Respuesta completa de primer orden»: la exponencial interpola el valor inicial (continuo) y el asentamiento con constante τ.
-**Ejemplo resuelto:** Con \(x(0^+)=0\), \(x(\infty)=10\,\mathrm V\) y \(	au=1\,\mathrm{ms}\), \(x(	au)=10(1-e^{-1})=6.32\,\mathrm V\).
+**Ejemplo resuelto:** Con \(x(0^+)=0\), \(x(\infty)=10\,\mathrm V\) y \(\tau=1\,\mathrm{ms}\), \(x(\tau)=10(1-e^{-1})=6.32\,\mathrm V\).
 **Errores comunes:** confundir 0⁺ con 0⁻; usar τ=L/R en un RC o τ=RC en un RL; olvidar el valor de asentamiento
 **Pregunta:** ¿Qué debe verificarse antes de usar la relación de respuesta completa de primer orden?
 **Respuesta:** Fijar 0⁺, asentamiento y τ del circuito equivalente visto por C o L.
@@ -697,7 +697,7 @@ v_C(t)=V\left(1-e^{-t/(RC)}\right)
 **Relacionadas:** `TRN-001`, `TRN-003`, `REA-007`, `REA-008`.
 
 **Explicación intuitiva:** Para «Carga de un capacitor»: la exponencial interpola el valor inicial (continuo) y el asentamiento con constante τ.
-**Ejemplo resuelto:** Con \(V=5\,\mathrm V\), \(R=10\,\mathrm{k\Omega}\), \(C=100\,\mathrm{nF}\), \(	au=1\,\mathrm{ms}\) y \(v_C(	au)=3.16\,\mathrm V\).
+**Ejemplo resuelto:** Con \(V=5\,\mathrm V\), \(R=10\,\mathrm{k\Omega}\), \(C=100\,\mathrm{nF}\), \(\tau=1\,\mathrm{ms}\) y \(v_C(\tau)=3.16\,\mathrm V\).
 **Errores comunes:** confundir 0⁺ con 0⁻; usar τ=L/R en un RC o τ=RC en un RL; olvidar el valor de asentamiento
 **Pregunta:** ¿Qué debe verificarse antes de usar la relación de carga de un capacitor?
 **Respuesta:** Fijar 0⁺, asentamiento y τ del circuito equivalente visto por C o L.
@@ -774,7 +774,7 @@ i_L(t)=i_L(\infty)+[i_L(0^+)-i_L(\infty)]e^{-t/\tau}
 **Relacionadas:** `TRN-004`, `TRN-006`, `REA-007`, `REA-008`.
 
 **Explicación intuitiva:** Para «Respuesta general de corriente RL»: la exponencial interpola el valor inicial (continuo) y el asentamiento con constante τ.
-**Ejemplo resuelto:** Con \(i_L(0^+)=1\,\mathrm A\), \(i_L(\infty)=5\,\mathrm A\) y \(	au=2\,\mathrm{ms}\), \(i_L(	au)=3.53\,\mathrm A\).
+**Ejemplo resuelto:** Con \(i_L(0^+)=1\,\mathrm A\), \(i_L(\infty)=5\,\mathrm A\) y \(\tau=2\,\mathrm{ms}\), \(i_L(\tau)=3.53\,\mathrm A\).
 **Errores comunes:** confundir 0⁺ con 0⁻; usar τ=L/R en un RC o τ=RC en un RL; olvidar el valor de asentamiento
 **Pregunta:** ¿Qué debe verificarse antes de usar la relación de respuesta general de corriente RL?
 **Respuesta:** Fijar 0⁺, asentamiento y τ del circuito equivalente visto por C o L.
@@ -1420,14 +1420,14 @@ Y=\frac{1}{Z}
 
 ---
 
-## 6.11 Reactancia capacitiva
+## 6.11 Magnitud de la reactancia capacitiva
 **ID:** `FAS-011`
 
 \[
-X_C=\frac{1}{\omega C}
+|X_C|=\frac{1}{\omega C},\qquad X_C=-\frac{1}{\omega C},\qquad Z_C=-\frac{j}{\omega C}
 \]
 
-**Detalle:** Calcula reactancia capacitiva a partir del modelo del circuito y de las condiciones indicadas.
+**Detalle:** Con Z=R+jX la reactancia capacitiva es negativa: X_C=-1/(ωC). La magnitud es |X_C|=1/(ωC) y Z_C=-j/(ωC).
 
 **Variables:** \(V_p\): pico (V); \(V_{\mathrm{rms}}\): eficaz (V); \(\omega\): rad/s; \(f\): Hz; \(\phi\): rad; \(Z,X\): Ω; \(Y\): S.
 
@@ -1436,6 +1436,8 @@ X_C=\frac{1}{\omega C}
 **Unidad:** V, rad/s, Ω o S según el lado izquierdo
 
 **Relacionadas:** `FAS-010`, `FAS-012`, `ELE-009`, `REA-001`.
+
+**Explicación intuitiva:** Para «Magnitud de la reactancia capacitiva»: |X_C|=1/(ωC) es la magnitud; con Z=R+jX, X_C=-1/(ωC) y Z_C=-j/(ωC).
 
 **Última revisión:** 2026-09-19
 
@@ -2744,7 +2746,7 @@ r_\pi=\frac{\beta}{g_m}
 \mathrm{estado}=\begin{cases}\mathrm{corte}&I_B=0\\\mathrm{saturación}&I_B\ge I_C/\beta_f\end{cases}
 \]
 
-**Detalle:** Calcula bJT como interruptor a partir del modelo del circuito y de las condiciones indicadas.
+**Detalle:** Calcula BJT como interruptor a partir del modelo del circuito y de las condiciones indicadas.
 
 **Variables:** \(I_C,I_B,I_E\): A; \(\alpha,\beta\): adimensionales; \(V_{CE},V_{BE}\): V; \(g_m\): S; \(r_\pi\): Ω.
 
@@ -2894,7 +2896,7 @@ R_{\mathrm{DS(on)}}=\frac{V_{DS}}{I_D}
 P_{\mathrm{cond}}=I_D^2R_{\mathrm{DS(on)}}
 \]
 
-**Detalle:** Calcula mOSFET como interruptor a partir del modelo del circuito y de las condiciones indicadas.
+**Detalle:** Calcula MOSFET como interruptor a partir del modelo del circuito y de las condiciones indicadas.
 
 **Variables:** \(I_D,I_{DSS}\): A; \(V_{GS},V_{th},V_{DS}\): V; \(k_n\): A/V²; \(R_{DS(\mathrm{on})}\): Ω; \(g_m\): S.
 
@@ -4294,7 +4296,7 @@ V_o=-V_{\mathrm{ref}}\sum_{k=1}^{n}\frac{b_k}{2^k}
 **Explicación intuitiva:** Para «DAC de escalera R-2R»: cada bit bk aporta Vref/2^k a través de la red R y 2R.
 **Ejemplo resuelto:** Para un DAC R-2R de 3 bits, código \(101\) y \(V_{\mathrm{ref}}=8\,\mathrm V\), \(v_o=-8(1/2+1/8)=-5\,\mathrm V\).
 **Errores comunes:** tomar fs = fmax como Nyquist; olvidar el ±Δ/2 del error; mezclar LSB con el número de niveles
-**Pregunta:** ¿Qué debe verificarse antes de usar la relación de dAC de escalera R-2R?
+**Pregunta:** ¿Qué debe verificarse antes de usar la relación de DAC de escalera R-2R?
 **Respuesta:** Verificar Nyquist, el rango VFS y el número de bits.
 **Alias de búsqueda:** Nyquist, cuantización, PWM, DAC R-2R, ADC flash
 

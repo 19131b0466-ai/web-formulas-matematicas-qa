@@ -530,6 +530,8 @@ function translateTextFragment(inner: string, locale: AppLocale): string {
   let out = inner;
   for (const key of sortedKeys(locale)) {
     if (!out.includes(key)) continue;
+    // One-letter keys such as `o` → `or` must not splice inside words (grupos → grupors).
+    if (key.trim().length < 2) continue;
     out = out.split(key).join(map[key]!);
   }
   return out;
@@ -570,6 +572,9 @@ export const CORRUPT_LATEX_PATTERNS = [
   /\\text\{oderder\}/i,
   /\\text\{ouu\}/i,
   /si el cociente/i,
+  /grupors/i,
+  /grupoders/i,
+  /grupous/i,
 ];
 
 export function hasCorruptLocalizedLatex(latex: string): boolean {

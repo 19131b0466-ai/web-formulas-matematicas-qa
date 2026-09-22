@@ -69,6 +69,33 @@ describe('parseFisicaElectronicaMarkdown (full document)', () => {
     expect(div001!.tags).toContain('formula-electronica');
   });
 
+  it('keeps \\tau in TRN worked examples (FE-23-02)', () => {
+    for (const id of ['TRN-001', 'TRN-002', 'TRN-005'] as const) {
+      const block = formulas.find((b) => b.formulaCode === id);
+      const content = block!.content as FormulaContent;
+      expect(content.workedExample).toMatch(/\\tau/);
+      expect(content.workedExample ?? '').not.toContain('\t');
+    }
+  });
+
+  it('states capacitive reactance sign and magnitude on FAS-011 (FE-23-06)', () => {
+    const fas = formulas.find((b) => b.formulaCode === 'FAS-011');
+    expect(fas?.title).toMatch(/magnitud/i);
+    const content = fas!.content as FormulaContent;
+    const compact = content.latex.replace(/\s+/g, '');
+    expect(compact).toContain('X_C=-\\frac{1}{\\omegaC}');
+    expect(compact).toContain('|X_C|');
+    expect(compact).toContain('Z_C=-\\frac{j}{\\omegaC}');
+  });
+
+  it('does not lowercase DAC in the ADC-006 FAQ (FE-23-05)', () => {
+    const adc = formulas.find((b) => b.formulaCode === 'ADC-006');
+    const content = adc!.content as FormulaContent;
+    const question = content.faq?.[0]?.question ?? '';
+    expect(question).not.toMatch(/dAC/);
+    expect(question).toMatch(/DAC/);
+  });
+
   it('links combinational logic to algebra Boolean identities without recataloguing them', () => {
     const cmb = formulas.find((b) => b.formulaCode === 'CMB-001');
     const content = cmb!.content as FormulaContent;

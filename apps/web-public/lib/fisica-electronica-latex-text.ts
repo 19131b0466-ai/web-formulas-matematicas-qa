@@ -1,77 +1,136 @@
 import type { AppLocale } from '@/i18n/routing';
 
-const EN: Record<string, string> = {
-  carga: 'charge',
-  descarga: 'discharge',
-  fasor: 'phasor',
-  equivalente: 'equivalent',
-  corte: 'cutoff',
-  saturación: 'saturation',
-  activa: 'active',
+/** Exact inners of \text{...} (no substring splicing inside words). */
+const TEXT_INNERS: Record<Exclude<AppLocale, 'es'>, Record<string, string>> = {
+  en: {
+    'grupos de ': 'groups of ',
+    'grupos de': 'groups of',
+    ' celdas': ' cells',
+    celdas: 'cells',
+    carga: 'charge',
+    descarga: 'discharge',
+    fasor: 'phasor',
+    equivalente: 'equivalent',
+    corte: 'cutoff',
+    saturación: 'saturation',
+    activa: 'active',
+  },
+  de: {
+    'grupos de ': 'Gruppen von ',
+    'grupos de': 'Gruppen von',
+    ' celdas': ' Zellen',
+    celdas: 'Zellen',
+    carga: 'Ladung',
+    descarga: 'Entladung',
+    fasor: 'Zeiger',
+    equivalente: 'äquivalent',
+    corte: 'Sperrbereich',
+    saturación: 'Sättigung',
+    activa: 'aktiv',
+  },
+  fr: {
+    'grupos de ': 'groupes de ',
+    'grupos de': 'groupes de',
+    ' celdas': ' cellules',
+    celdas: 'cellules',
+    carga: 'charge',
+    descarga: 'décharge',
+    fasor: 'phasor',
+    equivalente: 'équivalent',
+    corte: 'blocage',
+    saturación: 'saturation',
+    activa: 'active',
+  },
+  it: {
+    'grupos de ': 'gruppi di ',
+    'grupos de': 'gruppi di',
+    ' celdas': ' celle',
+    celdas: 'celle',
+    carga: 'carica',
+    descarga: 'scarica',
+    fasor: 'fasore',
+    equivalente: 'equivalente',
+    corte: 'interdizione',
+    saturación: 'saturazione',
+    activa: 'attiva',
+  },
+  pt: {
+    'grupos de ': 'grupos de ',
+    'grupos de': 'grupos de',
+    ' celdas': ' células',
+    celdas: 'células',
+    carga: 'carga',
+    descarga: 'descarga',
+    fasor: 'fasor',
+    equivalente: 'equivalente',
+    corte: 'corte',
+    saturación: 'saturação',
+    activa: 'ativa',
+  },
 };
 
-const DE: Record<string, string> = {
-  carga: 'Ladung',
-  descarga: 'Entladung',
-  fasor: 'Zeiger',
-  equivalente: 'äquivalent',
-  corte: 'Sperrbereich',
-  saturación: 'Sättigung',
-  activa: 'aktiv',
+const MATHRM_INNERS: Record<Exclude<AppLocale, 'es'>, Record<string, string>> = {
+  en: { estado: 'state', corte: 'cutoff', saturación: 'saturation', activa: 'active' },
+  de: { estado: 'Zustand', corte: 'Sperrbereich', saturación: 'Sättigung', activa: 'aktiv' },
+  fr: { estado: 'état', corte: 'blocage', saturación: 'saturation', activa: 'active' },
+  it: { estado: 'stato', corte: 'interdizione', saturación: 'saturazione', activa: 'attiva' },
+  pt: { estado: 'estado', corte: 'corte', saturación: 'saturação', activa: 'ativa' },
 };
 
-const FR: Record<string, string> = {
-  carga: 'charge',
-  descarga: 'décharge',
-  fasor: 'phasor',
-  equivalente: 'équivalent',
-  corte: 'blocage',
-  saturación: 'saturation',
-  activa: 'active',
+const OPERATOR_INNERS: Record<Exclude<AppLocale, 'es'>, Record<string, string>> = {
+  en: { índice: 'index' },
+  de: { índice: 'Index' },
+  fr: { índice: 'indice' },
+  it: { índice: 'indice' },
+  pt: { índice: 'índice' },
 };
 
-const IT: Record<string, string> = {
-  carga: 'carica',
-  descarga: 'scarica',
-  fasor: 'fasore',
-  equivalente: 'equivalente',
-  corte: 'interdizione',
-  saturación: 'saturazione',
-  activa: 'attiva',
+/** Full-formula overrides so Karnaugh never depends on substring translation. */
+const FORMULA_OVERRIDES: Record<Exclude<AppLocale, 'es'>, Record<string, string>> = {
+  en: {
+    'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}':
+      'F_{\\min}=\\sum\\text{groups of }2^m\\text{ cells}',
+  },
+  de: {
+    'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}':
+      'F_{\\min}=\\sum\\text{Gruppen von }2^m\\text{ Zellen}',
+  },
+  fr: {
+    'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}':
+      'F_{\\min}=\\sum\\text{groupes de }2^m\\text{ cellules}',
+  },
+  it: {
+    'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}':
+      'F_{\\min}=\\sum\\text{gruppi di }2^m\\text{ celle}',
+  },
+  pt: {
+    'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}':
+      'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ células}',
+  },
 };
 
-const PT: Record<string, string> = {
-  carga: 'carga',
-  descarga: 'descarga',
-  fasor: 'fasor',
-  equivalente: 'equivalente',
-  corte: 'corte',
-  saturación: 'saturação',
-  activa: 'ativa',
-};
-
-const MAPS: Record<Exclude<AppLocale, 'es'>, Record<string, string>> = {
-  en: EN,
-  de: DE,
-  fr: FR,
-  it: IT,
-  pt: PT,
-};
-
-function applyMap(text: string, dict: Record<string, string>): string {
-  const keys = Object.keys(dict).sort((a, b) => b.length - a.length);
-  let out = text;
-  for (const key of keys) {
-    const value = dict[key]!;
-    out = out.replaceAll(key, value);
-  }
-  return out;
+function replaceCommandInners(
+  latex: string,
+  command: 'text' | 'mathrm' | 'operatorname',
+  map: Record<string, string>,
+): string {
+  const re = new RegExp(`\\\\${command}\\{([^}]*)\\}`, 'g');
+  return latex.replace(re, (all, inner: string) => {
+    const exact = map[inner];
+    if (exact !== undefined) return `\\${command}{${exact}}`;
+    return all;
+  });
 }
 
 export function localizeFisicaElectronicaLatexText(latex: string, locale: AppLocale): string {
   if (locale === 'es') return latex;
-  const dict = MAPS[locale];
-  return latex.replace(/\\text\{([^}]*)\}/g, (_all, inner: string) => `\\text{${applyMap(inner, dict)}}`);
+  for (const [from, to] of Object.entries(FORMULA_OVERRIDES[locale])) {
+    if (latex.includes(from)) latex = latex.split(from).join(to);
+  }
+  latex = replaceCommandInners(latex, 'text', TEXT_INNERS[locale]);
+  latex = replaceCommandInners(latex, 'mathrm', MATHRM_INNERS[locale]);
+  latex = replaceCommandInners(latex, 'operatorname', OPERATOR_INNERS[locale]);
+  return latex;
 }
 
 export function localizeFisicaElectronicaVariables(

@@ -120,7 +120,12 @@ export function absorbEditorialLine(draft: EditorialDraft, trimmed: string): boo
   }
   const errors = trimmed.match(COMMON_ERRORS_RE);
   if (errors) {
-    draft.commonErrors.push(...splitNotations(errors[1]!));
+    draft.commonErrors.push(
+      ...errors[1]!
+        .split(';')
+        .map((part) => part.trim())
+        .filter(Boolean),
+    );
     return true;
   }
   return false;

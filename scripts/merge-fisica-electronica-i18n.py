@@ -13,6 +13,7 @@ I18N_DIR = ROOT / "apps" / "web-public" / "content-i18n"
 LOCALES = ("en", "de", "fr", "it", "pt")
 PHRASES_PATH = ROOT / "scripts" / "fisica-electronica-locale-phrases.json"
 SUBTITLES_PATH = ROOT / "scripts" / "fisica-electronica-subtopic-titles.json"
+WORKED_PATH = ROOT / "scripts" / "fisica-electronica-worked-i18n.json"
 
 GENERIC_DETAIL = "expresa la relación principal entre las magnitudes del modelo y orienta su cálculo o verificación"
 
@@ -102,6 +103,7 @@ TITLE_ROWS: list[tuple[str, str, str, str, str, str]] = [
     ("Impedancia", "Impedance", "Impedanz", "Impédance", "Impedenza", "Impedância"),
     ("Admitancia", "Admittance", "Admittanz", "Admittance", "Ammittanza", "Admitância"),
     ("Ley de Ohm fasorial", "Phasor Ohm's law", "Ohmsches Gesetz für Zeiger", "Loi d'Ohm en phaseurs", "Legge di Ohm fasoriale", "Lei de Ohm fasorial"),
+    ("Magnitud de la reactancia capacitiva", "Capacitive-reactance magnitude", "Betrag des kapazitiven Blindwiderstands", "Module de la réactance capacitive", "Modulo della reattanza capacitiva", "Magnitude da reatância capacitiva"),
     ("Reactancia capacitiva", "Capacitive reactance", "Kapazitiver Blindwiderstand", "Réactance capacitive", "Reattanza capacitiva", "Reatância capacitiva"),
     ("Reactancia inductiva", "Inductive reactance", "Induktiver Blindwiderstand", "Réactance inductive", "Reattanza induttiva", "Reatância indutiva"),
     ("Ángulo de impedancia", "Impedance angle", "Impedanzwinkel", "Angle d'impédance", "Angolo di impedenza", "Ângulo de impedância"),
@@ -411,6 +413,14 @@ ANCHOR_DETAILS: dict[str, tuple[str, str, str, str, str, str]] = {
         "L'admittance Y=1/Z inverse le module et change le signe de l'angle.",
         "L'ammettenza Y=1/Z inverte il modulo e cambia il segno dell'angolo.",
         "A admitância Y=1/Z inverte o módulo e troca o sinal do ângulo.",
+    ),
+    "FAS-011": (
+        "Con Z=R+jX la reactancia capacitiva es negativa: X_C=-1/(ωC). La magnitud es |X_C|=1/(ωC) y Z_C=-j/(ωC).",
+        "With Z=R+jX capacitive reactance is negative: X_C=-1/(ωC). The magnitude is |X_C|=1/(ωC) and Z_C=-j/(ωC).",
+        "Mit Z=R+jX ist die kapazitive Reaktanz negativ: X_C=-1/(ωC). Der Betrag ist |X_C|=1/(ωC) und Z_C=-j/(ωC).",
+        "Avec Z=R+jX la réactance capacitive est négative : X_C=-1/(ωC). Le module est |X_C|=1/(ωC) et Z_C=-j/(ωC).",
+        "Con Z=R+jX la reattanza capacitiva è negativa: X_C=-1/(ωC). Il modulo è |X_C|=1/(ωC) e Z_C=-j/(ωC).",
+        "Com Z=R+jX a reatância capacitiva é negativa: X_C=-1/(ωC). A magnitude é |X_C|=1/(ωC) e Z_C=-j/(ωC).",
     ),
     "PAC-005": (
         "El triángulo de potencias relaciona P, Q y S=√(P²+Q²).",
@@ -1126,6 +1136,7 @@ INTUITIVE_OVERRIDES = {
     "OPA-009": "Para «Integrador inversor»: C en la realimentación integra Vin; Vo es la rampa −(1/RC)∫Vin dt.",
     "ADC-006": "Para «DAC de escalera R-2R»: cada bit bk aporta Vref/2^k a través de la red R y 2R.",
     "FIL-006": "Para «Pendiente de primer orden»: m=−20 dB/dec describe la banda de caída del pasa-bajos, no todo el Bode.",
+    "FAS-011": "Para «Magnitud de la reactancia capacitiva»: |X_C|=1/(ωC) es la magnitud; con Z=R+jX, X_C=-1/(ωC) y Z_C=-j/(ωC).",
 }
 INTUITIVE_OVERRIDE_I18N = {
     "DIV-002": {
@@ -1169,6 +1180,13 @@ INTUITIVE_OVERRIDE_I18N = {
         "fr": "Pour « Pente du premier ordre » : m=−20 dB/dec décrit la bande de descente du passe-bas, pas tout le Bode.",
         "it": "Per «Pendenza del primo ordine»: m=−20 dB/dec descrive la banda di discesa del passa-basso, non tutto il Bode.",
         "pt": "Para «Pendente de primeira ordem»: m=−20 dB/dec descreve a banda de queda do passa-baixa, não todo o Bode.",
+    },
+    "FAS-011": {
+        "en": "For “Capacitive-reactance magnitude”: |X_C|=1/(ωC) is the magnitude; with Z=R+jX, X_C=-1/(ωC) and Z_C=-j/(ωC).",
+        "de": "Für „Betrag des kapazitiven Blindwiderstands“: |X_C|=1/(ωC) ist der Betrag; mit Z=R+jX gilt X_C=-1/(ωC) und Z_C=-j/(ωC).",
+        "fr": "Pour « Module de la réactance capacitive » : |X_C|=1/(ωC) est le module ; avec Z=R+jX, X_C=-1/(ωC) et Z_C=-j/(ωC).",
+        "it": "Per «Modulo della reattanza capacitiva»: |X_C|=1/(ωC) è il modulo; con Z=R+jX, X_C=-1/(ωC) e Z_C=-j/(ωC).",
+        "pt": "Para «Magnitude da reatância capacitiva»: |X_C|=1/(ωC) é a magnitude; com Z=R+jX, X_C=-1/(ωC) e Z_C=-j/(ωC).",
     },
 }
 
@@ -1450,6 +1468,25 @@ CATALOG_INTRO = {
 }
 
 
+def uncapitalize_title(title: str) -> str:
+    """Keep leading acronyms (DAC, BJT, ADC) so FAQ does not become «dAC»."""
+    first = title.split(" ", 1)[0]
+    if first.isupper() and len(first) >= 2:
+        return title
+    if len(title) < 2:
+        return title
+    return title[0].lower() + title[1:]
+
+
+def add_semicolon_fragments(phrases: dict[str, dict[str, str]], loc: str, es_line: str, loc_line: str) -> None:
+    phrases[loc][es_line] = loc_line
+    es_parts = [p.strip() for p in es_line.split(";") if p.strip()]
+    loc_parts = [p.strip() for p in loc_line.split(";") if p.strip()]
+    if len(es_parts) == len(loc_parts):
+        for src, dst in zip(es_parts, loc_parts, strict=True):
+            phrases[loc][src] = dst
+
+
 def set_field(block: str, names: tuple[str, ...], value: str) -> str:
     pattern = rf"^(\*\*(?:{'|'.join(names)}):\*\*\s*).*$"
 
@@ -1457,6 +1494,18 @@ def set_field(block: str, names: tuple[str, ...], value: str) -> str:
         return f"{match.group(1)}{value}"
 
     return re.sub(pattern, repl, block, count=1, flags=re.M)
+
+
+def set_display_latex(block: str, latex: str) -> str:
+    def repl(_match: re.Match[str]) -> str:
+        return f"\\[\n{latex}\n\\]"
+
+    return re.sub(r"\\\[\s*.*?\\\]", repl, block, count=1, flags=re.S)
+
+
+LATEX_OVERRIDES = {
+    "FAS-011": r"|X_C|=\frac{1}{\omega C},\qquad X_C=-\frac{1}{\omega C},\qquad Z_C=-\frac{j}{\omega C}",
+}
 
 
 def patch_md() -> dict[str, str]:
@@ -1474,10 +1523,12 @@ def patch_md() -> dict[str, str]:
         title = title_m.group(1).strip()
         id_to_title[code] = title
         prefix = code.split("-")[0]
+        if code in LATEX_OVERRIDES:
+            part = set_display_latex(part, LATEX_OVERRIDES[code])
         if code in ANCHOR_DETAILS:
             detail = ANCHOR_DETAILS[code][0]
         else:
-            detail = f"Calcula {title[0].lower() + title[1:]} a partir del modelo del circuito y de las condiciones indicadas."
+            detail = f"Calcula {uncapitalize_title(title)} a partir del modelo del circuito y de las condiciones indicadas."
         part = set_field(part, ("Detalle",), detail)
         part = set_field(part, ("Variables",), VARS_OVERRIDES.get(code, PREFIX_VARS[prefix]))
         part = set_field(part, (r"Condición\(es\)", "Condición"), COND_OVERRIDES.get(code, PREFIX_COND[prefix]))
@@ -1485,7 +1536,7 @@ def patch_md() -> dict[str, str]:
         intuit = INTUITIVE_OVERRIDES.get(code, PREFIX_INTUITIVE[prefix].format(title=title))
         part = set_field(part, ("Explicación intuitiva",), intuit)
         part = set_field(part, ("Errores comunes",), PREFIX_ERRORS[prefix])
-        question = f"¿Qué debe verificarse antes de usar la relación de {title[0].lower() + title[1:]}?"
+        question = f"¿Qué debe verificarse antes de usar la relación de {uncapitalize_title(title)}?"
         part = set_field(part, ("Pregunta",), question)
         part = set_field(part, ("Respuesta",), PREFIX_ANSWER[prefix])
         part = set_field(part, ("Alias de búsqueda",), ALIAS_OVERRIDES.get(code, PREFIX_ALIASES[prefix]))
@@ -1510,11 +1561,11 @@ def collect_phrases(id_to_title: dict[str, str]) -> dict[str, dict[str, str]]:
             for loc in LOCALES:
                 phrases[loc][es] = mapping[loc]
         else:
-            es = f"Calcula {title[0].lower() + title[1:]} a partir del modelo del circuito y de las condiciones indicadas."
+            es = f"Calcula {uncapitalize_title(title)} a partir del modelo del circuito y de las condiciones indicadas."
             title_loc = {loc: TITLES[loc].get(title, title) for loc in LOCALES}
             for loc in LOCALES:
                 phrases[loc][es] = DETAIL_FALLBACK[loc].format(title=title_loc[loc])
-        q_es = f"¿Qué debe verificarse antes de usar la relación de {title[0].lower() + title[1:]}?"
+        q_es = f"¿Qué debe verificarse antes de usar la relación de {uncapitalize_title(title)}?"
         intuit_es = INTUITIVE_OVERRIDES.get(code, PREFIX_INTUITIVE[prefix].format(title=title))
         vars_es = VARS_OVERRIDES.get(code, PREFIX_VARS[prefix])
         cond_es = COND_OVERRIDES.get(code, PREFIX_COND[prefix])
@@ -1524,6 +1575,7 @@ def collect_phrases(id_to_title: dict[str, str]) -> dict[str, dict[str, str]]:
             phrases[loc][cond_es] = COND_OVERRIDE_I18N[code][loc] if code in COND_OVERRIDE_I18N else COND_I18N[loc][prefix]
             phrases[loc][PREFIX_UNIT[prefix]] = UNIT_I18N[loc][prefix]
             phrases[loc][PREFIX_ERRORS[prefix]] = ERRORS_I18N[loc][prefix]
+            add_semicolon_fragments(phrases, loc, PREFIX_ERRORS[prefix], ERRORS_I18N[loc][prefix])
             phrases[loc][PREFIX_ANSWER[prefix]] = ANSWER_I18N[loc][prefix]
             phrases[loc][alias_es] = ALIAS_OVERRIDE_I18N[code][loc] if code in ALIAS_OVERRIDE_I18N else ALIASES_I18N[loc][prefix]
             loc_title = TITLES[loc].get(title, title)
@@ -1846,6 +1898,10 @@ def main() -> None:
     for es, vals in aliases.items():
         for loc, val in zip(LOCALES, vals, strict=True):
             phrases[loc][es] = val
+    if WORKED_PATH.exists():
+        worked = json.loads(WORKED_PATH.read_text(encoding="utf-8"))
+        for loc in LOCALES:
+            phrases[loc].update(worked[loc])
     merge_i18n(phrases)
     leftover = GENERIC_DETAIL in MD.read_text(encoding="utf-8")
     print("generic leftover" if leftover else "generic details replaced", "formulas", len(id_to_title))

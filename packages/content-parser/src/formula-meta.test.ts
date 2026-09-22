@@ -52,4 +52,19 @@ describe('formula-meta', () => {
       'mezclar RMS con pico',
     ]);
   });
+
+  it('does not split common errors on |S| bars', () => {
+    const draft = createEditorialDraft();
+    expect(
+      absorbEditorialLine(
+        draft,
+        '**Errores comunes:** tomar |S| como P; olvidar el factor cos θ; aplicar resonancia serie a un paralelo',
+      ),
+    ).toBe(true);
+    expect(draft.commonErrors).toEqual([
+      'tomar |S| como P',
+      'olvidar el factor cos θ',
+      'aplicar resonancia serie a un paralelo',
+    ]);
+  });
 });

@@ -84,9 +84,10 @@ function walk(value: unknown, dict: ContentDict, locale: AppLocale, parentKey?: 
       if (key === 'latex' && typeof child === 'string') {
         out[key] = localizeLatexField(child, locale);
       } else if (key === 'constraints' && Array.isArray(child)) {
-        out[key] = child.map((item) =>
-          typeof item === 'string' ? localizeLatexField(item, locale) : walk(item, dict, locale, key),
-        );
+        out[key] = child.map((item) => {
+          if (typeof item !== 'string') return walk(item, dict, locale, key);
+          return localizeLatexField(localizeString(item, dict, locale), locale);
+        });
       } else if (key === 'variables' && typeof child === 'string') {
         out[key] = localizeFisicaElectronicaVariables(
           localizeCalculoDiferencialVariables(

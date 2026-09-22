@@ -68,6 +68,15 @@ describe('localizeCalculoDiferencialLatexText', () => {
     assert.match(en, /\\text\{or\}/);
     assert.doesNotMatch(en, /\\text\{o\}/);
   });
+
+  it('does not splice o inside grupos (CMB-009)', () => {
+    const latex = 'F_{\\min}=\\sum\\text{grupos de }2^m\\text{ celdas}';
+    for (const locale of ['en', 'de', 'fr', 'it', 'pt'] as const) {
+      const out = localizeCalculoDiferencialLatexText(latex, locale);
+      assert.doesNotMatch(out, /grupors|grupoders|grupous/);
+      assert.match(out, /\\text\{grupos de \}/);
+    }
+  });
 });
 
 const SYMBOL_MEANINGS = [
