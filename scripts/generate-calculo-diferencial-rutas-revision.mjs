@@ -131,6 +131,7 @@ lines.push('| Slug | Ruta |');
 lines.push('|---|---|');
 for (const slug of [
   'regla-cadena',
+  'algebra-limites',
   'limites-indeterminados',
   'optimizacion',
   'teorema-valor-medio',

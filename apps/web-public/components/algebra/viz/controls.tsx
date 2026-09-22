@@ -1,6 +1,9 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { fmt } from './formatNumber';
+
+export { fmt };
 
 export function VizPanel({
   title,
@@ -129,13 +132,6 @@ export function VizButton({
       {children}
     </button>
   );
-}
-
-export function fmt(n: number, digits = 2): string {
-  if (!Number.isFinite(n)) return '—';
-  const a = Math.abs(n);
-  if (a !== 0 && (a >= 1000 || a < 0.01)) return n.toExponential(2);
-  return n.toFixed(digits).replace(/\.?0+$/, '') || '0';
 }
 
 /** Join caption parts, skipping empties (avoids a leading " · "). */

@@ -682,6 +682,66 @@ const COPY: Record<string, PhysCopy> = {
     idea: 'Vas a ver que el enunciado ya dice el bloque: la señal (choque, órbita, DCL, …) apunta a una sección, no a memorizar 195 IDs.',
     tryIt: 'Elige «proyectil, alcance»: el árbol termina en Movimiento 2D y 3D.',
   },
+  voltage_divider: {
+    idea: 'Vas a ver que Vo es la fracción R2/(R1+R2) de Vi, y que una carga en paralelo con R2 baja esa fracción.',
+    tryIt: 'Sube R2 o quita RL: Vo se acerca a Vi. Pon RL pequeña: Vo cae.',
+  },
+  thevenin_norton: {
+    idea: 'Vas a ver que toda la red a la izquierda de los bornes se sustituye por VTh (o IN) y RTh = RN.',
+    tryIt: 'Cambia RL: Vo sigue la división con RTh. Comprueba VTh = IN RN.',
+  },
+  rc_transient: {
+    idea: 'Vas a ver que vC (o iL) interpola el valor inicial continuo y el asentamiento con una exponencial de constante τ.',
+    tryIt: 'Marca t = τ: el hueco al asentamiento queda en el 37 %. A 5τ ya está prácticamente asentado.',
+  },
+  rlc_damping: {
+    idea: 'Vas a ver que ζ decide la forma: dos exponenciales, frontera crítica u oscilación que decae.',
+    tryIt: 'Baja R en serie: ζ cae y aparecen oscilaciones. En el crítico no hay sobreimpulso.',
+  },
+  phasor_diagram: {
+    idea: 'Vas a ver que el fasor RMS gira a ω y su proyección horizontal es la sinusoide instantánea.',
+    tryIt: 'Cambia φ: el fasor adelanta o atrasa respecto del eje. Compara Vp con Vrms = Vp/√2.',
+  },
+  impedance_triangle: {
+    idea: 'Vas a ver que Z = R + jX es un triángulo: la hipotenusa es |Z| y el ángulo es arg(Z). En potencia, S² = P² + Q².',
+    tryIt: 'Pon X = 0: el ángulo se anula. Cambia el signo de X y mira si es inductivo o capacitivo.',
+  },
+  resonance_curve: {
+    idea: 'Vas a ver que en resonancia serie |Z| es mínimo (R) y en paralelo es máximo.',
+    tryIt: 'Barre ω alrededor de ω0: la curva se estrecha si Q sube.',
+  },
+  bode_filter: {
+    idea: 'Vas a ver que |H| pasa la banda útil y cae 20 dB/dec después de fc, donde |H| ≈ 1/√2 (−3 dB).',
+    tryIt: 'Cambia RC: fc se mueve. En fc la magnitud debe estar cerca de −3 dB.',
+  },
+  diode_iv: {
+    idea: 'Vas a ver que el diodo casi no conduce bajo el umbral y dispara en directa; el rectificador recorta o pliega la sinusoide.',
+    tryIt: 'En IV, cruza ~0.7 V. En media onda compara Vavg = Vp/π con el recorte positivo.',
+  },
+  bjt_load_line: {
+    idea: 'Vas a ver que la recta de carga une (VCE=VCC, IC=0) con (VCE=0, IC=VCC/RC) y el punto Q recorre corte, activa y saturación.',
+    tryIt: 'IB = 0: corte. Sube IB hasta que VCE se queda en ~0.2 V: saturación, IC ya no es β IB.',
+  },
+  opamp_circuit: {
+    idea: 'Vas a ver que con realimentación negativa v+ ≈ v− (nudo virtual) y las resistencias fijan Av.',
+    tryIt: 'En el inversor Av = −Rf/Rg. En el seguidor Av = 1. Si |Av Vin| supera Vsat, la salida se aplana.',
+  },
+  cmos_vtc: {
+    idea: 'Vas a ver que la VTC CMOS invierte: Vin bajo da VOH, Vin alto da VOL, y VIH/VIL definen NMH y NML.',
+    tryIt: 'Mueve Vin por VIL y VIH: los márgenes son VOH−VIH y VIL−VOL, no los rieles solos.',
+  },
+  flip_flop_timing: {
+    idea: 'Vas a ver que D debe estar quieta tsu antes del flanco y th después; si no, hay metastabilidad.',
+    tryIt: 'Ensancha tsu: la ventana crítica crece. El flanco es el único instante que copia D a Q.',
+  },
+  sampling_pwm: {
+    idea: 'Vas a ver que fs > 2 fmax evita aliasing, que n bits parte VFS en 2^n niveles y que PWM usa ton/T.',
+    tryIt: 'Baja fs por debajo de 2 fmax: aparece aliasing. En PWM, duty 0.5 deja el pulso a mitad de periodo.',
+  },
+  electronics_guide: {
+    idea: 'Vas a ver que la señal del enunciado (DC, transitorio, sinusoidal, dispositivo o digital) apunta a un bloque, no a memorizar 188 IDs.',
+    tryIt: 'Elige «transitorio RC»: el árbol termina en τ, v(0+) y v(∞). Para un flip-flop, mira setup y hold.',
+  },
 };
 
 export function physCopy(type: string, mode?: string): PhysCopy {

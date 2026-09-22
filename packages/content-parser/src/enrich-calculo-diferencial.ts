@@ -64,7 +64,8 @@ const SEARCH_ALIASES: Record<string, string[]> = {
   'DIF-114': ['L\'Hôpital', 'L\'Hospital', 'limite indeterminado'],
   'DIF-106': ['serie de Taylor', 'polinomio de Taylor', 'aproximación'],
   'DIF-012': ['limite epsilon delta', 'definición formal de límite'],
-  'DIF-019': ['limite seno', 'limite trigonométrico'],
+  'DIF-019': ['regla de la potencia para límites', 'límite de una potencia'],
+  'DIF-020': ['limite seno', 'limite trigonométrico'],
 };
 
 const FAQ_BY_CODE: Record<string, FormulaFaqItem[]> = {
@@ -248,7 +249,7 @@ export function enrichCalculoDiferencialFormulas(sections: ParsedSection[]): voi
       if (!content.faq?.length && FAQ_BY_CODE[code]) {
         content.faq = [...FAQ_BY_CODE[code]!];
       }
-      if (!content.searchAliases?.length && SEARCH_ALIASES[code]) {
+      if (SEARCH_ALIASES[code]) {
         content.searchAliases = [...SEARCH_ALIASES[code]!];
       }
       if (CROSS_SUBJECT_LINKS[code]) {

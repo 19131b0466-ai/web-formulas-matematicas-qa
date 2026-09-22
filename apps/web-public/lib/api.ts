@@ -65,10 +65,16 @@ const FALLBACK_SUBJECTS: SubjectSummary[] = [
     sortOrder: 2,
   },
   {
+    slug: 'fisica-electronica',
+    title: 'Física Electrónica',
+    description: 'Circuitos, semiconductores, amplificadores y electrónica digital',
+    sortOrder: 3,
+  },
+  {
     slug: 'algebra',
     title: 'Álgebra',
     description: 'Álgebra para Ingeniería y Ciencias de la Computación',
-    sortOrder: 3,
+    sortOrder: 4,
   },
 ];
 

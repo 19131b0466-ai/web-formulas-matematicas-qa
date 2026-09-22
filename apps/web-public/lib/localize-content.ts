@@ -3,6 +3,10 @@ import {
   localizeCalculoDiferencialLatexText,
   localizeCalculoDiferencialVariables,
 } from './calculo-diferencial-latex-text';
+import {
+  localizeFisicaElectronicaLatexText,
+  localizeFisicaElectronicaVariables,
+} from './fisica-electronica-latex-text';
 
 type ContentDict = Record<string, string>;
 
@@ -25,11 +29,14 @@ const IMMUTABLE_STRING_KEYS = new Set([
 
 async function loadDict(locale: AppLocale): Promise<ContentDict> {
   if (locale === 'es') return {};
-  const cached = dictCache.get(locale);
-  if (cached) return cached;
+  // Dev servers stay up for hours; skip the process cache so JSON edits apply without restart.
+  if (process.env.NODE_ENV === 'production') {
+    const cached = dictCache.get(locale);
+    if (cached) return cached;
+  }
   const mod = await import(`../content-i18n/${locale}.json`);
   const dict = mod.default as ContentDict;
-  dictCache.set(locale, dict);
+  if (process.env.NODE_ENV === 'production') dictCache.set(locale, dict);
   return dict;
 }
 
@@ -42,14 +49,17 @@ export function localizeLatex(latex: string, locale: AppLocale): string {
 }
 
 function localizeLatexField(latex: string, locale: AppLocale): string {
-  return localizeCalculoDiferencialLatexText(localizeLatex(latex, locale), locale);
+  return localizeFisicaElectronicaLatexText(
+    localizeCalculoDiferencialLatexText(localizeLatex(latex, locale), locale),
+    locale,
+  );
 }
 
 /** Exact dictionary lookup only — no substring splicing (avoids corrupting slugs and words). */
 function localizeString(value: string, dict: ContentDict, locale: AppLocale): string {
   const exact = dict[value];
-  if (exact !== undefined && exact !== value) return localizeLatex(exact, locale);
-  return value;
+  const translated = exact !== undefined && exact !== value ? exact : value;
+  return localizeLatex(translated, locale);
 }
 
 function walk(value: unknown, dict: ContentDict, locale: AppLocale, parentKey?: string): unknown {
@@ -73,8 +83,20 @@ function walk(value: unknown, dict: ContentDict, locale: AppLocale, parentKey?: 
       }
       if (key === 'latex' && typeof child === 'string') {
         out[key] = localizeLatexField(child, locale);
+      } else if (key === 'constraints' && Array.isArray(child)) {
+        out[key] = child.map((item) =>
+          typeof item === 'string' ? localizeLatexField(item, locale) : walk(item, dict, locale, key),
+        );
       } else if (key === 'variables' && typeof child === 'string') {
-        out[key] = localizeCalculoDiferencialVariables(localizeString(child, dict, locale), locale);
+        out[key] = localizeFisicaElectronicaVariables(
+          localizeCalculoDiferencialVariables(
+            localizeString(child, dict, locale),
+            locale,
+            dict,
+          ),
+          locale,
+          dict,
+        );
       } else if (key === 'additionalLatex' && Array.isArray(child)) {
         out[key] = child.map((item) =>
           typeof item === 'string' ? localizeLatexField(item, locale) : walk(item, dict, locale, key),

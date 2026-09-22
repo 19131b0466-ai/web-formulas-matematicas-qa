@@ -51,7 +51,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
     "Punto intermedio (TVM, Rolle)": {
         "de": "Zwischenpunkt (MWS, Rolle)",
         "fr": "Point intermédiaire (TAF, Rolle)",
-        "it": "Punto intermedio (TVM, Rolle)",
+        "it": "Punto intermedio (teorema del valore medio, Rolle)",
         "pt": "Ponto intermediário (TVM, Rolle)",
     },
     "Incremento en la definición de derivada": {
@@ -710,6 +710,91 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "fr": "Technique suggérée",
         "it": "Tecnica suggerita",
         "pt": "Técnica sugerida",
+    },
+    # --- Search aliases (enrich SEARCH_ALIASES) ---
+    "serie de Taylor": {
+        "de": "Taylor-Reihe",
+        "fr": "série de Taylor",
+        "it": "serie di Taylor",
+        "pt": "série de Taylor",
+    },
+    "polinomio de Taylor": {
+        "de": "Taylor-Polynom",
+        "fr": "polynôme de Taylor",
+        "it": "polinomio di Taylor",
+        "pt": "polinômio de Taylor",
+    },
+    "aproximación": {
+        "de": "Näherung",
+        "fr": "approximation",
+        "it": "approssimazione",
+        "pt": "aproximação",
+    },
+    "derivada": {
+        "de": "Ableitung",
+        "fr": "dérivée",
+        "it": "derivata",
+        "pt": "derivada",
+    },
+    "pendiente": {
+        "de": "Steigung",
+        "fr": "pente",
+        "it": "pendenza",
+        "pt": "inclinação",
+    },
+    "cociente incremental": {
+        "de": "Differenzenquotient",
+        "fr": "taux d'accroissement",
+        "it": "rapporto incrementale",
+        "pt": "quociente incremental",
+    },
+    "composición": {
+        "de": "Verkettung",
+        "fr": "composition",
+        "it": "composizione",
+        "pt": "composição",
+    },
+    "limite indeterminado": {
+        "de": "unbestimmter Grenzwert",
+        "fr": "limite indéterminée",
+        "it": "limite indeterminato",
+        "pt": "limite na forma indeterminada",
+    },
+    "limite epsilon delta": {
+        "de": "Epsilon-Delta-Grenzwert",
+        "fr": "limite epsilon-delta",
+        "it": "limite epsilon-delta",
+        "pt": "limite épsilon-delta",
+    },
+    "definición formal de límite": {
+        "de": "formale Definition des Grenzwerts",
+        "fr": "définition formelle de la limite",
+        "it": "definizione formale di limite",
+        "pt": "definição formal de limite",
+    },
+    "limite seno": {
+        "de": "Sinusgrenzwert",
+        "fr": "limite du sinus",
+        "it": "limite del seno",
+        "pt": "limite do seno",
+    },
+    "limite trigonométrico": {
+        "de": "trigonometrischer Grenzwert",
+        "fr": "limite trigonométrique",
+        "it": "limite trigonometrico",
+        "pt": "limite trigonométrico",
+    },
+    "regla de la potencia para límites": {
+        "de": "Potenzregel für Grenzwerte",
+        "fr": "règle de puissance pour les limites",
+        "it": "regola della potenza per i limiti",
+        "pt": "regra da potência para limites",
+    },
+    "límite de una potencia": {
+        "de": "Grenzwert einer Potenz",
+        "fr": "limite d'une puissance",
+        "it": "limite di una potenza",
+        "pt": "limite de uma potência",
     },
 }
 

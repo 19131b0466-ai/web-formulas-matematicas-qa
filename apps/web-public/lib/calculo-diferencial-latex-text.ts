@@ -37,23 +37,24 @@ const EN: Record<string, string> = {
   'cuando ': 'when ',
   ' o no existe, y ': ' or does not exist, and ',
   ' o ': ' or ',
+  o: 'or',
   ' en ': ' on ',
   ' a ': ' to ',
   ' si ': ' if ',
   'si ': 'if ',
   'Dominio': 'Domain',
   'asíntotas': 'asymptotes',
-  'asíntota horizontal': 'horizontal asymptote',
-  'asíntota oblicua': 'oblique asymptote',
-  'asíntota vertical de ': 'vertical asymptote of ',
+  'asíntota horizontal': 'is a horizontal asymptote',
+  'asíntota oblicua': 'is an oblique asymptote',
+  'asíntota vertical de ': 'is a vertical asymptote of ',
   'combinar algebraicamente o usar conjugados/logaritmos': 'combine algebraically or use conjugates/logarithms',
   'esquema': 'sketch',
   'intersecciones': 'intercepts',
   'usar ': 'use ',
   ' no existe': ' does not exist',
   ' cambia de ': ' changes from ',
-  'derivables en un entorno perforado de ': 'differentiable on a punctured neighborhood of ',
-  'derivables en un entorno de ': 'differentiable on a neighborhood of ',
+  'derivables en un entorno perforado de ': 'differentiable in a punctured neighborhood of ',
+  'derivables en un entorno de ': 'differentiable in a neighborhood of ',
   ' en ese entorno': ' on that neighborhood',
   'existe (finito o ': 'exists (finite or ',
   'existe y es continua en el intervalo abierto entre ': 'exists and is continuous on the open interval between ',
@@ -95,15 +96,16 @@ const DE: Record<string, string> = {
   'cuando ': 'wenn ',
   ' o no existe, y ': ' oder existiert nicht, und ',
   ' o ': ' oder ',
+  o: 'oder',
   ' en ': ' auf ',
   ' a ': ' zu ',
   ' si ': ' wenn ',
   'si ': 'wenn ',
   'Dominio': 'Definitionsbereich',
   'asíntotas': 'Asymptoten',
-  'asíntota horizontal': 'horizontale Asymptote',
-  'asíntota oblicua': 'schräge Asymptote',
-  'asíntota vertical de ': 'vertikale Asymptote von ',
+  'asíntota horizontal': 'ist eine horizontale Asymptote',
+  'asíntota oblicua': 'ist eine schräge Asymptote',
+  'asíntota vertical de ': 'ist eine vertikale Asymptote von ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'algebraisch kombinieren oder Konjugierte/Logarithmen verwenden',
   'esquema': 'Skizze',
@@ -155,15 +157,16 @@ const FR: Record<string, string> = {
   'cuando ': 'quand ',
   ' o no existe, y ': " ou n'existe pas, et ",
   ' o ': ' ou ',
+  o: 'ou',
   ' en ': ' sur ',
   ' a ': ' à ',
   ' si ': ' si ',
   'si ': 'si ',
   'Dominio': 'Domaine',
   'asíntotas': 'asymptotes',
-  'asíntota horizontal': 'asymptote horizontale',
-  'asíntota oblicua': 'asymptote oblique',
-  'asíntota vertical de ': 'asymptote verticale de ',
+  'asíntota horizontal': 'est une asymptote horizontale',
+  'asíntota oblicua': 'est une asymptote oblique',
+  'asíntota vertical de ': 'est une asymptote verticale de ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combiner algébriquement ou utiliser conjugués/logarithmes',
   'esquema': 'schéma',
@@ -215,15 +218,16 @@ const IT: Record<string, string> = {
   'cuando ': 'quando ',
   ' o no existe, y ': ' o non esiste, e ',
   ' o ': ' o ',
+  o: 'o',
   ' en ': ' su ',
   ' a ': ' a ',
   ' si ': ' se ',
   'si ': 'se ',
   'Dominio': 'Dominio',
   'asíntotas': 'asintoti',
-  'asíntota horizontal': 'asintoto orizzontale',
-  'asíntota oblicua': 'asintoto obliquo',
-  'asíntota vertical de ': 'asintoto verticale di ',
+  'asíntota horizontal': 'è un asintoto orizzontale',
+  'asíntota oblicua': 'è un asintoto obliquo',
+  'asíntota vertical de ': 'è un asintoto verticale di ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combinare algebricamente o usare coniugati/logaritmi',
   'esquema': 'schema',
@@ -281,9 +285,9 @@ const PT: Record<string, string> = {
   'si ': 'se ',
   'Dominio': 'Domínio',
   'asíntotas': 'assíntotas',
-  'asíntota horizontal': 'assíntota horizontal',
-  'asíntota oblicua': 'assíntota oblíqua',
-  'asíntota vertical de ': 'assíntota vertical de ',
+  'asíntota horizontal': 'é uma assíntota horizontal',
+  'asíntota oblicua': 'é uma assíntota oblíqua',
+  'asíntota vertical de ': 'é uma assíntota vertical de ',
   'combinar algebraicamente o usar conjugados/logaritmos':
     'combinar algebricamente ou usar conjugados/logaritmos',
   'esquema': 'esquema',
@@ -321,6 +325,83 @@ const VARIABLE_MEANINGS: Record<string, Partial<Record<AppLocale, string>>> = {
     fr: 'Point ou constante réelle',
     it: 'Punto o costante reale',
     pt: 'Ponto ou constante real',
+  },
+  'Punto intermedio (TVM, Rolle)': {
+    en: 'Intermediate point (MVT, Rolle)',
+    de: 'Zwischenpunkt (MWS, Rolle)',
+    fr: 'Point intermédiaire (TAF, Rolle)',
+    it: 'Punto intermedio (teorema del valore medio, Rolle)',
+    pt: 'Ponto intermediário (TVM, Rolle)',
+  },
+  'Tiempo (interpretación física)': {
+    en: 'Time (physical interpretation)',
+    de: 'Zeit (physikalische Interpretation)',
+    fr: 'Temps (interprétation physique)',
+    it: 'Tempo (interpretazione fisica)',
+    pt: 'Tempo (interpretação física)',
+  },
+  'Posición o longitud de arco': {
+    en: 'Position or arc length',
+    de: 'Position oder Bogenlänge',
+    fr: "Position ou longueur d'arc",
+    it: "Posizione o lunghezza d'arco",
+    pt: 'Posição ou comprimento de arco',
+  },
+  'Velocidad o función auxiliar': {
+    en: 'Velocity or auxiliary function',
+    de: 'Geschwindigkeit oder Hilfsfunktion',
+    fr: 'Vitesse ou fonction auxiliaire',
+    it: 'Velocità o funzione ausiliaria',
+    pt: 'Velocidade ou função auxiliar',
+  },
+  'Extremo de intervalo o constante': {
+    en: 'Interval endpoint or constant',
+    de: 'Intervallendpunkt oder Konstante',
+    fr: "Extrémité d'intervalle ou constante",
+    it: 'Estremo di intervallo o costante',
+    pt: 'Extremo de intervalo ou constante',
+  },
+  'Incremento en la definición de derivada': {
+    en: 'Increment in the derivative definition',
+    de: 'Inkrement in der Ableitungsdefinition',
+    fr: "Accroissement dans la définition de la dérivée",
+    it: 'Incremento nella definizione di derivata',
+    pt: 'Incremento na definição de derivada',
+  },
+  'Radio en definición ε-δ': {
+    en: 'Radius in the ε-δ definition',
+    de: 'Radius in der ε-δ-Definition',
+    fr: 'Rayon dans la définition ε-δ',
+    it: 'Raggio nella definizione ε-δ',
+    pt: 'Raio na definição ε-δ',
+  },
+  'Tolerancia en definición ε-δ': {
+    en: 'Tolerance in the ε-δ definition',
+    de: 'Toleranz in der ε-δ-Definition',
+    fr: 'Tolérance dans la définition ε-δ',
+    it: 'Tolleranza nella definizione ε-δ',
+    pt: 'Tolerância na definição ε-δ',
+  },
+  'Variable auxiliar (cadena, sustitución)': {
+    en: 'Auxiliary variable (chain, substitution)',
+    de: 'Hilfsvariable (Kette, Substitution)',
+    fr: 'Variable auxiliaire (chaîne, substitution)',
+    it: 'Variabile ausiliaria (catena, sostituzione)',
+    pt: 'Variável auxiliar (cadeia, substituição)',
+  },
+  'Ángulo o parámetro': {
+    en: 'Angle or parameter',
+    de: 'Winkel oder Parameter',
+    fr: 'Angle ou paramètre',
+    it: 'Angolo o parametro',
+    pt: 'Ângulo ou parâmetro',
+  },
+  'Constante pi': {
+    en: 'Pi constant',
+    de: 'Kreiszahl π',
+    fr: 'Constante pi',
+    it: 'Costante pi greco',
+    pt: 'Constante pi',
   },
   'Función': {
     en: 'Function',
@@ -426,10 +507,26 @@ function sortedKeys(locale: AppLocale): string[] {
   return keys;
 }
 
+function lookupTextMap(map: Record<string, string>, inner: string, trimmed: string): string | undefined {
+  return (
+    map[inner] ??
+    map[trimmed] ??
+    map[`${trimmed} `] ??
+    map[` ${trimmed}`] ??
+    map[` ${trimmed} `]
+  );
+}
+
 function translateTextFragment(inner: string, locale: AppLocale): string {
   const map = MAPS[locale] ?? EN;
-  const exact = map[inner] ?? map[inner.trim()];
-  if (exact !== undefined) return exact;
+  const trimmed = inner.trim();
+  const padStart = trimmed ? inner.indexOf(trimmed) : 0;
+  const leading = inner.slice(0, padStart);
+  const trailing = trimmed ? inner.slice(padStart + trimmed.length) : inner;
+  const exactInner = map[inner];
+  if (exactInner !== undefined) return exactInner;
+  const exact = lookupTextMap(map, inner, trimmed);
+  if (exact !== undefined) return `${leading}${exact.trim()}${trailing}`;
   let out = inner;
   for (const key of sortedKeys(locale)) {
     if (!out.includes(key)) continue;
@@ -438,28 +535,42 @@ function translateTextFragment(inner: string, locale: AppLocale): string {
   return out;
 }
 
+/** Keep a visible gap between a translated connector and the next symbol (DIF-032). */
+function spaceConnectorBeforeF(latex: string): string {
+  return latex.replace(/\\text\{ o \}f\(a\)/g, '\\text{ o }\\,f(a)');
+}
+
 export function localizeCalculoDiferencialLatexText(latex: string, locale: AppLocale): string {
-  if (locale === 'es') return latex;
-  return latex.replace(/\\text\{([^}]*)\}/g, (match, inner: string) => {
+  const prepared = spaceConnectorBeforeF(latex);
+  if (locale === 'es') return prepared;
+  return prepared.replace(/\\text\{([^}]*)\}/g, (match, inner: string) => {
     const translated = translateTextFragment(inner, locale);
     return translated !== inner ? `\\text{${translated}}` : match;
   });
 }
 
+export const CALCULUS_DIFF_VARIABLE_MEANINGS = VARIABLE_MEANINGS;
+
 export function localizeCalculoDiferencialVariables(
   variables: string,
   locale: AppLocale,
+  dict?: Record<string, string>,
 ): string {
   if (locale === 'es') return variables;
   return variables.replace(/([^:;]+):\s*([^;]+)/g, (full, symbol: string, meaning: string) => {
     const trimmed = meaning.trim();
-    const localized = VARIABLE_MEANINGS[trimmed]?.[locale];
-    return localized ? `${symbol}: ${localized}` : full;
+    const localized = VARIABLE_MEANINGS[trimmed]?.[locale] ?? dict?.[trimmed];
+    return localized && localized !== trimmed ? `${symbol}: ${localized}` : full;
   });
 }
 
 /** Patterns that indicate corrupted partial translation (QA regression guard). */
-export const CORRUPT_LATEX_PATTERNS = [/orr/i, /oderder/i, /\bouu\b/i, /si el cociente/i];
+export const CORRUPT_LATEX_PATTERNS = [
+  /\\text\{orr\}/i,
+  /\\text\{oderder\}/i,
+  /\\text\{ouu\}/i,
+  /si el cociente/i,
+];
 
 export function hasCorruptLocalizedLatex(latex: string): boolean {
   return CORRUPT_LATEX_PATTERNS.some((re) => re.test(latex));

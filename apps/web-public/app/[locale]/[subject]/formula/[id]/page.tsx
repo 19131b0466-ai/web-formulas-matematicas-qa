@@ -17,9 +17,11 @@ import {
   mergeSearchKeywords,
 } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, subjectUsesFormulaCatalog, type SubjectSlug } from '@/lib/subjects';
+import { formulaSearchAliases } from '@/lib/calculo-diferencial-search-aliases';
 import {
   calculoDiferencialVizForFormulaId,
   calculoVizForFormulaId,
+  electronicaVizForFormulaId,
   fisicaVizForFormulaId,
 } from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
@@ -33,7 +35,11 @@ type PageProps = {
 
 async function loadFormula(subject: SubjectSlug, id: string, locale: AppLocale) {
   try {
-    return await localizeContent(await fetchFormula(subject, id), locale);
+    const raw = await fetchFormula(subject, id);
+    if (raw?.content) {
+      raw.content.searchAliases = formulaSearchAliases(raw.formulaId, raw.content.searchAliases);
+    }
+    return await localizeContent(raw, locale);
   } catch (err) {
     // Let error.tsx handle API timeouts/5xx — do not disguise them as 404.
     if (err instanceof ApiUnavailableError) throw err;
@@ -66,6 +72,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       (subject === 'calculo-ii' && calculoVizForFormulaId(detail.formulaId)) ||
         (subject === 'calculo-diferencial' && calculoDiferencialVizForFormulaId(detail.formulaId)) ||
         (subject === 'fisica-basica' && fisicaVizForFormulaId(detail.formulaId)) ||
+        (subject === 'fisica-electronica' && electronicaVizForFormulaId(detail.formulaId)) ||
         (subject === 'algebra' && detail.content.visual),
     );
     const keywords = mergeSearchKeywords(

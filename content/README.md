@@ -5,6 +5,7 @@
 | `formulas-calculo-diferencial.md`| `calculo-diferencial`   | Cálculo Diferencial (~161 fórmulas `DIF-###`)    |
 | `formulas-calculo-ii.md`         | `calculo-ii`            | Fórmulas de Cálculo II                           |
 | `formulas-fisica-basica.md`      | `fisica-basica`         | Fórmulas de Física Básica universitaria (~195)   |
+| `formulas-fisica-electronica.md` | `fisica-electronica`    | Circuitos, dispositivos y digital (~188 `DIV`…`ADC`) |
 | `formulas-algebra.md`            | `algebra`               | Álgebra para Ingeniería y CS (~183) + viz specs  |
 
 El archivo raíz `FORMULAS_ALGEBRA_INGENIERIA_CS_V3.md` es la fuente de referencia; la copia canónica para seed es `content/formulas-algebra.md`.
@@ -58,6 +59,33 @@ Secciones editoriales no importadas: Índice, notas introductorias de convencion
 
 Secciones del MD que **no** se importan como catálogo: Índice, Notación general, Resumen de relaciones (el grafo sale de `**Relacionadas:**`), Modelo recomendado, Frontera con Física Electrónica, Fuentes.
 
+## Física Electrónica — capítulos → slugs
+
+| #  | Capítulo                              | Slug                         |
+| -- | ------------------------------------- | ---------------------------- |
+| 1  | Mapa del curso y prerrequisitos       | `mapa-prerrequisitos`        |
+| 2  | Redes resistivas                      | `redes-resistivas`           |
+| 3  | Capacitores e inductores en circuitos | `capacitores-inductores`     |
+| 4  | Transitorios de primer orden          | `transitorios-primer-orden`  |
+| 5  | Circuitos RLC de segundo orden        | `rlc-segundo-orden`          |
+| 6  | Corriente alterna y fasores           | `ca-fasores`                 |
+| 7  | Potencia en CA y resonancia           | `potencia-ca-resonancia`     |
+| 8  | Filtros y respuesta en frecuencia     | `filtros`                    |
+| 9  | Transformadores                       | `transformadores`            |
+| 10 | Semiconductores y diodos              | `diodos-semiconductores`     |
+| 11 | Transistores BJT                      | `bjt`                        |
+| 12 | Transistores FET                      | `fet`                        |
+| 13 | Amplificadores y operacional          | `amplificadores-opamp`       |
+| 14 | Familias lógicas y puertas            | `familias-logicas`           |
+| 15 | Lógica combinacional                  | `logica-combinacional`       |
+| 16 | Lógica secuencial                     | `logica-secuencial`          |
+| 17 | Conversión A/D–D/A y muestreo         | `conversion-ad-da`           |
+| 18 | Guía para enfocar un circuito         | `guia-enfoque`               |
+
+Secciones editoriales no importadas: Índice, Notación general, Frontera con Física Básica y Álgebra, Fuentes. Las identidades booleanas (`ALG-BOO-*`) y la electricidad elemental (`ELE-*`) permanecen en sus catálogos; aquí solo se enlazan.
+
+QA: `pnpm qa:fisica-electronica`.
+
 ## Álgebra — capítulos → slugs
 
 Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30 (fronteras con otras materias) es una nota editorial para el catálogo y **no se publica**. Sin `/guia`.
@@ -101,10 +129,10 @@ Caps. 1–28: fórmulas. Cap. 29: mapas de relaciones. Cap. 30 (fronteras con ot
 pnpm db:seed
 ```
 
-El seed importa las cuatro materias. Para una sola:
+El seed importa las cinco materias. Para una sola:
 
 ```bash
 pnpm --filter @repo/api db:seed -- ../../content/formulas-calculo-diferencial.md
-
-QA y rutas de revisión: `pnpm qa:calculo-diferencial` · `docs/calculo-diferencial-rutas-revision.md`
 ```
+
+QA y rutas de revisión: `pnpm qa:calculo-diferencial` · `pnpm qa:fisica-electronica` · `docs/calculo-diferencial-rutas-revision.md`

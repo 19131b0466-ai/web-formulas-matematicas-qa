@@ -55,6 +55,24 @@ const SECTION_TAGS: Record<string, string[]> = {
   'electricidad-basica': ['electricidad', 'fisica'],
   'constantes-fisicas': ['constantes', 'fisica'],
   'guia-enfoque': ['guia', 'estrategia', 'fisica'],
+  // Física Electrónica
+  'mapa-prerrequisitos': ['electronica', 'fisica', 'prerrequisitos'],
+  'redes-resistivas': ['electronica', 'fisica', 'circuitos', 'divisores'],
+  'capacitores-inductores': ['electronica', 'fisica', 'circuitos', 'reactancia'],
+  'transitorios-primer-orden': ['electronica', 'fisica', 'transitorios'],
+  'rlc-segundo-orden': ['electronica', 'fisica', 'rlc'],
+  'ca-fasores': ['electronica', 'fisica', 'fasores', 'ca'],
+  'potencia-ca-resonancia': ['electronica', 'fisica', 'potencia', 'resonancia'],
+  filtros: ['electronica', 'fisica', 'filtros'],
+  transformadores: ['electronica', 'fisica', 'transformadores'],
+  'diodos-semiconductores': ['electronica', 'fisica', 'diodos'],
+  bjt: ['electronica', 'fisica', 'bjt', 'transistores'],
+  fet: ['electronica', 'fisica', 'fet', 'transistores'],
+  'amplificadores-opamp': ['electronica', 'fisica', 'opamp', 'amplificadores'],
+  'familias-logicas': ['electronica', 'fisica', 'digital', 'logica'],
+  'logica-combinacional': ['electronica', 'fisica', 'digital', 'combinacional'],
+  'logica-secuencial': ['electronica', 'fisica', 'digital', 'secuencial'],
+  'conversion-ad-da': ['electronica', 'fisica', 'digital', 'conversion'],
   // Álgebra
   'numeros-propiedades': ['algebra', 'fundamentos'],
   'potencias-radicales': ['algebra', 'potencias'],
@@ -107,12 +125,30 @@ const KEYWORD_TAGS: Array<[RegExp, string]> = [
   [/\bBernoulli\b/i, 'fluidos'],
   [/\bOhm\b/i, 'electricidad'],
   [/\bKirchhoff\b/i, 'electricidad'],
+  [/\bTh[eé]venin\b/i, 'thevenin'],
+  [/\bfasor/i, 'fasores'],
+  [/\bop-?amp|operacional/i, 'opamp'],
+  [/\bflip-?flop\b/i, 'secuencial'],
   [/\bl[ií]mite\b/i, 'limite'],
   [/\bderivad/i, 'derivada'],
   [/\bcontinu/i, 'continuidad'],
   [/\bL'H[oô]pital\b/i, 'lhopital'],
   [/\boptimiz/i, 'optimizacion'],
 ];
+
+function isDerivativeFormulaSection(slug: string): boolean {
+  if (slug.startsWith('a-') || slug.startsWith('apendice-tabla-derivadas')) return true;
+  const prefixes = [
+    'reglas-derivacion',
+    'derivadas-superiores',
+    'derivada-geometrica',
+    'aproximaciones-diferenciales',
+    'series-taylor',
+    'funciones-implicitas',
+    'tasas-relacionadas',
+  ];
+  return prefixes.some((p) => slug === p || slug.startsWith(`${p}-`));
+}
 
 function isCalculoDiferencialSection(slug: string): boolean {
   if (slug.startsWith('a-') || slug.startsWith('apendice-tabla-derivadas')) return true;
@@ -155,20 +191,14 @@ export function inferTags(sectionSlug: string, text: string, blockType: string):
 
   if (blockType === 'formula') {
     if (tags.has('fisica')) tags.add('formula-fisica');
-    else if (tags.has('algebra')) tags.add('formula-algebra');
-    else if (
-      isCalculoDiferencialSection(sectionSlug) ||
-      tags.has('calculo-diferencial') ||
-      tags.has('derivada') ||
-      tags.has('limite') ||
-      tags.has('continuidad') ||
-      tags.has('optimizacion') ||
-      tags.has('diferencial') ||
-      tags.has('taylor') ||
-      tags.has('implicita') ||
-      tags.has('grafica')
-    ) {
+    if (tags.has('electronica')) tags.add('formula-electronica');
+    if (tags.has('fisica') || tags.has('electronica')) {
+      /* physics-family formulas are neither antiderivatives nor derivatives */
+    } else if (tags.has('algebra')) tags.add('formula-algebra');
+    else if (isDerivativeFormulaSection(sectionSlug)) {
       tags.add('formula-derivada');
+      tags.delete('antiderivada');
+    } else if (isCalculoDiferencialSection(sectionSlug) || tags.has('calculo-diferencial')) {
       tags.delete('antiderivada');
     } else tags.add('antiderivada');
   }
@@ -247,6 +277,28 @@ export const PHYSICS_SECTION_SLUG_OVERRIDES: Record<string, string> = {
   '15': 'termodinamica',
   '16': 'electricidad-basica',
   '17': 'constantes-fisicas',
+  '18': 'guia-enfoque',
+};
+
+/** Canonical slug overrides for Física Electrónica chapters. */
+export const ELECTRONICS_SECTION_SLUG_OVERRIDES: Record<string, string> = {
+  '1': 'mapa-prerrequisitos',
+  '2': 'redes-resistivas',
+  '3': 'capacitores-inductores',
+  '4': 'transitorios-primer-orden',
+  '5': 'rlc-segundo-orden',
+  '6': 'ca-fasores',
+  '7': 'potencia-ca-resonancia',
+  '8': 'filtros',
+  '9': 'transformadores',
+  '10': 'diodos-semiconductores',
+  '11': 'bjt',
+  '12': 'fet',
+  '13': 'amplificadores-opamp',
+  '14': 'familias-logicas',
+  '15': 'logica-combinacional',
+  '16': 'logica-secuencial',
+  '17': 'conversion-ad-da',
   '18': 'guia-enfoque',
 };
 

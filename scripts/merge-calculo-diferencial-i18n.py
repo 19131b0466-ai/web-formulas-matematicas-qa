@@ -218,6 +218,31 @@ DETAILS: dict[str, dict[str, str]] = {
         "Velocidad instantánea como derivada de la posición.": "Instantaneous velocity as the derivative of position.",
         "Válido si los límites de \\(f\\) y \\(g\\) existen.": "Valid if the limits of \\(f\\) and \\(g\\) exist.",
         "Útil para potencias variables y productos/cocientes.": "Useful for variable powers and products/quotients.",
+        "Válido si el límite de \\(f\\) existe. Si \\(n<0\\), además se requiere \\(\\lim_{x\\to a}f(x)\\neq0\\).": "Valid if the limit of \\(f\\) exists. If \\(n<0\\), also requires \\(\\lim_{x\\to a}f(x)\\neq0\\).",
+        "Comportamiento de cocientes de polinomios cuando \\(x\\to\\infty\\) (mismo resultado para \\(x\\to-\\infty\\) si los grados difieren; si \\(n>m\\), el signo depende de \\(a_n/b_m\\) y del sentido).": "Behavior of polynomial quotients as \\(x\\to\\infty\\) (same for \\(x\\to-\\infty\\) when degrees differ; if \\(n>m\\), the sign depends on \\(a_n/b_m\\) and the direction).",
+        "Para \\(n\\in\\mathbb{R}\\) no entero, válida en cada intervalo donde \\(x>0\\) (o donde \\(x^n\\) está definida y es diferenciable).": "For non-integer \\(n\\in\\mathbb{R}\\), valid on each interval where \\(x>0\\) (or where \\(x^n\\) is defined and differentiable).",
+        "Paso inicial para derivar \\(f^g\\) con exponente variable (requiere \\(f(x)>0\\) donde se aplica \\(\\ln\\)).": "First step to differentiate \\(f^g\\) with variable exponent (requires \\(f(x)>0\\) where \\(\\ln\\) is applied).",
+        "\\(c\\) pertenece al dominio de \\(f\\) y al interior del intervalo considerado.": "\\(c\\) belongs to the domain of \\(f\\) and to the interior of the interval under consideration.",
+        "Ejemplo tipo: área máxima con perímetro fijo (rectángulo → cuadrado). Aquí \\(P\\) es el perímetro completo (\\(P=2x+2y\\)); el semiperímetro es \\(C=P/2=x+y\\).": "Typical example: maximum area with fixed perimeter (rectangle → square). Here \\(P\\) is the full perimeter (\\(P=2x+2y\\)); the semiperimeter is \\(C=P/2=x+y\\).",
+        "Requiere que \\(f^{(n+1)}\\) exista y sea continua en el intervalo abierto entre \\(a\\) y \\(x\\).": "Requires that \\(f^{(n+1)}\\) exists and is continuous on the open interval between \\(a\\) and \\(x\\).",
+        "Cuando el límite original es \\(0/0\\) o \\(\\infty/\\infty\\) y se cumplen las hipótesis de derivabilidad.": "When the original limit is \\(0/0\\) or \\(\\infty/\\infty\\) and the differentiability hypotheses hold.",
+        "Misma regla que DIF-114 en el límite al infinito; requiere forma \\(0/0\\) o \\(\\infty/\\infty\\).": "Same rule as DIF-114 at infinity; requires form \\(0/0\\) or \\(\\infty/\\infty\\).",
+        "Puede existir solo al tender a \\(+\\infty\\) o a \\(-\\infty\\); no exige simultáneamente ambos.": "May exist only as \\(x\\to+\\infty\\) or \\(x\\to-\\infty\\); both are not required simultaneously.",
+        "La asíntota oblicua puede existir solo en \\(+\\infty\\) o en \\(-\\infty\\).": "The oblique asymptote may exist only at \\(+\\infty\\) or at \\(-\\infty\\).",
+        "Cálculo de pendiente e intercepto para asíntotas oblicuas (aplicar por separado en \\(+\\infty\\) y \\(-\\infty\\)).": "Slope and intercept for oblique asymptotes (apply separately at \\(+\\infty\\) and \\(-\\infty\\)).",
+        "\\(\\csc x=1/\\operatorname{sen} x\\), \\(\\sec x=1/\\cos x\\), \\(\\cot x=\\cos x/\\operatorname{sen} x\\).": "\\(\\csc x=1/\\sin x\\), \\(\\sec x=1/\\cos x\\), \\(\\cot x=\\cos x/\\sin x\\).",
+        "\\(\\operatorname{arcsen} x\\), \\(\\arccos x\\), \\(\\arctan x\\) denotan funciones inversas, no recíprocos.": "\\(\\arcsin x\\), \\(\\arccos x\\), \\(\\arctan x\\) denote inverse functions, not reciprocals.",
+        "\\(f'(x)\\), \\(f''(x)\\) y \\(f^{(n)}(x)\\) denotan derivadas de orden uno, dos y \\(n\\).": "\\(f'(x)\\), \\(f''(x)\\), and \\(f^{(n)}(x)\\) denote derivatives of orders one, two, and \\(n\\).",
+        "Toda fórmula se aplica solo donde las expresiones estén definidas y los denominadores sean distintos de cero.": "Every formula applies only where expressions are defined and denominators are nonzero.",
+        "Modelar la cantidad a optimizar \\(Q\\) como función de una variable.": "Model the quantity to optimize \\(Q\\) as a function of one variable.",
+        "Determinar el dominio físico o natural.": "Determine the physical or natural domain.",
+        "Encontrar puntos críticos interiores: \\(Q'(x)=0\\) o donde \\(Q'\\) no existe.": "Find interior critical points: \\(Q'(x)=0\\) or where \\(Q'\\) does not exist.",
+        "Evaluar \\(Q\\) en críticos y en extremos del dominio.": "Evaluate \\(Q\\) at critical points and domain endpoints.",
+        "Interpretar la respuesta en unidades del problema.": "Interpret the answer in the units of the problem.",
+        "Identificar variables que dependen del tiempo: \\(x(t),y(t),\\ldots\\)": "Identify time-dependent variables: \\(x(t),y(t),\\ldots\\)",
+        "Escribir una ecuación que las relaciona.": "Write an equation relating them.",
+        "Diferenciar respecto de \\(t\\) (a menudo con la regla de la cadena).": "Differentiate with respect to \\(t\\) (often using the chain rule).",
+        "Sustituir valores conocidos en el instante considerado.": "Substitute known values at the instant considered.",
     },
 }
 
@@ -282,9 +307,32 @@ EXTRA: dict[str, dict[str, str]] = {
         "Asíntotas verticales, horizontales y oblicuas.": "Vertical, horizontal and oblique asymptotes.",
         "f': intervalos de crecimiento/decrecimiento y puntos críticos.": "f': intervals of increase/decrease and critical points.",
         "f'': concavidad y puntos de inflexión.": "f'': concavity and inflection points.",
+        "4. \\(f'\\): intervalos de crecimiento/decrecimiento y puntos críticos.": "4. \\(f'\\): intervals of increase/decrease and critical points.",
+        "5. \\(f''\\): concavidad y puntos de inflexión.": "5. \\(f''\\): concavity and inflection points.",
         "Tabla de signos y esquema final.": "Sign chart and final sketch.",
         "Guía para derivar y analizar": "Guide to differentiate and analyze",
         "> **Regla de uso:** aplicar solo donde las expresiones estén definidas; denominadores distintos de cero.": "> **Usage rule:** apply only where expressions are defined; denominators must be nonzero.",
+        "**Regla de uso:** aplicar solo donde las expresiones estén definidas; denominadores distintos de cero.": "**Usage rule:** apply only where expressions are defined; denominators must be nonzero.",
+        "\\(\\operatorname{arcsen} x\\), \\(\\arccos x\\), \\(\\arctan x\\) denotan funciones inversas, no recíprocos.": "\\(\\arcsin x\\), \\(\\arccos x\\), \\(\\arctan x\\) denote inverse functions, not reciprocals.",
+        "\\(f'(x)\\), \\(f''(x)\\) y \\(f^{(n)}(x)\\) denotan derivadas de orden uno, dos y \\(n\\).": "\\(f'(x)\\), \\(f''(x)\\), and \\(f^{(n)}(x)\\) denote derivatives of orders one, two, and \\(n\\).",
+        "Toda fórmula se aplica solo donde las expresiones estén definidas y los denominadores sean distintos de cero.": "Every formula applies only where expressions are defined and denominators are nonzero.",
+        "\\(f'\\): intervalos de crecimiento/decrecimiento y puntos críticos.": "\\(f'\\): intervals of increase/decrease and critical points.",
+        "\\(f''\\): concavidad y puntos de inflexión.": "\\(f''\\): concavity and inflection points.",
+        "*Generado con 161 fórmulas catalogadas (`DIF-001` … `DIF-161`).*": "*Generated with 161 catalogued formulas (`DIF-001` … `DIF-161`).*",
+        "serie de Taylor": "Taylor series",
+        "polinomio de Taylor": "Taylor polynomial",
+        "aproximación": "approximation",
+        "derivada": "derivative",
+        "pendiente": "slope",
+        "cociente incremental": "difference quotient",
+        "composición": "composition",
+        "limite indeterminado": "indeterminate limit",
+        "limite epsilon delta": "epsilon-delta limit",
+        "definición formal de límite": "formal definition of limit",
+        "limite seno": "sine limit",
+        "limite trigonométrico": "trigonometric limit",
+        "regla de la potencia para límites": "power rule for limits",
+        "límite de una potencia": "limit of a power",
     },
 }
 
@@ -310,6 +358,11 @@ for (const s of r.sections) {
       details.add(b.content.method);
     }
     if (b.blockType==='checklist') details.add(b.content.text);
+    if (b.blockType==='list' && Array.isArray(b.content.items)) {
+      for (const item of b.content.items) details.add(item);
+    }
+    if (b.blockType==='note' && b.content.markdown) details.add(b.content.markdown);
+    if (b.blockType==='text' && b.content.markdown) details.add(b.content.markdown);
   }
 }
 console.log(JSON.stringify({titles:[...titles].sort(), details:[...details].sort()}));
@@ -396,9 +449,21 @@ def main() -> None:
     for locale in LOCALES:
         phrases = build_locale_map(locale, titles, details)
         n = merge_locale(locale, phrases, force_keys=force_keys if locale != "en" else None)
+        # Subtopic titles must win even when PT/IT spelling matches Spanish (k == v filter).
+        sub = SUBTOPIC_TITLES.get(locale, {})
+        if sub:
+            path = I18N_DIR / f"{locale}.json"
+            data = json.loads(path.read_text(encoding="utf-8"))
+            for key, value in sub.items():
+                if data.get(key) != value:
+                    data[key] = value
+                    n += 1
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"{locale}: merged {n} keys ({len(phrases)} candidates)")
         total += n
     print(f"done, {total} new/updated keys across locales")
+    subprocess.check_call(["node", "scripts/gen-calculo-diferencial-tag-labels.mjs"], cwd=ROOT)
+    print("updated calculo-diferencial-tag-labels.json")
 
 
 if __name__ == "__main__":

@@ -3186,7 +3186,7 @@ R_{\text{eq}}=\sum_iR_i
 
 **Detalle:** La resistencia equivalente en serie es la suma de las resistencias.
 
-**Relacionadas:** `ELE-015`, `ELE-009`.
+**Relacionadas:** `ELE-015`, `ELE-009`, `DIV-001`.
 
 ---
 
@@ -3226,9 +3226,7 @@ Equivalentemente:
 
 **Detalle:** En un nudo, la suma de corrientes que entran es igual a la suma de las que salen.
 
-en un nodo usando signos algebraicos.
-
-**Relacionadas:** `ELE-008`, `ELE-017`.
+**Relacionadas:** `ELE-008`, `ELE-017`, `DIV-013`.
 
 ---
 
@@ -3240,8 +3238,6 @@ en un nodo usando signos algebraicos.
 \]
 
 **Detalle:** A lo largo de una malla cerrada, la suma de las diferencias de potencial es nula.
-
-al recorrer una malla cerrada.
 
 **Relacionadas:** `ELE-005`, `ELE-009`, `ELE-016`.
 
@@ -3263,7 +3259,7 @@ C=\frac{Q}{V}
 **Notaciones equivalentes:** capacitance formula; capacitance equation; fórmula de capacitancia
 **Última revisión:** 2026-09-14
 
-**Relacionadas:** `ELE-019`, `ELE-005`.
+**Relacionadas:** `ELE-019`, `ELE-005`, `REA-005`, `TRN-002`.
 
 ---
 
@@ -3563,7 +3559,9 @@ Para evitar duplicación excesiva, **Física Básica** termina aproximadamente e
 
 La app de **Física Electrónica** puede comenzar y profundizar en:
 
-- divisores de tensión y corriente;
+- divisores de tensión y corriente (`DIV-001`, enlazado desde `ELE-014`);
+- análisis nodal (`DIV-013`, enlazado desde `ELE-016`);
+- circuitos RC, RL y RLC (`REA-005`, `TRN-002`, enlazados desde `ELE-018`);
 - circuitos RC, RL y RLC;
 - transitorios;
 - corriente alterna;

@@ -15,7 +15,11 @@ import {
   createFaqAccumulator,
 } from './formula-meta.js';
 import { slugify } from './slugify.js';
-import { PHYSICS_SECTION_SLUG_OVERRIDES, inferTags } from './tags.js';
+import {
+  ELECTRONICS_SECTION_SLUG_OVERRIDES,
+  PHYSICS_SECTION_SLUG_OVERRIDES,
+  inferTags,
+} from './tags.js';
 import type { ParseResult, ParsedBlock, ParsedSection } from './types.js';
 
 const H1_RE = /^#\s+(.+)$/;
@@ -48,9 +52,14 @@ function isStrategyTable(headers: string[]): boolean {
 const ID_RE = /^\*\*ID:\*\*\s*`([^`]+)`\s*$/i;
 const DETAIL_RE = /^\*\*Detalle:\*\*\s*(.*)$/i;
 const VARIABLES_RE = /^\*\*Variables:\*\*\s*(.*)$/i;
-const CONDITION_RE = /^\*\*Condici[oó]n(?:es)?:\*\*\s*(.*)$/i;
+const CONDITION_RE = /^\*\*Condici[oó]n(?:\(es\)|es)?:\*\*\s*(.*)$/i;
 const RELATED_RE = /^\*\*Relacionadas:\*\*\s*(.*)$/i;
-const RELATED_ID_RE = /`([A-Z]{2,5}-\d{3})`/g;
+/** Captures `VEC-001` and algebra-style `ALG-BOO-001`. */
+const RELATED_ID_RE = /`((?:ALG-[A-Z]+|[A-Z]{2,5})-\d{3})`/g;
+
+export type PhysicsMarkdownParseOptions = {
+  slugOverrides?: Record<string, string>;
+};
 
 function stripInlineNoise(text: string): string {
   return text
@@ -164,8 +173,13 @@ function pushBlock(
   });
 }
 
-function createChapter(number: string, title: string, sortOrder: number): ParsedSection {
-  const slug = PHYSICS_SECTION_SLUG_OVERRIDES[number] ?? slugify(title);
+function createChapter(
+  number: string,
+  title: string,
+  sortOrder: number,
+  slugOverrides: Record<string, string>,
+): ParsedSection {
+  const slug = slugOverrides[number] ?? slugify(title);
   return {
     slug,
     number,
@@ -302,7 +316,11 @@ function flushFormula(section: ParsedSection, draft: FormulaDraft | null): void 
  * Parse Física Básica catalog markdown into chapter sections and formula blocks.
  * Formula entries (`## N.M`) become formula blocks (not subsections).
  */
-export function parsePhysicsMarkdown(markdown: string): ParseResult {
+export function parsePhysicsMarkdown(
+  markdown: string,
+  options: PhysicsMarkdownParseOptions = {},
+): ParseResult {
+  const slugOverrides = options.slugOverrides ?? PHYSICS_SECTION_SLUG_OVERRIDES;
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
   const sections: ParsedSection[] = [];
 
@@ -377,7 +395,7 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
 
       inIndex = false;
       inGuideSection = GUIDE_CHAPTER_RE.test(title) || Number(num) === 18;
-      const section = createChapter(num, title, sortOrder++);
+      const section = createChapter(num, title, sortOrder++, slugOverrides);
       if (inGuideSection) section.slug = 'guia-enfoque';
       sections.push(section);
       currentSection = section;
@@ -605,4 +623,9 @@ export function parsePhysicsMarkdown(markdown: string): ParseResult {
     sections,
     stats: { sectionCount: sections.length, blockCount, formulaCount, tableCount },
   };
+}
+
+/** Parse Física Electrónica with electronics chapter slug overrides. */
+export function parseFisicaElectronicaMarkdown(markdown: string): ParseResult {
+  return parsePhysicsMarkdown(markdown, { slugOverrides: ELECTRONICS_SECTION_SLUG_OVERRIDES });
 }

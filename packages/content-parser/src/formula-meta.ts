@@ -12,6 +12,7 @@ export const EQUIV_NOTATIONS_RE = /^\*\*Notaciones equivalentes:\*\*\s*(.*)$/i;
 export const LAST_REVIEWED_RE = /^\*\*[ÚU]ltima revisi[oó]n:\*\*\s*(.*)$/i;
 export const SEARCH_ALIASES_RE =
   /^\*\*(?:Alias de b[uú]squeda|Also searched as|También buscan|Search aliases):\*\*\s*(.*)$/i;
+export const COMMON_ERRORS_RE = /^\*\*Errores comunes:\*\*\s*(.*)$/i;
 
 export type FaqAccumulator = {
   items: FaqDraft[];
@@ -25,6 +26,7 @@ export type EditorialDraft = {
   workedExample: string | null;
   equivalentNotations: string[];
   searchAliases: string[];
+  commonErrors: string[];
   lastReviewedAt: string | null;
 };
 
@@ -40,6 +42,7 @@ export function createEditorialDraft(): EditorialDraft {
     workedExample: null,
     equivalentNotations: [],
     searchAliases: [],
+    commonErrors: [],
     lastReviewedAt: null,
   };
 }
@@ -115,6 +118,11 @@ export function absorbEditorialLine(draft: EditorialDraft, trimmed: string): boo
     draft.searchAliases.push(...splitNotations(aliases[1]!));
     return true;
   }
+  const errors = trimmed.match(COMMON_ERRORS_RE);
+  if (errors) {
+    draft.commonErrors.push(...splitNotations(errors[1]!));
+    return true;
+  }
   return false;
 }
 
@@ -127,6 +135,7 @@ export function applyEditorialDraft(
     equivalentNotations?: string[];
     lastReviewedAt?: string;
     searchAliases?: string[];
+    commonErrors?: string[];
   },
   draft: EditorialDraft,
 ): void {
@@ -139,4 +148,5 @@ export function applyEditorialDraft(
   }
   if (draft.lastReviewedAt) target.lastReviewedAt = draft.lastReviewedAt;
   if (draft.searchAliases.length) target.searchAliases = [...draft.searchAliases];
+  if (draft.commonErrors.length) target.commonErrors = [...draft.commonErrors];
 }

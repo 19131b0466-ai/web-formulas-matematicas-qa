@@ -1,8 +1,10 @@
 'use client';
 
 import { useRef } from 'react';
-import { fmt } from './controls';
+import { present } from './formatNumber';
 import { clamp, norm, type Vec2 } from './math2d';
+
+export { present };
 
 export const VEC_W = 420;
 export const VEC_H = 320;
@@ -10,14 +12,6 @@ export const VEC_H = 320;
 export const COLOR_U = 'var(--accent-strong)';
 export const COLOR_V = 'teal';
 export const COLOR_W = 'orange';
-
-export function present(n: number, d = 2): string {
-  if (!Number.isFinite(n)) return '—';
-  const r = Number(n.toFixed(d));
-  if (Math.abs(r) < 5e-3) return '0';
-  if (Math.abs(r - Math.round(r)) < 1e-9 && Math.abs(r) < 1e6) return fmt(Math.round(r), 0);
-  return fmt(r, d);
-}
 
 export function formatPair(x: number, y: number, d = 2): string {
   return `(${present(x, d)}, ${present(y, d)})`;

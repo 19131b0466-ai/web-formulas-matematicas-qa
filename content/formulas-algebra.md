@@ -4914,6 +4914,7 @@ Para evitar duplicación en la web, estos temas conviene enlazarlos pero ubicarl
 
 - **Precálculo / Trigonometría:** identidades trigonométricas, ecuaciones trigonométricas, coordenadas polares y cónicas extensas.
 - **Cálculo:** límites, derivadas, integrales, series generales y ecuaciones diferenciales.
+- **Física Electrónica:** análisis de circuitos, modelos de dispositivos y hardware digital (`DIV-*`, `OPA-*`, `SEQ-*`). Las identidades booleanas (`ALG-BOO-*`) permanecen aquí; electrónica las usa, no las recataloga.
 - **Matemática discreta:** combinatoria, grafos, relaciones, lógica formal extensa y teoría de números completa.
 - **Teoría de códigos / Teoría de la información:** Reed-Solomon, BCH, códigos convolucionales, LDPC, códigos turbo, capacidad de canal y tratamiento completo de decodificación.
 - **Probabilidad y estadística:** variables aleatorias, distribuciones, inferencia y estimación.

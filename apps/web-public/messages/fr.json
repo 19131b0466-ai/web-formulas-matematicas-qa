@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Formules mathématiques",
-    "tagline": "Calcul différentiel, Calcul II, Physique de base et Algèbre",
-    "description": "Formules mathématiques en ligne : calcul différentiel, calcul intégral, physique de base et algèbre pour l'ingénierie et l'informatique.",
+    "tagline": "Calcul différentiel, Calcul II, Physique de base, Électronique et Algèbre",
+    "description": "Formules mathématiques en ligne : calcul différentiel, calcul intégral, physique de base, électronique et algèbre pour l'ingénierie et l'informatique.",
     "shortName": "Formules",
-    "about": "Calcul différentiel, Calcul intégral, Physique de base et Algèbre",
+    "about": "Calcul différentiel, calcul intégral, physique de base, électronique et algèbre",
     "manifestDescription": "Formules mathématiques en ligne",
     "seoTitle": "Formules mathématiques, théorie et outils interactifs"
   },
@@ -31,7 +31,7 @@
   },
   "home": {
     "headline": "Consultez des formules avec clarté, sans bruit.",
-    "support": "Calcul, physique et algèbre au même endroit : LaTeX lisible, recherche rapide et visualisations qui enseignent l’idée.",
+    "support": "Calcul, physique, électronique et algèbre au même endroit : LaTeX lisible, recherche rapide et visualisations qui enseignent l’idée.",
     "ctaSubjects": "Explorer les matières",
     "ctaAbout": "À propos du projet",
     "subjectsTitle": "Matières",
@@ -73,7 +73,7 @@
     "ogTitle": "Rechercher · Formules mathématiques",
     "subtitle": "Trouvez des formules par texte, code ou étiquettes.",
     "label": "Rechercher des formules",
-    "placeholder": "Ex. DIF-041, INT-001, VEC-001, intégration par parties…",
+    "placeholder": "Ex. DIF-041, INT-001, VEC-001, DIV-001, intégration par parties…",
     "submit": "Rechercher",
     "all": "Tous",
     "results": "{count, plural, =1 {# résultat} other {# résultats}}",
@@ -106,7 +106,12 @@
     "sectionLabelDifferential": "Section 16",
     "introDifferential": "Utilisez les indices dans la fonction pour décider quelle technique essayer en premier.",
     "signalMethodPhysics": "Indice → approche",
-    "methodPhysics": "Approche"
+    "methodPhysics": "Approche",
+    "titleElectronics": "Guide pour cadrer un circuit",
+    "descriptionElectronics": "Guide pratique pour choisir le bloc de formules d'Électronique selon le signal du circuit.",
+    "ogTitleElectronics": "Guide d'approche · Électronique",
+    "sectionLabelElectronics": "Section 18",
+    "introElectronics": "Utilisez le signal du circuit (DC, transitoire, sinusoïdal, composant ou numérique) pour ouvrir le bon bloc."
   },
   "section": {
     "label": "Section {number}",
@@ -188,17 +193,22 @@
     "basicElectricity": {
       "title": "Électricité de base",
       "description": "Loi d’Ohm, puissance électrique, capacité et énergie potentielle électrique.",
-      "intro": "Loi d’Ohm, puissance, condensateurs et énergie électrique avec unités et exemples numériques."
+      "intro": "Loi d’Ohm, puissance, condensateurs et énergie électrique avec unités et exemples numériques. L’analyse de circuits se poursuit en Électronique."
     },
     "chainRule": {
       "title": "Règle de la chaîne",
       "description": "Dérivée de compositions, règle du produit et du quotient.",
       "intro": "Règle de la chaîne et règles de dérivation pour fonctions composées et produits."
     },
+    "limitAlgebra": {
+      "title": "Algèbre des limites",
+      "description": "Somme, produit, quotient et puissance de limites finies.",
+      "intro": "Règles algébriques pour combiner des limites : somme, produit, quotient et la puissance [f(x)]^n."
+    },
     "indeterminateLimits": {
       "title": "Limites indéterminées et L'Hôpital",
-      "description": "Formes indéterminées, règle de L'Hôpital et limites trigonométriques classiques.",
-      "intro": "Évaluer des limites en forme \\(0/0\\) ou \\(\\infty/\\infty\\) avec L'Hôpital et les limites fondamentales."
+      "description": "Formes indéterminées et règle de L'Hôpital.",
+      "intro": "Évaluer des limites en forme \\(0/0\\) ou \\(\\infty/\\infty\\) avec L'Hôpital et des réécritures algébriques."
     },
     "optimization": {
       "title": "Optimisation",
@@ -239,6 +249,46 @@
       "title": "Structures algébriques",
       "description": "Groupes, anneaux, corps et morphismes en algèbre abstraite.",
       "intro": "Introduction aux structures algébriques : définitions, exemples et liens entre groupes, anneaux et corps."
+    },
+    "dividersThevenin": {
+      "title": "Diviseurs et Thévenin",
+      "description": "Diviseur de tension, charge et équivalents Thévenin/Norton.",
+      "intro": "Réduisez le réseau résistif à un port : diviseur, VTh, RTh et l'échange Norton."
+    },
+    "rcTransients": {
+      "title": "Transitoires RC",
+      "description": "Charge, décharge et constante de temps du premier ordre.",
+      "intro": "Suivez vC(t) de la valeur initiale continue à l'établissement avec τ = RC."
+    },
+    "phasorsImpedance": {
+      "title": "Phaseurs et impédance",
+      "description": "Sinusoïde RMS, phaseur tournant et impédance complexe.",
+      "intro": "Passez de v(t) au phaseur RMS et résumez l'élément par Z = R + jX."
+    },
+    "filtersBode": {
+      "title": "Filtres et Bode",
+      "description": "Passe-bas, passe-haut et fréquence de coupure sur le diagramme de Bode.",
+      "intro": "Lisez |H(jω)|, marquez fc à −3 dB et observez la pente du premier ordre."
+    },
+    "diodesRectification": {
+      "title": "Diodes et redressement",
+      "description": "Shockley, seuil silicium, redresseurs simple et double alternance.",
+      "intro": "La diode conduit après le seuil ; le redresseur coupe ou replie la sinusoïde."
+    },
+    "opampBasic": {
+      "title": "AOP de base",
+      "description": "Nœud virtuel, inverseur, non inverseur et suiveur.",
+      "intro": "En contre-réaction, v+ ≈ v− et les résistances fixent le gain."
+    },
+    "combinationalLogic": {
+      "title": "Logique combinatoire",
+      "description": "Multiplexeur, décodeur, additionneur et Karnaugh en matériel.",
+      "intro": "La table de vérité définit le circuit ; les identités booléennes restent en Algèbre."
+    },
+    "flipFlops": {
+      "title": "Bascules et temporisation",
+      "description": "Bascule D, temps de setup, hold et état suivant.",
+      "intro": "Le front échantillonne D ; tsu et th marquent la fenêtre contre la métastabilité."
     }
   },
   "formula": {
@@ -559,7 +609,7 @@
       "wrtY": "With respect to y"
     },
     "improper": {
-      "idea": "∫₁^∞ f(x) dx is defined as lim_{b→∞} ∫₁ᵇ f. If the area settles, it <strong>converges</strong>; if it grows without bound, it <strong>diverges</strong>.",
+      "idea": "∫₁^∞ f(x) dx is defined as lim_'{b→∞'} ∫₁ᵇ f. If the area settles, it <strong>converges</strong>; if it grows without bound, it <strong>diverges</strong>.",
       "note": "For 1/xᵖ: p > 1 converges to 1/(p−1). The curve 1/x flattens, but its accumulated area keeps growing.",
       "animateB": "Animate b → ∞",
       "showLimit": "Show limiting value"
@@ -747,7 +797,7 @@
       "slopeMismatch": "vérifier l'instant (bord du domaine)"
     },
     "continuity": {
-      "definitionIdea": "f est continue en a lorsque lim_{x→a} f(x) = f(a) : la limite coïncide avec la valeur de la fonction.",
+      "definitionIdea": "f est continue en a lorsque lim_'{x→a'} f(x) = f(a) : la limite coïncide avec la valeur de la fonction.",
       "discontinuityIdea": "Comparez trois types : discontinuité évitable, saut et asymptote verticale.",
       "xNearA": "x proche de a",
       "continuous": "Continue en a ?",
@@ -1575,6 +1625,274 @@
           "circuits": "Circuits"
         }
       }
+    }
+  },
+  "vizElectronica": {
+    "sliders": {
+      "vi": "Vi (V)",
+      "r1": "R1 (Ω)",
+      "r2": "R2 (Ω)",
+      "rl": "RL (Ω)",
+      "it": "IT (mA)",
+      "vth": "VTh (V)",
+      "rth": "RTh (Ω)",
+      "r": "R (Ω)",
+      "c": "C (µF)",
+      "l": "L (mH)",
+      "p": "P",
+      "q": "Q",
+      "x": "X (Ω)",
+      "vp": "Vp (V)",
+      "phi": "φ (°)",
+      "vd": "VD (V)",
+      "ib": "IB (µA)",
+      "vin": "Vin (V)",
+      "rf": "Rf (kΩ)",
+      "rg": "Rg (kΩ)",
+      "rK": "R (kΩ)",
+      "bits": "bits",
+      "code": "code",
+      "duty": "rapport cyclique",
+      "fmax": "fmax (Hz)",
+      "fs": "fs (Hz)",
+      "tsu": "tsu (ns)",
+      "th": "th (ns)"
+    },
+    "regions": {
+      "cutoff": "blocage",
+      "sat": "saturation",
+      "active": "actif",
+      "over": "surramorti",
+      "critical": "critique",
+      "under": "sous-amorti",
+      "nyquistOk": "Nyquist respecté",
+      "aliasing": "repliement",
+      "window": "fenêtre critique",
+      "stable": "D stable"
+    },
+    "voltage_divider": {
+      "idea": "Vo est la fraction R2/(R1+R2) de Vi ; une charge en parallèle avec R2 abaisse cette fraction.",
+      "tryIt": "Augmente R2 : Vo se rapproche de Vi. RL petite : Vo chute.",
+      "caption": "À vide, Vo = Vi R2/(R1+R2).",
+      "aria": "Diviseur de tension",
+      "ariaCurrent": "Diviseur de courant",
+      "statusVo": "Vo = {vo} V (à vide {open} V)",
+      "statusI": "I1 = {i1} mA · I2 = {i2} mA · IT = {it} mA",
+      "unloaded": {
+        "idea": "À vide, Vo vaut exactement Vi R2/(R1+R2).",
+        "tryIt": "Change R1 et R2 et vérifie Vo/Vi = R2/(R1+R2).",
+        "caption": "À vide, Vo = Vi R2/(R1+R2)."
+      },
+      "loaded": {
+        "idea": "RL en parallèle avec R2 réduit la fraction et donc Vo.",
+        "tryIt": "Baisse RL et vois Vo quitter la valeur à vide.",
+        "caption": "RL en parallèle avec R2 abaisse Vo."
+      },
+      "current": {
+        "idea": "La plus petite résistance porte plus de courant : I1 = IT R2/(R1+R2).",
+        "tryIt": "Augmente R2 : plus de courant dans R1. I1+I2 doit égaler IT.",
+        "caption": "I1 = IT R2/(R1+R2). La plus petite R porte plus de courant."
+      }
+    },
+    "thevenin_norton": {
+      "idea": "Tout à gauche des bornes est remplacé par VTh (ou IN) et RTh = RN.",
+      "tryIt": "Change RL : Vo suit encore la division avec RTh. Vérifie VTh = IN RN.",
+      "caption": "Le réseau est remplacé par VTh en série avec RTh (ou IN en parallèle avec RN = RTh).",
+      "aria": "Équivalent de Thévenin",
+      "status": "VL = {vl} V · IL = {il} mA · P = {p} mW (Pmax {pmax} mW)"
+    },
+    "rc_transient": {
+      "idea": "vC (ou iL) interpolle la valeur initiale continue et la valeur finale avec la constante τ.",
+      "tryIt": "À t = τ, l’écart à la valeur finale est 37 %. À 5τ, c’est pratiquement établi.",
+      "caption": "L’exponentielle croise 63 % ou 37 % à t = τ et s’établit vers 5τ.",
+      "aria": "Transitoire du premier ordre",
+      "status": "t = {t} {unit} · τ = {tau} {unit} · y = {y}"
+    },
+    "rlc_damping": {
+      "idea": "ζ fixe la forme : deux exponentielles, frontière critique ou oscillation amortie.",
+      "tryIt": "Baisse R série : ζ chute et des oscillations apparaissent. Au critique, pas de dépassement.",
+      "caption": "ζ>1 deux exponentielles ; ζ=1 frontière ; ζ<1 oscillation amortie.",
+      "aria": "Amortissement RLC",
+      "status": "ζ = {zeta} · {label} · ω0 = {w0} rad/s"
+    },
+    "phasor_diagram": {
+      "idea": "Le phaseur RMS tourne à ω ; sa projection horizontale est la sinusoïde instantanée.",
+      "tryIt": "Change φ : le phaseur avance ou retarde. Compare Vp à Vrms = Vp/√2.",
+      "caption": "Le phaseur RMS tourne ; sa projection est la sinusoïde instantanée.",
+      "aria": "Phaseur et sinusoïde",
+      "status": "v(t) = {v} V · Vrms = {rms} V · φ = {phi}°"
+    },
+    "impedance_triangle": {
+      "idea": "Z = R + jX est un triangle : l’hypoténuse est |Z| et l’angle est arg(Z).",
+      "tryIt": "Mets X = 0 : l’angle s’annule. Inverse le signe de X pour passer inductif/capacitif.",
+      "caption": "Z = R + jX. |Z| est l’hypoténuse.",
+      "aria": "Triangle d’impédance ou d’admittance",
+      "statusZ": "|Z|={z} Ω · arg(Z)={ang}°",
+      "statusY": "|Y|={y} S · arg(Y)={ang}°",
+      "statusPower": "P={p} Q={q} S={s}",
+      "z": {
+        "idea": "Z = R + jX. |Z| est l’hypoténuse et l’angle est arg(Z).",
+        "tryIt": "Fais varier X du capacitif à l’inductif et observe le signe de l’angle.",
+        "caption": "Z = R + jX. |Z| est l’hypoténuse."
+      },
+      "y": {
+        "idea": "Y = 1/Z : le module s’inverse et l’angle change de signe. G et B sont les côtés.",
+        "tryIt": "Augmente |Z| et vérifie que |Y| baisse. arg(Y) doit valoir −arg(Z).",
+        "caption": "Y = 1/Z. |Y| = 1/|Z| et arg(Y) = −arg(Z)."
+      },
+      "power": {
+        "idea": "P, Q et S forment le triangle des puissances ; l’angle est celui de l’impédance.",
+        "tryIt": "Annule Q : S coïncide avec P. Le signe de Q suit X.",
+        "caption": "S² = P² + Q². L’angle est celui de l’impédance."
+      }
+    },
+    "resonance_curve": {
+      "idea": "À la résonance série |Z| est minimal (R) ; en parallèle il est maximal.",
+      "tryIt": "Balaye ω autour de ω0 : la courbe se resserre si Q monte.",
+      "caption": "Extrémum de |Z| en ω0.",
+      "aria": "Courbe de résonance",
+      "status": "ω0 = {w0} rad/s · R = {r} Ω",
+      "series": {
+        "idea": "À la résonance série XL=XC et |Z| est minimal (égal à R).",
+        "tryIt": "Baisse R : le creux en ω0 s’approfondit et se resserre.",
+        "caption": "|Z| minimal en ω0 (série)."
+      },
+      "parallel": {
+        "idea": "À la résonance parallèle |Z| est maximal.",
+        "tryIt": "Baisse R : le pic en ω0 monte. Hors de ω0, |Z| chute.",
+        "caption": "|Z| maximal en ω0 (parallèle)."
+      }
+    },
+    "bode_filter": {
+      "idea": "|H| laisse passer la bande utile ; un passe-bas chute de 20 dB/dec après fc (−3 dB).",
+      "tryIt": "Change R ou C (ou L) : fc bouge. En fc, |H| doit être près de −3 dB.",
+      "caption": "En fc le gain vaut −3 dB.",
+      "aria": "Diagramme de Bode",
+      "status": "fc = {fc} Hz · |H(fc)| ≈ {mag} ({db} dB)",
+      "lp_rc": {
+        "idea": "Le passe-bas RC laisse passer le continu et chute de 20 dB/dec au-dessus de fc.",
+        "tryIt": "Augmente C : fc baisse. En fc, |H| doit valoir −3 dB.",
+        "caption": "En fc le gain vaut −3 dB. Au-dessus, |H| chute de 20 dB/dec."
+      },
+      "fc": {
+        "idea": "fc = 1/(2π RC) est le point −3 dB du Bode du premier ordre.",
+        "tryIt": "Double R : fc est divisé par deux.",
+        "caption": "fc = 1/(2π RC) marque le point −3 dB."
+      },
+      "hp_rc": {
+        "idea": "Le passe-haut RC monte de +20 dB/dec sous fc et tend vers 0 dB au-dessus.",
+        "tryIt": "À gauche de fc, |H| monte, il ne chute pas. Au-dessus, il s’aplatit.",
+        "caption": "Sous fc, |H| monte de +20 dB/dec ; au-dessus il tend vers 0 dB."
+      },
+      "lp_rl": {
+        "idea": "Le passe-bas RL a la coupure fc = R/(2π L) et chute de 20 dB/dec au-dessus de fc.",
+        "tryIt": "Augmente L : fc baisse. Les commandes sont R et L, pas un condensateur.",
+        "caption": "Coupure fc = R/(2π L). Au-dessus de fc, |H| chute de 20 dB/dec."
+      }
+    },
+    "diode_iv": {
+      "idea": "La diode ne conduit presque pas sous le seuil puis s’emballe en direct ; le redresseur coupe ou replie la sinusoïde.",
+      "tryIt": "Sur la IV, croise ~0.7 V. En demi-onde, compare Vavg = Vp/π à la coupe positive.",
+      "caption": "IV : conduction forte après le seuil. Redresseur : coupe ou replie la sinusoïde.",
+      "aria": "Caractéristique IV de diode",
+      "ariaRect": "Redresseur",
+      "statusIv": "I = {i} mA @ {v} V",
+      "statusHalf": "Vavg = Vp/π = {vavg} V",
+      "statusFull": "Vavg = 2Vp/π = {vavg} V"
+    },
+    "bjt_load_line": {
+      "idea": "La droite de charge joint (VCE=VCC, IC=0) à (VCE=0, IC=VCC/RC) ; Q parcourt blocage, actif et saturation.",
+      "tryIt": "IB = 0 : blocage. Monte IB jusqu’à ce que VCE reste à ~0.2 V : saturation, IC n’est plus β IB.",
+      "caption": "La droite de charge joint (VCE=VCC, IC=0) à (VCE=0, IC=VCC/RC). Q parcourt les régions.",
+      "aria": "Droite de charge BJT",
+      "status": "IC = {ic} mA · VCE = {vce} V · {region}"
+    },
+    "opamp_circuit": {
+      "idea": "Avec contre-réaction, v+ ≈ v− (nœud virtuel) et les résistances fixent Av.",
+      "tryIt": "Inverseur Av = −Rf/Rg. Suiveur Av = 1. Si |Av Vin| dépasse Vsat, la sortie s’aplatit.",
+      "caption": "Avec contre-réaction, v+ ≈ v− (nœud virtuel).",
+      "aria": "Circuit à AOP",
+      "statusAv": "Av = {av} · Vo = {vo} V",
+      "statusInt": "RC = {rc} ms · Vo = {vo} V",
+      "inv": {
+        "idea": "L’inverseur utilise le nœud virtuel : Vo = −(Rf/Rin) Vin.",
+        "tryIt": "Augmente Rf : |Av| croît. Vo a le signe opposé de Vin.",
+        "caption": "Inverseur : Vo = −(Rf/Rg) Vin avec masse virtuelle."
+      },
+      "ninv": {
+        "idea": "Le non-inverseur a un gain 1+Rf/Rg, entrée sur v+.",
+        "tryIt": "Égale Rf et Rg : Av = 2. Vin et Vo ont le même signe.",
+        "caption": "Non inverseur : Av = 1+Rf/Rg."
+      },
+      "buffer": {
+        "idea": "Le suiveur est un non-inverseur de gain 1 : Vo = Vin.",
+        "tryIt": "Change Vin : Vo le copie dans ±Vsat.",
+        "caption": "Suiveur : gain 1."
+      },
+      "int": {
+        "idea": "L’intégrateur a C dans la rétroaction : Vo = −(1/RC) ∫ Vin dt, une rampe si Vin est constant.",
+        "tryIt": "Augmente C ou R : la constante RC croît et la rampe ralentit.",
+        "caption": "Intégrateur : condensateur dans la boucle, constante RC et rampe de sortie."
+      }
+    },
+    "cmos_vtc": {
+      "idea": "La VTC CMOS inverse : Vin bas donne VOH, Vin haut VOL, et VIH/VIL fixent NMH et NML.",
+      "tryIt": "Déplace Vin autour de VIL et VIH : les marges sont VOH−VIH et VIL−VOL, pas seulement les rails.",
+      "caption": "La VTC CMOS inverse : Vin bas donne VOH ; Vin haut donne VOL. Les seuils fixent NMH et NML.",
+      "aria": "VTC CMOS",
+      "status": "Vo = {vo} V · NMH = {nmh} V · NML = {nml} V"
+    },
+    "flip_flop_timing": {
+      "idea": "D doit rester immobile tsu avant le front et th après ; sinon métastabilité.",
+      "tryIt": "Élargis tsu : la fenêtre critique grandit. Seul le front copie D vers Q.",
+      "caption": "D doit être stable tsu avant le front et th après. Sinon métastabilité.",
+      "aria": "Setup et hold",
+      "status": "tsu = {tsu} ns · th = {th} ns · {window}"
+    },
+    "sampling_pwm": {
+      "idea": "fs > 2 fmax évite le repliement ; n bits partagent VFS en 2^n niveaux ; le PWM utilise ton/T.",
+      "tryIt": "Baisse fs sous 2 fmax : le repliement apparaît. PWM duty 0.5 : impulsion à mi-période.",
+      "caption": "Nyquist, quantification ou PWM selon le mode.",
+      "aria": "Échantillonnage",
+      "ariaPwm": "PWM",
+      "ariaR2r": "Échelle R-2R",
+      "statusPwm": "δ = {duty}",
+      "statusQuant": "Δ = {delta} V · {n} niveaux",
+      "statusR2r": "code {bits} · Vo = {vo} V · Vref = {vref} V",
+      "statusNyquist": "fs = {fs} Hz · 2 fmax = {nyq} Hz · {ok}",
+      "nyquist": {
+        "idea": "fs > 2 fmax évite le repliement (critère de Nyquist).",
+        "tryIt": "Baisse fs sous 2 fmax et lis l’avertissement de repliement.",
+        "caption": "Nyquist : fs > 2 fmax."
+      },
+      "quant": {
+        "idea": "n bits partagent VFS en 2^n niveaux ; le pas est Δ = VFS/2^n.",
+        "tryIt": "Augmente les bits : Δ diminue et il y a plus de marches.",
+        "caption": "La quantification partage VFS en 2^n niveaux."
+      },
+      "pwm": {
+        "idea": "Le rapport cyclique PWM est ton/T, la fraction haute de la période.",
+        "tryIt": "Déplace le duty : l’impulsion haute occupe cette fraction.",
+        "caption": "PWM : le rapport cyclique est ton/T."
+      },
+      "r2r": {
+        "idea": "Le CNA R-2R somme les poids binaires : Vo = −Vref Σ bk/2^k via le réseau R et 2R.",
+        "tryIt": "Change le code : chaque bit à 1 apporte Vref/2, Vref/4, … Ce n’est pas un quantificateur Δ.",
+        "caption": "Échelle R-2R : poids binaires et tension DAC Vo = −Vref Σ bk/2^k."
+      }
+    },
+    "electronics_guide": {
+      "idea": "Le signal de l’énoncé (DC, transitoire, sinusoïde, dispositif ou numérique) pointe vers un bloc, pas vers 188 IDs.",
+      "tryIt": "Choisis « transitoire RC » : l’arbre finit à τ, v(0+) et v(∞). Pour une bascule, regarde setup et hold.",
+      "caption": "Choisis le signal de l’énoncé : DC, transitoire, sinusoïde, dispositif ou numérique.",
+      "dc": "DC / Thévenin",
+      "transient": "Transitoire RC/RL",
+      "rlc": "RLC / ζ",
+      "phasors": "Phasors",
+      "filter": "Filtre / Bode",
+      "diode": "Diode",
+      "opamp": "Op-amp",
+      "ff": "Bascule"
     }
   }
 }

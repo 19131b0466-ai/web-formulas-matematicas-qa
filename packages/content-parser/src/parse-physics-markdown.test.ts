@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { parsePhysicsMarkdown } from './parse-physics-markdown.js';
 import { PHYSICS_SECTION_SLUG_OVERRIDES } from './tags.js';
-import type { FormulaContent } from '@repo/shared-types';
+import { inferSubjectSlugForFormulaId, type FormulaContent } from '@repo/shared-types';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const SOURCE_MD = resolve(ROOT, 'content/formulas-fisica-basica.md');
@@ -189,7 +189,7 @@ describe('parsePhysicsMarkdown (full document)', () => {
       if (block.blockType !== 'formula') continue;
       const content = block.content as FormulaContent;
       for (const id of content.relatedIds ?? []) {
-        expect(codes.has(id)).toBe(true);
+        expect(codes.has(id) || inferSubjectSlugForFormulaId(id) !== null).toBe(true);
       }
     }
   });
@@ -213,7 +213,7 @@ describe('parsePhysicsMarkdown (full document)', () => {
     );
     const ene001 = formulas.find((b) => b.formulaCode === 'ENE-001');
     const content = ene001!.content as FormulaContent;
-    expect(content.detail).toBeUndefined();
+    expect(content.detail).toMatch(/producto escalar/i);
     expect(content.additionalLatexLabels?.[0]).toBe('Caso paralelo');
 
     const misleadingDetails = formulas.filter((b) => {

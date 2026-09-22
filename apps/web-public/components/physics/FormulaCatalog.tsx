@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import {
   calculoDiferencialVizForFormulaId,
   calculoVizForFormulaId,
+  electronicaVizForFormulaId,
   fisicaVizForFormulaId,
   type ContentBlockDto,
   type FormulaContent,
@@ -86,7 +87,9 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                       ? calculoDiferencialVizForFormulaId(id)
                       : subject === 'fisica-basica'
                         ? fisicaVizForFormulaId(id)
-                        : content.visual) ? (
+                        : subject === 'fisica-electronica'
+                          ? electronicaVizForFormulaId(id)
+                          : content.visual) ? (
                     <span
                       className="rounded-md border border-[var(--border)] px-2 py-0.5 text-[10px] font-medium text-[var(--fg-muted)]"
                       title={
@@ -96,7 +99,9 @@ export async function FormulaCatalog({ subject, blocks }: FormulaCatalogProps) {
                             ? calculoDiferencialVizForFormulaId(id)?.type
                             : subject === 'fisica-basica'
                               ? fisicaVizForFormulaId(id)?.type
-                              : content.visual?.type
+                              : subject === 'fisica-electronica'
+                                ? electronicaVizForFormulaId(id)?.type
+                                : content.visual?.type
                       }
                     >
                       viz

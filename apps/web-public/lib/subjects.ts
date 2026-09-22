@@ -1,4 +1,10 @@
-export const SUBJECT_SLUGS = ['calculo-diferencial', 'calculo-ii', 'fisica-basica', 'algebra'] as const;
+export const SUBJECT_SLUGS = [
+  'calculo-diferencial',
+  'calculo-ii',
+  'fisica-basica',
+  'fisica-electronica',
+  'algebra',
+] as const;
 export type SubjectSlug = (typeof SUBJECT_SLUGS)[number];
 
 export function isSubjectSlug(value: string): value is SubjectSlug {
@@ -29,18 +35,26 @@ export function guideHref(subject: SubjectSlug): string {
 }
 
 export function subjectHasGuide(subject: SubjectSlug): boolean {
-  return subject === 'calculo-diferencial' || subject === 'calculo-ii' || subject === 'fisica-basica';
+  return (
+    subject === 'calculo-diferencial' ||
+    subject === 'calculo-ii' ||
+    subject === 'fisica-basica' ||
+    subject === 'fisica-electronica'
+  );
 }
 
 /** Section slug that backs `/guia` for each subject. */
 export function subjectGuideSectionSlug(subject: SubjectSlug): string {
-  return subject === 'fisica-basica' ? 'guia-enfoque' : 'guia-metodos';
+  return subject === 'fisica-basica' || subject === 'fisica-electronica'
+    ? 'guia-enfoque'
+    : 'guia-metodos';
 }
 
 export function subjectUsesFormulaCatalog(subject: SubjectSlug): boolean {
   return (
     subject === 'calculo-diferencial' ||
     subject === 'fisica-basica' ||
+    subject === 'fisica-electronica' ||
     subject === 'calculo-ii' ||
     subject === 'algebra'
   );

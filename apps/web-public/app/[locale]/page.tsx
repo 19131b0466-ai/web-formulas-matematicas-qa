@@ -43,6 +43,10 @@ const SUBJECT_COPY: Record<string, { accent: string; tone: string }> = {
     accent: 'from-teal-600/25 via-transparent to-transparent',
     tone: 'text-teal-800 dark:text-teal-300',
   },
+  'fisica-electronica': {
+    accent: 'from-cyan-600/25 via-transparent to-transparent',
+    tone: 'text-cyan-800 dark:text-cyan-300',
+  },
   algebra: {
     accent: 'from-amber-700/25 via-transparent to-transparent',
     tone: 'text-amber-900 dark:text-amber-300',

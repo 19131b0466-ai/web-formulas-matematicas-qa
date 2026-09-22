@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import {
   calculoDiferencialVizForFormulaId,
   calculoVizForFormulaId,
+  electronicaVizForFormulaId,
   fisicaVizForFormulaId,
   type FormulaDetailResponse,
 } from '@repo/shared-types';
@@ -9,6 +10,7 @@ import { ComputationalCostPanel } from '@/components/algebra/ComputationalCostPa
 import { FormulaVisualizationLazy } from '@/components/algebra/FormulaVisualizationLazy';
 import { CalculoDiferencialVisualization } from '@/components/calculo-diferencial/CalculoDiferencialVisualization';
 import { CalculoVisualization } from '@/components/calculo/CalculoVisualization';
+import { ElectronicaVisualization } from '@/components/electronica/ElectronicaVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { DeferredMount } from '@/components/perf/DeferredMount';
 import { CopyLatexButton } from '@/components/content/CopyLatexButton';
@@ -53,6 +55,8 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
     subject === 'calculo-diferencial' ? calculoDiferencialVizForFormulaId(formulaId) : undefined;
   const physViz =
     subject === 'fisica-basica' ? fisicaVizForFormulaId(formulaId) : undefined;
+  const elecViz =
+    subject === 'fisica-electronica' ? electronicaVizForFormulaId(formulaId) : undefined;
   const alsoKnownAs = mergeSearchKeywords(
     content.equivalentNotations,
     content.searchAliases,
@@ -187,6 +191,13 @@ export async function FormulaDetailView({ subject, subjectTitle, detail }: Formu
             <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
             <DeferredMount minHeight={320} label={t('visualization')}>
               <PhysicsVisualization type={physViz.type} concept={physViz.concept} mode={physViz.mode} formulaId={formulaId} />
+            </DeferredMount>
+          </section>
+        ) : elecViz ? (
+          <section className="animate-rise" style={{ animationDelay: '90ms' }}>
+            <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{t('visualization')}</h2>
+            <DeferredMount minHeight={320} label={t('visualization')}>
+              <ElectronicaVisualization type={elecViz.type} concept={elecViz.concept} mode={elecViz.mode} formulaId={formulaId} />
             </DeferredMount>
           </section>
         ) : subject !== 'calculo-diferencial' && content.visual && content.formulaId ? (

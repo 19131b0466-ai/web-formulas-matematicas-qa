@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CalculoDiferencialVisualization } from '@/components/calculo-diferencial/CalculoDiferencialVisualization';
+import { ElectronicaVisualization } from '@/components/electronica/ElectronicaVisualization';
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { Link } from '@/i18n/navigation';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -34,21 +35,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subjectRaw)?.title ?? subjectRaw;
   const physics = subjectRaw === 'fisica-basica';
+  const electronics = subjectRaw === 'fisica-electronica';
   const differential = subjectRaw === 'calculo-diferencial';
   const guideName = physics
     ? t('titlePhysics')
-    : differential
-      ? t('titleDifferential')
-      : t('title');
+    : electronics
+      ? t('titleElectronics')
+      : differential
+        ? t('titleDifferential')
+        : t('title');
   return buildPageMetadata({
     locale,
     path: `/${subjectRaw}/guia`,
     title: tseo('guideTitle', { guide: guideName, subject: subjectTitle }),
     description: physics
       ? t('descriptionPhysics')
-      : differential
-        ? t('descriptionDifferential')
-        : t('description'),
+      : electronics
+        ? t('descriptionElectronics')
+        : differential
+          ? t('descriptionDifferential')
+          : t('description'),
     siteName: tsite('name'),
   });
 }
@@ -71,6 +77,7 @@ export default async function GuidePage({ params }: PageProps) {
   const guideSectionSlug = subjectGuideSectionSlug(subject);
   const section = await fetchSection(guideSectionSlug, subject);
   const isPhysics = subject === 'fisica-basica';
+  const isElectronics = subject === 'fisica-electronica';
   const isDifferential = subject === 'calculo-diferencial';
 
   return (
@@ -94,15 +101,29 @@ export default async function GuidePage({ params }: PageProps) {
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-strong)]">
           {isPhysics
             ? t('sectionLabelPhysics')
-            : isDifferential
-              ? t('sectionLabelDifferential')
-              : t('sectionLabel')}
+            : isElectronics
+              ? t('sectionLabelElectronics')
+              : isDifferential
+                ? t('sectionLabelDifferential')
+                : t('sectionLabel')}
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {isPhysics ? t('titlePhysics') : isDifferential ? t('titleDifferential') : t('title')}
+          {isPhysics
+            ? t('titlePhysics')
+            : isElectronics
+              ? t('titleElectronics')
+              : isDifferential
+                ? t('titleDifferential')
+                : t('title')}
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-[var(--fg-muted)]">
-          {isPhysics ? t('introPhysics') : isDifferential ? t('introDifferential') : t('intro')}
+          {isPhysics
+            ? t('introPhysics')
+            : isElectronics
+              ? t('introElectronics')
+              : isDifferential
+                ? t('introDifferential')
+                : t('intro')}
         </p>
         {section ? (
           <p className="mt-3 text-sm">
@@ -118,7 +139,7 @@ export default async function GuidePage({ params }: PageProps) {
 
       <section className="space-y-3">
         <h2 className="font-display text-xl font-semibold">
-          {isPhysics ? t('signalMethodPhysics') : t('signalMethod')}
+          {isPhysics || isElectronics ? t('signalMethodPhysics') : t('signalMethod')}
         </h2>
         {guide.strategies.length === 0 ? (
           <p className="text-sm text-[var(--fg-muted)]">{t('empty')}</p>
@@ -139,7 +160,7 @@ export default async function GuidePage({ params }: PageProps) {
                 </div>
                 <div>
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
-                    {isPhysics ? t('methodPhysics') : t('method')}
+                    {isPhysics || isElectronics ? t('methodPhysics') : t('method')}
                   </p>
                   <p className="font-medium text-[var(--accent-strong)]">
                     <InlineMarkdown text={row.method} />
@@ -170,6 +191,16 @@ export default async function GuidePage({ params }: PageProps) {
           <PhysicsVisualization
             type="approach_guide"
             concept="Elegir el bloque de fórmulas según la señal del enunciado"
+          />
+        </section>
+      ) : null}
+
+      {isElectronics ? (
+        <section className="mt-12">
+          <h2 className="font-display mb-3 text-xl font-semibold tracking-tight">{tf('visualization')}</h2>
+          <ElectronicaVisualization
+            type="electronics_guide"
+            concept="Elegir el bloque de fórmulas según la señal del circuito"
           />
         </section>
       ) : null}

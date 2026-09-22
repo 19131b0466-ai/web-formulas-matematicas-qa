@@ -20,6 +20,21 @@ import { contentBlocks, sections, subjects } from '../db/schema.js';
 import { isHiddenPublicSectionSlug } from '../hidden-sections.js';
 
 const DEFAULT_SUBJECT = 'calculo-ii';
+const CONTENT_CACHE_TTL_MS = 5 * 60_000;
+const contentCache = new Map<string, { expires: number; value: unknown }>();
+
+function contentCacheEnabled(): boolean {
+  return !process.env.VITEST && process.env.NODE_ENV !== 'test';
+}
+
+async function withContentCache<T>(key: string, load: () => Promise<T>): Promise<T> {
+  if (!contentCacheEnabled()) return load();
+  const hit = contentCache.get(key);
+  if (hit && hit.expires > Date.now()) return hit.value as T;
+  const value = await load();
+  contentCache.set(key, { value, expires: Date.now() + CONTENT_CACHE_TTL_MS });
+  return value;
+}
 
 function toSummary(row: typeof sections.$inferSelect, parentSlug: string | null): SectionSummary {
   return {
@@ -44,21 +59,25 @@ function toBlockDto(row: typeof contentBlocks.$inferSelect): ContentBlockDto {
 }
 
 export async function listSubjects(db: Database): Promise<SubjectSummary[]> {
-  const rows = await db.select().from(subjects).orderBy(asc(subjects.sortOrder));
-  return rows.map((r) => ({
-    slug: r.slug,
-    title: r.title,
-    description: r.description,
-    sortOrder: r.sortOrder,
-  }));
+  return withContentCache('subjects:list', async () => {
+    const rows = await db.select().from(subjects).orderBy(asc(subjects.sortOrder));
+    return rows.map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      description: r.description,
+      sortOrder: r.sortOrder,
+    }));
+  });
 }
 
 export async function getSubjectBySlug(
   db: Database,
   slug: string,
 ): Promise<(typeof subjects.$inferSelect) | null> {
-  const [row] = await db.select().from(subjects).where(eq(subjects.slug, slug)).limit(1);
-  return row ?? null;
+  return withContentCache(`subject:${slug}`, async () => {
+    const [row] = await db.select().from(subjects).where(eq(subjects.slug, slug)).limit(1);
+    return row ?? null;
+  });
 }
 
 async function requireSubjectId(db: Database, subjectSlug: string): Promise<string | null> {
@@ -69,6 +88,13 @@ async function requireSubjectId(db: Database, subjectSlug: string): Promise<stri
 export async function listSectionsTree(
   db: Database,
   subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<SectionSummary[]> {
+  return withContentCache(`sections-tree:${subjectSlug}`, () => loadSectionsTree(db, subjectSlug));
+}
+
+async function loadSectionsTree(
+  db: Database,
+  subjectSlug: string,
 ): Promise<SectionSummary[]> {
   const subjectId = await requireSubjectId(db, subjectSlug);
   if (!subjectId) return [];
@@ -108,6 +134,16 @@ export async function getSectionBySlug(
   db: Database,
   slug: string,
   subjectSlug: string = DEFAULT_SUBJECT,
+): Promise<SectionDetailResponse | null> {
+  return withContentCache(`section:${subjectSlug}:${slug}`, () =>
+    loadSectionBySlug(db, slug, subjectSlug),
+  );
+}
+
+async function loadSectionBySlug(
+  db: Database,
+  slug: string,
+  subjectSlug: string,
 ): Promise<SectionDetailResponse | null> {
   const subjectId = await requireSubjectId(db, subjectSlug);
   if (!subjectId) return null;
@@ -249,6 +285,17 @@ export async function getFormulaByCode(
   subjectSlug: string,
   formulaId: string,
 ): Promise<FormulaDetailResponse | null> {
+  const code = formulaId.trim().toUpperCase();
+  return withContentCache(`formula:${subjectSlug}:${code}`, () =>
+    loadFormulaByCode(db, subjectSlug, code),
+  );
+}
+
+async function loadFormulaByCode(
+  db: Database,
+  subjectSlug: string,
+  formulaId: string,
+): Promise<FormulaDetailResponse | null> {
   const subjectId = await requireSubjectId(db, subjectSlug);
   if (!subjectId) return null;
 
@@ -370,6 +417,7 @@ const GUIDE_SECTION_SLUG: Record<string, string> = {
   'calculo-diferencial': 'guia-metodos',
   'calculo-ii': 'guia-metodos',
   'fisica-basica': 'guia-enfoque',
+  'fisica-electronica': 'guia-enfoque',
 };
 
 export async function getMethodGuide(
@@ -452,7 +500,12 @@ export async function getMethodGuide(
 
 const STATIC_SITEMAP_PATHS = ['/', '/acerca', '/contacto', '/resenas', '/privacidad', '/terminos'];
 
-const GUIDE_SUBJECTS = new Set(['calculo-diferencial', 'calculo-ii', 'fisica-basica']);
+const GUIDE_SUBJECTS = new Set([
+  'calculo-diferencial',
+  'calculo-ii',
+  'fisica-basica',
+  'fisica-electronica',
+]);
 
 function resolveContentLastModified(
   content: FormulaContent | null,

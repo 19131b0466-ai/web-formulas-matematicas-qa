@@ -1,5 +1,4 @@
-import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, expect, it } from 'vitest';
 import {
   absorbEditorialLine,
   absorbFaqLine,
@@ -11,33 +10,46 @@ import {
 describe('formula-meta', () => {
   it('parses FAQ question and answer pairs', () => {
     const acc = createFaqAccumulator();
-    assert.equal(absorbFaqLine(acc, '**Pregunta:** ¿Cuál es la fórmula?'), true);
-    assert.equal(absorbFaqLine(acc, '**Respuesta:** Y = σ/ε'), true);
-    assert.equal(acc.items.length, 1);
-    assert.equal(acc.items[0]!.question, '¿Cuál es la fórmula?');
-    assert.equal(acc.items[0]!.answer, 'Y = σ/ε');
+    expect(absorbFaqLine(acc, '**Pregunta:** ¿Cuál es la fórmula?')).toBe(true);
+    expect(absorbFaqLine(acc, '**Respuesta:** Y = σ/ε')).toBe(true);
+    expect(acc.items).toHaveLength(1);
+    expect(acc.items[0]!.question).toBe('¿Cuál es la fórmula?');
+    expect(acc.items[0]!.answer).toBe('Y = σ/ε');
   });
 
   it('parses unit lines into conventions', () => {
     const conventions: string[] = [];
-    assert.equal(absorbUnitLine(conventions, '**Unidad:** Pa = N/m²'), true);
-    assert.deepEqual(conventions, ['Pa = N/m²']);
+    expect(absorbUnitLine(conventions, '**Unidad:** Pa = N/m²')).toBe(true);
+    expect(conventions).toEqual(['Pa = N/m²']);
   });
 
   it('parses editorial metadata fields', () => {
     const draft = createEditorialDraft();
-    assert.equal(absorbEditorialLine(draft, '**Derivación:** Sustituyendo σ=F/A'), true);
-    assert.equal(absorbEditorialLine(draft, '**Notaciones equivalentes:** módulo de Young; E'), true);
-    assert.equal(draft.derivation?.includes('σ'), true);
-    assert.deepEqual(draft.equivalentNotations, ['módulo de Young', 'E']);
+    expect(absorbEditorialLine(draft, '**Derivación:** Sustituyendo σ=F/A')).toBe(true);
+    expect(absorbEditorialLine(draft, '**Notaciones equivalentes:** módulo de Young; E')).toBe(true);
+    expect(draft.derivation?.includes('σ')).toBe(true);
+    expect(draft.equivalentNotations).toEqual(['módulo de Young', 'E']);
   });
 
   it('parses search alias lines', () => {
     const draft = createEditorialDraft();
-    assert.equal(
+    expect(
       absorbEditorialLine(draft, '**Alias de búsqueda:** Young modulus formula; módulo de Young fórmula'),
-      true,
-    );
-    assert.deepEqual(draft.searchAliases, ['Young modulus formula', 'módulo de Young fórmula']);
+    ).toBe(true);
+    expect(draft.searchAliases).toEqual(['Young modulus formula', 'módulo de Young fórmula']);
+  });
+
+  it('parses common error lines', () => {
+    const draft = createEditorialDraft();
+    expect(
+      absorbEditorialLine(
+        draft,
+        '**Errores comunes:** olvidar la carga del divisor; mezclar RMS con pico',
+      ),
+    ).toBe(true);
+    expect(draft.commonErrors).toEqual([
+      'olvidar la carga del divisor',
+      'mezclar RMS con pico',
+    ]);
   });
 });

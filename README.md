@@ -1,6 +1,6 @@
 # web-formulas-matematicas
 
-Plataforma web multi-materia — **Formulario universitario** (Cálculo II + Física Básica).
+Plataforma web multi-materia — **Formulario universitario** (Cálculo Diferencial, Cálculo II, Física Básica, Física Electrónica y Álgebra).
 
 ## Monorepo
 
@@ -28,7 +28,7 @@ cp .env.example .env
 # 3. Base de datos local
 docker compose up -d
 
-# 4. Migraciones + seed de ambas materias
+# 4. Migraciones + seed de las materias
 pnpm db:migrate
 pnpm db:seed
 
@@ -56,6 +56,8 @@ Servicios disponibles:
 | `pnpm db:studio`   | Drizzle Studio                          |
 | `pnpm db:seed`     | Importar fórmulas MD → Postgres         |
 | `pnpm test`        | Tests unitarios + integración API       |
+| `pnpm qa:calculo-diferencial` | QA del catálogo de Cálculo Diferencial |
+| `pnpm qa:fisica-electronica` | QA del catálogo de Física Electrónica |
 
 ## Despliegue (producción)
 

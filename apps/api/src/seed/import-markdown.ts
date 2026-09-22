@@ -6,6 +6,7 @@ import {
   parseAlgebraMarkdown,
   parseCalculoDiferencialMarkdown,
   parseFormulasMarkdown,
+  parseFisicaElectronicaMarkdown,
   parsePhysicsMarkdown,
 } from '@repo/content-parser';
 import { eq } from 'drizzle-orm';
@@ -40,10 +41,18 @@ export const SUBJECT_CATALOG = [
     parser: 'fisica' as const,
   },
   {
+    slug: 'fisica-electronica',
+    title: 'Física Electrónica',
+    description: 'Circuitos, semiconductores, amplificadores y electrónica digital',
+    sortOrder: 3,
+    markdownPath: resolve(ROOT, 'content/formulas-fisica-electronica.md'),
+    parser: 'fisica-electronica' as const,
+  },
+  {
     slug: 'algebra',
     title: 'Álgebra',
     description: 'Álgebra para Ingeniería y Ciencias de la Computación',
-    sortOrder: 3,
+    sortOrder: 4,
     markdownPath: resolve(ROOT, 'content/formulas-algebra.md'),
     parser: 'algebra' as const,
   },
@@ -93,7 +102,7 @@ export async function seedSubjectFromMarkdown(
   db: Database,
   subjectSlug: string,
   markdownPath: string,
-  parser: 'calculo' | 'calculo-diferencial' | 'fisica' | 'algebra',
+  parser: 'calculo' | 'calculo-diferencial' | 'fisica' | 'fisica-electronica' | 'algebra',
   subjectIds?: Map<string, string>,
 ): Promise<SeedStats> {
   const idBySlug = subjectIds ?? (await ensureSubjects(db));
@@ -106,7 +115,9 @@ export async function seedSubjectFromMarkdown(
   const parsed =
     parser === 'fisica'
       ? parsePhysicsMarkdown(markdown)
-      : parser === 'algebra'
+      : parser === 'fisica-electronica'
+        ? parseFisicaElectronicaMarkdown(markdown)
+        : parser === 'algebra'
         ? parseAlgebraMarkdown(markdown)
         : parser === 'calculo-diferencial'
           ? parseCalculoDiferencialMarkdown(markdown)

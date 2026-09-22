@@ -8,7 +8,7 @@
     "start": "next start --port 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test lib/seo.test.ts lib/calculo-diferencial-latex-text.test.ts components/physics/viz/physMath.test.ts components/physics/viz/physLote1Math.test.ts components/physics/viz/physLote3Math.test.ts components/physics/viz/physLote4Math.test.ts components/physics/viz/physLote5Math.test.ts components/physics/viz/physLote6Math.test.ts components/physics/viz/physLote7Math.test.ts"
+    "test": "tsx --test lib/seo.test.ts lib/calculo-diferencial-latex-text.test.ts lib/fisica-electronica-latex-text.test.ts components/physics/viz/physMath.test.ts components/physics/viz/physLote1Math.test.ts components/physics/viz/physLote3Math.test.ts components/physics/viz/physLote4Math.test.ts components/physics/viz/physLote5Math.test.ts components/physics/viz/physLote6Math.test.ts components/physics/viz/physLote7Math.test.ts components/electronica/elecMath.test.ts components/algebra/viz/formatNumber.test.ts"
   },
   "dependencies": {
     "@repo/math-renderer": "workspace:*",

@@ -1439,7 +1439,7 @@ y=mx+b\text{ asíntota oblicua} \Leftrightarrow \lim_{x\to+\infty}[f(x)-(mx+b)]=
 **ID:** `DIF-159`
 
 \[
-\frac{d}{dx}((g(x))^n)=n(g(x))^{n-1}g'(x),\qquad n\in\mathbb{Z}
+\frac{d}{dx}((g(x))^n)=n(g(x))^{n-1}g'(x),\qquad n\in\mathbb{Z},\ g(x)\neq 0\ \text{si }n<0
 \]
 
 ---

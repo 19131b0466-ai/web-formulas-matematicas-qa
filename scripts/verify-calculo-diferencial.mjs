@@ -27,15 +27,26 @@ const CONSTRAINT_LATEX_HINTS = {
   'DIF-114': [/0\/0/, /g'\(x\)\\neq\s*0/, /derivables/i],
   'DIF-115': [/0\/0/, /g'\(x\)\\neq\s*0/, /x\\to\\infty/],
   'DIF-129': [/m_\+/, /m_-/],
-  'DIF-159': [/n\\in\\mathbb\{Z\}/],
+  'DIF-159': [/n\\in\\mathbb\{Z\}/, /g\(x\)\\neq\s*0|n<0/],
 };
+
+const TAYLOR_VIZ_KEYS = ['fnPrefix', 'approxLabel', 'errorTitle', 'degreeLabel', 'centerLabel'];
+const CD_TAG_SLUGS = [
+  'calculo-diferencial',
+  'derivada',
+  'continuidad',
+  'limite',
+  'grafica',
+  'formula-derivada',
+];
 
 const MD = resolve(ROOT, 'content/formulas-calculo-diferencial.md');
 const LOCALES = ['en', 'de', 'fr', 'it', 'pt'];
 const MESSAGE_LOCALES = ['es', ...LOCALES];
 const TOPIC_HUBS = [
   { slug: 'regla-cadena', ids: ['DIF-054', 'DIF-055', 'DIF-051', 'DIF-053'] },
-  { slug: 'limites-indeterminados', ids: ['DIF-114', 'DIF-115', 'DIF-116', 'DIF-019'] },
+  { slug: 'algebra-limites', ids: ['DIF-015', 'DIF-016', 'DIF-017', 'DIF-018', 'DIF-019'] },
+  { slug: 'limites-indeterminados', ids: ['DIF-114', 'DIF-115', 'DIF-116'] },
   { slug: 'optimizacion', ids: ['DIF-093', 'DIF-094', 'DIF-095', 'DIF-087'] },
   { slug: 'teorema-valor-medio', ids: ['DIF-081', 'DIF-082', 'DIF-083', 'DIF-084'] },
   { slug: 'series-taylor', ids: ['DIF-106', 'DIF-107', 'DIF-102', 'DIF-113'] },
@@ -263,6 +274,9 @@ for (const locale of MESSAGE_LOCALES) {
   if (!m.vizDif?.tangent?.normalIdea) fail(`messages/${locale}.json missing vizDif.tangent normal`);
   if (!m.vizDif?.kinematics?.ideaVelocity) fail(`messages/${locale}.json missing vizDif.kinematics`);
   if (!m.vizDif?.continuity?.definitionIdea) fail(`messages/${locale}.json missing vizDif.continuity`);
+  else if (String(m.vizDif.continuity.definitionIdea).includes('lim_{')) {
+    fail(`messages/${locale}.json vizDif.continuity.definitionIdea has unescaped ICU braces`);
+  }
   if (!m.vizDif?.intermediateValue?.idea) fail(`messages/${locale}.json missing vizDif.intermediateValue`);
   if (!m.vizDif?.productRule?.idea) fail(`messages/${locale}.json missing vizDif.productRule`);
   if (!m.vizDif?.chainRule?.idea) fail(`messages/${locale}.json missing vizDif.chainRule`);
@@ -279,6 +293,14 @@ for (const locale of MESSAGE_LOCALES) {
 }
 pass('vizDif UI strings in 6 locales');
 
+for (const locale of MESSAGE_LOCALES) {
+  const m = loadMessages(locale);
+  for (const key of TAYLOR_VIZ_KEYS) {
+    if (!m.vizCalc?.taylor?.[key]) fail(`messages/${locale}.json missing vizCalc.taylor.${key}`);
+  }
+}
+pass('vizCalc.taylor UI strings in 6 locales');
+
 // --- content-i18n parity (EN baseline vs de/fr/it/pt) ---
 const enDict = loadContentI18n('en');
 const difPhrases = new Set();
@@ -292,21 +314,40 @@ for (const s of parsed.sections) {
       difPhrases.add(b.content.method);
     }
     if (b.blockType === 'checklist') difPhrases.add(b.content.text);
+    if (b.blockType === 'list' && Array.isArray(b.content.items)) {
+      for (const item of b.content.items) difPhrases.add(item);
+    }
+    if (b.blockType === 'note' && b.content.markdown) difPhrases.add(b.content.markdown);
+    if (b.blockType === 'text' && b.content.markdown) difPhrases.add(b.content.markdown);
   }
 }
 difPhrases.add('Cálculo Diferencial');
 difPhrases.add('Límites, continuidad, derivadas y aplicaciones');
+
+let missingEnPhrases = 0;
+for (const phrase of difPhrases) {
+  if (!enDict[phrase] || enDict[phrase] === phrase) missingEnPhrases += 1;
+}
+if (missingEnPhrases > 0) {
+  fail(`content-i18n/en.json missing translations for ${missingEnPhrases} Cálculo Diferencial phrase(s)`);
+} else pass('all Cálculo Diferencial phrases have English translations');
 
 let missingI18n = 0;
 for (const locale of LOCALES) {
   const dict = loadContentI18n(locale);
   if (!dict['Cálculo Diferencial']) fail(`content-i18n/${locale}.json missing subject title`);
   for (const phrase of difPhrases) {
-    if (!enDict[phrase]) continue;
+    const subtopicExpected = SUBTOPIC_TITLES[locale]?.[phrase];
     const translated = dict[phrase];
-    if (!translated || translated === phrase) {
-      if (locale !== 'en') missingI18n += 1;
+    if (subtopicExpected) {
+      if (translated !== subtopicExpected) missingI18n += 1;
+      continue;
     }
+    if (!translated) {
+      missingI18n += 1;
+      continue;
+    }
+    if (translated === phrase && locale !== 'en') missingI18n += 1;
   }
 }
 if (missingI18n > 0) {
@@ -320,12 +361,122 @@ for (const locale of LOCALES.filter((l) => l !== 'en')) {
   const expected = SUBTOPIC_TITLES[locale] ?? {};
   for (const [es, translated] of Object.entries(expected)) {
     const actual = dict[es];
-    if (!actual || actual === es) badSubtopicTitles += 1;
+    if (!actual || actual !== translated) badSubtopicTitles += 1;
   }
 }
 if (badSubtopicTitles > 0) {
   fail(`content-i18n: ${badSubtopicTitles} subtopic title(s) still Spanish in de/fr/it/pt`);
 } else pass('subtopic title parity in content-i18n');
+
+let badPtTitles = 0;
+const ptExpected = SUBTOPIC_TITLES.pt ?? {};
+const ptDict = loadContentI18n('pt');
+for (const [es, translated] of Object.entries(ptExpected)) {
+  const actual = ptDict[es];
+  if (actual && actual === enDict[es] && enDict[es] !== es) badPtTitles += 1;
+}
+if (badPtTitles > 0) {
+  fail(`content-i18n/pt.json: ${badPtTitles} subtopic title(s) still English (run merge-calculo-diferencial-i18n.py)`);
+} else pass('Portuguese subtopic titles differ from English');
+
+const guideChecklistKeys = [
+  "4. \\(f'\\): intervalos de crecimiento/decrecimiento y puntos críticos.",
+  "5. \\(f''\\): concavidad y puntos de inflexión.",
+  "\\(f'\\): intervalos de crecimiento/decrecimiento y puntos críticos.",
+  "\\(f''\\): concavidad y puntos de inflexión.",
+];
+for (const locale of LOCALES) {
+  const dict = loadContentI18n(locale);
+  for (const key of guideChecklistKeys) {
+    const tr = dict[key];
+    if (!tr || tr === key) fail(`content-i18n/${locale}.json missing guide checklist key`);
+  }
+}
+pass('guide checklist numbered keys in content-i18n');
+
+const instructiveKeys = [
+  "\\(\\operatorname{arcsen} x\\), \\(\\arccos x\\), \\(\\arctan x\\) denotan funciones inversas, no recíprocos.",
+  "\\(f'(x)\\), \\(f''(x)\\) y \\(f^{(n)}(x)\\) denotan derivadas de orden uno, dos y \\(n\\).",
+  'Toda fórmula se aplica solo donde las expresiones estén definidas y los denominadores sean distintos de cero.',
+  '**Regla de uso:** aplicar solo donde las expresiones estén definidas; denominadores distintos de cero.',
+  '*Generado con 161 fórmulas catalogadas (`DIF-001` … `DIF-161`).*',
+];
+for (const locale of LOCALES) {
+  const dict = loadContentI18n(locale);
+  for (const key of instructiveKeys) {
+    const tr = dict[key];
+    if (!tr || tr === key) fail(`content-i18n/${locale}.json missing instructive block`);
+  }
+}
+pass('instructive blocks of §1, appendix and A.5 in content-i18n');
+
+const searchAliasKeys = [
+  'serie de Taylor',
+  'polinomio de Taylor',
+  'aproximación',
+  'cociente incremental',
+  'limite indeterminado',
+  'definición formal de límite',
+  'regla de la potencia para límites',
+  'límite de una potencia',
+];
+for (const locale of LOCALES) {
+  const dict = loadContentI18n(locale);
+  for (const key of searchAliasKeys) {
+    const tr = dict[key];
+    if (!tr || tr === key) fail(`content-i18n/${locale}.json missing search alias "${key}"`);
+  }
+}
+pass('search aliases of DIF-106 and related fichas in content-i18n');
+
+let aliases019 = [];
+let aliases020 = [];
+for (const section of parsed.sections) {
+  for (const block of section.blocks) {
+    if (block.formulaCode === 'DIF-019') aliases019 = block.content.searchAliases ?? [];
+    if (block.formulaCode === 'DIF-020') aliases020 = block.content.searchAliases ?? [];
+  }
+}
+if (
+  !aliases019.includes('regla de la potencia para límites') ||
+  !aliases019.includes('límite de una potencia') ||
+  aliases019.some((a) => /seno|trigonom/i.test(a))
+) {
+  fail(`DIF-019 search aliases should be power-rule-for-limits, got ${JSON.stringify(aliases019)}`);
+} else pass('DIF-019 search aliases are the power rule for limits');
+if (!aliases020.includes('limite seno') || !aliases020.includes('limite trigonométrico')) {
+  fail(`DIF-020 search aliases should cover sen x/x, got ${JSON.stringify(aliases020)}`);
+} else pass('DIF-020 search aliases cover sen x/x');
+
+for (const locale of MESSAGE_LOCALES) {
+  const m = loadMessages(locale);
+  if (!m.topicHubs?.limitAlgebra?.title) fail(`messages/${locale}.json missing topicHubs.limitAlgebra`);
+}
+pass('topicHubs.limitAlgebra UI strings in 6 locales');
+
+const cdTagLabels = JSON.parse(
+  readFileSync(resolve(ROOT, 'apps/web-public/lib/calculo-diferencial-tag-labels.json'), 'utf8'),
+);
+for (const locale of MESSAGE_LOCALES) {
+  for (const slug of CD_TAG_SLUGS) {
+    if (!cdTagLabels[locale]?.[slug]) fail(`calculo-diferencial-tag-labels.json missing ${locale}.${slug}`);
+  }
+}
+const sampleSectionSlugs = [
+  'limites-algebra-de-limites',
+  'a-5-composiciones-frecuentes',
+  'series-taylor-polinomio-de-taylor',
+];
+for (const locale of LOCALES) {
+  for (const slug of sampleSectionSlugs) {
+    const label = cdTagLabels[locale]?.[slug];
+    const hyphenSplit = slug.replace(/-/g, ' ');
+    if (!label || label === hyphenSplit) {
+      fail(`calculo-diferencial-tag-labels.json ${locale}.${slug} still hyphen-split`);
+    }
+  }
+}
+pass('Cálculo Diferencial tag labels in 6 locales');
 
 // --- Formal constraints in LaTeX (7 QA fichas) ---
 for (const id of CONSTRAINT_IDS) {
@@ -354,6 +505,18 @@ try {
 } catch (e) {
   fail(`calculo-diferencial-latex-text tests failed: ${e.stderr?.toString() || e.message}`);
 }
+
+// --- formula-derivada taxonomy: limits should not carry derivative tag ---
+const tagsMod = require(resolve(ROOT, 'packages/content-parser/dist/tags.js'));
+const limitTags = tagsMod.inferTags('limites', 'lim', 'formula');
+if (limitTags.includes('formula-derivada')) {
+  fail('inferTags(limites): formula-derivada should not apply to limit formulas');
+}
+const derivTags = tagsMod.inferTags('reglas-derivacion', 'd/dx', 'formula');
+if (!derivTags.includes('formula-derivada')) {
+  fail('inferTags(reglas-derivacion): formula-derivada expected for derivative rules');
+}
+pass('formula-derivada taxonomy scoped to derivative sections');
 
 // --- Parser build artifact ---
 if (!existsSync(resolve(ROOT, 'packages/content-parser/dist/parse-markdown.js'))) {

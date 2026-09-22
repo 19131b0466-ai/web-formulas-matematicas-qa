@@ -3,6 +3,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
+/** Next.js webpack `next dev` evaluates Fast Refresh via `eval()`. Production stays without it. */
+const isDev = process.env.NODE_ENV !== 'production';
+
 const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'DENY' },
@@ -12,11 +15,15 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      isDev
+        ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+        : "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self' data:",
-      "connect-src 'self' https: http://localhost:3001",
+      isDev
+        ? "connect-src 'self' https: http: ws: wss:"
+        : "connect-src 'self' https: http://localhost:3001",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

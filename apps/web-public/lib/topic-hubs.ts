@@ -1,4 +1,4 @@
-import { topicHubHref, topicsIndexHref, type SubjectSlug } from '@/lib/subjects';
+import { topicHubHref, topicsIndexHref, SUBJECT_SLUGS, type SubjectSlug } from '@/lib/subjects';
 
 export type TopicHubDefinition = {
   slug: string;
@@ -46,6 +46,62 @@ export const TOPIC_HUBS: TopicHubDefinition[] = [
     sectionSlugs: ['electricidad-basica'],
   },
   {
+    slug: 'divisores-thevenin',
+    subject: 'fisica-electronica',
+    messageKey: 'dividersThevenin',
+    formulaIds: ['DIV-001', 'DIV-003', 'DIV-006', 'DIV-007', 'DIV-010'],
+    sectionSlugs: ['redes-resistivas'],
+  },
+  {
+    slug: 'transitorios-rc',
+    subject: 'fisica-electronica',
+    messageKey: 'rcTransients',
+    formulaIds: ['TRN-001', 'TRN-002', 'TRN-003', 'REA-007'],
+    sectionSlugs: ['transitorios-primer-orden'],
+  },
+  {
+    slug: 'fasores-impedancia',
+    subject: 'fisica-electronica',
+    messageKey: 'phasorsImpedance',
+    formulaIds: ['FAS-001', 'FAS-003', 'FAS-008', 'FAS-010'],
+    sectionSlugs: ['ca-fasores'],
+  },
+  {
+    slug: 'filtros-bode',
+    subject: 'fisica-electronica',
+    messageKey: 'filtersBode',
+    formulaIds: ['FIL-001', 'FIL-002', 'FIL-003', 'FIL-005'],
+    sectionSlugs: ['filtros'],
+  },
+  {
+    slug: 'diodos-rectificacion',
+    subject: 'fisica-electronica',
+    messageKey: 'diodesRectification',
+    formulaIds: ['DIO-003', 'DIO-005', 'DIO-006', 'DIO-007'],
+    sectionSlugs: ['diodos-semiconductores'],
+  },
+  {
+    slug: 'opamp-basico',
+    subject: 'fisica-electronica',
+    messageKey: 'opampBasic',
+    formulaIds: ['OPA-003', 'OPA-004', 'OPA-005', 'OPA-006'],
+    sectionSlugs: ['amplificadores-opamp'],
+  },
+  {
+    slug: 'logica-combinacional',
+    subject: 'fisica-electronica',
+    messageKey: 'combinationalLogic',
+    formulaIds: ['CMB-001', 'CMB-003', 'CMB-005', 'CMB-009'],
+    sectionSlugs: ['logica-combinacional'],
+  },
+  {
+    slug: 'flip-flops',
+    subject: 'fisica-electronica',
+    messageKey: 'flipFlops',
+    formulaIds: ['SEQ-003', 'SEQ-006', 'SEQ-007', 'SEQ-005'],
+    sectionSlugs: ['logica-secuencial'],
+  },
+  {
     slug: 'regla-cadena',
     subject: 'calculo-diferencial',
     messageKey: 'chainRule',
@@ -53,10 +109,17 @@ export const TOPIC_HUBS: TopicHubDefinition[] = [
     sectionSlugs: ['reglas-derivacion'],
   },
   {
+    slug: 'algebra-limites',
+    subject: 'calculo-diferencial',
+    messageKey: 'limitAlgebra',
+    formulaIds: ['DIF-015', 'DIF-016', 'DIF-017', 'DIF-018', 'DIF-019'],
+    sectionSlugs: ['limites-algebra-de-limites'],
+  },
+  {
     slug: 'limites-indeterminados',
     subject: 'calculo-diferencial',
     messageKey: 'indeterminateLimits',
-    formulaIds: ['DIF-114', 'DIF-115', 'DIF-116', 'DIF-019'],
+    formulaIds: ['DIF-114', 'DIF-115', 'DIF-116'],
     sectionSlugs: ['lhopital', 'limites'],
   },
   {
@@ -137,7 +200,7 @@ export function topicHubsForFormula(
 
 export function collectTopicHubPaths(): string[] {
   const paths = new Set<string>();
-  for (const subject of ['calculo-diferencial', 'calculo-ii', 'fisica-basica', 'algebra'] as SubjectSlug[]) {
+  for (const subject of SUBJECT_SLUGS) {
     const hubs = topicHubsForSubject(subject);
     if (hubs.length > 0) paths.add(topicsIndexHref(subject));
     for (const hub of hubs) paths.add(topicHubHref(subject, hub.slug));

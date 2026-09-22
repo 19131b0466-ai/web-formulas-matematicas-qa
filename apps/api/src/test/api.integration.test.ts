@@ -17,6 +17,9 @@ describe('API content endpoints (PGlite)', () => {
     expect(stats.some((s) => s.subjectSlug === 'fisica-basica' && s.formulaCount === 195)).toBe(
       true,
     );
+    expect(stats.some((s) => s.subjectSlug === 'fisica-electronica' && s.formulaCount === 188)).toBe(
+      true,
+    );
     app = createApp(() => db as never);
   }, 120_000);
 
@@ -38,6 +41,7 @@ describe('API content endpoints (PGlite)', () => {
     const slugs = body.subjects.map((s) => s.slug);
     expect(slugs).toContain('calculo-ii');
     expect(slugs).toContain('fisica-basica');
+    expect(slugs).toContain('fisica-electronica');
     expect(slugs).toContain('algebra');
   });
 
@@ -126,7 +130,7 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.content.formulaId).toBe('INT-001');
     expect(body.content.latex.length).toBeGreaterThan(0);
     expect(body.related.length).toBeGreaterThan(0);
-    expect(body.related.every((r) => r.formulaId.startsWith('INT-'))).toBe(true);
+    expect(body.related.some((r) => r.formulaId.startsWith('INT-'))).toBe(true);
   });
 
   it('GET calculo search finds by formula code', async () => {
@@ -205,5 +209,52 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.strategies.some((s) => /newton|proyectil|ohm/i.test(`${s.signal} ${s.method}`))).toBe(
       true,
     );
+  });
+
+  it('GET /v1/subjects/fisica-electronica/sections returns electronics chapters', async () => {
+    const res = await app.request('/v1/subjects/fisica-electronica/sections');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { sections: Array<{ slug: string }> };
+    const slugs = body.sections.map((s) => s.slug);
+    expect(slugs).toContain('redes-resistivas');
+    expect(slugs).toContain('amplificadores-opamp');
+    expect(slugs).toContain('guia-enfoque');
+  });
+
+  it('GET /v1/subjects/fisica-electronica/formulas/DIV-001 returns detail + related', async () => {
+    const res = await app.request('/v1/subjects/fisica-electronica/formulas/DIV-001');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      formulaId: string;
+      content: { latex: string; relatedIds?: string[]; commonErrors?: string[] };
+      related: Array<{ formulaId: string; subjectSlug?: string }>;
+      section: { slug: string };
+    };
+    expect(body.formulaId).toBe('DIV-001');
+    expect(body.section.slug).toBe('redes-resistivas');
+    expect(body.content.latex.length).toBeGreaterThan(0);
+    expect(body.content.commonErrors?.length).toBeGreaterThan(0);
+    expect(body.related.some((r) => r.formulaId === 'ELE-014')).toBe(true);
+  });
+
+  it('GET electronics search finds by formula code', async () => {
+    const res = await app.request('/v1/subjects/fisica-electronica/search?q=DIV-001&limit=5');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { total: number };
+    expect(body.total).toBeGreaterThan(0);
+  });
+
+  it('GET /v1/guide/method-selection?subject=fisica-electronica returns electronics strategies', async () => {
+    const res = await app.request('/v1/guide/method-selection?subject=fisica-electronica');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      strategies: Array<{ signal: string; method: string }>;
+      checklist: string[];
+    };
+    expect(body.strategies.length).toBeGreaterThanOrEqual(9);
+    expect(body.checklist.length).toBeGreaterThanOrEqual(5);
+    expect(
+      body.strategies.some((s) => /thévenin|thevenin|norton|fasor|flip/i.test(`${s.signal} ${s.method}`)),
+    ).toBe(true);
   });
 });

@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Fórmulas matemáticas",
-    "tagline": "Cálculo Diferencial, Cálculo II, Física Básica y Álgebra",
-    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Diferencial, Cálculo Integral, Física Básica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
+    "tagline": "Cálculo Diferencial, Cálculo II, Física Básica, Física Electrónica y Álgebra",
+    "description": "Fórmulas matemáticas en línea multi-materia: Cálculo Diferencial, Cálculo Integral, Física Básica, Física Electrónica y Álgebra para ingeniería y CS, con búsqueda, visualizaciones y LaTeX.",
     "shortName": "Fórmulas",
-    "about": "Cálculo Diferencial, Cálculo Integral, Física Básica y Álgebra",
+    "about": "Cálculo Diferencial, Cálculo Integral, Física Básica, Física Electrónica y Álgebra",
     "manifestDescription": "Fórmulas matemáticas en línea",
     "seoTitle": "Fórmulas matemáticas, teoría y recursos interactivos"
   },
@@ -79,17 +79,22 @@
     "basicElectricity": {
       "title": "Electricidad básica",
       "description": "Ley de Ohm, potencia eléctrica, capacitancia y energía potencial eléctrica.",
-      "intro": "Ohm, potencia, capacitores y energía eléctrica explicadas con fórmulas, unidades y ejemplos numéricos."
+      "intro": "Ohm, potencia, capacitores y energía eléctrica explicadas con fórmulas, unidades y ejemplos numéricos. El análisis de circuitos continúa en Física Electrónica."
     },
     "chainRule": {
       "title": "Regla de la cadena",
       "description": "Derivada de composiciones, regla del producto y del cociente.",
       "intro": "Repasa la regla de la cadena y las reglas básicas de derivación para funciones compuestas y productos."
     },
+    "limitAlgebra": {
+      "title": "Álgebra de límites",
+      "description": "Suma, producto, cociente y potencia de límites finitos.",
+      "intro": "Reglas algebraicas para combinar límites: suma, producto, cociente y la potencia [f(x)]^n."
+    },
     "indeterminateLimits": {
       "title": "Límites indeterminados y L'Hôpital",
-      "description": "Formas indeterminadas, regla de L'Hôpital y límites trigonométricos clásicos.",
-      "intro": "Resuelve límites con formas \\(0/0\\) o \\(\\infty/\\infty\\) usando L'Hôpital y límites fundamentales."
+      "description": "Formas indeterminadas y regla de L'Hôpital.",
+      "intro": "Resuelve límites con formas \\(0/0\\) o \\(\\infty/\\infty\\) usando L'Hôpital y reescrituras algebraicas."
     },
     "optimization": {
       "title": "Optimización",
@@ -130,6 +135,46 @@
       "title": "Estructuras algebraicas",
       "description": "Grupos, anillos, cuerpos y morfismos — teoría y fórmulas de álgebra abstracta.",
       "intro": "Introducción a estructuras algebraicas: definiciones, ejemplos y relaciones entre grupos, anillos y cuerpos."
+    },
+    "dividersThevenin": {
+      "title": "Divisores y Thévenin",
+      "description": "Divisor de tensión, carga y equivalentes Thévenin/Norton.",
+      "intro": "Reduce la red resistiva a un puerto: divisor, VTh, RTh y la equivalencia con Norton."
+    },
+    "rcTransients": {
+      "title": "Transitorios RC",
+      "description": "Carga, descarga y constante de tiempo de circuitos de primer orden.",
+      "intro": "Sigue vC(t) desde el valor inicial continuo hasta el asentamiento con τ = RC."
+    },
+    "phasorsImpedance": {
+      "title": "Fasores e impedancia",
+      "description": "Sinusoide RMS, fasor giratorio e impedancia compleja.",
+      "intro": "Pasa de v(t) al fasor RMS y resume el elemento como Z = R + jX."
+    },
+    "filtersBode": {
+      "title": "Filtros y Bode",
+      "description": "Pasa-bajos, pasa-altos y frecuencia de corte en el diagrama de Bode.",
+      "intro": "Lee |H(jω)|, marca fc en −3 dB y observa la pendiente de primer orden."
+    },
+    "diodesRectification": {
+      "title": "Diodos y rectificación",
+      "description": "Shockley, umbral de silicio y rectificadores de media y onda completa.",
+      "intro": "El diodo conduce tras el umbral; el rectificador recorta o pliega la sinusoide."
+    },
+    "opampBasic": {
+      "title": "Operacional básico",
+      "description": "Nudo virtual, inversor, no inversor y seguidor.",
+      "intro": "Con realimentación negativa v+ ≈ v− y las resistencias fijan la ganancia."
+    },
+    "combinationalLogic": {
+      "title": "Lógica combinacional",
+      "description": "Multiplexor, decodificador, sumador y mapa de Karnaugh en hardware.",
+      "intro": "La tabla de verdad define el circuito; las identidades booleanas siguen en Álgebra."
+    },
+    "flipFlops": {
+      "title": "Flip-flops y temporización",
+      "description": "Flip-flop D, tiempo de setup, hold y siguiente estado.",
+      "intro": "El flanco muestrea D; tsu y th marcan la ventana que evita la metastabilidad."
     }
   },
   "footer": {
@@ -149,7 +194,7 @@
     "ogTitle": "Buscar · Fórmulas matemáticas",
     "subtitle": "Encuentra fórmulas por texto, código o etiquetas.",
     "label": "Buscar fórmulas",
-    "placeholder": "Ej. DIF-041, INT-001, VEC-001, por partes…",
+    "placeholder": "Ej. DIF-041, INT-001, VEC-001, DIV-001, por partes…",
     "submit": "Buscar",
     "all": "Todos",
     "results": "{count, plural, =1 {# resultado} other {# resultados}}",
@@ -182,7 +227,12 @@
     "method": "Método",
     "methodPhysics": "Enfoque",
     "empty": "No hay estrategias disponibles. Verifica la API y el seed.",
-    "checklist": "Lista de comprobación"
+    "checklist": "Lista de comprobación",
+    "titleElectronics": "Guía para enfocar un circuito",
+    "descriptionElectronics": "Guía práctica para elegir el bloque de fórmulas de Física Electrónica según la señal del circuito.",
+    "ogTitleElectronics": "Guía de enfoque · Física Electrónica",
+    "sectionLabelElectronics": "Sección 18",
+    "introElectronics": "Usa la señal del circuito (DC, transitorio, sinusoidal, dispositivo o digital) para abrir el bloque adecuado."
   },
   "section": {
     "label": "Sección {number}",
@@ -267,7 +317,7 @@
   },
   "home": {
     "headline": "Consulta fórmulas con claridad, no con ruido.",
-    "support": "Cálculo, física y álgebra en un solo lugar: LaTeX legible, búsqueda rápida y visualizaciones que enseñan la idea.",
+    "support": "Cálculo, física, electrónica y álgebra en un solo lugar: LaTeX legible, búsqueda rápida y visualizaciones que enseñan la idea.",
     "ctaSubjects": "Explorar materias",
     "ctaAbout": "Acerca del proyecto",
     "subjectsTitle": "Materias",
@@ -518,6 +568,11 @@
       "showZone": "Mostrar zona de buena aproximación (error < 0.05)",
       "showTerms": "Mostrar términos del polinomio",
       "approx": "Aproximación — f(x) vs P",
+      "approxLabel": "Aproximación — f(x) vs P{degree}(x)",
+      "fnPrefix": "f(x) =",
+      "errorTitle": "Error |f(x) − P{degree}(x)|",
+      "degreeLabel": "Grado n = {degree}",
+      "centerLabel": "Centro a = {center}",
       "probe": "Punto de inspección x₀",
       "radiusWarn": "Radio de convergencia R = {R}. Para |x − {center}| ≥ {R} la serie diverge sin importar el grado n."
     },
@@ -554,7 +609,7 @@
       "wrtY": "Respecto a y"
     },
     "improper": {
-      "idea": "∫₁^∞ f(x) dx se define como lim_{b→∞} ∫₁ᵇ f. Si el área se estabiliza, <strong>converge</strong>; si crece sin límite, <strong>diverge</strong>.",
+      "idea": "∫₁^∞ f(x) dx se define como lim_'{b→∞'} ∫₁ᵇ f. Si el área se estabiliza, <strong>converge</strong>; si crece sin límite, <strong>diverge</strong>.",
       "note": "Para 1/xᵖ: p > 1 converge a 1/(p−1). La curva 1/x se aplasta, pero su área acumulada no para de crecer.",
       "animateB": "Animar b → ∞",
       "showLimit": "Mostrar valor límite"
@@ -742,7 +797,7 @@
       "slopeMismatch": "revisa el instante (borde del dominio)"
     },
     "continuity": {
-      "definitionIdea": "f es continua en a cuando lim_{x→a} f(x) = f(a): el valor del límite coincide con el valor de la función.",
+      "definitionIdea": "f es continua en a cuando lim_'{x→a'} f(x) = f(a): el valor del límite coincide con el valor de la función.",
       "discontinuityIdea": "Compara tres tipos: hueco removible, salto finito y asíntota vertical (discontinuidad infinita).",
       "xNearA": "x cerca de a",
       "continuous": "¿Continua en a?",
@@ -1570,6 +1625,274 @@
           "circuits": "Circuitos"
         }
       }
+    }
+  },
+  "vizElectronica": {
+    "sliders": {
+      "vi": "Vi (V)",
+      "r1": "R1 (Ω)",
+      "r2": "R2 (Ω)",
+      "rl": "RL (Ω)",
+      "it": "IT (mA)",
+      "vth": "VTh (V)",
+      "rth": "RTh (Ω)",
+      "r": "R (Ω)",
+      "c": "C (µF)",
+      "l": "L (mH)",
+      "p": "P",
+      "q": "Q",
+      "x": "X (Ω)",
+      "vp": "Vp (V)",
+      "phi": "φ (°)",
+      "vd": "VD (V)",
+      "ib": "IB (µA)",
+      "vin": "Vin (V)",
+      "rf": "Rf (kΩ)",
+      "rg": "Rg (kΩ)",
+      "rK": "R (kΩ)",
+      "bits": "bits",
+      "code": "código",
+      "duty": "ciclo útil",
+      "fmax": "fmax (Hz)",
+      "fs": "fs (Hz)",
+      "tsu": "tsu (ns)",
+      "th": "th (ns)"
+    },
+    "regions": {
+      "cutoff": "corte",
+      "sat": "saturación",
+      "active": "activa",
+      "over": "sobreamortiguado",
+      "critical": "crítico",
+      "under": "subamortiguado",
+      "nyquistOk": "cumple Nyquist",
+      "aliasing": "aliasing",
+      "window": "ventana crítica",
+      "stable": "D estable"
+    },
+    "voltage_divider": {
+      "idea": "Vo es la fracción R2/(R1+R2) de Vi; una carga en paralelo con R2 baja esa fracción.",
+      "tryIt": "Sube R2: Vo se acerca a Vi. Pon RL pequeña: Vo cae.",
+      "caption": "Sin carga, Vo = Vi R2/(R1+R2).",
+      "aria": "Divisor de tensión",
+      "ariaCurrent": "Divisor de corriente",
+      "statusVo": "Vo = {vo} V (abierto {open} V)",
+      "statusI": "I1 = {i1} mA · I2 = {i2} mA · IT = {it} mA",
+      "unloaded": {
+        "idea": "Sin carga, Vo es exactamente Vi R2/(R1+R2).",
+        "tryIt": "Cambia R1 y R2 y comprueba que Vo/Vi = R2/(R1+R2).",
+        "caption": "Sin carga, Vo = Vi R2/(R1+R2)."
+      },
+      "loaded": {
+        "idea": "RL en paralelo con R2 reduce la fracción y por tanto Vo.",
+        "tryIt": "Baja RL y observa cómo Vo se aleja del valor en vacío.",
+        "caption": "RL en paralelo con R2 reduce Vo."
+      },
+      "current": {
+        "idea": "La rama de menor resistencia lleva más corriente: I1 = IT R2/(R1+R2).",
+        "tryIt": "Sube R2: más corriente pasa por R1. La suma I1+I2 debe ser IT.",
+        "caption": "I1 = IT R2/(R1+R2). La rama de menor R lleva más corriente."
+      }
+    },
+    "thevenin_norton": {
+      "idea": "Toda la red a la izquierda de los bornes se sustituye por VTh (o IN) y RTh = RN.",
+      "tryIt": "Cambia RL: Vo sigue la división con RTh. Comprueba VTh = IN RN.",
+      "caption": "La red se sustituye por VTh en serie con RTh (o IN en paralelo con RN = RTh).",
+      "aria": "Equivalente Thévenin",
+      "status": "VL = {vl} V · IL = {il} mA · P = {p} mW (Pmax {pmax} mW)"
+    },
+    "rc_transient": {
+      "idea": "vC (o iL) interpola el valor inicial continuo y el asentamiento con una exponencial de constante τ.",
+      "tryIt": "Marca t = τ: el hueco al asentamiento queda en el 37 %. A 5τ ya está prácticamente asentado.",
+      "caption": "La exponencial cruza 63 % o 37 % en t = τ y se asienta hacia 5τ.",
+      "aria": "Transitorio de primer orden",
+      "status": "t = {t} {unit} · τ = {tau} {unit} · y = {y}"
+    },
+    "rlc_damping": {
+      "idea": "ζ decide la forma: dos exponenciales, frontera crítica u oscilación que decae.",
+      "tryIt": "Baja R en serie: ζ cae y aparecen oscilaciones. En el crítico no hay sobreimpulso.",
+      "caption": "ζ>1 dos exponenciales; ζ=1 frontera; ζ<1 oscilación que decae.",
+      "aria": "Amortiguamiento RLC",
+      "status": "ζ = {zeta} · {label} · ω0 = {w0} rad/s"
+    },
+    "phasor_diagram": {
+      "idea": "El fasor RMS gira a ω y su proyección horizontal es la sinusoide instantánea.",
+      "tryIt": "Cambia φ: el fasor adelanta o atrasa. Compara Vp con Vrms = Vp/√2.",
+      "caption": "El fasor RMS gira; su proyección es la sinusoide instantánea.",
+      "aria": "Fasor y sinusoide",
+      "status": "v(t) = {v} V · Vrms = {rms} V · φ = {phi}°"
+    },
+    "impedance_triangle": {
+      "idea": "Z = R + jX es un triángulo: la hipotenusa es |Z| y el ángulo es arg(Z).",
+      "tryIt": "Pon X = 0: el ángulo se anula. Cambia el signo de X y mira si es inductivo o capacitivo.",
+      "caption": "Z = R + jX. |Z| es la hipotenusa.",
+      "aria": "Triángulo de impedancia o admitancia",
+      "statusZ": "|Z|={z} Ω · arg(Z)={ang}°",
+      "statusY": "|Y|={y} S · arg(Y)={ang}°",
+      "statusPower": "P={p} Q={q} S={s}",
+      "z": {
+        "idea": "Z = R + jX. |Z| es la hipotenusa y el ángulo es arg(Z).",
+        "tryIt": "Cambia X de capacitivo a inductivo y mira el signo del ángulo.",
+        "caption": "Z = R + jX. |Z| es la hipotenusa."
+      },
+      "y": {
+        "idea": "Y = 1/Z: el módulo se invierte y el ángulo cambia de signo. G y B son los catetos.",
+        "tryIt": "Sube |Z| y comprueba que |Y| baja. arg(Y) debe ser −arg(Z).",
+        "caption": "Y = 1/Z. |Y| = 1/|Z| y arg(Y) = −arg(Z)."
+      },
+      "power": {
+        "idea": "P, Q y S forman el triángulo de potencia; el ángulo es el de la impedancia.",
+        "tryIt": "Anula Q: S coincide con P. El signo de Q sigue a X.",
+        "caption": "S² = P² + Q². El ángulo es el de la impedancia."
+      }
+    },
+    "resonance_curve": {
+      "idea": "En resonancia serie |Z| es mínimo (R) y en paralelo es máximo.",
+      "tryIt": "Barre ω alrededor de ω0: la curva se estrecha si Q sube.",
+      "caption": "|Z| extremo en ω0.",
+      "aria": "Curva de resonancia",
+      "status": "ω0 = {w0} rad/s · R = {r} Ω",
+      "series": {
+        "idea": "En resonancia serie XL=XC y |Z| es mínimo (igual a R).",
+        "tryIt": "Baja R: el valle en ω0 se hace más profundo y estrecho.",
+        "caption": "|Z| mínimo en ω0 (serie)."
+      },
+      "parallel": {
+        "idea": "En resonancia paralelo |Z| es máximo.",
+        "tryIt": "Baja R: el pico en ω0 sube. Fuera de ω0 |Z| cae.",
+        "caption": "|Z| máximo en ω0 (paralelo)."
+      }
+    },
+    "bode_filter": {
+      "idea": "|H| pasa la banda útil y, en un pasa-bajos, cae 20 dB/dec después de fc (−3 dB).",
+      "tryIt": "Cambia R o C (o L): fc se mueve. En fc la magnitud debe estar cerca de −3 dB.",
+      "caption": "En fc la ganancia es −3 dB.",
+      "aria": "Diagrama de Bode",
+      "status": "fc = {fc} Hz · |H(fc)| ≈ {mag} ({db} dB)",
+      "lp_rc": {
+        "idea": "El pasa-bajos RC pasa el DC y cae 20 dB/dec por encima de fc.",
+        "tryIt": "Sube C: fc baja. En fc |H| debe estar en −3 dB.",
+        "caption": "En fc la ganancia es −3 dB. Por encima, |H| cae 20 dB/dec."
+      },
+      "fc": {
+        "idea": "fc = 1/(2π RC) es el punto −3 dB del Bode de primer orden.",
+        "tryIt": "Duplica R: fc se divide por dos.",
+        "caption": "fc = 1/(2π RC) marca el punto −3 dB."
+      },
+      "hp_rc": {
+        "idea": "El pasa-altos RC sube +20 dB/dec por debajo de fc y se aproxima a 0 dB por encima.",
+        "tryIt": "Mira la banda a la izquierda de fc: |H| crece, no cae. Por encima de fc queda plano.",
+        "caption": "Por debajo de fc, |H| sube +20 dB/dec; por encima se aproxima a 0 dB."
+      },
+      "lp_rl": {
+        "idea": "El pasa-bajos RL tiene corte fc = R/(2π L) y cae 20 dB/dec por encima de fc.",
+        "tryIt": "Sube L: fc baja. Los controles son R y L, no un capacitor.",
+        "caption": "Corte fc = R/(2π L). Por encima de fc, |H| cae 20 dB/dec."
+      }
+    },
+    "diode_iv": {
+      "idea": "El diodo casi no conduce bajo el umbral y dispara en directa; el rectificador recorta o pliega la sinusoide.",
+      "tryIt": "En IV, cruza ~0.7 V. En media onda compara Vavg = Vp/π con el recorte positivo.",
+      "caption": "IV: conducción fuerte tras el umbral. Rectificador: recorta o pliega la sinusoide.",
+      "aria": "Curva IV del diodo",
+      "ariaRect": "Rectificador",
+      "statusIv": "I = {i} mA @ {v} V",
+      "statusHalf": "Vavg = Vp/π = {vavg} V",
+      "statusFull": "Vavg = 2Vp/π = {vavg} V"
+    },
+    "bjt_load_line": {
+      "idea": "La recta de carga une (VCE=VCC, IC=0) con (VCE=0, IC=VCC/RC) y el punto Q recorre corte, activa y saturación.",
+      "tryIt": "IB = 0: corte. Sube IB hasta que VCE se queda en ~0.2 V: saturación, IC ya no es β IB.",
+      "caption": "La recta de carga une (VCE=VCC, IC=0) con (VCE=0, IC=VCC/RC). El punto Q recorre las regiones.",
+      "aria": "Recta de carga BJT",
+      "status": "IC = {ic} mA · VCE = {vce} V · {region}"
+    },
+    "opamp_circuit": {
+      "idea": "Con realimentación negativa v+ ≈ v− (nudo virtual) y las resistencias fijan Av.",
+      "tryIt": "En el inversor Av = −Rf/Rg. En el seguidor Av = 1. Si |Av Vin| supera Vsat, la salida se aplana.",
+      "caption": "Con realimentación negativa, v+ ≈ v− (nudo virtual).",
+      "aria": "Circuito con operacional",
+      "statusAv": "Av = {av} · Vo = {vo} V",
+      "statusInt": "RC = {rc} ms · Vo = {vo} V",
+      "inv": {
+        "idea": "El inversor usa el nudo virtual: Vo = −(Rf/Rin) Vin.",
+        "tryIt": "Sube Rf: |Av| crece. El signo de Vo es el opuesto de Vin.",
+        "caption": "Inversor: Vo = −(Rf/Rg) Vin con nudo virtual a tierra."
+      },
+      "ninv": {
+        "idea": "El no inversor da ganancia 1+Rf/Rg con entrada en v+.",
+        "tryIt": "Iguala Rf y Rg: Av = 2. Vin y Vo tienen el mismo signo.",
+        "caption": "No inversor: Av = 1+Rf/Rg."
+      },
+      "buffer": {
+        "idea": "El seguidor es un no inversor de ganancia 1: Vo = Vin.",
+        "tryIt": "Cambia Vin: Vo lo copia dentro de ±Vsat.",
+        "caption": "Seguidor: ganancia 1."
+      },
+      "int": {
+        "idea": "El integrador tiene C en la realimentación: Vo = −(1/RC) ∫ Vin dt, una rampa si Vin es constante.",
+        "tryIt": "Sube C o R: la constante RC crece y la rampa se hace más lenta.",
+        "caption": "Integrador: capacitor en lazo, constante RC y rampa de salida."
+      }
+    },
+    "cmos_vtc": {
+      "idea": "La VTC CMOS invierte: Vin bajo da VOH, Vin alto da VOL, y VIH/VIL definen NMH y NML.",
+      "tryIt": "Mueve Vin por VIL y VIH: los márgenes son VOH−VIH y VIL−VOL, no los rieles solos.",
+      "caption": "La VTC CMOS invierte: bajos Vin dan VOH; altos dan VOL. Los umbrales definen NMH y NML.",
+      "aria": "VTC CMOS",
+      "status": "Vo = {vo} V · NMH = {nmh} V · NML = {nml} V"
+    },
+    "flip_flop_timing": {
+      "idea": "D debe estar quieta tsu antes del flanco y th después; si no, hay metastabilidad.",
+      "tryIt": "Ensancha tsu: la ventana crítica crece. El flanco es el único instante que copia D a Q.",
+      "caption": "D debe ser estable tsu antes del flanco y th después. Si no, hay metastabilidad.",
+      "aria": "Setup y hold",
+      "status": "tsu = {tsu} ns · th = {th} ns · {window}"
+    },
+    "sampling_pwm": {
+      "idea": "fs > 2 fmax evita aliasing; n bits parte VFS en 2^n niveles; PWM usa ton/T.",
+      "tryIt": "Baja fs por debajo de 2 fmax: aparece aliasing. En PWM, duty 0.5 deja el pulso a mitad de periodo.",
+      "caption": "Nyquist, cuantización o PWM según el modo.",
+      "aria": "Muestreo",
+      "ariaPwm": "PWM",
+      "ariaR2r": "Escalera R-2R",
+      "statusPwm": "δ = {duty}",
+      "statusQuant": "Δ = {delta} V · {n} niveles",
+      "statusR2r": "código {bits} · Vo = {vo} V · Vref = {vref} V",
+      "statusNyquist": "fs = {fs} Hz · 2 fmax = {nyq} Hz · {ok}",
+      "nyquist": {
+        "idea": "fs > 2 fmax evita aliasing (criterio de Nyquist).",
+        "tryIt": "Baja fs por debajo de 2 fmax y lee el aviso de aliasing.",
+        "caption": "Nyquist: fs > 2 fmax."
+      },
+      "quant": {
+        "idea": "n bits parte VFS en 2^n niveles; el paso es Δ = VFS/2^n.",
+        "tryIt": "Sube bits: Δ se reduce y hay más escalones.",
+        "caption": "La cuantización parte VFS en 2^n niveles."
+      },
+      "pwm": {
+        "idea": "El ciclo útil PWM es ton/T, la fracción de periodo en alto.",
+        "tryIt": "Mueve el duty: el pulso alto ocupa esa fracción del periodo.",
+        "caption": "PWM: el ciclo útil es ton/T."
+      },
+      "r2r": {
+        "idea": "El DAC R-2R suma pesos binarios: Vo = −Vref Σ bk/2^k a través de la red R y 2R.",
+        "tryIt": "Cambia el código: cada bit en 1 aporta Vref/2, Vref/4, … No es un cuantizador de Δ.",
+        "caption": "Escalera R-2R: pesos binarios y tensión DAC Vo = −Vref Σ bk/2^k."
+      }
+    },
+    "electronics_guide": {
+      "idea": "La señal del enunciado (DC, transitorio, sinusoidal, dispositivo o digital) apunta a un bloque, no a memorizar 188 IDs.",
+      "tryIt": "Elige «transitorio RC»: el árbol termina en τ, v(0+) y v(∞). Para un flip-flop, mira setup y hold.",
+      "caption": "Elige la señal del enunciado: DC, transitorio, sinusoidal, dispositivo o digital.",
+      "dc": "DC / Thévenin",
+      "transient": "Transitorio RC/RL",
+      "rlc": "RLC / ζ",
+      "phasors": "Fasores",
+      "filter": "Filtro / Bode",
+      "diode": "Diodo",
+      "opamp": "Op-amp",
+      "ff": "Flip-flop"
     }
   }
 }
