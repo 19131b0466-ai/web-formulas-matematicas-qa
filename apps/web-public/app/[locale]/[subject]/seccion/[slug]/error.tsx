@@ -8,7 +8,7 @@ type Props = {
   reset: () => void;
 };
 
-export default function SectionError({ error, reset }: Props) {
+export default function SectionError({ error }: Props) {
   useEffect(() => {
     console.error('[section page]', error);
   }, [error]);
@@ -25,7 +25,11 @@ export default function SectionError({ error, reset }: Props) {
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"
-          onClick={reset}
+          onClick={() => {
+            window.setTimeout(() => {
+              window.location.reload();
+            }, 600);
+          }}
           className="inline-flex min-h-12 items-center rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-white"
         >
           Reintentar

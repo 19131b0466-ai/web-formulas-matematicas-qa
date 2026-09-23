@@ -3,10 +3,14 @@
  *
  * Production (Hobby) uses a day-long window so catalog HTML is not rewritten
  * on every visit. The QA Vercel project must serve seed/i18n changes at once,
- * so it opts out of ISR and the fetch Data Cache.
+ * so HTML is rendered per request. Catalog JSON uses a short Data Cache
+ * (not 24h) so consecutive formula pages do not stampede the API.
  */
 const PROD_CATALOG_REVALIDATE_SECONDS = 86_400;
 const PROD_REVIEWS_REVALIDATE_SECONDS = 3_600;
+/** Short Data Cache on QA so crawls reuse nav/formula JSON without a 24h HTML ISR. */
+export const QA_CATALOG_FETCH_REVALIDATE_SECONDS = 30;
+export const QA_REVIEWS_FETCH_REVALIDATE_SECONDS = 30;
 
 export type IsrEnv = Record<string, string | undefined>;
 
@@ -33,11 +37,17 @@ export function isQaSite(env: IsrEnv = process.env): boolean {
 }
 
 export function catalogRevalidateSeconds(env: IsrEnv = process.env): number {
-  return envNumber(env, 'CATALOG_REVALIDATE_SECONDS') ?? (isQaSite(env) ? 0 : PROD_CATALOG_REVALIDATE_SECONDS);
+  return (
+    envNumber(env, 'CATALOG_REVALIDATE_SECONDS') ??
+    (isQaSite(env) ? QA_CATALOG_FETCH_REVALIDATE_SECONDS : PROD_CATALOG_REVALIDATE_SECONDS)
+  );
 }
 
 export function reviewsRevalidateSeconds(env: IsrEnv = process.env): number {
-  return envNumber(env, 'REVIEWS_REVALIDATE_SECONDS') ?? (isQaSite(env) ? 0 : PROD_REVIEWS_REVALIDATE_SECONDS);
+  return (
+    envNumber(env, 'REVIEWS_REVALIDATE_SECONDS') ??
+    (isQaSite(env) ? QA_REVIEWS_FETCH_REVALIDATE_SECONDS : PROD_REVIEWS_REVALIDATE_SECONDS)
+  );
 }
 
 export const CATALOG_REVALIDATE_SECONDS = catalogRevalidateSeconds();
@@ -46,8 +56,8 @@ export const REVIEWS_REVALIDATE_SECONDS = reviewsRevalidateSeconds();
 
 /**
  * Next.js rejects imported identifiers in `export const revalidate`.
- * Pages keep numeric literals (86400 / 3600); QA opts out at request time
- * via `optIntoQaDynamicRender()` and `catalogFetchInit()`.
+ * Pages keep numeric literals (86400 / 3600). QA HTML is still dynamic via
+ * `connection()`, but catalog fetches may use a short Data Cache TTL.
  */
 
 export function catalogFetchInit(): { cache: 'no-store' } | { next: { revalidate: number } } {

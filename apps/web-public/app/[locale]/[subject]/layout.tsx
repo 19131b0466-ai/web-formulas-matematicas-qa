@@ -20,9 +20,11 @@ export default async function SubjectLayout({ children, params }: LayoutProps) {
   const locale = raw as AppLocale;
   setRequestLocale(locale);
 
-  const subjects = await localizeContent(await fetchSubjects(), locale);
+  const [subjects, sections] = await Promise.all([
+    fetchSubjects().then((data) => localizeContent(data, locale)),
+    fetchSections(subject).then((data) => localizeContent(data, locale)),
+  ]);
   const meta = subjects.find((s) => s.slug === subject);
-  const sections = await localizeContent(await fetchSections(subject), locale);
 
   return (
     <AppShell

@@ -1,15 +1,13 @@
-import { unstable_noStore as noStore } from 'next/cache';
 import { connection } from 'next/server';
 import { isQaSite } from './isr';
 
 /**
- * Next.js requires `export const revalidate` / `dynamic` / `fetchCache` to be
- * statically analyzable literals, so QA cannot export `revalidate = 0` from
- * `@/lib/isr`. Pages keep production ISR numbers; this call opts the request
- * into dynamic rendering and skips the Full Route Cache.
+ * Next.js requires `export const revalidate` to be a numeric literal, so QA
+ * cannot export `revalidate = 0`. Pages keep production ISR numbers; this
+ * opts the HTML into dynamic rendering. Do not call `noStore()` here: that
+ * would also disable the fetch Data Cache and stampede the API.
  */
 export async function optIntoQaDynamicRender(): Promise<void> {
   if (!isQaSite()) return;
-  noStore();
   await connection();
 }

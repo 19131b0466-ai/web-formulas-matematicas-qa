@@ -18,7 +18,7 @@ import { CATALOG_REVALIDATE_SECONDS, catalogFetchInit, REVIEWS_REVALIDATE_SECOND
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const RUNTIME_FETCH_TIMEOUT_MS = 15_000;
+const RUNTIME_FETCH_TIMEOUT_MS = 25_000;
 const BUILD_FETCH_TIMEOUT_MS = 4_000;
 
 function getFetchTimeoutMs(): number {
@@ -119,7 +119,29 @@ function rethrowIfDynamicBailout(err: unknown): void {
   if (isNextDynamicBailout(err)) throw err;
 }
 
-async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
+function isAbortError(err: unknown): boolean {
+  if (!err || typeof err !== 'object') return false;
+  if ((err as { name?: string }).name === 'AbortError') return true;
+  const cause = (err as { cause?: unknown }).cause;
+  return cause !== undefined && cause !== err && isAbortError(cause);
+}
+
+function shouldRetryApiFetch(err: unknown): boolean {
+  if (err instanceof ApiUnavailableError) {
+    if (err.status === 502 || err.status === 503 || err.status === 504 || err.status === 429) return true;
+    if (err.status !== null) return false;
+    return !isAbortError(err.cause) && !isAbortError(err);
+  }
+  return !isAbortError(err);
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function apiFetchOnce<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
@@ -151,10 +173,20 @@ async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | n
   } catch (err) {
     if (err instanceof ApiUnavailableError) throw err;
     rethrowIfDynamicBailout(err);
-    // AbortError / network / DNS — treat as unavailable, not missing content.
     throw new ApiUnavailableError(path, null, err);
   } finally {
     clearTimeout(timer);
+  }
+}
+
+async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
+  try {
+    return await apiFetchOnce<T>(path, init);
+  } catch (err) {
+    rethrowIfDynamicBailout(err);
+    if (!shouldRetryApiFetch(err)) throw err;
+    await delay(300);
+    return apiFetchOnce<T>(path, init);
   }
 }
 

@@ -12,7 +12,7 @@ type Props = {
  * Shown when the formula API is temporarily unavailable (timeout/5xx),
  * as opposed to a true missing formula (which uses not-found).
  */
-export default function FormulaError({ error, reset }: Props) {
+export default function FormulaError({ error }: Props) {
   useEffect(() => {
     console.error('[formula page]', error);
   }, [error]);
@@ -30,7 +30,11 @@ export default function FormulaError({ error, reset }: Props) {
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"
-          onClick={reset}
+          onClick={() => {
+            window.setTimeout(() => {
+              window.location.reload();
+            }, 600);
+          }}
           className="inline-flex min-h-12 items-center rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-white"
         >
           Reintentar

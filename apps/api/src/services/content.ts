@@ -21,10 +21,10 @@ import { isHiddenPublicSectionSlug } from '../hidden-sections.js';
 
 const DEFAULT_SUBJECT = 'calculo-ii';
 const CONTENT_CACHE_TTL_MS = 5 * 60_000;
+const QA_CONTENT_CACHE_TTL_MS = 30_000;
 const contentCache = new Map<string, { expires: number; value: unknown }>();
 
 function isQaRuntime(): boolean {
-  if (process.env.CONTENT_CACHE === '0' || process.env.CONTENT_CACHE_TTL_MS === '0') return true;
   if (process.env.SITE_PROFILE === 'qa' || process.env.NEXT_PUBLIC_SITE_PROFILE === 'qa') return true;
   const repo = process.env.VERCEL_GIT_REPO_SLUG ?? '';
   const host = [
@@ -39,8 +39,17 @@ function isQaRuntime(): boolean {
 
 function contentCacheEnabled(): boolean {
   if (process.env.VITEST || process.env.NODE_ENV === 'test') return false;
-  if (isQaRuntime()) return false;
+  if (process.env.CONTENT_CACHE === '0' || process.env.CONTENT_CACHE_TTL_MS === '0') return false;
   return true;
+}
+
+function contentCacheTtlMs(): number {
+  const raw = process.env.CONTENT_CACHE_TTL_MS?.trim();
+  if (raw) {
+    const n = Number(raw);
+    if (Number.isFinite(n) && n > 0) return n;
+  }
+  return isQaRuntime() ? QA_CONTENT_CACHE_TTL_MS : CONTENT_CACHE_TTL_MS;
 }
 
 async function withContentCache<T>(key: string, load: () => Promise<T>): Promise<T> {
@@ -48,7 +57,7 @@ async function withContentCache<T>(key: string, load: () => Promise<T>): Promise
   const hit = contentCache.get(key);
   if (hit && hit.expires > Date.now()) return hit.value as T;
   const value = await load();
-  contentCache.set(key, { value, expires: Date.now() + CONTENT_CACHE_TTL_MS });
+  contentCache.set(key, { value, expires: Date.now() + contentCacheTtlMs() });
   return value;
 }
 

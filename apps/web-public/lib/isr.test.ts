@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { catalogRevalidateSeconds, isQaSite, reviewsRevalidateSeconds } from './isr';
+import { QA_CATALOG_FETCH_REVALIDATE_SECONDS, catalogRevalidateSeconds, isQaSite, reviewsRevalidateSeconds } from './isr';
 
 describe('isQaSite', () => {
   it('detects the QA GitHub repo and hostnames', () => {
@@ -20,8 +20,11 @@ describe('isQaSite', () => {
 });
 
 describe('catalogRevalidateSeconds', () => {
-  it('is 0 on QA and 86400 on production', () => {
-    assert.equal(catalogRevalidateSeconds({ VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas-qa' }), 0);
+  it('is a short fetch TTL on QA and 86400 on production', () => {
+    assert.equal(
+      catalogRevalidateSeconds({ VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas-qa' }),
+      QA_CATALOG_FETCH_REVALIDATE_SECONDS,
+    );
     assert.equal(catalogRevalidateSeconds({ VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas' }), 86_400);
   });
 
@@ -37,8 +40,8 @@ describe('catalogRevalidateSeconds', () => {
 });
 
 describe('reviewsRevalidateSeconds', () => {
-  it('is 0 on QA', () => {
-    assert.equal(reviewsRevalidateSeconds({ NEXT_PUBLIC_SITE_PROFILE: 'qa' }), 0);
+  it('is a short fetch TTL on QA', () => {
+    assert.equal(reviewsRevalidateSeconds({ NEXT_PUBLIC_SITE_PROFILE: 'qa' }), 30);
     assert.equal(reviewsRevalidateSeconds({}), 3_600);
   });
 });
