@@ -19,11 +19,6 @@ type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;
 };
 
-/** Avoid build-time fan-out against the API (was failing Vercel deploys). */
-export function generateStaticParams() {
-  return [] as Array<{ locale: string; subject: string; slug: string }>;
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale: raw, subject: subjectRaw, slug: slugRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) return {};
