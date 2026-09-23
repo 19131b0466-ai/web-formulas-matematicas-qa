@@ -8,13 +8,11 @@ import { NextIntlClientProvider } from 'next-intl';
 import { VisitTracker } from '@/components/analytics/VisitTracker';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { CANONICAL_ORIGIN } from '@/lib/seo';
-import { CATALOG_REVALIDATE_SECONDS, DYNAMIC_PAGE, PAGE_FETCH_CACHE } from '@/lib/isr';
 import { localeOgTags, routing, type AppLocale } from '@/i18n/routing';
 import '../globals.css';
 
-export const revalidate = CATALOG_REVALIDATE_SECONDS;
-export const fetchCache = PAGE_FETCH_CACHE;
-export const dynamic = DYNAMIC_PAGE;
+/** Literal: Next.js cannot analyze imported identifiers for segment config. */
+export const revalidate = 86400;
 
 const body = Figtree({
   variable: '--font-body',

@@ -11,9 +11,8 @@ import { breadcrumbJsonLd, buildPageMetadata, topicSeoTitle } from '@/lib/seo';
 import { topicHubsForSubject } from '@/lib/topic-hubs';
 import { isSubjectSlug, subjectHomeHref, topicHubHref, topicsIndexHref, type SubjectSlug } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
-import { CATALOG_REVALIDATE_SECONDS } from '@/lib/isr';
 
-export const revalidate = CATALOG_REVALIDATE_SECONDS;
+export const revalidate = 86400;
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string }>;

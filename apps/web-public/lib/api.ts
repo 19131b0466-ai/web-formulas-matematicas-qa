@@ -104,6 +104,21 @@ type CatalogFetchInit = RequestInit & {
   next?: { revalidate?: number; tags?: string[] };
 };
 
+/** Next.js prerender bailouts must propagate; wrapping them as API errors bakes fallback HTML. */
+function isNextDynamicBailout(err: unknown): boolean {
+  if (!err || typeof err !== 'object') return false;
+  const digest = (err as { digest?: unknown }).digest;
+  if (digest === 'DYNAMIC_SERVER_USAGE') return true;
+  const cause = (err as { cause?: unknown }).cause;
+  if (cause && cause !== err && isNextDynamicBailout(cause)) return true;
+  const message = err instanceof Error ? err.message : String(err);
+  return message.includes('Dynamic server usage') || message.includes("couldn't be rendered statically");
+}
+
+function rethrowIfDynamicBailout(err: unknown): void {
+  if (isNextDynamicBailout(err)) throw err;
+}
+
 async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
@@ -135,6 +150,7 @@ async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | n
     return (await res.json()) as T;
   } catch (err) {
     if (err instanceof ApiUnavailableError) throw err;
+    rethrowIfDynamicBailout(err);
     // AbortError / network / DNS — treat as unavailable, not missing content.
     throw new ApiUnavailableError(path, null, err);
   } finally {
@@ -150,6 +166,7 @@ export const fetchSubjects = cache(async (): Promise<SubjectSummary[]> => {
     if (!data) return FALLBACK_SUBJECTS;
     return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
   } catch (err) {
+    rethrowIfDynamicBailout(err);
     console.error('[fetchSubjects]', getApiBaseUrl(), err);
     return FALLBACK_SUBJECTS;
   }
@@ -164,6 +181,7 @@ export const fetchSections = cache(
       );
       return (data?.sections ?? []).filter((section) => !isHiddenPublicSectionSlug(section.slug));
     } catch (err) {
+      rethrowIfDynamicBailout(err);
       console.error('[fetchSections]', subject, getApiBaseUrl(), err);
       return [];
     }
@@ -191,7 +209,8 @@ export const fetchFormulaCodes = cache(async (subject: SubjectSlug): Promise<str
       { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
     );
     return data?.formulas ?? [];
-  } catch {
+  } catch (err) {
+    rethrowIfDynamicBailout(err);
     return [];
   }
 });
@@ -202,7 +221,8 @@ export const fetchSitemapEntries = cache(async (): Promise<SitemapEntriesRespons
       next: { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
     return data?.entries ?? [];
-  } catch {
+  } catch (err) {
+    rethrowIfDynamicBailout(err);
     return [];
   }
 });
@@ -254,6 +274,7 @@ export async function fetchSearch(params: {
     return res.json() as Promise<SearchResponse>;
   } catch (err) {
     if (err instanceof ApiUnavailableError) throw err;
+    rethrowIfDynamicBailout(err);
     throw new ApiUnavailableError(`/subjects/.../search`, null, err);
   } finally {
     clearTimeout(timer);
@@ -266,7 +287,8 @@ export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Prom
       next: { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
     return data ?? { tags: [] };
-  } catch {
+  } catch (err) {
+    rethrowIfDynamicBailout(err);
     return { tags: [] };
   }
 });
@@ -279,7 +301,8 @@ export const fetchMethodGuide = cache(
         next: { revalidate: CATALOG_REVALIDATE_SECONDS },
       });
       return data ?? { strategies: [], checklist: [] };
-    } catch {
+    } catch (err) {
+      rethrowIfDynamicBailout(err);
       return { strategies: [], checklist: [] };
     }
   },
@@ -294,6 +317,7 @@ export const fetchPublicReviews = cache(async (): Promise<PublicReviewsResponse>
     });
     return data ?? EMPTY_REVIEWS;
   } catch (err) {
+    rethrowIfDynamicBailout(err);
     console.error('[fetchPublicReviews]', getApiBaseUrl(), err);
     return EMPTY_REVIEWS;
   }

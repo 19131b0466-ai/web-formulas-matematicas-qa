@@ -44,10 +44,11 @@ export const CATALOG_REVALIDATE_SECONDS = catalogRevalidateSeconds();
 export const HUB_REVALIDATE_SECONDS = CATALOG_REVALIDATE_SECONDS;
 export const REVIEWS_REVALIDATE_SECONDS = reviewsRevalidateSeconds();
 
-export const PAGE_FETCH_CACHE: 'force-no-store' | 'auto' =
-  CATALOG_REVALIDATE_SECONDS === 0 ? 'force-no-store' : 'auto';
-export const DYNAMIC_PAGE: 'force-dynamic' | 'auto' =
-  CATALOG_REVALIDATE_SECONDS === 0 ? 'force-dynamic' : 'auto';
+/**
+ * Next.js rejects imported identifiers in `export const revalidate`.
+ * Pages keep numeric literals (86400 / 3600); QA opts out at request time
+ * via `optIntoQaDynamicRender()` and `catalogFetchInit()`.
+ */
 
 export function catalogFetchInit(): { cache: 'no-store' } | { next: { revalidate: number } } {
   if (CATALOG_REVALIDATE_SECONDS === 0) return { cache: 'no-store' };
