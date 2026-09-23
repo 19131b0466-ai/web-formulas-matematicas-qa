@@ -8,6 +8,7 @@ import { fetchPublicReviews, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { buildPageMetadata, websiteJsonLd } from '@/lib/seo';
 import { routing, type AppLocale } from '@/i18n/routing';
+import { CATALOG_REVALIDATE_SECONDS, PAGE_FETCH_CACHE } from '@/lib/isr';
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -27,8 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-/** Catalog hub: long ISR to stay within Hobby write quota (was 60s). */
-export const revalidate = 86400;
+/** Production uses a day-long ISR; QA opts out so seed/i18n changes show immediately. */
+export const revalidate = CATALOG_REVALIDATE_SECONDS;
+export const fetchCache = PAGE_FETCH_CACHE;
 
 const SUBJECT_COPY: Record<string, { accent: string; tone: string }> = {
   'calculo-diferencial': {

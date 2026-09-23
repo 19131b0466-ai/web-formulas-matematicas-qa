@@ -25,8 +25,9 @@ import {
   fisicaVizForFormulaId,
 } from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
+import { CATALOG_REVALIDATE_SECONDS } from '@/lib/isr';
 
-export const revalidate = 86400;
+export const revalidate = CATALOG_REVALIDATE_SECONDS;
 export const dynamicParams = true;
 
 type PageProps = {

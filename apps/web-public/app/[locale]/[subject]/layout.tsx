@@ -4,9 +4,11 @@ import { AppShell } from '@/components/layout/AppShell';
 import { fetchSections, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
+import { CATALOG_REVALIDATE_SECONDS, PAGE_FETCH_CACHE } from '@/lib/isr';
 import type { AppLocale } from '@/i18n/routing';
 
-export const revalidate = 86400;
+export const revalidate = CATALOG_REVALIDATE_SECONDS;
+export const fetchCache = PAGE_FETCH_CACHE;
 
 type LayoutProps = {
   children: React.ReactNode;

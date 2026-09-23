@@ -23,8 +23,24 @@ const DEFAULT_SUBJECT = 'calculo-ii';
 const CONTENT_CACHE_TTL_MS = 5 * 60_000;
 const contentCache = new Map<string, { expires: number; value: unknown }>();
 
+function isQaRuntime(): boolean {
+  if (process.env.CONTENT_CACHE === '0' || process.env.CONTENT_CACHE_TTL_MS === '0') return true;
+  if (process.env.SITE_PROFILE === 'qa' || process.env.NEXT_PUBLIC_SITE_PROFILE === 'qa') return true;
+  const repo = process.env.VERCEL_GIT_REPO_SLUG ?? '';
+  const host = [
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+    process.env.PUBLIC_URL,
+  ]
+    .filter(Boolean)
+    .join(' ');
+  return repo.includes('web-formulas-matematicas-qa') || /web-formulas-qa/i.test(host);
+}
+
 function contentCacheEnabled(): boolean {
-  return !process.env.VITEST && process.env.NODE_ENV !== 'test';
+  if (process.env.VITEST || process.env.NODE_ENV === 'test') return false;
+  if (isQaRuntime()) return false;
+  return true;
 }
 
 async function withContentCache<T>(key: string, load: () => Promise<T>): Promise<T> {

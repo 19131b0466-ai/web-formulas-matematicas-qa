@@ -1,7 +1,11 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { isQaSite } from './lib/isr';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+const qaNoStoreHeaders = isQaSite()
+  ? [{ key: 'Cache-Control', value: 'private, no-store, must-revalidate' }]
+  : [];
 
 /** Next.js webpack `next dev` evaluates Fast Refresh via `eval()`. Production stays without it. */
 const isDev = process.env.NODE_ENV !== 'production';
@@ -38,7 +42,7 @@ const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 180,
   trailingSlash: false,
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    return [{ source: '/:path*', headers: [...securityHeaders, ...qaNoStoreHeaders] }];
   },
   async redirects() {
     // IMPORTANT: never use a bare `/:locale/...` matcher — subject slugs like

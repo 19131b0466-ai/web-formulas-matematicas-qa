@@ -7,8 +7,10 @@ import { fetchPublicReviews } from '@/lib/api';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import type { AppLocale } from '@/i18n/routing';
+import { PAGE_FETCH_CACHE, REVIEWS_REVALIDATE_SECONDS } from '@/lib/isr';
 
-export const revalidate = 3600;
+export const revalidate = REVIEWS_REVALIDATE_SECONDS;
+export const fetchCache = PAGE_FETCH_CACHE;
 
 type PageProps = { params: Promise<{ locale: string }> };
 

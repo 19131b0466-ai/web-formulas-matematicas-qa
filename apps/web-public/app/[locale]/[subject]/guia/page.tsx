@@ -20,6 +20,7 @@ import {
   type SubjectSlug,
 } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
+import { CATALOG_REVALIDATE_SECONDS } from '@/lib/isr';
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string }>;
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-export const revalidate = 86400;
+export const revalidate = CATALOG_REVALIDATE_SECONDS;
 
 export default async function GuidePage({ params }: PageProps) {
   const { locale: raw, subject: subjectRaw } = await params;

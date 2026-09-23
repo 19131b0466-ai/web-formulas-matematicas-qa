@@ -13,7 +13,7 @@ import type {
 import type { SubjectSlug } from './subjects';
 import { sectionHref as subjectSectionHref } from './subjects';
 import { isHiddenPublicSectionSlug } from './hidden-sections';
-import { CATALOG_REVALIDATE_SECONDS, REVIEWS_REVALIDATE_SECONDS } from './isr';
+import { CATALOG_REVALIDATE_SECONDS, catalogFetchInit, REVIEWS_REVALIDATE_SECONDS } from './isr';
 
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
@@ -100,19 +100,30 @@ export function getApiBaseUrl(): string {
   return LOCAL_API;
 }
 
-async function apiFetch<T>(path: string, init?: RequestInit): Promise<T | null> {
+type CatalogFetchInit = RequestInit & {
+  next?: { revalidate?: number; tags?: string[] };
+};
+
+async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
+  const { next, headers, ...restInit } = init ?? {};
+  const cacheInit =
+    CATALOG_REVALIDATE_SECONDS === 0
+      ? { cache: 'no-store' as const }
+      : next
+        ? { next }
+        : catalogFetchInit();
   try {
     const res = await fetch(url, {
-      ...init,
+      ...restInit,
+      ...cacheInit,
       signal: controller.signal,
       headers: {
         Accept: 'application/json',
-        ...init?.headers,
+        ...headers,
       },
-      next: init?.next ?? { revalidate: CATALOG_REVALIDATE_SECONDS },
     });
 
     if (res.status === 404) return null;
