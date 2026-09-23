@@ -1759,7 +1759,7 @@
       },
       "parallel": {
         "idea": "Bei Parallelresonanz ist |Z| maximal.",
-        "tryIt": "Senke R: die Spitze bei ω0 steigt. Abseits von ω0 fällt |Z|.",
+        "tryIt": "Erhöhe R: die |Z|-Spitze bei ω0 wächst. Abseits von ω0 fällt |Z|.",
         "caption": "|Z| maximal bei ω0 (parallel)."
       }
     },

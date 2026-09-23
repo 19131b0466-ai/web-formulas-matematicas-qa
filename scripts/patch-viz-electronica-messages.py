@@ -118,7 +118,7 @@ VIZ = {
             ),
             "parallel": mode(
                 "En resonancia paralelo |Z| es máximo.",
-                "Baja R: el pico en ω0 sube. Fuera de ω0 |Z| cae.",
+                "Sube R: el pico de |Z| en ω0 crece. Fuera de ω0 |Z| cae.",
                 "|Z| máximo en ω0 (paralelo).",
             ),
         },
@@ -331,7 +331,7 @@ VIZ["en"] = {
         "aria": "Resonance curve",
         "status": "ω0 = {w0} rad/s · R = {r} Ω",
         "series": mode("At series resonance XL=XC and |Z| is minimum (equal to R).", "Lower R: the valley at ω0 gets deeper and narrower.", "|Z| minimum at ω0 (series)."),
-        "parallel": mode("At parallel resonance |Z| is maximum.", "Lower R: the peak at ω0 rises. Away from ω0, |Z| drops.", "|Z| maximum at ω0 (parallel)."),
+        "parallel": mode("At parallel resonance |Z| is maximum.", "Raise R: the |Z| peak at ω0 grows. Away from ω0, |Z| drops.", "|Z| maximum at ω0 (parallel)."),
     },
     "bode_filter": {
         "idea": "|H| passes the useful band; a low-pass falls 20 dB/dec after fc (−3 dB).",
@@ -491,7 +491,7 @@ VIZ["de"] = patch_leaves(VIZ["en"], {
         "caption": "|Z|-Extremum bei ω0.",
         "aria": "Resonanzkurve",
         "series": mode("Bei Reihenresonanz gilt XL=XC und |Z| ist minimal (gleich R).", "Senke R: das Tal bei ω0 wird tiefer und schmaler.", "|Z| minimal bei ω0 (Serie)."),
-        "parallel": mode("Bei Parallelresonanz ist |Z| maximal.", "Senke R: die Spitze bei ω0 steigt. Abseits von ω0 fällt |Z|.", "|Z| maximal bei ω0 (parallel)."),
+        "parallel": mode("Bei Parallelresonanz ist |Z| maximal.", "Erhöhe R: die |Z|-Spitze bei ω0 wächst. Abseits von ω0 fällt |Z|.", "|Z| maximal bei ω0 (parallel)."),
     },
     "bode_filter": {
         "idea": "|H| lässt das Nutzband durch; ein Tiefpass fällt nach fc (−3 dB) mit 20 dB/dec.",
@@ -620,7 +620,7 @@ VIZ["fr"] = patch_leaves(VIZ["en"], {
         "caption": "Extrémum de |Z| en ω0.",
         "aria": "Courbe de résonance",
         "series": mode("À la résonance série XL=XC et |Z| est minimal (égal à R).", "Baisse R : le creux en ω0 s’approfondit et se resserre.", "|Z| minimal en ω0 (série)."),
-        "parallel": mode("À la résonance parallèle |Z| est maximal.", "Baisse R : le pic en ω0 monte. Hors de ω0, |Z| chute.", "|Z| maximal en ω0 (parallèle)."),
+        "parallel": mode("À la résonance parallèle |Z| est maximal.", "Augmente R : le pic de |Z| en ω0 croît. Hors de ω0, |Z| chute.", "|Z| maximal en ω0 (parallèle)."),
     },
     "bode_filter": {
         "idea": "|H| laisse passer la bande utile ; un passe-bas chute de 20 dB/dec après fc (−3 dB).",
@@ -749,7 +749,7 @@ VIZ["it"] = patch_leaves(VIZ["en"], {
         "caption": "Estremo di |Z| in ω0.",
         "aria": "Curva di risonanza",
         "series": mode("In risonanza serie XL=XC e |Z| è minimo (uguale a R).", "Abbassa R: la valle in ω0 si approfondisce e si stringe.", "|Z| minimo in ω0 (serie)."),
-        "parallel": mode("In risonanza parallelo |Z| è massimo.", "Abbassa R: il picco in ω0 sale. Lontano da ω0 |Z| cade.", "|Z| massimo in ω0 (parallelo)."),
+        "parallel": mode("In risonanza parallelo |Z| è massimo.", "Alza R: il picco di |Z| in ω0 cresce. Lontano da ω0 |Z| cade.", "|Z| massimo in ω0 (parallelo)."),
     },
     "bode_filter": {
         "idea": "|H| lascia passare la banda utile; un passa-basso cade di 20 dB/dec dopo fc (−3 dB).",
@@ -878,7 +878,7 @@ VIZ["pt"] = patch_leaves(VIZ["en"], {
         "caption": "Extremo de |Z| em ω0.",
         "aria": "Curva de ressonância",
         "series": mode("Na ressonância série XL=XC e |Z| é mínimo (igual a R).", "Baixa R: o vale em ω0 aprofunda-se e estreita-se.", "|Z| mínimo em ω0 (série)."),
-        "parallel": mode("Na ressonância paralelo |Z| é máximo.", "Baixa R: o pico em ω0 sobe. Longe de ω0, |Z| cai.", "|Z| máximo em ω0 (paralelo)."),
+        "parallel": mode("Na ressonância paralelo |Z| é máximo.", "Sobe R: o pico de |Z| em ω0 cresce. Longe de ω0, |Z| cai.", "|Z| máximo em ω0 (paralelo)."),
     },
     "bode_filter": {
         "idea": "|H| deixa passar a banda útil; um passa-baixa cai 20 dB/dec depois de fc (−3 dB).",

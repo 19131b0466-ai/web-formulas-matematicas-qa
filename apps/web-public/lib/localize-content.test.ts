@@ -60,4 +60,43 @@ describe('localizeContent (Física Electrónica)', () => {
     );
     assert.match(adc.workedExample, /^For a 3-bit R-2R DAC/);
   });
+
+  it('localizes shared variable glosses in DE/FR/IT/PT instead of English (FE-24-01)', async () => {
+    const data = {
+      variables:
+        '\\(V_i,V_o\\): tensiones (V); \\(R_1,R_2,R_L,R_{\\mathrm{Th}}\\): resistencias (Ω); \\(I_T,I_N\\): corrientes (A).',
+    };
+    const de = await localizeContent(data, 'de');
+    assert.match(de.variables, /Spannungen \(V\)/);
+    assert.doesNotMatch(de.variables, /voltages|resistances|currents/);
+    const fr = await localizeContent(data, 'fr');
+    assert.match(fr.variables, /tensions \(V\)/);
+    assert.doesNotMatch(fr.variables, /voltages|capacitances/);
+    const it = await localizeContent(data, 'it');
+    assert.match(it.variables, /tensioni \(V\)/);
+    const pt = await localizeContent(data, 'pt');
+    assert.match(pt.variables, /tensões \(V\)/);
+    const rea = {
+      variables:
+        '\\(C,C_{\\mathrm{eq}}\\): capacitancias (F); \\(L,M\\): inductancias (H); \\(v,i\\): tensión (V) y corriente (A); \\(\\tau\\): constante de tiempo (s); \\(k\\): acoplamiento (adimensional).',
+    };
+    const frRea = await localizeContent(rea, 'fr');
+    assert.match(frRea.variables, /capacités \(F\)/);
+    assert.match(frRea.variables, /constante de temps/);
+    assert.doesNotMatch(frRea.variables, /capacitances \(F\)|time constant/);
+    const lgc = {
+      variables:
+        '\\(V_{OH},V_{OL},V_{IH},V_{IL},V_M\\): V; \\(t_{pHL},t_p\\): s; \\(R_{\\mathrm{pu}}\\): Ω; fan-out y fan-in: adimensionales.',
+    };
+    const deLgc = await localizeContent(lgc, 'de');
+    assert.match(deLgc.variables, /Fan-out und Fan-in: dimensionslos/);
+    assert.doesNotMatch(deLgc.variables, /fan-out and fan-in|dimensionless/);
+  });
+
+  it('uses Massimo and Schaltschwelle in titles (FE-24-02/03)', async () => {
+    const it = await localizeContent({ title: 'Máxima transferencia de potencia' }, 'it');
+    assert.equal(it.title, 'Massimo trasferimento di potenza');
+    const de = await localizeContent({ title: 'Umbral de conmutación' }, 'de');
+    assert.equal(de.title, 'Schaltschwelle');
+  });
 });

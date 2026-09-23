@@ -1759,7 +1759,7 @@
       },
       "parallel": {
         "idea": "At parallel resonance |Z| is maximum.",
-        "tryIt": "Lower R: the peak at ω0 rises. Away from ω0, |Z| drops.",
+        "tryIt": "Raise R: the |Z| peak at ω0 grows. Away from ω0, |Z| drops.",
         "caption": "|Z| maximum at ω0 (parallel)."
       }
     },

@@ -1759,7 +1759,7 @@
       },
       "parallel": {
         "idea": "In risonanza parallelo |Z| è massimo.",
-        "tryIt": "Abbassa R: il picco in ω0 sale. Lontano da ω0 |Z| cade.",
+        "tryIt": "Alza R: il picco di |Z| in ω0 cresce. Lontano da ω0 |Z| cade.",
         "caption": "|Z| massimo in ω0 (parallelo)."
       }
     },

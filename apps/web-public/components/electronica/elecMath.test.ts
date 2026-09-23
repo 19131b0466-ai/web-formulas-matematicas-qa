@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
 import {
   capacitiveReactance,
@@ -31,6 +34,7 @@ import {
   rcTau,
   rmsFromPeak,
   seriesResonanceZ,
+  parallelResonanceZ,
   shockley,
   voltageDivider,
 } from './elecMath';
@@ -80,6 +84,29 @@ describe('elecMath', () => {
     const c = 1e-6;
     const w0 = 1 / Math.sqrt(l * c);
     assert.ok(Math.abs(seriesResonanceZ(10, w0, l, c) - 10) < 1e-6);
+  });
+
+  it('parallel |Z| at ω0 equals R and grows when R increases (PAC-009)', () => {
+    const l = 1e-3;
+    const c = 1e-6;
+    const w0 = 1 / Math.sqrt(l * c);
+    const zLow = parallelResonanceZ(10, w0, l, c);
+    const zHigh = parallelResonanceZ(40, w0, l, c);
+    assert.ok(Math.abs(zLow - 10) < 1e-6);
+    assert.ok(Math.abs(zHigh - 40) < 1e-6);
+    assert.ok(zHigh > zLow);
+  });
+
+  it('PAC-009 copy tells the student to raise R, not lower it', () => {
+    const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../messages');
+    for (const loc of ['es', 'en', 'de', 'fr', 'it', 'pt'] as const) {
+      const messages = JSON.parse(readFileSync(resolve(root, `${loc}.json`), 'utf8')) as {
+        vizElectronica: { resonance_curve: { parallel: { tryIt: string } } };
+      };
+      const tryIt = messages.vizElectronica.resonance_curve.parallel.tryIt;
+      assert.match(tryIt, /Sube R|Raise R|Erhöhe R|Augmente R|Alza R|Sobe R/);
+      assert.doesNotMatch(tryIt, /Baja R|Lower R|Senke R|Baisse R|Abbassa R|Baixa R/);
+    }
   });
 
   it('Xc = 1/(ωC)', () => {

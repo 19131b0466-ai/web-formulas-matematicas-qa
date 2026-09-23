@@ -1759,7 +1759,7 @@
       },
       "parallel": {
         "idea": "À la résonance parallèle |Z| est maximal.",
-        "tryIt": "Baisse R : le pic en ω0 monte. Hors de ω0, |Z| chute.",
+        "tryIt": "Augmente R : le pic de |Z| en ω0 croît. Hors de ω0, |Z| chute.",
         "caption": "|Z| maximal en ω0 (parallèle)."
       }
     },
