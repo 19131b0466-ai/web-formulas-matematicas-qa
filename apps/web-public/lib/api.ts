@@ -18,7 +18,7 @@ import { CATALOG_REVALIDATE_SECONDS, catalogFetchInit, REVIEWS_REVALIDATE_SECOND
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const RUNTIME_FETCH_TIMEOUT_MS = 25_000;
+const RUNTIME_FETCH_TIMEOUT_MS = 12_000;
 const BUILD_FETCH_TIMEOUT_MS = 4_000;
 
 function getFetchTimeoutMs(): number {
@@ -128,9 +128,17 @@ function isAbortError(err: unknown): boolean {
 
 function shouldRetryApiFetch(err: unknown): boolean {
   if (err instanceof ApiUnavailableError) {
-    if (err.status === 502 || err.status === 503 || err.status === 504 || err.status === 429) return true;
+    if (
+      err.status === 500 ||
+      err.status === 502 ||
+      err.status === 503 ||
+      err.status === 504 ||
+      err.status === 429
+    ) {
+      return true;
+    }
     if (err.status !== null) return false;
-    return !isAbortError(err.cause) && !isAbortError(err);
+    return true;
   }
   return !isAbortError(err);
 }
@@ -144,24 +152,31 @@ function delay(ms: number): Promise<void> {
 async function apiFetchOnce<T>(path: string, init?: CatalogFetchInit): Promise<T | null> {
   const url = `${getApiBaseUrl()}${path}`;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
-  const { next, headers, ...restInit } = init ?? {};
+  const timeoutMs = getFetchTimeoutMs();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const { next, cache, headers, ...restInit } = init ?? {};
   const cacheInit =
-    CATALOG_REVALIDATE_SECONDS === 0
+    cache === 'no-store' || CATALOG_REVALIDATE_SECONDS === 0
       ? { cache: 'no-store' as const }
       : next
         ? { next }
         : catalogFetchInit();
   try {
-    const res = await fetch(url, {
-      ...restInit,
-      ...cacheInit,
-      signal: controller.signal,
-      headers: {
-        Accept: 'application/json',
-        ...headers,
-      },
-    });
+    const res = await Promise.race([
+      fetch(url, {
+        ...restInit,
+        ...cacheInit,
+        signal: controller.signal,
+        headers: {
+          Accept: 'application/json',
+          ...headers,
+        },
+      }),
+      delay(timeoutMs).then(() => {
+        controller.abort();
+        return Promise.reject(new ApiUnavailableError(path, null));
+      }),
+    ]);
 
     if (res.status === 404) return null;
 
@@ -229,7 +244,7 @@ export const fetchSection = cache(
     if (isHiddenPublicSectionSlug(slug)) return null;
     return apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-      { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
+      { cache: 'no-store' },
     );
   },
 );

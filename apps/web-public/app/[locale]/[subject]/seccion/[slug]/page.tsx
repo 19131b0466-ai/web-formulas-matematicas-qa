@@ -5,7 +5,14 @@ import { HashScroll } from '@/components/navigation/HashScroll';
 import { SectionView } from '@/components/section/SectionView';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { redirect } from '@/i18n/navigation';
-import { fetchSection, fetchSections, fetchSubjects, flattenSections, isAppendixSlug } from '@/lib/api';
+import {
+  ApiUnavailableError,
+  fetchSection,
+  fetchSections,
+  fetchSubjects,
+  flattenSections,
+  isAppendixSlug,
+} from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { resolveSectionSlugAlias } from '@/lib/section-slug-aliases';
 import { breadcrumbJsonLd, buildPageMetadata, learningResourceJsonLd, sectionSeoTitle } from '@/lib/seo';
@@ -14,6 +21,8 @@ import type { AppLocale } from '@/i18n/routing';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
+/** Cap a hung catalog fetch so loading.tsx cannot stream for Fluid's 300s default. */
+export const maxDuration = 30;
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;
@@ -51,7 +60,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: tsite('name'),
       ogType: 'article',
     });
-  } catch {
+  } catch (err) {
+    if (err instanceof ApiUnavailableError) throw err;
     return { title: t('content') };
   }
 }

@@ -9,6 +9,10 @@ import {
   listTags,
   searchContent,
 } from '../services/content.js';
+import { withTimeout } from '../lib/with-timeout.js';
+
+const SECTION_QUERY_TIMEOUT_MS = 8_000;
+const FORMULA_QUERY_TIMEOUT_MS = 8_000;
 
 export function createSubjectsRoutes(getDb: () => Database) {
   const routes = new Hono();
@@ -27,7 +31,11 @@ export function createSubjectsRoutes(getDb: () => Database) {
   routes.get('/:subjectSlug/sections/:slug', async (c) => {
     const subjectSlug = c.req.param('subjectSlug');
     const slug = c.req.param('slug');
-    const detail = await getSectionBySlug(getDb(), slug, subjectSlug);
+    const detail = await withTimeout(
+      getSectionBySlug(getDb(), slug, subjectSlug),
+      SECTION_QUERY_TIMEOUT_MS,
+      `section ${subjectSlug}/${slug}`,
+    );
     if (!detail) {
       return c.json({ error: 'Section not found' }, 404);
     }
@@ -62,7 +70,11 @@ export function createSubjectsRoutes(getDb: () => Database) {
   routes.get('/:subjectSlug/formulas/:formulaId', async (c) => {
     const subjectSlug = c.req.param('subjectSlug');
     const formulaId = c.req.param('formulaId');
-    const detail = await getFormulaByCode(getDb(), subjectSlug, formulaId);
+    const detail = await withTimeout(
+      getFormulaByCode(getDb(), subjectSlug, formulaId),
+      FORMULA_QUERY_TIMEOUT_MS,
+      `formula ${subjectSlug}/${formulaId}`,
+    );
     if (!detail) {
       return c.json({ error: 'Formula not found' }, 404);
     }

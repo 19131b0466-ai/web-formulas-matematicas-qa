@@ -219,6 +219,33 @@ describe('API content endpoints (PGlite)', () => {
     expect(slugs).toContain('redes-resistivas');
     expect(slugs).toContain('amplificadores-opamp');
     expect(slugs).toContain('guia-enfoque');
+    expect(slugs).toContain('conversion-ad-da');
+  });
+
+  it('GET /v1/subjects/fisica-electronica/sections/conversion-ad-da returns ten ADC formulas', async () => {
+    const res = await app.request('/v1/subjects/fisica-electronica/sections/conversion-ad-da');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      section: { slug: string; title: string };
+      blocks: Array<{ type: string; content?: { formulaId?: string } }>;
+    };
+    expect(body.section.slug).toBe('conversion-ad-da');
+    const formulaIds = body.blocks
+      .filter((b) => b.type === 'formula')
+      .map((b) => b.content?.formulaId)
+      .filter((id): id is string => Boolean(id));
+    expect(formulaIds).toEqual([
+      'ADC-001',
+      'ADC-002',
+      'ADC-003',
+      'ADC-004',
+      'ADC-005',
+      'ADC-006',
+      'ADC-007',
+      'ADC-008',
+      'ADC-009',
+      'ADC-010',
+    ]);
   });
 
   it('GET /v1/subjects/fisica-electronica/formulas/DIV-001 returns detail + related', async () => {

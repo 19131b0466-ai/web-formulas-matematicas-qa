@@ -18,11 +18,14 @@ import {
 import type { Database } from '../db/client.js';
 import { contentBlocks, sections, subjects } from '../db/schema.js';
 import { isHiddenPublicSectionSlug } from '../hidden-sections.js';
+import { withTimeout } from '../lib/with-timeout.js';
 
 const DEFAULT_SUBJECT = 'calculo-ii';
 const CONTENT_CACHE_TTL_MS = 5 * 60_000;
 const QA_CONTENT_CACHE_TTL_MS = 30_000;
+const BOUNDED_CACHE_TIMEOUT_MS = 8_000;
 const contentCache = new Map<string, { expires: number; value: unknown }>();
+const contentCacheInflight = new Map<string, Promise<unknown>>();
 
 function isQaRuntime(): boolean {
   if (process.env.SITE_PROFILE === 'qa' || process.env.NEXT_PUBLIC_SITE_PROFILE === 'qa') return true;
@@ -52,13 +55,33 @@ function contentCacheTtlMs(): number {
   return isQaRuntime() ? QA_CONTENT_CACHE_TTL_MS : CONTENT_CACHE_TTL_MS;
 }
 
+function shouldBoundCachedLoad(key: string): boolean {
+  return key.startsWith('section:') || key.startsWith('formula:');
+}
+
 async function withContentCache<T>(key: string, load: () => Promise<T>): Promise<T> {
   if (!contentCacheEnabled()) return load();
   const hit = contentCache.get(key);
   if (hit && hit.expires > Date.now()) return hit.value as T;
-  const value = await load();
-  contentCache.set(key, { value, expires: Date.now() + contentCacheTtlMs() });
-  return value;
+  const existing = contentCacheInflight.get(key);
+  if (existing) return existing as Promise<T>;
+
+  const run = shouldBoundCachedLoad(key)
+    ? () => withTimeout(load(), BOUNDED_CACHE_TIMEOUT_MS, key)
+    : load;
+
+  const pending = run().then((value) => {
+    contentCache.set(key, { value, expires: Date.now() + contentCacheTtlMs() });
+    return value;
+  });
+  contentCacheInflight.set(key, pending);
+  try {
+    return await pending;
+  } finally {
+    if (contentCacheInflight.get(key) === pending) {
+      contentCacheInflight.delete(key);
+    }
+  }
 }
 
 function toSummary(row: typeof sections.$inferSelect, parentSlug: string | null): SectionSummary {
@@ -173,36 +196,39 @@ async function loadSectionBySlug(
   const subjectId = await requireSubjectId(db, subjectSlug);
   if (!subjectId) return null;
 
-  const [section] = await db
-    .select()
-    .from(sections)
-    .where(and(eq(sections.slug, slug), eq(sections.subjectId, subjectId)))
-    .limit(1);
-  if (!section) return null;
-  if (isHiddenPublicSectionSlug(section.slug)) return null;
+  return db.transaction(async (tx) => {
+    await tx.execute(sql`SET LOCAL statement_timeout = 8000`);
+    const [section] = await tx
+      .select()
+      .from(sections)
+      .where(and(eq(sections.slug, slug), eq(sections.subjectId, subjectId)))
+      .limit(1);
+    if (!section) return null;
+    if (isHiddenPublicSectionSlug(section.slug)) return null;
 
-  const blocks = await db
-    .select()
-    .from(contentBlocks)
-    .where(eq(contentBlocks.sectionId, section.id))
-    .orderBy(asc(contentBlocks.sortOrder));
+    const blocks = await tx
+      .select()
+      .from(contentBlocks)
+      .where(eq(contentBlocks.sectionId, section.id))
+      .orderBy(asc(contentBlocks.sortOrder));
 
-  const subsections = await db
-    .select()
-    .from(sections)
-    .where(eq(sections.parentId, section.id))
-    .orderBy(asc(sections.sortOrder));
+    const subsections = await tx
+      .select()
+      .from(sections)
+      .where(eq(sections.parentId, section.id))
+      .orderBy(asc(sections.sortOrder));
 
-  return {
-    section: {
-      slug: section.slug,
-      number: section.number,
-      title: section.title,
-      description: section.description,
-    },
-    blocks: blocks.map(toBlockDto),
-    subsections: subsections.map((s) => toSummary(s, section.slug)),
-  };
+    return {
+      section: {
+        slug: section.slug,
+        number: section.number,
+        title: section.title,
+        description: section.description,
+      },
+      blocks: blocks.map(toBlockDto),
+      subsections: subsections.map((s) => toSummary(s, section.slug)),
+    };
+  });
 }
 
 export async function searchContent(
