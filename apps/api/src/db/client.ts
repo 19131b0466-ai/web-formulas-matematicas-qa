@@ -22,7 +22,7 @@ export function createDb(connectionString: string) {
     max: pooler ? 1 : 10,
     prepare: false,
     idle_timeout: 20,
-    connect_timeout: 5,
+    connect_timeout: 10,
     connection: pooler ? undefined : { statement_timeout: 8_000 },
   });
   return drizzle(client, { schema });

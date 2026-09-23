@@ -3,7 +3,7 @@ import type { Database } from '../db/client.js';
 import { withTimeout } from '../lib/with-timeout.js';
 import { getSectionBySlug, listSectionsTree } from '../services/content.js';
 
-const SECTION_QUERY_TIMEOUT_MS = 8_000;
+const SECTION_QUERY_TIMEOUT_MS = 20_000;
 
 export function createSectionsRoutes(getDb: () => Database) {
   const routes = new Hono();

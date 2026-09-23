@@ -15,6 +15,8 @@ import {
 } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
 
+export const maxDuration = 60;
+
 type PageProps = {
   params: Promise<{ locale: string; subject: string }>;
   searchParams: Promise<{ q?: string; tags?: string }>;
@@ -57,14 +59,7 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
 
   let results: Awaited<ReturnType<typeof fetchSearch>> | null = null;
   if (q || tags) {
-    try {
-      results = await localizeContent(
-        await fetchSearch({ subject, q, tags, limit: 40 }),
-        locale,
-      );
-    } catch {
-      results = { query: q, total: 0, results: [] };
-    }
+    results = await localizeContent(await fetchSearch({ subject, q, tags, limit: 40 }), locale);
   }
 
   return (

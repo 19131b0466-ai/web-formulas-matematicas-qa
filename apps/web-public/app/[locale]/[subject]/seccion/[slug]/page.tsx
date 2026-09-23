@@ -22,7 +22,7 @@ import type { AppLocale } from '@/i18n/routing';
 export const revalidate = 86400;
 export const dynamicParams = true;
 /** Cap a hung catalog fetch so loading.tsx cannot stream for Fluid's 300s default. */
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;

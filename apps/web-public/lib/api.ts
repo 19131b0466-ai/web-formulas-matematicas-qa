@@ -18,7 +18,7 @@ import { CATALOG_REVALIDATE_SECONDS, catalogFetchInit, REVIEWS_REVALIDATE_SECOND
 const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
-const RUNTIME_FETCH_TIMEOUT_MS = 12_000;
+const RUNTIME_FETCH_TIMEOUT_MS = 18_000;
 const BUILD_FETCH_TIMEOUT_MS = 4_000;
 
 function getFetchTimeoutMs(): number {
@@ -244,7 +244,7 @@ export const fetchSection = cache(
     if (isHiddenPublicSectionSlug(slug)) return null;
     return apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-      { cache: 'no-store' },
+      catalogFetchInit(),
     );
   },
 );
@@ -303,29 +303,11 @@ export async function fetchSearch(params: {
   if (params.q) sp.set('q', params.q);
   if (params.tags) sp.set('tags', params.tags);
   if (params.limit) sp.set('limit', String(params.limit));
-  const url = `${getApiBaseUrl()}/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`;
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), getFetchTimeoutMs());
-  try {
-    const res = await fetch(url, {
-      headers: { Accept: 'application/json' },
-      cache: 'no-store',
-      signal: controller.signal,
-    });
-    if (res.status === 404) {
-      return { results: [], total: 0, query: params.q ?? '' };
-    }
-    if (!res.ok) {
-      throw new ApiUnavailableError(`/subjects/.../search`, res.status);
-    }
-    return res.json() as Promise<SearchResponse>;
-  } catch (err) {
-    if (err instanceof ApiUnavailableError) throw err;
-    rethrowIfDynamicBailout(err);
-    throw new ApiUnavailableError(`/subjects/.../search`, null, err);
-  } finally {
-    clearTimeout(timer);
-  }
+  const data = await apiFetch<SearchResponse>(
+    `/subjects/${encodeURIComponent(subject)}/search?${sp.toString()}`,
+    { cache: 'no-store' },
+  );
+  return data ?? { results: [], total: 0, query: params.q ?? '' };
 }
 
 export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> => {

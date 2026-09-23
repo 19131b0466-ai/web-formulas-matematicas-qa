@@ -11,8 +11,9 @@ import {
 } from '../services/content.js';
 import { withTimeout } from '../lib/with-timeout.js';
 
-const SECTION_QUERY_TIMEOUT_MS = 8_000;
-const FORMULA_QUERY_TIMEOUT_MS = 8_000;
+const SECTION_QUERY_TIMEOUT_MS = 20_000;
+const FORMULA_QUERY_TIMEOUT_MS = 20_000;
+const SEARCH_QUERY_TIMEOUT_MS = 20_000;
 
 export function createSubjectsRoutes(getDb: () => Database) {
   const routes = new Hono();
@@ -51,7 +52,11 @@ export function createSubjectsRoutes(getDb: () => Database) {
       .map((t) => t.trim())
       .filter(Boolean);
     const limit = Math.min(Number(c.req.query('limit') ?? 40), 100);
-    const result = await searchContent(getDb(), q, tags, limit, subjectSlug);
+    const result = await withTimeout(
+      searchContent(getDb(), q, tags, limit, subjectSlug),
+      SEARCH_QUERY_TIMEOUT_MS,
+      `search ${subjectSlug}`,
+    );
     return c.json(result);
   });
 

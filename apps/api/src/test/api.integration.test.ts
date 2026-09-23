@@ -264,6 +264,19 @@ describe('API content endpoints (PGlite)', () => {
     expect(body.related.some((r) => r.formulaId === 'ELE-014')).toBe(true);
   });
 
+  it('GET electronics search finds transformer formula XFR-008', async () => {
+    const res = await app.request('/v1/subjects/fisica-electronica/search?q=XFR-008&limit=10');
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as {
+      total: number;
+      results: Array<{ formulaCode?: string | null; sectionSlug: string }>;
+    };
+    expect(body.total).toBeGreaterThan(0);
+    expect(body.results.some((r) => r.formulaCode === 'XFR-008' || r.sectionSlug === 'transformadores')).toBe(
+      true,
+    );
+  });
+
   it('GET electronics search finds by formula code', async () => {
     const res = await app.request('/v1/subjects/fisica-electronica/search?q=DIV-001&limit=5');
     expect(res.status).toBe(200);

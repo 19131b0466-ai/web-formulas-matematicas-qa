@@ -23,7 +23,7 @@ import { withTimeout } from '../lib/with-timeout.js';
 const DEFAULT_SUBJECT = 'calculo-ii';
 const CONTENT_CACHE_TTL_MS = 5 * 60_000;
 const QA_CONTENT_CACHE_TTL_MS = 30_000;
-const BOUNDED_CACHE_TIMEOUT_MS = 8_000;
+const BOUNDED_CACHE_TIMEOUT_MS = 18_000;
 const contentCache = new Map<string, { expires: number; value: unknown }>();
 const contentCacheInflight = new Map<string, Promise<unknown>>();
 

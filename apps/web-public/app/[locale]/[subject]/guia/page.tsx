@@ -8,7 +8,7 @@ import { ElectronicaVisualization } from '@/components/electronica/ElectronicaVi
 import { PhysicsVisualization } from '@/components/physics/PhysicsVisualization';
 import { Link } from '@/i18n/navigation';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { fetchMethodGuide, fetchSection, fetchSubjects } from '@/lib/api';
+import { ApiUnavailableError, fetchMethodGuide, fetchSection, fetchSubjects } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import {
@@ -60,6 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export const revalidate = 86400;
+export const maxDuration = 60;
 
 export default async function GuidePage({ params }: PageProps) {
   const { locale: raw, subject: subjectRaw } = await params;
@@ -75,7 +76,12 @@ export default async function GuidePage({ params }: PageProps) {
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
   const guide = await localizeContent(await fetchMethodGuide(subject), locale);
   const guideSectionSlug = subjectGuideSectionSlug(subject);
-  const section = await fetchSection(guideSectionSlug, subject);
+  let section: Awaited<ReturnType<typeof fetchSection>> = null;
+  try {
+    section = await fetchSection(guideSectionSlug, subject);
+  } catch (err) {
+    if (!(err instanceof ApiUnavailableError)) throw err;
+  }
   const isPhysics = subject === 'fisica-basica';
   const isElectronics = subject === 'fisica-electronica';
   const isDifferential = subject === 'calculo-diferencial';
