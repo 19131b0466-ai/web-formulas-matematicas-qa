@@ -63,6 +63,7 @@ export async function TopicHubView({
               <li key={formula.formulaId}>
                 <Link
                   href={formulaHref(subject, formula.formulaId) as '/'}
+                  prefetch={false}
                   className="block rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] px-4 py-3 transition hover:border-[var(--accent-strong)]"
                 >
                   <span className="font-medium text-[var(--accent-strong)]">
@@ -91,6 +92,7 @@ export async function TopicHubView({
                 <li key={slug}>
                   <Link
                     href={sectionHref(subject, slug) as '/'}
+                    prefetch={false}
                     className="inline-flex min-h-10 items-center text-[var(--accent-strong)] underline-offset-2 hover:underline"
                   >
                     {section?.number ? `${section.number}. ` : ''}

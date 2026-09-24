@@ -22,9 +22,17 @@ import {
 } from '@/lib/subjects';
 import type { FormulaDetailResponse } from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
+import { topicStaticParams } from '@/lib/catalog-static-params';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
+
+type StaticParamProps = { params: { subject?: string } };
+
+/** Non-empty seed. Other topic slugs render on the first request. */
+export function generateStaticParams({ params }: StaticParamProps) {
+  return topicStaticParams(params.subject);
+}
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;

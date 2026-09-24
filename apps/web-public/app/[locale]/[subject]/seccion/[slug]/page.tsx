@@ -18,11 +18,20 @@ import { resolveSectionSlugAlias } from '@/lib/section-slug-aliases';
 import { breadcrumbJsonLd, buildPageMetadata, learningResourceJsonLd, sectionSeoTitle } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, type SubjectSlug } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
+import { sectionStaticParams } from '@/lib/catalog-static-params';
 
-export const revalidate = 86400;
+/** Persistent until `revalidateTag`. Unknown slugs still render on first request. */
+export const revalidate = false;
 export const dynamicParams = true;
 /** Cap a hung catalog fetch so loading.tsx cannot stream for Fluid's 300s default. */
 export const maxDuration = 60;
+
+type StaticParamProps = { params: { subject?: string } };
+
+/** Non-empty: one published section per subject. Other slugs are on-demand ISR. */
+export function generateStaticParams({ params }: StaticParamProps) {
+  return sectionStaticParams(params.subject);
+}
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;

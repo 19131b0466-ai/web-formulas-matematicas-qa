@@ -72,6 +72,7 @@ export function SidebarNav({ subject, sections, onNavigate }: SidebarNavProps) {
         href={search as '/'}
         active={pathname.startsWith(search)}
         onNavigate={onNavigate}
+        prefetch={false}
       >
         {t('search')}
       </NavLink>
@@ -80,6 +81,7 @@ export function SidebarNav({ subject, sections, onNavigate }: SidebarNavProps) {
           href={guide as '/'}
           active={pathname.startsWith(guide)}
           onNavigate={onNavigate}
+          prefetch={false}
         >
           {t('guide')}
         </NavLink>
@@ -104,6 +106,7 @@ export function SidebarNav({ subject, sections, onNavigate }: SidebarNavProps) {
               <NavLink
                 href={href as '/'}
                 active={active || childActive}
+                prefetch={false}
                 onNavigate={() => {
                   if (hasChildren) expandSection(section.slug);
                   onNavigate?.();
@@ -135,6 +138,7 @@ export function SidebarNav({ subject, sections, onNavigate }: SidebarNavProps) {
                         href={sectionHref(subject, child.slug) as '/'}
                         active={sectionMatchesPath(pathname, subject, child.slug)}
                         compact
+                        prefetch={false}
                         onNavigate={onNavigate}
                       >
                         <span className="line-clamp-2">
@@ -164,6 +168,7 @@ function NavLink({
   children,
   onNavigate,
   compact,
+  prefetch = true,
   'aria-expanded': ariaExpanded,
 }: {
   href: string;
@@ -171,12 +176,13 @@ function NavLink({
   children: React.ReactNode;
   onNavigate?: () => void;
   compact?: boolean;
+  prefetch?: boolean;
   'aria-expanded'?: boolean;
 }) {
   return (
     <Link
       href={href as '/'}
-      prefetch
+      prefetch={prefetch}
       onClick={onNavigate}
       aria-expanded={ariaExpanded}
       className={`flex min-h-11 items-start rounded-lg px-3 py-2 text-sm transition ${

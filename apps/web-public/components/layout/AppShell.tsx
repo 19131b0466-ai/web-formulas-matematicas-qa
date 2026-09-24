@@ -65,6 +65,7 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
             </button>
             <Link
               href={searchHref(subject) as '/'}
+              prefetch={false}
               className="hidden min-h-11 items-center rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] px-4 text-sm text-[var(--fg-muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)] sm:inline-flex"
             >
               {t('searchPlaceholder')}
@@ -87,6 +88,7 @@ export function AppShell({ subject, subjectTitle, sections, children }: AppShell
               {subjectHasGuide(subject) ? (
                 <Link
                   href={`/${subject}/guia` as '/'}
+                  prefetch={false}
                   className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
                 >
                   {tf('guideLink')}

@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { QA_CATALOG_FETCH_REVALIDATE_SECONDS, catalogRevalidateSeconds, isQaSite, reviewsRevalidateSeconds } from './isr';
+import {
+  QA_CATALOG_FETCH_REVALIDATE_SECONDS,
+  catalogFetchInit,
+  catalogRevalidateSeconds,
+  isQaSite,
+  reviewsRevalidateSeconds,
+} from './isr';
 
 describe('isQaSite', () => {
   it('detects the QA GitHub repo and hostnames', () => {
@@ -36,6 +42,34 @@ describe('catalogRevalidateSeconds', () => {
       }),
       120,
     );
+  });
+});
+
+describe('catalogFetchInit', () => {
+  it('caches production catalog data until revalidateTag', () => {
+    const init = catalogFetchInit(['formula-algebra-ALG-001'], {
+      VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas',
+    });
+    assert.deepEqual(init, {
+      next: { revalidate: false, tags: ['formula-algebra-ALG-001'] },
+    });
+  });
+
+  it('keeps a short Data Cache on QA', () => {
+    const init = catalogFetchInit(['subject-algebra'], {
+      VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas-qa',
+    });
+    assert.deepEqual(init, {
+      next: { revalidate: QA_CATALOG_FETCH_REVALIDATE_SECONDS, tags: ['subject-algebra'] },
+    });
+  });
+
+  it('honors an explicit production TTL', () => {
+    const init = catalogFetchInit(undefined, {
+      VERCEL_GIT_REPO_SLUG: 'web-formulas-matematicas',
+      CATALOG_REVALIDATE_SECONDS: '120',
+    });
+    assert.deepEqual(init, { next: { revalidate: 120 } });
   });
 });
 

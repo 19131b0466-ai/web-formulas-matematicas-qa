@@ -6,6 +6,8 @@ import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
 import { routing, type AppLocale } from '@/i18n/routing';
 
 export const runtime = 'edge';
+/** CDN keeps the PNG for 7 days and may serve it stale for 30 days while regenerating. */
+export const revalidate = 604800;
 
 const BRAND = 'Math Theory and Tools';
 
@@ -95,6 +97,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
     {
       width: 1200,
       height: 630,
+      headers: {
+        'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=2592000',
+      },
     },
   );
 }

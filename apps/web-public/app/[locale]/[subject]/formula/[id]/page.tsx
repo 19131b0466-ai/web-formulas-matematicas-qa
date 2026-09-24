@@ -25,9 +25,18 @@ import {
   fisicaVizForFormulaId,
 } from '@repo/shared-types';
 import type { AppLocale } from '@/i18n/routing';
+import { formulaStaticParams } from '@/lib/catalog-static-params';
 
-export const revalidate = 86400;
+/** Persistent until `revalidateTag`. Unknown ids still render on first request. */
+export const revalidate = false;
 export const dynamicParams = true;
+
+type StaticParamProps = { params: { subject?: string } };
+
+/** Non-empty: one published formula per subject. Other ids are on-demand ISR. */
+export function generateStaticParams({ params }: StaticParamProps) {
+  return formulaStaticParams(params.subject);
+}
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; id: string }>;

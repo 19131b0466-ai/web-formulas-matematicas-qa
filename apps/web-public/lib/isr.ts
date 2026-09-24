@@ -1,10 +1,11 @@
 /**
  * ISR / Data Cache TTLs for the public site.
  *
- * Production (Hobby) uses a day-long window so catalog HTML is not rewritten
- * on every visit. The QA Vercel project must serve seed/i18n changes at once,
- * so HTML is rendered per request. Catalog JSON uses a short Data Cache
- * (not 24h) so consecutive formula pages do not stampede the API.
+ * Production catalog HTML is persistent until `revalidateTag()`. QA renders
+ * HTML per request via `connection()` and keeps a short Data Cache so
+ * consecutive pages do not stampede the API. `catalogRevalidateSeconds()`
+ * remains the numeric TTL (86400 in production) for feeds that are not
+ * on-demand, such as the sitemap.
  */
 const PROD_CATALOG_REVALIDATE_SECONDS = 86_400;
 const PROD_REVIEWS_REVALIDATE_SECONDS = 3_600;
@@ -56,11 +57,20 @@ export const REVIEWS_REVALIDATE_SECONDS = reviewsRevalidateSeconds();
 
 /**
  * Next.js rejects imported identifiers in `export const revalidate`.
- * Pages keep numeric literals (86400 / 3600). QA HTML is still dynamic via
- * `connection()`, but catalog fetches may use a short Data Cache TTL.
+ * Catalog pages use the literal `false`. QA HTML stays dynamic via
+ * `connection()`.
  */
-
-export function catalogFetchInit(): { cache: 'no-store' } | { next: { revalidate: number } } {
-  if (CATALOG_REVALIDATE_SECONDS === 0) return { cache: 'no-store' };
-  return { next: { revalidate: CATALOG_REVALIDATE_SECONDS } };
+export function catalogFetchInit(
+  tags?: string[],
+  env: IsrEnv = process.env,
+): { cache: 'no-store' } | { next: { revalidate: number | false; tags?: string[] } } {
+  const seconds = catalogRevalidateSeconds(env);
+  if (seconds === 0) return { cache: 'no-store' };
+  const explicit = envNumber(env, 'CATALOG_REVALIDATE_SECONDS');
+  // Production catalog stays cached until revalidateTag(). QA and an explicit
+  // CATALOG_REVALIDATE_SECONDS keep a numeric Data Cache TTL.
+  const revalidate: number | false = isQaSite(env) || explicit !== undefined ? seconds : false;
+  const next: { revalidate: number | false; tags?: string[] } = { revalidate };
+  if (tags && tags.length > 0) next.tags = tags;
+  return { next };
 }

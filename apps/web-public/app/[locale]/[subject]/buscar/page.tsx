@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { SearchPanel } from '@/components/search/SearchPanel';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { fetchSearch, fetchSubjects, fetchTags } from '@/lib/api';
+import { fetchSubjects, fetchTags } from '@/lib/api';
 import { localizeContent } from '@/lib/localize-content';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import {
@@ -16,10 +16,11 @@ import {
 import type { AppLocale } from '@/i18n/routing';
 
 export const maxDuration = 60;
+/** Shell is persistent. `q` and `tags` are read on the client and fetched from /api/search. */
+export const revalidate = false;
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string }>;
-  searchParams: Promise<{ q?: string; tags?: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-export default async function SearchPage({ params, searchParams }: PageProps) {
+export default async function SearchPage({ params }: PageProps) {
   const { locale: raw, subject: subjectRaw } = await params;
   if (!isSubjectSlug(subjectRaw)) notFound();
   const subject = subjectRaw as SubjectSlug;
@@ -52,15 +53,7 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
   const tn = await getTranslations('nav');
   const subjects = await localizeContent(await fetchSubjects(), locale);
   const subjectTitle = subjects.find((s) => s.slug === subject)?.title ?? subject;
-  const sp = await searchParams;
-  const q = sp.q?.trim() ?? '';
-  const tags = sp.tags?.trim() ?? '';
   const tagList = await fetchTags(subject);
-
-  let results: Awaited<ReturnType<typeof fetchSearch>> | null = null;
-  if (q || tags) {
-    results = await localizeContent(await fetchSearch({ subject, q, tags, limit: 40 }), locale);
-  }
 
   return (
     <div>
@@ -87,10 +80,6 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
       <SearchPanel
         subject={subject}
         linkFormulas={subjectUsesFormulaCatalog(subject)}
-        initialQuery={q}
-        initialTag={tags}
-        results={results?.results ?? []}
-        total={results?.total ?? 0}
         tagOptions={tagList.tags}
       />
     </div>

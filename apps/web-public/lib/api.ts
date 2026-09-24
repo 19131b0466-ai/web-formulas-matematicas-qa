@@ -10,7 +10,13 @@ import type {
   SubjectSummary,
   TagsResponse,
 } from '@repo/shared-types';
-import type { SubjectSlug } from './subjects';
+import {
+  formulaCacheTag,
+  guideCacheTag,
+  sectionCacheTag,
+  subjectCacheTag,
+} from './cache-tags';
+import { SUBJECT_SLUGS, type SubjectSlug } from './subjects';
 import { sectionHref as subjectSectionHref } from './subjects';
 import { isHiddenPublicSectionSlug } from './hidden-sections';
 import { CATALOG_REVALIDATE_SECONDS, catalogFetchInit, REVIEWS_REVALIDATE_SECONDS } from './isr';
@@ -19,7 +25,8 @@ const LOCAL_API = 'http://localhost:3001/v1';
 /** Fallback used on Vercel when NEXT_PUBLIC_API_URL is missing/mis-set to localhost. */
 const VERCEL_API = 'https://web-formulas-matematicas-api.vercel.app/v1';
 const RUNTIME_FETCH_TIMEOUT_MS = 18_000;
-const BUILD_FETCH_TIMEOUT_MS = 4_000;
+/** Catalog seeds are prerendered. A 4s cap aborted valid section fetches during build. */
+const BUILD_FETCH_TIMEOUT_MS = 20_000;
 
 function getFetchTimeoutMs(): number {
   return process.env.NEXT_PHASE === 'phase-production-build'
@@ -101,7 +108,7 @@ export function getApiBaseUrl(): string {
 }
 
 type CatalogFetchInit = RequestInit & {
-  next?: { revalidate?: number; tags?: string[] };
+  next?: { revalidate?: number | false; tags?: string[] };
 };
 
 /** Next.js prerender bailouts must propagate; wrapping them as API errors bakes fallback HTML. */
@@ -207,9 +214,10 @@ async function apiFetch<T>(path: string, init?: CatalogFetchInit): Promise<T | n
 
 export const fetchSubjects = cache(async (): Promise<SubjectSummary[]> => {
   try {
-    const data = await apiFetch<{ subjects: SubjectSummary[] }>('/subjects', {
-      next: { revalidate: CATALOG_REVALIDATE_SECONDS },
-    });
+    const data = await apiFetch<{ subjects: SubjectSummary[] }>(
+      '/subjects',
+      catalogFetchInit(SUBJECT_SLUGS.map((slug) => subjectCacheTag(slug))),
+    );
     if (!data) return FALLBACK_SUBJECTS;
     return data.subjects.length > 0 ? data.subjects : FALLBACK_SUBJECTS;
   } catch (err) {
@@ -224,7 +232,7 @@ export const fetchSections = cache(
     try {
       const data = await apiFetch<{ sections: SectionSummary[] }>(
         `/subjects/${encodeURIComponent(subject)}/sections`,
-        { next: { revalidate: CATALOG_REVALIDATE_SECONDS } },
+        catalogFetchInit([subjectCacheTag(subject)]),
       );
       return (data?.sections ?? []).filter((section) => !isHiddenPublicSectionSlug(section.slug));
     } catch (err) {
@@ -244,7 +252,7 @@ export const fetchSection = cache(
     if (isHiddenPublicSectionSlug(slug)) return null;
     return apiFetch<SectionDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/sections/${encodeURIComponent(slug)}`,
-      catalogFetchInit(),
+      catalogFetchInit([sectionCacheTag(subject, slug), subjectCacheTag(subject)]),
     );
   },
 );
@@ -282,12 +290,7 @@ export const fetchFormula = cache(
     // Propagates ApiUnavailableError; returns null only for true 404.
     return apiFetch<FormulaDetailResponse>(
       `/subjects/${encodeURIComponent(subject)}/formulas/${encodeURIComponent(formulaId)}`,
-      {
-        next: {
-          revalidate: CATALOG_REVALIDATE_SECONDS,
-          tags: ['formulas', `formula-${subject}-${formulaId.trim().toUpperCase()}`],
-        },
-      },
+      catalogFetchInit([formulaCacheTag(subject, formulaId), subjectCacheTag(subject)]),
     );
   },
 );
@@ -312,9 +315,10 @@ export async function fetchSearch(params: {
 
 export const fetchTags = cache(async (subject: SubjectSlug = 'calculo-ii'): Promise<TagsResponse> => {
   try {
-    const data = await apiFetch<TagsResponse>(`/subjects/${encodeURIComponent(subject)}/tags`, {
-      next: { revalidate: CATALOG_REVALIDATE_SECONDS },
-    });
+    const data = await apiFetch<TagsResponse>(
+      `/subjects/${encodeURIComponent(subject)}/tags`,
+      catalogFetchInit([subjectCacheTag(subject)]),
+    );
     return data ?? { tags: [] };
   } catch (err) {
     rethrowIfDynamicBailout(err);
@@ -326,9 +330,10 @@ export const fetchMethodGuide = cache(
   async (subject: SubjectSlug = 'calculo-ii'): Promise<MethodGuideResponse> => {
     try {
       const qs = new URLSearchParams({ subject });
-      const data = await apiFetch<MethodGuideResponse>(`/guide/method-selection?${qs.toString()}`, {
-        next: { revalidate: CATALOG_REVALIDATE_SECONDS },
-      });
+      const data = await apiFetch<MethodGuideResponse>(
+        `/guide/method-selection?${qs.toString()}`,
+        catalogFetchInit([guideCacheTag(subject), subjectCacheTag(subject)]),
+      );
       return data ?? { strategies: [], checklist: [] };
     } catch (err) {
       rethrowIfDynamicBailout(err);

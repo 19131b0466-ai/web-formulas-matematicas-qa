@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState, type FormEvent } from 'react';
-import type { SearchResultItem } from '@repo/shared-types';
+import type { SearchResponse, SearchResultItem } from '@repo/shared-types';
 import { InlineMarkdown } from '@/components/content/InlineMarkdown';
 import { Link, useRouter } from '@/i18n/navigation';
 import { blockAnchorId } from '@/lib/anchors';
@@ -14,44 +14,93 @@ import { localizeTagLabel } from '@/lib/tag-labels';
 type SearchPanelProps = {
   subject: SubjectSlug;
   linkFormulas?: boolean;
-  initialQuery?: string;
-  initialTag?: string;
-  results?: SearchResultItem[];
-  total?: number;
   tagOptions?: Array<{ tag: string; count: number }>;
 };
 
 export function SearchPanel({
   subject,
   linkFormulas = false,
-  initialQuery = '',
-  initialTag = '',
-  results = [],
-  total = 0,
   tagOptions = [],
 }: SearchPanelProps) {
   const t = useTranslations('search');
   const locale = useLocale() as AppLocale;
   const router = useRouter();
-  const [q, setQ] = useState(initialQuery);
+  const [q, setQ] = useState('');
+  const [activeQuery, setActiveQuery] = useState('');
+  const [activeTag, setActiveTag] = useState('');
+  const [results, setResults] = useState<SearchResultItem[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setQ(initialQuery);
-  }, [initialQuery]);
+    function syncFromLocation() {
+      const sp = new URLSearchParams(window.location.search);
+      const nextQuery = sp.get('q')?.trim() ?? '';
+      const nextTag = sp.get('tags')?.trim() ?? '';
+      setQ(nextQuery);
+      setActiveQuery(nextQuery);
+      setActiveTag(nextTag);
+    }
+    syncFromLocation();
+    window.addEventListener('popstate', syncFromLocation);
+    return () => window.removeEventListener('popstate', syncFromLocation);
+  }, []);
 
-  const searchActive = Boolean(initialQuery || initialTag);
-  const activeTagLabel = initialTag ? localizeTagLabel(initialTag, locale) : '';
+  useEffect(() => {
+    if (!activeQuery && !activeTag) {
+      setResults([]);
+      setTotal(0);
+      setLoading(false);
+      return;
+    }
+
+    const ac = new AbortController();
+    setLoading(true);
+    const params = new URLSearchParams({ subject, locale });
+    if (activeQuery) params.set('q', activeQuery);
+    if (activeTag) params.set('tags', activeTag);
+
+    fetch(`/api/search?${params.toString()}`, { signal: ac.signal, cache: 'no-store' })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`search ${res.status}`);
+        return (await res.json()) as SearchResponse;
+      })
+      .then((data) => {
+        if (ac.signal.aborted) return;
+        setResults(data.results ?? []);
+        setTotal(data.total ?? 0);
+        setLoading(false);
+      })
+      .catch((err: unknown) => {
+        if (ac.signal.aborted || (err instanceof DOMException && err.name === 'AbortError')) return;
+        setResults([]);
+        setTotal(0);
+        setLoading(false);
+      });
+
+    return () => ac.abort();
+  }, [activeQuery, activeTag, subject, locale]);
+
+  const searchActive = Boolean(activeQuery || activeTag);
+  const activeTagLabel = activeTag ? localizeTagLabel(activeTag, locale) : '';
 
   function navigateTextSearch(nextQuery: string) {
+    const trimmed = nextQuery.trim();
     const params = new URLSearchParams();
-    if (nextQuery.trim()) params.set('q', nextQuery.trim());
+    if (trimmed) params.set('q', trimmed);
     const qs = params.toString();
+    setQ(trimmed);
+    setActiveQuery(trimmed);
+    setActiveTag('');
     router.push(qs ? `${searchHref(subject)}?${qs}` : searchHref(subject));
   }
 
   function navigateTagSearch(tag: string) {
     const params = new URLSearchParams();
     params.set('tags', tag);
+    setQ('');
+    setActiveQuery('');
+    setActiveTag(tag);
     router.push(`${searchHref(subject)}?${params.toString()}`);
   }
 
@@ -113,7 +162,7 @@ export function SearchPanel({
             ))}
           </div>
         ) : null}
-        {initialTag ? (
+        {activeTag ? (
           <div className="flex flex-wrap items-center gap-2 pt-1">
             <span className="text-xs text-[var(--fg-muted)]">{t('activeTag')}</span>
             <span className="rounded-lg border border-[var(--accent)] bg-[var(--accent-soft)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
@@ -121,7 +170,12 @@ export function SearchPanel({
             </span>
             <button
               type="button"
-              onClick={() => router.push(searchHref(subject))}
+              onClick={() => {
+                setActiveTag('');
+                setActiveQuery('');
+                setQ('');
+                router.push(searchHref(subject));
+              }}
               className="text-xs text-[var(--fg-muted)] underline-offset-2 hover:underline"
             >
               {t('clearTag')}
@@ -130,16 +184,18 @@ export function SearchPanel({
         ) : null}
       </form>
 
-      {searchActive ? (
+      {loading ? <p className="text-sm text-[var(--fg-muted)]">{t('loading')}</p> : null}
+
+      {searchActive && !loading ? (
         <p className="text-sm text-[var(--fg-muted)]">
           {t('results', { count: total })}
-          {initialQuery ? (
+          {activeQuery ? (
             <>
               {' '}
-              {t('forQuery', { query: initialQuery })}
+              {t('forQuery', { query: activeQuery })}
             </>
           ) : null}
-          {initialTag && !initialQuery ? (
+          {activeTag && !activeQuery ? (
             <>
               {' '}
               {t('forTag', { tag: activeTagLabel })}
@@ -153,7 +209,7 @@ export function SearchPanel({
           <li key={r.blockId}>
             <Link
               href={resultHref(r) as '/'}
-              prefetch
+              prefetch={false}
               className="block rounded-xl border border-[var(--border)] bg-[var(--formula-bg)] p-4 transition hover:border-[var(--accent)]"
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
@@ -166,7 +222,7 @@ export function SearchPanel({
                 </p>
               ) : null}
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--fg-muted)]">
-                {highlight(r.excerpt, initialQuery || activeTagLabel)}
+                {highlight(r.excerpt, activeQuery || activeTagLabel)}
               </p>
             </Link>
           </li>

@@ -11,8 +11,12 @@ import { CANONICAL_ORIGIN } from '@/lib/seo';
 import { localeOgTags, routing, type AppLocale } from '@/i18n/routing';
 import '../globals.css';
 
-/** Literal: Next.js cannot analyze imported identifiers for segment config. */
-export const revalidate = 86400;
+/**
+ * Persistent until on-demand revalidation. A child page that exports a number
+ * still uses that shorter interval. `false` is a literal because Next.js
+ * cannot analyze imported identifiers here.
+ */
+export const revalidate = false;
 
 const body = Figtree({
   variable: '--font-body',

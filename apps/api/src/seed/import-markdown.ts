@@ -12,6 +12,7 @@ import {
 import { eq } from 'drizzle-orm';
 import { createDb, getDatabaseUrl, type Database } from '../db/client.js';
 import { contentBlocks, sections, subjects } from '../db/schema.js';
+import { revalidateSeededSubject } from './revalidate-subject.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../');
 
@@ -177,12 +178,14 @@ export async function seedSubjectFromMarkdown(
     }
   }
 
-  return {
+  const stats: SeedStats = {
     subjectSlug,
     sectionCount: parsed.stats.sectionCount,
     blockCount: parsed.stats.blockCount,
     formulaCount: parsed.stats.formulaCount,
   };
+  await revalidateSeededSubject(subjectSlug);
+  return stats;
 }
 
 /** @deprecated Prefer seedAllSubjects / seedSubjectFromMarkdown */

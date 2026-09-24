@@ -59,7 +59,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-export const revalidate = 86400;
+/** Persistent until `revalidateTag('guide-${subject}')`. */
+export const revalidate = false;
 export const maxDuration = 60;
 
 export default async function GuidePage({ params }: PageProps) {
@@ -135,6 +136,7 @@ export default async function GuidePage({ params }: PageProps) {
           <p className="mt-3 text-sm">
             <Link
               href={sectionHref(subject, guideSectionSlug) as '/'}
+              prefetch={false}
               className="text-[var(--accent-strong)] underline-offset-2 hover:underline"
             >
               {t('fullSection')}

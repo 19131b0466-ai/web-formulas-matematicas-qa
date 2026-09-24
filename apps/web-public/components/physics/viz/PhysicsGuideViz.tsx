@@ -310,14 +310,14 @@ export function PhysicsGuideViz({ mode }: { mode?: string }) {
             </p>
             <p className="text-sm font-medium">
               {tr('section')}:{' '}
-              <Link href={sectionHref('fisica-basica', leaf.slug) as '/'} className="text-[var(--accent-strong)] underline-offset-2 hover:underline">
+              <Link href={sectionHref('fisica-basica', leaf.slug) as '/'} prefetch={false} className="text-[var(--accent-strong)] underline-offset-2 hover:underline">
                 {leaf.section}
               </Link>
             </p>
             <ul className="space-y-2">
               {leaf.formulas.map((f) => (
                 <li key={f.id} className="rounded-md border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm">
-                  <Link href={formulaHref('fisica-basica', f.id) as '/'} className="font-mono font-semibold text-[var(--accent-strong)] underline-offset-2 hover:underline">
+                  <Link href={formulaHref('fisica-basica', f.id) as '/'} prefetch={false} className="font-mono font-semibold text-[var(--accent-strong)] underline-offset-2 hover:underline">
                     {f.id}
                   </Link>
                   <p className="mt-1 text-[var(--fg-muted)]">{f.when}</p>

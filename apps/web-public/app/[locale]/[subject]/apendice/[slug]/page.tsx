@@ -9,9 +9,17 @@ import { localizeContent } from '@/lib/localize-content';
 import { breadcrumbJsonLd, buildPageMetadata } from '@/lib/seo';
 import { isSubjectSlug, sectionHref, subjectHomeHref, type SubjectSlug } from '@/lib/subjects';
 import type { AppLocale } from '@/i18n/routing';
+import { appendixStaticParams } from '@/lib/catalog-static-params';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
+
+type StaticParamProps = { params: { subject?: string } };
+
+/** Non-empty seed. Other appendix slugs render on the first request. */
+export function generateStaticParams({ params }: StaticParamProps) {
+  return appendixStaticParams(params.subject);
+}
 
 type PageProps = {
   params: Promise<{ locale: string; subject: string; slug: string }>;

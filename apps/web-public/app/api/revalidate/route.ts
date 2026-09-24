@@ -1,5 +1,15 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { routing } from '@/i18n/routing';
+import { revalidateTag } from 'next/cache';
+import {
+  formulaCacheTag,
+  guideCacheTag,
+  sectionCacheTag,
+  subjectCacheTag,
+} from '@/lib/cache-tags';
+import { isSubjectSlug, type SubjectSlug } from '@/lib/subjects';
+
+type RevalidateType = 'formula' | 'section' | 'subject' | 'guide';
+
+const TYPES = new Set<RevalidateType>(['formula', 'section', 'subject', 'guide']);
 
 export async function POST(req: Request) {
   const secret = req.headers.get('x-revalidate-secret');
@@ -8,37 +18,50 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json().catch(() => ({}))) as {
+    type?: string;
     subject?: string;
     formulaId?: string;
-    all?: boolean;
+    id?: string;
+    slug?: string;
   };
 
-  if (body.all || body.subject === 'calculo-diferencial') {
-    revalidateTag('formulas');
-    revalidateTag('calculo-diferencial');
-    for (let i = 1; i <= 161; i += 1) {
-      const id = `DIF-${String(i).padStart(3, '0')}`;
-      for (const locale of routing.locales) {
-        const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-        revalidatePath(`${prefix}/calculo-diferencial/formula/${id}`);
-      }
-    }
-    for (const locale of routing.locales) {
-      const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-      revalidatePath(`${prefix}/calculo-diferencial`, 'layout');
-    }
-    return Response.json({ revalidated: true, scope: 'calculo-diferencial' });
+  const subjectRaw = body.subject?.trim() ?? '';
+  if (!isSubjectSlug(subjectRaw) || !body.type || !TYPES.has(body.type as RevalidateType)) {
+    return Response.json(
+      {
+        error:
+          'Expected { type: "formula" | "section" | "subject" | "guide", subject, id or slug }',
+      },
+      { status: 400 },
+    );
   }
 
-  if (body.subject && body.formulaId) {
-    const id = body.formulaId.trim().toUpperCase();
-    revalidateTag(`formula-${body.subject}-${id}`);
-    for (const locale of routing.locales) {
-      const prefix = locale === routing.defaultLocale ? '' : `/${locale}`;
-      revalidatePath(`${prefix}/${body.subject}/formula/${id}`);
-    }
-    return Response.json({ revalidated: true, formulaId: id, subject: body.subject });
+  const subject = subjectRaw as SubjectSlug;
+  const type = body.type as RevalidateType;
+
+  if (type === 'formula') {
+    const id = (body.formulaId ?? body.id ?? '').trim();
+    if (!id) return Response.json({ error: 'Missing formula id' }, { status: 400 });
+    const tag = formulaCacheTag(subject, id);
+    revalidateTag(tag);
+    return Response.json({ revalidated: true, type, subject, tag });
   }
 
-  return Response.json({ error: 'Missing subject/formulaId or all flag' }, { status: 400 });
+  if (type === 'section') {
+    const slug = body.slug?.trim() ?? '';
+    if (!slug) return Response.json({ error: 'Missing section slug' }, { status: 400 });
+    const tag = sectionCacheTag(subject, slug);
+    revalidateTag(tag);
+    return Response.json({ revalidated: true, type, subject, tag });
+  }
+
+  if (type === 'subject') {
+    const tag = subjectCacheTag(subject);
+    revalidateTag(tag);
+    return Response.json({ revalidated: true, type, subject, tag });
+  }
+
+  const tag = guideCacheTag(subject);
+  revalidateTag(tag);
+  return Response.json({ revalidated: true, type, subject, tag });
 }

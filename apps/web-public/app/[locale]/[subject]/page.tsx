@@ -44,7 +44,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
-export const revalidate = 86400;
+/** Persistent until `revalidateTag('subject-${subject}')`. */
+export const revalidate = false;
 
 export default async function SubjectHomePage({ params }: PageProps) {
   const { locale: raw, subject: subjectRaw } = await params;
@@ -96,6 +97,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href={searchHref(subject) as '/'}
+            prefetch={false}
             className="inline-flex min-h-12 items-center rounded-xl bg-[var(--accent)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--accent-strong)]"
           >
             {t('ctaSearch')}
@@ -103,6 +105,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
           {subjectHasGuide(subject) ? (
             <Link
               href={`/${subject}/guia` as '/'}
+              prefetch={false}
               className="inline-flex min-h-12 items-center rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] px-5 text-sm font-semibold text-[var(--fg)] transition hover:border-[var(--accent)]"
             >
               {t('ctaGuide')}
@@ -142,6 +145,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
               <li key={section.slug}>
                 <Link
                   href={sectionHref(subject, section.slug) as '/'}
+                  prefetch={false}
                   className="group flex min-h-14 items-baseline justify-between gap-4 py-4 transition hover:text-[var(--accent-strong)]"
                 >
                   <span className="flex min-w-0 gap-3">
@@ -170,6 +174,7 @@ export default async function SubjectHomePage({ params }: PageProps) {
               <li key={section.slug}>
                 <Link
                   href={sectionHref(subject, section.slug) as '/'}
+                  prefetch={false}
                   className="inline-flex min-h-11 items-center text-[var(--accent-strong)] underline-offset-2 hover:underline"
                 >
                   <InlineMarkdown text={section.title} />
