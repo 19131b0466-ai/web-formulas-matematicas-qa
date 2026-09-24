@@ -2828,7 +2828,6 @@
   "Calcula corrección del factor de potencia a partir del modelo del circuito y de las condiciones indicadas.": "Computes Power-factor correction from the circuit model and the stated conditions.",
   "Para «Corrección del factor de potencia»: P, Q y S forman el triángulo de potencia; en resonancia la reactancia neta se anula.": "For “Power-factor correction”: P, Q and S form the power triangle; at resonance net reactance vanishes.",
   "¿Qué debe verificarse antes de usar la relación de corrección del factor de potencia?": "What must be checked before using the Power-factor correction relation?",
-  "En resonancia serie XL=XC y |Z| es mínimo en ω0.": "At series resonance XL=XC and |Z| is minimum at ω0.",
   "Para «Resonancia serie»: P, Q y S forman el triángulo de potencia; en resonancia la reactancia neta se anula.": "For “Series resonance”: P, Q and S form the power triangle; at resonance net reactance vanishes.",
   "¿Qué debe verificarse antes de usar la relación de resonancia serie?": "What must be checked before using the Series resonance relation?",
   "En resonancia paralelo |Z| es máximo en ω0.": "At parallel resonance |Z| is maximum at ω0.",
@@ -3007,7 +3006,6 @@
   "Calcula corriente MOSFET en región triodo a partir del modelo del circuito y de las condiciones indicadas.": "Computes MOSFET triode-region current from the circuit model and the stated conditions.",
   "Para «Corriente MOSFET en región triodo»: VGS respecto de Vth abre el canal; en saturación ID depende de (VGS−Vth)².": "For “MOSFET triode-region current”: VGS versus Vth opens the channel; in saturation ID depends on (VGS−Vth)².",
   "¿Qué debe verificarse antes de usar la relación de corriente MOSFET en región triodo?": "What must be checked before using the MOSFET triode-region current relation?",
-  "Calcula condición de saturación MOSFET a partir del modelo del circuito y de las condiciones indicadas.": "Computes MOSFET saturation condition from the circuit model and the stated conditions.",
   "Para «Condición de saturación MOSFET»: VGS respecto de Vth abre el canal; en saturación ID depende de (VGS−Vth)².": "For “MOSFET saturation condition”: VGS versus Vth opens the channel; in saturation ID depends on (VGS−Vth)².",
   "¿Qué debe verificarse antes de usar la relación de condición de saturación MOSFET?": "What must be checked before using the MOSFET saturation condition relation?",
   "Calcula condición de corte MOSFET a partir del modelo del circuito y de las condiciones indicadas.": "Computes MOSFET cutoff condition from the circuit model and the stated conditions.",
@@ -3434,5 +3432,8 @@
   "Para una señal limitada a \\(20\\,\\mathrm{kHz}\\), Nyquist exige \\(f_s>40\\,\\mathrm{kHz}\\); \\(48\\,\\mathrm{kHz}\\) cumple.": "For a signal band-limited to \\(20\\,\\mathrm{kHz}\\), Nyquist requires \\(f_s>40\\,\\mathrm{kHz}\\); \\(48\\,\\mathrm{kHz}\\) satisfies it.",
   "Con \\(V_{\\mathrm{FS}}=5.12\\,\\mathrm V\\) y \\(n=10\\), \\(\\Delta=5.12/1024=5\\,\\mathrm{mV}\\).": "With \\(V_{\\mathrm{FS}}=5.12\\,\\mathrm V\\) and \\(n=10\\), \\(\\Delta=5.12/1024=5\\,\\mathrm{mV}\\).",
   "Con \\(t_{\\mathrm{on}}=2\\,\\mathrm{ms}\\) y \\(T=5\\,\\mathrm{ms}\\), \\(\\delta=2/5=0.40=40\\%\\).": "With \\(t_{\\mathrm{on}}=2\\,\\mathrm{ms}\\) and \\(T=5\\,\\mathrm{ms}\\), \\(\\delta=2/5=0.40=40\\%\\).",
-  "Para un DAC R-2R de 3 bits, código \\(101\\) y \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).": "For a 3-bit R-2R DAC, code \\(101\\) and \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\)."
+  "Para un DAC R-2R de 3 bits, código \\(101\\) y \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).": "For a 3-bit R-2R DAC, code \\(101\\) and \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).",
+  "En resonancia serie \\(X_L+X_C=0\\), equivalente a \\(X_L=|X_C|\\), y |Z| es mínimo en ω0.": "At series resonance \\(X_L+X_C=0\\), equivalent to \\(X_L=|X_C|\\), and |Z| is minimum at ω0.",
+  "La saturación del NMOS de enriquecimiento de canal largo exige canal formado, \\(V_{GS}>V_{\\mathrm{th}}\\), y \\(V_{DS}\\ge V_{GS}-V_{\\mathrm{th}}\\).": "Long-channel enhancement NMOS saturation requires a formed channel, \\(V_{GS}>V_{\\mathrm{th}}\\), and \\(V_{DS}\\ge V_{GS}-V_{\\mathrm{th}}\\).",
+  "NMOS de enriquecimiento de canal largo; canal formado y saturación juntos.": "Long-channel enhancement NMOS; formed channel and saturation together."
 }

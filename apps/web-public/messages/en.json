@@ -1753,7 +1753,7 @@
       "aria": "Resonance curve",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "At series resonance XL=XC and |Z| is minimum (equal to R).",
+        "idea": "At series resonance X_L + X_C = 0 (X_L = |X_C|) and |Z| is minimum (equal to R).",
         "tryIt": "Lower R: the valley at ω0 gets deeper and narrower.",
         "caption": "|Z| minimum at ω0 (series)."
       },
@@ -1892,7 +1892,18 @@
       "filter": "Filter / Bode",
       "diode": "Diode",
       "opamp": "Op-amp",
-      "ff": "Flip-flop"
+      "ff": "Flip-flop",
+      "waiting": "Choose a signal to see the matching branch.",
+      "results": {
+        "dc": "Reduce the resistive network and find the Thévenin or Norton equivalent: Vth, Rth and In.",
+        "transient": "For an RC, the tree ends at τ = RC, v(0+) and v(∞). For an RL, at τ = L/R, i(0+) and i(∞).",
+        "rlc": "Write the characteristic equation and classify ζ: overdamped, critical or underdamped.",
+        "phasors": "Convert to RMS phasors and impedances.",
+        "filter": "Find H(jω), the cutoffs, the slope and the load effect.",
+        "diode": "Choose the diode model, identify conduction and estimate the ripple.",
+        "opamp": "Confirm the feedback, the linear region and the saturation limit.",
+        "ff": "Check the clock, setup, hold and the next state."
+      }
     }
   }
 }

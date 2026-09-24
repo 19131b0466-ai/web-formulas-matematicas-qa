@@ -431,12 +431,20 @@ ANCHOR_DETAILS: dict[str, tuple[str, str, str, str, str, str]] = {
         "O triângulo de potências relaciona P, Q e S=√(P²+Q²).",
     ),
     "PAC-008": (
-        "En resonancia serie XL=XC y |Z| es mínimo en ω0.",
-        "At series resonance XL=XC and |Z| is minimum at ω0.",
-        "Bei Reihenresonanz gilt XL=XC und |Z| ist minimal bei ω0.",
-        "À la résonance série XL=XC et |Z| est minimal en ω0.",
-        "In risonanza serie XL=XC e |Z| è minimo in ω0.",
-        "Na ressonância série XL=XC e |Z| é mínimo em ω0.",
+        r"En resonancia serie \(X_L+X_C=0\), equivalente a \(X_L=|X_C|\), y |Z| es mínimo en ω0.",
+        r"At series resonance \(X_L+X_C=0\), equivalent to \(X_L=|X_C|\), and |Z| is minimum at ω0.",
+        r"Bei Reihenresonanz gilt \(X_L+X_C=0\), gleichwertig mit \(X_L=|X_C|\), und |Z| ist minimal bei ω0.",
+        r"À la résonance série \(X_L+X_C=0\), équivalent à \(X_L=|X_C|\), et |Z| est minimal en ω0.",
+        r"In risonanza serie \(X_L+X_C=0\), equivalente a \(X_L=|X_C|\), e |Z| è minimo in ω0.",
+        r"Na ressonância série \(X_L+X_C=0\), equivalente a \(X_L=|X_C|\), e |Z| é mínimo em ω0.",
+    ),
+    "FET-004": (
+        r"La saturación del NMOS de enriquecimiento de canal largo exige canal formado, \(V_{GS}>V_{\mathrm{th}}\), y \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
+        r"Long-channel enhancement NMOS saturation requires a formed channel, \(V_{GS}>V_{\mathrm{th}}\), and \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
+        r"Die Sättigung eines Anreicherungs-NMOS mit langem Kanal verlangt einen ausgebildeten Kanal, \(V_{GS}>V_{\mathrm{th}}\), und \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
+        r"La saturation d’un NMOS à enrichissement et canal long exige un canal formé, \(V_{GS}>V_{\mathrm{th}}\), et \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
+        r"La saturazione di un NMOS ad arricchimento a canale lungo richiede un canale formato, \(V_{GS}>V_{\mathrm{th}}\), e \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
+        r"A saturação de um NMOS de enriquecimento de canal longo exige canal formado, \(V_{GS}>V_{\mathrm{th}}\), e \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).",
     ),
     "PAC-009": (
         "En resonancia paralelo |Z| es máximo en ω0.",
@@ -1114,6 +1122,7 @@ COND_OVERRIDES = {
     "SEQ-001": "Latch SR sensible al nivel de Enable, no al flanco; la combinación S=R=1 está prohibida.",
     "SEQ-002": "Latch D transparente mientras Enable está activo (nivel); no usa flanco de reloj.",
     "FIL-006": "Pendiente −20 dB/dec en la banda de caída de un pasa-bajos de primer orden; un pasa-altos sube +20 dB/dec por debajo de fc.",
+    "FET-004": "NMOS de enriquecimiento de canal largo; canal formado y saturación juntos.",
 }
 COND_OVERRIDE_I18N = {
     "REA-003": {
@@ -1143,6 +1152,13 @@ COND_OVERRIDE_I18N = {
         "fr": "La pente −20 dB/dec vaut dans la bande de descente d’un passe-bas du 1er ordre ; un passe-haut monte de +20 dB/dec sous fc.",
         "it": "La pendenza −20 dB/dec vale nella banda di discesa di un passa-basso del 1° ordine; un passa-alto sale di +20 dB/dec sotto fc.",
         "pt": "A pendente −20 dB/dec vale na banda de queda de um passa-baixa de 1.ª ordem; um passa-alta sobe +20 dB/dec abaixo de fc.",
+    },
+    "FET-004": {
+        "en": "Long-channel enhancement NMOS; formed channel and saturation together.",
+        "de": "Anreicherungs-NMOS mit langem Kanal; ausgebildeter Kanal und Sättigung zusammen.",
+        "fr": "NMOS à enrichissement et canal long ; canal formé et saturation ensemble.",
+        "it": "NMOS ad arricchimento a canale lungo; canale formato e saturazione insieme.",
+        "pt": "NMOS de enriquecimento de canal longo; canal formado e saturação juntos.",
     },
 }
 COND_OVERRIDE_I18N["REA-004"] = COND_OVERRIDE_I18N["REA-003"]
@@ -1641,6 +1657,8 @@ def set_display_latex(block: str, latex: str) -> str:
 
 LATEX_OVERRIDES = {
     "FAS-011": r"|X_C|=\frac{1}{\omega C},\qquad X_C=-\frac{1}{\omega C},\qquad Z_C=-\frac{j}{\omega C}",
+    "PAC-008": r"X_L+X_C=0,\qquad\omega_0=\frac{1}{\sqrt{LC}}",
+    "FET-004": r"V_{GS}>V_{\mathrm{th}},\qquad V_{DS}\ge V_{GS}-V_{\mathrm{th}}",
 }
 
 

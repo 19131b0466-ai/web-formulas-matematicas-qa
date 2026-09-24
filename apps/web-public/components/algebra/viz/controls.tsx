@@ -110,17 +110,20 @@ export function VizButton({
   onClick,
   active,
   disabled,
+  pressed,
 }: {
   children: ReactNode;
   onClick: () => void;
   active?: boolean;
   disabled?: boolean;
+  pressed?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
+      aria-pressed={pressed}
       className={`rounded-lg border px-3 py-2 text-sm font-medium transition ${
         disabled
           ? 'cursor-not-allowed border-[var(--border)] bg-[var(--bg)] text-[var(--fg-muted)] opacity-60'

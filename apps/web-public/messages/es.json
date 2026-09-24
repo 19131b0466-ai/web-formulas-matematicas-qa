@@ -1753,7 +1753,7 @@
       "aria": "Curva de resonancia",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "En resonancia serie XL=XC y |Z| es mínimo (igual a R).",
+        "idea": "En resonancia serie X_L + X_C = 0 (X_L = |X_C|) y |Z| es mínimo (igual a R).",
         "tryIt": "Baja R: el valle en ω0 se hace más profundo y estrecho.",
         "caption": "|Z| mínimo en ω0 (serie)."
       },
@@ -1892,7 +1892,18 @@
       "filter": "Filtro / Bode",
       "diode": "Diodo",
       "opamp": "Op-amp",
-      "ff": "Flip-flop"
+      "ff": "Flip-flop",
+      "waiting": "Elige una señal para ver la rama correspondiente.",
+      "results": {
+        "dc": "Reduce la red resistiva y obtén Thévenin o Norton: Vth, Rth e In.",
+        "transient": "Para un RC, el árbol termina en τ = RC, v(0+) y v(∞). Para un RL, en τ = L/R, i(0+) e i(∞).",
+        "rlc": "Plantea la ecuación característica y clasifica ζ: sobreamortiguado, crítico o subamortiguado.",
+        "phasors": "Convierte a fasores RMS e impedancias.",
+        "filter": "Obtén H(jω), los cortes, la pendiente y el efecto de la carga.",
+        "diode": "Elige el modelo del diodo, identifica la conducción y estima el rizado.",
+        "opamp": "Confirma la realimentación, la región lineal y el límite de saturación.",
+        "ff": "Revisa el reloj, el setup, el hold y el estado siguiente."
+      }
     }
   }
 }

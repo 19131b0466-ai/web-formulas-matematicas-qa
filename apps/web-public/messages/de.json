@@ -1753,7 +1753,7 @@
       "aria": "Resonanzkurve",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "Bei Reihenresonanz gilt XL=XC und |Z| ist minimal (gleich R).",
+        "idea": "Bei Reihenresonanz gilt X_L + X_C = 0 (X_L = |X_C|) und |Z| ist minimal (gleich R).",
         "tryIt": "Senke R: das Tal bei ω0 wird tiefer und schmaler.",
         "caption": "|Z| minimal bei ω0 (Serie)."
       },
@@ -1888,11 +1888,22 @@
       "dc": "DC / Thévenin",
       "transient": "RC/RL-Transient",
       "rlc": "RLC / ζ",
-      "phasors": "Phasors",
+      "phasors": "Zeiger",
       "filter": "Filter / Bode",
       "diode": "Diode",
       "opamp": "Op-amp",
-      "ff": "Flipflop"
+      "ff": "Flipflop",
+      "waiting": "Wähle ein Signal, um den passenden Zweig zu sehen.",
+      "results": {
+        "dc": "Reduziere das Widerstandsnetz und bestimme das Thévenin- oder Norton-Äquivalent: Vth, Rth und In.",
+        "transient": "Bei einem RC endet der Baum bei τ = RC, v(0+) und v(∞). Bei einem RL bei τ = L/R, i(0+) und i(∞).",
+        "rlc": "Stelle die charakteristische Gleichung auf und ordne ζ ein: überdämpft, kritisch oder unterdämpft.",
+        "phasors": "Wandle in RMS-Zeiger und Impedanzen um.",
+        "filter": "Bestimme H(jω), die Grenzfrequenzen, die Steigung und den Lasteinfluss.",
+        "diode": "Wähle das Diodenmodell, erkenne den leitenden Zustand und schätze die Welligkeit.",
+        "opamp": "Prüfe die Rückkopplung, den linearen Bereich und die Sättigungsgrenze.",
+        "ff": "Prüfe Takt, Setup, Hold und den Folgezustand."
+      }
     }
   }
 }

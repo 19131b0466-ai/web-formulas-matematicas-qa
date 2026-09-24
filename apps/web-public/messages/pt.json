@@ -1754,7 +1754,7 @@
       "aria": "Curva de ressonância",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "Na ressonância série XL=XC e |Z| é mínimo (igual a R).",
+        "idea": "Na ressonância série X_L + X_C = 0 (X_L = |X_C|) e |Z| é mínimo (igual a R).",
         "tryIt": "Baixa R: o vale em ω0 aprofunda-se e estreita-se.",
         "caption": "|Z| mínimo em ω0 (série)."
       },
@@ -1889,11 +1889,22 @@
       "dc": "DC / Thévenin",
       "transient": "Transiente RC/RL",
       "rlc": "RLC / ζ",
-      "phasors": "Phasors",
+      "phasors": "Fasores",
       "filter": "Filtro / Bode",
       "diode": "Diodo",
       "opamp": "Op-amp",
-      "ff": "Flip-flop"
+      "ff": "Flip-flop",
+      "waiting": "Escolhe um sinal para ver o ramo correspondente.",
+      "results": {
+        "dc": "Reduza a rede resistiva e obtenha o equivalente de Thévenin ou de Norton: Vth, Rth e In.",
+        "transient": "Para um RC, a árvore termina em τ = RC, v(0+) e v(∞). Para um RL, em τ = L/R, i(0+) e i(∞).",
+        "rlc": "Escreva a equação característica e classifique ζ: superamortecido, crítico ou subamortecido.",
+        "phasors": "Converta para fasores RMS e impedâncias.",
+        "filter": "Obtenha H(jω), os cortes, a inclinação e o efeito da carga.",
+        "diode": "Escolha o modelo do diodo, identifique a condução e estime a ondulação.",
+        "opamp": "Confirme a realimentação, a região linear e o limite de saturação.",
+        "ff": "Verifique o relógio, o setup, o hold e o estado seguinte."
+      }
     }
   }
 }

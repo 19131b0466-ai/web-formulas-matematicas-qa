@@ -1753,7 +1753,7 @@
       "aria": "Courbe de résonance",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "À la résonance série XL=XC et |Z| est minimal (égal à R).",
+        "idea": "À la résonance série X_L + X_C = 0 (X_L = |X_C|) et |Z| est minimal (égal à R).",
         "tryIt": "Baisse R : le creux en ω0 s’approfondit et se resserre.",
         "caption": "|Z| minimal en ω0 (série)."
       },
@@ -1888,11 +1888,22 @@
       "dc": "DC / Thévenin",
       "transient": "Transitoire RC/RL",
       "rlc": "RLC / ζ",
-      "phasors": "Phasors",
+      "phasors": "Phaseurs",
       "filter": "Filtre / Bode",
       "diode": "Diode",
       "opamp": "Op-amp",
-      "ff": "Bascule"
+      "ff": "Bascule",
+      "waiting": "Choisis un signal pour voir la branche correspondante.",
+      "results": {
+        "dc": "Réduis le réseau résistif et obtiens l’équivalent de Thévenin ou de Norton : Vth, Rth et In.",
+        "transient": "Pour un RC, l’arbre se termine à τ = RC, v(0+) et v(∞). Pour un RL, à τ = L/R, i(0+) et i(∞).",
+        "rlc": "Écris l’équation caractéristique et classe ζ : suramorti, critique ou sous-amorti.",
+        "phasors": "Convertis en phaseurs RMS et en impédances.",
+        "filter": "Obtiens H(jω), les coupures, la pente et l’effet de la charge.",
+        "diode": "Choisis le modèle de diode, identifie la conduction et estime l’ondulation.",
+        "opamp": "Confirme la rétroaction, la région linéaire et la limite de saturation.",
+        "ff": "Vérifie l’horloge, le setup, le hold et l’état suivant."
+      }
     }
   }
 }

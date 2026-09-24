@@ -112,7 +112,7 @@ VIZ = {
             "aria": "Curva de resonancia",
             "status": "ω0 = {w0} rad/s · R = {r} Ω",
             "series": mode(
-                "En resonancia serie XL=XC y |Z| es mínimo (igual a R).",
+                "En resonancia serie X_L + X_C = 0 (X_L = |X_C|) y |Z| es mínimo (igual a R).",
                 "Baja R: el valle en ω0 se hace más profundo y estrecho.",
                 "|Z| mínimo en ω0 (serie).",
             ),
@@ -330,7 +330,7 @@ VIZ["en"] = {
         "caption": "|Z| extreme at ω0.",
         "aria": "Resonance curve",
         "status": "ω0 = {w0} rad/s · R = {r} Ω",
-        "series": mode("At series resonance XL=XC and |Z| is minimum (equal to R).", "Lower R: the valley at ω0 gets deeper and narrower.", "|Z| minimum at ω0 (series)."),
+        "series": mode("At series resonance X_L + X_C = 0 (X_L = |X_C|) and |Z| is minimum (equal to R).", "Lower R: the valley at ω0 gets deeper and narrower.", "|Z| minimum at ω0 (series)."),
         "parallel": mode("At parallel resonance |Z| is maximum.", "Raise R: the |Z| peak at ω0 grows. Away from ω0, |Z| drops.", "|Z| maximum at ω0 (parallel)."),
     },
     "bode_filter": {
@@ -490,7 +490,7 @@ VIZ["de"] = patch_leaves(VIZ["en"], {
         "tryIt": "Streiche ω um ω0: die Kurve wird schmaler, wenn Q steigt.",
         "caption": "|Z|-Extremum bei ω0.",
         "aria": "Resonanzkurve",
-        "series": mode("Bei Reihenresonanz gilt XL=XC und |Z| ist minimal (gleich R).", "Senke R: das Tal bei ω0 wird tiefer und schmaler.", "|Z| minimal bei ω0 (Serie)."),
+        "series": mode("Bei Reihenresonanz gilt X_L + X_C = 0 (X_L = |X_C|) und |Z| ist minimal (gleich R).", "Senke R: das Tal bei ω0 wird tiefer und schmaler.", "|Z| minimal bei ω0 (Serie)."),
         "parallel": mode("Bei Parallelresonanz ist |Z| maximal.", "Erhöhe R: die |Z|-Spitze bei ω0 wächst. Abseits von ω0 fällt |Z|.", "|Z| maximal bei ω0 (parallel)."),
     },
     "bode_filter": {
@@ -619,7 +619,7 @@ VIZ["fr"] = patch_leaves(VIZ["en"], {
         "tryIt": "Balaye ω autour de ω0 : la courbe se resserre si Q monte.",
         "caption": "Extrémum de |Z| en ω0.",
         "aria": "Courbe de résonance",
-        "series": mode("À la résonance série XL=XC et |Z| est minimal (égal à R).", "Baisse R : le creux en ω0 s’approfondit et se resserre.", "|Z| minimal en ω0 (série)."),
+        "series": mode("À la résonance série X_L + X_C = 0 (X_L = |X_C|) et |Z| est minimal (égal à R).", "Baisse R : le creux en ω0 s’approfondit et se resserre.", "|Z| minimal en ω0 (série)."),
         "parallel": mode("À la résonance parallèle |Z| est maximal.", "Augmente R : le pic de |Z| en ω0 croît. Hors de ω0, |Z| chute.", "|Z| maximal en ω0 (parallèle)."),
     },
     "bode_filter": {
@@ -748,7 +748,7 @@ VIZ["it"] = patch_leaves(VIZ["en"], {
         "tryIt": "Spazza ω intorno a ω0: la curva si stringe se Q sale.",
         "caption": "Estremo di |Z| in ω0.",
         "aria": "Curva di risonanza",
-        "series": mode("In risonanza serie XL=XC e |Z| è minimo (uguale a R).", "Abbassa R: la valle in ω0 si approfondisce e si stringe.", "|Z| minimo in ω0 (serie)."),
+        "series": mode("In risonanza serie X_L + X_C = 0 (X_L = |X_C|) e |Z| è minimo (uguale a R).", "Abbassa R: la valle in ω0 si approfondisce e si stringe.", "|Z| minimo in ω0 (serie)."),
         "parallel": mode("In risonanza parallelo |Z| è massimo.", "Alza R: il picco di |Z| in ω0 cresce. Lontano da ω0 |Z| cade.", "|Z| massimo in ω0 (parallelo)."),
     },
     "bode_filter": {
@@ -877,7 +877,7 @@ VIZ["pt"] = patch_leaves(VIZ["en"], {
         "tryIt": "Varre ω em torno de ω0: a curva estreita-se se Q sobe.",
         "caption": "Extremo de |Z| em ω0.",
         "aria": "Curva de ressonância",
-        "series": mode("Na ressonância série XL=XC e |Z| é mínimo (igual a R).", "Baixa R: o vale em ω0 aprofunda-se e estreita-se.", "|Z| mínimo em ω0 (série)."),
+        "series": mode("Na ressonância série X_L + X_C = 0 (X_L = |X_C|) e |Z| é mínimo (igual a R).", "Baixa R: o vale em ω0 aprofunda-se e estreita-se.", "|Z| mínimo em ω0 (série)."),
         "parallel": mode("Na ressonância paralelo |Z| é máximo.", "Sobe R: o pico de |Z| em ω0 cresce. Longe de ω0, |Z| cai.", "|Z| máximo em ω0 (paralelo)."),
     },
     "bode_filter": {

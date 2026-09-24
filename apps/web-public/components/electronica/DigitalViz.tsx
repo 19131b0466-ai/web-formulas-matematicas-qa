@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ControlsStack, SliderRow, VizPanel } from '@/components/algebra/viz/controls';
+import { ControlsStack, SliderRow, VizButton, VizPanel } from '@/components/algebra/viz/controls';
 import { present } from '@/components/algebra/viz/vectorPlane';
 import { ACCENT, MUTED, ORANGE, TEAL } from '@/components/physics/viz/physPlot';
 import { ElecGuide, elecCaption, PlayRow, PhysStatus, useRafPlay } from './elecChrome';
@@ -222,31 +222,30 @@ export function SamplingPwmViz({ mode }: Props) {
   );
 }
 
+const GUIDE_KEYS = ['dc', 'transient', 'rlc', 'phasors', 'filter', 'diode', 'opamp', 'ff'] as const;
+type GuideKey = (typeof GUIDE_KEYS)[number];
+
 export function ElectronicaGuideViz() {
   const t = useTranslations('vizElectronica');
-  const items = [
-    t('electronics_guide.dc'),
-    t('electronics_guide.transient'),
-    t('electronics_guide.rlc'),
-    t('electronics_guide.phasors'),
-    t('electronics_guide.filter'),
-    t('electronics_guide.diode'),
-    t('electronics_guide.opamp'),
-    t('electronics_guide.ff'),
-  ];
+  const [selected, setSelected] = useState<GuideKey | null>(null);
   return (
     <VizPanel caption={elecCaption(t, 'electronics_guide')}>
       <ElecGuide type="electronics_guide" />
-      <ul className="grid gap-2 sm:grid-cols-2">
-        {items.map((label) => (
-          <li
-            key={label}
-            className="rounded-lg border border-[var(--border)] bg-[var(--formula-bg)] px-3 py-2 text-sm"
+      <div className="mt-3 grid gap-2 sm:grid-cols-2" role="group" aria-label={t('electronics_guide.caption')}>
+        {GUIDE_KEYS.map((key) => (
+          <VizButton
+            key={key}
+            active={selected === key}
+            pressed={selected === key}
+            onClick={() => setSelected(key)}
           >
-            {label}
-          </li>
+            {t(`electronics_guide.${key}`)}
+          </VizButton>
         ))}
-      </ul>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed" aria-live="polite">
+        {selected ? t(`electronics_guide.results.${selected}`) : t('electronics_guide.waiting')}
+      </p>
     </VizPanel>
   );
 }

@@ -1753,7 +1753,7 @@
       "aria": "Curva di risonanza",
       "status": "ω0 = {w0} rad/s · R = {r} Ω",
       "series": {
-        "idea": "In risonanza serie XL=XC e |Z| è minimo (uguale a R).",
+        "idea": "In risonanza serie X_L + X_C = 0 (X_L = |X_C|) e |Z| è minimo (uguale a R).",
         "tryIt": "Abbassa R: la valle in ω0 si approfondisce e si stringe.",
         "caption": "|Z| minimo in ω0 (serie)."
       },
@@ -1888,11 +1888,22 @@
       "dc": "DC / Thévenin",
       "transient": "Transitorio RC/RL",
       "rlc": "RLC / ζ",
-      "phasors": "Phasors",
+      "phasors": "Fasori",
       "filter": "Filtro / Bode",
       "diode": "Diodo",
       "opamp": "Op-amp",
-      "ff": "Flip-flop"
+      "ff": "Flip-flop",
+      "waiting": "Scegli un segnale per vedere il ramo corrispondente.",
+      "results": {
+        "dc": "Riduci la rete resistiva e ottieni l’equivalente di Thévenin o di Norton: Vth, Rth e In.",
+        "transient": "Per un RC, l’albero termina in τ = RC, v(0+) e v(∞). Per un RL, in τ = L/R, i(0+) e i(∞).",
+        "rlc": "Scrivi l’equazione caratteristica e classifica ζ: sovrasmorzato, critico o sottomorzato.",
+        "phasors": "Converti in fasori RMS e impedenze.",
+        "filter": "Ottieni H(jω), le frequenze di taglio, la pendenza e l’effetto del carico.",
+        "diode": "Scegli il modello del diodo, individua la conduzione e stima il ripple.",
+        "opamp": "Conferma la retroazione, la regione lineare e il limite di saturazione.",
+        "ff": "Controlla il clock, il setup, l’hold e lo stato successivo."
+      }
     }
   }
 }

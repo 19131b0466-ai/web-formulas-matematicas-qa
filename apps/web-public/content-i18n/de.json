@@ -2830,7 +2830,6 @@
   "Calcula corrección del factor de potencia a partir del modelo del circuito y de las condiciones indicadas.": "Berechnet Blindleistungskompensation aus dem Schaltungsmodell und den genannten Bedingungen.",
   "Para «Corrección del factor de potencia»: P, Q y S forman el triángulo de potencia; en resonancia la reactancia neta se anula.": "Für „Blindleistungskompensation“: P, Q und S bilden das Leistungsdreieck; in Resonanz verschwindet die Netzreaktanz.",
   "¿Qué debe verificarse antes de usar la relación de corrección del factor de potencia?": "Was muss vor der Verwendung der Beziehung «Blindleistungskompensation» geprüft werden?",
-  "En resonancia serie XL=XC y |Z| es mínimo en ω0.": "Bei Reihenresonanz gilt XL=XC und |Z| ist minimal bei ω0.",
   "Para «Resonancia serie»: P, Q y S forman el triángulo de potencia; en resonancia la reactancia neta se anula.": "Für „Reihenresonanz“: P, Q und S bilden das Leistungsdreieck; in Resonanz verschwindet die Netzreaktanz.",
   "¿Qué debe verificarse antes de usar la relación de resonancia serie?": "Was muss vor der Verwendung der Beziehung «Reihenresonanz» geprüft werden?",
   "En resonancia paralelo |Z| es máximo en ω0.": "Bei Parallelresonanz ist |Z| maximal bei ω0.",
@@ -3009,7 +3008,6 @@
   "Calcula corriente MOSFET en región triodo a partir del modelo del circuito y de las condiciones indicadas.": "Berechnet MOSFET-Strom im Triodenbereich aus dem Schaltungsmodell und den genannten Bedingungen.",
   "Para «Corriente MOSFET en región triodo»: VGS respecto de Vth abre el canal; en saturación ID depende de (VGS−Vth)².": "Für „MOSFET-Strom im Triodenbereich“: VGS gegenüber Vth öffnet den Kanal; in Sättigung hängt ID von (VGS−Vth)² ab.",
   "¿Qué debe verificarse antes de usar la relación de corriente MOSFET en región triodo?": "Was muss vor der Verwendung der Beziehung «MOSFET-Strom im Triodenbereich» geprüft werden?",
-  "Calcula condición de saturación MOSFET a partir del modelo del circuito y de las condiciones indicadas.": "Berechnet MOSFET-Sättigungsbedingung aus dem Schaltungsmodell und den genannten Bedingungen.",
   "Para «Condición de saturación MOSFET»: VGS respecto de Vth abre el canal; en saturación ID depende de (VGS−Vth)².": "Für „MOSFET-Sättigungsbedingung“: VGS gegenüber Vth öffnet den Kanal; in Sättigung hängt ID von (VGS−Vth)² ab.",
   "¿Qué debe verificarse antes de usar la relación de condición de saturación MOSFET?": "Was muss vor der Verwendung der Beziehung «MOSFET-Sättigungsbedingung» geprüft werden?",
   "Calcula condición de corte MOSFET a partir del modelo del circuito y de las condiciones indicadas.": "Berechnet MOSFET-Sperrbedingung aus dem Schaltungsmodell und den genannten Bedingungen.",
@@ -3436,5 +3434,8 @@
   "Para una señal limitada a \\(20\\,\\mathrm{kHz}\\), Nyquist exige \\(f_s>40\\,\\mathrm{kHz}\\); \\(48\\,\\mathrm{kHz}\\) cumple.": "Für ein auf \\(20\\,\\mathrm{kHz}\\),  bandbegrenztes Signal verlangt Nyquist \\(f_s>40\\,\\mathrm{kHz}\\); \\(48\\,\\mathrm{kHz}\\) erfüllt das.",
   "Con \\(V_{\\mathrm{FS}}=5.12\\,\\mathrm V\\) y \\(n=10\\), \\(\\Delta=5.12/1024=5\\,\\mathrm{mV}\\).": "Mit \\(V_{\\mathrm{FS}}=5.12\\,\\mathrm V\\) und \\(n=10\\), \\(\\Delta=5.12/1024=5\\,\\mathrm{mV}\\).",
   "Con \\(t_{\\mathrm{on}}=2\\,\\mathrm{ms}\\) y \\(T=5\\,\\mathrm{ms}\\), \\(\\delta=2/5=0.40=40\\%\\).": "Mit \\(t_{\\mathrm{on}}=2\\,\\mathrm{ms}\\) und \\(T=5\\,\\mathrm{ms}\\), \\(\\delta=2/5=0.40=40\\%\\).",
-  "Para un DAC R-2R de 3 bits, código \\(101\\) y \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).": "Für ein 3-Bit-R-2R-DAC, Code \\(101\\) und \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\)."
+  "Para un DAC R-2R de 3 bits, código \\(101\\) y \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).": "Für ein 3-Bit-R-2R-DAC, Code \\(101\\) und \\(V_{\\mathrm{ref}}=8\\,\\mathrm V\\), \\(v_o=-8(1/2+1/8)=-5\\,\\mathrm V\\).",
+  "En resonancia serie \\(X_L+X_C=0\\), equivalente a \\(X_L=|X_C|\\), y |Z| es mínimo en ω0.": "Bei Reihenresonanz gilt \\(X_L+X_C=0\\), gleichwertig mit \\(X_L=|X_C|\\), und |Z| ist minimal bei ω0.",
+  "La saturación del NMOS de enriquecimiento de canal largo exige canal formado, \\(V_{GS}>V_{\\mathrm{th}}\\), y \\(V_{DS}\\ge V_{GS}-V_{\\mathrm{th}}\\).": "Die Sättigung eines Anreicherungs-NMOS mit langem Kanal verlangt einen ausgebildeten Kanal, \\(V_{GS}>V_{\\mathrm{th}}\\), und \\(V_{DS}\\ge V_{GS}-V_{\\mathrm{th}}\\).",
+  "NMOS de enriquecimiento de canal largo; canal formado y saturación juntos.": "Anreicherungs-NMOS mit langem Kanal; ausgebildeter Kanal und Sättigung zusammen."
 }

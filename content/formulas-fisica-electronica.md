@@ -1667,10 +1667,10 @@ Q_c=P\left(\tan\theta_1-\tan\theta_2\right)
 **ID:** `PAC-008`
 
 \[
-X_L=X_C,\qquad\omega_0=\frac{1}{\sqrt{LC}}
+X_L+X_C=0,\qquad\omega_0=\frac{1}{\sqrt{LC}}
 \]
 
-**Detalle:** En resonancia serie XL=XC y |Z| es mínimo en ω0.
+**Detalle:** En resonancia serie \(X_L+X_C=0\), equivalente a \(X_L=|X_C|\), y |Z| es mínimo en ω0.
 
 **Variables:** \(P\): W; \(Q\): var; \(S\): VA; \(V,I\): RMS (V, A); \(\theta\): rad; \(\omega_0\): rad/s; \(R,L,C\): Ω, H, F.
 
@@ -2830,14 +2830,14 @@ I_D=k_n\left[(V_{GS}-V_{\mathrm{th}})V_{DS}-\frac{V_{DS}^2}{2}\right]
 **ID:** `FET-004`
 
 \[
-V_{DS}\ge V_{GS}-V_{\mathrm{th}}
+V_{GS}>V_{\mathrm{th}},\qquad V_{DS}\ge V_{GS}-V_{\mathrm{th}}
 \]
 
-**Detalle:** Calcula condición de saturación MOSFET a partir del modelo del circuito y de las condiciones indicadas.
+**Detalle:** La saturación del NMOS de enriquecimiento de canal largo exige canal formado, \(V_{GS}>V_{\mathrm{th}}\), y \(V_{DS}\ge V_{GS}-V_{\mathrm{th}}\).
 
 **Variables:** \(I_D,I_{DSS}\): A; \(V_{GS},V_{th},V_{DS}\): V; \(k_n\): A/V²; \(R_{DS(\mathrm{on})}\): Ω; \(g_m\): S.
 
-**Condición(es):** NMOS de enriquecimiento salvo JFET; polarización en la región citada.
+**Condición(es):** NMOS de enriquecimiento de canal largo; canal formado y saturación juntos.
 
 **Unidad:** A, V, S u Ω
 
